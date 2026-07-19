@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="188" height="42" viewBox="0 0 188 42" role="img" aria-labelledby="title">
+  <title id="title">Mt Cottages</title>
+  <g fill="none" stroke="#d9e7df" stroke-width="2">
+    <path d="M5 31 18 8l13 23H5Z"/>
+    <path d="m12 31 6-11 6 11"/>
+    <path d="M18 8v12"/>
+  </g>
+  <text x="42" y="29" fill="#fff" font-family="Georgia, 'Times New Roman', serif" font-size="24" letter-spacing=".2">Mt Cottages</text>
+</svg>

@@ -49,10 +49,11 @@ Stripe is currently a blocked integration: the vault key checked against Stripe 
 - Preserve the existing relative paths under `assets/`, `fonts/`, `images/`, and `venobox/`.
 - Do not add secrets, API tokens, credentials, or private tenant data to the repository.
 - Keep `CNAME` set to `mtcottages.com` and retain `.nojekyll` for GitHub Pages static hosting.
-- The primary public pages are `index.html`, `stays.html`, `mid-term.html`, `long-term.html`, `locations.html`, `how-it-works.html`, `apply.html`, `contact.html`, `faq.html`, and `privacy.html`. Legacy HotelHub pages remain for now but are not linked from the primary navigation.
+- The public theme is the exact HotelHub package from `~/Downloads/hotelhub-luxury-hotel-booking-html5-template-2026-04-28-16-29-32-utc.zip`. Keep its original CSS, JavaScript, image directories, homepage layout, and `venobox` assets intact when making content changes. Do not replace it with a separate cottage-specific visual system.
+- The primary public paths are `index.html`, `rooms.html`, `rooms-details.html`, `service.html`, `booking.html`, `apply.html`, `contact.html`, and `faq.html`. `apply.html` is the guest application and must use the HotelHub theme assets while posting through the existing Azure endpoint.
 - Keep street-level addresses out of public HTML, CSS, JavaScript, image paths, and metadata unless the owner explicitly approves a specific listing.
 - Keep SharePoint inventory exports, house maps, manifests, downloaded staging folders, and credentials out of Git.
 
 ## Verification
 
-Because there is no build system, preview changes with a local static server and check that all primary pages load their CSS, JavaScript, fonts, and approved images. Run `git diff --check`, validate the Azure JSON with `jq empty`, and confirm the public HTML contains no excluded address before deployment. For deployment changes, confirm the GitHub Pages source remains `gh-pages` at `/`, the custom domain remains configured, and `http://` redirects to `https://`.
+Because there is no build system, preview changes with a local static server and check that the HotelHub CSS, JavaScript, fonts, `venobox`, and image assets load on the primary pages. Run `git diff --check`, validate the Azure JSON with `jq empty`, and confirm the public HTML contains no excluded address before deployment. For deployment changes, confirm the GitHub Pages source remains `gh-pages` at `/`, the custom domain remains configured, and `http://` redirects to `https://`.
