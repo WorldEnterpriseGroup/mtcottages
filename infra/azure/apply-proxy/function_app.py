@@ -17,7 +17,7 @@ _last_submission = {}
 def _allowed_origins():
     values = os.environ.get(
         "ALLOWED_ORIGINS",
-        "https://mtcottages.com,https://www.mtcottages.com,https://apply.mtcottages.com",
+        "https://mtcottages.com,https://www.mtcottages.com,https://stay.mtcottages.com,https://apply.mtcottages.com",
     )
     return {value.strip() for value in values.split(",") if value.strip()}
 
@@ -51,6 +51,17 @@ def application_form(req: func.HttpRequest) -> func.HttpResponse:
     requested_path = urllib.parse.urlparse(req.url).path.rstrip("/")
     if requested_path.endswith("/api/health") or requested_path.endswith("/health"):
         return _response({"status": "ok", "service": "mtcottages-apply-proxy"}, 200, req.headers.get("Origin", ""))
+    forwarded_host = req.headers.get("X-Forwarded-Host", "")
+    request_host = (forwarded_host.split(",")[0] or req.headers.get("Host", "")).strip().lower()
+    if request_host == "apply.mtcottages.com" and not requested_path.startswith("/api/"):
+        parsed = urllib.parse.urlparse(req.url)
+        destination = "https://stay.mtcottages.com" + (parsed.path or "/")
+        if parsed.query:
+            destination += "?" + parsed.query
+        return func.HttpResponse(
+            status_code=301,
+            headers={"Location": destination, "Cache-Control": "public, max-age=300"},
+        )
     form_path = Path(__file__).with_name("index.html")
     try:
         markup = form_path.read_text(encoding="utf-8")
@@ -90,6 +101,8 @@ def apply(req: func.HttpRequest) -> func.HttpResponse:
     required = ("firstName", "lastName", "email", "phone", "stayType", "preferredLocation", "moveInDate", "duration", "occupants", "message", "termsAccepted")
     if any(not str(payload.get(field, "")).strip() for field in required):
         return _response({"success": False, "message": "Please complete the required fields"}, 400, origin)
+    if str(payload.get("termsAccepted", "")).strip().lower() not in {"yes", "true", "on"}:
+        return _response({"success": False, "message": "Please confirm the application information"}, 400, origin)
     if not re.fullmatch(r"[^\s@]+@[^\s@]+\.[^\s@]+", str(payload.get("email", ""))):
         return _response({"success": False, "message": "Please provide a valid email"}, 400, origin)
 

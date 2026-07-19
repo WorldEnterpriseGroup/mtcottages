@@ -198,7 +198,7 @@
                 </div>
                 <!-- header button -->
                 <div class="header-button">
-                  <a href="https://apply.mtcottages.com/">Stay with Us <i class="flaticon flaticon-right-arrow"></i>
+                  <a href="https://stay.mtcottages.com/">Stay with Us <i class="flaticon flaticon-right-arrow"></i>
                     <div class="hotelhub-hover-btn hover-btn"></div>
                     <div class="hotelhub-hover-btn hover-btn2"></div>
                     <div class="hotelhub-hover-btn hover-btn3"></div>
@@ -300,7 +300,30 @@
     <!--==================================================-->
 
         <!--==================================================-->
-        <!-- Start Mt Cottages Application Section --><div class="contact-section"><div class="container"><div class="row align-items-center"><div class="col-lg-5"><div class="hotelhub-section-title"><h4><i class="flaticon flaticon-right-arrow"></i>STAY WITH US</h4><h1>Start with a conversation.</h1><p>This is an inquiry and application—not a lease, approval, or guarantee of housing. Share what you need and we will follow up with current availability and the right next step.</p><p><strong>Please do not enter Social Security numbers, payment-card details, bank information, or other highly sensitive documents.</strong></p><p>Questions first? Email <a href="mailto:stay@mtcottages.com">stay@mtcottages.com</a>.</p></div></div><div class="col-lg-7"><div class="contact-form-box style-two"><form action="https://apply.mtcottages.com/api/apply" method="post" data-application-form novalidate><div class="row"><div class="col-lg-6 col-md-6"><div class="form-box"><input type="text" name="firstName" placeholder="First Name" required></div></div><div class="col-lg-6 col-md-6"><div class="form-box"><input type="text" name="lastName" placeholder="Last Name" required></div></div><div class="col-lg-6 col-md-6"><div class="form-box"><input type="email" name="email" placeholder="Your E-Mail" required></div></div><div class="col-lg-6 col-md-6"><div class="form-box"><input type="tel" name="phone" placeholder="Your Phone" required></div></div><div class="col-lg-6 col-md-6"><div class="form-box"><input type="date" name="moveInDate" required></div></div><div class="col-lg-6 col-md-6"><div class="form-box"><select name="duration" required><option value="">How long might you stay?</option><option>30–90 days</option><option>3–12 months</option><option>1 year or longer</option><option>Flexible / not sure</option></select></div></div><div class="col-lg-6 col-md-6"><div class="form-box"><input type="number" name="occupants" min="1" placeholder="Number of occupants" required></div></div><div class="col-lg-6 col-md-6"><div class="form-box"><select name="preferredLocation" required><option value="">Preferred community</option><option>Marietta, OH</option><option>Athens, OH</option><option>Racine, OH</option><option>Parkersburg, WV</option><option>Ravenswood, WV</option><option>Grantsville, WV</option><option>Open to options</option></select></div></div><div class="col-lg-6 col-md-6"><div class="form-box"><input type="text" name="stayType" placeholder="Reason for staying" required></div></div><div class="col-lg-12"><div class="form-box"><textarea name="message" placeholder="Tell us about your dates, household, work, and what would make a place fit" required></textarea></div></div><div class="col-lg-12"><div class="form-box"><label><input type="checkbox" name="termsAccepted" value="yes" required> I confirm this is an inquiry and the information is accurate.</label></div></div><div class="col-lg-12" aria-hidden="true" style="position:absolute;left:-9999px"><input type="text" name="website" tabindex="-1" autocomplete="off"></div><input type="hidden" name="sourceUrl"><div class="col-lg-12"><p data-form-status aria-live="polite"></p><div class="submit-button"><button class="submit-btn cursor-scale small" type="submit">send application <i class="flaticon flaticon-right-arrow"></i></button></div></div></div></form></div></div></div></div></div><!-- End Mt Cottages Application Section -->
+        <!-- Start Mt Cottages Application Section --><div class="contact-section"><div class="container"><div class="row align-items-center"><div class="col-lg-5"><div class="hotelhub-section-title"><h4><i class="flaticon flaticon-right-arrow"></i>STAY WITH US</h4><h1>Start with a conversation.</h1><p>This is an inquiry and application—not a lease, approval, or guarantee of housing. Share what you need and we will follow up with current availability and the right next step.</p><p><strong>Please do not enter Social Security numbers, payment-card details, bank information, or other highly sensitive documents.</strong></p><p>Questions first? Email <a href="mailto:stay@mtcottages.com">stay@mtcottages.com</a>.</p></div></div><div class="col-lg-7"><div class="contact-form-box style-two"><form action="https://stay.mtcottages.com/api/apply" method="post" data-application-form novalidate>
+        <div class="row">
+          <div class="col-lg-6 col-md-6"><div class="form-box"><input type="text" name="firstName" placeholder="First Name" autocomplete="given-name" required></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><input type="text" name="lastName" placeholder="Last Name" autocomplete="family-name" required></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><input type="email" name="email" placeholder="Your E-Mail" autocomplete="email" required></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><input type="tel" name="phone" placeholder="Your Phone" autocomplete="tel" required></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><label for="move-in-date">Preferred move-in date</label><input id="move-in-date" type="date" name="moveInDate" required></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><select name="duration" required><option value="">How long might you stay?</option><option>30–90 days</option><option>3–12 months</option><option>1 year or longer</option><option>Flexible / not sure</option></select></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><input type="number" name="occupants" min="1" max="20" placeholder="Number of occupants" required></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><select name="preferredLocation" required><option value="">Preferred community</option><option>Marietta, OH</option><option>Athens, OH</option><option>Racine, OH</option><option>Parkersburg, WV</option><option>Ravenswood, WV</option><option>Grantsville, WV</option><option>Open to options</option></select></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><select name="homeSize"><option value="">What kind of place feels right?</option><option>Studio or one-bedroom</option><option>Two-bedroom</option><option>Three-bedroom</option><option>Four-bedroom</option><option>Open to options</option></select></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><select name="stayType" required><option value="">What brings you here?</option><option>Travel or healthcare assignment</option><option>Work or relocation</option><option>Insurance housing</option><option>Family or extended stay</option><option>Research or fellowship</option><option>Personal transition</option><option>Something else</option></select></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><select name="pets"><option value="">Pets</option><option>No pets</option><option>Yes — I’ll share details below</option><option>Prefer to discuss</option></select></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><input type="text" name="employment" placeholder="Role, employer, or assignment (optional)"></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><input type="text" name="monthlyBudget" placeholder="Approximate monthly budget (optional)"></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><input type="text" name="furnishedNeeds" placeholder="Furnishing or accessibility needs (optional)"></div></div>
+          <div class="col-lg-12"><div class="form-box"><textarea name="message" placeholder="Tell us about your dates, household, work, pets, and what would make a place fit" required></textarea></div></div>
+          <div class="col-lg-12"><div class="form-box"><label><input type="checkbox" name="screeningConsent" value="yes"> I understand screening may be part of a later application step.</label></div></div>
+          <div class="col-lg-12"><div class="form-box"><label><input type="checkbox" name="termsAccepted" value="yes" required> I confirm this is an inquiry and the information is accurate.</label></div></div>
+          <div class="col-lg-12" aria-hidden="true" style="position:absolute;left:-9999px"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
+          <input type="hidden" name="sourceUrl">
+          <div class="col-lg-12"><p data-form-status aria-live="polite"></p><div class="submit-button"><button class="submit-btn cursor-scale small" type="submit">send application <i class="flaticon flaticon-right-arrow"></i></button></div></div>
+        </div>
+      </form></div></div></div></div></div><!-- End Mt Cottages Application Section -->
         <!--==================================================-->
 
     <!--==================================================-->
@@ -521,11 +544,11 @@
               <h4 class="widget-title">About Us</h4>
               <div class="menu-quick-link-content">
                 <ul class="footer-menu cursor-scale small">
-                  <li><a href="about.html"> About Mt Cottages </a></li>
+                  <li><a href="about.html"> About </a></li>
                   <li><a href="cozy-places.html"> Cottages </a></li>
                   <li><a href="apply.html"> Stay with Us </a></li>
                   <li><a href="about.html"> Explore Cottages </a></li>
-                  <li><a href="about.html"> About Mt Cottages </a></li>
+                  <li><a href="about.html"> About </a></li>
                   <li><a href="contact.html"> Contact </a></li>
                 </ul>
               </div>

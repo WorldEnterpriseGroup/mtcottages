@@ -43,12 +43,14 @@ Public image paths use house IDs rather than street addresses. This keeps the pu
 The application flow is:
 
 ```text
-GitHub Pages → apply.mtcottages.com → Azure Front Door (taodoor / mtcottages-apply endpoint)
+GitHub Pages → stay.mtcottages.com → Azure Front Door (taodoor / mtcottages-apply endpoint)
              → Azure Function mtcottages-apply-proxy
-             → Logic App mtcottages-intake → Dynamics 365 lead
+             → Logic App mtcottages-intake → dream.crm Dynamics 365 Lead entity
 ```
 
-The HotelHub-themed application view is served at [`apply.mtcottages.com`](https://apply.mtcottages.com/) and posts to its existing `/api/apply` endpoint. The application host remains separate from the GitHub Pages marketing site so the public CTA can stay simple while the intake path remains behind the existing Azure routing.
+The HotelHub-themed application view is served at [`stay.mtcottages.com`](https://stay.mtcottages.com/) and posts to `/api/apply`. The legacy [`apply.mtcottages.com`](https://apply.mtcottages.com/) host redirects browser visits to `stay`; its `/api/apply` path remains available for compatibility. The application host remains separate from the GitHub Pages marketing site so the public CTA can stay simple while the intake path remains behind the existing Azure routing.
+
+The form collects contact details, preferred move-in date, intended duration, occupants, community, preferred home size, reason for staying, pets, employment or assignment context, budget, furnishing/accessibility needs, notes, and the required inquiry confirmation. It deliberately does not collect Social Security numbers, full birth dates, payment-card details, or bank information. The Logic App writes a Mt Cottages lead to the standard D365 `leads` entity, maps the key contact and location fields, and retains the complete submitted intake payload in the lead description.
 
 The Logic App and proxy source/configuration are preserved under [`infra/azure`](infra/azure). The public form intentionally does not collect Social Security numbers, full birth dates, card data, or other highly sensitive identity information.
 

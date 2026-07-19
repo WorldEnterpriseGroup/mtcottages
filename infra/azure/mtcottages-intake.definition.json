@@ -8,7 +8,7 @@
     },
     "d365Organization": {
       "type": "String",
-      "defaultValue": "org8a977f45.crm"
+      "defaultValue": "dream.crm"
     }
   },
   "triggers": {
@@ -29,6 +29,7 @@
             "moveInDate": {"type": "string"},
             "duration": {"type": "string"},
             "occupants": {"type": "string"},
+            "homeSize": {"type": "string"},
             "pets": {"type": "string"},
             "employment": {"type": "string"},
             "monthlyBudget": {"type": "string"},
@@ -67,7 +68,7 @@
           "inputs": {
             "statusCode": 400,
             "headers": {
-              "Access-Control-Allow-Origin": "https://mtcottages.com",
+              "Access-Control-Allow-Origin": "https://stay.mtcottages.com",
               "Content-Type": "application/json"
             },
             "body": {
@@ -106,7 +107,7 @@
           "_leadsourcecode_label": "Web",
           "_statuscode_label": "New",
           "address1_city": "@triggerBody()?['preferredLocation']",
-          "companyname": "Mt Cottages applicant",
+          "companyname": "Mt Cottages",
           "description": "@{substring(string(triggerBody()), 0, min(length(string(triggerBody())), 99000))}",
           "donotemail": false,
           "donotphone": false,
@@ -116,7 +117,10 @@
           "lastname": "@triggerBody()?['lastName']",
           "mobilephone": "@triggerBody()?['phone']",
           "msdyn_gdproptout": false,
-          "subject": "@{concat('Mt Cottages ', triggerBody()?['stayType'], ' inquiry — ', triggerBody()?['firstName'], ' ', triggerBody()?['lastName'])}",
+          "new_goals": "@triggerBody()?['message']",
+          "address1_country": "United States",
+          "address1_stateorprovince": "@{if(contains(triggerBody()?['preferredLocation'], 'WV'), 'WV', 'OH')}",
+          "subject": "@{concat('Mt Cottages — ', triggerBody()?['stayType'], ' — ', triggerBody()?['preferredLocation'], ' — ', triggerBody()?['firstName'], ' ', triggerBody()?['lastName'])}",
           "telephone1": "@triggerBody()?['phone']"
         }
       }
@@ -129,9 +133,9 @@
       },
       "inputs": {
         "statusCode": 201,
-        "headers": {
-          "Access-Control-Allow-Origin": "https://mtcottages.com",
-          "Content-Type": "application/json"
+          "headers": {
+            "Access-Control-Allow-Origin": "https://stay.mtcottages.com",
+            "Content-Type": "application/json"
         },
         "body": {
           "success": true,
@@ -147,9 +151,9 @@
       },
       "inputs": {
         "statusCode": 500,
-        "headers": {
-          "Access-Control-Allow-Origin": "https://mtcottages.com",
-          "Content-Type": "application/json"
+          "headers": {
+            "Access-Control-Allow-Origin": "https://stay.mtcottages.com",
+            "Content-Type": "application/json"
         },
         "body": {
           "success": false,
