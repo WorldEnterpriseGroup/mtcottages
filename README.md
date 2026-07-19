@@ -19,7 +19,7 @@ Mt Cottages is the guest-facing rental operation for furnished homes, tenants, r
 
 ## Public site
 
-`index.html` is the GitHub Pages entry point and uses the exact HotelHub theme package from `~/Downloads/hotelhub-luxury-hotel-booking-html5-template-2026-04-28-16-29-32-utc.zip`. The package’s original CSS, JavaScript, image directories, and `venobox` assets remain the visual foundation. `assets/css/mtcottages-site.css` and `assets/js/mtcottages-site.js` provide the Mt Cottages content layer and shared navigation without replacing the HotelHub package.
+`index.html` and every guest-facing page are built directly from the exact HotelHub theme package from `~/Downloads/hotelhub-luxury-hotel-booking-html5-template-2026-04-28-16-29-32-utc.zip`. The original HotelHub CSS, JavaScript, image directories, loaders, sliders, breadcrumbs, forms, page sections, and `venobox` assets remain the visual foundation. Mt Cottages changes are content, branding, navigation labels, and destination links inside those native HotelHub structures.
 
 The public navigation is intentionally brand-first: `Cottages`, `Locations`, `Living`, `Services`, `About`, `Contact`, `Residents`, and the `Stay with Us` application CTA. The Cottages menu leads to `Find Your Place`, `Cozy Places`, `Room to Settle In`, and `Available Now`. The current guest-facing pages include `cottages.html`, `cozy-places.html`, `room-to-settle.html`, `available.html`, `locations.html`, `living.html`, `services.html`, `about.html`, `contact.html`, `faq.html`, and `apply.html`. Resident support is separated into `residents.html`, `resident-portal.html`, `pay-rent.html`, `maintenance.html`, and `emergency-maintenance.html`; partner programs are described in `partnerships.html`.
 
