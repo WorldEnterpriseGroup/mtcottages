@@ -619,3 +619,12 @@ for page in PAGES:
     if page == "apply.html" and 'src="assets/js/mtcottages.js"' not in text:
         text = text.replace('</body>', '    <script src="assets/js/mtcottages.js"></script>\n  </body>')
     path.write_text(text, encoding="utf-8")
+
+# Keep the original HotelHub header/navigation treatment consistent on every
+# HTML file in the buyer package, including legacy template pages that are not
+# linked from the public Mt Cottages menu.
+for path in sorted(ROOT.glob("*.html")):
+    text = path.read_text(encoding="utf-8")
+    updated = replace_nav(text)
+    if updated != text:
+        path.write_text(updated, encoding="utf-8")
