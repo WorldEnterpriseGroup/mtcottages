@@ -57,14 +57,15 @@
       }
       showStatus(status, "", "Sending your application securely…");
 
-      var payload = Object.fromEntries(new FormData(form).entries());
-      payload.page = window.location.href;
+      var formData = new FormData(form);
+      formData.set("page", window.location.href);
+      var payload = new URLSearchParams(formData).toString();
 
       try {
         var response = await fetch(form.action, {
           method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify(payload)
+          headers: { "Content-Type": "application/x-www-form-urlencoded", Accept: "application/json" },
+          body: payload
         });
         var result = await response.json().catch(function () { return {}; });
         if (!response.ok || result.success === false) throw new Error("The application was not accepted.");

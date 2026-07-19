@@ -74,7 +74,9 @@ def application_form(req: func.HttpRequest) -> func.HttpResponse:
 def apply(req: func.HttpRequest) -> func.HttpResponse:
     origin = req.headers.get("Origin", "")
     if req.method == "OPTIONS":
-        return func.HttpResponse(status_code=204, headers=_cors_headers(origin))
+        # Keep a body so the worker does not collapse this response to 204;
+        # native Function App CORS also handles preflight at the platform edge.
+        return func.HttpResponse("OK", status_code=200, headers=_cors_headers(origin))
     if origin and origin not in _allowed_origins():
         return _response({"success": False, "message": "Origin not allowed"}, 403, origin)
 
