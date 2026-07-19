@@ -14,8 +14,8 @@ This is a static HotelHub HTML5 template. There is no `package.json`, dependency
 2. Keep public-domain configuration in `CNAME` (`mtcottages.com`) and leave `.nojekyll` present.
 3. Never commit Cloudflare, GitHub, Microsoft, email, booking, or other service credentials.
 4. Preview with `python3 -m http.server 8000` and check the browser console for missing assets.
-5. Before publishing, run `git diff --check` and confirm the GitHub Pages source is `main` / `/`.
+5. Before publishing, run `git diff --check` and confirm the GitHub Pages source is `gh-pages` / `/`.
 
 ## Hosting
 
-The canonical repository is `WorldEnterpriseGroup/mtcottages` on GitHub. Production is served by GitHub Pages at `https://mtcottages.com`.
+The canonical repository is `WorldEnterpriseGroup/mtcottages` on GitHub. Production is served by GitHub Pages from `gh-pages` at `https://mtcottages.com`.

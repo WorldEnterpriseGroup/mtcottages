@@ -31,10 +31,10 @@ Then open <http://localhost:8000>.
 
 - Repository: <https://github.com/WorldEnterpriseGroup/mtcottages>
 - Production site: <https://mtcottages.com>
-- Hosting: GitHub Pages from the `main` branch and repository root
+- Hosting: GitHub Pages from the `gh-pages` branch and repository root
 - Custom-domain marker: [`CNAME`](CNAME)
 
-Push changes to `main` to publish them through GitHub Pages. Keep the site static and preserve relative asset paths when editing the template.
+Push site changes to `gh-pages` to publish them through GitHub Pages. Keep the site static and preserve relative asset paths when editing the template. Use `main` for source/development changes, then synchronize the published branch.
 
 ## Future content
 

@@ -15,4 +15,4 @@ This repository is the public website for furnished cottage rentals in the Mid-O
 
 ## Verification
 
-Because there is no build system, preview changes with a local static server and check that `index.html` loads its CSS, JavaScript, fonts, and images. For deployment changes, confirm the GitHub Pages source remains `main` at `/` and that the custom domain remains configured.
+Because there is no build system, preview changes with a local static server and check that `index.html` loads its CSS, JavaScript, fonts, and images. For deployment changes, confirm the GitHub Pages source remains `gh-pages` at `/` and that the custom domain remains configured.
