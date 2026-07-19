@@ -1,0 +1,14 @@
+{
+  "$connections": {
+    "value": {
+      "dynamicscrmonline": {
+        "connectionId": "/subscriptions/6e60a8fd-9992-4ff7-8a3e-db96b4dfed4f/resourceGroups/tli_interest/providers/Microsoft.Web/connections/dynamicscrmonline",
+        "connectionName": "dynamicscrmonline",
+        "id": "/subscriptions/6e60a8fd-9992-4ff7-8a3e-db96b4dfed4f/providers/Microsoft.Web/locations/eastus/managedApis/dynamicscrmonline"
+      }
+    }
+  },
+  "d365Organization": {
+    "value": "org8a977f45.crm"
+  }
+}

@@ -2,7 +2,7 @@
 
 ## Mission
 
-Maintain the public Mid-Ohio Valley Cottages website for furnished cottage rentals. The site serves guests looking for cottages in Marietta, Athens, Racine, and Grantsville, Ohio, and Parkersburg and Ravenswood, West Virginia.
+Maintain the public Mid-Ohio Valley Cottages website for furnished cottage rentals. The site serves guests looking for cottages in Marietta, Athens, and Racine, Ohio, and Parkersburg, Ravenswood, and Grantsville, West Virginia.
 
 ## Business relationship
 
@@ -17,22 +17,39 @@ Source: private `/home/mrh/repos/silkcorp/overview/SILK Homes image curation.md`
 | Ravenswood, WV | 5 | 200 Henrietta; 200 Gallatin; 216 Sand St; 107 Virginia; 313 Walnut |
 | Parkersburg, WV | 4 | 3113 Broad St; 2405 45th St; 2712 Broad St; 900 32nd St |
 | Marietta, OH | 1 | 125 Frederick St |
-| Grantsville, WV* | 1 | 255 Court St |
+| Grantsville, WV† | 1 | 255 Court St |
 
-Total: 11 canonical properties. The source map says Grantsville, WV, which conflicts with the earlier Mt Cottages context saying Ohio; verify before publishing. Athens and Racine have no canonical addresses in that source. `216 Sand St` is canonical but absent from the current photo CSV; `287 Ridgeway Ave` is present in the CSV but not canonical. Treat the latter as an unassigned reconciliation lead, not as part of the city counts.
+Total: 11 canonical properties. Grantsville is confirmed as West Virginia. `255 Court St` is internal-only for now and must not appear in public Mt Cottages listings or site copy. Athens and Racine have no canonical addresses in that source. `216 Sand St` is canonical but absent from the current photo CSV; `287 Ridgeway Ave` is present in the CSV but not canonical. Treat the latter as an unassigned reconciliation lead, not as part of the city counts.
 
 ## Repository shape
 
-This is a static HotelHub HTML5 template. There is no `package.json`, dependency installation, or compilation step. `index.html` is the default page and the other root-level HTML files are template pages/variants.
+This is a static HTML site with no `package.json`, dependency installation, or compilation step. `index.html` is the default page. The primary Mt Cottages pages are the guest-facing HTML files listed in `claude.md`; the other root-level HotelHub files are retained legacy/template material.
+
+The `infra/azure` directory contains the checked-in Logic App definition/parameters and Azure Function proxy source. Azure resource state, callback URLs, secrets, and connected-service credentials stay in Azure, not in Git.
+
+## SharePoint photo isolation
+
+The private, ignored `homes.csv` is the SharePoint inventory export copied from `/home/mrh/repos/silkcorp/overview`. It is used with the ignored `sharepoint-house-map.json` and the tracked [`scripts/import_sharepoint_photos.rb`](scripts/import_sharepoint_photos.rb).
+
+Use this rule for every image:
+
+```text
+one canonical house → one stable house ID → one isolated public directory
+```
+
+Only use an exact source folder explicitly mapped to that house. Do not pull from mixed SILK galleries, broad archives, or filename assumptions. Do not reuse a source hash across houses. Downloaded images require visual review; keep construction/inspection/maintenance/duplicate/uncertain images out of the public site. The ignored manifest records provenance so another agent can audit where a public image came from. The exact map and street addresses remain private, and the current public site intentionally excludes the Grantsville property at 255 Court St.
 
 ## Safe change checklist
 
 1. Preserve the template’s relative asset paths.
 2. Keep public-domain configuration in `CNAME` (`mtcottages.com`) and leave `.nojekyll` present.
 3. Never commit Cloudflare, GitHub, Microsoft, email, booking, or other service credentials.
-4. Preview with `python3 -m http.server 8000` and check the browser console for missing assets.
-5. Before publishing, run `git diff --check` and confirm the GitHub Pages source is `gh-pages` / `/`.
+4. Keep `homes.csv`, `sharepoint-house-map.json`, `sharepoint-photo-manifest.json`, and any SharePoint download staging directory ignored.
+5. Preview with `python3 -m http.server 8000` and check the browser console for missing assets.
+6. Before publishing, run `git diff --check`, validate `infra/azure/*.json`, confirm the public HTML has no excluded address, and confirm the GitHub Pages source is `gh-pages` / `/`.
 
 ## Hosting
 
 The canonical repository is `WorldEnterpriseGroup/mtcottages` on GitHub. Production is served by GitHub Pages from `gh-pages` at `https://mtcottages.com`.
+
+The application path is `https://apply.mtcottages.com/api/apply` through the existing Azure Front Door profile `taodoor` and endpoint `mtcottages-apply`, then the `mtcottages-apply-proxy` Function app and `mtcottages-intake` Logic App in resource group `mtcottages`. Do not bypass Front Door in public HTML. Stripe payments remain disabled until a verified Mt Cottages Stripe account and approved pricing are supplied.
