@@ -1,0 +1,161 @@
+{
+  "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "$connections": {
+      "type": "Object",
+      "defaultValue": {}
+    },
+    "d365Organization": {
+      "type": "String",
+      "defaultValue": "org8a977f45.crm"
+    }
+  },
+  "triggers": {
+    "manual": {
+      "type": "Request",
+      "kind": "Http",
+      "inputs": {
+        "method": "POST",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "firstName": {"type": "string"},
+            "lastName": {"type": "string"},
+            "email": {"type": "string"},
+            "phone": {"type": "string"},
+            "stayType": {"type": "string"},
+            "preferredLocation": {"type": "string"},
+            "moveInDate": {"type": "string"},
+            "duration": {"type": "string"},
+            "occupants": {"type": "string"},
+            "pets": {"type": "string"},
+            "employment": {"type": "string"},
+            "monthlyBudget": {"type": "string"},
+            "furnishedNeeds": {"type": "string"},
+            "message": {"type": "string"},
+            "screeningConsent": {"type": "string"},
+            "termsAccepted": {"type": "string"},
+            "website": {"type": "string"},
+            "sourceUrl": {"type": "string"},
+            "page": {"type": "string"}
+          },
+          "required": ["firstName", "lastName", "email", "phone", "stayType", "preferredLocation", "moveInDate", "duration", "occupants", "message", "termsAccepted"]
+        }
+      }
+    }
+  },
+  "actions": {
+    "Reject_Bot_Submission": {
+      "type": "If",
+      "expression": {
+        "and": [
+          {
+            "not": {
+              "equals": [
+                "@coalesce(triggerBody()?['website'], '')",
+                ""
+              ]
+            }
+          }
+        ]
+      },
+      "actions": {
+        "Respond_Bot": {
+          "type": "Response",
+          "kind": "Http",
+          "inputs": {
+            "statusCode": 400,
+            "headers": {
+              "Access-Control-Allow-Origin": "https://mtcottages.com",
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "success": false,
+              "message": "Invalid submission"
+            }
+          }
+        },
+        "Stop_Bot": {
+          "type": "Terminate",
+          "runAfter": {
+            "Respond_Bot": ["Succeeded"]
+          },
+          "inputs": {
+            "runStatus": "Succeeded"
+          }
+        }
+      },
+      "runAfter": {}
+    },
+    "Create_D365_Applicant_Lead": {
+      "type": "ApiConnection",
+      "runAfter": {
+        "Reject_Bot_Submission": ["Succeeded"]
+      },
+      "inputs": {
+        "host": {
+          "connection": {
+            "name": "@parameters('$connections')['dynamicscrmonline']['connectionId']"
+          }
+        },
+        "method": "post",
+        "path": "/datasets/@{encodeURIComponent(encodeURIComponent(parameters('d365Organization')))}/tables/@{encodeURIComponent(encodeURIComponent('leads'))}/items",
+        "body": {
+          "_leadqualitycode_label": "Warm",
+          "_leadsourcecode_label": "Web",
+          "_statuscode_label": "New",
+          "address1_city": "@triggerBody()?['preferredLocation']",
+          "companyname": "Mt Cottages applicant",
+          "description": "@{substring(string(triggerBody()), 0, min(length(string(triggerBody())), 99000))}",
+          "donotemail": false,
+          "donotphone": false,
+          "emailaddress1": "@triggerBody()?['email']",
+          "firstname": "@triggerBody()?['firstName']",
+          "jobtitle": "@triggerBody()?['employment']",
+          "lastname": "@triggerBody()?['lastName']",
+          "mobilephone": "@triggerBody()?['phone']",
+          "msdyn_gdproptout": false,
+          "subject": "@{concat('Mt Cottages ', triggerBody()?['stayType'], ' inquiry — ', triggerBody()?['firstName'], ' ', triggerBody()?['lastName'])}",
+          "telephone1": "@triggerBody()?['phone']"
+        }
+      }
+    },
+    "Respond_Success": {
+      "type": "Response",
+      "kind": "Http",
+      "runAfter": {
+        "Create_D365_Applicant_Lead": ["Succeeded"]
+      },
+      "inputs": {
+        "statusCode": 201,
+        "headers": {
+          "Access-Control-Allow-Origin": "https://mtcottages.com",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "success": true,
+          "message": "Mt Cottages application accepted"
+        }
+      }
+    },
+    "Respond_Failure": {
+      "type": "Response",
+      "kind": "Http",
+      "runAfter": {
+        "Create_D365_Applicant_Lead": ["Failed", "TimedOut"]
+      },
+      "inputs": {
+        "statusCode": 500,
+        "headers": {
+          "Access-Control-Allow-Origin": "https://mtcottages.com",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "success": false,
+          "message": "Application intake failed"
+        }
+      }
+    }
+  }
+}
