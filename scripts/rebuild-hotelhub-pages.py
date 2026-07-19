@@ -668,8 +668,10 @@ for page in PAGES:
     if page == "apply.html":
         text = normalize_application_form(text)
     text = common_replacements(text, page)
-    if page == "apply.html" and 'src="assets/js/mtcottages.js"' not in text:
-        text = text.replace('</body>', '    <script src="assets/js/mtcottages.js"></script>\n  </body>')
+    if page == "apply.html":
+        text = text.replace('src="assets/js/mtcottages.js"', 'src="assets/js/mtcottages.js?v=2"')
+        if 'src="assets/js/mtcottages.js?v=2"' not in text:
+            text = text.replace('</body>', '    <script src="assets/js/mtcottages.js?v=2"></script>\n  </body>')
     path.write_text(text, encoding="utf-8")
 
 # Keep the original HotelHub header/navigation treatment consistent on every
