@@ -56,10 +56,10 @@ NAV_DESKTOP = """<ul class="nav_scroll">
                 </li>
                 <li><a class="mdy-hover" href="living.html">Living <i class="fas fa-angle-down"></i></a>
                   <ul class="sub-menu">
-                    <li><a href="living.html#travel-nurses">Travel Nurses &amp; Healthcare Professionals</a></li>
+                    <li><a href="living.html#travel-nurses">Health Professionals</a></li>
                     <li><a href="living.html#relocation">Work &amp; Relocation</a></li>
                     <li><a href="living.html#insurance">Insurance Housing</a></li>
-                    <li><a href="living.html#families">Families &amp; Extended Stays</a></li>
+                    <li><a href="living.html#families">Family Stays</a></li>
                   </ul>
                 </li>
                 <li><a class="mdy-hover" href="services.html">Services <i class="fas fa-angle-down"></i></a>
@@ -67,7 +67,7 @@ NAV_DESKTOP = """<ul class="nav_scroll">
                     <li><a href="services.html#furnished-homes">Fully Furnished Homes</a></li>
                     <li><a href="services.html#amenities">Home Amenities</a></li>
                     <li><a href="services.html#guest-services">Guest Services</a></li>
-                    <li><a href="services.html#meal-preparation">Optional Meal Preparation</a></li>
+                    <li><a href="services.html#meal-preparation">Meal Preparation</a></li>
                     <li><a href="services.html#property-care">Property Care</a></li>
                   </ul>
                 </li>
@@ -105,12 +105,12 @@ NAV_MOBILE = """<ul class="nav_scroll">
                 <li><a href="locations.html#grantsville">Grantsville, WV</a></li>
               </ul>
             </li>
-            <li><a class="mdy-hover" href="living.html">Living</a>
+                <li><a class="mdy-hover" href="living.html">Living</a>
               <ul class="sub-menu">
-                <li><a href="living.html#travel-nurses">Travel Nurses &amp; Healthcare Professionals</a></li>
+                <li><a href="living.html#travel-nurses">Health Professionals</a></li>
                 <li><a href="living.html#relocation">Work &amp; Relocation</a></li>
                 <li><a href="living.html#insurance">Insurance Housing</a></li>
-                <li><a href="living.html#families">Families &amp; Extended Stays</a></li>
+                <li><a href="living.html#families">Family Stays</a></li>
               </ul>
             </li>
             <li><a class="mdy-hover" href="services.html">Services</a>
@@ -118,7 +118,7 @@ NAV_MOBILE = """<ul class="nav_scroll">
                 <li><a href="services.html#furnished-homes">Fully Furnished Homes</a></li>
                 <li><a href="services.html#amenities">Home Amenities</a></li>
                 <li><a href="services.html#guest-services">Guest Services</a></li>
-                <li><a href="services.html#meal-preparation">Optional Meal Preparation</a></li>
+                <li><a href="services.html#meal-preparation">Meal Preparation</a></li>
                 <li><a href="services.html#property-care">Property Care</a></li>
               </ul>
             </li>
@@ -176,6 +176,23 @@ def replace_nav(text: str) -> str:
         replacement = NAV_DESKTOP if index == 0 else NAV_MOBILE
         text = text[:start] + replacement + text[end:]
     return text
+
+
+def replace_header_cta(text: str) -> str:
+    text = re.sub(
+        r'(<div class="header-button">.*?<a\b[^>]*href=")[^"]+("[^>]*>)',
+        r'\1https://apply.mtcottages.com/\2',
+        text,
+        count=1,
+        flags=re.S,
+    )
+    return re.sub(
+        r'(<div class="header-button">.*?<a\b[^>]*>)\s*.*?\s*(<i class="flaticon flaticon-right-arrow"></i>)',
+        r'\1Stay with Us \2',
+        text,
+        count=1,
+        flags=re.S,
+    )
 
 
 def replace_marker(text: str, start_marker: str, end_marker: str, replacement: str) -> str:
@@ -290,6 +307,29 @@ def contact_section(form_action: str = "mailto:stay@mtcottages.com") -> str:
 
 def application_section() -> str:
     return '''<!-- Start HotelHub Application Section --><div class="contact-section"><div class="container"><div class="row align-items-center"><div class="col-lg-5"><div class="hotelhub-section-title"><h4><i class="flaticon flaticon-right-arrow"></i>STAY WITH US</h4><h1>Start with a conversation.</h1><p>This is an inquiry and application—not a lease, approval, or guarantee of housing. Share what you need and we will follow up with current availability and the right next step.</p><p><strong>Please do not enter Social Security numbers, payment-card details, bank information, or other highly sensitive documents.</strong></p><p>Questions first? Email <a href="mailto:stay@mtcottages.com">stay@mtcottages.com</a>.</p></div></div><div class="col-lg-7"><div class="contact-form-box style-two"><form action="https://apply.mtcottages.com/api/apply" method="post" data-application-form novalidate><div class="row"><div class="col-lg-6 col-md-6"><div class="form-box"><input type="text" name="name" placeholder="Your Name" required></div></div><div class="col-lg-6 col-md-6"><div class="form-box"><input type="email" name="email" placeholder="Your E-Mail" required></div></div><div class="col-lg-6 col-md-6"><div class="form-box"><input type="tel" name="phone" placeholder="Your Phone"></div></div><div class="col-lg-6 col-md-6"><div class="form-box"><select name="duration" required><option value="">How long might you stay?</option><option>30–90 days</option><option>3–12 months</option><option>1 year or longer</option><option>Flexible / not sure</option></select></div></div><div class="col-lg-6 col-md-6"><div class="form-box"><select name="preferredLocation" required><option value="">Preferred community</option><option>Marietta, OH</option><option>Athens, OH</option><option>Racine, OH</option><option>Parkersburg, WV</option><option>Ravenswood, WV</option><option>Grantsville, WV</option><option>Open to options</option></select></div></div><div class="col-lg-6 col-md-6"><div class="form-box"><input type="text" name="stayType" placeholder="Reason for staying"></div></div><div class="col-lg-12"><div class="form-box"><textarea name="message" placeholder="Tell us about your dates, household, work, and what would make a place fit" required></textarea></div></div><input type="hidden" name="sourceUrl"><div class="col-lg-12"><p data-form-status aria-live="polite"></p><div class="submit-button"><button class="submit-btn cursor-scale small" type="submit">send application <i class="flaticon flaticon-right-arrow"></i></button></div></div></div></form></div></div></div></div></div><!-- End HotelHub Application Section -->'''
+
+
+def normalize_application_form(text: str) -> str:
+    text = text.replace(
+        'name="name" placeholder="Your Name"',
+        'name="firstName" placeholder="First Name"',
+        1,
+    )
+    email_field = '<div class="col-lg-6 col-md-6"><div class="form-box"><input type="email" name="email"'
+    last_name = '<div class="col-lg-6 col-md-6"><div class="form-box"><input type="text" name="lastName" placeholder="Last Name" required></div></div>'
+    text = text.replace(email_field, last_name + email_field, 1)
+    text = text.replace('name="phone" placeholder="Your Phone">', 'name="phone" placeholder="Your Phone" required>', 1)
+    duration_field = '<div class="col-lg-6 col-md-6"><div class="form-box"><select name="duration" required>'
+    move_in_date = '<div class="col-lg-6 col-md-6"><div class="form-box"><input type="date" name="moveInDate" required></div></div>'
+    text = text.replace(duration_field, move_in_date + duration_field, 1)
+    text = text.replace('name="stayType" placeholder="Reason for staying">', 'name="stayType" placeholder="Reason for staying" required>', 1)
+    preferred_field = '<div class="col-lg-6 col-md-6"><div class="form-box"><select name="preferredLocation" required>'
+    occupants_field = '<div class="col-lg-6 col-md-6"><div class="form-box"><input type="number" name="occupants" min="1" placeholder="Number of occupants" required></div></div>'
+    text = text.replace(preferred_field, occupants_field + preferred_field, 1)
+    source_field = '<input type="hidden" name="sourceUrl">'
+    protections = '<div class="col-lg-12"><div class="form-box"><label><input type="checkbox" name="termsAccepted" value="yes" required> I confirm this is an inquiry and the information is accurate.</label></div></div><div class="col-lg-12" aria-hidden="true" style="position:absolute;left:-9999px"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>'
+    text = text.replace(source_field, protections + source_field, 1)
+    return text
 
 
 def common_replacements(text: str, page: str) -> str:
@@ -615,6 +655,8 @@ for page in PAGES:
     path = ROOT / page
     text = path.read_text(encoding="utf-8")
     text = apply_page_content(text, page)
+    if page == "apply.html":
+        text = normalize_application_form(text)
     text = common_replacements(text, page)
     if page == "apply.html" and 'src="assets/js/mtcottages.js"' not in text:
         text = text.replace('</body>', '    <script src="assets/js/mtcottages.js"></script>\n  </body>')
@@ -625,6 +667,6 @@ for page in PAGES:
 # linked from the public Mt Cottages menu.
 for path in sorted(ROOT.glob("*.html")):
     text = path.read_text(encoding="utf-8")
-    updated = replace_nav(text)
+    updated = replace_header_cta(replace_nav(text))
     if updated != text:
         path.write_text(updated, encoding="utf-8")

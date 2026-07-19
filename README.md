@@ -21,7 +21,7 @@ Mt Cottages is the guest-facing rental operation for furnished homes, tenants, r
 
 `index.html` and every guest-facing page are built directly from the exact HotelHub theme package from `~/Downloads/hotelhub-luxury-hotel-booking-html5-template-2026-04-28-16-29-32-utc.zip`. The original HotelHub CSS, JavaScript, image directories, loaders, sliders, breadcrumbs, forms, page sections, and `venobox` assets remain the visual foundation. Mt Cottages changes are content, branding, navigation labels, and destination links inside those native HotelHub structures.
 
-The public navigation is intentionally brand-first: `Cottages`, `Locations`, `Living`, `Services`, `About`, `Contact`, `Residents`, and the `Stay with Us` application CTA. The Cottages menu leads to `Find Your Place`, `Cozy Places`, `Room to Settle In`, and `Available Now`. The current guest-facing pages include `cottages.html`, `cozy-places.html`, `room-to-settle.html`, `available.html`, `locations.html`, `living.html`, `services.html`, `about.html`, `contact.html`, `faq.html`, and `apply.html`. Resident support is separated into `residents.html`, `resident-portal.html`, `pay-rent.html`, `maintenance.html`, and `emergency-maintenance.html`; partner programs are described in `partnerships.html`.
+The public navigation is intentionally brand-first: `Cottages`, `Locations`, `Living`, `Services`, `About`, `Contact`, `Residents`, and the `Stay with Us` application CTA. The Cottages menu leads to `Find Your Place`, `Cozy Places`, `Room to Settle In`, and `Available Now`; Living includes `Health Professionals` and `Family Stays`, while Services includes `Meal Preparation`. The current guest-facing pages include `cottages.html`, `cozy-places.html`, `room-to-settle.html`, `available.html`, `locations.html`, `living.html`, `services.html`, `about.html`, `contact.html`, `faq.html`, and `apply.html`. Resident support is separated into `residents.html`, `resident-portal.html`, `pay-rent.html`, `maintenance.html`, and `emergency-maintenance.html`; partner programs are described in `partnerships.html`.
 
 ## SharePoint inventory and photo isolation
 
@@ -47,6 +47,8 @@ GitHub Pages → apply.mtcottages.com → Azure Front Door (taodoor / mtcottages
              → Azure Function mtcottages-apply-proxy
              → Logic App mtcottages-intake → Dynamics 365 lead
 ```
+
+The HotelHub-themed application view is served at [`apply.mtcottages.com`](https://apply.mtcottages.com/) and posts to its existing `/api/apply` endpoint. The application host remains separate from the GitHub Pages marketing site so the public CTA can stay simple while the intake path remains behind the existing Azure routing.
 
 The Logic App and proxy source/configuration are preserved under [`infra/azure`](infra/azure). The public form intentionally does not collect Social Security numbers, full birth dates, card data, or other highly sensitive identity information.
 

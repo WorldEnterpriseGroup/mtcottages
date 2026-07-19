@@ -5,6 +5,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+from pathlib import Path
 
 import azure.functions as func
 
@@ -14,7 +15,10 @@ _last_submission = {}
 
 
 def _allowed_origins():
-    values = os.environ.get("ALLOWED_ORIGINS", "https://mtcottages.com,https://www.mtcottages.com")
+    values = os.environ.get(
+        "ALLOWED_ORIGINS",
+        "https://mtcottages.com,https://www.mtcottages.com,https://apply.mtcottages.com",
+    )
     return {value.strip() for value in values.split(",") if value.strip()}
 
 
@@ -42,7 +46,20 @@ def _request_payload(req):
     return {key: values[-1] if values else "" for key, values in parsed.items()}
 
 
-@app.route(route="apply", methods=["POST", "OPTIONS"])
+@app.route(route="{*route}", methods=["GET"])
+def application_form(req: func.HttpRequest) -> func.HttpResponse:
+    requested_path = urllib.parse.urlparse(req.url).path.rstrip("/")
+    if requested_path.endswith("/api/health") or requested_path.endswith("/health"):
+        return _response({"status": "ok", "service": "mtcottages-apply-proxy"}, 200, req.headers.get("Origin", ""))
+    form_path = Path(__file__).with_name("index.html")
+    try:
+        markup = form_path.read_text(encoding="utf-8")
+    except OSError:
+        return func.HttpResponse("Application form unavailable", status_code=503)
+    return func.HttpResponse(markup, status_code=200, mimetype="text/html")
+
+
+@app.route(route="api/apply", methods=["POST", "OPTIONS"])
 def apply(req: func.HttpRequest) -> func.HttpResponse:
     origin = req.headers.get("Origin", "")
     if req.method == "OPTIONS":
@@ -106,6 +123,6 @@ def apply(req: func.HttpRequest) -> func.HttpResponse:
         return _response({"success": False, "message": "Application intake unavailable"}, 502, origin)
 
 
-@app.route(route="health", methods=["GET"])
+@app.route(route="api/health", methods=["GET"])
 def health(req: func.HttpRequest) -> func.HttpResponse:
     return _response({"status": "ok", "service": "mtcottages-apply-proxy"}, 200, req.headers.get("Origin", ""))
