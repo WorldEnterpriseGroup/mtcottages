@@ -19,9 +19,9 @@ Mt Cottages is the guest-facing rental operation for furnished homes, tenants, r
 
 ## Public site
 
-`index.html` is the GitHub Pages entry point and uses the exact HotelHub theme package from `~/Downloads/hotelhub-luxury-hotel-booking-html5-template-2026-04-28-16-29-32-utc.zip`. The package’s original CSS, JavaScript, image directories, homepage layout, and `venobox` assets are the visual foundation; the homepage has only been branded and copy-edited for Mt Cottages. `apply.html` uses the same HotelHub CSS/theme and is the direct guest application. The remaining HotelHub pages are retained as the theme’s page set.
+`index.html` is the GitHub Pages entry point and uses the exact HotelHub theme package from `~/Downloads/hotelhub-luxury-hotel-booking-html5-template-2026-04-28-16-29-32-utc.zip`. The package’s original CSS, JavaScript, image directories, and `venobox` assets remain the visual foundation. `assets/css/mtcottages-site.css` and `assets/js/mtcottages-site.js` provide the Mt Cottages content layer and shared navigation without replacing the HotelHub package.
 
-The primary guest paths are `index.html`, `rooms.html`, `rooms-details.html`, `service.html`, `booking.html`, `apply.html`, `contact.html`, and `faq.html`. The application page presents mid-term, long-term, location, and contact choices without introducing a second visual theme.
+The public navigation is intentionally brand-first: `Cottages`, `Locations`, `Living`, `Services`, `About`, `Contact`, `Residents`, and the `Stay with Us` application CTA. The Cottages menu leads to `Find Your Place`, `Cozy Places`, `Room to Settle In`, and `Available Now`. The current guest-facing pages include `cottages.html`, `cozy-places.html`, `room-to-settle.html`, `available.html`, `locations.html`, `living.html`, `services.html`, `about.html`, `contact.html`, `faq.html`, and `apply.html`. Resident support is separated into `residents.html`, `resident-portal.html`, `pay-rent.html`, `maintenance.html`, and `emergency-maintenance.html`; partner programs are described in `partnerships.html`.
 
 ## SharePoint inventory and photo isolation
 
