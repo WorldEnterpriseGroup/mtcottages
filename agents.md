@@ -25,6 +25,8 @@ Total: 11 canonical properties. Grantsville is confirmed as West Virginia. `255 
 
 This is a static HTML site with no `package.json`, dependency installation, or compilation step. `index.html` is the default page. The public visual source is the exact HotelHub package from `~/Downloads/hotelhub-luxury-hotel-booking-html5-template-2026-04-28-16-29-32-utc.zip`; preserve its CSS, JavaScript, image directories, layout, and `venobox` assets. `apply.html` is the Mt Cottages application page styled with those same HotelHub assets.
 
+The public pages use the approved HotelHub visual package plus the shared `assets/css/mtcottages-site.css` and `assets/js/mtcottages-site.js` content layer. Navigation is organized as `Cottages`, `Locations`, `Living`, `Services`, `About`, `Contact`, `Residents`, and `Stay with Us`. The `Cottages` dropdown points to `cottages.html`, `cozy-places.html`, `room-to-settle.html`, and `available.html`; resident support and partnership pages are kept separate from guest discovery.
+
 The `infra/azure` directory contains the checked-in Logic App definition/parameters and Azure Function proxy source. Azure resource state, callback URLs, secrets, and connected-service credentials stay in Azure, not in Git.
 
 ## SharePoint photo isolation
