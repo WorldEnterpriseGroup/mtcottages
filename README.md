@@ -19,16 +19,9 @@ Mt Cottages is the guest-facing rental operation for furnished homes, tenants, r
 
 ## Public site
 
-`index.html` is the GitHub Pages entry point. The guest experience now uses the Mt Cottages design system in [`assets/css/mtcottages.css`](assets/css/mtcottages.css) and [`assets/js/mtcottages.js`](assets/js/mtcottages.js), with these primary pages:
+`index.html` is the GitHub Pages entry point and uses the exact HotelHub theme package from `~/Downloads/hotelhub-luxury-hotel-booking-html5-template-2026-04-28-16-29-32-utc.zip`. The package’s original CSS, JavaScript, image directories, homepage layout, and `venobox` assets are the visual foundation; the homepage has only been branded and copy-edited for Mt Cottages. `apply.html` uses the same HotelHub CSS/theme and is the direct guest application. The remaining HotelHub pages are retained as the theme’s page set.
 
-- `stays.html` — choose between furnished mid-term and long-term stays
-- `mid-term.html` and `long-term.html` — audience-specific landing pages
-- `locations.html` — service-area overview without publishing street addresses
-- `how-it-works.html` — inquiry, review, screening, and payment expectations
-- `apply.html` — direct guest application
-- `contact.html`, `faq.html`, and `privacy.html` — support and trust content
-
-The original HotelHub template files remain in the repository as legacy/template material, but they are not part of the new primary navigation.
+The primary guest paths are `index.html`, `rooms.html`, `rooms-details.html`, `service.html`, `booking.html`, `apply.html`, `contact.html`, and `faq.html`. The application page presents mid-term, long-term, location, and contact choices without introducing a second visual theme.
 
 ## SharePoint inventory and photo isolation
 

@@ -22,15 +22,14 @@
 
 
 
-document
-  .getElementById('bookingForm')
-  .addEventListener('submit', function (event) {
+const bookingForm = document.getElementById('bookingForm');
+if (bookingForm) bookingForm.addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const checkin = document.getElementById('checkin').value;
-    const checkout = document.getElementById('checkout').value;
+    const name = document.getElementById('name')?.value || 'Guest';
+    const email = document.getElementById('email')?.value || 'stay@mtcottages.com';
+    const checkin = document.getElementById('checkin')?.value || 'your requested date';
+    const checkout = document.getElementById('checkout')?.value || 'your requested end date';
 
     const confirmationMessage = `
         <h2>Booking Confirmation</h2>
@@ -39,7 +38,8 @@ document
         <p>We have sent a confirmation email to ${email}.</p>
     `;
 
-    document.getElementById('confirmation').innerHTML = confirmationMessage;
+    const confirmation = document.getElementById('confirmation');
+    if (confirmation) confirmation.innerHTML = confirmationMessage;
   });
 
 
