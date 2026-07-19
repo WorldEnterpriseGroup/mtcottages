@@ -13,6 +13,10 @@ Our furnished cottages are located across:
 - Ravenswood, West Virginia
 - Grantsville, Ohio
 
+## Relationship to SILK Homes
+
+Mt Cottages is the guest-facing rental operation for furnished homes, tenants, and short- or mid-term renters. SILK Homes is the staff-facing hospitality network for the people who operate and care for those homes. The two programs overlap the same physical properties and may share private inventory and photo-curation knowledge, but their audiences and public messaging are different.
+
 ## Current site
 
 The current site is the HotelHub HTML5 template stood up as-is as the initial public presence. The template includes multiple page variants and supporting pages; `index.html` is the default GitHub Pages entry point.
