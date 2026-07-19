@@ -43,7 +43,7 @@ Public image paths use house IDs rather than street addresses. This keeps the pu
 The application flow is:
 
 ```text
-GitHub Pages → stay.mtcottages.com → Azure Front Door (taodoor / mtcottages-apply endpoint)
+GitHub Pages → stay.mtcottages.com → Azure Front Door (existing taodoor endpoint)
              → Azure Function mtcottages-apply-proxy
              → Logic App mtcottages-intake → dream.crm Dynamics 365 Lead entity
 ```
@@ -58,13 +58,22 @@ Stripe checkout is not activated yet. The currently available vault key resolves
 
 ## Local preview
 
-This is a static HTML site with no package manager or build step. From the repository root, run:
+The marketing site is static HTML with no production build step. Browser tests live in [`e2e`](e2e) and use Playwright. From the repository root, run:
 
 ```bash
 python3 -m http.server 8000
 ```
 
 Then open <http://localhost:8000>.
+
+To run the local browser checks:
+
+```bash
+cd e2e
+npm ci
+npx playwright install chromium
+BASE_URL=http://127.0.0.1:8000 npm test
+```
 
 ## Deployment
 
@@ -73,6 +82,6 @@ Then open <http://localhost:8000>.
 - Hosting: GitHub Pages from the `gh-pages` branch and repository root
 - Custom-domain marker: [`CNAME`](CNAME)
 
-Push site changes to `gh-pages` to publish them through GitHub Pages. Keep the site static and preserve relative asset paths when editing the template. Use `main` for source/development changes, then synchronize the published branch.
+Push site changes to `gh-pages` to publish them through GitHub Pages. The [`CI / GitHub Pages CD`](.github/workflows/ci-cd.yml) workflow validates the static site, runs local Chromium E2E, and runs a safe live smoke suite after each `gh-pages` push. The live suite checks the published HotelHub application, HTTPS redirects, the health endpoint, and a bot-honeypot rejection; it never submits a valid application. Keep the site static and preserve relative asset paths when editing the template. Use `main` for source/development changes, then synchronize the published branch.
 
-Cloudflare handles the `mtcottages.com` zone and redirects HTTP to HTTPS. The application subdomain is routed through the existing Azure Front Door profile `taodoor` and must stay behind Front Door for the API to function.
+Cloudflare handles the `mtcottages.com` zone and redirects HTTP to HTTPS. Both `stay.mtcottages.com` and legacy `apply.mtcottages.com` use the existing `taodoor` Front Door endpoint and the `mtcottages-apply-origins` origin group; the temporary application endpoint has been retired. Keep the application subdomains behind Front Door for the API to function.

@@ -36,7 +36,7 @@ The tracked importer is [`scripts/import_sharepoint_photos.rb`](scripts/import_s
 
 ## Guest application architecture
 
-The HotelHub-themed application view is served at `https://stay.mtcottages.com/`; its form posts to `https://stay.mtcottages.com/api/apply`. The endpoint is routed through Azure Front Door profile `taodoor`, endpoint `mtcottages-apply`, then the `mtcottages-apply-proxy` Function app, then the `mtcottages-intake` Logic App in the `mtcottages` resource group, which creates a standard D365 `leads` record in the `dream.crm` environment through the existing shared `dynamicscrmonline` connection. The record is labeled `Mt Cottages` and preserves the complete JSON intake in its description, with key contact/location values mapped to lead fields. Browser visits to `https://apply.mtcottages.com/` redirect to `stay`, while `/api/apply` remains available on the legacy host. Keep the callback URL only in the Azure app setting; never commit it.
+The HotelHub-themed application view is served at `https://stay.mtcottages.com/`; its form posts to `https://stay.mtcottages.com/api/apply`. The endpoint is routed through the existing Azure Front Door profile `taodoor`, existing endpoint `taodoor`, and its `mtcottages-apply-route` route, then the `mtcottages-apply-proxy` Function app, then the `mtcottages-intake` Logic App in the `mtcottages` resource group, which creates a standard D365 `leads` record in the `dream.crm` environment through the existing shared `dynamicscrmonline` connection. The record is labeled `Mt Cottages` and preserves the complete JSON intake in its description, with key contact/location values mapped to lead fields. Browser visits to `https://apply.mtcottages.com/` redirect to `stay`, while `/api/apply` remains available on the legacy host. Keep the callback URL only in the Azure app setting; never commit it.
 
 The public form sends contact details, move-in date, duration, occupants, community, home size, stay reason, pets, employment, budget, furnishing/accessibility needs, notes, screening acknowledgment, terms acknowledgment, source URL, page, and the bot honeypot. Keep sensitive identity and payment data out of this form.
 
@@ -46,7 +46,7 @@ Stripe is currently a blocked integration: the vault key checked against Stripe 
 
 ## Working rules
 
-- Treat the files in the repository root as a static HTML site.
+- Treat the files in the repository root as a static HTML site; the only package-managed project is the pinned browser test harness under `e2e/`.
 - Keep `index.html` as the public entry point unless a deployment change is intentional.
 - Preserve the existing relative paths under `assets/`, `fonts/`, `images/`, and `venobox/`.
 - Do not add secrets, API tokens, credentials, or private tenant data to the repository.
@@ -56,6 +56,7 @@ Stripe is currently a blocked integration: the vault key checked against Stripe 
 - Every guest-facing page must remain based on the exact HotelHub buyer templates from the supplied ZIP. Keep the original HotelHub CSS, JavaScript, image directories, loaders, sliders, breadcrumbs, forms, and `venobox` assets intact. Do not introduce a replacement visual system or custom page shell; change only Mt Cottages content, branding, navigation labels, and destination links within the native HotelHub structures.
 - Keep street-level addresses out of public HTML, CSS, JavaScript, image paths, and metadata unless the owner explicitly approves a specific listing.
 - Keep SharePoint inventory exports, house maps, manifests, downloaded staging folders, and credentials out of Git.
+- Keep CI/CD on the `gh-pages` branch: [`.github/workflows/ci-cd.yml`](.github/workflows/ci-cd.yml) runs static checks and local E2E on pull requests, then runs safe live smoke tests after a `gh-pages` push. Live tests must never submit a valid application or create a D365 record.
 
 ## Verification
 

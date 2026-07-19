@@ -23,7 +23,7 @@ Total: 11 canonical properties. Grantsville is confirmed as West Virginia. `255 
 
 ## Repository shape
 
-This is a static HTML site with no `package.json`, dependency installation, or compilation step. `index.html` is the default page. The public visual source is the exact HotelHub package from `~/Downloads/hotelhub-luxury-hotel-booking-html5-template-2026-04-28-16-29-32-utc.zip`; preserve its CSS, JavaScript, image directories, layout, and `venobox` assets. `apply.html` is the Mt Cottages application page styled with those same HotelHub assets.
+The marketing site is static HTML with no production build step. `index.html` is the default page. The public visual source is the exact HotelHub package from `~/Downloads/hotelhub-luxury-hotel-booking-html5-template-2026-04-28-16-29-32-utc.zip`; preserve its CSS, JavaScript, image directories, layout, and `venobox` assets. `apply.html` is the Mt Cottages application page styled with those same HotelHub assets. The `e2e` directory contains the pinned Playwright dependency and browser smoke tests used by CI/CD.
 
 Every guest-facing page is built directly from the supplied HotelHub HTML templates and uses the original HotelHub CSS, JavaScript, image directories, loaders, sliders, breadcrumbs, forms, and `venobox` assets. Mt Cottages changes are limited to content, branding, navigation labels, and destination links inside those native HotelHub structures. Navigation is organized as `Cottages`, `Locations`, `Living`, `Services`, `About`, `Residents`, and `Contact`, with `Health Professionals`, `Family Stays`, and `Meal Preparation` as the shortened dropdown labels and `Stay with Us` as the themed header CTA. Resident support and partnership pages are kept separate from guest discovery.
 
@@ -48,12 +48,12 @@ Only use an exact source folder explicitly mapped to that house. Do not pull fro
 3. Never commit Cloudflare, GitHub, Microsoft, email, booking, or other service credentials.
 4. Keep `homes.csv`, `sharepoint-house-map.json`, `sharepoint-photo-manifest.json`, and any SharePoint download staging directory ignored.
 5. Preview with `python3 -m http.server 8000` and check the browser console for missing assets.
-6. Before publishing, run `git diff --check`, validate `infra/azure/*.json`, confirm the public HTML has no excluded address, and confirm the GitHub Pages source is `gh-pages` / `/`.
+6. Before publishing, run `git diff --check`, validate `infra/azure/*.json`, confirm the public HTML has no excluded address, run `cd e2e && npm ci && npm test` against a local server, and confirm the GitHub Pages source is `gh-pages` / `/`.
 
 ## Hosting
 
 The canonical repository is `WorldEnterpriseGroup/mtcottages` on GitHub. Production is served by GitHub Pages from `gh-pages` at `https://mtcottages.com`.
 
-The HotelHub-themed application view is served at `https://stay.mtcottages.com/`; its form posts to `https://stay.mtcottages.com/api/apply` through the existing Azure Front Door profile `taodoor` and endpoint `mtcottages-apply`, then the `mtcottages-apply-proxy` Function app and `mtcottages-intake` Logic App in resource group `mtcottages`. Browser visits to `https://apply.mtcottages.com/` redirect to `stay`; keep `/api/apply` available on the legacy host for compatibility. Do not bypass Front Door in public HTML. Stripe payments remain disabled until a verified Mt Cottages Stripe account and approved pricing are supplied.
+The HotelHub-themed application view is served at `https://stay.mtcottages.com/`; its form posts to `https://stay.mtcottages.com/api/apply` through the existing Azure Front Door profile `taodoor` and existing endpoint `taodoor`, using the `mtcottages-apply-route` route and `mtcottages-apply-origins` origin group, then the `mtcottages-apply-proxy` Function app and `mtcottages-intake` Logic App in resource group `mtcottages`. Browser visits to `https://apply.mtcottages.com/` redirect to `stay`; keep `/api/apply` available on the legacy host for compatibility. Do not bypass Front Door in public HTML. Stripe payments remain disabled until a verified Mt Cottages Stripe account and approved pricing are supplied.
 
 The form fields are intentionally aligned with the Logic App request schema: contact details, move-in date, duration, occupants, community, home size, stay reason, pets, employment, budget, furnishing/accessibility needs, notes, screening acknowledgment, terms acknowledgment, source URL, page, and the bot honeypot. The Logic App uses the existing `dynamicscrmonline` connection against `dream.crm` and creates a standard D365 `leads` record with `companyname` set to `Mt Cottages`; the full JSON intake is retained in `description` so no submitted field is discarded.

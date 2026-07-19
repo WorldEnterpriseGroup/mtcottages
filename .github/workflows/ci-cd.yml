@@ -1,0 +1,141 @@
+name: CI / GitHub Pages CD
+
+on:
+  pull_request:
+  push:
+    branches:
+      - gh-pages
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mtcottages-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  static-checks:
+    name: Static checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Validate source files and public boundaries
+        run: |
+          git diff --check
+          for json_file in infra/azure/*.json; do jq empty "$json_file"; done
+          python3 -m py_compile scripts/rebuild-hotelhub-pages.py infra/azure/apply-proxy/function_app.py
+          python3 - <<'PY'
+          from pathlib import Path
+
+          errors = []
+          pages = sorted(Path(".").glob("*.html"))
+          if Path("CNAME").read_text(encoding="utf-8").strip() != "mtcottages.com":
+              errors.append("CNAME must remain mtcottages.com")
+          if not Path(".nojekyll").is_file():
+              errors.append(".nojekyll is missing")
+          for page in pages:
+              markup = page.read_text(encoding="utf-8")
+              if "assets/css/style.css" not in markup:
+                  errors.append(f"{page} is missing the HotelHub stylesheet")
+              if "255 Court St" in markup or "Grantsville, OH" in markup:
+                  errors.append(f"{page} contains private/non-public inventory")
+          if errors:
+              raise SystemExit("\n".join(errors))
+          print(f"Validated {len(pages)} HotelHub HTML pages")
+          PY
+
+  e2e-local:
+    name: Local browser E2E
+    needs: static-checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: e2e/package-lock.json
+
+      - name: Install browser test dependencies
+        working-directory: e2e
+        run: npm ci
+
+      - name: Install Chromium
+        working-directory: e2e
+        run: npx playwright install --with-deps chromium
+
+      - name: Start the local site
+        run: |
+          nohup python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/mtcottages-http.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if curl --fail --silent http://127.0.0.1:4173/index.html >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/mtcottages-http.log
+          exit 1
+
+      - name: Run local browser tests
+        working-directory: e2e
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: npx playwright test tests/site.spec.js
+
+      - name: Upload local Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mtcottages-local-playwright-report
+          path: e2e/playwright-report
+          if-no-files-found: ignore
+
+  live-smoke:
+    name: Live smoke after gh-pages publish
+    if: github.event_name == 'push' && github.ref == 'refs/heads/gh-pages'
+    needs: e2e-local
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: e2e/package-lock.json
+
+      - name: Install browser test dependencies
+        working-directory: e2e
+        run: npm ci
+
+      - name: Install Chromium
+        working-directory: e2e
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify the published application edge
+        working-directory: e2e
+        env:
+          BASE_URL: https://stay.mtcottages.com
+          LIVE_SMOKE: "1"
+        run: npx playwright test tests/live.spec.js
+
+      - name: Upload live Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mtcottages-live-playwright-report
+          path: e2e/playwright-report
+          if-no-files-found: ignore
