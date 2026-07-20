@@ -27,6 +27,75 @@ HOUSES = {
     "ravenswood-04": {"name": "Gallatin House", "town": "Ravenswood, WV", "town_slug": "ravenswood", "bedrooms": 1},
 }
 
+# Photo mapping per house: list of (filename, alt_text) for gallery, hero image filename for breatcome
+# An empty list means "Coming Soon" — show placeholder
+# Houses with 0 usable photos also get Coming Soon treatment
+PHOTOS = {
+    "marietta-01": {
+        "hero": "marietta-01/hero.avif",
+        "gallery": [
+            ("marietta-01/gallery-01.avif", "Living room"),
+            ("marietta-01/gallery-02.avif", "Kitchen"),
+            ("marietta-01/gallery-03.avif", "Bedroom"),
+            ("marietta-01/gallery-04.avif", "Bathroom"),
+            ("marietta-01/gallery-05.avif", "Dining area"),
+        ]
+    },
+    "parkersburg-01": {
+        "hero": "parkersburg-01/photo-06.avif",
+        "gallery": [
+            ("parkersburg-01/photo-03.avif", "Bedroom with desk"),
+            ("parkersburg-01/photo-06.avif", "Living room"),
+            ("parkersburg-01/photo-08.avif", "Living area"),
+            ("parkersburg-01/photo-05.avif", "Bedroom"),
+        ]
+    },
+    "parkersburg-02": {
+        "hero": None,
+        "gallery": [],  # Coming Soon — only 1 usable photo
+    },
+    "parkersburg-03": {
+        "hero": None,
+        "gallery": [],  # Coming Soon — no photos imported
+    },
+    "parkersburg-04": {
+        "hero": "parkersburg-04/photo-05.avif",
+        "gallery": [
+            ("parkersburg-04/photo-07.avif", "Queen bedroom"),
+            ("parkersburg-04/photo-08.avif", "Kitchen"),
+            ("parkersburg-04/photo-01.avif", "Bedroom with TV"),
+            ("parkersburg-04/photo-03.avif", "Sitting area"),
+            ("parkersburg-04/photo-06.avif", "Bedroom"),
+            ("parkersburg-04/photo-05.avif", "Covered porch"),
+        ]
+    },
+    "ravenswood-01": {
+        "hero": None,
+        "gallery": [],  # Coming Soon — no photos imported
+    },
+    "ravenswood-02": {
+        "hero": None,
+        "gallery": [],  # Coming Soon — CAD renders only
+    },
+    "ravenswood-03": {
+        "hero": "ravenswood-03/photo-01.avif",
+        "gallery": [
+            ("ravenswood-03/photo-06.avif", "Dining room"),
+            ("ravenswood-03/photo-01.avif", "Bedroom"),
+            ("ravenswood-03/photo-04.avif", "Bathroom"),
+            ("ravenswood-03/photo-05.avif", "Dining area"),
+        ]
+    },
+    "ravenswood-04": {
+        "hero": None,
+        "gallery": [],  # Coming Soon — CAD renders only
+    },
+}
+
+# Define which houses have real photos vs Coming Soon
+def has_photos(house_id):
+    return house_id in PHOTOS and len(PHOTOS[house_id].get("gallery", [])) > 0
+
 def head_section(title, desc):
     return f'''<!DOCTYPE html>
 <html lang="en-US">
@@ -177,11 +246,66 @@ def generate_page(house_id, house):
     summary = p.get("summary", h.get("summary", ""))
     description = p.get("description", h.get("description", ""))
 
+    # Photo configuration
+    house_photos = PHOTOS.get(house_id, {})
+    hero_img = house_photos.get("hero")
+    gallery_photos = house_photos.get("gallery", [])
+    coming_soon = len(gallery_photos) == 0
+
     pricing_rows = ""
     if price_12:
         pricing_rows += f'\n                <li><i class="fa-solid fa-dollar-sign"></i> ${price_12:,}/mo (12-month) <span></span></li>'
     if price_short:
         pricing_rows += f'\n                <li><i class="fa-solid fa-calendar-week"></i> ${price_short:,}/mo (short-term) <span></span></li>'
+
+    if coming_soon:
+        gallery_html = '''        <div class="row">
+          <div class="col-lg-12">
+            <div class="text-center" style="padding: 40px 20px;">
+              <p style="font-size: 18px; color: #666;">We are preparing photos of this home. Contact us for details or a virtual walkthrough.</p>
+              <div class="hotelhub-btn cursor-scale small" style="margin-top: 15px;">
+                <a href="contact.html">ASK ABOUT THIS HOME <i class="flaticon flaticon-right-arrow"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>'''
+    else:
+        gallery_html = ""
+        for i, (photo_path, alt_text) in enumerate(gallery_photos):
+            if i % 2 == 0:
+                if i > 0:
+                    gallery_html += '\n        <div class="row" style="margin-top: 30px;">'
+                else:
+                    gallery_html += '\n        <div class="row">'
+            gallery_html += f'''
+          <div class="col-lg-6">
+            <div class="rooms-single-single-bx">
+              <div class="choose-single-thumbs">
+                <a class="venobox" data-gall="house-gallery" href="assets/images/cottages/{photo_path}">
+                  <img src="assets/images/cottages/{photo_path}" alt="{alt_text}">
+                </a>
+              </div>
+            </div>
+          </div>'''
+            if i % 2 == 1 or i == len(gallery_photos) - 1:
+                gallery_html += '\n        </div>'
+
+    hero_bg_attr = f" style=\"background-image: url('assets/images/cottages/{hero_img}');\"" if hero_img else ""
+    breatcome_html = f'''    <div class="breatcome-section style_two d-flex align-items-center"{hero_bg_attr}>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="breatcome-content text-center">
+              <h1 class="cursor-scale">{h['name']}</h1>
+              <ul class="breatcome-item">
+                <li><a class="cursor-scale small" href="index.html"><i class="fa-solid fa-house"></i> Home </a></li>
+                <li><i class="flaticon flaticon-right-arrow"></i> {h['name']} </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>'''
 
     return f'''{head_section(title, summary)}
   <body>
@@ -254,21 +378,7 @@ def generate_page(house_id, house):
       </div>
     </div>
 
-    <div class="breatcome-section style_two d-flex align-items-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="breatcome-content text-center">
-              <h1 class="cursor-scale">{h['name']}</h1>
-              <ul class="breatcome-item">
-                <li><a class="cursor-scale small" href="index.html"><i class="fa-solid fa-house"></i> Home </a></li>
-                <li><i class="flaticon flaticon-right-arrow"></i> {h['name']} </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    {breatcome_html}
 
     <div class="service_inner_page">
       <div class="container">
@@ -305,48 +415,7 @@ def generate_page(house_id, house):
           <h4><i class="flaticon flaticon-right-arrow"></i>PHOTO GALLERY</h4>
           <h1>See inside {h['name']}</h1>
         </div>
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="rooms-single-single-bx">
-              <div class="choose-single-thumbs">
-                <a class="venobox" data-gall="house-gallery" href="assets/images/cottages/{house_id}/photo-01.avif">
-                  <img src="assets/images/cottages/{house_id}/photo-01.avif" alt="Living area">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="rooms-single-single-bx">
-              <div class="choose-single-thumbs">
-                <a class="venobox" data-gall="house-gallery" href="assets/images/cottages/{house_id}/photo-02.avif">
-                  <img src="assets/images/cottages/{house_id}/photo-02.avif" alt="Kitchen">
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row" style="margin-top: 30px;">
-          <div class="col-lg-6">
-            <div class="rooms-single-single-bx">
-              <div class="choose-single-thumbs">
-                <a class="venobox" data-gall="house-gallery" href="assets/images/cottages/{house_id}/photo-03.avif">
-                  <img src="assets/images/cottages/{house_id}/photo-03.avif" alt="Bedroom">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="rooms-single-single-bx">
-              <div class="choose-single-thumbs">
-                <a class="venobox" data-gall="house-gallery" href="assets/images/cottages/{house_id}/photo-04.avif">
-                  <img src="assets/images/cottages/{house_id}/photo-04.avif" alt="Bathroom">
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+        {gallery_html}
 
     <div class="service_inner_page">
       <div class="container">
