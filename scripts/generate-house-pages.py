@@ -69,6 +69,8 @@ NAV_DESKTOP = '''<ul class="nav_scroll">
                     <li><a href="locations.html#marietta">Marietta, OH</a></li>
                     <li><a href="locations.html#parkersburg">Parkersburg, WV</a></li>
                     <li><a href="locations.html#ravenswood">Ravenswood, WV</a></li>
+                    <li><a href="locations.html#grantsville">Grantsville, WV</a></li>
+                    <li><a href="locations.html#racine">Racine, OH</a></li>
                   </ul>
                 </li>
                 <li><a class="mdy-hover" href="living.html">Living <i class="fas fa-angle-down"></i></a>
@@ -116,6 +118,8 @@ NAV_MOBILE = '''<ul class="nav_scroll">
                 <li><a href="locations.html#marietta">Marietta, OH</a></li>
                 <li><a href="locations.html#parkersburg">Parkersburg, WV</a></li>
                 <li><a href="locations.html#ravenswood">Ravenswood, WV</a></li>
+                <li><a href="locations.html#grantsville">Grantsville, WV</a></li>
+                <li><a href="locations.html#racine">Racine, OH</a></li>
               </ul>
             </li>
             <li><a class="mdy-hover" href="living.html">Living</a>
