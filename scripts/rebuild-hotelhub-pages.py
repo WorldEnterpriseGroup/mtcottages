@@ -153,11 +153,8 @@ HEADER_HTML = """    <!-- loder -->
           </div>
           <div class="col-lg-6">
             <div class="topber-social-icon">
-              <h4 class="topber-follow">Follow Us</h4>
-              <a href="#">fb</a>
-              <a href="#">wt-x</a>
-              <a href="#">in</a>
-              <a href="#">ln</a>
+              <h4 class="topber-follow">Contact</h4>
+              <a href="mailto:stay@mtcottages.com">stay@mtcottages.com</a>
             </div>
           </div>
         </div>
@@ -488,6 +485,41 @@ def common_replacements(text: str, page: str | None = None) -> str:
     text = text.replace('Usefull Links', 'Explore')
     text = text.replace('Our Galary', 'Cottages')
     text = text.replace('Contact Info', 'Stay with Us')
+    text = text.replace('''                    <div class="hotelhub-social-icon cursor-scale small">
+                      <h3 class="follow-title">Follow Us On :</h3>
+                      <a href="#"><i class="fab fa-facebook-f"></i></a>
+                      <a href="#"><i class="fa-brands fa-linkedin-in"> </i></a>
+                      <a href="#"><i class="bi bi-twitter"></i></a>
+                      <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    </div>''',
+                    '''                    <div class="hotelhub-social-icon cursor-scale small">
+                      <h3 class="follow-title">Get in Touch</h3>
+                      <a href="mailto:stay@mtcottages.com">stay@mtcottages.com</a>
+                    </div>''')
+    text = text.replace('''                <!-- Social Box -->
+                <ul class="social-box">
+                  <li class="facebook">
+                    <a href="#" class="fab fa-facebook-f"></a>
+                  </li>
+                  <li class="twitter">
+                    <a href="#" class="fab fa-instagram"></a>
+                  </li>
+                  <li class="linkedin">
+                    <a href="#" class="fab fa-twitter"></a>
+                  </li>
+                  <li class="instagram">
+                    <a href="#" class="fab fa-pinterest-p"></a>
+                  </li>
+                  <li class="youtube">
+                    <a href="#" class="fab fa-linkedin-in"></a>
+                  </li>
+                </ul>''',
+                '''                <!-- Contact -->
+                <ul class="social-box">
+                  <li class="email">
+                    <a href="mailto:stay@mtcottages.com" class="fas fa-envelope"></a>
+                  </li>
+                </ul>''')
     text = text.replace('About Mt Cottages', 'About')
     text = text.replace('Rooms & Suites', 'Cottages')
     text = text.replace('room details', 'cottage details')
