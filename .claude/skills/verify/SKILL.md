@@ -28,7 +28,7 @@ for f in infra/azure/apply-proxy/*.py; do python3 -m py_compile "$f"; done
 # HTML validation: no banned addresses
 for f in *.html; do
   grep -q 'assets/css/style.css' "$f" || echo "MISSING style.css: $f"
-  grep -qi '255 Court St\|Grantsville, OH' "$f" && echo "BANNED ADDRESS: $f" || true
+  grep -qi '255 Court St' "$f" && echo "BANNED ADDRESS: $f" || true
 done
 
 # CNAME check

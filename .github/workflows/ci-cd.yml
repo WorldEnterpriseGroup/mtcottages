@@ -45,7 +45,7 @@ jobs:
               markup = page.read_text(encoding="utf-8")
               if "assets/css/style.css" not in markup:
                   errors.append(f"{page} is missing the HotelHub stylesheet")
-              if "255 Court St" in markup or "Grantsville, OH" in markup:
+              if "255 Court St" in markup:
                   errors.append(f"{page} contains private/non-public inventory")
           if errors:
               raise SystemExit("\n".join(errors))

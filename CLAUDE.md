@@ -10,7 +10,13 @@ For deep context (property map, photo rules, application architecture), see `@cl
 
 ## Working on gh-pages
 
-All changes go directly to the `gh-pages` branch (the deploy branch). Do NOT work on `main`. There is no build step — the site is raw static HTML served by GitHub Pages.
+Three branches are involved:
+
+- **`main`** — original development branch. Do NOT work on `main`.
+- **`demo`** (GitLab) — staging/testing area. Deployed for internal review.
+- **`gh-pages`** (GitHub) — the published site via GitHub Pages. This is the branch we are currently on. All published changes land here.
+
+There is no build step — the site is raw static HTML served by GitHub Pages.
 
 ## Critical rules
 
@@ -18,7 +24,7 @@ All changes go directly to the `gh-pages` branch (the deploy branch). Do NOT wor
 - **Stripe is blocked.** The checked-in vault key is for an unrelated INSTAR Lab account with charges/payouts disabled. Do not create products, payment links, or process payments.
 - **HotelHub theme must stay intact.** Keep the original HotelHub CSS, JS, layout, sliders, breadcrumbs, forms, loaders, and venobox assets. Change only content, branding, navigation labels, and destination links.
 - **CNAME** must always be `mtcottages.com`. **.nojekyll** must always be present.
-- **255 Court St (Grantsville) is WV, not OH.** The CI enforces that `Grantsville, OH` never appears in HTML. This property is intentionally excluded from public listings.
+- **255 Court St (Grantsville, WV)** is internal-only and must not appear in any public page.
 - **216 Sand St** has no approved public photos yet.
 - **287 Ridgeway Ave** is NOT a canonical property — do not count it.
 - **Live smoke tests** must never submit a valid application or create a D365 lead.

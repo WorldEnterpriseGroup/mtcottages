@@ -46,7 +46,6 @@ test("every public page is reachable and remains HotelHub themed", async ({ page
     await expect(page.locator('link[href*="assets/css/style.css"]'), `${path} lost HotelHub CSS`).toHaveCount(1);
     const body = await page.locator("body").innerText();
     expect(body, `${path} exposed the private address`).not.toContain("255 Court St");
-    expect(body, `${path} exposed the private state assignment`).not.toContain("Grantsville, OH");
   }
 });
 

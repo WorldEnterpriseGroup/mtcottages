@@ -6,9 +6,8 @@ brand copy, navigation, and page content; it does not add a second visual
 system or override the HotelHub CSS.
 """
 
-from pathlib import Path
 import re
-
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = [

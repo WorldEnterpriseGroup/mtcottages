@@ -1,0 +1,26 @@
+# Ruff Python linter configuration for Mt Cottages.
+# Python scripts in scripts/ and infra/azure/apply-proxy/ use
+# standard library + azure-functions.
+
+target-version = "py313"
+
+# Exclude the .venv directory.
+exclude = [".venv"]
+
+[lint]
+# Enable basic sets of rules:
+# F  - pyflakes (logic errors, undefined names, etc.)
+# E  - pycodestyle (convention violations)
+# I  - isort (import ordering)
+select = ["F", "E", "I"]
+
+# Ignore line-length enforcement in a repo with many pre-existing long lines.
+ignore = ["E501"]
+
+[lint.per-file-ignores]
+# apply-proxy uses azure.functions which is not installed in the venv;
+# allow unresolved imports for that path.
+"infra/azure/apply-proxy/*" = ["F401", "F403"]
+
+[lint.isort]
+known-third-party = ["azure"]
