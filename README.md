@@ -1,1 +1,87 @@
-# Mt-Cottages
+# Mid-Ohio Valley Cottages
+
+Guest-facing website for furnished cottages operated by Mt Cottages. The site is hosted from this repository with GitHub Pages and uses `mtcottages.com` as its public domain.
+
+## Service area
+
+Our furnished cottages are located across:
+
+- Marietta, Ohio
+- Athens, Ohio
+- Racine, Ohio
+- Parkersburg, West Virginia
+- Ravenswood, West Virginia
+- Grantsville, West Virginia
+
+## Relationship to SILK Homes
+
+Mt Cottages is the guest-facing rental operation for furnished homes, tenants, renters, and mid- or long-term guests. SILK Homes is the staff-facing hospitality network for the people who operate and care for those homes. The two programs overlap the same physical properties and may share private inventory and photo-curation knowledge, but their audiences, workflows, and public messaging are different.
+
+## Public site
+
+`index.html` and every guest-facing page are built directly from the exact HotelHub theme package from `~/Downloads/hotelhub-luxury-hotel-booking-html5-template-2026-04-28-16-29-32-utc.zip`. The original HotelHub CSS, JavaScript, image directories, loaders, sliders, breadcrumbs, forms, page sections, and `venobox` assets remain the visual foundation. Mt Cottages changes are content, branding, navigation labels, and destination links inside those native HotelHub structures.
+
+The public navigation is intentionally brand-first: `Cottages`, `Locations`, `Living`, `Services`, `About`, `Contact`, `Residents`, and the `Stay with Us` application CTA. The Cottages menu leads to `Find Your Place`, `Cozy Places`, `Room to Settle In`, and `Available Now`; Living includes `Health Professionals` and `Family Stays`, while Services includes `Meal Preparation`. The current guest-facing pages include `cottages.html`, `cozy-places.html`, `room-to-settle.html`, `available.html`, `locations.html`, `living.html`, `services.html`, `about.html`, `contact.html`, `faq.html`, and `apply.html`. Resident support is separated into `residents.html`, `resident-portal.html`, `pay-rent.html`, `maintenance.html`, and `emergency-maintenance.html`; partner programs are described in `partnerships.html`.
+
+## SharePoint inventory and photo isolation
+
+The private `homes.csv` export from the SILK Homes overview repository is the inventory source of truth for SharePoint photo locations. It is intentionally copied into this repository for local operations and ignored by Git. The private `sharepoint-house-map.json` maps each canonical property to a stable internal house ID and exact SharePoint folders; it is also ignored.
+
+When photos are approved for the public site, they must remain isolated under one directory per house:
+
+```text
+assets/images/cottages/<house-id>/photo-01.jpg
+assets/images/cottages/<house-id>/photo-02.jpg
+```
+
+Use [`scripts/import_sharepoint_photos.rb`](scripts/import_sharepoint_photos.rb) with the private map and CSV to download exact-source images. The importer records source metadata in the ignored `sharepoint-photo-manifest.json`, prevents a file hash from being reused across houses, and requires visual review before a photo is linked from public HTML. Do not use broad SILK archives, mixed galleries, or filename guesses for a house. A construction/inspection image is not a marketing approval. The Grantsville property is currently excluded from the public site, and the Ravenswood property without an exact public source has no approved public image yet.
+
+Public image paths use house IDs rather than street addresses. This keeps the public site useful while keeping the exact address-to-folder map private.
+
+## Application and payment architecture
+
+The application flow is:
+
+```text
+GitHub Pages → stay.mtcottages.com → Azure Front Door (existing taodoor endpoint)
+             → Azure Function mtcottages-apply-proxy
+             → Logic App mtcottages-intake → dream.crm Dynamics 365 Lead entity
+```
+
+The HotelHub-themed application view is served at [`stay.mtcottages.com`](https://stay.mtcottages.com/) and posts to `/api/apply`. The legacy [`apply.mtcottages.com`](https://apply.mtcottages.com/) host redirects browser visits to `stay`; its `/api/apply` path remains available for compatibility. The application host remains separate from the GitHub Pages marketing site so the public CTA can stay simple while the intake path remains behind the existing Azure routing.
+
+The form collects contact details, preferred move-in date, intended duration, occupants, community, preferred home size, reason for staying, pets, employment or assignment context, budget, furnishing/accessibility needs, notes, and the required inquiry confirmation. It deliberately does not collect Social Security numbers, full birth dates, payment-card details, or bank information. The Logic App writes a Mt Cottages lead to the standard D365 `leads` entity, maps the key contact and location fields, and retains the complete submitted intake payload in the lead description.
+
+The Logic App and proxy source/configuration are preserved under [`infra/azure`](infra/azure). The public form intentionally does not collect Social Security numbers, full birth dates, card data, or other highly sensitive identity information.
+
+Stripe checkout is not activated yet. The currently available vault key resolves to an unrelated INSTAR Lab Stripe account with charges and payouts disabled, so it must not be used for Mt Cottages application fees, background checks, deposits, or rent. Connect the correct Mt Cottages Stripe account/key and approved fee schedule before creating payment links or accepting money.
+
+## Local preview
+
+The marketing site is static HTML with no production build step. Browser tests live in [`e2e`](e2e) and use Playwright. From the repository root, run:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then open <http://localhost:8000>.
+
+To run the local browser checks:
+
+```bash
+cd e2e
+npm ci
+npx playwright install chromium
+BASE_URL=http://127.0.0.1:8000 npm test
+```
+
+## Deployment
+
+- Repository: <https://github.com/WorldEnterpriseGroup/mtcottages>
+- Production site: <https://mtcottages.com>
+- Hosting: GitHub Pages from the `gh-pages` branch and repository root
+- Custom-domain marker: [`CNAME`](CNAME)
+
+Push site changes to `gh-pages` to publish them through GitHub Pages. The [`CI / GitHub Pages CD`](.github/workflows/ci-cd.yml) workflow validates the static site, runs local Chromium E2E, and runs a safe live smoke suite after each `gh-pages` push. The live suite checks the published HotelHub application, HTTPS redirects, the health endpoint, and a bot-honeypot rejection; it never submits a valid application. Keep the site static and preserve relative asset paths when editing the template. Use `main` for source/development changes, then synchronize the published branch.
+
+Cloudflare handles the `mtcottages.com` zone and redirects HTTP to HTTPS. Both `stay.mtcottages.com` and legacy `apply.mtcottages.com` use the existing `taodoor` Front Door endpoint and the `mtcottages-apply-origins` origin group; the temporary application endpoint has been retired. Keep the application subdomains behind Front Door for the API to function.

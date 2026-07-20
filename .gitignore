@@ -1,0 +1,18 @@
+# Local property/photo inventory export; keep private and out of Git.
+homes.csv
+
+# Private SharePoint photo-import state; the public site receives only curated image files.
+sharepoint-house-map.json
+sharepoint-photo-manifest.json
+sharepoint-download-staging/
+
+# Python cache
+__pycache__/
+
+# Claude Code isolated worktrees
+.claude/worktrees/
+
+# Local browser-test dependencies and reports.
+e2e/node_modules/
+e2e/playwright-report/
+e2e/test-results/
