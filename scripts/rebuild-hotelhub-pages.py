@@ -4,25 +4,24 @@
 The page templates remain the HotelHub buyer files. This script only changes
 brand copy, navigation, and page content; it does not add a second visual
 system or override the HotelHub CSS.
+
+NOTE: index.html, about.html, cottages.html, cozy-places.html,
+room-to-settle.html, available.html, locations.html, and apply.html
+have been migrated to the mt-site / mtcottages-site.js system and are
+no longer HotelHub templates. They are excluded from PAGES below.
 """
 
 import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+
+# Pages that still use HotelHub templates (processed by this script)
 PAGES = [
-    "index.html",
-    "cottages.html",
-    "cozy-places.html",
-    "room-to-settle.html",
-    "available.html",
-    "locations.html",
     "living.html",
     "services.html",
-    "about.html",
     "contact.html",
     "faq.html",
-    "apply.html",
     "residents.html",
     "resident-portal.html",
     "pay-rent.html",
@@ -30,6 +29,85 @@ PAGES = [
     "emergency-maintenance.html",
     "partnerships.html",
 ]
+
+# House detail pages (use mt-site / mtcottages-site.js system)
+HOUSE_PAGES = [
+    "marietta-01.html",
+    "parkersburg-01.html",
+    "parkersburg-02.html",
+    "parkersburg-03.html",
+    "parkersburg-04.html",
+    "ravenswood-01.html",
+    "ravenswood-02.html",
+    "ravenswood-03.html",
+    "ravenswood-04.html",
+]
+
+HOUSES = {
+    "marietta-01": {
+        "name": "Frederick House",
+        "town": "Marietta, OH",
+        "bedrooms": 1,
+        "features": 10,
+        "status": "published",
+    },
+    "parkersburg-01": {
+        "name": "Broad Street Cottage",
+        "town": "Parkersburg, WV",
+        "bedrooms": 2,
+        "features": 11,
+        "status": "published",
+    },
+    "parkersburg-02": {
+        "name": "45th Street House",
+        "town": "Parkersburg, WV",
+        "bedrooms": 3,
+        "features": 11,
+        "status": "published",
+    },
+    "parkersburg-03": {
+        "name": "32nd Street Cottage",
+        "town": "Parkersburg, WV",
+        "bedrooms": 2,
+        "features": 10,
+        "status": "published",
+    },
+    "parkersburg-04": {
+        "name": "Broad Street House",
+        "town": "Parkersburg, WV",
+        "bedrooms": 3,
+        "features": 11,
+        "status": "published",
+    },
+    "ravenswood-01": {
+        "name": "Walnut Cottage",
+        "town": "Ravenswood, WV",
+        "bedrooms": 2,
+        "features": 10,
+        "status": "published",
+    },
+    "ravenswood-02": {
+        "name": "Virginia Street House",
+        "town": "Ravenswood, WV",
+        "bedrooms": 3,
+        "features": 11,
+        "status": "published",
+    },
+    "ravenswood-03": {
+        "name": "Henrietta Cottage",
+        "town": "Ravenswood, WV",
+        "bedrooms": 2,
+        "features": 11,
+        "status": "published",
+    },
+    "ravenswood-04": {
+        "name": "Gallatin House",
+        "town": "Ravenswood, WV",
+        "bedrooms": 1,
+        "features": 10,
+        "status": "published",
+    },
+}
 
 
 NAV_DESKTOP = """<ul class="nav_scroll">
