@@ -6,6 +6,12 @@ sharepoint-house-map.json
 sharepoint-photo-manifest.json
 sharepoint-download-staging/
 
+# Python cache
+__pycache__/
+
+# Claude Code isolated worktrees
+.claude/worktrees/
+
 # Local browser-test dependencies and reports.
 e2e/node_modules/
 e2e/playwright-report/
