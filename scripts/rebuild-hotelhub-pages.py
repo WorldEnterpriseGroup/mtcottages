@@ -128,6 +128,132 @@ NAV_MOBILE = """<ul class="nav_scroll">
           </ul>"""
 
 
+# HotelHub header block to inject into pages that are missing it.
+HEADER_HTML = """    <!-- loder -->
+    <div class="loader-wrapper">
+      <div class="loader"></div>
+      <div class="loder-section left-section"></div>
+      <div class="loder-section right-section"></div>
+    </div>
+
+    <!--==================================================-->
+    <!-- Start Mt Cottages Topber Area -->
+    <!--==================================================-->
+    <div class="topber_area">
+      <div class="container-fluid">
+        <div class="row topber_upper align-items-center d-flex">
+          <div class="col-lg-6">
+            <div class="topber-text">
+              <p><span>Stay</span>Furnished cottages across the Mid-Ohio Valley</p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="topber-social-icon">
+              <h4 class="topber-follow">Follow Us</h4>
+              <a href="#">fb</a>
+              <a href="#">wt-x</a>
+              <a href="#">in</a>
+              <a href="#">ln</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--==================================================-->
+    <!-- End Mt Cottages Topber Area -->
+    <!--==================================================-->
+
+
+    <!--==================================================-->
+    <!-- Start Mt Cottages Main Menu  -->
+    <!--==================================================-->
+    <div id="sticky-header" class="hotelhub_nav_manu two inner_page">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col-lg-3">
+            <div class="logo cursor-scale small">
+              <a class="logo_img" href="index.html" title="Mt Cottages">
+                <img src="assets/images/logo-mtcottages.svg" alt="logo" />
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-9">
+            <nav class="meedy_menu">
+""" + NAV_DESKTOP + """
+              <div class="hotelhub-right-side cursor-scale small">
+                <div class="search-box-btn search-box-outer">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <!-- header button -->
+                <div class="header-button">
+                  <a href="https://stay.mtcottages.com/">Stay with Us <i class="flaticon flaticon-right-arrow"></i>
+                    <div class="hotelhub-hover-btn hover-btn"></div>
+                    <div class="hotelhub-hover-btn hover-btn2"></div>
+                    <div class="hotelhub-hover-btn hover-btn3"></div>
+                    <div class="hotelhub-hover-btn hover-btn4"></div>
+                  </a>
+                </div>
+                <div class="sidebar">
+                  <div class="nav-btn navSidebar-button">
+                    <span><i class="fa-solid fa-bars"></i></span>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mt Cottages Mobile Menu  -->
+    <div class="mobile-menu-area sticky d-sm-block d-md-block d-lg-none">
+      <div class="mobile-menu">
+        <nav class="meedy_menu">
+""" + NAV_MOBILE + """
+        </nav>
+      </div>
+    </div>
+"""
+
+
+# Additional CSS <link> tags needed for the HotelHub header.
+HEADER_CSS = """    <!-- meanmenu CSS -->
+    <link rel="stylesheet" href="assets/css/meanmenu.min.css" type="text/css" media="all" />
+    <!-- bootstrap icons -->
+    <link rel="stylesheet" href="assets/css/bootstrap-icons.css" type="text/css" media="all" />
+"""
+
+# Additional JS <script> tags needed to initialise the HotelHub header.
+HEADER_JS = """    <script src="assets/js/jquery.meanmenu.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/my.js"></script>
+"""
+
+
+def has_hotelhub_header(text: str) -> bool:
+    """Return True if the text already contains a HotelHub-style header."""
+    return 'id="sticky-header"' in text
+
+
+def inject_hotelhub_header(text: str) -> str:
+    """Add the full HotelHub header (loader + topbar + nav + mobile menu) to
+    a page that currently has no HotelHub navigation."""
+    if has_hotelhub_header(text):
+        return text
+
+    # 1. Inject additional CSS before </head>
+    text = text.replace('</head>', HEADER_CSS + '  </head>')
+
+    # 2. Inject the full header HTML between <body> and <main>
+    text = text.replace('<body ><main >', '<body >\n' + HEADER_HTML + '\n    <main >', 1)
+
+    # 3. Inject additional JS before </body>
+    text = text.replace('</body>', '  ' + HEADER_JS + '  </body>')
+
+    return text
+
+
 META = {
     "index.html": ("Mt Cottages | Furnished Places to Settle In", "Furnished cottages, apartments, and houses for 30 days, a season, a year, or longer across the Mid-Ohio Valley."),
     "cottages.html": ("Cottages | Mt Cottages", "Explore furnished cottages, apartments, and houses across the Mid-Ohio Valley."),
@@ -668,6 +794,8 @@ for page in PAGES:
 # linked from the public Mt Cottages menu.
 for path in sorted(ROOT.glob("*.html")):
     text = path.read_text(encoding="utf-8")
-    updated = replace_header_cta(replace_nav(text)).replace('About Mt Cottages', 'About')
-    if updated != text:
-        path.write_text(updated, encoding="utf-8")
+    text_before = text
+    text = inject_hotelhub_header(text)
+    text = replace_header_cta(replace_nav(text)).replace('About Mt Cottages', 'About')
+    if text != text_before:
+        path.write_text(text, encoding="utf-8")
