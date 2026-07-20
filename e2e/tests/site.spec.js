@@ -18,7 +18,16 @@ const publicPages = [
   "/pay-rent.html",
   "/maintenance.html",
   "/emergency-maintenance.html",
-  "/partnerships.html"
+  "/partnerships.html",
+  "/marietta-01.html",
+  "/parkersburg-01.html",
+  "/parkersburg-02.html",
+  "/parkersburg-03.html",
+  "/parkersburg-04.html",
+  "/ravenswood-01.html",
+  "/ravenswood-02.html",
+  "/ravenswood-03.html",
+  "/ravenswood-04.html"
 ];
 
 test("the homepage carries the HotelHub theme and approved navigation", async ({ page }) => {

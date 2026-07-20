@@ -8,6 +8,10 @@ For deep context (property map, photo rules, application architecture), see `@cl
 
 **Mt Cottages** (mtcottages.com) is the guest-facing brand for furnished mid-term and long-term cottage rentals in the Mid-Ohio Valley (OH/WV). SILK Homes is the separate staff/community-facing brand for the same physical properties — their messaging must never be copied here.
 
+## Template Reference Archive
+
+The `/template/` directory contains the complete archive of original HotelHub buyer-theme HTML files. These are pure HotelHub demo pages with no Mt Cottages content — they were moved there to preserve every layout variant, form pattern, gallery style, and widget for reference. Reference `/template/` when building any new page that needs a specific HotelHub layout pattern, form style, gallery variant, or widget.
+
 ## 🔴 CRITICAL: HotelHub theme is the ONLY allowed template system 🔴
 
 **NEVER** use or reference these files — they belong to a banned alternate theme:

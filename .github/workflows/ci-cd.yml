@@ -47,6 +47,12 @@ jobs:
                   errors.append(f"{page} is missing the HotelHub stylesheet")
               if "255 Court St" in markup:
                   errors.append(f"{page} contains private/non-public inventory")
+          # Verify all referenced cottage images exist on disk
+          for page in pages:
+              for match in __import__("re").finditer(r'assets/images/cottages/([^/"\']+(?:/[^"\')\s]+)?)', page.read_text()):
+                  img_path = Path(match.group(0))
+                  if not img_path.is_file():
+                      errors.append(f"{page} references missing image: {match.group(0)}")
           if errors:
               raise SystemExit("\n".join(errors))
           print(f"Validated {len(pages)} HotelHub HTML pages")

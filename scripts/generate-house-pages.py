@@ -5,7 +5,7 @@ from pathlib import Path
 ROOT = Path("/home/mrh/repos/worldenterprisegroup/mtcottages")
 
 HOUSES = {
-    "marietta-01": {"name": "Frederick House", "town": "Marietta, OH", "town_slug": "marietta", "bedrooms": 1,
+    "marietta-01": {"name": "Frederick House", "town": "Marietta, OH", "town_slug": "marietta", "bedrooms": 3,
         "summary": "A thoughtfully furnished one-bedroom home in historic Marietta.",
         "description": "Frederick House offers a quiet, comfortable place for longer stays in Marietta. This one-bedroom home includes a full kitchen, living space, and practical amenities for professionals and travelers."},
     "parkersburg-01": {"name": "Broad Street Cottage", "town": "Parkersburg, WV", "town_slug": "parkersburg", "bedrooms": 2,
@@ -503,10 +503,10 @@ def generate_page(house_id, house):
                 <div class="contact-info">
                   <h2>Stay with Us</h2>
                   <ul class="list-style-one">
-                    <li><span><i class="bi bi-envelope"></i></span>Chicago 12, Melborne City, USA</li>
-                    <li><span><i class="bi bi-telephone-forward"></i></span>(+001) 123-456-7890</li>
-                    <li><span><i class="bi bi-geo-alt"></i></span>Example.com</li>
-                    <li><span><i class="bi bi-clock"></i></span>Week Days: 09.00 to 18.00 Sunday: Closed</li>
+                    <li><span><i class="bi bi-envelope"></i></span>Marietta · Parkersburg · Ravenswood</li>
+                    <li><span><i class="bi bi-telephone-forward"></i></span>stay@mtcottages.com</li>
+                    <li><span><i class="bi bi-geo-alt"></i></span>mtcottages.com</li>
+                    <li><span><i class="bi bi-clock"></i></span>Contact us any time</li>
                   </ul>
                 </div>
                 <ul class="social-box">
