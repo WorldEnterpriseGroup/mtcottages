@@ -1,6 +1,24 @@
 const { test, expect } = require("@playwright/test");
 
-test("stay.mtcottages.com serves the themed application page", async ({ page }) => {
+async function waitForPublishedApplication(request) {
+  await expect
+    .poll(
+      async () => {
+        try {
+          const response = await request.get("/", { maxRedirects: 5 });
+          if (!response.ok()) return "";
+          return await response.text();
+        } catch {
+          return "";
+        }
+      },
+      { timeout: 180_000, intervals: [5_000, 10_000] }
+    )
+    .toContain("Stay with Us");
+}
+
+test("stay.mtcottages.com serves the themed application page", async ({ page, request }) => {
+  await waitForPublishedApplication(request);
   const response = await page.goto("/");
   expect(response).not.toBeNull();
   expect(response.ok()).toBeTruthy();
