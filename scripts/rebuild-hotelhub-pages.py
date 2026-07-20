@@ -460,8 +460,11 @@ def normalize_application_form(text: str) -> str:
     return re.sub(pattern, application_form_markup(), text, count=1, flags=re.S)
 
 
-def common_replacements(text: str, page: str) -> str:
-    title, description = META[page]
+def common_replacements(text: str, page: str | None = None) -> str:
+    if page and page in META:
+        title, description = META[page]
+    else:
+        title, description = "Mt Cottages | Furnished Living", "Furnished cottages across the Mid-Ohio Valley."
     text = re.sub(r"<title>.*?</title>", f"<title>{title}</title>", text, count=1, flags=re.S)
     text = re.sub(r'<meta\s+name="description"\s+content=".*?"\s*/?>', f'<meta name="description" content="{description}" />', text, count=1, flags=re.S)
     text = text.replace('assets/images/logo.png', 'assets/images/logo-mtcottages.svg')
@@ -518,6 +521,9 @@ def common_replacements(text: str, page: str) -> str:
     text = text.replace('Service Details', 'Resident Support')
     text = text.replace('Reservations', 'Stay with Us')
     text = text.replace('Hotel Booking', 'Furnished Living')
+    text = text.replace('LUXURY HOTEL', 'FURNISHED LIVING')
+    text = text.replace('Discover Your Next', 'Find a Place to')
+    text = text.replace('Luxurious <span>Escapes</span>', 'Settle In <span>Comfortably</span>')
     text = text.replace('Booking Online', 'Find Your Place')
     text = text.replace('Check Now', 'Ask About Availability')
     text = text.replace('> Booking </li>', '> Stay with Us </li>')
@@ -791,11 +797,12 @@ for page in PAGES:
 
 # Keep the original HotelHub header/navigation treatment consistent on every
 # HTML file in the buyer package, including legacy template pages that are not
-# linked from the public Mt Cottages menu.
+# linked from the public Mt Cottages menu. Apply full branding replacements
+# (common_replacements) to ALL files, not just the PAGES list.
 for path in sorted(ROOT.glob("*.html")):
     text = path.read_text(encoding="utf-8")
     text_before = text
     text = inject_hotelhub_header(text)
-    text = replace_header_cta(replace_nav(text)).replace('About Mt Cottages', 'About')
+    text = replace_header_cta(common_replacements(text))
     if text != text_before:
         path.write_text(text, encoding="utf-8")
