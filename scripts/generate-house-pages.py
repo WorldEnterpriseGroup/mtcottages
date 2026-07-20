@@ -1,37 +1,30 @@
 #!/usr/bin/env python3
 """Generate 9 house detail pages using the HotelHub inner-page template."""
+import json
 from pathlib import Path
 
 ROOT = Path("/home/mrh/repos/worldenterprisegroup/mtcottages")
 
+# Load pricing and content from data file
+def load_pricing():
+    pricing_path = ROOT / "_data" / "houses.json"
+    if pricing_path.is_file():
+        with open(pricing_path) as f:
+            return json.load(f)
+    return {}
+
+PRICING = load_pricing()
+
 HOUSES = {
-    "marietta-01": {"name": "Frederick House", "town": "Marietta, OH", "town_slug": "marietta", "bedrooms": 3,
-        "summary": "A thoughtfully furnished one-bedroom home in historic Marietta.",
-        "description": "Frederick House offers a quiet, comfortable place for longer stays in Marietta. This one-bedroom home includes a full kitchen, living space, and practical amenities for professionals and travelers."},
-    "parkersburg-01": {"name": "Broad Street Cottage", "town": "Parkersburg, WV", "town_slug": "parkersburg", "bedrooms": 2,
-        "summary": "A welcoming two-bedroom cottage on Broad Street, near Parkersburg's downtown.",
-        "description": "Broad Street Cottage is a furnished two-bedroom home in central Parkersburg with a comfortable living space, fully equipped kitchen, and quiet setting for travel assignments and extended stays."},
-    "parkersburg-02": {"name": "45th Street House", "town": "Parkersburg, WV", "town_slug": "parkersburg", "bedrooms": 3,
-        "summary": "A roomy three-bedroom house near Parkersburg's amenities, ideal for families.",
-        "description": "45th Street House provides generous space for longer-term furnished living in Parkersburg with three bedrooms, full kitchen, and living area for families and shared assignments."},
-    "parkersburg-03": {"name": "32nd Street Cottage", "town": "Parkersburg, WV", "town_slug": "parkersburg", "bedrooms": 2,
-        "summary": "A comfortable two-bedroom cottage in a quiet Parkersburg neighborhood.",
-        "description": "32nd Street Cottage is a furnished two-bedroom home with a full kitchen and comfortable living space, suited for travel nurses and professionals needing a dependable longer stay."},
-    "parkersburg-04": {"name": "Broad Street House", "town": "Parkersburg, WV", "town_slug": "parkersburg", "bedrooms": 3,
-        "summary": "A spacious three-bedroom house on Broad Street, close to dining and shops.",
-        "description": "Broad Street House combines central Parkersburg convenience with three-bedroom space for families or groups during a longer stay."},
-    "ravenswood-01": {"name": "Walnut Cottage", "town": "Ravenswood, WV", "town_slug": "ravenswood", "bedrooms": 2,
-        "summary": "A charming two-bedroom cottage in Ravenswood with small-town warmth.",
-        "description": "Walnut Cottage is a furnished two-bedroom home in quiet Ravenswood with full kitchen, living space, and welcoming amenities for professionals and families."},
-    "ravenswood-02": {"name": "Virginia Street House", "town": "Ravenswood, WV", "town_slug": "ravenswood", "bedrooms": 3,
-        "summary": "A well-appointed three-bedroom house on Virginia Street in Ravenswood.",
-        "description": "Virginia Street House provides three bedrooms and generous living space for extended furnished stays in Ravenswood for families and shared assignments."},
-    "ravenswood-03": {"name": "Henrietta Cottage", "town": "Ravenswood, WV", "town_slug": "ravenswood", "bedrooms": 2,
-        "summary": "A thoughtfully furnished two-bedroom cottage with a warm, residential feel.",
-        "description": "Henrietta Cottage is a two-bedroom furnished home with full kitchen and comfortable living in a peaceful setting for healthcare travelers and relocating professionals."},
-    "ravenswood-04": {"name": "Gallatin House", "town": "Ravenswood, WV", "town_slug": "ravenswood", "bedrooms": 1,
-        "summary": "A cozy one-bedroom house in Ravenswood for quiet, focused stays.",
-        "description": "Gallatin House is a furnished one-bedroom home for efficient, comfortable longer stays in Ravenswood with kitchen, living space, and practical amenities."},
+    "marietta-01": {"name": "Frederick House", "town": "Marietta, OH", "town_slug": "marietta", "bedrooms": 3},
+    "parkersburg-01": {"name": "Broad Street Cottage", "town": "Parkersburg, WV", "town_slug": "parkersburg", "bedrooms": 2},
+    "parkersburg-02": {"name": "45th Street House", "town": "Parkersburg, WV", "town_slug": "parkersburg", "bedrooms": 1},
+    "parkersburg-03": {"name": "32nd Street Cottage", "town": "Parkersburg, WV", "town_slug": "parkersburg", "bedrooms": 2},
+    "parkersburg-04": {"name": "Broad Street House", "town": "Parkersburg, WV", "town_slug": "parkersburg", "bedrooms": 3},
+    "ravenswood-01": {"name": "Walnut Cottage", "town": "Ravenswood, WV", "town_slug": "ravenswood", "bedrooms": 1},
+    "ravenswood-02": {"name": "Virginia Street House", "town": "Ravenswood, WV", "town_slug": "ravenswood", "bedrooms": 2},
+    "ravenswood-03": {"name": "Henrietta Cottage", "town": "Ravenswood, WV", "town_slug": "ravenswood", "bedrooms": 2},
+    "ravenswood-04": {"name": "Gallatin House", "town": "Ravenswood, WV", "town_slug": "ravenswood", "bedrooms": 1},
 }
 
 def head_section(title, desc):
@@ -174,7 +167,19 @@ JS_INCLUDES = '''    <script src="assets/js/aos.js"></script>
 def generate_page(house_id, house):
     title = f"{house['name']} | Mt Cottages"
     h = house
-    return f'''{head_section(title, h['summary'])}
+    p = PRICING.get(house_id, {})
+    price_12 = p.get("price_monthly_12")
+    price_short = p.get("price_monthly_short")
+    summary = p.get("summary", h.get("summary", ""))
+    description = p.get("description", h.get("description", ""))
+
+    pricing_rows = ""
+    if price_12:
+        pricing_rows += f'\n                <li><i class="fa-solid fa-dollar-sign"></i> ${price_12:,}/mo (12-month) <span></span></li>'
+    if price_short:
+        pricing_rows += f'\n                <li><i class="fa-solid fa-calendar-week"></i> ${price_short:,}/mo (short-term) <span></span></li>'
+
+    return f'''{head_section(title, summary)}
   <body>
     <div class="loader-wrapper">
       <div class="loader"></div>
@@ -192,11 +197,8 @@ def generate_page(house_id, house):
           </div>
           <div class="col-lg-6">
             <div class="topber-social-icon">
-              <h4 class="topber-follow">Follow Us</h4>
-              <a href="#">fb</a>
-              <a href="#">wt-x</a>
-              <a href="#">in</a>
-              <a href="#">ln</a>
+              <h4 class="topber-follow">Contact</h4>
+              <a href="mailto:stay@mtcottages.com">stay@mtcottages.com</a>
             </div>
           </div>
         </div>
@@ -271,8 +273,8 @@ def generate_page(house_id, house):
             <div class="hotelhub-section-title">
               <h4><i class="flaticon flaticon-right-arrow"></i>{h['town'].upper()}</h4>
               <h2>{h['name']}</h2>
-              <p>{h['description']}</p>
-              <p>Located in {h['town']}, this {h['bedrooms']}-bedroom furnished home is ready for a longer stay. Ask us about current availability, lease terms, and what makes this place a fit for your schedule.</p>
+              <p>{description}</p>
+              <p>Located in {h['town']}, this {h['bedrooms']}-bedroom furnished home is ready for a longer stay.{(' Starting at $' + str(price_12) + '/mo with a 12-month lease.') if price_12 else ''} Ask us about current availability, lease terms, and what makes this place a fit for your schedule.</p>
             </div>
           </div>
           <div class="col-lg-4">
@@ -282,7 +284,8 @@ def generate_page(house_id, house):
                 <li><i class="fa-solid fa-bed"></i> {h['bedrooms']} Bedroom{'s' if h['bedrooms'] > 1 else ''} <span></span></li>
                 <li><i class="fa-solid fa-location-dot"></i> {h['town']} <span></span></li>
                 <li><i class="fa-solid fa-calendar"></i> 30+ Day Stays <span></span></li>
-                <li><i class="fa-solid fa-wifi"></i> Internet Ready <span></span></li>
+                <li><i class="fa-solid fa-wifi"></i> Internet and utilities included <span></span></li>
+                {pricing_rows}
                 <li><i class="fa-solid fa-phone"></i> <a href="contact.html">Contact Us</a> <span><i class="flaticon flaticon-right-arrow"></i></span></li>
                 <li><i class="fa-solid fa-file"></i> <a href="apply.html">Stay with Us</a> <span><i class="flaticon flaticon-right-arrow"></i></span></li>
               </ul>
@@ -385,7 +388,7 @@ def generate_page(house_id, house):
             <div class="hotelhub-section-title text-center">
               <h4><i class="flaticon flaticon-right-arrow"></i>{h['town'].upper()}</h4>
               <h1>{h['name']}</h1>
-              <p>{h['summary']}</p>
+              <p>{summary}{(' 12-month lease from $' + str(price_12) + '/mo.') if price_12 else ''}</p>
               <div class="hotelhub-btn" style="margin-right: 10px;">
                 <a href="https://stay.mtcottages.com/">CHECK AVAILABILITY <i class="flaticon flaticon-right-arrow"></i></a>
               </div>
@@ -409,11 +412,8 @@ def generate_page(house_id, house):
                 </div>
                 <p>Furnished places for real life, supported by a small hospitality team.</p>
                 <div class="hotelhub-social-icon cursor-scale small">
-                  <h3 class="follow-title">Follow Us On :</h3>
-                  <a href="#"><i class="fab fa-facebook-f"></i></a>
-                  <a href="#"><i class="fa-brands fa-linkedin-in"> </i></a>
-                  <a href="#"><i class="bi bi-twitter"></i></a>
-                  <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                  <h3 class="follow-title">Get in Touch</h3>
+                  <a href="mailto:stay@mtcottages.com">stay@mtcottages.com</a>
                 </div>
               </div>
             </div>
@@ -510,11 +510,7 @@ def generate_page(house_id, house):
                   </ul>
                 </div>
                 <ul class="social-box">
-                  <li class="facebook"><a href="#" class="fab fa-facebook-f"></a></li>
-                  <li class="twitter"><a href="#" class="fab fa-instagram"></a></li>
-                  <li class="linkedin"><a href="#" class="fab fa-twitter"></a></li>
-                  <li class="instagram"><a href="#" class="fab fa-pinterest-p"></a></li>
-                  <li class="youtube"><a href="#" class="fab fa-linkedin-in"></a></li>
+                  <li class="email"><a href="mailto:stay@mtcottages.com" class="fas fa-envelope"></a></li>
                 </ul>
               </div>
             </div>
