@@ -46,11 +46,8 @@ NAV_DESKTOP = """<ul class="nav_scroll">
                 <li><a class="mdy-hover" href="locations.html">Locations <i class="fas fa-angle-down"></i></a>
                   <ul class="sub-menu">
                     <li><a href="locations.html#marietta">Marietta, OH</a></li>
-                    <li><a href="locations.html#athens">Athens, OH</a></li>
-                    <li><a href="locations.html#racine">Racine, OH</a></li>
                     <li><a href="locations.html#parkersburg">Parkersburg, WV</a></li>
                     <li><a href="locations.html#ravenswood">Ravenswood, WV</a></li>
-                    <li><a href="locations.html#grantsville">Grantsville, WV</a></li>
                   </ul>
                 </li>
                 <li><a class="mdy-hover" href="living.html">Living <i class="fas fa-angle-down"></i></a>
@@ -97,11 +94,8 @@ NAV_MOBILE = """<ul class="nav_scroll">
             <li><a class="mdy-hover" href="locations.html">Locations</a>
               <ul class="sub-menu">
                 <li><a href="locations.html#marietta">Marietta, OH</a></li>
-                <li><a href="locations.html#athens">Athens, OH</a></li>
-                <li><a href="locations.html#racine">Racine, OH</a></li>
                 <li><a href="locations.html#parkersburg">Parkersburg, WV</a></li>
                 <li><a href="locations.html#ravenswood">Ravenswood, WV</a></li>
-                <li><a href="locations.html#grantsville">Grantsville, WV</a></li>
               </ul>
             </li>
                 <li><a class="mdy-hover" href="living.html">Living</a>
@@ -139,8 +133,8 @@ META = {
     "cottages.html": ("Cottages | Mt Cottages", "Explore furnished cottages, apartments, and houses across the Mid-Ohio Valley."),
     "cozy-places.html": ("Cozy Places | Mt Cottages", "Studios and one-bedroom furnished places for comfortable, focused living."),
     "room-to-settle.html": ("Room to Settle In | Mt Cottages", "Furnished two- to four-bedroom homes for families, shared schedules, and longer stays."),
-    "available.html": ("Available Now | Mt Cottages", "Ask about furnished availability in Marietta, Athens, Racine, Parkersburg, Ravenswood, and Grantsville."),
-    "locations.html": ("Locations | Mt Cottages", "Furnished places in Marietta, Athens, Racine, Parkersburg, Ravenswood, and Grantsville."),
+    "available.html": ("Available Now | Mt Cottages", "Ask about furnished availability in Marietta, Parkersburg, and Ravenswood."),
+    "locations.html": ("Locations | Mt Cottages", "Furnished places in Marietta, Parkersburg, and Ravenswood, West Virginia and Ohio."),
     "living.html": ("Living | Mt Cottages", "Furnished living for travel nurses, relocation, insurance housing, families, and extended stays."),
     "services.html": ("Services | Mt Cottages", "Furnished homes, practical amenities, guest services, meal preparation, and property care."),
     "about.html": ("About | Mt Cottages", "Mt Cottages offers thoughtful furnished living across the Mid-Ohio Valley."),
@@ -301,7 +295,7 @@ def faq_section() -> str:
 
 
 def contact_section(form_action: str = "mailto:stay@mtcottages.com") -> str:
-    return f'''<!-- Start HotelHub Contact Section --><div class="hotelhub-appoinment"><div class="container"><div class="row contact-info_item"><div class="col-lg-4 col-md-6"><div class="contact-service-box"><div class="contact-service-content"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div class="contact-address"><h2>Serving the Valley</h2><span>Marietta · Athens · Racine<br>Parkersburg · Ravenswood · Grantsville</span></div></div></div></div><div class="col-lg-4 col-md-6"><div class="contact-service-box"><div class="contact-service-content"><div class="contact-icon"><i class="fas fa-phone-alt"></i></div><div class="contact-address"><h2>Start a stay</h2><span>Tell us where you need to be<br>and how long you may stay</span></div></div></div></div><div class="col-lg-4 col-md-6"><div class="contact-service-box last"><div class="contact-service-content"><div class="contact-icon"><i class="fa-regular fa-envelope"></i></div><div class="contact-address"><h2>Email us</h2><span><a href="mailto:stay@mtcottages.com">stay@mtcottages.com</a><br>We will follow up directly</span></div></div></div></div></div></div></div><div class="contact-section"><div class="container"><div class="row align-items-center"><div class="col-lg-6"><div class="google-map"><img src="assets/images/resource/contact-bg.png" alt="Mt Cottages across the Mid-Ohio Valley"></div></div><div class="col-lg-6"><div class="hotelhub-section-title"><h4><i class="flaticon flaticon-right-arrow"></i>GET IN TOUCH</h4><h1>Talk with Mt Cottages</h1><p>Questions about a furnished place, a town, a service, or a possible longer stay? Send a note and we will help you find the right next step.</p></div><div class="contact-form-box style-two"><form action="{form_action}" method="post"><div class="row"><div class="col-lg-6 col-md-6"><div class="form-box"><input type="text" name="name" placeholder="Your Name" required></div></div><div class="col-lg-6 col-md-6"><div class="form-box"><input type="email" name="email" placeholder="Your E-Mail" required></div></div><div class="col-lg-6 col-md-6"><div class="form-box"><input type="text" name="location" placeholder="Preferred Community"></div></div><div class="col-lg-6 col-md-6"><div class="form-box"><input type="text" name="subject" placeholder="What can we help with?"></div></div><div class="col-lg-12"><div class="form-box"><textarea name="message" placeholder="Tell us about your dates, household, or question" required></textarea></div></div><div class="col-lg-12"><div class="submit-button"><button class="submit-btn cursor-scale small" type="submit">send message <i class="flaticon flaticon-right-arrow"></i></button></div></div></div></form></div></div></div></div></div><!-- End HotelHub Contact Section -->'''
+    return f'''<!-- Start HotelHub Contact Section --><div class="hotelhub-appoinment"><div class="container"><div class="row contact-info_item"><div class="col-lg-4 col-md-6"><div class="contact-service-box"><div class="contact-service-content"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div class="contact-address"><h2>Serving the Valley</h2><span>Marietta · Parkersburg · Ravenswood</span></div></div></div></div><div class="col-lg-4 col-md-6"><div class="contact-service-box"><div class="contact-service-content"><div class="contact-icon"><i class="fas fa-phone-alt"></i></div><div class="contact-address"><h2>Start a stay</h2><span>Tell us where you need to be<br>and how long you may stay</span></div></div></div></div><div class="col-lg-4 col-md-6"><div class="contact-service-box last"><div class="contact-service-content"><div class="contact-icon"><i class="fa-regular fa-envelope"></i></div><div class="contact-address"><h2>Email us</h2><span><a href="mailto:stay@mtcottages.com">stay@mtcottages.com</a><br>We will follow up directly</span></div></div></div></div></div></div></div><div class="contact-section"><div class="container"><div class="row align-items-center"><div class="col-lg-6"><div class="google-map"><img src="assets/images/resource/contact-bg.png" alt="Mt Cottages across the Mid-Ohio Valley"></div></div><div class="col-lg-6"><div class="hotelhub-section-title"><h4><i class="flaticon flaticon-right-arrow"></i>GET IN TOUCH</h4><h1>Talk with Mt Cottages</h1><p>Questions about a furnished place, a town, a service, or a possible longer stay? Send a note and we will help you find the right next step.</p></div><div class="contact-form-box style-two"><form action="{form_action}" method="post"><div class="row"><div class="col-lg-6 col-md-6"><div class="form-box"><input type="text" name="name" placeholder="Your Name" required></div></div><div class="col-lg-6 col-md-6"><div class="form-box"><input type="email" name="email" placeholder="Your E-Mail" required></div></div><div class="col-lg-6 col-md-6"><div class="form-box"><input type="text" name="location" placeholder="Preferred Community"></div></div><div class="col-lg-6 col-md-6"><div class="form-box"><input type="text" name="subject" placeholder="What can we help with?"></div></div><div class="col-lg-12"><div class="form-box"><textarea name="message" placeholder="Tell us about your dates, household, or question" required></textarea></div></div><div class="col-lg-12"><div class="submit-button"><button class="submit-btn cursor-scale small" type="submit">send message <i class="flaticon flaticon-right-arrow"></i></button></div></div></div></form></div></div></div></div></div><!-- End HotelHub Contact Section -->'''
 
 
 def application_form_markup() -> str:
@@ -314,7 +308,7 @@ def application_form_markup() -> str:
           <div class="col-lg-6 col-md-6"><div class="form-box"><label for="move-in-date">Preferred move-in date</label><input id="move-in-date" type="date" name="moveInDate" required></div></div>
           <div class="col-lg-6 col-md-6"><div class="form-box"><select name="duration" required><option value="">How long might you stay?</option><option>30–90 days</option><option>3–12 months</option><option>1 year or longer</option><option>Flexible / not sure</option></select></div></div>
           <div class="col-lg-6 col-md-6"><div class="form-box"><input type="number" name="occupants" min="1" max="20" placeholder="Number of occupants" required></div></div>
-          <div class="col-lg-6 col-md-6"><div class="form-box"><select name="preferredLocation" required><option value="">Preferred community</option><option>Marietta, OH</option><option>Athens, OH</option><option>Racine, OH</option><option>Parkersburg, WV</option><option>Ravenswood, WV</option><option>Grantsville, WV</option><option>Open to options</option></select></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><select name="preferredLocation" required><option value="">Preferred community</option><option>Marietta, OH</option><option>Parkersburg, WV</option><option>Ravenswood, WV</option><option>Open to options</option></select></div></div>
           <div class="col-lg-6 col-md-6"><div class="form-box"><select name="homeSize"><option value="">What kind of place feels right?</option><option>Studio or one-bedroom</option><option>Two-bedroom</option><option>Three-bedroom</option><option>Four-bedroom</option><option>Open to options</option></select></div></div>
           <div class="col-lg-6 col-md-6"><div class="form-box"><select name="stayType" required><option value="">What brings you here?</option><option>Travel or healthcare assignment</option><option>Work or relocation</option><option>Insurance housing</option><option>Family or extended stay</option><option>Research or fellowship</option><option>Personal transition</option><option>Something else</option></select></div></div>
           <div class="col-lg-6 col-md-6"><div class="form-box"><select name="pets"><option value="">Pets</option><option>No pets</option><option>Yes — I’ll share details below</option><option>Prefer to discuss</option></select></div></div>
@@ -490,7 +484,7 @@ def apply_page_content(text: str, page: str) -> str:
                 ("rooms-thumb02.png", "Cozy Places", "Studios and one-bedroom living", "cozy-places.html"),
                 ("rooms-thumb03.png", "Room to Settle In", "Two- to four-bedroom homes", "room-to-settle.html"),
                 ("rooms-thumb04.png", "Furnished for Real Life", "Kitchen, living space, and privacy", "services.html"),
-                ("rooms-thumb05.png", "Across the Valley", "Six Mid-Ohio Valley communities", "locations.html"),
+                ("rooms-thumb05.png", "Across the Valley", "Mid-Ohio Valley communities", "locations.html"),
                 ("rooms-thumb06.png", "Available Now", "Ask about current openings", "available.html"),
             ]
             label = "Cottages"
@@ -517,16 +511,14 @@ def apply_page_content(text: str, page: str) -> str:
         else:
             cards = [
                 ("rooms-thumb01.png", "Marietta, OH", "Historic river-town character and a ready home base", "apply.html"),
-                ("rooms-thumb02.png", "Athens, OH", "A welcoming place for study, work, and routine", "apply.html"),
-                ("rooms-thumb03.png", "Racine, OH", "Quiet Ohio living with room to settle", "apply.html"),
-                ("rooms-thumb04.png", "Parkersburg, WV", "Regional access for healthcare and work assignments", "apply.html"),
-                ("rooms-thumb05.png", "Ravenswood, WV", "Small-city warmth and breathing room", "apply.html"),
-                ("rooms-thumb06.png", "Grantsville, WV", "A quieter place to land and stay awhile", "apply.html"),
+                ("rooms-thumb02.png", "Parkersburg, WV", "Regional access for healthcare and work assignments", "apply.html"),
+                ("rooms-thumb03.png", "Ravenswood, WV", "Small-city warmth and breathing room", "apply.html"),
             ]
             label = "Locations"
             text = replace_marker(text, '<!-- Start hotelhub Counter Section -->', '<!-- End hotelhub Counter Section  -->', room_cards(cards))
-            for anchor, location in [("marietta", "Marietta, OH"), ("athens", "Athens, OH"), ("racine", "Racine, OH"), ("parkersburg", "Parkersburg, WV"), ("ravenswood", "Ravenswood, WV"), ("grantsville", "Grantsville, WV")]:
+            for anchor, location in [("marietta", "Marietta, OH"), ("parkersburg", "Parkersburg, WV"), ("ravenswood", "Ravenswood, WV")]:
                 text = text.replace(f'<h3><a href="apply.html">{location}</a></h3>', f'<h3 id="{anchor}"><a href="apply.html">{location}</a></h3>')
+            text = replace_marker(text, '<!-- Start Mt Cottages Cottages Section -->', '<!-- End Mt Cottages Cottages Section -->', '')
         if page != "locations.html":
             section_id = {"cozy-places.html": "studios-1-bedroom", "room-to-settle.html": "2-4-bedroom-homes"}.get(page, "")
             text = replace_marker(text, '<!-- Start Service Section  Inner Page-->', '<!-- End Service Section  Inner Page-->', room_cards(cards, section_id))
@@ -576,7 +568,7 @@ def apply_page_content(text: str, page: str) -> str:
 
     if page in {"about.html", "partnerships.html"}:
         if page == "about.html":
-            section = '''<!-- Start HotelHub About Section --><div class="about-serction inner_section"><div class="container"><div class="row align-items-center"><div class="col-lg-6" data-aos="zoom-out-up"><div class="about-thumb"><img src="assets/images/resource/about-thumb.jpg" alt="A furnished Mt Cottages place"><div class="counter-right-side cursor-scale"><div class="counter-single-box"><div class="counter_icon"><img src="assets/images/main-home/ster-icon.png" alt=""></div><div class="counter-box-title"><h1>6</h1></div><div class="counter-desc"><p>Mid-Ohio Valley communities</p></div></div></div></div></div><div class="col-lg-6" data-aos="zoom-out-up"><div class="hotelhub-section-title style_inner"><h4><i class="flaticon flaticon-right-arrow"></i>ABOUT</h4><h1>Hospitality with a little more room to breathe.</h1><p>Mt Cottages offers furnished studios, apartments, cottages, and houses across the Mid-Ohio Valley. We care about the small things that help a demanding season feel more settled: a usable kitchen, a quiet place to sleep, and a direct person to talk with.</p></div><div class="abou_list-item"><div class="abou_list"><ul><li><img src="assets/images/resource/icon.png" alt="">Furnished for everyday living</li><li><img src="assets/images/resource/icon.png" alt="">Whole-home privacy</li></ul></div><div class="abou_list"><ul><li><img src="assets/images/resource/icon.png" alt="">30 days, a season, or longer</li><li><img src="assets/images/resource/icon.png" alt="">Communities across the valley</li></ul></div></div><div class="hotelhub-btn"><a href="apply.html">STAY WITH US <i class="flaticon flaticon-right-arrow"></i></a></div></div></div></div></div><!-- End HotelHub About Section -->'''
+            section = '''<!-- Start HotelHub About Section --><div class="about-serction inner_section"><div class="container"><div class="row align-items-center"><div class="col-lg-6" data-aos="zoom-out-up"><div class="about-thumb"><img src="assets/images/resource/about-thumb.jpg" alt="A furnished Mt Cottages place"><div class="counter-right-side cursor-scale"><div class="counter-single-box"><div class="counter_icon"><img src="assets/images/main-home/ster-icon.png" alt=""></div><div class="counter-box-title"><h1>3</h1></div><div class="counter-desc"><p>Mid-Ohio Valley communities</p></div></div></div></div></div><div class="col-lg-6" data-aos="zoom-out-up"><div class="hotelhub-section-title style_inner"><h4><i class="flaticon flaticon-right-arrow"></i>ABOUT</h4><h1>Hospitality with a little more room to breathe.</h1><p>Mt Cottages offers furnished studios, apartments, cottages, and houses across the Mid-Ohio Valley. We care about the small things that help a demanding season feel more settled: a usable kitchen, a quiet place to sleep, and a direct person to talk with.</p></div><div class="abou_list-item"><div class="abou_list"><ul><li><img src="assets/images/resource/icon.png" alt="">Furnished for everyday living</li><li><img src="assets/images/resource/icon.png" alt="">Whole-home privacy</li></ul></div><div class="abou_list"><ul><li><img src="assets/images/resource/icon.png" alt="">30 days, a season, or longer</li><li><img src="assets/images/resource/icon.png" alt="">Communities across the valley</li></ul></div></div><div class="hotelhub-btn"><a href="apply.html">STAY WITH US <i class="flaticon flaticon-right-arrow"></i></a></div></div></div></div></div><!-- End HotelHub About Section -->'''
             text = replace_marker(text, '<!-- Start hotelhub Counter Section -->', '<!-- End hotelhub Counter Section  -->', section)
             text = replace_breadcrumb(text, "About")
         else:
@@ -617,17 +609,15 @@ def apply_page_content(text: str, page: str) -> str:
     if page == "available.html":
         cards = [
             ("rooms-thumb01.png", "A place in Marietta", "Ask about current furnished openings", "apply.html"),
-            ("rooms-thumb02.png", "A place in Athens", "Ask about current furnished openings", "apply.html"),
-            ("rooms-thumb03.png", "A place in Racine", "Ask about current furnished openings", "apply.html"),
-            ("rooms-thumb04.png", "A place in Parkersburg", "Ask about current furnished openings", "apply.html"),
-            ("rooms-thumb05.png", "A place in Ravenswood", "Ask about current furnished openings", "apply.html"),
-            ("rooms-thumb06.png", "A place in Grantsville", "Ask about current furnished openings", "apply.html"),
+            ("rooms-thumb02.png", "A place in Parkersburg", "Ask about current furnished openings", "apply.html"),
+            ("rooms-thumb03.png", "A place in Ravenswood", "Ask about current furnished openings", "apply.html"),
         ]
         text = replace_marker(text, '<!-- Strt hotelhub Booking Section  -->', '<!-- End hotelhub Booking Section  -->', room_cards(cards))
         text = replace_marker(text, '<!-- Start Service Section  Inner Page-->', '<!-- End Service Section  Inner Page-->', service_cards("Available Now", "Availability changes by home and season. Tell us your dates, preferred community, household, and reason for staying and we will check the current options.", [
             ("Tell us your timing", "We welcome conversations about 30 days, a season, a year, or longer.", "service_thumb.png"),
             ("Keep options open", "If your first-choice town is full, we can talk through nearby communities and practical tradeoffs.", "service-thumb2.png"),
         ]))
+        text = replace_marker(text, '<!-- Start Mt Cottages Cottages Section -->', '<!-- End Mt Cottages Cottages Section -->', '')
         text = replace_breadcrumb(text, "Available Now")
         return text
 
