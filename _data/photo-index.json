@@ -1,0 +1,1284 @@
+{
+  "version": 1,
+  "generated": "2026-07-20",
+  "generator": "scripts/build-photo-index.py",
+  "houses": {
+    "marietta-01": {
+      "name": "Frederick House",
+      "town": "Marietta, OH",
+      "photos": {
+        "gallery-01.avif": {
+          "path": "assets/images/cottages/marietta-01/gallery-01.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1080,
+          "filesize_bytes": 237505,
+          "source": "sharepoint-download-staging/marietta-01/photo-01.jpg",
+          "tags": [
+            "gallery",
+            "general interior",
+            "published"
+          ],
+          "scene": "Living room",
+          "quality": "good quality",
+          "page_label": "Living room"
+        },
+        "gallery-02.avif": {
+          "path": "assets/images/cottages/marietta-01/gallery-02.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1080,
+          "filesize_bytes": 227389,
+          "source": "sharepoint-download-staging/marietta-01/photo-02.jpg",
+          "tags": [
+            "gallery",
+            "kitchen",
+            "published"
+          ],
+          "scene": "Kitchen",
+          "quality": "good quality",
+          "page_label": "Kitchen"
+        },
+        "gallery-03.avif": {
+          "path": "assets/images/cottages/marietta-01/gallery-03.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1080,
+          "filesize_bytes": 222249,
+          "source": "sharepoint-download-staging/marietta-01/photo-03.jpg",
+          "tags": [
+            "gallery",
+            "general interior",
+            "published"
+          ],
+          "scene": "Bedroom",
+          "quality": "good quality",
+          "page_label": "Bedroom"
+        },
+        "gallery-04.avif": {
+          "path": "assets/images/cottages/marietta-01/gallery-04.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1080,
+          "filesize_bytes": 576996,
+          "source": "sharepoint-download-staging/marietta-01/photo-04.jpg",
+          "tags": [
+            "gallery",
+            "general interior",
+            "published"
+          ],
+          "scene": "Bathroom",
+          "quality": "good quality",
+          "page_label": "Bathroom"
+        },
+        "gallery-05.avif": {
+          "path": "assets/images/cottages/marietta-01/gallery-05.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1080,
+          "filesize_bytes": 741034,
+          "source": "sharepoint-download-staging/marietta-01/photo-05.jpg",
+          "tags": [
+            "exterior",
+            "gallery",
+            "published"
+          ],
+          "scene": "Dining area",
+          "quality": "adequate quality",
+          "page_label": "Dining area"
+        },
+        "hero.avif": {
+          "path": "assets/images/cottages/marietta-01/hero.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1350,
+          "filesize_bytes": 1163436,
+          "source": "sharepoint-download-staging/marietta-01/photo-07.jpg",
+          "tags": [
+            "exterior",
+            "hero",
+            "published"
+          ],
+          "scene": "Exterior of one-story cottage, white stucco wall with window featuring green shutters.",
+          "quality": "good quality"
+        }
+      },
+      "selection": {
+        "hero": "hero.avif",
+        "gallery": [
+          {
+            "file": "gallery-01.avif",
+            "label": "Living room"
+          },
+          {
+            "file": "gallery-02.avif",
+            "label": "Kitchen"
+          },
+          {
+            "file": "gallery-03.avif",
+            "label": "Bedroom"
+          },
+          {
+            "file": "gallery-04.avif",
+            "label": "Bathroom"
+          },
+          {
+            "file": "gallery-05.avif",
+            "label": "Dining area"
+          }
+        ],
+        "available_not_selected": []
+      },
+      "status": "published"
+    },
+    "parkersburg-01": {
+      "name": "Broad Street Cottage",
+      "town": "Parkersburg, WV",
+      "photos": {
+        "photo-01.avif": {
+          "path": "assets/images/cottages/parkersburg-01/photo-01.avif",
+          "format": "avif",
+          "width": 1800,
+          "height": 957,
+          "filesize_bytes": 90177,
+          "source": "sharepoint-download-staging/parkersburg-01/photo-01.jpg",
+          "tags": [
+            "available",
+            "bedroom",
+            "published"
+          ],
+          "scene": "Bedroom with plush red carpet, white walls, dark wood-framed bed with red comforter and varied pillows, flat-screen TV on wall.",
+          "quality": "poor quality"
+        },
+        "photo-02.avif": {
+          "path": "assets/images/cottages/parkersburg-01/photo-02.avif",
+          "format": "avif",
+          "width": 1440,
+          "height": 1080,
+          "filesize_bytes": 149956,
+          "source": "sharepoint-download-staging/parkersburg-01/photo-02.jpg",
+          "tags": [
+            "available",
+            "living room",
+            "published"
+          ],
+          "scene": "Living room with plush sectional sofa, wooden coffee table on vibrant red carpet, wood paneling, large window with natural light.",
+          "quality": "good quality"
+        },
+        "photo-03.avif": {
+          "path": "assets/images/cottages/parkersburg-01/photo-03.avif",
+          "format": "avif",
+          "width": 1440,
+          "height": 980,
+          "filesize_bytes": 167900,
+          "source": "sharepoint-download-staging/parkersburg-01/photo-03.jpg",
+          "tags": [
+            "bedroom",
+            "gallery",
+            "published"
+          ],
+          "scene": "Bedroom with desk",
+          "quality": "good quality",
+          "page_label": "Bedroom with desk"
+        },
+        "photo-04.avif": {
+          "path": "assets/images/cottages/parkersburg-01/photo-04.avif",
+          "format": "avif",
+          "width": 1350,
+          "height": 1800,
+          "filesize_bytes": 109025,
+          "source": "sharepoint-download-staging/parkersburg-01/photo-04.jpg",
+          "tags": [
+            "available",
+            "bedroom",
+            "published"
+          ],
+          "scene": "Bedroom with comfortable bed, flat-screen TV, mirror, wooden bed frame with red/black bedding, red carpeting.",
+          "quality": "adequate quality"
+        },
+        "photo-05.avif": {
+          "path": "assets/images/cottages/parkersburg-01/photo-05.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1600,
+          "filesize_bytes": 269262,
+          "source": "sharepoint-download-staging/parkersburg-01/photo-05.jpg",
+          "tags": [
+            "bedroom",
+            "gallery",
+            "published"
+          ],
+          "scene": "Bedroom",
+          "quality": "poor quality",
+          "page_label": "Bedroom"
+        },
+        "photo-06.avif": {
+          "path": "assets/images/cottages/parkersburg-01/photo-06.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1600,
+          "filesize_bytes": 530623,
+          "source": "sharepoint-download-staging/parkersburg-01/photo-06.jpg",
+          "tags": [
+            "hero+gallery",
+            "living room",
+            "published"
+          ],
+          "scene": "Living room",
+          "quality": "good quality",
+          "page_label": "Living room"
+        },
+        "photo-07.avif": {
+          "path": "assets/images/cottages/parkersburg-01/photo-07.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1600,
+          "filesize_bytes": 669150,
+          "source": "sharepoint-download-staging/parkersburg-01/photo-07.jpg",
+          "tags": [
+            "available",
+            "living room",
+            "published"
+          ],
+          "scene": "Living room with plush L-shaped couch (abstract pattern), glass coffee table, wall clock and framed artworks, wood paneling.",
+          "quality": "good quality"
+        },
+        "photo-08.avif": {
+          "path": "assets/images/cottages/parkersburg-01/photo-08.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1600,
+          "filesize_bytes": 569362,
+          "source": "sharepoint-download-staging/parkersburg-01/photo-08.jpg",
+          "tags": [
+            "gallery",
+            "living room",
+            "published"
+          ],
+          "scene": "Living area",
+          "quality": "good quality",
+          "page_label": "Living area"
+        }
+      },
+      "selection": {
+        "hero": "photo-06.avif",
+        "gallery": [
+          {
+            "file": "photo-03.avif",
+            "label": "Bedroom with desk"
+          },
+          {
+            "file": "photo-06.avif",
+            "label": "Living room"
+          },
+          {
+            "file": "photo-08.avif",
+            "label": "Living area"
+          },
+          {
+            "file": "photo-05.avif",
+            "label": "Bedroom"
+          }
+        ],
+        "available_not_selected": [
+          "photo-01.avif",
+          "photo-02.avif",
+          "photo-04.avif",
+          "photo-07.avif"
+        ]
+      },
+      "status": "published"
+    },
+    "parkersburg-02": {
+      "name": "45th Street House",
+      "town": "Parkersburg, WV",
+      "photos": {
+        "photo-01.avif": {
+          "path": "assets/images/cottages/parkersburg-02/photo-01.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1800,
+          "filesize_bytes": 362031,
+          "source": "sharepoint-download-staging/parkersburg-02/photo-01.jpeg",
+          "tags": [
+            "available",
+            "bedroom",
+            "published"
+          ],
+          "scene": "Corner of bedroom with desk, chair, bed. Deep blue walls, two large windows with white blinds, small dresser, laptop on desk.",
+          "quality": "good quality"
+        },
+        "photo-02.avif": {
+          "path": "assets/images/cottages/parkersburg-02/photo-02.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1800,
+          "filesize_bytes": 336686,
+          "source": "sharepoint-download-staging/parkersburg-02/photo-02.jpeg",
+          "tags": [
+            "available",
+            "bedroom",
+            "published"
+          ],
+          "scene": "Bedroom with wooden dresser, mirror above it, small chair, framed mirror, doll, stack of books. Dark blue wall backdrop.",
+          "quality": "poor quality"
+        },
+        "photo-03.avif": {
+          "path": "assets/images/cottages/parkersburg-02/photo-03.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1800,
+          "filesize_bytes": 168416,
+          "source": "sharepoint-download-staging/parkersburg-02/photo-03.jpeg",
+          "tags": [
+            "available",
+            "exterior",
+            "published"
+          ],
+          "scene": "Blurry image of woman looking out window at sunset overlooking small town. Low quality, soft focus.",
+          "quality": "poor quality"
+        },
+        "photo-04.avif": {
+          "path": "assets/images/cottages/parkersburg-02/photo-04.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1350,
+          "filesize_bytes": 684646,
+          "source": "sharepoint-download-staging/parkersburg-02/photo-04.jpg",
+          "tags": [
+            "available",
+            "exterior",
+            "published"
+          ],
+          "scene": "View from deck/patio overlooking street with parked cars and houses. Low angle, distorted perspective, blurry.",
+          "quality": "poor quality"
+        },
+        "photo-05.avif": {
+          "path": "assets/images/cottages/parkersburg-02/photo-05.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1350,
+          "filesize_bytes": 729908,
+          "source": "sharepoint-download-staging/parkersburg-02/photo-05.jpg",
+          "tags": [
+            "available",
+            "exterior",
+            "published"
+          ],
+          "scene": "Exterior of cottage with front porch, white railing, brown wood slats, lawn, red shed, cars. Slightly blurry.",
+          "quality": "poor quality"
+        },
+        "photo-06.avif": {
+          "path": "assets/images/cottages/parkersburg-02/photo-06.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1350,
+          "filesize_bytes": 705271,
+          "source": "sharepoint-download-staging/parkersburg-02/photo-06.jpg",
+          "tags": [
+            "available",
+            "exterior",
+            "published"
+          ],
+          "scene": "Exterior of cottage with sunset sky, porch with rocking chair, potted plants, lawn, cars. Slightly blurry.",
+          "quality": "poor quality"
+        },
+        "photo-07.avif": {
+          "path": "assets/images/cottages/parkersburg-02/photo-07.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1350,
+          "filesize_bytes": 597606,
+          "source": "sharepoint-download-staging/parkersburg-02/photo-07.jpg",
+          "tags": [
+            "available",
+            "exterior",
+            "published"
+          ],
+          "scene": "View from porch/deck of front yard and street, large tree, white car parked, red vehicle in driveway. Slightly distorted.",
+          "quality": "good quality"
+        },
+        "photo-08.avif": {
+          "path": "assets/images/cottages/parkersburg-02/photo-08.avif",
+          "format": "avif",
+          "width": 2375,
+          "height": 2375,
+          "filesize_bytes": 1433408,
+          "source": "sharepoint-download-staging/parkersburg-02/photo-08.jpg",
+          "tags": [
+            "available",
+            "exterior",
+            "published"
+          ],
+          "scene": "Exterior of cottage at sunset, bird's-eye view of front yard, manicured lawn, parked cars. Grainy, low-resolution.",
+          "quality": "poor quality"
+        }
+      },
+      "selection": {
+        "hero": null,
+        "gallery": [],
+        "available_not_selected": [
+          "photo-01.avif",
+          "photo-02.avif",
+          "photo-03.avif",
+          "photo-04.avif",
+          "photo-05.avif",
+          "photo-06.avif",
+          "photo-07.avif",
+          "photo-08.avif"
+        ]
+      },
+      "status": "coming_soon"
+    },
+    "parkersburg-03": {
+      "name": "32nd Street Cottage",
+      "town": "Parkersburg, WV",
+      "photos": {},
+      "selection": {
+        "hero": null,
+        "gallery": [],
+        "available_not_selected": []
+      },
+      "status": "coming_soon"
+    },
+    "parkersburg-04": {
+      "name": "Broad Street House",
+      "town": "Parkersburg, WV",
+      "photos": {
+        "photo-01.avif": {
+          "path": "assets/images/cottages/parkersburg-04/photo-01.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1600,
+          "filesize_bytes": 142561,
+          "source": "sharepoint-download-staging/parkersburg-04/photo-01.jpg",
+          "tags": [
+            "bedroom",
+            "gallery",
+            "published"
+          ],
+          "scene": "Bedroom with TV",
+          "quality": "poor quality",
+          "page_label": "Bedroom with TV"
+        },
+        "photo-02.avif": {
+          "path": "assets/images/cottages/parkersburg-04/photo-02.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1600,
+          "filesize_bytes": 1079996,
+          "source": "sharepoint-download-staging/parkersburg-04/photo-02.jpg",
+          "tags": [
+            "available",
+            "exterior",
+            "published"
+          ],
+          "scene": "View from top of wooden staircase with white railings leading to front yard, bags of soil/mulch, paved walkway, street with car.",
+          "quality": "adequate quality"
+        },
+        "photo-03.avif": {
+          "path": "assets/images/cottages/parkersburg-04/photo-03.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1600,
+          "filesize_bytes": 116133,
+          "source": "sharepoint-download-staging/parkersburg-04/photo-03.jpg",
+          "tags": [
+            "bedroom",
+            "gallery",
+            "published"
+          ],
+          "scene": "Sitting area",
+          "quality": "poor quality",
+          "page_label": "Sitting area"
+        },
+        "photo-04.avif": {
+          "path": "assets/images/cottages/parkersburg-04/photo-04.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1600,
+          "filesize_bytes": 983002,
+          "source": "sharepoint-download-staging/parkersburg-04/photo-04.jpg",
+          "tags": [
+            "available",
+            "exterior",
+            "published"
+          ],
+          "scene": "View from top of outdoor staircase leading to yard with tree, sidewalk, parked car. Wooden steps, white railing posts. Good quality.",
+          "quality": "good quality"
+        },
+        "photo-05.avif": {
+          "path": "assets/images/cottages/parkersburg-04/photo-05.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1600,
+          "filesize_bytes": 674738,
+          "source": "sharepoint-download-staging/parkersburg-04/photo-05.jpg",
+          "tags": [
+            "exterior",
+            "hero+gallery",
+            "published"
+          ],
+          "scene": "Covered porch",
+          "quality": "good quality",
+          "page_label": "Covered porch"
+        },
+        "photo-06.avif": {
+          "path": "assets/images/cottages/parkersburg-04/photo-06.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1600,
+          "filesize_bytes": 148159,
+          "source": "sharepoint-download-staging/parkersburg-04/photo-06.jpg",
+          "tags": [
+            "bedroom",
+            "gallery",
+            "published"
+          ],
+          "scene": "Bedroom",
+          "quality": "adequate quality",
+          "page_label": "Bedroom"
+        },
+        "photo-07.avif": {
+          "path": "assets/images/cottages/parkersburg-04/photo-07.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1600,
+          "filesize_bytes": 269228,
+          "source": "sharepoint-download-staging/parkersburg-04/photo-07.jpg",
+          "tags": [
+            "bedroom",
+            "gallery",
+            "published"
+          ],
+          "scene": "Queen bedroom",
+          "quality": "good quality",
+          "page_label": "Queen bedroom"
+        },
+        "photo-08.avif": {
+          "path": "assets/images/cottages/parkersburg-04/photo-08.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1600,
+          "filesize_bytes": 332022,
+          "source": "sharepoint-download-staging/parkersburg-04/photo-08.jpg",
+          "tags": [
+            "gallery",
+            "kitchen",
+            "published"
+          ],
+          "scene": "Kitchen",
+          "quality": "adequate quality",
+          "page_label": "Kitchen"
+        }
+      },
+      "selection": {
+        "hero": "photo-05.avif",
+        "gallery": [
+          {
+            "file": "photo-07.avif",
+            "label": "Queen bedroom"
+          },
+          {
+            "file": "photo-08.avif",
+            "label": "Kitchen"
+          },
+          {
+            "file": "photo-01.avif",
+            "label": "Bedroom with TV"
+          },
+          {
+            "file": "photo-03.avif",
+            "label": "Sitting area"
+          },
+          {
+            "file": "photo-06.avif",
+            "label": "Bedroom"
+          },
+          {
+            "file": "photo-05.avif",
+            "label": "Covered porch"
+          }
+        ],
+        "available_not_selected": [
+          "photo-02.avif",
+          "photo-04.avif"
+        ]
+      },
+      "status": "published"
+    },
+    "ravenswood-01": {
+      "name": "Walnut Cottage",
+      "town": "Ravenswood, WV",
+      "photos": {},
+      "selection": {
+        "hero": null,
+        "gallery": [],
+        "available_not_selected": []
+      },
+      "status": "coming_soon"
+    },
+    "ravenswood-02": {
+      "name": "Virginia Street House",
+      "town": "Ravenswood, WV",
+      "photos": {},
+      "selection": {
+        "hero": null,
+        "gallery": [],
+        "available_not_selected": []
+      },
+      "status": "coming_soon"
+    },
+    "ravenswood-03": {
+      "name": "Henrietta Cottage",
+      "town": "Ravenswood, WV",
+      "photos": {
+        "photo-01.avif": {
+          "path": "assets/images/cottages/ravenswood-03/photo-01.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1600,
+          "filesize_bytes": 959895,
+          "source": "sharepoint-download-staging/ravenswood-03/photo-01.png",
+          "tags": [
+            "bedroom",
+            "hero+gallery",
+            "published"
+          ],
+          "scene": "Bedroom",
+          "quality": "poor quality",
+          "page_label": "Bedroom"
+        },
+        "photo-02.avif": {
+          "path": "assets/images/cottages/ravenswood-03/photo-02.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1350,
+          "filesize_bytes": 537217,
+          "source": "sharepoint-download-staging/ravenswood-03/photo-02.jpg",
+          "tags": [
+            "available",
+            "bathroom",
+            "published"
+          ],
+          "scene": "Bathroom with toilet, bathtub with shower curtain, shelving units, marble wall, white door, wooden coat rack. Average quality with visible grain.",
+          "quality": "good quality"
+        },
+        "photo-03.avif": {
+          "path": "assets/images/cottages/ravenswood-03/photo-03.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1350,
+          "filesize_bytes": 507462,
+          "source": "sharepoint-download-staging/ravenswood-03/photo-03.jpg",
+          "tags": [
+            "available",
+            "bathroom",
+            "published"
+          ],
+          "scene": "Doorway into bathroom with red plank wall, hanging hat, Welcome sign. Bathroom painted white/blue with toilet, sink, shower. High quality, well-lit.",
+          "quality": "good quality"
+        },
+        "photo-04.avif": {
+          "path": "assets/images/cottages/ravenswood-03/photo-04.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1350,
+          "filesize_bytes": 487779,
+          "source": "sharepoint-download-staging/ravenswood-03/photo-04.jpg",
+          "tags": [
+            "bathroom",
+            "gallery",
+            "published"
+          ],
+          "scene": "Bathroom",
+          "quality": "good quality",
+          "page_label": "Bathroom"
+        },
+        "photo-05.avif": {
+          "path": "assets/images/cottages/ravenswood-03/photo-05.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1350,
+          "filesize_bytes": 588337,
+          "source": "sharepoint-download-staging/ravenswood-03/photo-05.jpg",
+          "tags": [
+            "dining area",
+            "gallery",
+            "published"
+          ],
+          "scene": "Dining area",
+          "quality": "good quality",
+          "page_label": "Dining area"
+        },
+        "photo-06.avif": {
+          "path": "assets/images/cottages/ravenswood-03/photo-06.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1350,
+          "filesize_bytes": 534367,
+          "source": "sharepoint-download-staging/ravenswood-03/photo-06.jpg",
+          "tags": [
+            "dining area",
+            "gallery",
+            "published"
+          ],
+          "scene": "Dining room",
+          "quality": "good quality",
+          "page_label": "Dining room"
+        },
+        "photo-07.avif": {
+          "path": "assets/images/cottages/ravenswood-03/photo-07.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1350,
+          "filesize_bytes": 485360,
+          "source": "sharepoint-download-staging/ravenswood-03/photo-07.jpg",
+          "tags": [
+            "available",
+            "dining area",
+            "published"
+          ],
+          "scene": "Dining room with wooden table and chairs, striped wallpaper, window with white frame. Bright and well-lit.",
+          "quality": "good quality"
+        },
+        "photo-08.avif": {
+          "path": "assets/images/cottages/ravenswood-03/photo-08.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1350,
+          "filesize_bytes": 484059,
+          "source": "sharepoint-download-staging/ravenswood-03/photo-08.jpg",
+          "tags": [
+            "available",
+            "dining area",
+            "published"
+          ],
+          "scene": "Dining room with green/cream striped wallpaper, round wooden table, variety of wooden chairs (one teal), chandelier, bookshelf in background.",
+          "quality": "good quality"
+        }
+      },
+      "selection": {
+        "hero": "photo-01.avif",
+        "gallery": [
+          {
+            "file": "photo-06.avif",
+            "label": "Dining room"
+          },
+          {
+            "file": "photo-01.avif",
+            "label": "Bedroom"
+          },
+          {
+            "file": "photo-04.avif",
+            "label": "Bathroom"
+          },
+          {
+            "file": "photo-05.avif",
+            "label": "Dining area"
+          }
+        ],
+        "available_not_selected": [
+          "photo-02.avif",
+          "photo-03.avif",
+          "photo-07.avif",
+          "photo-08.avif"
+        ]
+      },
+      "status": "published"
+    },
+    "ravenswood-04": {
+      "name": "Gallatin House",
+      "town": "Ravenswood, WV",
+      "photos": {},
+      "selection": {
+        "hero": null,
+        "gallery": [],
+        "available_not_selected": []
+      },
+      "status": "coming_soon"
+    },
+    "ravenswood-05": {
+      "name": "ravenswood-05",
+      "town": "",
+      "photos": {},
+      "selection": {
+        "hero": null,
+        "gallery": [],
+        "available_not_selected": []
+      },
+      "status": "coming_soon"
+    }
+  },
+  "staging": {
+    "marietta-01": {
+      "name": "Frederick House",
+      "town": "Marietta, OH",
+      "photos": {
+        "photo-01.jpg": {
+          "path": "sharepoint-download-staging/marietta-01/photo-01.jpg",
+          "format": "jpg",
+          "width": 4608,
+          "height": 3456,
+          "filesize_bytes": 4172104,
+          "nim_description": "Room under construction, unfinished walls/floors, window, door, wooden cabinet, blue/red tape.",
+          "nim_quality": "good quality",
+          "nim_section": "general interior"
+        },
+        "photo-02.jpg": {
+          "path": "sharepoint-download-staging/marietta-01/photo-02.jpg",
+          "format": "jpg",
+          "width": 4032,
+          "height": 3024,
+          "filesize_bytes": 3039352,
+          "nim_description": "Kitchen with cabinets, granite countertop, pull-out shelf, wine rack. Well-lit.",
+          "nim_quality": "good quality",
+          "nim_section": "kitchen"
+        },
+        "photo-03.jpg": {
+          "path": "sharepoint-download-staging/marietta-01/photo-03.jpg",
+          "format": "jpg",
+          "width": 4032,
+          "height": 3024,
+          "filesize_bytes": 2885359,
+          "nim_description": "Partially constructed room with light wood paneling, white window, green door panel, white appliance mounted on wall.",
+          "nim_quality": "good quality",
+          "nim_section": "general interior"
+        },
+        "photo-04.jpg": {
+          "path": "sharepoint-download-staging/marietta-01/photo-04.jpg",
+          "format": "jpg",
+          "width": 4032,
+          "height": 3024,
+          "filesize_bytes": 2655211,
+          "nim_description": "Home office/study with white sink, black leather chair, wooden desk with magazine, hardwood floor with tape markings.",
+          "nim_quality": "good quality",
+          "nim_section": "general interior"
+        },
+        "photo-05.jpg": {
+          "path": "sharepoint-download-staging/marietta-01/photo-05.jpg",
+          "format": "jpg",
+          "width": 2100,
+          "height": 1576,
+          "filesize_bytes": 1740757,
+          "nim_description": "Backyard of cottage with lush grass, white exterior with blue shutters, small shed, fire pit.",
+          "nim_quality": "adequate quality",
+          "nim_section": "exterior"
+        },
+        "photo-06.jpg": {
+          "path": "sharepoint-download-staging/marietta-01/photo-06.jpg",
+          "format": "jpg",
+          "width": 1576,
+          "height": 2100,
+          "filesize_bytes": 1430574,
+          "nim_description": "Exterior corner of cottage with window, AC unit, lattice skirt, small garden bed with plants and stones.",
+          "nim_quality": "good quality",
+          "nim_section": "exterior"
+        },
+        "photo-07.jpg": {
+          "path": "sharepoint-download-staging/marietta-01/photo-07.jpg",
+          "format": "jpg",
+          "width": 1576,
+          "height": 2100,
+          "filesize_bytes": 1191782,
+          "nim_description": "Exterior of one-story cottage, white stucco wall with window featuring green shutters.",
+          "nim_quality": "good quality",
+          "nim_section": "exterior"
+        },
+        "photo-08.jpg": {
+          "path": "sharepoint-download-staging/marietta-01/photo-08.jpg",
+          "format": "jpg",
+          "width": 1576,
+          "height": 2100,
+          "filesize_bytes": 785032,
+          "nim_description": "Corner room with window, white blinds, green door, ceiling light fixture. Slightly blurry.",
+          "nim_quality": "poor quality",
+          "nim_section": "general interior"
+        }
+      }
+    },
+    "parkersburg-01": {
+      "name": "Broad Street Cottage",
+      "town": "Parkersburg, WV",
+      "photos": {
+        "photo-01.jpg": {
+          "path": "sharepoint-download-staging/parkersburg-01/photo-01.jpg",
+          "format": "jpg",
+          "width": 5760,
+          "height": 3840,
+          "filesize_bytes": 24336867,
+          "nim_description": "Bedroom with plush red carpet, white walls, dark wood-framed bed with red comforter and varied pillows, flat-screen TV on wall.",
+          "nim_quality": "poor quality",
+          "nim_section": "bedroom"
+        },
+        "photo-02.jpg": {
+          "path": "sharepoint-download-staging/parkersburg-01/photo-02.jpg",
+          "format": "jpg",
+          "width": 5760,
+          "height": 3840,
+          "filesize_bytes": 23878840,
+          "nim_description": "Living room with plush sectional sofa, wooden coffee table on vibrant red carpet, wood paneling, large window with natural light.",
+          "nim_quality": "good quality",
+          "nim_section": "living room"
+        },
+        "photo-03.jpg": {
+          "path": "sharepoint-download-staging/parkersburg-01/photo-03.jpg",
+          "format": "jpg",
+          "width": 5760,
+          "height": 3840,
+          "filesize_bytes": 22000082,
+          "nim_description": "Bedroom with bed (wooden frame, red comforter), desk with chair, window with white curtain. Clear and well-lit.",
+          "nim_quality": "good quality",
+          "nim_section": "bedroom"
+        },
+        "photo-04.jpg": {
+          "path": "sharepoint-download-staging/parkersburg-01/photo-04.jpg",
+          "format": "jpg",
+          "width": 5760,
+          "height": 3840,
+          "filesize_bytes": 21180662,
+          "nim_description": "Bedroom with comfortable bed, flat-screen TV, mirror, wooden bed frame with red/black bedding, red carpeting.",
+          "nim_quality": "adequate quality",
+          "nim_section": "bedroom"
+        },
+        "photo-05.jpg": {
+          "path": "sharepoint-download-staging/parkersburg-01/photo-05.jpg",
+          "format": "jpg",
+          "width": 5760,
+          "height": 3840,
+          "filesize_bytes": 21050366,
+          "nim_description": "Bedroom with red/blue comforter on bed, desk with chair, window. Slightly blurry with soft focus.",
+          "nim_quality": "poor quality",
+          "nim_section": "bedroom"
+        },
+        "photo-06.jpg": {
+          "path": "sharepoint-download-staging/parkersburg-01/photo-06.jpg",
+          "format": "jpg",
+          "width": 5760,
+          "height": 3840,
+          "filesize_bytes": 20875266,
+          "nim_description": "Living room with plush red carpet, wood paneling, large flat-screen TV mounted above wooden entertainment center, doorway to outside.",
+          "nim_quality": "good quality",
+          "nim_section": "living room"
+        },
+        "photo-07.jpg": {
+          "path": "sharepoint-download-staging/parkersburg-01/photo-07.jpg",
+          "format": "jpg",
+          "width": 5760,
+          "height": 3840,
+          "filesize_bytes": 20826699,
+          "nim_description": "Living room with plush L-shaped couch (abstract pattern), glass coffee table, wall clock and framed artworks, wood paneling.",
+          "nim_quality": "good quality",
+          "nim_section": "living room"
+        },
+        "photo-08.jpg": {
+          "path": "sharepoint-download-staging/parkersburg-01/photo-08.jpg",
+          "format": "jpg",
+          "width": 5760,
+          "height": 3840,
+          "filesize_bytes": 20816996,
+          "nim_description": "Living room with large TV mounted on wall, comfortable couch, coffee table with flowers, wood paneling, red shag carpet.",
+          "nim_quality": "good quality",
+          "nim_section": "living room"
+        }
+      }
+    },
+    "parkersburg-02": {
+      "name": "45th Street House",
+      "town": "Parkersburg, WV",
+      "photos": {
+        "photo-01.jpeg": {
+          "path": "sharepoint-download-staging/parkersburg-02/photo-01.jpeg",
+          "format": "jpg",
+          "width": 4032,
+          "height": 3024,
+          "filesize_bytes": 7156065,
+          "nim_description": "Corner of bedroom with desk, chair, bed. Deep blue walls, two large windows with white blinds, small dresser, laptop on desk.",
+          "nim_quality": "good quality",
+          "nim_section": "bedroom"
+        },
+        "photo-02.jpeg": {
+          "path": "sharepoint-download-staging/parkersburg-02/photo-02.jpeg",
+          "format": "jpg",
+          "width": 4032,
+          "height": 3024,
+          "filesize_bytes": 6990571,
+          "nim_description": "Bedroom with wooden dresser, mirror above it, small chair, framed mirror, doll, stack of books. Dark blue wall backdrop.",
+          "nim_quality": "poor quality",
+          "nim_section": "bedroom"
+        },
+        "photo-03.jpeg": {
+          "path": "sharepoint-download-staging/parkersburg-02/photo-03.jpeg",
+          "format": "jpg",
+          "width": 4032,
+          "height": 3024,
+          "filesize_bytes": 6129429,
+          "nim_description": "Blurry image of woman looking out window at sunset overlooking small town. Low quality, soft focus.",
+          "nim_quality": "poor quality",
+          "nim_section": "exterior"
+        },
+        "photo-04.jpg": {
+          "path": "sharepoint-download-staging/parkersburg-02/photo-04.jpg",
+          "format": "jpg",
+          "width": 4224,
+          "height": 2376,
+          "filesize_bytes": 4947023,
+          "nim_description": "View from deck/patio overlooking street with parked cars and houses. Low angle, distorted perspective, blurry.",
+          "nim_quality": "poor quality",
+          "nim_section": "exterior"
+        },
+        "photo-05.jpg": {
+          "path": "sharepoint-download-staging/parkersburg-02/photo-05.jpg",
+          "format": "jpg",
+          "width": 4224,
+          "height": 2376,
+          "filesize_bytes": 4907793,
+          "nim_description": "Exterior of cottage with front porch, white railing, brown wood slats, lawn, red shed, cars. Slightly blurry.",
+          "nim_quality": "poor quality",
+          "nim_section": "exterior"
+        },
+        "photo-06.jpg": {
+          "path": "sharepoint-download-staging/parkersburg-02/photo-06.jpg",
+          "format": "jpg",
+          "width": 4224,
+          "height": 2376,
+          "filesize_bytes": 4720884,
+          "nim_description": "Exterior of cottage with sunset sky, porch with rocking chair, potted plants, lawn, cars. Slightly blurry.",
+          "nim_quality": "poor quality",
+          "nim_section": "exterior"
+        },
+        "photo-07.jpg": {
+          "path": "sharepoint-download-staging/parkersburg-02/photo-07.jpg",
+          "format": "jpg",
+          "width": 4224,
+          "height": 2376,
+          "filesize_bytes": 4492423,
+          "nim_description": "View from porch/deck of front yard and street, large tree, white car parked, red vehicle in driveway. Slightly distorted.",
+          "nim_quality": "good quality",
+          "nim_section": "exterior"
+        },
+        "photo-08.jpg": {
+          "path": "sharepoint-download-staging/parkersburg-02/photo-08.jpg",
+          "format": "jpg",
+          "width": 2375,
+          "height": 2375,
+          "filesize_bytes": 3077368,
+          "nim_description": "Exterior of cottage at sunset, bird's-eye view of front yard, manicured lawn, parked cars. Grainy, low-resolution.",
+          "nim_quality": "poor quality",
+          "nim_section": "exterior"
+        }
+      }
+    },
+    "parkersburg-04": {
+      "name": "Broad Street House",
+      "town": "Parkersburg, WV",
+      "photos": {
+        "photo-01.jpg": {
+          "path": "sharepoint-download-staging/parkersburg-04/photo-01.jpg",
+          "format": "jpg",
+          "width": 5760,
+          "height": 3840,
+          "filesize_bytes": 12983621,
+          "nim_description": "Bedroom with large bed, white linens, natural light from window, TV mounted on wall, wooden TV stand, mirror above bed, forest painting. Slightly blurry.",
+          "nim_quality": "poor quality",
+          "nim_section": "bedroom"
+        },
+        "photo-02.jpg": {
+          "path": "sharepoint-download-staging/parkersburg-04/photo-02.jpg",
+          "format": "jpg",
+          "width": 5760,
+          "height": 3840,
+          "filesize_bytes": 10966962,
+          "nim_description": "View from top of wooden staircase with white railings leading to front yard, bags of soil/mulch, paved walkway, street with car.",
+          "nim_quality": "adequate quality",
+          "nim_section": "exterior"
+        },
+        "photo-03.jpg": {
+          "path": "sharepoint-download-staging/parkersburg-04/photo-03.jpg",
+          "format": "jpg",
+          "width": 5760,
+          "height": 3840,
+          "filesize_bytes": 10594803,
+          "nim_description": "Bedroom with bed on left, TV on stand on right, doorway to kitchen in background. Wood floor, white walls, natural light through window.",
+          "nim_quality": "poor quality",
+          "nim_section": "bedroom"
+        },
+        "photo-04.jpg": {
+          "path": "sharepoint-download-staging/parkersburg-04/photo-04.jpg",
+          "format": "jpg",
+          "width": 5760,
+          "height": 3840,
+          "filesize_bytes": 10345049,
+          "nim_description": "View from top of outdoor staircase leading to yard with tree, sidewalk, parked car. Wooden steps, white railing posts. Good quality.",
+          "nim_quality": "good quality",
+          "nim_section": "exterior"
+        },
+        "photo-05.jpg": {
+          "path": "sharepoint-download-staging/parkersburg-04/photo-05.jpg",
+          "format": "jpg",
+          "width": 5760,
+          "height": 3840,
+          "filesize_bytes": 8468843,
+          "nim_description": "Cozy porch with comfortable seating, two chairs, small table, gray carpet with white grid pattern, enclosed by railing.",
+          "nim_quality": "good quality",
+          "nim_section": "exterior"
+        },
+        "photo-06.jpg": {
+          "path": "sharepoint-download-staging/parkersburg-04/photo-06.jpg",
+          "format": "jpg",
+          "width": 4752,
+          "height": 3168,
+          "filesize_bytes": 8447277,
+          "nim_description": "Bedroom with double bed, gray comforter, white pillows, folded towel, two lamps, large clock, mirror. High-quality lighting.",
+          "nim_quality": "adequate quality",
+          "nim_section": "bedroom"
+        },
+        "photo-07.jpg": {
+          "path": "sharepoint-download-staging/parkersburg-04/photo-07.jpg",
+          "format": "jpg",
+          "width": 4752,
+          "height": 3168,
+          "filesize_bytes": 8042160,
+          "nim_description": "Queen bedroom with gray upholstered headboard, white comforter with black designs, black/white pillows, nightstand with lamp and terrarium, wooden dresser, tall plant.",
+          "nim_quality": "good quality",
+          "nim_section": "bedroom"
+        },
+        "photo-08.jpg": {
+          "path": "sharepoint-download-staging/parkersburg-04/photo-08.jpg",
+          "format": "jpg",
+          "width": 5760,
+          "height": 3840,
+          "filesize_bytes": 8040775,
+          "nim_description": "Compact kitchen with wooden cabinets and countertops, sink, refrigerator, stove, microwave, doorway to adjacent room.",
+          "nim_quality": "adequate quality",
+          "nim_section": "kitchen"
+        }
+      }
+    },
+    "ravenswood-03": {
+      "name": "Henrietta Cottage",
+      "town": "Ravenswood, WV",
+      "photos": {
+        "photo-01.png": {
+          "path": "sharepoint-download-staging/ravenswood-03/photo-01.png",
+          "format": "png",
+          "width": 4752,
+          "height": 3168,
+          "filesize_bytes": 31216202,
+          "nim_description": "Bedroom with light blue comforter and white pillows on bed, dark wood headboard and nightstands, lamps with yellow shades, striped wall, clock, window with sheer curtain. Pixelated mosaic effect.",
+          "nim_quality": "poor quality",
+          "nim_section": "bedroom"
+        },
+        "photo-02.jpg": {
+          "path": "sharepoint-download-staging/ravenswood-03/photo-02.jpg",
+          "format": "jpg",
+          "width": 5760,
+          "height": 3240,
+          "filesize_bytes": 26175066,
+          "nim_description": "Bathroom with toilet, bathtub with shower curtain, shelving units, marble wall, white door, wooden coat rack. Average quality with visible grain.",
+          "nim_quality": "good quality",
+          "nim_section": "bathroom"
+        },
+        "photo-03.jpg": {
+          "path": "sharepoint-download-staging/ravenswood-03/photo-03.jpg",
+          "format": "jpg",
+          "width": 5760,
+          "height": 3240,
+          "filesize_bytes": 25373953,
+          "nim_description": "Doorway into bathroom with red plank wall, hanging hat, Welcome sign. Bathroom painted white/blue with toilet, sink, shower. High quality, well-lit.",
+          "nim_quality": "good quality",
+          "nim_section": "bathroom"
+        },
+        "photo-04.jpg": {
+          "path": "sharepoint-download-staging/ravenswood-03/photo-04.jpg",
+          "format": "jpg",
+          "width": 5760,
+          "height": 3240,
+          "filesize_bytes": 25327969,
+          "nim_description": "Bathroom with toilet, bathtub with shower curtain, built-in shelving. Good quality, clear and well-lit.",
+          "nim_quality": "good quality",
+          "nim_section": "bathroom"
+        },
+        "photo-05.jpg": {
+          "path": "sharepoint-download-staging/ravenswood-03/photo-05.jpg",
+          "format": "jpg",
+          "width": 5760,
+          "height": 3240,
+          "filesize_bytes": 24310381,
+          "nim_description": "Dining room with wooden table with glass top, six chairs (one blue, two wood), striped walls, three-light fixture. Good quality.",
+          "nim_quality": "good quality",
+          "nim_section": "dining area"
+        },
+        "photo-06.jpg": {
+          "path": "sharepoint-download-staging/ravenswood-03/photo-06.jpg",
+          "format": "jpg",
+          "width": 5760,
+          "height": 3240,
+          "filesize_bytes": 23639817,
+          "nim_description": "Dining room with wooden table and chairs, striped wallpaper, window with yellow door in background. Natural light, warm atmosphere.",
+          "nim_quality": "good quality",
+          "nim_section": "dining area"
+        },
+        "photo-07.jpg": {
+          "path": "sharepoint-download-staging/ravenswood-03/photo-07.jpg",
+          "format": "jpg",
+          "width": 5760,
+          "height": 3240,
+          "filesize_bytes": 23358053,
+          "nim_description": "Dining room with wooden table and chairs, striped wallpaper, window with white frame. Bright and well-lit.",
+          "nim_quality": "good quality",
+          "nim_section": "dining area"
+        },
+        "photo-08.jpg": {
+          "path": "sharepoint-download-staging/ravenswood-03/photo-08.jpg",
+          "format": "jpg",
+          "width": 5760,
+          "height": 3240,
+          "filesize_bytes": 23308094,
+          "nim_description": "Dining room with green/cream striped wallpaper, round wooden table, variety of wooden chairs (one teal), chandelier, bookshelf in background.",
+          "nim_quality": "good quality",
+          "nim_section": "dining area"
+        }
+      }
+    }
+  },
+  "template_stock": {
+    "hotelhub": {
+      "count": 310,
+      "directories": {
+        "assets/images/resource": {
+          "count": 151
+        },
+        "assets/images/main-home": {
+          "count": 63
+        },
+        "assets/images/home-two": {
+          "count": 28
+        },
+        "assets/images/home-three": {
+          "count": 24
+        },
+        "assets/images/home-four": {
+          "count": 15
+        },
+        "assets/images/home-five": {
+          "count": 26
+        },
+        "assets/images/slider": {
+          "count": 3
+        }
+      }
+    }
+  },
+  "coverage": {
+    "total_houses": 10,
+    "houses_with_published_photos": 5,
+    "houses_coming_soon": 6,
+    "orphan_directories": [
+      "ravenswood-05"
+    ],
+    "total_published_avif_files": 38,
+    "total_staging_originals": 40,
+    "total_template_stock_photos": 310
+  }
+}
