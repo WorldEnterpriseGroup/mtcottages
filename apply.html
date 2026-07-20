@@ -1,35 +1,762 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Stay with Us | Apply | Mt Cottages</title>
-    <meta name="description" content="Apply for a fully furnished Mt Cottages place across the Mid-Ohio Valley."
-    >
-    <link rel="icon" type="image/png" sizes="56x56" href="assets/images/fav-icon/icon.png"><link rel="stylesheet" href="assets/css/bootstrap.min.css"><link rel="stylesheet" href="assets/css/all.min.css"><link rel="stylesheet" href="assets/css/flaticon.css"><link rel="stylesheet" href="assets/css/theme-default.css"><link rel="stylesheet" href="assets/css/style.css"><link rel="stylesheet" href="assets/css/responsive.css"><link rel="stylesheet" href="assets/css/mtcottages-site.css">
+    <meta charset="UTF-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Stay with Us | Mt Cottages</title>
+    <meta name="description" content="Start an application for a furnished cottage, apartment, or house with Mt Cottages." />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="56x56"
+      href="assets/images/fav-icon/icon.png"
+    />
+    <!-- bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="assets/css/bootstrap.min.css"
+      type="text/css"
+      media="all"
+    />
+    <!-- carousel CSS -->
+    <link
+      rel="stylesheet"
+      href="assets/css/owl.carousel.min.css"
+      type="text/css"
+      media="all"
+    />
+    <!-- font-awesome CSS -->
+    <link
+      rel="stylesheet"
+      href="assets/css/all.min.css"
+      type="text/css"
+      media="all"
+    />
+    <!-- font-flaticon CSS -->
+    <link
+      rel="stylesheet"
+      href="assets/css/flaticon.css"
+      type="text/css"
+      media="all"
+    />
+    <!-- theme-default CSS -->
+    <link
+      rel="stylesheet"
+      href="assets/css/theme-default.css"
+      type="text/css"
+      media="all"
+    />
+    <!-- meanmenu CSS -->
+    <link
+      rel="stylesheet"
+      href="assets/css/meanmenu.min.css"
+      type="text/css"
+      media="all"
+    />
+    <!-- venobox CSS -->
+    <link
+      rel="stylesheet"
+      href="venobox/venobox.css"
+      type="text/css"
+      media="all"
+    />
+    <!-- bootstrap icons -->
+    <link
+      rel="stylesheet"
+      href="assets/css/bootstrap-icons.css"
+      type="text/css"
+      media="all"
+    />
+    <!-- Main Style CSS -->
+    <link
+      rel="stylesheet"
+      href="assets/css/style.css"
+      type="text/css"
+      media="all"
+    />
+    <link rel="stylesheet" href="assets/css/odometer-theme-default.css" />
+    <!-- responsive CSS -->
+    <link
+      rel="stylesheet"
+      href="assets/css/responsive.css"
+      type="text/css"
+      media="all"
+    />
+    <link rel="stylesheet" href="assets/css/swiper.min.css" />
+
+    <!-- modernizr js -->
+    <script src="assets/js/vendor/modernizr-3.5.0.min.js"></script>
+
+    <link rel="stylesheet" href="assets/css/aos.css" />
   </head>
-  <body class="mt-site"><div data-site-header></div>
-    <main class="mt-page-shell">
-      <section class="mt-page-hero is-photo"><div class="mt-site-container"><div class="mt-eyebrow">Stay with Us</div><h1>Start with a conversation. Make a place yours.</h1><p>This application helps us understand what you need so we can follow up with current availability and the right next step.</p><ul class="mt-breadcrumbs"><li><a href="index.html">Home</a></li><li>Stay with Us</li></ul></div></section>
-      <section class="mt-section"><div class="mt-site-container"><div class="mt-split"><div class="mt-content"><div class="mt-eyebrow">Before you begin</div><h2>A clear first step.</h2><p>This is an inquiry and application—not a lease, approval, or guarantee of housing. We will review your information, confirm whether a place may fit, and explain any later screening, deposit, payment, or lease steps securely.</p><div class="mt-form-note">Please do not enter Social Security numbers, full birth dates, payment-card details, bank information, or other highly sensitive documents here.</div><p>Questions before applying? Email <a href="mailto:stay@mtcottages.com">stay@mtcottages.com</a>.</p></div><div class="mt-form-wrap"><form action="https://apply.mtcottages.com/api/apply" method="post" data-application-form novalidate><div class="mt-form-grid">
-          <div class="mt-form-field"><label for="firstName">First name *</label><input id="firstName" name="firstName" autocomplete="given-name" required></div>
-          <div class="mt-form-field"><label for="lastName">Last name *</label><input id="lastName" name="lastName" autocomplete="family-name" required></div>
-          <div class="mt-form-field"><label for="email">Email *</label><input id="email" name="email" type="email" autocomplete="email" required></div>
-          <div class="mt-form-field"><label for="phone">Phone *</label><input id="phone" name="phone" type="tel" autocomplete="tel" required></div>
-          <div class="mt-form-field"><label for="stayType">What brings you here? *</label><select id="stayType" name="stayType" required><option value="">Choose one</option><option value="mid-term">Work assignment or travel nursing</option><option value="long-term">Relocation or longer-term living</option><option value="insurance">Insurance housing</option><option value="research">Research, fellowship, or study</option><option value="not-sure">I’m not sure yet</option></select></div>
-          <div class="mt-form-field"><label for="preferredLocation">Preferred location *</label><select id="preferredLocation" name="preferredLocation" required><option value="">Choose a town</option><option>Any available location</option><option>Marietta, OH</option><option>Parkersburg, WV</option><option>Ravenswood, WV</option></select></div>
-          <div class="mt-form-field"><label for="moveInDate">Target move-in date *</label><input id="moveInDate" name="moveInDate" type="date" required></div>
-          <div class="mt-form-field"><label for="duration">How long might you stay? *</label><select id="duration" name="duration" required><option value="">Choose a timeframe</option><option>30–90 days</option><option>3–12 months</option><option>1 year or longer</option><option>Flexible / not sure</option></select></div>
-          <div class="mt-form-field"><label for="occupants">Number of occupants *</label><select id="occupants" name="occupants" required><option value="">Choose a number</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select></div>
-          <div class="mt-form-field"><label for="employment">Work or school situation</label><input id="employment" name="employment" placeholder="Example: travel nurse, relocating, fellow"></div>
-          <div class="mt-form-field is-wide"><label for="furnishedNeeds">What would help the place fit?</label><input id="furnishedNeeds" name="furnishedNeeds" placeholder="Pets, parking, workspace, accessibility, or other needs"></div>
-          <div class="mt-form-field is-wide"><label for="message">Tell us about your stay *</label><textarea id="message" name="message" placeholder="Share anything that will help us understand what you need." required></textarea></div>
-          <div class="mt-form-field is-wide"><label><input type="checkbox" name="screeningConsent" value="yes"> I understand that a later screening step may be required for a specific place.</label></div>
-          <div class="mt-form-field is-wide"><label><input type="checkbox" name="termsAccepted" value="yes" required> I understand this is an inquiry only and agree that Mt Cottages may contact me. *</label></div>
-          <div class="mt-honeypot" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
-          <input type="hidden" name="sourceUrl" value=""><input type="hidden" name="pets" value=""><input type="hidden" name="monthlyBudget" value="">
-          <div class="mt-form-field is-wide"><button class="mt-button" type="submit">Send application <span aria-hidden="true">↗</span></button><div class="form-status" data-form-status role="status" aria-live="polite"></div></div>
-        </div></form></div></div></div></section>
-      <section class="mt-section mt-section-sand"><div class="mt-site-container"><div class="mt-section-heading centered"><div class="mt-eyebrow">What happens next</div><h2>We read the details, then reach out.</h2><p>We will review your application, compare it with current availability, and contact you using the information you provide. If we do not have the right place today, we can still talk about timing and options.</p></div><div class="mt-grid mt-grid-3"><article class="mt-card"><div class="mt-icon-circle">1</div><h3>Tell us</h3><p>Share your dates, town, household, and reason for staying.</p></article><article class="mt-card"><div class="mt-icon-circle">2</div><h3>We review</h3><p>We look at fit and current availability—not just a generic listing.</p></article><article class="mt-card"><div class="mt-icon-circle">3</div><h3>We follow up</h3><p>We explain the next step, including any home-specific requirements.</p></article></div></div></section>
-    </main><div data-site-footer></div><script src="assets/js/mtcottages-site.js"></script><script src="assets/js/mtcottages.js"></script>
+  <body>
+    <!-- loder -->
+    <div class="loader-wrapper">
+      <div class="loader"></div>
+      <div class="loder-section left-section"></div>
+      <div class="loder-section right-section"></div>
+    </div>
+
+
+    <!--==================================================-->
+    <!-- Start Mt Cottages Topber Area -->
+    <!--==================================================-->
+    <div class="topber_area">
+      <div class="container-fluid">
+        <div class="row topber_upper align-items-center d-flex">
+          <div class="col-lg-6">
+            <div class="topber-text">
+              <p><span>Stay</span>Furnished cottages across the Mid-Ohio Valley</p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="topber-social-icon">
+              <h4 class="topber-follow">Follow Us</h4>
+              <a href="#">fb</a>
+              <a href="#">wt-x</a>
+              <a href="#">in</a>
+              <a href="#">ln</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--==================================================-->
+    <!-- End Mt Cottages Topber Area -->
+    <!--==================================================-->
+
+
+    <!--==================================================-->
+    <!-- Start Mt Cottages Main Menu  -->
+    <!--==================================================-->
+    <div id="sticky-header" class="hotelhub_nav_manu two inner_page">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col-lg-3">
+            <div class="logo cursor-scale small">
+              <a class="logo_img" href="index.html" title="Mt Cottages">
+                <img src="assets/images/logo-mtcottages.svg" alt="logo" />
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-9">
+            <nav class="meedy_menu">
+              <ul class="nav_scroll">
+                <li><a class="mdy-hover" href="cottages.html">Cottages <i class="fas fa-angle-down"></i></a>
+                  <ul class="sub-menu">
+                    <li><a href="cottages.html">Find Your Place</a></li>
+                    <li><a href="cozy-places.html">Cozy Places</a></li>
+                    <li><a href="cozy-places.html#studios-1-bedroom">Studios &amp; 1-Bedroom</a></li>
+                    <li><a href="room-to-settle.html">Room to Settle In</a></li>
+                    <li><a href="room-to-settle.html#2-4-bedroom-homes">2–4 Bedroom Homes</a></li>
+                    <li><a href="available.html">Available Now</a></li>
+                  </ul>
+                </li>
+                <li><a class="mdy-hover" href="locations.html">Locations <i class="fas fa-angle-down"></i></a>
+                  <ul class="sub-menu">
+                    <li><a href="locations.html#marietta">Marietta, OH</a></li>
+                    <li><a href="locations.html#parkersburg">Parkersburg, WV</a></li>
+                    <li><a href="locations.html#ravenswood">Ravenswood, WV</a></li>
+                  </ul>
+                </li>
+                <li><a class="mdy-hover" href="living.html">Living <i class="fas fa-angle-down"></i></a>
+                  <ul class="sub-menu">
+                    <li><a href="living.html#travel-nurses">Health Professionals</a></li>
+                    <li><a href="living.html#relocation">Work &amp; Relocation</a></li>
+                    <li><a href="living.html#insurance">Insurance Housing</a></li>
+                    <li><a href="living.html#families">Family Stays</a></li>
+                  </ul>
+                </li>
+                <li><a class="mdy-hover" href="services.html">Services <i class="fas fa-angle-down"></i></a>
+                  <ul class="sub-menu">
+                    <li><a href="services.html#furnished-homes">Fully Furnished Homes</a></li>
+                    <li><a href="services.html#amenities">Home Amenities</a></li>
+                    <li><a href="services.html#guest-services">Guest Services</a></li>
+                    <li><a href="services.html#meal-preparation">Meal Preparation</a></li>
+                    <li><a href="services.html#property-care">Property Care</a></li>
+                  </ul>
+                </li>
+                <li><a class="mdy-hover" href="about.html">About</a></li>
+                <li><a class="mdy-hover" href="residents.html">Residents <i class="fas fa-angle-down"></i></a>
+                  <ul class="sub-menu">
+                    <li><a href="resident-portal.html">Resident Portal</a></li>
+                    <li><a href="pay-rent.html">Pay Rent</a></li>
+                    <li><a href="maintenance.html">Maintenance Requests</a></li>
+                    <li><a href="emergency-maintenance.html">Emergency Maintenance</a></li>
+                  </ul>
+                </li>
+                <li><a class="mdy-hover" href="contact.html">Contact</a></li>
+              </ul>
+              <div class="hotelhub-right-side cursor-scale small">
+                <div class="search-box-btn search-box-outer">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <!-- header button -->
+                <div class="header-button">
+                  <a href="https://stay.mtcottages.com/">Stay with Us <i class="flaticon flaticon-right-arrow"></i>
+                    <div class="hotelhub-hover-btn hover-btn"></div>
+                    <div class="hotelhub-hover-btn hover-btn2"></div>
+                    <div class="hotelhub-hover-btn hover-btn3"></div>
+                    <div class="hotelhub-hover-btn hover-btn4"></div>
+                  </a>
+                </div>
+                <div class="sidebar">
+                  <div class="nav-btn navSidebar-button">
+                    <span><i class="fa-solid fa-bars"></i></span>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mt Cottages Mobile Menu  -->
+    <div class="mobile-menu-area sticky d-sm-block d-md-block d-lg-none">
+      <div class="mobile-menu">
+        <nav class="meedy_menu">
+          <ul class="nav_scroll">
+            <li><a class="mdy-hover" href="cottages.html">Cottages</a>
+              <ul class="sub-menu">
+                <li><a href="cottages.html">Find Your Place</a></li>
+                <li><a href="cozy-places.html">Cozy Places</a></li>
+                <li><a href="cozy-places.html#studios-1-bedroom">Studios &amp; 1-Bedroom</a></li>
+                <li><a href="room-to-settle.html">Room to Settle In</a></li>
+                <li><a href="room-to-settle.html#2-4-bedroom-homes">2–4 Bedroom Homes</a></li>
+                <li><a href="available.html">Available Now</a></li>
+              </ul>
+            </li>
+            <li><a class="mdy-hover" href="locations.html">Locations</a>
+              <ul class="sub-menu">
+                <li><a href="locations.html#marietta">Marietta, OH</a></li>
+                <li><a href="locations.html#parkersburg">Parkersburg, WV</a></li>
+                <li><a href="locations.html#ravenswood">Ravenswood, WV</a></li>
+              </ul>
+            </li>
+                <li><a class="mdy-hover" href="living.html">Living</a>
+              <ul class="sub-menu">
+                <li><a href="living.html#travel-nurses">Health Professionals</a></li>
+                <li><a href="living.html#relocation">Work &amp; Relocation</a></li>
+                <li><a href="living.html#insurance">Insurance Housing</a></li>
+                <li><a href="living.html#families">Family Stays</a></li>
+              </ul>
+            </li>
+            <li><a class="mdy-hover" href="services.html">Services</a>
+              <ul class="sub-menu">
+                <li><a href="services.html#furnished-homes">Fully Furnished Homes</a></li>
+                <li><a href="services.html#amenities">Home Amenities</a></li>
+                <li><a href="services.html#guest-services">Guest Services</a></li>
+                <li><a href="services.html#meal-preparation">Meal Preparation</a></li>
+                <li><a href="services.html#property-care">Property Care</a></li>
+              </ul>
+            </li>
+            <li><a class="mdy-hover" href="about.html">About</a></li>
+            <li><a class="mdy-hover" href="residents.html">Residents</a>
+              <ul class="sub-menu">
+                <li><a href="resident-portal.html">Resident Portal</a></li>
+                <li><a href="pay-rent.html">Pay Rent</a></li>
+                <li><a href="maintenance.html">Maintenance Requests</a></li>
+                <li><a href="emergency-maintenance.html">Emergency Maintenance</a></li>
+              </ul>
+            </li>
+            <li><a class="mdy-hover" href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <!--==================================================-->
+    <!-- End Mt Cottages Main Menu  -->
+    <!--==================================================-->
+
+    <!--==================================================-->
+    <!-- Start Mt Cottages Breatcome Section  -->
+    <!--==================================================-->
+    <div class="breatcome-section d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="breatcome-content text-center">
+              <h1 class="cursor-scale">Stay with Us</h1>
+              <ul class="breatcome-item">
+                <li><a class="cursor-scale small" href="index.html"><i class="fa-solid fa-house"></i> Home </a></li>
+                <li><i class="flaticon flaticon-right-arrow"></i> Stay with Us </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--==================================================-->
+    <!-- End Mt Cottages Breatcome Section  -->
+    <!--==================================================-->
+
+        <!--==================================================-->
+        <!-- Start Mt Cottages Application Section --><div class="contact-section"><div class="container"><div class="row align-items-center"><div class="col-lg-5"><div class="hotelhub-section-title"><h4><i class="flaticon flaticon-right-arrow"></i>STAY WITH US</h4><h1>Start with a conversation.</h1><p>This is an inquiry and application—not a lease, approval, or guarantee of housing. Share what you need and we will follow up with current availability and the right next step.</p><p><strong>Please do not enter Social Security numbers, payment-card details, bank information, or other highly sensitive documents.</strong></p><p>Questions first? Email <a href="mailto:stay@mtcottages.com">stay@mtcottages.com</a>.</p></div></div><div class="col-lg-7"><div class="contact-form-box style-two"><form action="https://stay.mtcottages.com/api/apply" method="post" data-application-form novalidate>
+        <div class="row">
+          <div class="col-lg-6 col-md-6"><div class="form-box"><input type="text" name="firstName" placeholder="First Name" autocomplete="given-name" required></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><input type="text" name="lastName" placeholder="Last Name" autocomplete="family-name" required></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><input type="email" name="email" placeholder="Your E-Mail" autocomplete="email" required></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><input type="tel" name="phone" placeholder="Your Phone" autocomplete="tel" required></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><label for="move-in-date">Preferred move-in date</label><input id="move-in-date" type="date" name="moveInDate" required></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><select name="duration" required><option value="">How long might you stay?</option><option>30–90 days</option><option>3–12 months</option><option>1 year or longer</option><option>Flexible / not sure</option></select></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><input type="number" name="occupants" min="1" max="20" placeholder="Number of occupants" required></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><select name="preferredLocation" required><option value="">Preferred community</option><option>Marietta, OH</option><option>Parkersburg, WV</option><option>Ravenswood, WV</option><option>Open to options</option></select></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><select name="homeSize"><option value="">What kind of place feels right?</option><option>Studio or one-bedroom</option><option>Two-bedroom</option><option>Three-bedroom</option><option>Four-bedroom</option><option>Open to options</option></select></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><select name="stayType" required><option value="">What brings you here?</option><option>Travel or healthcare assignment</option><option>Work or relocation</option><option>Insurance housing</option><option>Family or extended stay</option><option>Research or fellowship</option><option>Personal transition</option><option>Something else</option></select></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><select name="pets"><option value="">Pets</option><option>No pets</option><option>Yes — I’ll share details below</option><option>Prefer to discuss</option></select></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><input type="text" name="employment" placeholder="Role, employer, or assignment (optional)"></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><input type="text" name="monthlyBudget" placeholder="Approximate monthly budget (optional)"></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><input type="text" name="furnishedNeeds" placeholder="Furnishing or accessibility needs (optional)"></div></div>
+          <div class="col-lg-12"><div class="form-box"><textarea name="message" placeholder="Tell us about your dates, household, work, pets, and what would make a place fit" required></textarea></div></div>
+          <div class="col-lg-12"><div class="form-box"><label><input type="checkbox" name="screeningConsent" value="yes"> I understand screening may be part of a later application step.</label></div></div>
+          <div class="col-lg-12"><div class="form-box"><label><input type="checkbox" name="termsAccepted" value="yes" required> I confirm this is an inquiry and the information is accurate.</label></div></div>
+          <div class="col-lg-12" aria-hidden="true" style="position:absolute;left:-9999px"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
+          <input type="hidden" name="sourceUrl">
+          <div class="col-lg-12"><p data-form-status aria-live="polite"></p><div class="submit-button"><button class="submit-btn cursor-scale small" type="submit">send application <i class="flaticon flaticon-right-arrow"></i></button></div></div>
+        </div>
+      </form></div></div></div></div></div><!-- End Mt Cottages Application Section -->
+        <!--==================================================-->
+
+    <!--==================================================-->
+    <!-- Start Mt Cottages Service Section -->
+    <div class="service_inner_page"><div class="container">
+      <div class="hotelhub-section-title text-center pb-55"><h4><i class="flaticon flaticon-right-arrow"></i>WHAT HAPPENS NEXT</h4><h1>Care that makes furnished living feel easy.</h1><p>A simple application helps us understand what you need before we talk through actual availability.</p></div>
+        <div class="row pb-120"><div class="col-lg-7" data-aos="zoom-out-up"><div class="service_inner_thumb"><img src="assets/images/resource/service_thumb.png" alt="Tell us"></div></div>
+          <div class="col-lg-5"><div class="service_inner_box"><div class="sevice_iinner_content"><h3>Tell us</h3><p>Share your timing, preferred community, household, and the reason for your stay.</p><div class="service_inner-btn"><a href="apply.html"><i class="flaticon flaticon-right-arrow"></i></a></div></div></div></div></div>
+        <div class="row pb-120"><div class="col-lg-5"><div class="service_inner_box style_two"><div class="sevice_iinner_content"><h3>We review</h3><p>We compare your needs with current homes and the details that make a place a fit.</p><div class="service_inner-btn"><a href="apply.html"><i class="flaticon flaticon-right-arrow"></i></a></div></div></div></div>
+          <div class="col-lg-7" data-aos="zoom-out-up"><div class="service_inner_thumb"><img src="assets/images/resource/service-thumb2.png" alt="We review"></div></div></div>
+        <div class="row pb-120"><div class="col-lg-7" data-aos="zoom-out-up"><div class="service_inner_thumb"><img src="assets/images/resource/service_thumb.png" alt="We follow up"></div></div>
+          <div class="col-lg-5"><div class="service_inner_box"><div class="sevice_iinner_content"><h3>We follow up</h3><p>We explain the next step, including any home-specific requirements or screening.</p><div class="service_inner-btn"><a href="apply.html"><i class="flaticon flaticon-right-arrow"></i></a></div></div></div></div></div>
+        <div class="row pb-120"><div class="col-lg-5"><div class="service_inner_box style_two"><div class="sevice_iinner_content"><h3>You decide</h3><p>You can ask questions and make an informed decision before moving forward.</p><div class="service_inner-btn"><a href="apply.html"><i class="flaticon flaticon-right-arrow"></i></a></div></div></div></div>
+          <div class="col-lg-7" data-aos="zoom-out-up"><div class="service_inner_thumb"><img src="assets/images/resource/service-thumb2.png" alt="You decide"></div></div></div>
+    </div></div>
+    <!-- End Mt Cottages Service Section -->
+    <!--==================================================-->
+
+
+    <!--==================================================-->
+    <!-- Start Galary Section  -->
+    <!--==================================================-->
+    <div class="galary-section">
+      <div class="container-fluid">
+        <div class="swiper galary_list">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="row">
+                <div class="col-lg-12 p-0">
+                  <div class="galary-single-bx">
+                    <div class="galary-img">
+                      <img src="assets/images/home-two/01.jpg" alt="">
+                      <div class="galary-icon">
+                        <a href="cottages.html"><i class="fa-solid fa-camera-retro"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="row">
+                <div class="col-lg-12 p-0">
+                  <div class="galary-single-bx">
+                    <div class="galary-img">
+                      <img src="assets/images/home-two/02.jpg" alt="">
+                      <div class="galary-icon">
+                        <a href="cottages.html"><i class="fa-solid fa-camera-retro"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="row">
+                <div class="col-lg-12 p-0">
+                  <div class="galary-single-bx">
+                    <div class="galary-img">
+                      <img src="assets/images/home-two/03.jpg" alt="">
+                      <div class="galary-icon">
+                        <a href="cottages.html"><i class="fa-solid fa-camera-retro"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="row">
+                <div class="col-lg-12 p-0">
+                  <div class="galary-single-bx">
+                    <div class="galary-img">
+                      <img src="assets/images/home-two/04.jpg" alt="">
+                      <div class="galary-icon">
+                        <a href="cottages.html"><i class="fa-solid fa-camera-retro"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="row">
+                <div class="col-lg-12 p-0">
+                  <div class="galary-single-bx">
+                    <div class="galary-img">
+                      <img src="assets/images/home-two/05.jpg" alt="">
+                      <div class="galary-icon">
+                        <a href="cottages.html"><i class="fa-solid fa-camera-retro"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="row">
+                <div class="col-lg-12 p-0">
+                  <div class="galary-single-bx">
+                    <div class="galary-img">
+                      <img src="assets/images/home-two/06.jpg" alt="">
+                      <div class="galary-icon">
+                        <a href="cottages.html"><i class="fa-solid fa-camera-retro"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="row">
+                <div class="col-lg-12 p-0">
+                  <div class="galary-single-bx">
+                    <div class="galary-img">
+                      <img src="assets/images/home-two/07.jpg" alt="">
+                      <div class="galary-icon">
+                        <a href="cottages.html"><i class="fa-solid fa-camera-retro"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="row">
+                <div class="col-lg-12 p-0">
+                  <div class="galary-single-bx">
+                    <div class="galary-img">
+                      <img src="assets/images/home-two/08.jpg" alt="">
+                      <div class="galary-icon">
+                        <a href="cottages.html"><i class="fa-solid fa-camera-retro"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="row">
+                <div class="col-lg-12 p-0">
+                  <div class="galary-single-bx">
+                    <div class="galary-img">
+                      <img src="assets/images/home-two/01.jpg" alt="">
+                      <div class="galary-icon">
+                        <a href="cottages.html"><i class="fa-solid fa-camera-retro"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="row">
+                <div class="col-lg-12 p-0">
+                  <div class="galary-single-bx">
+                    <div class="galary-img">
+                      <img src="assets/images/home-two/05.jpg" alt="">
+                      <div class="galary-icon">
+                        <a href="cottages.html"><i class="fa-solid fa-camera-retro"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="row">
+                <div class="col-lg-12 p-0">
+                  <div class="galary-single-bx">
+                    <div class="galary-img">
+                      <img src="assets/images/home-two/04.jpg" alt="">
+                      <div class="galary-icon">
+                        <a href="cottages.html"><i class="fa-solid fa-camera-retro"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--==================================================-->
+    <!-- End Galary Section  -->
+    <!--==================================================-->
+
+
+
+    <!--==================================================-->
+    <!-- Start Mt Cottages Footer Section -->
+    <!--==================================================-->
+    <div class="footer-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="widget">
+              <div class="footer_widget">
+                <div class="company-logo">
+                  <a href="index.html"><img src="assets/images/logo-mtcottages.svg" alt="logo"/></a>
+                </div>
+                <p>Furnished places for real life, supported by a small hospitality team.
+                  before sticky communities. Assertively matrix multif
+                  sources through team building</p>
+                <div class="hotelhub-social-icon cursor-scale small">
+                  <h3 class="follow-title">Follow Us On :</h3>
+                  <a href="#"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#"><i class="fa-brands fa-linkedin-in"> </i></a>
+                  <a href="#"><i class="bi bi-twitter"></i></a>
+                  <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <div class="widget widget-nav-menu">
+              <h4 class="widget-title">About Us</h4>
+              <div class="menu-quick-link-content">
+                <ul class="footer-menu cursor-scale small">
+                  <li><a href="about.html"> About </a></li>
+                  <li><a href="cozy-places.html"> Cottages </a></li>
+                  <li><a href="apply.html"> Stay with Us </a></li>
+                  <li><a href="about.html"> Explore Cottages </a></li>
+                  <li><a href="about.html"> About </a></li>
+                  <li><a href="contact.html"> Contact </a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <div class="widget widget-nav-menu">
+              <h4 class="widget-title">Explore</h4>
+              <div class="menu-quick-link-content">
+                <ul class="footer-menu cursor-scale small">
+                  <li><a href="apply.html"> Stay with Us </a></li>
+                  <li><a href="cottages.html"> Cottages </a></li>
+                  <li><a href="faq.html"> Guest Notes </a></li>
+                  <li><a href="services.html"> Guest Services </a></li>
+                  <li><a href="services.html"> Guest Policies </a></li>
+                  <li><a href="faq.html"> FAQ's </a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="widget hotelhub-footer_widget">
+              <h4 class="widget-title">Cottages</h4>
+              <div class="footer-recent">
+              <a href="#"><img src="assets/images/main-home/recend06.png" alt=""></a>
+              <a href="#"><img src="assets/images/main-home/recend05.png" alt=""></a>
+              <a href="#"><img src="assets/images/main-home/recend04.png" alt=""></a>
+              <a href="#"><img src="assets/images/main-home/recend03.png" alt=""></a>
+              <a href="#"><img src="assets/images/main-home/recend02.png" alt=""></a>
+              <a href="#"><img src="assets/images/main-home/recend01.png" alt=""></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row footer-btm d-flex align-items-center">
+          <div class="col-lg-6 col-md-6">
+            <div class="hotelhub-company-desc">
+              <p>
+                © Mt Cottages | Furnished stays across the Mid-Ohio Valley.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6">
+            <div class="footer-bottom-menu text-right">
+              <ul>
+                <li><a href="#"><img src="assets/images/main-home/curency01.png" alt=""></a></li>
+                <li><a href="#"><img src="assets/images/main-home/curency02.png" alt=""></a></li>
+                <li><a href="#"><img src="assets/images/main-home/curency03.png" alt=""></a></li>
+                <li><a href="#"><img src="assets/images/main-home/curency04.png" alt=""></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--==================================================-->
+    <!-- End Mt Cottages Footer Section -->
+    <!--==================================================-->
+
+
+    <!--==================================================-->
+    <!-- Sidebar Cart Item -->
+    <!--==================================================-->
+    <div class="xs-sidebar-group info-group">
+      <div class="xs-overlay xs-bg-black"></div>
+      <div class="xs-sidebar-widget">
+        <div class="sidebar-widget-container">
+          <div class="widget-heading">
+            <a href="#" class="close-side-widget">
+              <i class="far fa-times-circle"></i>
+            </a>
+          </div>
+          <div class="sidebar-textwidget">
+            <!-- Sidebar Info Content -->
+            <div class="sidebar-info-contents">
+              <div class="content-inner2">
+                <div class="nav-logo">
+                  <a href="index.html"
+                    ><img src="assets/images/logo2.png" alt=""
+                  /></a>
+                </div>
+                <div class="row padding-two">
+                  <div class="col-lg-6 padding-0 pl-0 pr-0">
+                    <div class="content-thumb-box">
+                      <img src="assets/images/resource/blog6.jpg" alt="" />
+                    </div>
+                  </div>
+                  <div class="col-lg-6 padding-0 pl-0 pr-0">
+                    <div class="content-thumb-box">
+                      <img src="assets/images/resource/blog5.jpg" alt="" />
+                    </div>
+                  </div>
+                  <div class="col-lg-6 padding-0 pl-0 pr-0">
+                    <div class="content-thumb-box">
+                      <img src="assets/images/resource/blog4.jpg" alt="" />
+                    </div>
+                  </div>
+                  <div class="col-lg-6 padding-0 pl-0 pr-0">
+                    <div class="content-thumb-box">
+                      <img src="assets/images/resource/blog3.jpg" alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div class="contact-info">
+                  <h2>Stay with Us</h2>
+                  <ul class="list-style-one">
+                    <li>
+                      <span><i class="bi bi-envelope"></i></span>Chicago 12,
+                      Melborne City, USA
+                    </li>
+                    <li>
+                      <span><i class="bi bi-telephone-forward"></i></span
+                      >(+001) 123-456-7890
+                    </li>
+                    <li>
+                      <span><i class="bi bi-geo-alt"></i></span>Example.com
+                    </li>
+                    <li>
+                      <span><i class="bi bi-clock"></i></span>Week Days:
+                      09.00 to 18.00 Sunday: Closed
+                    </li>
+                  </ul>
+                </div>
+                <!-- Social Box -->
+                <ul class="social-box">
+                  <li class="facebook">
+                    <a href="#" class="fab fa-facebook-f"></a>
+                  </li>
+                  <li class="twitter">
+                    <a href="#" class="fab fa-instagram"></a>
+                  </li>
+                  <li class="linkedin">
+                    <a href="#" class="fab fa-twitter"></a>
+                  </li>
+                  <li class="instagram">
+                    <a href="#" class="fab fa-pinterest-p"></a>
+                  </li>
+                  <li class="youtube">
+                    <a href="#" class="fab fa-linkedin-in"></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--==================================================-->
+    <!-- Start Search Popup Section -->
+    <!--==================================================-->
+    <div class="search-popup">
+      <button class="close-search style-two"><span class="flaticon-multiply"><i class="far fa-times-circle"></i></span></button>
+      <button class="close-search"><i class="bi bi-arrow-up"></i></button>
+      <form method="post" action="#">
+        <div class="form-group">
+          <input type="search" name="search-field" value="" placeholder="Search Here" required="">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </div>
+      </form>
+    </div>
+    <!--==================================================-->
+    <!-- Start Search Popup Section -->
+    <!--==================================================-->
+
+
+    <!--==================================================-->
+    <!-- Start scrollup section Area -->
+    <!--==================================================-->
+    <div id="progress" class="progress hide">
+      <div id="progress-value"></div>
+    </div>
+    <!--==================================================-->
+    <!-- Start scrollup section Area -->
+    <!--==================================================-->
+
+
+
+
+
+
+    <script src="assets/js/aos.js"></script>
+
+    <script src="assets/js/vendor/jquery-3.6.2.min.js"></script>
+
+    <script src="assets/js/odometer.min.js"></script>
+
+    <script src="assets/js/gsap.min.js"></script>
+
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <script src="assets/js/imagesloaded.pkgd.min.js"></script>
+
+    <script src="venobox/venobox.js"></script>
+
+    <script src="venobox/venobox.min.js"></script>
+
+    <script src="assets/js/jquery.meanmenu.js"></script>
+
+    <script src="assets/js/jquery.scrollUp.js"></script>
+
+    <script src="assets/js/owl.carousel.min.js"></script>
+
+    <script src="assets/js/appear.js"></script>
+
+    <script src="assets/js/jquery.barfiller.js"></script>
+
+    <script src="assets/js/swiper.min.js"></script>
+
+    <script src="assets/js/theme.js"></script>
+
+    <script src="assets/js/my.js"></script>
+    <script src="assets/js/script.js"></script>
+      <script src="assets/js/mtcottages.js?v=2"></script>
   </body>
 </html>
