@@ -1,10 +1,47 @@
-<!DOCTYPE html>
+#!/usr/bin/env python3
+"""Generate 9 house detail pages using the HotelHub inner-page template."""
+from pathlib import Path
+
+ROOT = Path("/home/mrh/repos/worldenterprisegroup/mtcottages")
+
+HOUSES = {
+    "marietta-01": {"name": "Frederick House", "town": "Marietta, OH", "town_slug": "marietta", "bedrooms": 1,
+        "summary": "A thoughtfully furnished one-bedroom home in historic Marietta.",
+        "description": "Frederick House offers a quiet, comfortable place for longer stays in Marietta. This one-bedroom home includes a full kitchen, living space, and practical amenities for professionals and travelers."},
+    "parkersburg-01": {"name": "Broad Street Cottage", "town": "Parkersburg, WV", "town_slug": "parkersburg", "bedrooms": 2,
+        "summary": "A welcoming two-bedroom cottage on Broad Street, near Parkersburg's downtown.",
+        "description": "Broad Street Cottage is a furnished two-bedroom home in central Parkersburg with a comfortable living space, fully equipped kitchen, and quiet setting for travel assignments and extended stays."},
+    "parkersburg-02": {"name": "45th Street House", "town": "Parkersburg, WV", "town_slug": "parkersburg", "bedrooms": 3,
+        "summary": "A roomy three-bedroom house near Parkersburg's amenities, ideal for families.",
+        "description": "45th Street House provides generous space for longer-term furnished living in Parkersburg with three bedrooms, full kitchen, and living area for families and shared assignments."},
+    "parkersburg-03": {"name": "32nd Street Cottage", "town": "Parkersburg, WV", "town_slug": "parkersburg", "bedrooms": 2,
+        "summary": "A comfortable two-bedroom cottage in a quiet Parkersburg neighborhood.",
+        "description": "32nd Street Cottage is a furnished two-bedroom home with a full kitchen and comfortable living space, suited for travel nurses and professionals needing a dependable longer stay."},
+    "parkersburg-04": {"name": "Broad Street House", "town": "Parkersburg, WV", "town_slug": "parkersburg", "bedrooms": 3,
+        "summary": "A spacious three-bedroom house on Broad Street, close to dining and shops.",
+        "description": "Broad Street House combines central Parkersburg convenience with three-bedroom space for families or groups during a longer stay."},
+    "ravenswood-01": {"name": "Walnut Cottage", "town": "Ravenswood, WV", "town_slug": "ravenswood", "bedrooms": 2,
+        "summary": "A charming two-bedroom cottage in Ravenswood with small-town warmth.",
+        "description": "Walnut Cottage is a furnished two-bedroom home in quiet Ravenswood with full kitchen, living space, and welcoming amenities for professionals and families."},
+    "ravenswood-02": {"name": "Virginia Street House", "town": "Ravenswood, WV", "town_slug": "ravenswood", "bedrooms": 3,
+        "summary": "A well-appointed three-bedroom house on Virginia Street in Ravenswood.",
+        "description": "Virginia Street House provides three bedrooms and generous living space for extended furnished stays in Ravenswood for families and shared assignments."},
+    "ravenswood-03": {"name": "Henrietta Cottage", "town": "Ravenswood, WV", "town_slug": "ravenswood", "bedrooms": 2,
+        "summary": "A thoughtfully furnished two-bedroom cottage with a warm, residential feel.",
+        "description": "Henrietta Cottage is a two-bedroom furnished home with full kitchen and comfortable living in a peaceful setting for healthcare travelers and relocating professionals."},
+    "ravenswood-04": {"name": "Gallatin House", "town": "Ravenswood, WV", "town_slug": "ravenswood", "bedrooms": 1,
+        "summary": "A cozy one-bedroom house in Ravenswood for quiet, focused stays.",
+        "description": "Gallatin House is a furnished one-bedroom home for efficient, comfortable longer stays in Ravenswood with kitchen, living space, and practical amenities."},
+}
+
+def head_section(title, desc):
+    return f'''<!DOCTYPE html>
 <html lang="en-US">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Walnut Cottage | Mt Cottages</title>
-    <meta name="description" content="A charming two-bedroom cottage in Ravenswood with small-town warmth." />
+    <title>{title}</title>
+    <meta name="description" content="{desc}" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" sizes="56x56" href="assets/images/fav-icon/icon.png" />
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css" media="all" />
@@ -21,48 +58,9 @@
     <link rel="stylesheet" href="assets/css/swiper.min.css" />
     <script src="assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <link rel="stylesheet" href="assets/css/aos.css" />
-  </head>
-  <body>
-    <div class="loader-wrapper">
-      <div class="loader"></div>
-      <div class="loder-section left-section"></div>
-      <div class="loder-section right-section"></div>
-    </div>
+  </head>'''
 
-    <div class="topber_area">
-      <div class="container-fluid">
-        <div class="row topber_upper align-items-center d-flex">
-          <div class="col-lg-6">
-            <div class="topber-text">
-              <p><span>Stay</span>Furnished cottages across the Mid-Ohio Valley</p>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="topber-social-icon">
-              <h4 class="topber-follow">Follow Us</h4>
-              <a href="#">fb</a>
-              <a href="#">wt-x</a>
-              <a href="#">in</a>
-              <a href="#">ln</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="sticky-header" class="hotelhub_nav_manu two inner_page">
-      <div class="container-fluid">
-        <div class="row align-items-center">
-          <div class="col-lg-3">
-            <div class="logo cursor-scale small">
-              <a class="logo_img" href="index.html" title="Mt Cottages">
-                <img src="assets/images/logo-mtcottages.svg" alt="logo" />
-              </a>
-            </div>
-          </div>
-          <div class="col-lg-9">
-            <nav class="meedy_menu">
-              <ul class="nav_scroll">
+NAV_DESKTOP = '''<ul class="nav_scroll">
                 <li><a class="mdy-hover" href="cottages.html">Cottages <i class="fas fa-angle-down"></i></a>
                   <ul class="sub-menu">
                     <li><a href="cottages.html">Find Your Place</a></li>
@@ -107,7 +105,117 @@
                   </ul>
                 </li>
                 <li><a class="mdy-hover" href="contact.html">Contact</a></li>
+              </ul>'''
+
+NAV_MOBILE = '''<ul class="nav_scroll">
+            <li><a class="mdy-hover" href="cottages.html">Cottages</a>
+              <ul class="sub-menu">
+                <li><a href="cottages.html">Find Your Place</a></li>
+                <li><a href="cozy-places.html">Cozy Places</a></li>
+                <li><a href="cozy-places.html#studios-1-bedroom">Studios &amp; 1-Bedroom</a></li>
+                <li><a href="room-to-settle.html">Room to Settle In</a></li>
+                <li><a href="room-to-settle.html#2-4-bedroom-homes">2–4 Bedroom Homes</a></li>
+                <li><a href="available.html">Available Now</a></li>
               </ul>
+            </li>
+            <li><a class="mdy-hover" href="locations.html">Locations</a>
+              <ul class="sub-menu">
+                <li><a href="locations.html#marietta">Marietta, OH</a></li>
+                <li><a href="locations.html#parkersburg">Parkersburg, WV</a></li>
+                <li><a href="locations.html#ravenswood">Ravenswood, WV</a></li>
+              </ul>
+            </li>
+            <li><a class="mdy-hover" href="living.html">Living</a>
+              <ul class="sub-menu">
+                <li><a href="living.html#travel-nurses">Health Professionals</a></li>
+                <li><a href="living.html#relocation">Work &amp; Relocation</a></li>
+                <li><a href="living.html#insurance">Insurance Housing</a></li>
+                <li><a href="living.html#families">Family Stays</a></li>
+              </ul>
+            </li>
+            <li><a class="mdy-hover" href="services.html">Services</a>
+              <ul class="sub-menu">
+                <li><a href="services.html#furnished-homes">Fully Furnished Homes</a></li>
+                <li><a href="services.html#amenities">Home Amenities</a></li>
+                <li><a href="services.html#guest-services">Guest Services</a></li>
+                <li><a href="services.html#meal-preparation">Meal Preparation</a></li>
+                <li><a href="services.html#property-care">Property Care</a></li>
+              </ul>
+            </li>
+            <li><a class="mdy-hover" href="about.html">About</a></li>
+            <li><a class="mdy-hover" href="residents.html">Residents</a>
+              <ul class="sub-menu">
+                <li><a href="resident-portal.html">Resident Portal</a></li>
+                <li><a href="pay-rent.html">Pay Rent</a></li>
+                <li><a href="maintenance.html">Maintenance Requests</a></li>
+                <li><a href="emergency-maintenance.html">Emergency Maintenance</a></li>
+              </ul>
+            </li>
+            <li><a class="mdy-hover" href="contact.html">Contact</a></li>
+          </ul>'''
+
+JS_INCLUDES = '''    <script src="assets/js/aos.js"></script>
+    <script src="assets/js/vendor/jquery-3.6.2.min.js"></script>
+    <script src="assets/js/odometer.min.js"></script>
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="venobox/venobox.js"></script>
+    <script src="venobox/venobox.min.js"></script>
+    <script src="assets/js/jquery.meanmenu.js"></script>
+    <script src="assets/js/jquery.scrollUp.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/appear.js"></script>
+    <script src="assets/js/jquery.barfiller.js"></script>
+    <script src="assets/js/swiper.min.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/my.js"></script>'''
+
+def generate_page(house_id, house):
+    title = f"{house['name']} | Mt Cottages"
+    h = house
+    return f'''{head_section(title, h['summary'])}
+  <body>
+    <div class="loader-wrapper">
+      <div class="loader"></div>
+      <div class="loder-section left-section"></div>
+      <div class="loder-section right-section"></div>
+    </div>
+
+    <div class="topber_area">
+      <div class="container-fluid">
+        <div class="row topber_upper align-items-center d-flex">
+          <div class="col-lg-6">
+            <div class="topber-text">
+              <p><span>Stay</span>Furnished cottages across the Mid-Ohio Valley</p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="topber-social-icon">
+              <h4 class="topber-follow">Follow Us</h4>
+              <a href="#">fb</a>
+              <a href="#">wt-x</a>
+              <a href="#">in</a>
+              <a href="#">ln</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="sticky-header" class="hotelhub_nav_manu two inner_page">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col-lg-3">
+            <div class="logo cursor-scale small">
+              <a class="logo_img" href="index.html" title="Mt Cottages">
+                <img src="assets/images/logo-mtcottages.svg" alt="logo" />
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-9">
+            <nav class="meedy_menu">
+              {NAV_DESKTOP}
               <div class="hotelhub-right-side cursor-scale small">
                 <div class="search-box-btn search-box-outer">
                   <i class="fa-solid fa-magnifying-glass"></i>
@@ -135,52 +243,7 @@
     <div class="mobile-menu-area sticky d-sm-block d-md-block d-lg-none">
       <div class="mobile-menu">
         <nav class="meedy_menu">
-          <ul class="nav_scroll">
-            <li><a class="mdy-hover" href="cottages.html">Cottages</a>
-              <ul class="sub-menu">
-                <li><a href="cottages.html">Find Your Place</a></li>
-                <li><a href="cozy-places.html">Cozy Places</a></li>
-                <li><a href="cozy-places.html#studios-1-bedroom">Studios &amp; 1-Bedroom</a></li>
-                <li><a href="room-to-settle.html">Room to Settle In</a></li>
-                <li><a href="room-to-settle.html#2-4-bedroom-homes">2–4 Bedroom Homes</a></li>
-                <li><a href="available.html">Available Now</a></li>
-              </ul>
-            </li>
-            <li><a class="mdy-hover" href="locations.html">Locations</a>
-              <ul class="sub-menu">
-                <li><a href="locations.html#marietta">Marietta, OH</a></li>
-                <li><a href="locations.html#parkersburg">Parkersburg, WV</a></li>
-                <li><a href="locations.html#ravenswood">Ravenswood, WV</a></li>
-              </ul>
-            </li>
-                <li><a class="mdy-hover" href="living.html">Living</a>
-              <ul class="sub-menu">
-                <li><a href="living.html#travel-nurses">Health Professionals</a></li>
-                <li><a href="living.html#relocation">Work &amp; Relocation</a></li>
-                <li><a href="living.html#insurance">Insurance Housing</a></li>
-                <li><a href="living.html#families">Family Stays</a></li>
-              </ul>
-            </li>
-            <li><a class="mdy-hover" href="services.html">Services</a>
-              <ul class="sub-menu">
-                <li><a href="services.html#furnished-homes">Fully Furnished Homes</a></li>
-                <li><a href="services.html#amenities">Home Amenities</a></li>
-                <li><a href="services.html#guest-services">Guest Services</a></li>
-                <li><a href="services.html#meal-preparation">Meal Preparation</a></li>
-                <li><a href="services.html#property-care">Property Care</a></li>
-              </ul>
-            </li>
-            <li><a class="mdy-hover" href="about.html">About</a></li>
-            <li><a class="mdy-hover" href="residents.html">Residents</a>
-              <ul class="sub-menu">
-                <li><a href="resident-portal.html">Resident Portal</a></li>
-                <li><a href="pay-rent.html">Pay Rent</a></li>
-                <li><a href="maintenance.html">Maintenance Requests</a></li>
-                <li><a href="emergency-maintenance.html">Emergency Maintenance</a></li>
-              </ul>
-            </li>
-            <li><a class="mdy-hover" href="contact.html">Contact</a></li>
-          </ul>
+          {NAV_MOBILE}
         </nav>
       </div>
     </div>
@@ -190,10 +253,10 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="breatcome-content text-center">
-              <h1 class="cursor-scale">Walnut Cottage</h1>
+              <h1 class="cursor-scale">{h['name']}</h1>
               <ul class="breatcome-item">
                 <li><a class="cursor-scale small" href="index.html"><i class="fa-solid fa-house"></i> Home </a></li>
-                <li><i class="flaticon flaticon-right-arrow"></i> Walnut Cottage </li>
+                <li><i class="flaticon flaticon-right-arrow"></i> {h['name']} </li>
               </ul>
             </div>
           </div>
@@ -206,18 +269,18 @@
         <div class="row">
           <div class="col-lg-8">
             <div class="hotelhub-section-title">
-              <h4><i class="flaticon flaticon-right-arrow"></i>RAVENSWOOD, WV</h4>
-              <h2>Walnut Cottage</h2>
-              <p>Walnut Cottage is a furnished two-bedroom home in quiet Ravenswood with full kitchen, living space, and welcoming amenities for professionals and families.</p>
-              <p>Located in Ravenswood, WV, this 2-bedroom furnished home is ready for a longer stay. Ask us about current availability, lease terms, and what makes this place a fit for your schedule.</p>
+              <h4><i class="flaticon flaticon-right-arrow"></i>{h['town'].upper()}</h4>
+              <h2>{h['name']}</h2>
+              <p>{h['description']}</p>
+              <p>Located in {h['town']}, this {h['bedrooms']}-bedroom furnished home is ready for a longer stay. Ask us about current availability, lease terms, and what makes this place a fit for your schedule.</p>
             </div>
           </div>
           <div class="col-lg-4">
             <div class="hotelhub-category-box two">
               <h3 class="category-title">Quick Details</h3>
               <ul class="hotelhub-service">
-                <li><i class="fa-solid fa-bed"></i> 2 Bedrooms <span></span></li>
-                <li><i class="fa-solid fa-location-dot"></i> Ravenswood, WV <span></span></li>
+                <li><i class="fa-solid fa-bed"></i> {h['bedrooms']} Bedroom{'s' if h['bedrooms'] > 1 else ''} <span></span></li>
+                <li><i class="fa-solid fa-location-dot"></i> {h['town']} <span></span></li>
                 <li><i class="fa-solid fa-calendar"></i> 30+ Day Stays <span></span></li>
                 <li><i class="fa-solid fa-wifi"></i> Internet Ready <span></span></li>
                 <li><i class="fa-solid fa-phone"></i> <a href="contact.html">Contact Us</a> <span><i class="flaticon flaticon-right-arrow"></i></span></li>
@@ -233,14 +296,14 @@
       <div class="container">
         <div class="hotelhub-section-title text-center">
           <h4><i class="flaticon flaticon-right-arrow"></i>PHOTO GALLERY</h4>
-          <h1>See inside Walnut Cottage</h1>
+          <h1>See inside {h['name']}</h1>
         </div>
         <div class="row">
           <div class="col-lg-6">
             <div class="rooms-single-single-bx">
               <div class="choose-single-thumbs">
-                <a class="venobox" data-gall="house-gallery" href="assets/images/cottages/ravenswood-01/photo-01.avif">
-                  <img src="assets/images/cottages/ravenswood-01/photo-01.avif" alt="Living area">
+                <a class="venobox" data-gall="house-gallery" href="assets/images/cottages/{house_id}/photo-01.avif">
+                  <img src="assets/images/cottages/{house_id}/photo-01.avif" alt="Living area">
                 </a>
               </div>
             </div>
@@ -248,8 +311,8 @@
           <div class="col-lg-6">
             <div class="rooms-single-single-bx">
               <div class="choose-single-thumbs">
-                <a class="venobox" data-gall="house-gallery" href="assets/images/cottages/ravenswood-01/photo-02.avif">
-                  <img src="assets/images/cottages/ravenswood-01/photo-02.avif" alt="Kitchen">
+                <a class="venobox" data-gall="house-gallery" href="assets/images/cottages/{house_id}/photo-02.avif">
+                  <img src="assets/images/cottages/{house_id}/photo-02.avif" alt="Kitchen">
                 </a>
               </div>
             </div>
@@ -259,8 +322,8 @@
           <div class="col-lg-6">
             <div class="rooms-single-single-bx">
               <div class="choose-single-thumbs">
-                <a class="venobox" data-gall="house-gallery" href="assets/images/cottages/ravenswood-01/photo-03.avif">
-                  <img src="assets/images/cottages/ravenswood-01/photo-03.avif" alt="Bedroom">
+                <a class="venobox" data-gall="house-gallery" href="assets/images/cottages/{house_id}/photo-03.avif">
+                  <img src="assets/images/cottages/{house_id}/photo-03.avif" alt="Bedroom">
                 </a>
               </div>
             </div>
@@ -268,8 +331,8 @@
           <div class="col-lg-6">
             <div class="rooms-single-single-bx">
               <div class="choose-single-thumbs">
-                <a class="venobox" data-gall="house-gallery" href="assets/images/cottages/ravenswood-01/photo-04.avif">
-                  <img src="assets/images/cottages/ravenswood-01/photo-04.avif" alt="Bathroom">
+                <a class="venobox" data-gall="house-gallery" href="assets/images/cottages/{house_id}/photo-04.avif">
+                  <img src="assets/images/cottages/{house_id}/photo-04.avif" alt="Bathroom">
                 </a>
               </div>
             </div>
@@ -320,9 +383,9 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="hotelhub-section-title text-center">
-              <h4><i class="flaticon flaticon-right-arrow"></i>RAVENSWOOD, WV</h4>
-              <h1>Walnut Cottage</h1>
-              <p>A charming two-bedroom cottage in Ravenswood with small-town warmth.</p>
+              <h4><i class="flaticon flaticon-right-arrow"></i>{h['town'].upper()}</h4>
+              <h1>{h['name']}</h1>
+              <p>{h['summary']}</p>
               <div class="hotelhub-btn" style="margin-right: 10px;">
                 <a href="https://stay.mtcottages.com/">CHECK AVAILABILITY <i class="flaticon flaticon-right-arrow"></i></a>
               </div>
@@ -475,21 +538,16 @@
       <div id="progress-value"></div>
     </div>
 
-    <script src="assets/js/aos.js"></script>
-    <script src="assets/js/vendor/jquery-3.6.2.min.js"></script>
-    <script src="assets/js/odometer.min.js"></script>
-    <script src="assets/js/gsap.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/imagesloaded.pkgd.min.js"></script>
-    <script src="venobox/venobox.js"></script>
-    <script src="venobox/venobox.min.js"></script>
-    <script src="assets/js/jquery.meanmenu.js"></script>
-    <script src="assets/js/jquery.scrollUp.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/appear.js"></script>
-    <script src="assets/js/jquery.barfiller.js"></script>
-    <script src="assets/js/swiper.min.js"></script>
-    <script src="assets/js/theme.js"></script>
-    <script src="assets/js/my.js"></script>
+{JS_INCLUDES}
   </body>
-</html>
+</html>'''
+
+def main():
+    for house_id, house in HOUSES.items():
+        path = ROOT / f"{house_id}.html"
+        html = generate_page(house_id, house)
+        path.write_text(html, encoding="utf-8")
+        print(f"Generated {path.name} ({len(html.splitlines())} lines)")
+
+if __name__ == "__main__":
+    main()
