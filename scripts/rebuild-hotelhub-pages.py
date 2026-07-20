@@ -48,6 +48,8 @@ NAV_DESKTOP = """<ul class="nav_scroll">
                     <li><a href="locations.html#marietta">Marietta, OH</a></li>
                     <li><a href="locations.html#parkersburg">Parkersburg, WV</a></li>
                     <li><a href="locations.html#ravenswood">Ravenswood, WV</a></li>
+                    <li><a href="locations.html#grantsville">Grantsville, WV</a></li>
+                    <li><a href="locations.html#racine">Racine, OH</a></li>
                   </ul>
                 </li>
                 <li><a class="mdy-hover" href="living.html">Living <i class="fas fa-angle-down"></i></a>
@@ -96,6 +98,8 @@ NAV_MOBILE = """<ul class="nav_scroll">
                 <li><a href="locations.html#marietta">Marietta, OH</a></li>
                 <li><a href="locations.html#parkersburg">Parkersburg, WV</a></li>
                 <li><a href="locations.html#ravenswood">Ravenswood, WV</a></li>
+                <li><a href="locations.html#grantsville">Grantsville, WV</a></li>
+                <li><a href="locations.html#racine">Racine, OH</a></li>
               </ul>
             </li>
                 <li><a class="mdy-hover" href="living.html">Living</a>
@@ -260,7 +264,7 @@ META = {
     "cozy-places.html": ("Cozy Places | Mt Cottages", "Studios and one-bedroom furnished places for comfortable, focused living."),
     "room-to-settle.html": ("Room to Settle In | Mt Cottages", "Furnished two- to four-bedroom homes for families, shared schedules, and longer stays."),
     "available.html": ("Available Now | Mt Cottages", "Ask about furnished availability in Marietta, Parkersburg, and Ravenswood."),
-    "locations.html": ("Locations | Mt Cottages", "Furnished places in Marietta, Parkersburg, and Ravenswood, West Virginia and Ohio."),
+    "locations.html": ("Locations | Mt Cottages", "Furnished places in Marietta, Parkersburg, Ravenswood, Grantsville, and Racine in the Mid-Ohio Valley."),
     "living.html": ("Living | Mt Cottages", "Furnished living for travel nurses, relocation, insurance housing, families, and extended stays."),
     "services.html": ("Services | Mt Cottages", "Furnished homes, practical amenities, guest services, meal preparation, and property care."),
     "about.html": ("About | Mt Cottages", "Mt Cottages offers thoughtful furnished living across the Mid-Ohio Valley."),
@@ -273,6 +277,8 @@ META = {
     "maintenance.html": ("Maintenance Requests | Mt Cottages", "Submit a non-emergency maintenance request for your Mt Cottages home."),
     "emergency-maintenance.html": ("Emergency Maintenance | Mt Cottages", "Urgent maintenance guidance for current Mt Cottages residents."),
     "partnerships.html": ("Partnerships | Mt Cottages", "Research Residences and Curiosity Cottages furnished housing partnerships."),
+    "grantsville-wv.html": ("Grantsville, WV Furnished Cottage Rentals | Mt Cottages", "Find furnished cottage rentals in Grantsville, WV. Mid-term and long-term stays near Calhoun County and the Mid-Ohio Valley."),
+    "racine-oh.html": ("Racine, OH Furnished Cottage Rentals | Mt Cottages", "Find furnished cottage rentals in Racine, OH. Mid-term and long-term stays near the Ohio River in the Mid-Ohio Valley."),
 }
 
 
@@ -434,7 +440,7 @@ def application_form_markup() -> str:
           <div class="col-lg-6 col-md-6"><div class="form-box"><label for="move-in-date">Preferred move-in date</label><input id="move-in-date" type="date" name="moveInDate" required></div></div>
           <div class="col-lg-6 col-md-6"><div class="form-box"><select name="duration" required><option value="">How long might you stay?</option><option>30–90 days</option><option>3–12 months</option><option>1 year or longer</option><option>Flexible / not sure</option></select></div></div>
           <div class="col-lg-6 col-md-6"><div class="form-box"><input type="number" name="occupants" min="1" max="20" placeholder="Number of occupants" required></div></div>
-          <div class="col-lg-6 col-md-6"><div class="form-box"><select name="preferredLocation" required><option value="">Preferred community</option><option>Marietta, OH</option><option>Parkersburg, WV</option><option>Ravenswood, WV</option><option>Open to options</option></select></div></div>
+          <div class="col-lg-6 col-md-6"><div class="form-box"><select name="preferredLocation" required><option value="">Preferred community</option><option>Marietta, OH</option><option>Parkersburg, WV</option><option>Ravenswood, WV</option><option>Grantsville, WV</option><option>Racine, OH</option><option>Open to options</option></select></div></div>
           <div class="col-lg-6 col-md-6"><div class="form-box"><select name="homeSize"><option value="">What kind of place feels right?</option><option>Studio or one-bedroom</option><option>Two-bedroom</option><option>Three-bedroom</option><option>Four-bedroom</option><option>Open to options</option></select></div></div>
           <div class="col-lg-6 col-md-6"><div class="form-box"><select name="stayType" required><option value="">What brings you here?</option><option>Travel or healthcare assignment</option><option>Work or relocation</option><option>Insurance housing</option><option>Family or extended stay</option><option>Research or fellowship</option><option>Personal transition</option><option>Something else</option></select></div></div>
           <div class="col-lg-6 col-md-6"><div class="form-box"><select name="pets"><option value="">Pets</option><option>No pets</option><option>Yes — I’ll share details below</option><option>Prefer to discuss</option></select></div></div>
@@ -655,10 +661,12 @@ def apply_page_content(text: str, page: str) -> str:
                 ("rooms-thumb01.png", "Marietta, OH", "Historic river-town character and a ready home base", "apply.html"),
                 ("rooms-thumb02.png", "Parkersburg, WV", "Regional access for healthcare and work assignments", "apply.html"),
                 ("rooms-thumb03.png", "Ravenswood, WV", "Small-city warmth and breathing room", "apply.html"),
+                ("rooms-thumb04.png", "Grantsville, WV", "Small-town hospitality with access to river-town life", "apply.html"),
+                ("rooms-thumb05.png", "Racine, OH", "Quiet village living near the Ohio River", "apply.html"),
             ]
             label = "Locations"
             text = replace_marker(text, '<!-- Start hotelhub Counter Section -->', '<!-- End hotelhub Counter Section  -->', room_cards(cards))
-            for anchor, location in [("marietta", "Marietta, OH"), ("parkersburg", "Parkersburg, WV"), ("ravenswood", "Ravenswood, WV")]:
+            for anchor, location in [("marietta", "Marietta, OH"), ("parkersburg", "Parkersburg, WV"), ("ravenswood", "Ravenswood, WV"), ("grantsville", "Grantsville, WV"), ("racine", "Racine, OH")]:
                 text = text.replace(f'<h3><a href="apply.html">{location}</a></h3>', f'<h3 id="{anchor}"><a href="apply.html">{location}</a></h3>')
             text = replace_marker(text, '<!-- Start Mt Cottages Cottages Section -->', '<!-- End Mt Cottages Cottages Section -->', '')
         if page != "locations.html":
@@ -813,6 +821,6 @@ for path in sorted(ROOT.glob("*.html")):
     text = path.read_text(encoding="utf-8")
     text_before = text
     text = inject_hotelhub_header(text)
-    text = replace_header_cta(common_replacements(text))
+    text = replace_header_cta(common_replacements(text, path.name))
     if text != text_before:
         path.write_text(text, encoding="utf-8")
