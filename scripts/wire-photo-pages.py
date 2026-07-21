@@ -18,7 +18,8 @@ PAGES = {
     "parkersburg-03.html": "32nd Street Cottage",
     "ravenswood-01.html": "Walnut Cottage",
     "ravenswood-02.html": "Virginia Street House",
-    "ravenswood-04.html": "Gallatin House",
+    # ravenswood-04.html removed: off-market, no usable photos (electrical-panel
+    # shots only), same status as ravenswood-05 which never had a page.
 }
 
 # Expanded galleries for houses that already have photos but unused AVIFs

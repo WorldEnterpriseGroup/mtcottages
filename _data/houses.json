@@ -134,22 +134,5 @@
     "neighborhood": "Quiet residential Ravenswood with easy access to downtown and I-77. A short drive to Jackson General Hospital.",
     "proximity": ["5 min to downtown Ravenswood", "10 min to Jackson General Hospital", "5 min to I-77", "5 min to grocery and dining"],
     "floor_plan": "Single-level cottage with two bedrooms and one bath"
-  },
-  "ravenswood-04": {
-    "name": "Gallatin House",
-    "town": "Ravenswood, WV",
-    "town_slug": "ravenswood",
-    "bedrooms": 1,
-    "bathrooms": 1,
-    "price_monthly_12": 850,
-    "price_monthly_short": 1225,
-    "security_deposit": 850,
-    "application_fee": 75,
-    "summary": "A cozy one-bedroom house in Ravenswood for quiet, focused stays. Photos coming soon.",
-    "description": "Gallatin House is a furnished one-bedroom home for comfortable longer stays in Ravenswood. The home offers a kitchen, living space, and the practical amenities needed for an efficient stay in the Mid-Ohio Valley. Photography is in progress — contact us for details or a walkthrough.",
-    "unique_amenities": ["Full kitchen with cookware", "Washer and dryer in unit", "Off-street parking", "Internet and utilities included"],
-    "neighborhood": "Quiet Ravenswood location near downtown and the Ohio River.",
-    "proximity": ["5 min to downtown Ravenswood", "10 min to Jackson General Hospital", "5 min to I-77"],
-    "floor_plan": "Single-level house with one bedroom and one bath"
   }
 }

@@ -29556,7 +29556,7 @@
         "gallery": [],
         "available_not_selected": []
       },
-      "status": "published_photos_pending"
+      "status": "coming_soon"
     },
     "parkersburg-03": {
       "name": "32nd Street Cottage",
@@ -29897,7 +29897,7 @@
     "generated": "2026-07-21 13:09:17 UTC",
     "total_houses": 11,
     "houses_with_published_photos": 8,
-    "houses_coming_soon": 2,
+    "houses_coming_soon": 3,
     "total_published_avif_files": 62,
     "total_staging_originals": 1450,
     "houses_without_staging_photos": [

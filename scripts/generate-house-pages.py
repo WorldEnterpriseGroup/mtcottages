@@ -24,8 +24,10 @@ HOUSES = {
     "ravenswood-01": {"name": "Walnut Cottage", "town": "Ravenswood, WV", "town_slug": "ravenswood", "bedrooms": 1},
     "ravenswood-02": {"name": "Virginia Street House", "town": "Ravenswood, WV", "town_slug": "ravenswood", "bedrooms": 2},
     "ravenswood-03": {"name": "Henrietta Cottage", "town": "Ravenswood, WV", "town_slug": "ravenswood", "bedrooms": 2},
-    "ravenswood-04": {"name": "Gallatin House", "town": "Ravenswood, WV", "town_slug": "ravenswood", "bedrooms": 1},
 }
+# ravenswood-04 (Gallatin House) is off-market: no usable photos were ever
+# submitted (only electrical-panel shots), same status as ravenswood-05.
+# Intentionally absent from HOUSES/PHOTOS so a rerun does not resurrect its page.
 
 # Photo mapping per house: list of (filename, alt_text) for gallery, hero image filename for breatcome
 # An empty list means "Coming Soon" — show placeholder
@@ -85,10 +87,6 @@ PHOTOS = {
             ("ravenswood-03/photo-04.avif", "Bathroom"),
             ("ravenswood-03/photo-05.avif", "Dining area"),
         ]
-    },
-    "ravenswood-04": {
-        "hero": None,
-        "gallery": [],  # Coming Soon — CAD renders only
     },
 }
 

@@ -25,6 +25,10 @@ NIM_MODEL = "meta/llama-3.2-11b-vision-instruct"
 PUBLIC_LABEL_OVERRIDES = {
     "ravenswood-05": "Ravenswood — coming soon",
     "grantsville-01": "grantsville-01",
+    # Off-market: no usable photos were ever submitted for Gallatin House
+    # (only electrical-panel shots), same status as ravenswood-05. No longer
+    # in _data/houses.json since it has no published page.
+    "ravenswood-04": "Gallatin House",
 }
 
 

@@ -26,8 +26,7 @@ const publicPages = [
   "/parkersburg-04.html",
   "/ravenswood-01.html",
   "/ravenswood-02.html",
-  "/ravenswood-03.html",
-  "/ravenswood-04.html"
+  "/ravenswood-03.html"
 ];
 
 test("the homepage carries the HotelHub theme and approved navigation", async ({ page }) => {
