@@ -1,0 +1,24 @@
+# mtcottages — gh-pages mirror to GitHub
+#
+# gh-pages is the published branch: GitHub Pages (via GitHub Actions,
+# .github/workflows/ci-cd.yml) serves it directly. This pipeline's only
+# job is to push gh-pages to the GitHub mirror so that workflow can run.
+#
+# The full launch-sequence pipeline (lint/preflight + GitLab Pages deploy)
+# lives on the demo branch instead — gh-pages only needs the mirror job,
+# so we include just that job file rather than the whole static-site
+# pipeline.
+
+include:
+  - project: 'FocusApiary/ci-templates'
+    ref: main
+    file: '/jobs/github-mirror.yml'
+
+variables:
+  GITHUB_REPO: "WorldEnterpriseGroup/mtcottages"
+
+stages:
+  - mirror
+
+mirror:
+  extends: .mirror:github
