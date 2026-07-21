@@ -39,7 +39,7 @@
     "card": {
       "file": "photo-10.jpg"
     },
-    "name": "125 Frederick St",
+    "name": "Frederick House",
     "town": "Marietta, OH"
   },
   "parkersburg-01": {
@@ -84,7 +84,7 @@
       "file": "photo-01.jpg",
       "published_file": "photo-01.avif"
     },
-    "name": "3113 Broad St",
+    "name": "Broad Street Cottage",
     "town": "Parkersburg, WV"
   },
   "parkersburg-02": {
@@ -134,7 +134,7 @@
       "file": "photo-03.jpeg",
       "published_file": "photo-03.avif"
     },
-    "name": "2405 45th St",
+    "name": "45th Street House",
     "town": "Parkersburg, WV"
   },
   "parkersburg-03": {
@@ -189,7 +189,7 @@
       "file": "photo-01.jpg",
       "published_file": "photo-01.avif"
     },
-    "name": "900 32nd St",
+    "name": "32nd Street Cottage",
     "town": "Parkersburg, WV"
   },
   "parkersburg-04": {
@@ -239,7 +239,7 @@
       "file": "photo-02.jpg",
       "published_file": "photo-02.avif"
     },
-    "name": "2712 Broad St",
+    "name": "Broad Street House",
     "town": "Parkersburg, WV"
   },
   "ravenswood-01": {
@@ -294,7 +294,7 @@
       "file": "photo-01.jpg",
       "published_file": "photo-01.avif"
     },
-    "name": "313 Walnut",
+    "name": "Walnut Cottage",
     "town": "Ravenswood, WV"
   },
   "ravenswood-02": {
@@ -349,7 +349,7 @@
       "file": "photo-219.jpg",
       "published_file": "photo-219.avif"
     },
-    "name": "107 Virginia St",
+    "name": "Virginia Street House",
     "town": "Ravenswood, WV"
   },
   "ravenswood-03": {
@@ -395,7 +395,7 @@
     "card": {
       "file": "photo-36.jpg"
     },
-    "name": "200 Henrietta",
+    "name": "Henrietta Cottage",
     "town": "Ravenswood, WV"
   },
   "ravenswood-04": {
@@ -409,21 +409,21 @@
       "file": "photo-01.jpg",
       "published_file": "photo-01.avif"
     },
-    "name": "200 Gallatin",
+    "name": "Gallatin House",
     "town": "Ravenswood, WV"
   },
   "ravenswood-05": {
     "hero": null,
     "gallery": [],
     "card": null,
-    "name": "216 Sand St",
+    "name": "Ravenswood \u2014 coming soon",
     "town": "Ravenswood, WV"
   },
   "grantsville-01": {
     "hero": null,
     "gallery": [],
     "card": null,
-    "name": "255 Court St",
+    "name": "grantsville-01",
     "town": "Grantsville, WV"
   }
 }

@@ -4,7 +4,7 @@
   "generator": "scripts/analyze_photos_nim.py",
   "staging": {
     "marietta-01": {
-      "name": "125 Frederick St",
+      "name": "Frederick House",
       "town": "Marietta, OH",
       "photos": {
         "photo-01.jpg": {
@@ -1018,7 +1018,7 @@
       }
     },
     "parkersburg-01": {
-      "name": "3113 Broad St",
+      "name": "Broad Street Cottage",
       "town": "Parkersburg, WV",
       "photos": {
         "photo-01.jpg": {
@@ -2015,7 +2015,7 @@
       }
     },
     "parkersburg-02": {
-      "name": "2405 45th St",
+      "name": "45th Street House",
       "town": "Parkersburg, WV",
       "photos": {
         "photo-01.jpeg": {
@@ -3355,7 +3355,7 @@
       }
     },
     "ravenswood-03": {
-      "name": "200 Henrietta",
+      "name": "Henrietta Cottage",
       "town": "Ravenswood, WV",
       "photos": {
         "photo-01.png": {
@@ -4348,7 +4348,7 @@
       }
     },
     "parkersburg-04": {
-      "name": "2712 Broad St",
+      "name": "Broad Street House",
       "town": "Parkersburg, WV",
       "photos": {
         "photo-01.jpg": {
@@ -5335,7 +5335,7 @@
       }
     },
     "ravenswood-01": {
-      "name": "313 Walnut",
+      "name": "Walnut Cottage",
       "town": "Ravenswood, WV",
       "photos": {
         "photo-01.jpg": {
@@ -13781,7 +13781,7 @@
       }
     },
     "ravenswood-02": {
-      "name": "107 Virginia St",
+      "name": "Virginia Street House",
       "town": "Ravenswood, WV",
       "photos": {
         "photo-01.jpg": {
@@ -18319,7 +18319,7 @@
       }
     },
     "ravenswood-04": {
-      "name": "200 Gallatin",
+      "name": "Gallatin House",
       "town": "Ravenswood, WV",
       "photos": {
         "photo-01.jpg": {
@@ -18365,7 +18365,7 @@
       }
     },
     "parkersburg-03": {
-      "name": "900 32nd St",
+      "name": "32nd Street Cottage",
       "town": "Parkersburg, WV",
       "photos": {
         "photo-03.jpg": {
@@ -28694,7 +28694,7 @@
   },
   "houses": {
     "marietta-01": {
-      "name": "125 Frederick St",
+      "name": "Frederick House",
       "town": "Marietta, OH",
       "photos": {
         "gallery-01.avif": {
@@ -28823,7 +28823,7 @@
       "status": "published"
     },
     "parkersburg-01": {
-      "name": "3113 Broad St",
+      "name": "Broad Street Cottage",
       "town": "Parkersburg, WV",
       "photos": {
         "photo-01.avif": {
@@ -28985,7 +28985,7 @@
       "status": "published"
     },
     "parkersburg-02": {
-      "name": "2405 45th St",
+      "name": "45th Street House",
       "town": "Parkersburg, WV",
       "photos": {
         "photo-01.avif": {
@@ -29134,7 +29134,7 @@
       "status": "published"
     },
     "ravenswood-01": {
-      "name": "313 Walnut",
+      "name": "Walnut Cottage",
       "town": "Ravenswood, WV",
       "photos": {
         "photo-01.avif": {
@@ -29290,7 +29290,7 @@
       "status": "coming_soon"
     },
     "ravenswood-02": {
-      "name": "107 Virginia St",
+      "name": "Virginia Street House",
       "town": "Ravenswood, WV",
       "photos": {
         "photo-107.avif": {
@@ -29446,7 +29446,7 @@
       "status": "coming_soon"
     },
     "ravenswood-03": {
-      "name": "200 Henrietta",
+      "name": "Henrietta Cottage",
       "town": "Ravenswood, WV",
       "photos": {
         "photo-01.avif": {
@@ -29608,7 +29608,7 @@
       "status": "published"
     },
     "ravenswood-04": {
-      "name": "200 Gallatin",
+      "name": "Gallatin House",
       "town": "Ravenswood, WV",
       "photos": {
         "photo-01.avif": {
@@ -29636,7 +29636,7 @@
       "status": "coming_soon"
     },
     "parkersburg-03": {
-      "name": "900 32nd St",
+      "name": "32nd Street Cottage",
       "town": "Parkersburg, WV",
       "photos": {
         "photo-01.avif": {
@@ -29792,7 +29792,7 @@
       "status": "coming_soon"
     },
     "parkersburg-04": {
-      "name": "2712 Broad St",
+      "name": "Broad Street House",
       "town": "Parkersburg, WV",
       "photos": {
         "photo-01.avif": {
@@ -29960,7 +29960,7 @@
       "status": "published"
     },
     "ravenswood-05": {
-      "name": "216 Sand St",
+      "name": "Ravenswood \u2014 coming soon",
       "town": "Ravenswood, WV",
       "photos": {},
       "selection": {
@@ -29971,7 +29971,7 @@
       "status": "coming_soon"
     },
     "grantsville-01": {
-      "name": "255 Court St",
+      "name": "grantsville-01",
       "town": "Grantsville, WV",
       "photos": {},
       "selection": {
@@ -29995,7 +29995,7 @@
     ],
     "import_blocked_focushive": [],
     "no_sources": [
-      "ravenswood-05 (216 Sand St)"
+      "ravenswood-05 (Ravenswood \u2014 coming soon)"
     ],
     "nim_analysis": {
       "total_staging_photos": 1450,

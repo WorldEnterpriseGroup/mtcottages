@@ -58,6 +58,27 @@ jobs:
           print(f"Validated {len(pages)} HotelHub HTML pages")
           PY
 
+      - name: Guard against committed street addresses
+        run: |
+          # Broader backstop for the *.html-only check above: scan every
+          # tracked file for the banned addresses and the general
+          # house-number+street pattern, so a leak into _data/*.json,
+          # scripts/, or any other file fails the build too. Docs/tests
+          # that describe or assert the rule (and legitimately name the
+          # banned strings) are excluded.
+          if git ls-files \
+              | grep -vE '^(\.github/|\.claude/|e2e/|CLAUDE\.md$|agents\.md$|claude\.md$)' \
+              | xargs -r grep -InE '255 Court|216 Sand|287 Ridgeway|[0-9]+ (Court|Sand|Broad|45th|32nd|Frederick|Walnut|Virginia|Henrietta|Gallatin|Ridgeway)'; then
+            echo "ERROR: banned street address pattern found in a tracked file (see matches above)"
+            exit 1
+          fi
+          echo "No banned street address patterns found in tracked content/data files."
+
+      - name: Check application form parity
+        run: |
+          python3 -m py_compile scripts/check-form-parity.py
+          python3 scripts/check-form-parity.py
+
   e2e-local:
     name: Local browser E2E
     needs: static-checks

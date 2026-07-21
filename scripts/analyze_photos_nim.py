@@ -12,10 +12,53 @@ REPO_DIR = Path(__file__).parent.parent
 STAGING_DIR = REPO_DIR / "sharepoint-download-staging"
 PUBLISHED_DIR = REPO_DIR / "assets/images/cottages"
 HOUSE_MAP_FILE = REPO_DIR / "sharepoint-house-map.json"
+HOUSES_FILE = REPO_DIR / "_data/houses.json"
 INDEX_FILE = REPO_DIR / "_data/photo-index.json"
 
 NIM_ENDPOINT = "https://integrate.api.nvidia.com/v1/chat/completions"
 NIM_MODEL = "meta/llama-3.2-11b-vision-instruct"
+
+# Public-safe labels for houses that are internal-only or not yet listed on
+# the public site. Never a street address -- see CLAUDE.md's "no street
+# addresses in public HTML, CSS, JS, or image paths" rule. Real addresses
+# live only in the gitignored HOUSE_MAP_FILE.
+PUBLIC_LABEL_OVERRIDES = {
+    "ravenswood-05": "Ravenswood — coming soon",
+    "grantsville-01": "grantsville-01",
+}
+
+
+def load_house_map():
+    """Load the private SharePoint house map (real addresses + source
+    folders). Gitignored; must never be committed. Fails loudly with a clear
+    message instead of a bare traceback if it's missing locally."""
+    if not HOUSE_MAP_FILE.exists():
+        print(f"ERROR: {HOUSE_MAP_FILE} not found.")
+        print("This gitignored file holds the private house-id -> address/")
+        print("source mapping and must exist locally to run this script.")
+        sys.exit(1)
+    return json.loads(HOUSE_MAP_FILE.read_text())
+
+
+def _load_public_house_names():
+    try:
+        return json.loads(HOUSES_FILE.read_text())
+    except FileNotFoundError:
+        return {}
+
+
+PUBLIC_HOUSE_NAMES = _load_public_house_names()
+
+
+def public_display_name(house_id):
+    """Public-safe display name for a house ID. Use this for every field
+    that lands in a tracked file (_data/photo-index.json, etc.) -- never
+    the private street address from HOUSE_MAP_FILE."""
+    if house_id in PUBLIC_HOUSE_NAMES:
+        return PUBLIC_HOUSE_NAMES[house_id]["name"]
+    if house_id in PUBLIC_LABEL_OVERRIDES:
+        return PUBLIC_LABEL_OVERRIDES[house_id]
+    return house_id.replace("-", " ").title()
 
 # Valid enum values, called out separately from the example JSON below so the
 # model has somewhere to read them without them sitting inside copyable fields.
@@ -195,7 +238,7 @@ def process_staging_photos(api_key, index_data, model=NIM_MODEL, retry_failed=Fa
     """Process all photos in staging that haven't been analyzed yet
     (or, with retry_failed, that were previously analyzed but returned
     placeholder/echoed junk instead of real values)."""
-    houses = json.loads(HOUSE_MAP_FILE.read_text())
+    houses = load_house_map()
     house_map = {h["id"]: h for h in houses}
 
     # Track what's been analyzed
@@ -225,7 +268,7 @@ def process_staging_photos(api_key, index_data, model=NIM_MODEL, retry_failed=Fa
             index_data["staging"] = {}
         if house_id not in index_data["staging"]:
             index_data["staging"][house_id] = {
-                "name": house_info.get("address", house_id),
+                "name": public_display_name(house_id),
                 "town": house_info.get("town", ""),
                 "photos": {}
             }
@@ -430,13 +473,13 @@ def process_published_photos(index_data):
 
 def scan_remaining_houses(index_data):
     """Add entries for houses that have no photos"""
-    houses = json.loads(HOUSE_MAP_FILE.read_text())
+    houses = load_house_map()
 
     for house in houses:
         house_id = house["id"]
         if house_id not in index_data.get("houses", {}):
             index_data.setdefault("houses", {})[house_id] = {
-                "name": house.get("address", house_id),
+                "name": public_display_name(house_id),
                 "town": house.get("town", ""),
                 "photos": {},
                 "status": "coming_soon"
@@ -466,7 +509,7 @@ def compute_coverage(index_data):
 
     # Count importer-blocked houses
     blocked = []
-    house_map = json.loads(HOUSE_MAP_FILE.read_text())
+    house_map = load_house_map()
     for h in house_map:
         if h["id"] not in staging:
             blocked.append(h["id"])
@@ -477,17 +520,14 @@ def compute_coverage(index_data):
     # import unblocked a house. Derive them instead: a house is still
     # "focushive-tenant blocked" only if it's in `blocked` above (no staging
     # photos on disk yet); it has "no sources" if the house map lists none.
-    FOCUSHIVE_CANDIDATES = {
-        "ravenswood-01": "313 Walnut",
-        "ravenswood-02": "107 Virginia St",
-        "parkersburg-03": "900 32nd St",
-        "ravenswood-04": "200 Gallatin",
-    }
+    # Labels use public_display_name(), never the private address, since
+    # this summary lands in the tracked _data/photo-index.json.
+    FOCUSHIVE_CANDIDATES = ["ravenswood-01", "ravenswood-02", "parkersburg-03", "ravenswood-04"]
     import_blocked_focushive = [
-        f"{hid} ({addr})" for hid, addr in FOCUSHIVE_CANDIDATES.items() if hid in blocked
+        f"{hid} ({public_display_name(hid)})" for hid in FOCUSHIVE_CANDIDATES if hid in blocked
     ]
     no_sources = [
-        f"{h['id']} ({h.get('address', '?')})" for h in house_map if not h.get("sources")
+        f"{h['id']} ({public_display_name(h['id'])})" for h in house_map if not h.get("sources")
     ]
 
     # NIM analysis quality summary: how many staging photos have a usable
