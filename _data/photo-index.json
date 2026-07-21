@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated": "2026-07-21 12:05:15 UTC",
+  "generated": "2026-07-21 13:09:17 UTC",
   "generator": "scripts/analyze_photos_nim.py",
   "staging": {
     "marietta-01": {
@@ -29136,7 +29136,152 @@
     "ravenswood-01": {
       "name": "313 Walnut",
       "town": "Ravenswood, WV",
-      "photos": {},
+      "photos": {
+        "photo-01.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/photo-01.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1440,
+          "filesize_bytes": 287494,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-01/photo-01.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A well-maintained house with a green lawn and a sidewalk.",
+          "quality": "good",
+          "page_label": "exterior",
+          "best_for": "gallery",
+          "features": "house, lawn, sidewalk, trees, blue sky"
+        },
+        "photo-03.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/photo-03.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1440,
+          "filesize_bytes": 265052,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-01/photo-03.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A backyard with a tree, a house, a shed, a fence, grass, and bushes.",
+          "quality": "good",
+          "page_label": "exterior",
+          "best_for": "gallery",
+          "features": "tree, house, shed, fence, grass, bushes"
+        },
+        "photo-08.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/photo-08.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1440,
+          "filesize_bytes": 241545,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-01/photo-08.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A white house with two windows and a tree in front.",
+          "quality": "good",
+          "page_label": "exterior",
+          "best_for": "gallery",
+          "features": "white siding, two windows, tree"
+        },
+        "photo-108.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/photo-108.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 2560,
+          "filesize_bytes": 138617,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-01/photo-108.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A bathroom with a mirror, a toothbrush holder, and a glass shelf.",
+          "quality": "good",
+          "page_label": "bathroom",
+          "best_for": "gallery",
+          "features": "mirror, toothbrush holder, glass shelf, window"
+        },
+        "photo-133.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/photo-133.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 2560,
+          "filesize_bytes": 126609,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-01/photo-133.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A wooden dresser with a flat-screen TV on top, in a corner of a room with an orange curtain.",
+          "quality": "good",
+          "page_label": "other",
+          "best_for": "gallery",
+          "features": "wooden dresser, flat-screen TV, orange curtains"
+        },
+        "photo-292.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/photo-292.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 2560,
+          "filesize_bytes": 94901,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-01/photo-292.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A small kitchen with a white stove and a white sink.",
+          "quality": "good",
+          "page_label": "kitchen",
+          "best_for": "thumbnail",
+          "features": "white stove, white sink, white cabinets, white ceiling"
+        },
+        "photo-297.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/photo-297.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1440,
+          "filesize_bytes": 73383,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-01/photo-297.png",
+          "tags": [
+            "published"
+          ],
+          "scene": "A bright bedroom with a queen bed and a large window.",
+          "quality": "good",
+          "page_label": "bedroom",
+          "best_for": "gallery",
+          "features": "queen bed, nightstand, hardwood floor, large window"
+        },
+        "photo-371.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/photo-371.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1080,
+          "filesize_bytes": 86987,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-01/photo-371.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A hallway with wood paneling and a railing.",
+          "quality": "good",
+          "page_label": "hallway",
+          "best_for": "gallery",
+          "features": "wood paneling, hardwood floor, railing, door"
+        },
+        "photo-374.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/photo-374.avif",
+          "format": "avif",
+          "width": 1448,
+          "height": 2573,
+          "filesize_bytes": 137920,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-01/photo-374.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A cozy living room with a fireplace and a mantle.",
+          "quality": "good",
+          "page_label": "living room",
+          "best_for": "gallery",
+          "features": "fireplace, mantle, hardwood floor, white wall"
+        }
+      },
       "selection": {
         "hero": null,
         "gallery": [],
@@ -29147,7 +29292,152 @@
     "ravenswood-02": {
       "name": "107 Virginia St",
       "town": "Ravenswood, WV",
-      "photos": {},
+      "photos": {
+        "photo-107.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/photo-107.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1440,
+          "filesize_bytes": 64495,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-02/photo-107.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A well-lit kitchen with white cabinets and a red countertop.",
+          "quality": "good",
+          "page_label": "kitchen",
+          "best_for": "gallery",
+          "features": "white cabinets, red countertop, stainless steel appliances, window"
+        },
+        "photo-117.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/photo-117.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1440,
+          "filesize_bytes": 57251,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-02/photo-117.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A cozy living room with a white brick fireplace and built-in shelving.",
+          "quality": "good",
+          "page_label": "living room",
+          "best_for": "gallery",
+          "features": "white brick fireplace, built-in shelving, hardwood floor"
+        },
+        "photo-15.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/photo-15.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1440,
+          "filesize_bytes": 118365,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-02/photo-15.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A dining room with a wooden table and a white chair.",
+          "quality": "adequate",
+          "page_label": "dining",
+          "best_for": "gallery",
+          "features": "wooden table, white chair, wallpaper"
+        },
+        "photo-158.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/photo-158.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1440,
+          "filesize_bytes": 52462,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-02/photo-158.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A well-lit hallway with a wooden floor and white trim.",
+          "quality": "good",
+          "page_label": "hallway",
+          "best_for": "gallery",
+          "features": "wooden floor, white door, white trim, white molding"
+        },
+        "photo-183.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/photo-183.avif",
+          "format": "avif",
+          "width": 1836,
+          "height": 2420,
+          "filesize_bytes": 73886,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-02/photo-183.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A simple bathroom with a tub, toilet, sink, mirror, and shower.",
+          "quality": "good",
+          "page_label": "bathroom",
+          "best_for": "gallery",
+          "features": "tub, toilet, sink, mirror, shower"
+        },
+        "photo-188.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/photo-188.avif",
+          "format": "avif",
+          "width": 1803,
+          "height": 2420,
+          "filesize_bytes": 71419,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-02/photo-188.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A bright bedroom with a queen bed and a large window.",
+          "quality": "good",
+          "page_label": "bedroom",
+          "best_for": "gallery",
+          "features": "queen bed, nightstand, hardwood floor, large window"
+        },
+        "photo-219.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/photo-219.avif",
+          "format": "avif",
+          "width": 622,
+          "height": 350,
+          "filesize_bytes": 5040,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-02/photo-219.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A well-lit exterior wall with a large window.",
+          "quality": "excellent",
+          "page_label": "exterior",
+          "best_for": "hero",
+          "features": "brick wall, large window, natural light"
+        },
+        "photo-44.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/photo-44.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1440,
+          "filesize_bytes": 80260,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-02/photo-44.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A room with a massage chair and a large window.",
+          "quality": "good",
+          "page_label": "other",
+          "best_for": "gallery",
+          "features": "massage chair, large window, house in the background"
+        },
+        "photo-48.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/photo-48.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1440,
+          "filesize_bytes": 76496,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-02/photo-48.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A well-maintained exterior with a wooden floor and a tree.",
+          "quality": "good",
+          "page_label": "exterior",
+          "best_for": "thumbnail",
+          "features": "wooden floor, grass, tree, house"
+        }
+      },
       "selection": {
         "hero": null,
         "gallery": [],
@@ -29320,7 +29610,24 @@
     "ravenswood-04": {
       "name": "200 Gallatin",
       "town": "Ravenswood, WV",
-      "photos": {},
+      "photos": {
+        "photo-01.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-04/photo-01.avif",
+          "format": "avif",
+          "width": 600,
+          "height": 800,
+          "filesize_bytes": 16888,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-04/photo-01.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "An old electrical panel with a warning label.",
+          "quality": "poor",
+          "page_label": "detail",
+          "best_for": "skip",
+          "features": "electrical panel, warning label, white siding"
+        }
+      },
       "selection": {
         "hero": null,
         "gallery": [],
@@ -29331,7 +29638,152 @@
     "parkersburg-03": {
       "name": "900 32nd St",
       "town": "Parkersburg, WV",
-      "photos": {},
+      "photos": {
+        "photo-01.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-03/photo-01.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1440,
+          "filesize_bytes": 450879,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-03/photo-01.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A large tree in front of a house with a fence and a driveway.",
+          "quality": "good",
+          "page_label": "exterior",
+          "best_for": "gallery",
+          "features": "large tree, house, fence, driveway"
+        },
+        "photo-04.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-03/photo-04.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 2560,
+          "filesize_bytes": 637433,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-03/photo-04.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A well-maintained lawn with a sidewalk and a house in the background.",
+          "quality": "good",
+          "page_label": "exterior",
+          "best_for": "gallery",
+          "features": "grass, sidewalk, street, house"
+        },
+        "photo-07.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-03/photo-07.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 2560,
+          "filesize_bytes": 650144,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-03/photo-07.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A two-story house with yellow siding and white trim, featuring a front porch and a large tree in the front yard.",
+          "quality": "good",
+          "page_label": "exterior",
+          "best_for": "gallery",
+          "features": "two-story house, yellow siding, white trim, front porch, large tree, street, cars"
+        },
+        "photo-10.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-03/photo-10.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 2560,
+          "filesize_bytes": 606138,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-03/photo-10.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A suburban street with a tree, power lines, houses, cars, and a street.",
+          "quality": "good",
+          "page_label": "exterior",
+          "best_for": "gallery",
+          "features": "tree, power lines, houses, cars, street"
+        },
+        "photo-135.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-03/photo-135.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1440,
+          "filesize_bytes": 16858,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-03/photo-135.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A white countertop with a black trash can.",
+          "quality": "good",
+          "page_label": "other",
+          "best_for": "thumbnail",
+          "features": "white cabinets, black trash can, white countertop"
+        },
+        "photo-332.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-03/photo-332.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 2560,
+          "filesize_bytes": 44977,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-03/photo-332.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A vintage bathroom with a purple wall and a light fixture.",
+          "quality": "good",
+          "page_label": "bathroom",
+          "best_for": "gallery",
+          "features": "vintage mirror, light fixture, purple wall"
+        },
+        "photo-435.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-03/photo-435.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1080,
+          "filesize_bytes": 34793,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-03/photo-435.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A well-lit kitchen with a fire extinguisher and white tile backsplash.",
+          "quality": "good",
+          "page_label": "kitchen",
+          "best_for": "gallery",
+          "features": "fire extinguisher, white tile backsplash, wooden cabinets, sink"
+        },
+        "photo-448.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-03/photo-448.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1080,
+          "filesize_bytes": 23835,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-03/photo-448.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A well-lit kitchen with white tile backsplash and stainless steel sink.",
+          "quality": "good",
+          "page_label": "kitchen",
+          "best_for": "gallery",
+          "features": "white tile backsplash, stainless steel sink, wooden cabinets"
+        },
+        "photo-64.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-03/photo-64.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1440,
+          "filesize_bytes": 38946,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-03/photo-64.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A well-lit hallway with white walls, white blinds, and a white door.",
+          "quality": "good",
+          "page_label": "hallway",
+          "best_for": "thumbnail",
+          "features": "white walls, white blinds, white trim, white door"
+        }
+      },
       "selection": {
         "hero": null,
         "gallery": [],
@@ -29531,11 +29983,11 @@
     }
   },
   "coverage": {
-    "generated": "2026-07-21 12:05:15 UTC",
+    "generated": "2026-07-21 13:09:17 UTC",
     "total_houses": 11,
-    "houses_with_published_photos": 5,
-    "houses_coming_soon": 6,
-    "total_published_avif_files": 38,
+    "houses_with_published_photos": 9,
+    "houses_coming_soon": 2,
+    "total_published_avif_files": 66,
     "total_staging_originals": 1450,
     "houses_without_staging_photos": [
       "ravenswood-05",

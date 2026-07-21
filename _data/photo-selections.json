@@ -1,0 +1,440 @@
+{
+  "marietta-01": {
+    "hero": {
+      "file": "photo-10.jpg",
+      "label": "A serene outdoor space with a pond, trees, and a gazebo."
+    },
+    "gallery": [
+      {
+        "file": "photo-01.jpg",
+        "label": "A cozy living room with a green door and wooden floor."
+      },
+      {
+        "file": "photo-15.jpg",
+        "label": "A well-lit kitchen with a white stove, white dishwasher, and red countertop, featuring a window and cabinets.",
+        "published_file": "gallery-02.avif"
+      },
+      {
+        "file": "photo-11.jpg",
+        "label": "A cozy bedroom with a wooden floor, wooden ceiling, and wooden walls, featuring a bed, lamp, table, chair, and window."
+      },
+      {
+        "file": "photo-04.jpg",
+        "label": "A bathroom with a white sink and a hardwood floor."
+      },
+      {
+        "file": "photo-31.jpg",
+        "label": "A well-lit dining room with a wooden table and floral placemats, featuring a white ceiling fan and a white door."
+      },
+      {
+        "file": "photo-16.jpg",
+        "label": "A serene outdoor space with a pond and lush greenery."
+      },
+      {
+        "file": "photo-14.jpg",
+        "label": "A red tent with a lamp in front of it, surrounded by trees and grass, with sunlight and shadows on the ground."
+      },
+      {
+        "file": "photo-46.jpg",
+        "label": "A spacious living room with a large window and hardwood floors."
+      }
+    ],
+    "card": {
+      "file": "photo-10.jpg"
+    },
+    "name": "125 Frederick St",
+    "town": "Marietta, OH"
+  },
+  "parkersburg-01": {
+    "hero": {
+      "file": "photo-01.jpg",
+      "label": "A cozy bedroom with a wooden bed and red and black comforter, situated on a red carpet.",
+      "published_file": "photo-01.avif"
+    },
+    "gallery": [
+      {
+        "file": "photo-02.jpg",
+        "label": "A cozy living room with a comfortable couch and a large window.",
+        "published_file": "photo-02.avif"
+      },
+      {
+        "file": "photo-03.jpg",
+        "label": "A cozy bedroom with a wooden bed and red carpet.",
+        "published_file": "photo-03.avif"
+      },
+      {
+        "file": "photo-12.jpg",
+        "label": "A well-lit bathroom with a large mirror and a bathtub."
+      },
+      {
+        "file": "photo-43.jpg",
+        "label": "A long hallway with a wooden door and red carpet."
+      },
+      {
+        "file": "photo-04.jpg",
+        "label": "A cozy bedroom with a wooden bed and red and black bedding.",
+        "published_file": "photo-04.avif"
+      },
+      {
+        "file": "photo-05.jpg",
+        "label": "A bedroom with a wooden bed, red carpet, and red and black patterned comforter.",
+        "published_file": "photo-05.avif"
+      },
+      {
+        "file": "photo-06.jpg",
+        "label": "A cozy living room with a TV, plant, and shelf.",
+        "published_file": "photo-06.avif"
+      },
+      {
+        "file": "photo-07.jpg",
+        "label": "A cozy living room with a comfortable couch and a large coffee table.",
+        "published_file": "photo-07.avif"
+      }
+    ],
+    "card": {
+      "file": "photo-01.jpg",
+      "published_file": "photo-01.avif"
+    },
+    "name": "3113 Broad St",
+    "town": "Parkersburg, WV"
+  },
+  "parkersburg-02": {
+    "hero": {
+      "file": "photo-03.jpeg",
+      "label": "A well-lit living room with a large window and hardwood floors.",
+      "published_file": "photo-03.avif"
+    },
+    "gallery": [
+      {
+        "file": "photo-02.jpeg",
+        "label": "A well-lit living room with a wooden dresser, mirror, and books on the shelves.",
+        "published_file": "photo-02.avif"
+      },
+      {
+        "file": "photo-01.jpeg",
+        "label": "A small bedroom with a wooden desk and computer setup, a floral bedspread, and a window with white blinds.",
+        "published_file": "photo-01.avif"
+      },
+      {
+        "file": "photo-41.jpg",
+        "label": "A well-lit bathroom with a shower, toilet, and sink."
+      },
+      {
+        "file": "photo-08.jpg",
+        "label": "A suburban street with a tree and houses at sunset.",
+        "published_file": "photo-08.avif"
+      },
+      {
+        "file": "photo-46.jpg",
+        "label": "A well-lit hallway with a wooden floor and a coat rack."
+      },
+      {
+        "file": "photo-43.jpg",
+        "label": "A dresser with a mirror, books, and a doll on top, with shoes underneath."
+      },
+      {
+        "file": "photo-11.jpg",
+        "label": "A one-story house with a front porch and trees in the front yard."
+      },
+      {
+        "file": "photo-13.jpg",
+        "label": "A bright bedroom with a queen bed and a large window."
+      }
+    ],
+    "card": {
+      "file": "photo-03.jpeg",
+      "published_file": "photo-03.avif"
+    },
+    "name": "2405 45th St",
+    "town": "Parkersburg, WV"
+  },
+  "parkersburg-03": {
+    "hero": {
+      "file": "photo-01.jpg",
+      "label": "A large tree in front of a house with a fence and a driveway.",
+      "published_file": "photo-01.avif"
+    },
+    "gallery": [
+      {
+        "file": "photo-435.jpg",
+        "label": "A well-lit kitchen with a fire extinguisher and white tile backsplash.",
+        "published_file": "photo-435.avif"
+      },
+      {
+        "file": "photo-332.jpg",
+        "label": "A vintage bathroom with a purple wall and a light fixture.",
+        "published_file": "photo-332.avif"
+      },
+      {
+        "file": "photo-04.jpg",
+        "label": "A well-maintained lawn with a sidewalk and a house in the background.",
+        "published_file": "photo-04.avif"
+      },
+      {
+        "file": "photo-64.jpg",
+        "label": "A well-lit hallway with white walls, white blinds, and a white door.",
+        "published_file": "photo-64.avif"
+      },
+      {
+        "file": "photo-135.jpg",
+        "label": "A white countertop with a black trash can.",
+        "published_file": "photo-135.avif"
+      },
+      {
+        "file": "photo-448.jpg",
+        "label": "A well-lit kitchen with white tile backsplash and stainless steel sink.",
+        "published_file": "photo-448.avif"
+      },
+      {
+        "file": "photo-07.jpg",
+        "label": "A two-story house with yellow siding and white trim, featuring a front porch and a large tree in the front yard.",
+        "published_file": "photo-07.avif"
+      },
+      {
+        "file": "photo-10.jpg",
+        "label": "A suburban street with a tree, power lines, houses, cars, and a street.",
+        "published_file": "photo-10.avif"
+      }
+    ],
+    "card": {
+      "file": "photo-01.jpg",
+      "published_file": "photo-01.avif"
+    },
+    "name": "900 32nd St",
+    "town": "Parkersburg, WV"
+  },
+  "parkersburg-04": {
+    "hero": {
+      "file": "photo-01.jpg",
+      "label": "A well-lit bedroom with a white bed and wooden floor.",
+      "published_file": "photo-01.avif"
+    },
+    "gallery": [
+      {
+        "file": "photo-25.jpg",
+        "label": "A well-lit living room with a wooden table and white curtains."
+      },
+      {
+        "file": "photo-08.jpg",
+        "label": "A well-lit kitchen with wooden cabinets and a white refrigerator.",
+        "published_file": "photo-08.avif"
+      },
+      {
+        "file": "photo-07.jpg",
+        "label": "A cozy bedroom with a comfortable bed and a large window.",
+        "published_file": "photo-07.avif"
+      },
+      {
+        "file": "photo-16.jpg",
+        "label": "A well-lit bathroom with a shower and window."
+      },
+      {
+        "file": "photo-23.jpg",
+        "label": "A well-lit dining room with a table and chairs, a basket on the table, a vase with flowers, a window with curtains, and wall art."
+      },
+      {
+        "file": "photo-02.jpg",
+        "label": "A view from a house's front steps, looking down at a sidewalk, a car, and a tree.",
+        "published_file": "photo-02.avif"
+      },
+      {
+        "file": "photo-19.jpg",
+        "label": "A bedroom with a bed, dresser, and TV."
+      },
+      {
+        "file": "photo-11.jpg",
+        "label": "A cozy bedroom with a wooden bed, white bedding, and patterned blanket."
+      }
+    ],
+    "card": {
+      "file": "photo-02.jpg",
+      "published_file": "photo-02.avif"
+    },
+    "name": "2712 Broad St",
+    "town": "Parkersburg, WV"
+  },
+  "ravenswood-01": {
+    "hero": {
+      "file": "photo-01.jpg",
+      "label": "A well-maintained house with a green lawn and a sidewalk.",
+      "published_file": "photo-01.avif"
+    },
+    "gallery": [
+      {
+        "file": "photo-374.jpg",
+        "label": "A cozy living room with a fireplace and a mantle.",
+        "published_file": "photo-374.avif"
+      },
+      {
+        "file": "photo-292.jpg",
+        "label": "A small kitchen with a white stove and a white sink.",
+        "published_file": "photo-292.avif"
+      },
+      {
+        "file": "photo-297.png",
+        "label": "A bright bedroom with a queen bed and a large window.",
+        "published_file": "photo-297.avif"
+      },
+      {
+        "file": "photo-108.jpg",
+        "label": "A bathroom with a mirror, a toothbrush holder, and a glass shelf.",
+        "published_file": "photo-108.avif"
+      },
+      {
+        "file": "photo-03.jpg",
+        "label": "A backyard with a tree, a house, a shed, a fence, grass, and bushes.",
+        "published_file": "photo-03.avif"
+      },
+      {
+        "file": "photo-371.jpg",
+        "label": "A hallway with wood paneling and a railing.",
+        "published_file": "photo-371.avif"
+      },
+      {
+        "file": "photo-133.jpg",
+        "label": "A wooden dresser with a flat-screen TV on top, in a corner of a room with an orange curtain.",
+        "published_file": "photo-133.avif"
+      },
+      {
+        "file": "photo-08.jpg",
+        "label": "A white house with two windows and a tree in front.",
+        "published_file": "photo-08.avif"
+      }
+    ],
+    "card": {
+      "file": "photo-01.jpg",
+      "published_file": "photo-01.avif"
+    },
+    "name": "313 Walnut",
+    "town": "Ravenswood, WV"
+  },
+  "ravenswood-02": {
+    "hero": {
+      "file": "photo-219.jpg",
+      "label": "A well-lit exterior wall with a large window.",
+      "published_file": "photo-219.avif"
+    },
+    "gallery": [
+      {
+        "file": "photo-117.jpg",
+        "label": "A cozy living room with a white brick fireplace and built-in shelving.",
+        "published_file": "photo-117.avif"
+      },
+      {
+        "file": "photo-107.jpg",
+        "label": "A well-lit kitchen with white cabinets and a red countertop.",
+        "published_file": "photo-107.avif"
+      },
+      {
+        "file": "photo-188.jpg",
+        "label": "A bright bedroom with a queen bed and a large window.",
+        "published_file": "photo-188.avif"
+      },
+      {
+        "file": "photo-183.jpg",
+        "label": "A simple bathroom with a tub, toilet, sink, mirror, and shower.",
+        "published_file": "photo-183.avif"
+      },
+      {
+        "file": "photo-15.jpg",
+        "label": "A dining room with a wooden table and a white chair.",
+        "published_file": "photo-15.avif"
+      },
+      {
+        "file": "photo-48.jpg",
+        "label": "A well-maintained exterior with a wooden floor and a tree.",
+        "published_file": "photo-48.avif"
+      },
+      {
+        "file": "photo-158.jpg",
+        "label": "A well-lit hallway with a wooden floor and white trim.",
+        "published_file": "photo-158.avif"
+      },
+      {
+        "file": "photo-44.jpg",
+        "label": "A room with a massage chair and a large window.",
+        "published_file": "photo-44.avif"
+      }
+    ],
+    "card": {
+      "file": "photo-219.jpg",
+      "published_file": "photo-219.avif"
+    },
+    "name": "107 Virginia St",
+    "town": "Ravenswood, WV"
+  },
+  "ravenswood-03": {
+    "hero": {
+      "file": "photo-06.jpg",
+      "label": "This is a beautiful living room with hardwood floors and large windows.",
+      "published_file": "photo-06.avif"
+    },
+    "gallery": [
+      {
+        "file": "photo-11.jpg",
+        "label": "A well-lit kitchen with wooden cabinets and black countertops."
+      },
+      {
+        "file": "photo-42.jpg",
+        "label": "This bedroom is a serene retreat with a comfortable bed and plenty of natural light."
+      },
+      {
+        "file": "photo-39.jpg",
+        "label": "A small, rustic-style bathroom with a toilet and a shower curtain."
+      },
+      {
+        "file": "photo-17.jpg",
+        "label": "This is a beautiful dining room with a large table and chairs."
+      },
+      {
+        "file": "photo-36.jpg",
+        "label": "A well-maintained fenced yard with grass and trees."
+      },
+      {
+        "file": "photo-34.jpg",
+        "label": "A narrow hallway with white walls and a white door."
+      },
+      {
+        "file": "photo-13.jpg",
+        "label": "A corner of a room with a piano, a vase, and a mirror."
+      },
+      {
+        "file": "photo-26.jpg",
+        "label": "This is a beautiful dining room with a large table and chairs."
+      }
+    ],
+    "card": {
+      "file": "photo-36.jpg"
+    },
+    "name": "200 Henrietta",
+    "town": "Ravenswood, WV"
+  },
+  "ravenswood-04": {
+    "hero": {
+      "file": "photo-01.jpg",
+      "label": "An old electrical panel with a warning label.",
+      "published_file": "photo-01.avif"
+    },
+    "gallery": [],
+    "card": {
+      "file": "photo-01.jpg",
+      "published_file": "photo-01.avif"
+    },
+    "name": "200 Gallatin",
+    "town": "Ravenswood, WV"
+  },
+  "ravenswood-05": {
+    "hero": null,
+    "gallery": [],
+    "card": null,
+    "name": "216 Sand St",
+    "town": "Ravenswood, WV"
+  },
+  "grantsville-01": {
+    "hero": null,
+    "gallery": [],
+    "card": null,
+    "name": "255 Court St",
+    "town": "Grantsville, WV"
+  }
+}
