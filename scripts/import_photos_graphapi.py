@@ -14,40 +14,85 @@ HOUSE_MAP_FILE = REPO_DIR / "sharepoint-house-map.json"
 CSV_FILE = REPO_DIR / "homes.csv"
 MANIFEST_FILE = REPO_DIR / "sharepoint-photo-manifest.json"
 
-# Tenant ID for taomgt
-TAOMGT_TENANT = "682e7365-7f2b-4b39-843e-372f114ddf76"
-TAOMGT_SITE_HOST = "taomgt.sharepoint.com"
+# Known tenants. Each maps to the rclone.conf section holding a refresh
+# token for that tenant (see ~/.config/rclone/rclone.conf). Multiple
+# ad-hoc M365T*/M365P* sections exist for focushive as redundant refresh
+# tokens from earlier device-code logins; TOKEN_SECTION picks one that is
+# known to refresh successfully.
+TENANTS = {
+    "taomgt": {
+        "tenant_id": "682e7365-7f2b-4b39-843e-372f114ddf76",
+        "host": "taomgt.sharepoint.com",
+        "token_section": "REFRESH_TEST",
+    },
+    "focushive": {
+        "tenant_id": "2febe90d-872e-4e31-b1ee-7898aac0159c",
+        "host": "focushive.sharepoint.com",
+        "token_section": "M365TB3D54258D6E8",
+    },
+}
 
-# Known site IDs (discovered via Graph API)
+# Shared multi-tenant app registration ("Focus Hive CLI") used for the
+# refresh-token grant against either tenant.
+CLIENT_ID = "fcda3faa-1259-4b56-a04d-3281fc98d8f1"
+
+# Known site IDs (discovered via Graph API), grouped by tenant.
 SITES = {
     "taomgt": {
         "TaoCottage": "taomgt.sharepoint.com,af14de09-90d0-4533-9d6e-6ceb96b8f64c,fe277eac-da67-4b05-83f0-cb21c2cb4df6",
-    }
+    },
+    "focushive": {
+        "UnitedHome": "focushive.sharepoint.com,1fbe1862-d679-4a4f-88f4-f73fbbd1b72b,e8925c59-e26c-424b-b53c-4a9e962c977b",
+        "CivilEngineering": "focushive.sharepoint.com,187d3ca1-f1ea-499b-b391-1a15797e2f78,7ca45b0a-c693-411e-b82f-e96e70e39e9f",
+    },
 }
 
-def get_token():
-    """Get a fresh access token from the rclone refresh token"""
+_TOKEN_CACHE = {}
+
+def get_token(tenant_key="taomgt"):
+    """Get a fresh access token from the rclone-stored refresh token for a tenant"""
+    if tenant_key in _TOKEN_CACHE:
+        return _TOKEN_CACHE[tenant_key]
+
+    tenant = TENANTS[tenant_key]
+    section = tenant["token_section"]
+
     with open(os.path.expanduser("~/.config/rclone/rclone.conf")) as f:
         content = f.read()
-    match = re.search(r'\[REFRESH_TEST\]\ntoken = (.*?)(?:\n\[|\Z)', content, re.DOTALL)
+    match = re.search(rf'\[{re.escape(section)}\]\ntoken = (.*?)(?:\n\[|\Z)', content, re.DOTALL)
     if not match:
-        raise RuntimeError("No REFRESH_TEST token found in rclone config")
+        raise RuntimeError(f"No {section} token found in rclone config for tenant {tenant_key}")
     token_data = json.loads(match.group(1))
 
     data = urllib.parse.urlencode({
-        "client_id": "fcda3faa-1259-4b56-a04d-3281fc98d8f1",
+        "client_id": CLIENT_ID,
         "grant_type": "refresh_token",
         "refresh_token": token_data["refresh_token"],
         "scope": "https://graph.microsoft.com/.default offline_access"
     }).encode()
 
     req = urllib.request.Request(
-        f"https://login.microsoftonline.com/{TAOMGT_TENANT}/oauth2/v2.0/token",
+        f"https://login.microsoftonline.com/{tenant['tenant_id']}/oauth2/v2.0/token",
         data=data, method="POST"
     )
     resp = urllib.request.urlopen(req)
     result = json.loads(resp.read())
-    return result["access_token"]
+    _TOKEN_CACHE[tenant_key] = result["access_token"]
+    return _TOKEN_CACHE[tenant_key]
+
+def resolve_site(site_url):
+    """Return (tenant_key, site_name, site_id) for a SharePoint site_url, or (None, None, None)."""
+    m = re.match(r'https://([^/]+)/sites/([^/]+)', site_url.strip())
+    if not m:
+        return None, None, None
+    host, site_name = m.group(1), m.group(2)
+    for tenant_key, tenant in TENANTS.items():
+        if tenant["host"] == host:
+            site_id = SITES.get(tenant_key, {}).get(site_name)
+            if site_id:
+                return tenant_key, site_name, site_id
+            return tenant_key, site_name, None
+    return None, site_name, None
 
 def graph_get(token, url):
     """Make a Graph API GET request"""
@@ -124,8 +169,9 @@ def get_image_files(token, site_id, folder_path, recursive=True):
 
     return image_files
 
-def import_house(token, house_id, sources, limit=50):
-    """Import photos for a single house from its sources"""
+def import_house(house_id, sources, limit=50):
+    """Import photos for a single house from its sources (each source may
+    belong to a different tenant; resolved and authenticated per-source)."""
     dest_dir = STAGING_DIR / house_id
     dest_dir.mkdir(parents=True, exist_ok=True)
 
@@ -134,7 +180,17 @@ def import_house(token, house_id, sources, limit=50):
     existing_count = len(existing_files)
     existing_hashes = set()
 
-    # Load existing hashes from manifest
+    # Hash files already on disk so an interrupted/resumed run (manifest not
+    # yet flushed for this batch) never re-downloads a duplicate under a new
+    # filename.
+    for fname in existing_files:
+        try:
+            existing_hashes.add(hashlib.sha256((dest_dir / fname).read_bytes()).hexdigest())
+        except Exception:
+            pass
+
+    # Also load hashes recorded in the manifest (covers prior runs whose
+    # files may have since moved elsewhere but are still tracked).
     manifest = {"files": [], "errors": []}
     if MANIFEST_FILE.exists():
         try:
@@ -152,28 +208,24 @@ def import_house(token, house_id, sources, limit=50):
         site_url = source["site_url"]
         folder_url = source["folder_url"]
 
-        # Determine site name from URL
-        site_name = None
-        for tenant_key, sites in SITES.items():
-            for name, sid in sites.items():
-                if sid.split(",")[0] in site_url:
-                    site_name = name
-                    break
-
-        if not site_name:
-            if "taomgt.sharepoint.com/sites/TaoCottage" in site_url:
-                site_name = "TaoCottage"
-            else:
-                print(f"  SKIP {site_url} - no site mapping for {site_url}")
-                manifest["errors"].append(f"No site mapping for {site_url}")
-                continue
-
-        site_id = SITES["taomgt"].get(site_name)
+        tenant_key, site_name, site_id = resolve_site(site_url)
+        if not tenant_key:
+            print(f"  SKIP {site_url} - unknown tenant host")
+            manifest["errors"].append(f"Unknown tenant host for {site_url}")
+            continue
         if not site_id:
-            manifest["errors"].append(f"No site ID for {site_name}")
+            print(f"  SKIP {site_url} - no site mapping for site '{site_name}' in tenant '{tenant_key}'")
+            manifest["errors"].append(f"No site mapping for {site_url}")
             continue
 
-        print(f"  Listing files from {site_name}: {folder_url}")
+        try:
+            token = get_token(tenant_key)
+        except Exception as e:
+            print(f"  SKIP {site_url} - could not obtain {tenant_key} token: {e}")
+            manifest["errors"].append(f"token_error [{tenant_key}]: {e}")
+            continue
+
+        print(f"  Listing files from {tenant_key}/{site_name}: {folder_url}")
 
         # Strip "Shared Documents/" prefix for Graph API paths.
         # The Graph API drive/root:/path is relative to the default
@@ -265,7 +317,34 @@ def import_house(token, house_id, sources, limit=50):
             print(f"  Error processing source: {e}")
             manifest["errors"].append(f"source_error: {folder_url}: {e}")
 
+    persist_manifest(house_id, manifest)
     return files_imported - existing_count, manifest["errors"]
+
+def persist_manifest(house_id, manifest):
+    """Merge this run's file/error records into the on-disk manifest, keyed by house."""
+    if MANIFEST_FILE.exists():
+        try:
+            manifest_data = json.loads(MANIFEST_FILE.read_text())
+        except Exception:
+            manifest_data = {"source": "homes.csv + Microsoft 365 SharePoint", "houses": {}}
+    else:
+        manifest_data = {"source": "homes.csv + Microsoft 365 SharePoint", "houses": {}}
+
+    manifest_data.setdefault("houses", {})
+    house_entry = manifest_data["houses"].setdefault(house_id, {"files": [], "errors": []})
+    house_entry.setdefault("files", [])
+    house_entry.setdefault("errors", [])
+
+    existing_paths = {f["path"] for f in house_entry["files"]}
+    for f in manifest["files"]:
+        if f["path"] not in existing_paths:
+            house_entry["files"].append(f)
+            existing_paths.add(f["path"])
+
+    if manifest["errors"]:
+        house_entry["errors"].extend(manifest["errors"])
+
+    MANIFEST_FILE.write_text(json.dumps(manifest_data, indent=2))
 
 def main():
     import argparse
@@ -286,11 +365,6 @@ def main():
             key = (row["site_url"], row["folder_url"])
             csv_inventory[key] = row
 
-    # Get token
-    print("Getting access token...")
-    token = get_token()
-    print("Token obtained.\n")
-
     selected_houses = [h for h in houses if h["include_public"] and (not args.house or h["id"] == args.house)]
 
     for house in selected_houses:
@@ -301,29 +375,31 @@ def main():
             print(f"\n{house_id}: No sources configured, skipping")
             continue
 
-        # Filter to only taomgt sources (focushive won't work with this token)
-        valid_sources = []
+        # Report any source whose tenant/site we can't resolve at all, up front.
+        usable_sources = []
         for s in sources:
-            if "taomgt.sharepoint.com" in s["site_url"]:
-                valid_sources.append(s)
+            tenant_key, site_name, site_id = resolve_site(s["site_url"])
+            if not tenant_key or not site_id:
+                print(f"{house_id}: BLOCKED: no site mapping for {s['site_url']}")
             else:
-                print(f"{house_id}: BLOCKED: no focushive auth - {s['site_url']}")
+                usable_sources.append(s)
 
-        if not valid_sources:
-            print(f"{house_id}: No taomgt sources available")
+        if not usable_sources:
+            print(f"{house_id}: No usable sources available")
             continue
 
         csv_statuses = []
-        for s in valid_sources:
+        for s in usable_sources:
             row = csv_inventory.get((s["site_url"], s["folder_url"]))
             if row:
                 csv_statuses.append(f"{row.get('status', '?')}:{row.get('photo_files', '?')}")
 
         print(f"\n{house_id} ({house['address']}, {house['town']})")
-        print(f"  Sources: {valid_sources[0]['folder_url']}")
+        for s in usable_sources:
+            print(f"  Source: {s['site_url']} :: {s['folder_url']}")
         print(f"  CSV status: {', '.join(csv_statuses)}")
 
-        new_count, errors = import_house(token, house_id, valid_sources, limit=args.limit)
+        new_count, errors = import_house(house_id, usable_sources, limit=args.limit)
 
         if new_count > 0:
             print(f"  Imported {new_count} new photos")
