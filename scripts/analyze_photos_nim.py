@@ -312,6 +312,46 @@ def process_staging_photos(api_key, index_data, model=NIM_MODEL, retry_failed=Fa
     return analyzed_count, skip_count, error_count, retried_count
 
 
+def _build_dhash_index(staging_photos, staging_dir):
+    """Build a dHash lookup for staging photos by comparing the JPG
+    originals against published JPGs when filename-based matching fails."""
+    dhash_index = {}
+    for sfile in staging_photos:
+        spath = os.path.join(staging_dir, sfile)
+        if os.path.isfile(spath):
+            try:
+                img = Image.open(spath).convert("L").resize((9, 8), Image.LANCZOS)
+                pix = list(img.getdata())
+                h = "".join("1" if pix[i] > pix[i + 1] else "0" for i in range(len(pix) - 1))
+                dhash_index[h] = sfile
+            except Exception:
+                continue
+    return dhash_index
+
+
+def _dhash_of(path):
+    """Compute dHash of an image at path."""
+    img = Image.open(path).convert("L").resize((9, 8), Image.LANCZOS)
+    pix = list(img.getdata())
+    return "".join("1" if pix[i] > pix[i + 1] else "0" for i in range(len(pix) - 1))
+
+
+def _match_by_content(published_jpg_path, dhash_index):
+    """Find the closest staging photo by dHash distance (0 = exact, threshold <= 8)."""
+    try:
+        ph = _dhash_of(published_jpg_path)
+        best_dist = 999
+        best_match = None
+        for sh, sf in dhash_index.items():
+            dist = sum(1 for i in range(len(ph)) if ph[i] != sh[i])
+            if dist < best_dist:
+                best_dist = dist
+                best_match = sf
+        return best_match if best_dist <= 8 else None
+    except Exception:
+        return None
+
+
 def process_published_photos(index_data):
     """Index all published photos with their dimensions and format"""
     if "houses" not in index_data:
@@ -337,18 +377,42 @@ def process_published_photos(index_data):
                 "photos": {}
             }
 
+        staging_photos = index_data.get("staging", {}).get(house_id, {}).get("photos", {})
+        staging_dir = STAGING_DIR / house_id
+
+        # Build content-hash index lazily (only if we might need fallback matching)
+        dhash_index = None
+
         for avif_file in avif_files:
             avif_path = str(house_dir / avif_file)
             dims = get_image_dimensions(avif_path)
 
-            # Find matching staging photo for source reference
+            # Find matching staging photo for source and NIM metadata
             base_name = os.path.splitext(avif_file)[0]
-            source = ""
-            staging_photos = index_data.get("staging", {}).get(house_id, {}).get("photos", {})
+            staging_match = None
             for sfile, sinfo in staging_photos.items():
                 if sfile.startswith(base_name):
-                    source = sinfo.get("path", "")
+                    staging_match = sinfo
                     break
+
+            # Fallback: try content-hash matching via JPG counterpart
+            if staging_match is None and staging_dir.is_dir():
+                jpg_path = house_dir / f"{base_name}.jpg"
+                if jpg_path.is_file():
+                    if dhash_index is None:
+                        dhash_index = _build_dhash_index(staging_photos, str(staging_dir))
+                    matched_file = _match_by_content(str(jpg_path), dhash_index)
+                    if matched_file and matched_file in staging_photos:
+                        staging_match = staging_photos[matched_file]
+
+            source = staging_match.get("path", "") if staging_match else ""
+
+            # Carry over NIM metadata from staging counterpart if available
+            scene = staging_match.get("nim_description", "") if staging_match else ""
+            quality = staging_match.get("nim_quality", "") if staging_match else ""
+            page_label = staging_match.get("nim_room_type", "") if staging_match else ""
+            best_for = staging_match.get("nim_best_for", "") if staging_match else ""
+            features = staging_match.get("nim_features", "") if staging_match else ""
 
             index_data["houses"][house_id]["photos"][avif_file] = {
                 "path": avif_path,
@@ -356,9 +420,11 @@ def process_published_photos(index_data):
                 **dims,
                 "source": source,
                 "tags": ["published"],
-                "scene": "",
-                "quality": "",
-                "page_label": ""
+                "scene": scene,
+                "quality": quality,
+                "page_label": page_label,
+                "best_for": best_for,
+                "features": features,
             }
 
 
@@ -407,6 +473,23 @@ def compute_coverage(index_data):
         elif not os.listdir(STAGING_DIR / h["id"]):
             blocked.append(h["id"])
 
+    # These two lists used to be hardcoded and went stale the moment an
+    # import unblocked a house. Derive them instead: a house is still
+    # "focushive-tenant blocked" only if it's in `blocked` above (no staging
+    # photos on disk yet); it has "no sources" if the house map lists none.
+    FOCUSHIVE_CANDIDATES = {
+        "ravenswood-01": "313 Walnut",
+        "ravenswood-02": "107 Virginia St",
+        "parkersburg-03": "900 32nd St",
+        "ravenswood-04": "200 Gallatin",
+    }
+    import_blocked_focushive = [
+        f"{hid} ({addr})" for hid, addr in FOCUSHIVE_CANDIDATES.items() if hid in blocked
+    ]
+    no_sources = [
+        f"{h['id']} ({h.get('address', '?')})" for h in house_map if not h.get("sources")
+    ]
+
     # NIM analysis quality summary: how many staging photos have a usable
     # analysis vs. an outright error vs. echoed placeholder/junk text.
     nim_total = 0
@@ -433,13 +516,8 @@ def compute_coverage(index_data):
         "total_published_avif_files": total_published,
         "total_staging_originals": total_staging,
         "houses_without_staging_photos": blocked,
-        "import_blocked_focushive": [
-            "ravenswood-01 (313 Walnut)",
-            "ravenswood-02 (107 Virginia St)",
-            "parkersburg-03 (900 32nd St)",
-            "ravenswood-04 (200 Gallatin)"
-        ],
-        "no_sources": ["ravenswood-05 (216 Sand St)"],
+        "import_blocked_focushive": import_blocked_focushive,
+        "no_sources": no_sources,
         "nim_analysis": {
             "total_staging_photos": nim_total,
             "analyzed_ok": nim_ok,
