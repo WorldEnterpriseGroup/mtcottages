@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "generated": "2026-07-21 13:09:17 UTC",
-  "generator": "scripts/analyze_photos_nim.py",
+  "generated": "2026-07-21 17:35:31 UTC",
+  "generator": "scripts/analyze_photos_nim.py + manual re-curation (photo-selections.json resync)",
   "staging": {
     "marietta-01": {
       "name": "Frederick House",
@@ -28713,110 +28713,31 @@
           "best_for": "thumbnail",
           "features": "stove, oven, microwave, dishwasher, sink, cabinets, countertops, refrigerator, window"
         },
-        "gallery-02.avif": {
-          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/gallery-02.avif",
-          "format": "avif",
-          "width": 1920,
-          "height": 1080,
-          "filesize_bytes": 227389,
-          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-15.jpg",
-          "tags": [
-            "published"
-          ],
-          "scene": "A well-lit kitchen with a white stove, white dishwasher, and red countertop, featuring a window and cabinets.",
-          "quality": "good",
-          "page_label": "kitchen",
-          "best_for": "hero",
-          "features": "white stove, white dishwasher, red countertop, window, cabinets"
-        },
-        "gallery-03.avif": {
-          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/gallery-03.avif",
-          "format": "avif",
-          "width": 1920,
-          "height": 1080,
-          "filesize_bytes": 222249,
-          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-12.jpg",
-          "tags": [
-            "published"
-          ],
-          "scene": "A small kitchen with wooden cabinets and a white stove.",
-          "quality": "good",
-          "page_label": "kitchen",
-          "best_for": "thumbnail",
-          "features": "sink, cabinets, stove"
-        },
-        "gallery-04.avif": {
-          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/gallery-04.avif",
-          "format": "avif",
-          "width": 1920,
-          "height": 1080,
-          "filesize_bytes": 576996,
-          "source": "",
-          "tags": [
-            "published"
-          ],
-          "scene": "",
-          "quality": "",
-          "page_label": "",
-          "best_for": "",
-          "features": ""
-        },
-        "gallery-05.avif": {
-          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/gallery-05.avif",
-          "format": "avif",
-          "width": 1920,
-          "height": 1080,
-          "filesize_bytes": 741034,
-          "source": "",
-          "tags": [
-            "published"
-          ],
-          "scene": "",
-          "quality": "",
-          "page_label": "",
-          "best_for": "",
-          "features": ""
-        },
         "hero.avif": {
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/hero.avif",
           "format": "avif",
           "width": 2400,
           "height": 1350,
           "filesize_bytes": 1163436,
-          "source": "",
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-16.jpg",
           "tags": [
             "published"
           ],
-          "scene": "",
-          "quality": "",
-          "page_label": "",
-          "best_for": "",
-          "features": ""
+          "scene": "Wide panoramic view of a pond, gazebo, and trees.",
+          "quality": "excellent",
+          "page_label": "exterior",
+          "best_for": "hero",
+          "features": "pond, gazebo, trees, wide landscape view"
         }
       },
       "selection": {
         "hero": "hero.avif",
         "gallery": [
-          {
-            "file": "gallery-01.avif",
-            "label": "Living room"
-          },
-          {
-            "file": "gallery-02.avif",
-            "label": "Kitchen"
-          },
-          {
-            "file": "gallery-03.avif",
-            "label": "Bedroom"
-          },
-          {
-            "file": "gallery-04.avif",
-            "label": "Bathroom"
-          },
-          {
-            "file": "gallery-05.avif",
-            "label": "Dining area"
-          }
+          "gallery-01.avif",
+          "photo-39.avif",
+          "photo-36.avif",
+          "photo-25.avif",
+          "photo-27.avif"
         ],
         "available_not_selected": []
       },
@@ -28956,24 +28877,13 @@
         }
       },
       "selection": {
-        "hero": "photo-06.avif",
+        "hero": "photo-44.avif",
         "gallery": [
-          {
-            "file": "photo-03.avif",
-            "label": "Bedroom with desk"
-          },
-          {
-            "file": "photo-06.avif",
-            "label": "Living room"
-          },
-          {
-            "file": "photo-08.avif",
-            "label": "Living area"
-          },
-          {
-            "file": "photo-05.avif",
-            "label": "Bedroom"
-          }
+          "photo-06.avif",
+          "photo-01.avif",
+          "photo-49.avif",
+          "photo-20.avif",
+          "photo-12.avif"
         ],
         "available_not_selected": [
           "photo-01.avif",
@@ -29118,8 +29028,14 @@
         }
       },
       "selection": {
-        "hero": null,
-        "gallery": [],
+        "hero": "photo-09.avif",
+        "gallery": [
+          "photo-23.avif",
+          "photo-49.avif",
+          "photo-50.avif",
+          "photo-38.avif",
+          "photo-41.avif"
+        ],
         "available_not_selected": [
           "photo-01.avif",
           "photo-02.avif",
@@ -29283,11 +29199,20 @@
         }
       },
       "selection": {
-        "hero": null,
-        "gallery": [],
+        "hero": "photo-01.avif",
+        "gallery": [
+          "photo-374.avif",
+          "photo-165.avif",
+          "photo-297.avif",
+          "photo-125.avif",
+          "photo-108.avif",
+          "photo-263.avif",
+          "photo-292.avif",
+          "photo-03.avif"
+        ],
         "available_not_selected": []
       },
-      "status": "coming_soon"
+      "status": "published"
     },
     "ravenswood-02": {
       "name": "Virginia Street House",
@@ -29439,11 +29364,18 @@
         }
       },
       "selection": {
-        "hero": null,
-        "gallery": [],
+        "hero": "photo-117.avif",
+        "gallery": [
+          "photo-54.avif",
+          "photo-53.avif",
+          "photo-55.avif",
+          "photo-77.avif",
+          "photo-27.avif",
+          "photo-116.avif"
+        ],
         "available_not_selected": []
       },
-      "status": "coming_soon"
+      "status": "published"
     },
     "ravenswood-03": {
       "name": "Henrietta Cottage",
@@ -29579,24 +29511,15 @@
         }
       },
       "selection": {
-        "hero": "photo-01.avif",
+        "hero": "photo-17.avif",
         "gallery": [
-          {
-            "file": "photo-06.avif",
-            "label": "Dining room"
-          },
-          {
-            "file": "photo-01.avif",
-            "label": "Bedroom"
-          },
-          {
-            "file": "photo-04.avif",
-            "label": "Bathroom"
-          },
-          {
-            "file": "photo-05.avif",
-            "label": "Dining area"
-          }
+          "photo-06.avif",
+          "photo-31.avif",
+          "photo-42.avif",
+          "photo-40.avif",
+          "photo-04.avif",
+          "photo-36.avif",
+          "photo-13.avif"
         ],
         "available_not_selected": [
           "photo-02.avif",
@@ -29633,7 +29556,7 @@
         "gallery": [],
         "available_not_selected": []
       },
-      "status": "coming_soon"
+      "status": "published_photos_pending"
     },
     "parkersburg-03": {
       "name": "32nd Street Cottage",
@@ -29785,11 +29708,15 @@
         }
       },
       "selection": {
-        "hero": null,
-        "gallery": [],
+        "hero": "photo-145.avif",
+        "gallery": [
+          "photo-07.avif",
+          "photo-435.avif",
+          "photo-468.avif"
+        ],
         "available_not_selected": []
       },
-      "status": "coming_soon"
+      "status": "published"
     },
     "parkersburg-04": {
       "name": "Broad Street House",
@@ -29925,32 +29852,16 @@
         }
       },
       "selection": {
-        "hero": "photo-05.avif",
+        "hero": "photo-23.avif",
         "gallery": [
-          {
-            "file": "photo-07.avif",
-            "label": "Queen bedroom"
-          },
-          {
-            "file": "photo-08.avif",
-            "label": "Kitchen"
-          },
-          {
-            "file": "photo-01.avif",
-            "label": "Bedroom with TV"
-          },
-          {
-            "file": "photo-03.avif",
-            "label": "Sitting area"
-          },
-          {
-            "file": "photo-06.avif",
-            "label": "Bedroom"
-          },
-          {
-            "file": "photo-05.avif",
-            "label": "Covered porch"
-          }
+          "photo-08.avif",
+          "photo-35.avif",
+          "photo-01.avif",
+          "photo-07.avif",
+          "photo-11.avif",
+          "photo-17.avif",
+          "photo-40.avif",
+          "photo-05.avif"
         ],
         "available_not_selected": [
           "photo-02.avif",
@@ -29985,9 +29896,9 @@
   "coverage": {
     "generated": "2026-07-21 13:09:17 UTC",
     "total_houses": 11,
-    "houses_with_published_photos": 9,
+    "houses_with_published_photos": 8,
     "houses_coming_soon": 2,
-    "total_published_avif_files": 66,
+    "total_published_avif_files": 62,
     "total_staging_originals": 1450,
     "houses_without_staging_photos": [
       "ravenswood-05",
