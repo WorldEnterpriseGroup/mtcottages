@@ -242,7 +242,30 @@ def main():
         if sel.get("card") and sel["card"]["file"] in source_map:
             sel["card"]["published_file"] = source_map[sel["card"]["file"]]
 
-        print(f"  -> {house_id}: mapped {len(source_map)} published AVIFs")
+        # Constrain gallery to only photos with published AVIFs for houses
+        # that already have AVIFs on disk. This avoids selecting staging
+        # photos that have no published counterpart.
+        if source_map and any(g.get("published_file") for g in sel.get("gallery", [])):
+            orig_count = len(sel.get("gallery", []))
+            sel["gallery"] = [g for g in sel.get("gallery", []) if g.get("published_file")]
+            # If we lost too many, refill from published AVIFs not yet selected
+            if len(sel["gallery"]) < 4:
+                selected_files = {g["published_file"] for g in sel["gallery"]}
+                if sel.get("hero") and sel["hero"].get("published_file"):
+                    selected_files.add(sel["hero"]["published_file"])
+                # Find best published AVIFs not yet in gallery
+                remaining = sorted([
+                    (pdata.get("best_for", "z"), QUALITY_RANK.get(pdata.get("quality", ""), 99), fname, pdata.get("scene", ""))
+                    for fname, pdata in house_published.items()
+                    if fname not in selected_files
+                ])
+                for bf, q, fname, scene in remaining:
+                    if len(sel["gallery"]) >= 8:
+                        break
+                    sel["gallery"].append({"file": "", "label": scene, "published_file": fname})
+            print(f"  -> {house_id}: gallery constrained {orig_count}→{len(sel['gallery'])} (mapped {len(source_map)} AVIFs)")
+        else:
+            print(f"  -> {house_id}: mapped {len(source_map)} published AVIFs")
 
     # Also add entries for houses with published AVIFs but no staging (e.g., coming-soon houses)
     for house_id in houses:

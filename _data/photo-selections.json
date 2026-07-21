@@ -6,37 +6,34 @@
     },
     "gallery": [
       {
-        "file": "photo-01.jpg",
-        "label": "A cozy living room with a green door and wooden floor."
-      },
-      {
         "file": "photo-15.jpg",
         "label": "A well-lit kitchen with a white stove, white dishwasher, and red countertop, featuring a window and cabinets.",
         "published_file": "gallery-02.avif"
       },
       {
-        "file": "photo-11.jpg",
-        "label": "A cozy bedroom with a wooden floor, wooden ceiling, and wooden walls, featuring a bed, lamp, table, chair, and window."
+        "file": "",
+        "label": "",
+        "published_file": "gallery-04.avif"
       },
       {
-        "file": "photo-04.jpg",
-        "label": "A bathroom with a white sink and a hardwood floor."
+        "file": "",
+        "label": "",
+        "published_file": "gallery-05.avif"
       },
       {
-        "file": "photo-31.jpg",
-        "label": "A well-lit dining room with a wooden table and floral placemats, featuring a white ceiling fan and a white door."
+        "file": "",
+        "label": "",
+        "published_file": "hero.avif"
       },
       {
-        "file": "photo-16.jpg",
-        "label": "A serene outdoor space with a pond and lush greenery."
+        "file": "",
+        "label": "A well-lit kitchen with a white stove and oven, a microwave, a dishwasher, a sink, and wooden cabinets and countertops.",
+        "published_file": "gallery-01.avif"
       },
       {
-        "file": "photo-14.jpg",
-        "label": "A red tent with a lamp in front of it, surrounded by trees and grass, with sunlight and shadows on the ground."
-      },
-      {
-        "file": "photo-46.jpg",
-        "label": "A spacious living room with a large window and hardwood floors."
+        "file": "",
+        "label": "A small kitchen with wooden cabinets and a white stove.",
+        "published_file": "gallery-03.avif"
       }
     ],
     "card": {
@@ -61,14 +58,6 @@
         "file": "photo-03.jpg",
         "label": "A cozy bedroom with a wooden bed and red carpet.",
         "published_file": "photo-03.avif"
-      },
-      {
-        "file": "photo-12.jpg",
-        "label": "A well-lit bathroom with a large mirror and a bathtub."
-      },
-      {
-        "file": "photo-43.jpg",
-        "label": "A long hallway with a wooden door and red carpet."
       },
       {
         "file": "photo-04.jpg",
@@ -116,29 +105,29 @@
         "published_file": "photo-01.avif"
       },
       {
-        "file": "photo-41.jpg",
-        "label": "A well-lit bathroom with a shower, toilet, and sink."
-      },
-      {
         "file": "photo-08.jpg",
         "label": "A suburban street with a tree and houses at sunset.",
         "published_file": "photo-08.avif"
       },
       {
-        "file": "photo-46.jpg",
-        "label": "A well-lit hallway with a wooden floor and a coat rack."
+        "file": "",
+        "label": "A suburban street with a tree, grass, sidewalk, and houses.",
+        "published_file": "photo-04.avif"
       },
       {
-        "file": "photo-43.jpg",
-        "label": "A dresser with a mirror, books, and a doll on top, with shoes underneath."
+        "file": "",
+        "label": "A suburban street with trees, grass, houses, and cars.",
+        "published_file": "photo-05.avif"
       },
       {
-        "file": "photo-11.jpg",
-        "label": "A one-story house with a front porch and trees in the front yard."
+        "file": "",
+        "label": "A suburban street with a tree, houses, and cars.",
+        "published_file": "photo-06.avif"
       },
       {
-        "file": "photo-13.jpg",
-        "label": "A bright bedroom with a queen bed and a large window."
+        "file": "",
+        "label": "A suburban street with a tree, grass, sidewalk, and houses.",
+        "published_file": "photo-07.avif"
       }
     ],
     "card": {
@@ -211,10 +200,6 @@
     },
     "gallery": [
       {
-        "file": "photo-25.jpg",
-        "label": "A well-lit living room with a wooden table and white curtains."
-      },
-      {
         "file": "photo-08.jpg",
         "label": "A well-lit kitchen with wooden cabinets and a white refrigerator.",
         "published_file": "photo-08.avif"
@@ -225,25 +210,29 @@
         "published_file": "photo-07.avif"
       },
       {
-        "file": "photo-16.jpg",
-        "label": "A well-lit bathroom with a shower and window."
-      },
-      {
-        "file": "photo-23.jpg",
-        "label": "A well-lit dining room with a table and chairs, a basket on the table, a vase with flowers, a window with curtains, and wall art."
-      },
-      {
         "file": "photo-02.jpg",
         "label": "A view from a house's front steps, looking down at a sidewalk, a car, and a tree.",
         "published_file": "photo-02.avif"
       },
       {
-        "file": "photo-19.jpg",
-        "label": "A bedroom with a bed, dresser, and TV."
+        "file": "",
+        "label": "A bright bedroom with a queen bed and a large window.",
+        "published_file": "photo-06.avif"
       },
       {
-        "file": "photo-11.jpg",
-        "label": "A cozy bedroom with a wooden bed, white bedding, and patterned blanket."
+        "file": "",
+        "label": "A cozy living room with a wooden floor and a TV.",
+        "published_file": "photo-03.avif"
+      },
+      {
+        "file": "",
+        "label": "A set of wooden stairs leading to a sidewalk with houses in the background.",
+        "published_file": "photo-04.avif"
+      },
+      {
+        "file": "",
+        "label": "A small porch with a few chairs and a carpeted floor, surrounded by trees and a railing.",
+        "published_file": "photo-05.avif"
       }
     ],
     "card": {
