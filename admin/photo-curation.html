@@ -480,6 +480,8 @@ async function loadData() {
     DATA.index = index;
 
     populateFilters();
+    applyQueryParams();
+    updateFilters();
     renderGallery();
 
   } catch (err) {
@@ -997,6 +999,36 @@ let filterTimer;
 function debouncedUpdateFilters() {
   clearTimeout(filterTimer);
   filterTimer = setTimeout(updateFilters, 200);
+}
+
+// ========== QUERY PARAMETER SUPPORT ==========
+// ?quality=excellent&status=unreviewed&room=exterior&search=pond
+function applyQueryParams() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('quality')) {
+    const el = document.getElementById('filterQuality');
+    const val = params.get('quality');
+    if ([...el.options].some(o => o.value === val)) {
+      el.value = val;
+    }
+  }
+  if (params.has('status')) {
+    const el = document.getElementById('filterStatus');
+    const val = params.get('status');
+    if ([...el.options].some(o => o.value === val)) {
+      el.value = val;
+    }
+  }
+  if (params.has('room')) {
+    const el = document.getElementById('filterRoom');
+    const val = params.get('room');
+    if ([...el.options].some(o => o.value === val)) {
+      el.value = val;
+    }
+  }
+  if (params.has('search')) {
+    document.getElementById('filterSearch').value = params.get('search') || '';
+  }
 }
 
 // ========== EVENT LISTENERS ==========
