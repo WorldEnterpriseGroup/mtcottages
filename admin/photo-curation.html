@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mt Cottages — Photo Curation Gallery</title>
+<style>
+  :root {
+    --bg: #1a1a2e;
+    --surface: #16213e;
+    --card: #0f3460;
+    --accent: #e94560;
+    --green: #2ecc71;
+    --blue: #3498db;
+    --orange: #f39c12;
+    --red: #e74c3c;
+    --text: #eee;
+    --text-muted: #999;
+    --border: #2a2a4a;
+    --radius: 8px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* Header / filter bar */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+  .header h1 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+  }
+  .header .meta {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-left: auto;
+  }
+  .filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    flex: 1;
+  }
+  .filter-group label {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .filter-group select, .filter-group input {
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 13px;
+    max-width: 180px;
+  }
+  .filter-group select[multiple] {
+    max-width: 200px;
+    height: auto;
+    min-height: 60px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity .15s;
+  }
+  .btn:hover { opacity: .85; }
+  .btn-primary { background: var(--blue); color: #fff; }
+  .btn-danger { background: var(--accent); color: #fff; }
+  .btn-success { background: var(--green); color: #fff; }
+  .btn-outline {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .btn-sm { padding: 4px 10px; font-size: 12px; }
+  .header-actions { display: flex; gap: 8px; margin-left: auto; }
+
+  /* Stats bar */
+  .stats {
+    padding: 8px 24px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 24px;
+    font-size: 13px;
+    flex-wrap: wrap;
+  }
+  .stats span { color: var(--text-muted); }
+  .stats .num-approved { color: var(--green); font-weight: 700; }
+  .stats .num-rejected { color: var(--red); font-weight: 700; }
+  .stats .num-total { color: var(--text); font-weight: 700; }
+
+  /* Property section */
+  .property-section {
+    margin: 16px 24px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .property-header {
+    background: var(--surface);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .property-header:hover { background: #1a2a4a; }
+  .property-header h2 {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .property-header .town {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .property-header .counts {
+    margin-left: auto;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .property-header .chevron {
+    font-size: 12px;
+    transition: transform .2s;
+  }
+  .property-header.collapsed .chevron { transform: rotate(-90deg); }
+  .property-header .prop-filter-btn {
+    margin-left: 8px;
+  }
+
+  /* Photo grid */
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+    padding: 16px 20px;
+  }
+  .property-body.collapsed { display: none; }
+  .photo-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: border-color .15s, opacity .2s;
+    position: relative;
+  }
+  .photo-card.approved { border-color: var(--green); }
+  .photo-card.rejected { border-color: var(--red); opacity: .55; }
+  .photo-card.current-selection { border-color: var(--orange); }
+  .photo-card .thumb-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: #111;
+    overflow: hidden;
+  }
+  .photo-card .thumb-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .photo-card .thumb-wrap img[data-error] {
+    opacity: .3;
+    object-fit: contain;
+  }
+  .photo-card .badge {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .badge-current { background: var(--orange); color: #000; }
+  .badge-excellent { background: var(--green); color: #000; }
+  .badge-good { background: var(--blue); color: #fff; }
+  .badge-adequate { background: var(--orange); color: #000; }
+  .badge-poor { background: var(--red); color: #fff; }
+  .photo-card .info {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+  .photo-card .info .filename {
+    font-weight: 600;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+    word-break: break-all;
+  }
+  .photo-card .info .desc {
+    font-size: 11px;
+    color: var(--text);
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 4px;
+  }
+  .photo-card .info .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    margin-bottom: 4px;
+  }
+  .photo-card .info .tags span {
+    font-size: 10px;
+    padding: 1px 5px;
+    border-radius: 3px;
+    background: rgba(255,255,255,.08);
+    color: var(--text-muted);
+  }
+  .photo-card .actions {
+    display: flex;
+    gap: 4px;
+    padding: 6px 10px 10px;
+  }
+  .photo-card .actions .btn {
+    flex: 1;
+    justify-content: center;
+    font-size: 13px;
+    padding: 5px 0;
+  }
+  .photo-card .actions .btn.active {
+    box-shadow: 0 0 0 2px currentColor;
+  }
+
+  .load-more {
+    text-align: center;
+    padding: 12px 0 16px;
+  }
+  .load-more .btn { padding: 8px 24px; }
+
+  /* Loading / error states */
+  .loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px;
+    gap: 16px;
+  }
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .error-state {
+    text-align: center;
+    padding: 80px 24px;
+    color: var(--red);
+  }
+  .error-state p { margin-bottom: 12px; }
+  .empty-state {
+    text-align: center;
+    padding: 40px 24px;
+    color: var(--text-muted);
+  }
+
+  /* Export modal */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.7);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    max-width: 90vw;
+    max-height: 80vh;
+    overflow: auto;
+    width: 700px;
+  }
+  .modal h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  .modal pre {
+    background: var(--bg);
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 50vh;
+    overflow-y: auto;
+    color: var(--text);
+  }
+  .modal .modal-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    justify-content: flex-end;
+  }
+
+  /* Sky / outdoor badge */
+  .badge-room-type {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: rgba(0,0,0,.65);
+    color: #fff;
+    text-transform: capitalize;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .header { flex-direction: column; align-items: stretch; }
+    .header-actions { margin-left: 0; }
+    .photo-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  }
+
+  /* Loading skeleton for thumbnails */
+  .thumb-wrap .skeleton {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #1a1a2e 25%, #2a2a4a 50%, #1a1a2e 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+</style>
+</head>
+<body>
+
+<!-- Header / Filter Bar -->
+<div class="header">
+  <h1>📷 Photo Curation</h1>
+  <div class="filter-group">
+    <label>Property</label>
+    <select id="filterProperty" multiple>
+      <option value="all" selected>All</option>
+    </select>
+    <label>Room</label>
+    <select id="filterRoom">
+      <option value="all">All rooms</option>
+    </select>
+    <label>Quality</label>
+    <select id="filterQuality">
+      <option value="all">All qualities</option>
+    </select>
+    <label>Status</label>
+    <select id="filterStatus">
+      <option value="all">All</option>
+      <option value="unreviewed">Unreviewed</option>
+      <option value="approved">Approved</option>
+      <option value="rejected">Rejected</option>
+    </select>
+    <label>Search</label>
+    <input type="text" id="filterSearch" placeholder="Search descriptions..." style="min-width:160px;">
+  </div>
+  <div class="header-actions">
+    <button class="btn btn-primary" id="btnExport" onclick="exportSelections()">📥 Export</button>
+    <button class="btn btn-outline" id="btnImport" onclick="document.getElementById('importInput').click()">📂 Import</button>
+    <input type="file" id="importInput" accept=".json" style="display:none" onchange="importSelections(event)">
+    <button class="btn btn-outline" onclick="expandAll()">🔽 Expand All</button>
+    <button class="btn btn-outline" onclick="collapseAll()">🔼 Collapse All</button>
+    <button class="btn btn-danger" onclick="clearAllSelections()">🗑️ Clear</button>
+  </div>
+</div>
+
+<!-- Stats bar -->
+<div class="stats" id="statsBar">
+  <span>Approved: <span class="num-approved" id="countApproved">0</span></span>
+  <span>Rejected: <span class="num-rejected" id="countRejected">0</span></span>
+  <span>Total: <span class="num-total" id="countTotal">0</span></span>
+  <span>Filtering: <span id="countFiltered">0</span> of <span id="countTotalFilterable">0</span></span>
+</div>
+
+<!-- Main content -->
+<div id="app">
+  <div class="loading-state">
+    <div class="spinner"></div>
+    <p>Loading photo index...</p>
+    <p style="font-size:13px;color:var(--text-muted)">Fetching <code>_data/photo-index.json</code> (~1.1 MB)</p>
+  </div>
+</div>
+
+<script>
+// ========== STATE ==========
+const DATA = { staging: {}, selections: {} };
+const PER_PAGE = 50;
+let currentPage = {};
+let selectedHouseIds = null; // null = all
+let filters = { property: new Set(), room: 'all', quality: 'all', status: 'all', search: '' };
+
+// ========== LOCALSTORAGE ==========
+function getKey(houseId, photoId) { return `curation-${houseId}-${photoId}`; }
+function loadVerdict(houseId, photoId) {
+  try { return JSON.parse(localStorage.getItem(getKey(houseId, photoId))); } catch { return null; }
+}
+function saveVerdict(houseId, photoId, verdict) {
+  localStorage.setItem(getKey(houseId, photoId), JSON.stringify(verdict));
+  updateStats();
+}
+function clearAllSelections() {
+  if (!confirm('Clear ALL approve/reject decisions? This cannot be undone.')) return;
+  const keys = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith('curation-')) keys.push(k);
+  }
+  keys.forEach(k => localStorage.removeItem(k));
+  renderGallery();
+}
+function getAllVerdicts() {
+  const v = {};
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith('curation-')) {
+      try { v[k] = JSON.parse(localStorage.getItem(k)); } catch {}
+    }
+  }
+  return v;
+}
+
+// ========== DATA LOADING ==========
+async function loadData() {
+  const app = document.getElementById('app');
+  try {
+    const [indexResp, selResp] = await Promise.all([
+      fetch('../_data/photo-index.json'),
+      fetch('../_data/photo-selections.json')
+    ]);
+    if (!indexResp.ok) throw new Error(`photo-index.json: ${indexResp.status} ${indexResp.statusText}`);
+    if (!selResp.ok) throw new Error(`photo-selections.json: ${selResp.status} ${selResp.statusText}`);
+
+    const index = await indexResp.json();
+    const selections = await selResp.json();
+
+    DATA.staging = index.staging || {};
+    DATA.selections = selections || {};
+    DATA.index = index;
+
+    populateFilters();
+    renderGallery();
+
+  } catch (err) {
+    app.innerHTML = `
+      <div class="error-state">
+        <h2 style="margin-bottom:12px;">⚠️ Failed to load data</h2>
+        <p>${err.message}</p>
+        <p style="font-size:13px;color:var(--text-muted);margin-top:8px;">
+          Make sure you're running <code>python3 -m http.server 8000</code> from the site root
+          and both <code>_data/photo-index.json</code> and <code>_data/photo-selections.json</code> exist.
+        </p>
+        <button class="btn btn-primary" onclick="location.reload()" style="margin-top:16px;">Retry</button>
+      </div>`;
+  }
+}
+
+// ========== FILTERS ==========
+function populateFilters() {
+  const propEl = document.getElementById('filterProperty');
+  const roomEl = document.getElementById('filterRoom');
+  const qualityEl = document.getElementById('filterQuality');
+  const rooms = new Set();
+  const qualities = new Set();
+
+  for (const [houseId, hdata] of Object.entries(DATA.staging)) {
+    if (!hdata.photos) continue;
+    // Add to property multiselect
+    if (!propEl.querySelector(`option[value="${houseId}"]`)) {
+      const opt = document.createElement('option');
+      opt.value = houseId;
+      opt.textContent = hdata.name || houseId;
+      // Don't select "all" option; we initially select all
+      propEl.appendChild(opt);
+    }
+    for (const pdata of Object.values(hdata.photos)) {
+      if (pdata.nim_room_type) rooms.add(pdata.nim_room_type);
+      if (pdata.nim_quality) qualities.add(pdata.nim_quality);
+    }
+  }
+
+  // Sort room types by frequency? Just alpha for now
+  for (const r of [...rooms].sort()) {
+    const opt = document.createElement('option');
+    opt.value = r; opt.textContent = r.charAt(0).toUpperCase() + r.slice(1);
+    roomEl.appendChild(opt);
+  }
+  for (const q of ['excellent', 'good', 'adequate', 'poor']) {
+    if (qualities.has(q)) {
+      const opt = document.createElement('option');
+      opt.value = q; opt.textContent = q.charAt(0).toUpperCase() + q.slice(1);
+      qualityEl.appendChild(opt);
+    }
+  }
+}
+
+function updateFilters() {
+  const propEl = document.getElementById('filterProperty');
+  const selected = [...propEl.selectedOptions].map(o => o.value);
+  if (selected.includes('all') || selected.length === 0) {
+    filters.property = new Set();
+  } else {
+    filters.property = new Set(selected);
+  }
+  filters.room = document.getElementById('filterRoom').value;
+  filters.quality = document.getElementById('filterQuality').value;
+  filters.status = document.getElementById('filterStatus').value;
+  filters.search = document.getElementById('filterSearch').value.toLowerCase().trim();
+  currentPage = {};
+  renderGallery();
+}
+
+// ========== PHOTO CARD ==========
+function createPhotoCard(houseId, photoId, pdata, isSelected) {
+  const card = document.createElement('div');
+  card.className = 'photo-card';
+  card.dataset.houseId = houseId;
+  card.dataset.photoId = photoId;
+
+  const stored = loadVerdict(houseId, photoId);
+  if (stored) {
+    card.classList.add(stored.status === 'approved' ? 'approved' : 'rejected');
+  }
+  if (isSelected) {
+    card.classList.add('current-selection');
+  }
+
+  // Determine image URL
+  const ext = photoId.split('.').pop().toLowerCase();
+  let imgSrc;
+  if (['jpg','jpeg','png','webp','avif','gif'].includes(ext)) {
+    imgSrc = `../sharepoint-download-staging/${houseId}/${photoId}`;
+  } else if (['heic','heif'].includes(ext)) {
+    // Try JPG counterpart
+    const base = photoId.replace(/\.(heic|heif)$/i, '');
+    imgSrc = `../sharepoint-download-staging/${houseId}/${base}.jpg`;
+  } else {
+    imgSrc = null;
+  }
+
+  const quality = pdata.nim_quality || 'unknown';
+  const qualityBadgeClass = {
+    'excellent': 'badge-excellent',
+    'good': 'badge-good',
+    'adequate': 'badge-adequate',
+    'poor': 'badge-poor'
+  }[quality] || '';
+
+  const roomType = pdata.nim_room_type || '';
+  const description = pdata.nim_description || '';
+  const features = pdata.nim_features || '';
+  const tags = pdata.nim_tags || [];
+  const composition = pdata.nim_composition || '';
+
+  card.innerHTML = `
+    <div class="thumb-wrap">
+      <div class="skeleton"></div>
+      ${imgSrc ? `<img src="${imgSrc}" alt="${photoId}" loading="lazy"
+        onload="this.previousElementSibling.style.display='none'"
+        onerror="this.setAttribute('data-error','1');this.previousElementSibling.style.display='none'">` : `<div style="padding:40px 10px;text-align:center;color:var(--text-muted);font-size:11px;">No preview<br>${ext}</div>`}
+      ${isSelected ? '<span class="badge badge-current">Selected</span>' : ''}
+      ${qualityBadgeClass ? `<span class="badge ${qualityBadgeClass}">${quality}</span>` : ''}
+      ${roomType ? `<span class="badge-room-type">${roomType}</span>` : ''}
+    </div>
+    <div class="info">
+      <div class="filename">${photoId}</div>
+      ${description ? `<div class="desc">${escapeHtml(description)}</div>` : ''}
+      ${features ? `<div class="tags">${features.split(',').slice(0,4).map(f => `<span>${escapeHtml(f.trim())}</span>`).join('')}</div>` : ''}
+      ${composition ? `<div style="font-size:10px;color:var(--text-muted);margin-bottom:2px;">${composition}</div>` : ''}
+    </div>
+    <div class="actions">
+      <button class="btn btn-sm ${stored?.status === 'approved' ? 'btn-success active' : 'btn-outline'}"
+        onclick="setVerdict('${houseId}','${photoId}','approved',this)">✅</button>
+      <button class="btn btn-sm ${stored?.status === 'rejected' ? 'btn-danger active' : 'btn-outline'}"
+        onclick="setVerdict('${houseId}','${photoId}','rejected',this)">❌</button>
+    </div>`;
+
+  return card;
+}
+
+function escapeHtml(s) {
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+function setVerdict(houseId, photoId, status, btn) {
+  const card = btn.closest('.photo-card');
+  const stored = loadVerdict(houseId, photoId);
+  // Toggle: clicking same button removes the verdict
+  if (stored && stored.status === status) {
+    localStorage.removeItem(getKey(houseId, photoId));
+    card.classList.remove('approved', 'rejected');
+    card.querySelectorAll('.actions .btn').forEach(b => b.classList.remove('active'));
+  } else {
+    saveVerdict(houseId, photoId, { status, timestamp: new Date().toISOString() });
+    card.classList.remove('approved', 'rejected');
+    card.classList.add(status === 'approved' ? 'approved' : 'rejected');
+    card.querySelectorAll('.actions .btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+}
+
+// ========== GALLERY RENDERING ==========
+function matchesFilters(houseId, photoId, pdata) {
+  // Property filter
+  if (filters.property.size > 0 && !filters.property.has(houseId)) return false;
+
+  // Room type filter
+  if (filters.room !== 'all' && pdata.nim_room_type !== filters.room) return false;
+
+  // Quality filter
+  if (filters.quality !== 'all' && pdata.nim_quality !== filters.quality) return false;
+
+  // Status filter
+  if (filters.status !== 'all') {
+    const stored = loadVerdict(houseId, photoId);
+    if (filters.status === 'unreviewed' && stored) return false;
+    if (filters.status === 'approved' && (!stored || stored.status !== 'approved')) return false;
+    if (filters.status === 'rejected' && (!stored || stored.status !== 'rejected')) return false;
+  }
+
+  // Search filter
+  if (filters.search) {
+    const desc = (pdata.nim_description || '').toLowerCase();
+    const features = (pdata.nim_features || '').toLowerCase();
+    const tags = (pdata.nim_tags || []).join(' ').toLowerCase();
+    const room = (pdata.nim_room_type || '').toLowerCase();
+    if (!desc.includes(filters.search) && !features.includes(filters.search) &&
+        !tags.includes(filters.search) && !room.includes(filters.search)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function getSelectedPhotos(houseId) {
+  const sel = DATA.selections[houseId];
+  if (!sel) return new Set();
+  const s = new Set();
+  if (sel.hero) s.add(sel.hero.file);
+  if (sel.card) s.add(sel.card.file);
+  if (sel.gallery) sel.gallery.forEach(g => s.add(g.file));
+  return s;
+}
+
+function renderGallery() {
+  const app = document.getElementById('app');
+
+  // Collect all photos with filtering
+  const allEntries = [];
+
+  for (const [houseId, hdata] of Object.entries(DATA.staging)) {
+    if (!hdata.photos) continue;
+    const selectedSet = getSelectedPhotos(houseId);
+
+    for (const [photoId, pdata] of Object.entries(hdata.photos)) {
+      if (matchesFilters(houseId, photoId, pdata)) {
+        allEntries.push({ houseId, photoId, pdata, isSelected: selectedSet.has(photoId) });
+      }
+    }
+  }
+
+  // Sort: currently selected first, then by quality, then by filename
+  const qualityRank = { 'excellent': 0, 'good': 1, 'adequate': 2, 'poor': 3 };
+  allEntries.sort((a, b) => {
+    if (a.isSelected !== b.isSelected) return a.isSelected ? -1 : 1;
+    const qa = qualityRank[a.pdata.nim_quality] ?? 99;
+    const qb = qualityRank[b.pdata.nim_quality] ?? 99;
+    if (qa !== qb) return qa - qb;
+    return a.photoId.localeCompare(b.photoId);
+  });
+
+  const totalFiltered = allEntries.length;
+  document.getElementById('countFiltered').textContent = totalFiltered;
+
+  // Group by property, maintaining property order from the index
+  const propOrder = Object.keys(DATA.staging);
+  const grouped = {};
+  for (const entry of allEntries) {
+    if (!grouped[entry.houseId]) grouped[entry.houseId] = [];
+    grouped[entry.houseId].push(entry);
+  }
+
+  app.innerHTML = '';
+  let firstProp = true;
+  for (const houseId of propOrder) {
+    const entries = grouped[houseId];
+    if (!entries || entries.length === 0) continue;
+
+    const hdata = DATA.staging[houseId];
+    const section = document.createElement('div');
+    section.className = 'property-section';
+    section.dataset.houseId = houseId;
+
+    const show = currentPage[houseId] ?? PER_PAGE;
+    const visibleEntries = entries.slice(0, show);
+    const remaining = entries.length - visibleEntries.length;
+
+    // Count approved/rejected for this property
+    let approvedCount = 0, rejectedCount = 0;
+    for (const e of entries) {
+      const v = loadVerdict(e.houseId, e.photoId);
+      if (v) { if (v.status === 'approved') approvedCount++; else rejectedCount++; }
+    }
+
+    const name = hdata.name || houseId;
+    const town = hdata.town || '';
+    const collapsed = firstProp ? '' : 'collapsed';
+    firstProp = false;
+
+    section.innerHTML = `
+      <div class="property-header ${collapsed}" onclick="toggleProperty(this)">
+        <span class="chevron">▼</span>
+        <h2>${escapeHtml(name)}</h2>
+        <span class="town">${escapeHtml(town)}</span>
+        <span class="counts">
+          <span style="color:var(--green)">${approvedCount}✓</span>
+          <span style="color:var(--red)">${rejectedCount}✗</span>
+          · ${entries.length} photos
+        </span>
+      </div>
+      <div class="property-body ${collapsed}">
+        <div class="photo-grid" id="grid-${houseId}"></div>
+        ${remaining > 0 ? `<div class="load-more"><button class="btn btn-outline" onclick="loadMore('${houseId}')">Show ${Math.min(remaining, PER_PAGE)} more (${remaining} remaining)</button></div>` : ''}
+      </div>`;
+
+    app.appendChild(section);
+
+    const grid = section.querySelector('.photo-grid');
+    for (const entry of visibleEntries) {
+      grid.appendChild(createPhotoCard(entry.houseId, entry.photoId, entry.pdata, entry.isSelected));
+    }
+  }
+
+  if (app.children.length === 0) {
+    app.innerHTML = `<div class="empty-state"><p>No photos match the current filters.</p></div>`;
+  }
+
+  updateStats();
+}
+
+function toggleProperty(header) {
+  header.classList.toggle('collapsed');
+  const body = header.nextElementSibling;
+  body.classList.toggle('collapsed');
+}
+
+function expandAll() {
+  document.querySelectorAll('.property-header').forEach(h => {
+    h.classList.remove('collapsed');
+    h.nextElementSibling.classList.remove('collapsed');
+  });
+}
+
+function collapseAll() {
+  document.querySelectorAll('.property-header').forEach(h => {
+    h.classList.add('collapsed');
+    h.nextElementSibling.classList.add('collapsed');
+  });
+}
+
+function loadMore(houseId) {
+  currentPage[houseId] = (currentPage[houseId] ?? PER_PAGE) + PER_PAGE;
+  renderGallery();
+  // Re-expand the property
+  const section = document.querySelector(`.property-section[data-house-id="${houseId}"]`);
+  if (section) {
+    const header = section.querySelector('.property-header');
+    header.classList.remove('collapsed');
+    header.nextElementSibling.classList.remove('collapsed');
+  }
+}
+
+// ========== STATS ==========
+function updateStats() {
+  let approved = 0, rejected = 0, total = 0;
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith('curation-')) {
+      try {
+        const v = JSON.parse(localStorage.getItem(k));
+        if (v.status === 'approved') approved++;
+        else if (v.status === 'rejected') rejected++;
+        total++;
+      } catch {}
+    }
+  }
+  document.getElementById('countApproved').textContent = approved;
+  document.getElementById('countRejected').textContent = rejected;
+  document.getElementById('countTotal').textContent = total;
+
+  // Count total filterable photos
+  let filterable = 0;
+  for (const hdata of Object.values(DATA.staging)) {
+    if (hdata.photos) filterable += Object.keys(hdata.photos).length;
+  }
+  document.getElementById('countTotalFilterable').textContent = filterable;
+}
+
+// ========== EXPORT / IMPORT ==========
+function exportSelections() {
+  const data = {
+    exported: new Date().toISOString(),
+    source: 'photo-curation.html',
+    houses: {}
+  };
+
+  // Collect approved photos grouped by property
+  for (const [houseId, hdata] of Object.entries(DATA.staging)) {
+    const approved = [];
+    if (!hdata.photos) continue;
+    const selectedSet = getSelectedPhotos(houseId);
+
+    for (const [photoId, pdata] of Object.entries(hdata.photos)) {
+      const stored = loadVerdict(houseId, photoId);
+      if (stored && stored.status === 'approved') {
+        approved.push({
+          file: photoId,
+          room_type: pdata.nim_room_type || null,
+          quality: pdata.nim_quality || null,
+          description: pdata.nim_description || null,
+          features: pdata.nim_features || null,
+          best_for: pdata.nim_best_for || null,
+          currently_selected: selectedSet.has(photoId) || null,
+          tags: pdata.nim_tags || [],
+          timestamp: stored.timestamp
+        });
+      }
+    }
+
+    if (approved.length > 0) {
+      data.houses[houseId] = {
+        name: hdata.name || houseId,
+        town: hdata.town || '',
+        approved_photos: approved
+      };
+    }
+  }
+
+  // Also include rejected for reference
+  data.rejected = [];
+  for (const i in localStorage) {
+    if (i && i.startsWith('curation-')) {
+      try {
+        const v = JSON.parse(localStorage.getItem(i));
+        if (v.status === 'rejected') {
+          const parts = i.replace('curation-', '').split('-');
+          // Reconstruct: houseId and photoId (photo-NN.ext)
+          // Actually, this is unreliable because houseIds have dashes.
+          // We stored them properly via getKey so let's just capture safely.
+          const match = i.match(/^curation-(.+?)-(photo-\d+\..+)$/);
+          if (match) {
+            data.rejected.push({
+              houseId: match[1],
+              file: match[2],
+              status: 'rejected',
+              timestamp: v.timestamp
+            });
+          }
+        }
+      } catch {}
+    }
+  }
+
+  // Also include current selections for reference
+  data.current_selections = DATA.selections;
+
+  showExportModal(data);
+
+  // Also download as file
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `photo-curation-export-${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function showExportModal(data) {
+  const overlay = document.getElementById('exportModal') || createModal();
+  overlay.classList.add('open');
+  overlay.querySelector('pre').textContent = JSON.stringify(data, null, 2);
+
+  // Count summary
+  let approved = 0, houses = 0, selected = 0;
+  for (const h of Object.values(data.houses)) {
+    houses++;
+    approved += h.approved_photos.length;
+    selected += h.approved_photos.filter(p => p.currently_selected).length;
+  }
+  overlay.querySelector('.modal-summary').innerHTML =
+    `<strong>${approved}</strong> photos approved across <strong>${houses}</strong> properties ` +
+    `(<strong>${selected}</strong> carry over from current selections). ` +
+    `Also rejected <strong>${data.rejected.length}</strong>.`;
+}
+
+function createModal() {
+  const el = document.createElement('div');
+  el.id = 'exportModal';
+  el.className = 'modal-overlay';
+  el.innerHTML = `
+    <div class="modal">
+      <h3>📥 Export Summary</h3>
+      <p class="modal-summary"></p>
+      <pre></pre>
+      <div class="modal-actions">
+        <button class="btn btn-primary" onclick="document.getElementById('exportModal').classList.remove('open')">Close</button>
+      </div>
+    </div>`;
+  document.body.appendChild(el);
+  el.addEventListener('click', e => { if (e.target === el) el.classList.remove('open'); });
+  return el;
+}
+
+function importSelections(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      let count = 0;
+      for (const [houseId, hdata] of Object.entries(data.houses || {})) {
+        for (const photo of (hdata.approved_photos || [])) {
+          const key = getKey(houseId, photo.file);
+          localStorage.setItem(key, JSON.stringify({
+            status: 'approved',
+            timestamp: photo.timestamp || new Date().toISOString()
+          }));
+          count++;
+        }
+      }
+      for (const r of (data.rejected || [])) {
+        const key = getKey(r.houseId, r.file);
+        localStorage.setItem(key, JSON.stringify({
+          status: 'rejected',
+          timestamp: r.timestamp || new Date().toISOString()
+        }));
+        count++;
+      }
+      renderGallery();
+      alert(`Imported ${count} decisions.`);
+    } catch (err) {
+      alert(`Import failed: ${err.message}`);
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+// ========== DEBOUNCED FILTER ==========
+let filterTimer;
+function debouncedUpdateFilters() {
+  clearTimeout(filterTimer);
+  filterTimer = setTimeout(updateFilters, 200);
+}
+
+// ========== EVENT LISTENERS ==========
+document.addEventListener('DOMContentLoaded', () => {
+  loadData();
+
+  document.getElementById('filterProperty').addEventListener('change', updateFilters);
+  document.getElementById('filterRoom').addEventListener('change', updateFilters);
+  document.getElementById('filterQuality').addEventListener('change', updateFilters);
+  document.getElementById('filterStatus').addEventListener('change', updateFilters);
+  document.getElementById('filterSearch').addEventListener('input', debouncedUpdateFilters);
+});
+
+// Keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.key === 'e' || e.key === 'E') document.getElementById('btnExport').click();
+});
+</script>
+
+</body>
+</html>
