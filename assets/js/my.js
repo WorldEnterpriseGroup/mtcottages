@@ -1,27 +1,19 @@
-//AOS Anomation
-AOS.init();
+// AOS animation
+if (window.AOS) {
+  AOS.init();
+}
 
-// Curser Pointer
+// Scroll progress control. Some compact pages intentionally omit it.
+const scrollProgress = document.getElementById("progress");
+const progressValue = document.getElementById("progress-value");
 
-let cursor = document.querySelector(".cursor");
-let cursor2 = document.querySelector(".cursor2");
-let cursorScale = document.querySelectorAll(".cursor-scale");
-let mouseX = 0;
-let mouseY = 0;
-
-
-
-
-// scroll up
-
-let scrollPercentage = () => {
-  let scrollProgress = document.getElementById("progress");
-  let progressValue = document.getElementById("progress-value");
+const scrollPercentage = () => {
+  if (!scrollProgress || !progressValue) return;
   let pos = document.documentElement.scrollTop;
   let calcHeight =
     document.documentElement.scrollHeight -
     document.documentElement.clientHeight;
-  let scrollValue = Math.round((pos * 100) / calcHeight);
+  let scrollValue = calcHeight > 0 ? Math.round((pos * 100) / calcHeight) : 0;
 
   scrollProgress.style.background = `conic-gradient(#6E7C6B ${scrollValue}%, #52614e75 ${scrollValue}%)`;
   progressValue.textContent = `${scrollValue}%`;
@@ -34,11 +26,12 @@ let scrollPercentage = () => {
     scrollProgress.classList.add("hide");
   }
 
+};
+
+if (scrollProgress && progressValue) {
   scrollProgress.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
-};
-
-window.onscroll = scrollPercentage;
-window.onload = scrollPercentage;
-
+  window.addEventListener("scroll", scrollPercentage, { passive: true });
+  window.addEventListener("load", scrollPercentage);
+}

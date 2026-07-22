@@ -641,7 +641,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /* Hero Style four */
 
 .banner_area_4 {
-    background: url(../images/home-four/banner_bg4.jpg);
+    background-image: linear-gradient(90deg, rgba(16, 22, 16, .90) 0%, rgba(16, 22, 16, .76) 52%, rgba(16, 22, 16, .58) 100%), var(--home-hero-image, url(../images/cottages/marietta-01/homepage-hero-frederick.avif));
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -935,7 +935,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /* counter box */
 
 .counter-single-box {
-  background: url(../images/main-home/counter_thumb.jpg);
+  background: url(../images/cottages/marietta-01/thumb-counter.avif);
   background-repeat: no-repeat;
   background-size: cover;
   display: inline-block;
@@ -4524,6 +4524,18 @@ span.hero_coun-des {
   height: 535px;
   position: relative;
 }
+.breatcome-section::before {
+  background: rgba(11, 18, 12, 0.60);
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+.breatcome-section > .container,
+.breatcome-section > .container-fluid {
+  position: relative;
+  z-index: 1;
+}
 ul.breatcome-item li i {
   display: inline-block;
   font-size: 16px;
@@ -4617,6 +4629,33 @@ ul.breatcome-item li a i {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+}
+
+/* Keep the Cozy Places title legible across the light areas of its photo. */
+.breatcome-section.cozy-places-hero::before {
+  background: rgba(11, 18, 12, 0.62);
+  content: "";
+  inset: 0;
+  position: absolute;
+}
+
+.breatcome-section.cozy-places-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Dedicated topic pages use varied property photos, so protect white headings
+   and breadcrumb links from bright siding, windows, and sky. */
+.breatcome-section.topic-page-hero::before {
+  background: rgba(11, 18, 12, 0.62);
+  content: "";
+  inset: 0;
+  position: absolute;
+}
+
+.breatcome-section.topic-page-hero .container {
+  position: relative;
+  z-index: 1;
 }
 /*
 <!-- ============================================================== -->
@@ -8234,6 +8273,20 @@ ul.social-box li a:hover {
 .content-thumb-box img {
   width: 92%;
   border-radius: 10px;
+}
+
+/* Property photography uses the native HotelHub placeholder geometry. */
+.rooms-section .choose-single-thumbs > a {
+  display: block;
+}
+
+.rooms-section .choose-single-thumbs > img,
+.rooms-section .choose-single-thumbs > a > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 648 / 470;
+  object-fit: cover;
 }
 
 .nav-btn.navSidebar-button span i {
