@@ -1,5 +1,6 @@
 # Local property/photo inventory export; keep private and out of Git.
 homes.csv
+NOTES.md
 
 # Private SharePoint photo-import state; the public site receives only curated image files.
 sharepoint-house-map.json

@@ -21,7 +21,7 @@ Mt Cottages is the guest-facing rental operation for furnished homes, tenants, r
 
 `index.html` and every guest-facing page are built directly from the exact HotelHub theme package from `~/Downloads/hotelhub-luxury-hotel-booking-html5-template-2026-04-28-16-29-32-utc.zip`. The original HotelHub CSS, JavaScript, image directories, loaders, sliders, breadcrumbs, forms, page sections, and `venobox` assets remain the visual foundation. Mt Cottages changes are content, branding, navigation labels, and destination links inside those native HotelHub structures.
 
-The public navigation is intentionally brand-first: `Cottages`, `Locations`, `Living`, `Services`, `About`, `Contact`, `Residents`, and the `Stay with Us` application CTA. The Cottages menu leads to `Find Your Place`, `Cozy Places`, `Room to Settle In`, and `Available Now`; Living includes `Health Professionals` and `Family Stays`, while Services includes `Meal Preparation`. The current guest-facing pages include `cottages.html`, `cozy-places.html`, `room-to-settle.html`, `available.html`, `locations.html`, `living.html`, `services.html`, `about.html`, `contact.html`, `faq.html`, and `apply.html`. Resident support is separated into `residents.html`, `resident-portal.html`, `pay-rent.html`, `maintenance.html`, and `emergency-maintenance.html`; partner programs are described in `partnerships.html`.
+The public navigation is intentionally brand-first: `Cottages`, `Locations`, `Living`, `Services`, `About`, `Contact`, `Residents`, and the `Stay with Us` application CTA. The Cottages menu leads to `Find Your Place`, `Cozy Places`, `Room to Settle In`, and `Available Now`. Every Living and Services topic has a dedicated content page. Canonical town guides live at `marietta/index.html`, `parkersburg/index.html`, `ravenswood/index.html`, `grantsville/index.html`, and `racine/index.html`; individual homes live beneath their town directory using their public cottage name. The site is new, so obsolete flat property/location URLs are removed rather than retained as redirects. Resident support is separated into `residents.html`, `resident-portal.html`, `pay-rent.html`, `maintenance.html`, and `emergency-maintenance.html`; partner programs are described in `partnerships.html`.
 
 ## SharePoint inventory and photo isolation
 
@@ -35,6 +35,19 @@ assets/images/cottages/<house-id>/photo-02.jpg
 ```
 
 Use [`scripts/import_sharepoint_photos.rb`](scripts/import_sharepoint_photos.rb) with the private map and CSV to download exact-source images. The importer records source metadata in the ignored `sharepoint-photo-manifest.json`, prevents a file hash from being reused across houses, and requires visual review before a photo is linked from public HTML. Do not use broad SILK archives, mixed galleries, or filename guesses for a house. A construction/inspection image is not a marketing approval. The Grantsville property is currently excluded from the public site, and the Ravenswood property without an exact public source has no approved public image yet.
+
+HotelHub display slots use curated AVIF derivatives rather than full source photos. Run
+`python3 scripts/build-theme-crops.py` after changing a selected property image. The script
+uses reviewed focal points and recreates the theme's native dimensions (including 648×470
+room cards, 421×540 Mountain Home cards, 240×240 gallery strips, and 1920×586 breadcrumbs)
+without stretching. Property-page lightboxes continue to link to the untouched source image.
+
+Rendered property photography is allocated once across the published site: banners, cards,
+content photos, and footer galleries must not reuse the same visual source. Run
+`python3 scripts/audit-photo-uniqueness.py --check` before publishing to catch repeated
+sources, renamed pixel copies, rejected images, or missing rendered assets. The homepage
+reserves five reviewed 1920×820 crops for its randomized hero rotation; those sources are
+not available to any other page slot.
 
 Public image paths use house IDs rather than street addresses. This keeps the public site useful while keeping the exact address-to-folder map private.
 

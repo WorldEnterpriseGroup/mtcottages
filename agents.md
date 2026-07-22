@@ -48,7 +48,8 @@ Only use an exact source folder explicitly mapped to that house. Do not pull fro
 3. Never commit Cloudflare, GitHub, Microsoft, email, booking, or other service credentials.
 4. Keep `homes.csv`, `sharepoint-house-map.json`, `sharepoint-photo-manifest.json`, and any SharePoint download staging directory ignored.
 5. Preview with `python3 -m http.server 8000` and check the browser console for missing assets.
-6. Before publishing, run `git diff --check`, validate `infra/azure/*.json`, confirm the public HTML has no excluded address, run `cd e2e && npm ci && npm test` against a local server, and confirm the GitHub Pages source is `gh-pages` / `/`.
+6. After changing a selected property image, run `python3 scripts/build-theme-crops.py` so every embedded photo retains the exact HotelHub slot dimensions; keep full originals limited to lightbox links.
+7. Before publishing, run `git diff --check`, validate `infra/azure/*.json`, confirm the public HTML has no excluded address, run `cd e2e && npm ci && npm test` against a local server, and confirm the GitHub Pages source is `gh-pages` / `/`.
 
 ## Hosting
 
