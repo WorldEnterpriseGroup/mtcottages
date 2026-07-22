@@ -366,7 +366,42 @@
     animation: shimmer 1.5s infinite;
   }
   @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+  /* Drag handle */
+  .photo-card .drag-handle {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    color: var(--text-muted);
+    background: rgba(0,0,0,.45);
+    border-radius: 4px;
+    font-size: 14px;
+    z-index: 5;
+    user-select: none;
+    transition: color .15s, background .15s;
+  }
+  .photo-card .drag-handle:hover {
+    color: #fff;
+    background: rgba(0,0,0,.7);
+  }
+  .photo-card .drag-handle:active {
+    cursor: grabbing;
+  }
+  .photo-card.sortable-chosen { opacity: 0.4; }
+  .photo-grid .sortable-ghost {
+    opacity: 0.2;
+    background: var(--accent) !important;
+  }
+  /* Shrink room-type badge so it doesn't overlap drag handle on left */
+  .photo-card .badge-room-type { left: 34px; }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
 </head>
 <body>
 
@@ -398,6 +433,7 @@
   </div>
   <div class="header-actions">
     <button class="btn btn-success" id="btnSave" onclick="saveToServer()">💾 Save to Server</button>
+    <button class="btn btn-outline" id="btnSync" onclick="syncFromServer()">📡 Sync from Server</button>
     <button class="btn btn-primary" id="btnExport" onclick="exportSelections()">📥 Download JSON</button>
     <button class="btn btn-outline" id="btnImport" onclick="document.getElementById('importInput').click()">📂 Import</button>
     <input type="file" id="importInput" accept=".json" style="display:none" onchange="importSelections(event)">
@@ -443,11 +479,11 @@ function saveVerdict(houseId, photoId, verdict) {
   updateStats();
 }
 function clearAllSelections() {
-  if (!confirm('Clear ALL approve/reject decisions? This cannot be undone.')) return;
+  if (!confirm('Clear ALL approve/reject decisions and sort orders? This cannot be undone.')) return;
   const keys = [];
   for (let i = 0; i < localStorage.length; i++) {
     const k = localStorage.key(i);
-    if (k && k.startsWith('curation-')) keys.push(k);
+    if (k && (k.startsWith('curation-') || k.startsWith('curation-order-'))) keys.push(k);
   }
   keys.forEach(k => localStorage.removeItem(k));
   renderGallery();
@@ -461,6 +497,21 @@ function getAllVerdicts() {
     }
   }
   return v;
+}
+
+// ========== SORT ORDER (drag-and-drop reordering) ==========
+function sortOrderKey(houseId) { return `curation-order-${houseId}`; }
+function loadOrder(houseId) {
+  try {
+    const raw = localStorage.getItem(sortOrderKey(houseId));
+    return raw ? JSON.parse(raw) : null;
+  } catch { return null; }
+}
+function saveOrder(houseId, orderArray) {
+  localStorage.setItem(sortOrderKey(houseId), JSON.stringify(orderArray));
+}
+function clearOrder(houseId) {
+  localStorage.removeItem(sortOrderKey(houseId));
 }
 
 // ========== DATA LOADING ==========
@@ -607,6 +658,7 @@ function createPhotoCard(houseId, photoId, pdata, isSelected) {
       ${qualityBadgeClass ? `<span class="badge ${qualityBadgeClass}">${quality}</span>` : ''}
       ${roomType ? `<span class="badge-room-type">${roomType}</span>` : ''}
     </div>
+    <div class="drag-handle" title="Drag to reorder">⠿</div>
     <div class="info">
       <div class="filename">${photoId}</div>
       ${description ? `<div class="desc">${escapeHtml(description)}</div>` : ''}
@@ -693,6 +745,18 @@ function getSelectedPhotos(houseId) {
 function renderGallery() {
   const app = document.getElementById('app');
 
+  // Destroy any existing SortableJS instances before rebuilding
+  if (window.__sortableInstances) {
+    window.__sortableInstances.forEach(s => s.destroy());
+  }
+  window.__sortableInstances = [];
+
+  // Pre-load sort orders per house
+  const sortOrders = {};
+  for (const houseId of Object.keys(DATA.staging)) {
+    sortOrders[houseId] = loadOrder(houseId);
+  }
+
   // Collect all photos with filtering
   const allEntries = [];
 
@@ -707,26 +771,41 @@ function renderGallery() {
     }
   }
 
-  // Sort: currently selected first, then by quality, then by filename
   const qualityRank = { 'excellent': 0, 'good': 1, 'adequate': 2, 'poor': 3 };
-  allEntries.sort((a, b) => {
-    if (a.isSelected !== b.isSelected) return a.isSelected ? -1 : 1;
-    const qa = qualityRank[a.pdata.nim_quality] ?? 99;
-    const qb = qualityRank[b.pdata.nim_quality] ?? 99;
-    if (qa !== qb) return qa - qb;
-    return a.photoId.localeCompare(b.photoId);
-  });
 
-  const totalFiltered = allEntries.length;
-  document.getElementById('countFiltered').textContent = totalFiltered;
-
-  // Group by property, maintaining property order from the index
+  // Group by property first, maintaining property order from the index
   const propOrder = Object.keys(DATA.staging);
   const grouped = {};
   for (const entry of allEntries) {
     if (!grouped[entry.houseId]) grouped[entry.houseId] = [];
     grouped[entry.houseId].push(entry);
   }
+
+  // Sort within each property: stored order first, then selected, quality, filename
+  for (const houseId of Object.keys(grouped)) {
+    const order = loadOrder(houseId);
+    const orderIndex = {};
+    if (order) {
+      order.forEach((fname, idx) => { orderIndex[fname] = idx; });
+    }
+    grouped[houseId].sort((a, b) => {
+      // Stored order takes priority
+      const oa = orderIndex[a.photoId] ?? 9999;
+      const ob = orderIndex[b.photoId] ?? 9999;
+      if (oa !== ob) return oa - ob;
+      // Then currently selected
+      if (a.isSelected !== b.isSelected) return a.isSelected ? -1 : 1;
+      // Then quality
+      const qa = qualityRank[a.pdata.nim_quality] ?? 99;
+      const qb = qualityRank[b.pdata.nim_quality] ?? 99;
+      if (qa !== qb) return qa - qb;
+      // Then filename
+      return a.photoId.localeCompare(b.photoId);
+    });
+  }
+
+  const totalFiltered = allEntries.length;
+  document.getElementById('countFiltered').textContent = totalFiltered;
 
   app.innerHTML = '';
   let firstProp = true;
@@ -776,6 +855,22 @@ function renderGallery() {
     const grid = section.querySelector('.photo-grid');
     for (const entry of visibleEntries) {
       grid.appendChild(createPhotoCard(entry.houseId, entry.photoId, entry.pdata, entry.isSelected));
+    }
+
+    // Initialize SortableJS on this grid
+    if (typeof Sortable !== 'undefined') {
+      const sortable = new Sortable(grid, {
+        animation: 200,
+        handle: '.drag-handle',
+        filter: '.btn, select, input',
+        onEnd: function(evt) {
+          // Capture the new order from the DOM
+          const items = evt.from.querySelectorAll('.photo-card');
+          const order = Array.from(items).map(el => el.dataset.photoId);
+          saveOrder(houseId, order);
+        }
+      });
+      window.__sortableInstances.push(sortable);
     }
   }
 
@@ -904,7 +999,16 @@ function importSelections(event) {
       const data = JSON.parse(e.target.result);
       let count = 0;
       for (const [houseId, hdata] of Object.entries(data.houses || {})) {
-        for (const photo of (hdata.approved_photos || [])) {
+        // Restore sort order if sort_order fields are present
+        const approvedPhotos = hdata.approved_photos || [];
+        const hasSortOrder = approvedPhotos.some(p => p.sort_order !== undefined && p.sort_order !== null);
+        if (hasSortOrder) {
+          const sorted = [...approvedPhotos].sort((a, b) => (a.sort_order ?? 999) - (b.sort_order ?? 999));
+          const filenames = sorted.map(p => p.file);
+          saveOrder(houseId, filenames);
+        }
+
+        for (const photo of approvedPhotos) {
           const key = getKey(houseId, photo.file);
           localStorage.setItem(key, JSON.stringify({
             status: 'approved',
@@ -984,6 +1088,7 @@ document.addEventListener('keydown', (e) => {
   if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
   if (e.key === 'e' || e.key === 'E') document.getElementById('btnExport').click();
   if (e.key === 's' || e.key === 'S') document.getElementById('btnSave').click();
+  if (e.key === 'r' || e.key === 'R') syncFromServer();
 });
 
 // ========== SAVE TO SERVER ==========
@@ -1037,6 +1142,13 @@ function buildExportData() {
     if (!hdata.photos) continue;
     const selectedSet = getSelectedPhotos(houseId);
 
+    // Compute sort order index for this house
+    const order = loadOrder(houseId);
+    const orderIndex = {};
+    if (order) {
+      order.forEach((fname, idx) => { orderIndex[fname] = idx; });
+    }
+
     for (const [photoId, pdata] of Object.entries(hdata.photos)) {
       const stored = loadVerdict(houseId, photoId);
       if (stored && stored.status === 'approved') {
@@ -1049,7 +1161,8 @@ function buildExportData() {
           best_for: pdata.nim_best_for || pdata.gemini_best_for || null,
           currently_selected: selectedSet.has(photoId) || null,
           tags: pdata.nim_tags || pdata.gemini_tags || [],
-          timestamp: stored.timestamp
+          timestamp: stored.timestamp,
+          sort_order: orderIndex[photoId] ?? 999
         });
       }
     }
@@ -1087,6 +1200,81 @@ function buildExportData() {
 
   data.current_selections = DATA.selections;
   return data;
+}
+
+// ========== SYNC FROM SERVER ==========
+async function syncFromServer() {
+  const indicator = document.getElementById('saveIndicator');
+  indicator.textContent = '⏳ Syncing from server...';
+  indicator.style.color = 'var(--orange)';
+  const btnSync = document.getElementById('btnSync');
+  btnSync.disabled = true;
+
+  try {
+    const resp = await fetch('/api/decisions');
+    if (!resp.ok) {
+      const text = await resp.text();
+      throw new Error(`Server error (${resp.status}): ${text.slice(0, 200)}`);
+    }
+
+    const data = await resp.json();
+    let count = 0;
+
+    // Clear existing verdicts and sort orders
+    const keys = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && (k.startsWith('curation-') || k.startsWith('curation-order-'))) keys.push(k);
+    }
+    keys.forEach(k => localStorage.removeItem(k));
+
+    // Restore from server data
+    for (const [houseId, hdata] of Object.entries(data.houses || {})) {
+      const approvedPhotos = hdata.approved_photos || [];
+      // Restore sort order
+      const hasSortOrder = approvedPhotos.some(p => p.sort_order !== undefined && p.sort_order !== null);
+      if (hasSortOrder) {
+        const sorted = [...approvedPhotos].sort((a, b) => (a.sort_order ?? 999) - (b.sort_order ?? 999));
+        const filenames = sorted.map(p => p.file);
+        saveOrder(houseId, filenames);
+      }
+
+      for (const photo of approvedPhotos) {
+        const key = getKey(houseId, photo.file);
+        localStorage.setItem(key, JSON.stringify({
+          status: 'approved',
+          timestamp: photo.timestamp || new Date().toISOString()
+        }));
+        count++;
+      }
+    }
+
+    for (const r of (data.rejected || [])) {
+      const key = getKey(r.houseId, r.file);
+      localStorage.setItem(key, JSON.stringify({
+        status: 'rejected',
+        timestamp: r.timestamp || new Date().toISOString()
+      }));
+      count++;
+    }
+
+    renderGallery();
+    indicator.textContent = `✅ Synced ${count} decisions from server.`;
+    indicator.style.color = 'var(--green)';
+  } catch (err) {
+    indicator.textContent = `❌ Sync failed: ${err.message}`;
+    indicator.style.color = 'var(--red)';
+    console.error('Sync from server error:', err);
+  } finally {
+    btnSync.disabled = false;
+  }
+
+  // Clear indicator after 30s
+  setTimeout(() => {
+    if (indicator.textContent.startsWith('✅')) {
+      indicator.textContent = '';
+    }
+  }, 30000);
 }
 </script>
 
