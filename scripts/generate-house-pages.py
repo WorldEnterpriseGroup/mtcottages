@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""Generate 9 house detail pages using the HotelHub inner-page template."""
+"""Generate canonical nested house-detail pages from tracked property data."""
 import json
+import re
 from pathlib import Path
 
 ROOT = Path("/home/mrh/repos/worldenterprisegroup/mtcottages")
@@ -15,80 +16,47 @@ def load_pricing():
 
 PRICING = load_pricing()
 
-HOUSES = {
-    "marietta-01": {"name": "Frederick House", "town": "Marietta, OH", "town_slug": "marietta", "bedrooms": 3},
-    "parkersburg-01": {"name": "Broad Street Cottage", "town": "Parkersburg, WV", "town_slug": "parkersburg", "bedrooms": 2},
-    "parkersburg-02": {"name": "45th Street House", "town": "Parkersburg, WV", "town_slug": "parkersburg", "bedrooms": 1},
-    "parkersburg-03": {"name": "32nd Street Cottage", "town": "Parkersburg, WV", "town_slug": "parkersburg", "bedrooms": 2},
-    "parkersburg-04": {"name": "Broad Street House", "town": "Parkersburg, WV", "town_slug": "parkersburg", "bedrooms": 3},
-    "ravenswood-01": {"name": "Walnut Cottage", "town": "Ravenswood, WV", "town_slug": "ravenswood", "bedrooms": 1},
-    "ravenswood-02": {"name": "Virginia Street House", "town": "Ravenswood, WV", "town_slug": "ravenswood", "bedrooms": 2},
-    "ravenswood-03": {"name": "Henrietta Cottage", "town": "Ravenswood, WV", "town_slug": "ravenswood", "bedrooms": 2},
-}
-# ravenswood-04 (Gallatin House) is off-market: no usable photos were ever
-# submitted (only electrical-panel shots), same status as ravenswood-05.
-# Intentionally absent from HOUSES/PHOTOS so a rerun does not resurrect its page.
+PUBLIC_IDS = (
+    "marietta-01",
+    "parkersburg-01",
+    "parkersburg-02",
+    "parkersburg-03",
+    "parkersburg-04",
+    "ravenswood-01",
+    "ravenswood-02",
+    "ravenswood-03",
+)
+HOUSES = {house_id: PRICING[house_id] for house_id in PUBLIC_IDS}
 
-# Photo mapping per house: list of (filename, alt_text) for gallery, hero image filename for breatcome
-# An empty list means "Coming Soon" — show placeholder
-# Houses with 0 usable photos also get Coming Soon treatment
-PHOTOS = {
-    "marietta-01": {
-        "hero": "marietta-01/hero.avif",
-        "gallery": [
-            ("marietta-01/gallery-01.avif", "Living room"),
-            ("marietta-01/gallery-02.avif", "Kitchen"),
-            ("marietta-01/gallery-03.avif", "Bedroom"),
-            ("marietta-01/gallery-04.avif", "Bathroom"),
-            ("marietta-01/gallery-05.avif", "Dining area"),
-        ]
-    },
-    "parkersburg-01": {
-        "hero": "parkersburg-01/photo-06.avif",
-        "gallery": [
-            ("parkersburg-01/photo-03.avif", "Bedroom with desk"),
-            ("parkersburg-01/photo-06.avif", "Living room"),
-            ("parkersburg-01/photo-08.avif", "Living area"),
-            ("parkersburg-01/photo-05.avif", "Bedroom"),
-        ]
-    },
-    "parkersburg-02": {
-        "hero": None,
-        "gallery": [],  # Coming Soon — only 1 usable photo
-    },
-    "parkersburg-03": {
-        "hero": None,
-        "gallery": [],  # Coming Soon — no photos imported
-    },
-    "parkersburg-04": {
-        "hero": "parkersburg-04/photo-05.avif",
-        "gallery": [
-            ("parkersburg-04/photo-07.avif", "Queen bedroom"),
-            ("parkersburg-04/photo-08.avif", "Kitchen"),
-            ("parkersburg-04/photo-01.avif", "Bedroom with TV"),
-            ("parkersburg-04/photo-03.avif", "Sitting area"),
-            ("parkersburg-04/photo-06.avif", "Bedroom"),
-            ("parkersburg-04/photo-05.avif", "Covered porch"),
-        ]
-    },
-    "ravenswood-01": {
-        "hero": None,
-        "gallery": [],  # Coming Soon — no photos imported
-    },
-    "ravenswood-02": {
-        "hero": None,
-        "gallery": [],  # Coming Soon — CAD renders only
-    },
-    "ravenswood-03": {
-        "hero": "ravenswood-03/photo-01.avif",
-        "gallery": [
-            ("ravenswood-03/photo-06.avif", "Dining room"),
-            ("ravenswood-03/photo-01.avif", "Bedroom"),
-            ("ravenswood-03/photo-04.avif", "Bathroom"),
-            ("ravenswood-03/photo-05.avif", "Dining area"),
-        ]
-    },
-}
+# Gallatin Cottage has only duplicate electrical-panel documentation photos.
+# Sand has no isolated photo source. Both stay unpublished until factual house
+# photography is supplied; never substitute imagery from another property.
+with open(ROOT / "_data" / "photo-selections.json") as selections_file:
+    PHOTO_SELECTIONS = json.load(selections_file)
+
+
+def selected_photo_config(house_id):
+    selection = PHOTO_SELECTIONS[house_id]
+    hero = selection.get("hero")
+    hero_path = None
+    if hero:
+        published = Path(hero["published_file"])
+        hero_path = f"{house_id}/theme-breadcrumb-{published.stem}.avif"
+
+    gallery = []
+    for photo in selection.get("gallery", []):
+        published = Path(photo["published_file"])
+        gallery.append(
+            (
+                f"{house_id}/{published.name}",
+                f"{house_id}/theme-gallery-card-{published.stem}.avif",
+                photo["label"],
+            )
+        )
+    return {"hero": hero_path, "gallery": gallery}
+
+
+PHOTOS = {house_id: selected_photo_config(house_id) for house_id in PUBLIC_IDS}
 
 # Define which houses have real photos vs Coming Soon
 def has_photos(house_id):
@@ -99,7 +67,6 @@ def head_section(title, desc):
 <html lang="en-US">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>{title}</title>
     <meta name="description" content="{desc}" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -118,6 +85,7 @@ def head_section(title, desc):
     <link rel="stylesheet" href="assets/css/swiper.min.css" />
     <script src="assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <link rel="stylesheet" href="assets/css/aos.css" />
+    <style>.mean-container .mean-bar::before {{ content: "Mt Cottages"; }}</style>
   </head>'''
 
 NAV_DESKTOP = '''<ul class="nav_scroll">
@@ -269,7 +237,7 @@ def generate_page(house_id, house):
         </div>'''
     else:
         gallery_html = ""
-        for i, (photo_path, alt_text) in enumerate(gallery_photos):
+        for i, (photo_path, crop_path, alt_text) in enumerate(gallery_photos):
             if i % 2 == 0:
                 if i > 0:
                     gallery_html += '\n        <div class="row" style="margin-top: 30px;">'
@@ -280,7 +248,7 @@ def generate_page(house_id, house):
             <div class="rooms-single-single-bx">
               <div class="choose-single-thumbs">
                 <a class="venobox" data-gall="house-gallery" href="assets/images/cottages/{photo_path}">
-                  <img src="assets/images/cottages/{photo_path}" alt="{alt_text}">
+                  <img src="assets/images/cottages/{crop_path}" alt="{alt_text}">
                 </a>
               </div>
             </div>
@@ -305,7 +273,7 @@ def generate_page(house_id, house):
       </div>
     </div>'''
 
-    return f'''{head_section(title, summary)}
+    html = f'''{head_section(title, summary)}
   <body>
     <div class="loader-wrapper">
       <div class="loader"></div>
@@ -609,12 +577,28 @@ def generate_page(house_id, house):
   </body>
 </html>'''
 
+    # Canonical property pages are one directory below the site root. Prefix
+    # only local paths; external URLs, mail links, and in-page anchors remain
+    # untouched.
+    html = re.sub(
+        r'\b(href|src)="(?!\.\./|https?://|mailto:|tel:|#)([^"]+)"',
+        r'\1="../\2"',
+        html,
+    )
+    html = html.replace("url('assets/", "url('../assets/")
+    html = html.replace(
+        "breatcome-section style_two",
+        "breatcome-section style_two topic-page-hero",
+    )
+    return html
+
 def main():
     for house_id, house in HOUSES.items():
-        path = ROOT / f"{house_id}.html"
+        path = ROOT / house["route"]
+        path.parent.mkdir(parents=True, exist_ok=True)
         html = generate_page(house_id, house)
         path.write_text(html, encoding="utf-8")
-        print(f"Generated {path.name} ({len(html.splitlines())} lines)")
+        print(f"Generated {path.relative_to(ROOT)} ({len(html.splitlines())} lines)")
 
 if __name__ == "__main__":
     main()

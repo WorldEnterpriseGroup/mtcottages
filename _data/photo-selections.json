@@ -1,6 +1,7 @@
 {
   "marietta-01": {
-    "name": "Frederick House",
+    "name": "Frederick Cottage",
+    "public_route": "marietta/frederick-cottage.html",
     "town": "Marietta, OH",
     "hero": {
       "file": "photo-16.jpg",
@@ -40,7 +41,8 @@
     ]
   },
   "parkersburg-01": {
-    "name": "Broad Street Cottage",
+    "name": "Broad Cottage",
+    "public_route": "parkersburg/broad-cottage.html",
     "town": "Parkersburg, WV",
     "hero": {
       "file": "photo-44.jpg",
@@ -80,7 +82,8 @@
     ]
   },
   "parkersburg-02": {
-    "name": "45th Street House",
+    "name": "Buck Cottage",
+    "public_route": "parkersburg/buck-apartment-1.html",
     "town": "Parkersburg, WV",
     "hero": {
       "file": "photo-09.jpg",
@@ -120,7 +123,8 @@
     ]
   },
   "parkersburg-03": {
-    "name": "32nd Street Cottage",
+    "name": "Yellow Cottage",
+    "public_route": "parkersburg/yellow-cottage.html",
     "town": "Parkersburg, WV",
     "hero": {
       "file": "photo-145.jpg",
@@ -150,7 +154,8 @@
     ]
   },
   "parkersburg-04": {
-    "name": "Broad Street House",
+    "name": "Oak Cottage",
+    "public_route": "parkersburg/oak-cottage.html",
     "town": "Parkersburg, WV",
     "hero": {
       "file": "photo-23.jpg",
@@ -205,11 +210,12 @@
     ]
   },
   "ravenswood-01": {
-    "name": "Walnut Cottage",
+    "name": "White Cottage",
+    "public_route": "ravenswood/white-cottage.html",
     "town": "Ravenswood, WV",
     "hero": {
       "file": "photo-01.jpg",
-      "label": "The Walnut Cottage facade with a wraparound porch, green lawn, sidewalk, and street tree.",
+      "label": "The White Cottage facade with a wraparound porch, green lawn, sidewalk, and street tree.",
       "published_file": "photo-01.avif"
     },
     "card": {
@@ -260,7 +266,8 @@
     ]
   },
   "ravenswood-02": {
-    "name": "Virginia Street House",
+    "name": "Virginia Cottage",
+    "public_route": "ravenswood/virginia-cottage.html",
     "town": "Ravenswood, WV",
     "hero": {
       "file": "photo-117.jpg",
@@ -306,6 +313,7 @@
   },
   "ravenswood-03": {
     "name": "Henrietta Cottage",
+    "public_route": "ravenswood/henrietta-cottage.html",
     "town": "Ravenswood, WV",
     "hero": {
       "file": "photo-17.jpg",
@@ -355,15 +363,17 @@
     ]
   },
   "ravenswood-04": {
-    "name": "Gallatin House",
+    "name": "Gallatin Cottage",
     "town": "Ravenswood, WV",
+    "publication_gap": "Only duplicate electrical-panel documentation photos are available; no public stay page can be built without factual house photography.",
     "hero": null,
     "card": null,
     "gallery": []
   },
   "ravenswood-05": {
-    "name": "Ravenswood \u2014 coming soon",
+    "name": "Sand",
     "town": "Ravenswood, WV",
+    "publication_gap": "No isolated source folder or usable property photos are available.",
     "hero": null,
     "card": null,
     "gallery": []

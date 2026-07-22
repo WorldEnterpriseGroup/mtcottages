@@ -15,63 +15,39 @@ OUTPUT = REPO / "_data" / "photo-index.json"
 
 # ── Known entity data ──────────────────────────────────────
 HOUSE_INFO = {
-    "marietta-01":    {"name": "Frederick House",     "town": "Marietta, OH"},
-    "parkersburg-01": {"name": "Broad Street Cottage", "town": "Parkersburg, WV"},
-    "parkersburg-02": {"name": "45th Street House",    "town": "Parkersburg, WV"},
-    "parkersburg-03": {"name": "32nd Street Cottage",  "town": "Parkersburg, WV"},
-    "parkersburg-04": {"name": "Broad Street House",   "town": "Parkersburg, WV"},
-    "ravenswood-01":  {"name": "Walnut Cottage",       "town": "Ravenswood, WV"},
-    "ravenswood-02":  {"name": "Virginia Street House","town": "Ravenswood, WV"},
-    "ravenswood-03":  {"name": "Henrietta Cottage",    "town": "Ravenswood, WV"},
-    "ravenswood-04":  {"name": "Gallatin House",       "town": "Ravenswood, WV"},
+    "marietta-01": {"name": "Frederick Cottage", "town": "Marietta, OH", "public_route": "marietta/frederick-cottage.html"},
+    "parkersburg-01": {"name": "Broad Cottage", "town": "Parkersburg, WV", "public_route": "parkersburg/broad-cottage.html"},
+    "parkersburg-02": {"name": "Buck Cottage", "town": "Parkersburg, WV", "public_route": "parkersburg/buck-apartment-1.html"},
+    "parkersburg-03": {"name": "Yellow Cottage", "town": "Parkersburg, WV", "public_route": "parkersburg/yellow-cottage.html"},
+    "parkersburg-04": {"name": "Oak Cottage", "town": "Parkersburg, WV", "public_route": "parkersburg/oak-cottage.html"},
+    "ravenswood-01": {"name": "White Cottage", "town": "Ravenswood, WV", "public_route": "ravenswood/white-cottage.html"},
+    "ravenswood-02": {"name": "Virginia Cottage", "town": "Ravenswood, WV", "public_route": "ravenswood/virginia-cottage.html"},
+    "ravenswood-03": {"name": "Henrietta Cottage", "town": "Ravenswood, WV", "public_route": "ravenswood/henrietta-cottage.html"},
+    "ravenswood-04": {"name": "Gallatin Cottage", "town": "Ravenswood, WV", "public_route": None},
+    "ravenswood-05": {"name": "Sand", "town": "Ravenswood, WV", "public_route": None},
 }
 
-PHOTOS_DICT = {
-    "marietta-01": {
-        "hero": "marietta-01/hero.avif",
-        "gallery": [
-            ("marietta-01/gallery-01.avif", "Living room"),
-            ("marietta-01/gallery-02.avif", "Kitchen"),
-            ("marietta-01/gallery-03.avif", "Bedroom"),
-            ("marietta-01/gallery-04.avif", "Bathroom"),
-            ("marietta-01/gallery-05.avif", "Dining area"),
-        ],
-    },
-    "parkersburg-01": {
-        "hero": "parkersburg-01/photo-06.avif",
-        "gallery": [
-            ("parkersburg-01/photo-03.avif", "Bedroom with desk"),
-            ("parkersburg-01/photo-06.avif", "Living room"),
-            ("parkersburg-01/photo-08.avif", "Living area"),
-            ("parkersburg-01/photo-05.avif", "Bedroom"),
-        ],
-    },
-    "parkersburg-02": {"hero": None, "gallery": []},
-    "parkersburg-03": {"hero": None, "gallery": []},
-    "parkersburg-04": {
-        "hero": "parkersburg-04/photo-05.avif",
-        "gallery": [
-            ("parkersburg-04/photo-07.avif", "Queen bedroom"),
-            ("parkersburg-04/photo-08.avif", "Kitchen"),
-            ("parkersburg-04/photo-01.avif", "Bedroom with TV"),
-            ("parkersburg-04/photo-03.avif", "Sitting area"),
-            ("parkersburg-04/photo-06.avif", "Bedroom"),
-            ("parkersburg-04/photo-05.avif", "Covered porch"),
-        ],
-    },
-    "ravenswood-01": {"hero": None, "gallery": []},
-    "ravenswood-02": {"hero": None, "gallery": []},
-    "ravenswood-03": {
-        "hero": "ravenswood-03/photo-01.avif",
-        "gallery": [
-            ("ravenswood-03/photo-06.avif", "Dining room"),
-            ("ravenswood-03/photo-01.avif", "Bedroom"),
-            ("ravenswood-03/photo-04.avif", "Bathroom"),
-            ("ravenswood-03/photo-05.avif", "Dining area"),
-        ],
-    },
-    "ravenswood-04": {"hero": None, "gallery": []},
-}
+with open(REPO / "_data" / "photo-selections.json") as selections_file:
+    TRACKED_SELECTIONS = json.load(selections_file)
+
+
+def selected_photos(house_id):
+    """Return the current published hero/gallery in this script's old shape."""
+    selection = TRACKED_SELECTIONS.get(house_id, {})
+    hero = selection.get("hero")
+    hero_path = None
+    if hero:
+        hero_file = hero.get("published_file") or hero.get("file")
+        hero_path = f"{house_id}/{hero_file}"
+    gallery = []
+    for item in selection.get("gallery", []):
+        filename = item.get("published_file") or item.get("file")
+        if filename:
+            gallery.append((f"{house_id}/{filename}", item.get("label", "")))
+    return {"hero": hero_path, "gallery": gallery}
+
+
+PHOTOS_DICT = {house_id: selected_photos(house_id) for house_id in HOUSE_INFO}
 
 # ── NIM analysis results (per-staging-photo) ──────────────
 
@@ -351,6 +327,7 @@ def build_index():
             staging_data[hid] = {
                 "name": hi["name"],
                 "town": hi["town"],
+                "public_route": hi.get("public_route"),
                 "photos": photos,
             }
 
@@ -478,6 +455,7 @@ def build_index():
         houses_data[hid] = {
             "name": hi["name"],
             "town": hi["town"],
+            "public_route": hi.get("public_route"),
             "photos": published,
             "selection": sel,
             "status": "published" if has_selection else "coming_soon",

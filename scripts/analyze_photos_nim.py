@@ -23,12 +23,12 @@ NIM_MODEL = "meta/llama-3.2-11b-vision-instruct"
 # addresses in public HTML, CSS, JS, or image paths" rule. Real addresses
 # live only in the gitignored HOUSE_MAP_FILE.
 PUBLIC_LABEL_OVERRIDES = {
-    "ravenswood-05": "Ravenswood — coming soon",
+    "ravenswood-05": "Sand",
     "grantsville-01": "grantsville-01",
-    # Off-market: no usable photos were ever submitted for Gallatin House
+    # Off-market: no usable photos were ever submitted for Gallatin Cottage
     # (only electrical-panel shots), same status as ravenswood-05. No longer
     # in _data/houses.json since it has no published page.
-    "ravenswood-04": "Gallatin House",
+    "ravenswood-04": "Gallatin Cottage",
 }
 
 
