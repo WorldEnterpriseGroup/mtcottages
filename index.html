@@ -359,21 +359,25 @@
                       <h1>Find Your Place</h1>
                       <form id="booking-threeForm" action="https://stay.mtcottages.com/" method="get">
                         <div class="booking-input-box">
-                          <i class="bi bi-shield-check"></i>
-                          <input type="text" id="checkin1" name="checkin" placeholder="Check In" required />
-                        </div>
-                        <div class="booking-input-box">
-                          <i class="bi bi-shield-check"></i>
-                          <input type="text" id="checkout1" name="checkout" placeholder="Check Out" required />
+                          <i class="bi bi-calendar-check"></i>
+                          <select name="duration" id="duration1">
+                            <option value="" selected>Duration</option>
+                            <option value="month-to-month">Month to Month</option>
+                            <option value="3-months">3 Months</option>
+                            <option value="6-months">6 Months</option>
+                            <option value="12-months">12 Months</option>
+                            <option value="2-years">2 Years</option>
+                            <option value="3-years">3 Years</option>
+                          </select>
                         </div>
                         <div class="booking-input-box">
                           <i class="bi bi-house-door"></i>
-                          <select name="room_count" id="room_count1">
+                          <select name="bedroom_count" id="bedroom_count1">
                             <option value="1">01</option>
                             <option value="2">02</option>
                             <option value="3">03</option>
                             <option value="4">04</option>
-                            <option value="" selected>Rooms</option>
+                            <option value="" selected>Bedrooms</option>
                           </select>
                         </div>
                         <div class="booking-input-box">
@@ -393,6 +397,15 @@
                             <option value="2">02</option>
                             <option value="3">03</option>
                             <option value="" selected>Children</option>
+                          </select>
+                        </div>
+                        <div class="booking-input-box upper">
+                          <i class="bi bi-geo-alt"></i>
+                          <select name="location" id="location1">
+                            <option value="" selected>Any Location</option>
+                            <option value="marietta">Marietta</option>
+                            <option value="parkersburg">Parkersburg</option>
+                            <option value="ravenswood">Ravenswood</option>
                           </select>
                         </div>
                         <div class="booking-button">
@@ -435,21 +448,25 @@
                       <h1>Find Your Place</h1>
                       <form id="booking-twoForm" action="https://stay.mtcottages.com/" method="get">
                         <div class="booking-input-box">
-                          <i class="bi bi-shield-check"></i>
-                          <input type="text" id="checkin2" name="checkin" placeholder="Check In" required />
-                        </div>
-                        <div class="booking-input-box">
-                          <i class="bi bi-shield-check"></i>
-                          <input type="text" id="checkout2" name="checkout" placeholder="Check Out" required />
+                          <i class="bi bi-calendar-check"></i>
+                          <select name="duration" id="duration2">
+                            <option value="" selected>Duration</option>
+                            <option value="month-to-month">Month to Month</option>
+                            <option value="3-months">3 Months</option>
+                            <option value="6-months">6 Months</option>
+                            <option value="12-months">12 Months</option>
+                            <option value="2-years">2 Years</option>
+                            <option value="3-years">3 Years</option>
+                          </select>
                         </div>
                         <div class="booking-input-box">
                           <i class="bi bi-house-door"></i>
-                          <select name="room_count" id="room_count2">
+                          <select name="bedroom_count" id="bedroom_count2">
                             <option value="1">01</option>
                             <option value="2">02</option>
                             <option value="3">03</option>
                             <option value="4">04</option>
-                            <option value="" selected>Rooms</option>
+                            <option value="" selected>Bedrooms</option>
                           </select>
                         </div>
                         <div class="booking-input-box">
@@ -469,6 +486,15 @@
                             <option value="2">02</option>
                             <option value="3">03</option>
                             <option value="" selected>Children</option>
+                          </select>
+                        </div>
+                        <div class="booking-input-box upper">
+                          <i class="bi bi-geo-alt"></i>
+                          <select name="location" id="location2">
+                            <option value="" selected>Any Location</option>
+                            <option value="marietta">Marietta</option>
+                            <option value="parkersburg">Parkersburg</option>
+                            <option value="ravenswood">Ravenswood</option>
                           </select>
                         </div>
                         <div class="booking-button">
@@ -1596,52 +1622,6 @@
 
     <script src="assets/js/my.js"></script>
 
-    <script>
-        document.getElementById('checkin1').addEventListener('focus', function (event) {
-          event.target.type = 'date';
-        });
-
-        document.getElementById('checkin1').addEventListener('blur', function (event) {
-          if (!event.target.value) {
-            event.target.type = 'text';
-            event.target.placeholder = 'Check In';
-          }
-        });
-
-        document.getElementById('checkout1').addEventListener('focus', function (event) {
-          event.target.type = 'date';
-        });
-
-        document.getElementById('checkout1').addEventListener('blur', function (event) {
-          if (!event.target.value) {
-            event.target.type = 'text';
-            event.target.placeholder = 'Check Out';
-          }
-        });
-    </script>
-    <script>
-        document.getElementById('checkin2').addEventListener('focus', function (event) {
-          event.target.type = 'date';
-        });
-
-        document.getElementById('checkin2').addEventListener('blur', function (event) {
-          if (!event.target.value) {
-            event.target.type = 'text';
-            event.target.placeholder = 'Check In';
-          }
-        });
-
-        document.getElementById('checkout2').addEventListener('focus', function (event) {
-          event.target.type = 'date';
-        });
-
-        document.getElementById('checkout2').addEventListener('blur', function (event) {
-          if (!event.target.value) {
-            event.target.type = 'text';
-            event.target.placeholder = 'Check Out';
-          }
-        });
-    </script>
 
   </body>
 </html>
