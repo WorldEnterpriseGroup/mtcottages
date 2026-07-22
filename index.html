@@ -6,8 +6,8 @@
       http-equiv="x-ua-compatible"
       content="ie=edge"
     />
-    <title>Mt Cottages | Furnished Places to Settle In</title>
-    <meta name="description" content="Furnished cottages, apartments, and houses for 30 days, a season, a year, or longer across the Mid-Ohio Valley." />
+    <title>Mt Cottages | Furnished Living</title>
+    <meta name="description" content="Furnished cottages across the Mid-Ohio Valley." />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1"
@@ -104,6 +104,75 @@
       rel="stylesheet"
       href="assets/css/aos.css"
     />
+    <script>
+      (function () {
+        var images = [
+          "assets/images/cottages/marietta-01/homepage-hero-frederick.avif",
+          "assets/images/cottages/parkersburg-04/homepage-hero-oak-dining.avif",
+          "assets/images/cottages/parkersburg-03/homepage-hero-yellow.avif",
+          "assets/images/cottages/parkersburg-04/homepage-hero-oak.avif",
+          "assets/images/cottages/ravenswood-03/homepage-hero-henrietta-kitchen.avif"
+        ];
+        function randomIndex(maximum) {
+          try {
+            var value = new Uint32Array(1);
+            window.crypto.getRandomValues(value);
+            return value[0] % maximum;
+          } catch (error) {
+            return Math.floor(Math.random() * maximum);
+          }
+        }
+
+        for (var i = images.length - 1; i > 0; i -= 1) {
+          var swapWith = randomIndex(i + 1);
+          var held = images[i];
+          images[i] = images[swapWith];
+          images[swapWith] = held;
+        }
+
+        try {
+          var previous = window.sessionStorage.getItem("mtc-home-hero");
+          if (images.length > 1 && images[0] === previous) {
+            var alternate = 1 + randomIndex(images.length - 1);
+            var first = images[0];
+            images[0] = images[alternate];
+            images[alternate] = first;
+          }
+        } catch (error) {
+          // Storage can be unavailable in privacy modes; rotation still works.
+        }
+
+        var position = 0;
+        function showHero() {
+          var selected = images[position];
+          document.documentElement.style.setProperty("--home-hero-image", "url('/" + selected + "')");
+          document.documentElement.dataset.homeHeroIndex = String(position);
+          document.documentElement.dataset.homeHeroPath = selected;
+          document.documentElement.dataset.homeHeroCount = String(images.length);
+          try {
+            window.sessionStorage.setItem("mtc-home-hero", selected);
+          } catch (error) {
+            // The visual fallback does not depend on browser storage.
+          }
+        }
+
+        showHero();
+        var preload = document.createElement("link");
+        preload.rel = "preload";
+        preload.as = "image";
+        preload.href = images[0];
+        preload.type = "image/avif";
+        document.head.appendChild(preload);
+
+        document.addEventListener("DOMContentLoaded", function () {
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+          window.setInterval(function () {
+            position = (position + 1) % images.length;
+            showHero();
+          }, 7000);
+        });
+      }());
+    </script>
   </head>
   <body>
     <!-- loder -->
@@ -118,7 +187,7 @@
     <!--==================================================-->
     <div
       id="sticky-header"
-      class="hotelhub_nav_manu"
+      class="hotelhub_nav_manu style_four"
     >
       <div class="container-fluid">
         <div class="row align-items-center">
@@ -149,28 +218,29 @@
                 </li>
                 <li><a class="mdy-hover" href="locations.html">Locations <i class="fas fa-angle-down"></i></a>
                   <ul class="sub-menu">
-                    <li><a href="locations.html#marietta">Marietta, OH</a></li>
-                    <li><a href="locations.html#parkersburg">Parkersburg, WV</a></li>
-                    <li><a href="locations.html#ravenswood">Ravenswood, WV</a></li>
-                    <li><a href="grantsville-wv.html">Grantsville, WV</a></li>
-                    <li><a href="racine-oh.html">Racine, OH</a></li>
+                    <li><a href="marietta/index.html">Marietta, OH</a></li>
+                    <li><a href="parkersburg/index.html">Parkersburg, WV</a></li>
+                    <li><a href="ravenswood/index.html">Ravenswood, WV</a></li>
+                    <li><a href="grantsville/index.html">Grantsville, WV</a></li>
+                    <li><a href="racine/index.html">Racine, OH</a></li>
                   </ul>
                 </li>
                 <li><a class="mdy-hover" href="living.html">Living <i class="fas fa-angle-down"></i></a>
                   <ul class="sub-menu">
-                    <li><a href="living.html#travel-nurses">Health Professionals</a></li>
-                    <li><a href="living.html#relocation">Work &amp; Relocation</a></li>
-                    <li><a href="living.html#insurance">Insurance Housing</a></li>
-                    <li><a href="living.html#families">Family Stays</a></li>
+                    <li><a href="health-professionals.html">Health Professionals</a></li>
+                    <li><a href="work-relocation.html">Work &amp; Relocation</a></li>
+                    <li><a href="insurance-housing.html">Insurance Housing</a></li>
+                    <li><a href="family-stays.html">Family Stays</a></li>
                   </ul>
                 </li>
                 <li><a class="mdy-hover" href="services.html">Services <i class="fas fa-angle-down"></i></a>
                   <ul class="sub-menu">
-                    <li><a href="services.html#furnished-homes">Fully Furnished Homes</a></li>
-                    <li><a href="services.html#amenities">Home Amenities</a></li>
-                    <li><a href="services.html#guest-services">Guest Services</a></li>
-                    <li><a href="services.html#meal-preparation">Meal Preparation</a></li>
-                    <li><a href="services.html#property-care">Property Care</a></li>
+                    <li><a href="fully-furnished-homes.html">Fully Furnished Homes</a></li>
+                    <li><a href="home-amenities.html">Home Amenities</a></li>
+                    <li><a href="guest-services.html">Guest Services</a></li>
+                    <li><a href="meal-preparation.html">Meal Preparation</a></li>
+                    <li><a href="property-care.html">Property Care</a></li>
+                    <li><a href="housekeeping.html">Housekeeping</a></li>
                   </ul>
                 </li>
                 <li><a class="mdy-hover" href="about.html">About</a></li>
@@ -220,28 +290,29 @@
             </li>
             <li><a class="mdy-hover" href="locations.html">Locations</a>
               <ul class="sub-menu">
-                <li><a href="locations.html#marietta">Marietta, OH</a></li>
-                <li><a href="locations.html#parkersburg">Parkersburg, WV</a></li>
-                <li><a href="locations.html#ravenswood">Ravenswood, WV</a></li>
-                <li><a href="grantsville-wv.html">Grantsville, WV</a></li>
-                <li><a href="racine-oh.html">Racine, OH</a></li>
+                <li><a href="marietta/index.html">Marietta, OH</a></li>
+                <li><a href="parkersburg/index.html">Parkersburg, WV</a></li>
+                <li><a href="ravenswood/index.html">Ravenswood, WV</a></li>
+                <li><a href="grantsville/index.html">Grantsville, WV</a></li>
+                <li><a href="racine/index.html">Racine, OH</a></li>
               </ul>
             </li>
                 <li><a class="mdy-hover" href="living.html">Living</a>
               <ul class="sub-menu">
-                <li><a href="living.html#travel-nurses">Health Professionals</a></li>
-                <li><a href="living.html#relocation">Work &amp; Relocation</a></li>
-                <li><a href="living.html#insurance">Insurance Housing</a></li>
-                <li><a href="living.html#families">Family Stays</a></li>
+                <li><a href="health-professionals.html">Health Professionals</a></li>
+                <li><a href="work-relocation.html">Work &amp; Relocation</a></li>
+                <li><a href="insurance-housing.html">Insurance Housing</a></li>
+                <li><a href="family-stays.html">Family Stays</a></li>
               </ul>
             </li>
             <li><a class="mdy-hover" href="services.html">Services</a>
               <ul class="sub-menu">
-                <li><a href="services.html#furnished-homes">Fully Furnished Homes</a></li>
-                <li><a href="services.html#amenities">Home Amenities</a></li>
-                <li><a href="services.html#guest-services">Guest Services</a></li>
-                <li><a href="services.html#meal-preparation">Meal Preparation</a></li>
-                <li><a href="services.html#property-care">Property Care</a></li>
+                <li><a href="fully-furnished-homes.html">Fully Furnished Homes</a></li>
+                <li><a href="home-amenities.html">Home Amenities</a></li>
+                <li><a href="guest-services.html">Guest Services</a></li>
+                <li><a href="meal-preparation.html">Meal Preparation</a></li>
+                <li><a href="property-care.html">Property Care</a></li>
+                    <li><a href="housekeeping.html">Housekeeping</a></li>
               </ul>
             </li>
             <li><a class="mdy-hover" href="about.html">About</a></li>
@@ -263,200 +334,213 @@
     <!--==================================================-->
 
     <!--==================================================-->
-    <!-- Start Mt Cottages Hero Section  -->
+    <!-- Start Mt Cottages Hero Section -->
     <!--==================================================-->
-    <div class="hero-section" style="background-image: url(assets/images/cottages/marietta-01/hero.avif);">
-      <div class="container">
-        <div class="row hero_upper align-items-center">
-          <div class="col-lg-6">
-            <div class="hero-content">
-              <h4>
-                <i class="bi bi-check-circle-fill"></i> Furnished Living in
-                the Mid-Ohio Valley
-              </h4>
-              <h1 class="hotelhub-style cursor-scale">Find a Place to</h1>
-              <h1 class="hotelhub-style cursor-scale">
-                Settle In <span>Comfortably</span>
-              </h1>
+    <div class="swiper banner_4">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="banner_area_4 d-flex align-items-center">
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-lg-7">
+                  <div class="hero-content">
+                    <h4><i class="bi bi-check-circle-fill"></i> Furnished Living in the Mid-Ohio Valley</h4>
+                    <h1 class="hotelhub-style">A Place to Land.</h1>
+                    <h1 class="hotelhub-style">Room to Settle In.</h1>
+                    <p>Whole furnished homes for work, transition, family, and the chapters that take a little longer.</p>
+                    <div class="hotelhub-btn">
+                      <a href="apply.html">Stay with Us <i class="flaticon flaticon-right-arrow"></i></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-5">
+                  <div class="booking-bx style_two">
+                    <div class="containers">
+                      <h1>Find Your Place</h1>
+                      <form id="booking-threeForm" action="https://stay.mtcottages.com/" method="get">
+                        <div class="booking-input-box">
+                          <i class="bi bi-shield-check"></i>
+                          <input type="text" id="checkin1" name="checkin" placeholder="Check In" required />
+                        </div>
+                        <div class="booking-input-box">
+                          <i class="bi bi-shield-check"></i>
+                          <input type="text" id="checkout1" name="checkout" placeholder="Check Out" required />
+                        </div>
+                        <div class="booking-input-box">
+                          <i class="bi bi-house-door"></i>
+                          <select name="room_count" id="room_count1">
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="" selected>Rooms</option>
+                          </select>
+                        </div>
+                        <div class="booking-input-box">
+                          <i class="bi bi-person"></i>
+                          <select name="adult_count" id="adult_count1">
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="" selected>Adult</option>
+                          </select>
+                        </div>
+                        <div class="booking-input-box upper">
+                          <i class="bi bi-person"></i>
+                          <select name="children_count" id="children_count1">
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="" selected>Children</option>
+                          </select>
+                        </div>
+                        <div class="booking-button">
+                          <button type="submit">
+                            Stay with Us<i class="flaticon flaticon-right-arrow"></i>
+                          </button>
+                        </div>
+                      </form>
+                      <div id="confirmation"></div>
+                    </div>
+                    <div class="line-shape">
+                      <img src="assets/images/main-home/line-shape.png" alt="image" />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="col-lg-6">
-            <div class="hero-right_content">
-              <p>Furnished places for work, transition, family, and the next chapter—ready for 30 days, a season, a year, or longer.</p>
-              <div class="hotelhub-btn cursor-scale small">
-                <a href="apply.html"
-                  >Stay with Us <i class="flaticon flaticon-right-arrow"></i
-                ></a>
+        </div>
+
+        <!-- Second Mountain Home slide -->
+        <div class="swiper-slide">
+          <div class="banner_area_4 d-flex align-items-center">
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-lg-7">
+                  <div class="hero-content">
+                    <h4><i class="bi bi-check-circle-fill"></i> Furnished Living in the Mid-Ohio Valley</h4>
+                    <h1 class="hotelhub-style">Stay a Month.</h1>
+                    <h1 class="hotelhub-style">Stay a Season.</h1>
+                    <p>Move-in-ready cottages across Marietta, Parkersburg, and Ravenswood, with a real person to help.</p>
+                    <div class="hotelhub-btn">
+                      <a href="apply.html">Stay with Us <i class="flaticon flaticon-right-arrow"></i></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-5">
+                  <div class="booking-bx style_two">
+                    <div class="containers">
+                      <h1>Find Your Place</h1>
+                      <form id="booking-twoForm" action="https://stay.mtcottages.com/" method="get">
+                        <div class="booking-input-box">
+                          <i class="bi bi-shield-check"></i>
+                          <input type="text" id="checkin2" name="checkin" placeholder="Check In" required />
+                        </div>
+                        <div class="booking-input-box">
+                          <i class="bi bi-shield-check"></i>
+                          <input type="text" id="checkout2" name="checkout" placeholder="Check Out" required />
+                        </div>
+                        <div class="booking-input-box">
+                          <i class="bi bi-house-door"></i>
+                          <select name="room_count" id="room_count2">
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="" selected>Rooms</option>
+                          </select>
+                        </div>
+                        <div class="booking-input-box">
+                          <i class="bi bi-person"></i>
+                          <select name="adult_count" id="adult_count2">
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="" selected>Adult</option>
+                          </select>
+                        </div>
+                        <div class="booking-input-box upper">
+                          <i class="bi bi-person"></i>
+                          <select name="children_count" id="children_count2">
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="" selected>Children</option>
+                          </select>
+                        </div>
+                        <div class="booking-button">
+                          <button type="submit">
+                            Stay with Us<i class="flaticon flaticon-right-arrow"></i>
+                          </button>
+                        </div>
+                      </form>
+                      <div id="confirmation2"></div>
+                    </div>
+                    <div class="line-shape">
+                      <img src="assets/images/main-home/line-shape.png" alt="image" />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="container-fluid">
-        <div class="row align-items-center">
-          <div class="col-lg-8 pl-0">
-            <div class="solider-banner">
-              <div class="swiper slider-banner">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                    <div class="slider-img">
-                      <img
-                        src="assets/images/cottages/parkersburg-01/photo-44.avif"
-                        alt="Broad Street Cottage living room"
-                      />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="slider-img">
-                      <img
-                        src="assets/images/cottages/ravenswood-03/photo-17.avif"
-                        alt="Henrietta Cottage dining room"
-                      />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="slider-img">
-                      <img
-                        src="assets/images/cottages/parkersburg-03/photo-07.avif"
-                        alt="32nd Street Cottage exterior"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div class="slider-arrow-box">
-                  <button
-                    class="sliders-prev"
-                    tabindex="0"
-                    aria-label="Previous slide"
-                  >
-                    <i class="fa-solid fa-arrow-left"></i>
-                  </button>
-                  <button
-                    class="sliders-next"
-                    tabindex="0"
-                    aria-label="Next slide"
-                  >
-                    <i class="fa-solid fa-arrow-right"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="booking-bx">
-              <div class="containers">
-                <h1>Find Your Place</h1>
-                <form id="bookingForm">
-                  <div class="booking-input-box">
-                    <i class="bi bi-shield-check"></i>
-                    <input
-                      type="text"
-                      id="checkin"
-                      name="checkin"
-                      placeholder="Check In"
-                      required
-                    />
-                  </div>
-                  <div class="booking-input-box">
-                    <i class="bi bi-shield-check"></i>
-                    <input
-                      type="text"
-                      id="checkout"
-                      name="checkout"
-                      placeholder="Check Out"
-                      required
-                    />
-                  </div>
-                  <div class="booking-input-box">
-                    <i class="bi bi-house-door"></i>
-                    <select
-                      name="place"
-                      id="place"
-                    >
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>3</option>
-                      <option
-                        value="audi"
-                        selected=""
-                      >
-                        Rooms
-                      </option>
-                    </select>
-                  </div>
-                  <div class="booking-input-box">
-                    <i class="bi bi-person"></i>
-                    <select
-                      name="place"
-                      id="place2"
-                    >
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>3</option>
-                      <option
-                        value="audi"
-                        selected=""
-                      >
-                        Adult
-                      </option>
-                    </select>
-                  </div>
-                  <div class="booking-input-box upper">
-                    <i class="bi bi-person"></i>
-                    <select
-                      name="place"
-                      id="place3"
-                    >
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>3</option>
-                      <option
-                        value="audi"
-                        selected=""
-                      >
-                        Children
-                      </option>
-                    </select>
-                  </div>
-                  <div class="booking-button">
-                    <button type="submit">
-                      Stay with Us<i class="flaticon flaticon-right-arrow"></i>
-                    </button>
-                  </div>
-                </form>
-                <div id="confirmation"></div>
-              </div>
-                <div class="line-shape">
-                    <img
-                      src="assets/images/main-home/line-shape.png"
-                      alt="image"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="testi-slider-arrow-box">
+        <button class="slider-prev" tabindex="0" aria-label="Previous slide"><i class="fa-solid fa-arrow-left"></i></button>
+        <button class="slider-next" tabindex="0" aria-label="Next slide"><i class="fa-solid fa-arrow-right"></i></button>
       </div>
     </div>
     <!--==================================================-->
-    <!-- End Mt Cottages Hero Section  -->
+    <!-- End Mt Cottages Hero Section -->
     <!--==================================================-->
 
+
     <!--==================================================-->
-    <!-- Start Mt Cottages About Section -->
+    <!-- Start Mt Cottages Abut Section Style Four -->
     <!--==================================================-->
-    <div class="about-serction">
+    <div class="about-serction style_four">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-6" data-aos="fade-up">
-            <div class="hotelhub-section-title">
+        <div class="row align-items-center">
+          <div class="col-lg-6" data-aos=flip-up>
+            <div class="about-thumb home_four-about">
+              <img
+                src="assets/images/cottages/parkersburg-03/unique/index-img-506-4caee97890-551x596.avif"
+                alt="A view of a shingled roof and a tree under a blue sky."
+              />
+              <div class="counter-right-side cursor-scale">
+                <div
+                  class="counter-single-box"
+                  data-aos="fade-up"
+                >
+                  <div class="counter_icon">
+                    <img
+                      src="assets/images/main-home/ster-icon.png"
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    class="odometer-wrapper counter-box-title"
+                    data-count="3"
+                  >
+                    <h1 class="odometer"></h1>
+                  </div>
+                  <div class="counter-desc">
+                    <p>River-town communities</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6" data-aos=flip-up>
+            <div class="hotelhub-section-title home_three">
               <h4><i class="flaticon flaticon-right-arrow"></i>Mt Cottages</h4>
-              <h1>A furnished place to</h1>
-              <h1>call home</h1>
-              <h1>for as long as life requires</h1>
-              <p>We keep furnished living straightforward and pay attention to the details that help a place feel like home.</p>
+              <h1>Furnished living with</h1>
+              <h1>more room to breathe.</h1>
+              <p>We keep longer stays straightforward and pay attention to the everyday details that help a place feel like home.</p>
             </div>
             <div class="abou_list-item">
               <div class="abou_list">
@@ -465,7 +549,13 @@
                     <img
                       src="assets/images/main-home/list-icon.png"
                       alt=""
-                    />Move-in-ready furnishings
+                    />Whole-home privacy
+                  </li>
+                  <li>
+                    <img
+                      src="assets/images/main-home/list-icon.png"
+                      alt=""
+                    />Useful kitchens and living space
                   </li>
                 </ul>
               </div>
@@ -475,7 +565,13 @@
                     <img
                       src="assets/images/main-home/list-icon.png"
                       alt=""
-                    />Move-in-ready furnishings
+                    />Flexible 30+ day stays
+                  </li>
+                  <li>
+                    <img
+                      src="assets/images/main-home/list-icon.png"
+                      alt=""
+                    />A direct point of contact
                   </li>
                 </ul>
               </div>
@@ -486,97 +582,50 @@
               ></a>
             </div>
           </div>
-          <div class="col-lg-6" data-aos="fade-up">
-            <div class="about-thumb">
-              <img
-                src="assets/images/cottages/parkersburg-01/photo-01.avif"
-                alt=""
-              />
-              <div class="counter-right-side cursor-scale">
-                <div
-                  class="counter-single-box"
-                  data-aos="fade-up"
-                  style="background-image: url('assets/images/cottages/marietta-01/thumb-counter.avif');"
-                >
-                  <div class="counter_icon">
-                    <img
-                      src="assets/images/main-home/ster-icon.png"
-                      alt=""
-                    />
-                  </div>
-                  <div
-                    class="odometer-wrapper counter-box-title"
-                    data-count="6"
-                  >
-                    <h1 class="odometer"></h1>
-                    <h1>K+</h1>
-                  </div>
-                  <div class="counter-desc">
-                    <p>Happy Customers</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
       <div class="about-all-shape">
-        <div class="about_shape bounce-animate">
-          <img
-            src="assets/images/main-home/line-shape2.png"
-            alt=""
-          />
-        </div>
         <div class="about_shape2 bounce-animate3">
           <img
             src="assets/images/main-home/dot-shape.png"
             alt=""
           />
         </div>
-        <div class="about_shape3 bounce-animate3">
-          <img
-            src="assets/images/main-home/border-shape.png"
-            alt=""
-          />
-        </div>
       </div>
     </div>
     <!--==================================================-->
-    <!-- End Mt Cottages About Section  -->
+    <!-- End Mt Cottages Abut Section Style Four  -->
     <!--==================================================-->
 
     <!--==================================================-->
     <!-- Start Mt Cottages Why choose us Section -->
     <!--==================================================-->
-    <div class="why-choose-us-section">
+    <div class="why-choose-us-section style_four">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-12" data-aos="fade-up">
-            <div class="hotelhub-section-title text-center pb-55">
+          <div class="col-lg-12" data-aos=flip-up>
+            <div class="hotelhub-section-title home_three text-center pb-55">
               <h4>
                 <i class="flaticon flaticon-right-arrow"></i>COTTAGES
               </h4>
-              <h1>Choose the room to</h1>
-              <h1>Find your kind of cottage</h1>
+              <h1>Places that feel ready</h1>
+              <h1>for real life.</h1>
             </div>
           </div>
         </div>
-        <div class="hotelhub_slider-wrapper" data-aos="fade-up">
+        <div class="hotelhub_slider-wrapper"data-aos=flip-up>
           <div class="swiper choose-slider">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
                 <div class="row">
                   <div class="col-lg-12">
-                    <div class="choose-single-bx">
+                    <div class="choose-single-bx style_four">
                       <div class="choose-single-thumb">
-                        <img
-                          src="assets/images/cottages/marietta-01/hero.avif"
-                          alt=""
-                        />
+                        <img src="assets/images/cottages/marietta-01/theme-gallery-card-photo-39.avif" alt="A kitchen with white appliances and wooden cabinets." />
                         <div class="choose_content">
                           <div class="choose-content-inner">
-                            <span class="chosse-price">Marietta, OH</span>
-                            <h4>Frederick House</h4>
+                            <span class="chosse-price">From $1,395 / month</span>
+                            <h4>Frederick Cottage</h4>
                             <p>
                               A furnished place should feel ready for real life
                             </p>
@@ -586,24 +635,24 @@
                                   <img
                                     src="assets/images/main-home/choose-icon01.png"
                                     alt=""
-                                  />3 Bedrooms
+                                  />3 bedrooms
                                 </li>
                                 <li>
                                   <img
                                     src="assets/images/main-home/choose-icon02.png"
                                     alt=""
-                                  />30+ Day Stays
+                                  />Marietta, OH
                                 </li>
                                 <li>
                                   <img
                                     src="assets/images/main-home/choose-icon03.png"
                                     alt=""
-                                  />Utilities Included
+                                  />Fully furnished
                                 </li>
                               </ul>
                             </div>
                             <div class="hotelhub-btn">
-                              <a href="marietta-01.html"
+                              <a href="marietta/frederick-cottage.html"
                                 >view details
                                 <i class="flaticon flaticon-right-arrow"></i
                               ></a>
@@ -618,16 +667,13 @@
               <div class="swiper-slide">
                 <div class="row">
                   <div class="col-lg-12">
-                    <div class="choose-single-bx">
+                    <div class="choose-single-bx style_four">
                       <div class="choose-single-thumb">
-                        <img
-                          src="assets/images/cottages/parkersburg-01/photo-44.avif"
-                          alt=""
-                        />
+                        <img src="assets/images/cottages/parkersburg-04/theme-gallery-card-photo-23.avif" alt="A view from a house&#x27;s front steps, looking down at a sidewalk, a car, and a tree." />
                         <div class="choose_content">
                           <div class="choose-content-inner">
-                            <span class="chosse-price">Parkersburg, WV</span>
-                            <h4>Broad Street Cottage</h4>
+                            <span class="chosse-price">From $1,375 / month</span>
+                            <h4>Oak Cottage</h4>
                             <p>
                               A furnished place should feel ready for real life
                             </p>
@@ -637,24 +683,24 @@
                                   <img
                                     src="assets/images/main-home/choose-icon01.png"
                                     alt=""
-                                  />2 Bedrooms
+                                  />3 bedrooms
                                 </li>
                                 <li>
                                   <img
                                     src="assets/images/main-home/choose-icon02.png"
                                     alt=""
-                                  />30+ Day Stays
+                                  />Parkersburg, WV
                                 </li>
                                 <li>
                                   <img
                                     src="assets/images/main-home/choose-icon03.png"
                                     alt=""
-                                  />Utilities Included
+                                  />Fully furnished
                                 </li>
                               </ul>
                             </div>
                             <div class="hotelhub-btn">
-                              <a href="parkersburg-01.html"
+                              <a href="parkersburg/oak-cottage.html"
                                 >view details
                                 <i class="flaticon flaticon-right-arrow"></i
                               ></a>
@@ -669,16 +715,13 @@
               <div class="swiper-slide">
                 <div class="row">
                   <div class="col-lg-12">
-                    <div class="choose-single-bx">
+                    <div class="choose-single-bx style_four">
                       <div class="choose-single-thumb">
-                        <img
-                          src="assets/images/cottages/ravenswood-01/photo-01.avif"
-                          alt=""
-                        />
+                        <img src="assets/images/cottages/parkersburg-02/unique/index-img-716-29e6445ba8-421x540.avif" alt="A suburban street with a tree and leaves on the sidewalk." />
                         <div class="choose_content">
                           <div class="choose-content-inner">
-                            <span class="chosse-price">Ravenswood, WV</span>
-                            <h4>Walnut Cottage</h4>
+                            <span class="chosse-price">From $895 / month</span>
+                            <h4>Buck Cottage</h4>
                             <p>
                               A furnished place should feel ready for real life
                             </p>
@@ -688,24 +731,24 @@
                                   <img
                                     src="assets/images/main-home/choose-icon01.png"
                                     alt=""
-                                  />1 Bedroom
+                                  />1 bedroom
                                 </li>
                                 <li>
                                   <img
                                     src="assets/images/main-home/choose-icon02.png"
                                     alt=""
-                                  />30+ Day Stays
+                                  />Parkersburg, WV
                                 </li>
                                 <li>
                                   <img
                                     src="assets/images/main-home/choose-icon03.png"
                                     alt=""
-                                  />Utilities Included
+                                  />Fully furnished
                                 </li>
                               </ul>
                             </div>
                             <div class="hotelhub-btn cursor-scale small">
-                              <a href="ravenswood-01.html"
+                              <a href="parkersburg/buck-apartment-1.html"
                                 >view details
                                 <i class="flaticon flaticon-right-arrow"></i
                               ></a>
@@ -720,66 +763,12 @@
               <div class="swiper-slide">
                 <div class="row">
                   <div class="col-lg-12">
-                    <div class="choose-single-bx">
+                    <div class="choose-single-bx style_four">
                       <div class="choose-single-thumb">
-                        <img
-                          src="assets/images/cottages/parkersburg-02/photo-09.avif"
-                          alt=""
-                        />
+                        <img src="assets/images/cottages/ravenswood-03/unique/index-img-764-5afbddc086-421x540.avif" alt="A cozy dining room with a wooden table and striped chairs." />
                         <div class="choose_content">
                           <div class="choose-content-inner">
-                            <span class="chosse-price">Parkersburg, WV</span>
-                            <h4>45th Street House</h4>
-                            <p>
-                              A furnished place should feel ready for real life
-                            </p>
-                            <div class="choose-info">
-                              <ul>
-                                <li>
-                                  <img
-                                    src="assets/images/main-home/choose-icon01.png"
-                                    alt=""
-                                  />1 Bedroom
-                                </li>
-                                <li>
-                                  <img
-                                    src="assets/images/main-home/choose-icon02.png"
-                                    alt=""
-                                  />30+ Day Stays
-                                </li>
-                                <li>
-                                  <img
-                                    src="assets/images/main-home/choose-icon03.png"
-                                    alt=""
-                                  />Utilities Included
-                                </li>
-                              </ul>
-                            </div>
-                            <div class="hotelhub-btn cursor-scale small">
-                              <a href="parkersburg-02.html"
-                                >view details
-                                <i class="flaticon flaticon-right-arrow"></i
-                              ></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="choose-single-bx">
-                      <div class="choose-single-thumb">
-                        <img
-                          src="assets/images/cottages/ravenswood-03/photo-17.avif"
-                          alt=""
-                        />
-                        <div class="choose_content">
-                          <div class="choose-content-inner">
-                            <span class="chosse-price">Ravenswood, WV</span>
+                            <span class="chosse-price">From $1,045 / month</span>
                             <h4>Henrietta Cottage</h4>
                             <p>
                               A furnished place should feel ready for real life
@@ -790,24 +779,72 @@
                                   <img
                                     src="assets/images/main-home/choose-icon01.png"
                                     alt=""
-                                  />2 Bedrooms
+                                  />2 bedrooms
                                 </li>
                                 <li>
                                   <img
                                     src="assets/images/main-home/choose-icon02.png"
                                     alt=""
-                                  />30+ Day Stays
+                                  />Ravenswood, WV
                                 </li>
                                 <li>
                                   <img
                                     src="assets/images/main-home/choose-icon03.png"
                                     alt=""
-                                  />Utilities Included
+                                  />Fully furnished
                                 </li>
                               </ul>
                             </div>
                             <div class="hotelhub-btn cursor-scale small">
-                              <a href="ravenswood-03.html"
+                              <a href="ravenswood/henrietta-cottage.html"
+                                >view details
+                                <i class="flaticon flaticon-right-arrow"></i
+                              ></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="choose-single-bx style_four">
+                      <div class="choose-single-thumb">
+                        <img src="assets/images/cottages/parkersburg-01/unique/index-img-812-cf64e7f88c-421x540.avif" alt="A cozy bedroom with a wooden bed and red and black bedding." />
+                        <div class="choose_content">
+                          <div class="choose-content-inner">
+                            <span class="chosse-price">From $895 / month</span>
+                            <h4>Broad Cottage</h4>
+                            <p>
+                              A furnished place should feel ready for real life
+                            </p>
+                            <div class="choose-info">
+                              <ul>
+                                <li>
+                                  <img
+                                    src="assets/images/main-home/choose-icon01.png"
+                                    alt=""
+                                  />2 bedrooms
+                                </li>
+                                <li>
+                                  <img
+                                    src="assets/images/main-home/choose-icon02.png"
+                                    alt=""
+                                  />Parkersburg, WV
+                                </li>
+                                <li>
+                                  <img
+                                    src="assets/images/main-home/choose-icon03.png"
+                                    alt=""
+                                  />Fully furnished
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="hotelhub-btn cursor-scale small">
+                              <a href="parkersburg/broad-cottage.html"
                                 >view details
                                 <i class="flaticon flaticon-right-arrow"></i
                               ></a>
@@ -851,109 +888,40 @@
     <!--==================================================-->
     <!-- Start Mt Cottages Choose Section -->
     <!--==================================================-->
-    <div class="choose-section">
+    <div class="hotel-section">
       <div class="container">
         <div class="row">
-          <div class="col-lg-7 col-md-12" data-aos="fade-right">
-            <div class="hotelhub-section-title">
+          <div class="col-lg-6"></div>
+          <div class="col-lg-6 col-md-12 pl-75" data-aos=flip-up>
+            <div class="hotelhub-section-title home_three ">
               <h4>
-                <i class="flaticon flaticon-right-arrow"></i>WHY GUESTS STAY
+                <i class="flaticon flaticon-right-arrow"></i>MADE FOR REAL LIFE
               </h4>
-              <h1>A steadier way to</h1>
-              <h1>live between chapters</h1>
-              <p>We keep furnished living straightforward and pay attention to the details that help a place feel like home.</p>
+              <h1>More than a room.</h1>
+              <h1>A furnished place</h1>
+              <h1>to call your own.</h1>
+              <p>Cook dinner, close the bedroom door, take a call, and come back to a place that has room for ordinary life.</p>
             </div>
-            <div class="abou_list-item two">
-              <div class="abou_list">
-                <ul>
-                  <li>
-                    <img
-                      src="assets/images/main-home/aroow.png"
-                      alt=""
-                    />A kitchen for real meals
-                  </li>
-                  <li>
-                    <img
-                      src="assets/images/main-home/aroow.png"
-                      alt=""
-                    />Conversations about timing
-                  </li>
-                </ul>
-              </div>
-              <div class="abou_list">
-                <ul>
-                  <li>
-                    <img
-                      src="assets/images/main-home/aroow.png"
-                      alt=""
-                    />Practical home amenities
-                  </li>
-                  <li>
-                    <img
-                      src="assets/images/main-home/aroow.png"
-                      alt=""
-                    />Stunning Views
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="choose_list">
-              <ul>
-                <li>
-                  <img
-                    src="assets/images/main-home/check.png"
-                    alt=""
-                  />These features emphasize quality and comfort
-                </li>
-              </ul>
-            </div>
-            <div class="hotelhub-btn">
+
+            <div class="hotelhub-btn pt-26">
               <a href="apply.html"
-                >Learn More <i class="flaticon flaticon-right-arrow"></i
+                >Find Your Place <i class="flaticon flaticon-right-arrow"></i
               ></a>
-            </div>
-          </div>
-          <div class="col-lg-5 col-md-12" data-aos="fade-left">
-            <div class="choose-thumb">
-              <img
-                src="assets/images/cottages/ravenswood-03/photo-17.avif"
-                alt=""
-              />
-              <div class="choose-shape1 bounce-animate">
-                <img
-                  src="assets/images/main-home/choose-broder.png"
-                  alt=""
-                />
-              </div>
-              <div class="counter-right-side cursor-scale">
-                <div class="counter-single-box two">
-                  <div
-                    class="odometer-wrapper counter-box-title"
-                    data-count="10"
-                  >
-                    <h1 class="odometer"></h1>
-                    <h1>K+</h1>
-                  </div>
-                  <div class="counter_icon">
-                    <img
-                      src="assets/images/main-home/people.png"
-                      alt=""
-                    />
-                  </div>
-                  <div class="counter-desc">
-                    <p>Our All Satisfied Clients Trusted with us</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="choose-all-shape">
-        <div class="choose-shape2 bounce-animate3">
+      <div class="hotel-all-shape">
+        <div class="hotel-shpae1"data-aos=slide-right>
           <img
-            src="assets/images/main-home/choose-shpae.png"
-            alt=""
+            src="assets/images/cottages/parkersburg-03/unique/family-stays-img-360-a84fd9b5d5-960x1105.avif"
+            alt="A close-up of a corner of a room with white trim and a textured tan wall."
+          />
+        </div>
+        <div class="hotel-shpae2"data-aos=slide-left>
+          <img
+            src="assets/images/cottages/ravenswood-02/theme-gallery-card-photo-117.avif"
+            alt="A cozy living room with a couch and a large window."
           />
         </div>
       </div>
@@ -963,557 +931,243 @@
     <!--==================================================-->
 
     <!--==================================================-->
-    <!-- Start Mt Cottages Service Section  -->
+    <!-- Start Mt Cottages Why choose us Section Style five -->
     <!--==================================================-->
-    <div class="service-section">
+    <div class="why-choose-us-section style_five">
       <div class="container">
         <div class="row">
-          <div class="col-lg-4" data-aos="fade-right">
-            <div class="hotelhub-section-title style_two">
-              <h4><i class="flaticon flaticon-right-arrow"></i>Service</h4>
-              <h1>Everything Included</h1>
-              <h1>In Every Furnished</h1>
-              <h1>Stay</h1>
-              <div class="contact-infos">
-                <span><i class="fa-regular fa-envelope"></i></span>
-                <div class="contact-info-content">
-                  <p>For More Information</p>
-                  <h3><a href="mailto:stay@mtcottages.com">stay@mtcottages.com</a></h3>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-8" data-aos="fade-left">
-            <div class="row">
-              <div class="col-lg-6 col-md-6">
-                <div class="single-service-box">
-                  <div class="service-icon">
-                    <img
-                      src="assets/images/main-home/service-icon01.png"
-                      alt=""
-                    />
-                  </div>
-                  <div class="service-content">
-                    <h3>Flexible Lease Terms</h3>
-                    <p>Stay 30 days, a season, or longer — terms that match your timeline.</p>
-                  </div>
-                  <div class="hotelhub-hover-box hover-bx"></div>
-                  <div class="hotelhub-hover-box hover-bx2"></div>
-                  <div class="hotelhub-hover-box hover-bx3"></div>
-                  <div class="hotelhub-hover-box hover-bx4"></div>
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="single-service-box">
-                  <div class="service-icon">
-                    <img
-                      src="assets/images/main-home/service-icon02.png"
-                      alt=""
-                    />
-                  </div>
-                  <div class="service-content">
-                    <h3>Wi-Fi and Utilities Included</h3>
-                    <p>Every furnished home includes internet and utilities, so you can move in and get to work.</p>
-                  </div>
-                  <div class="hotelhub-hover-box hover-bx"></div>
-                  <div class="hotelhub-hover-box hover-bx2"></div>
-                  <div class="hotelhub-hover-box hover-bx3"></div>
-                  <div class="hotelhub-hover-box hover-bx4"></div>
-
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="single-service-box">
-                  <div class="service-icon">
-                    <img
-                      src="assets/images/main-home/service-icon03.png"
-                      alt=""
-                    />
-                  </div>
-                  <div class="service-content">
-                    <h3>Maintenance Requests</h3>
-                    <p>Something needs fixing? Submit a request and our team follows up quickly.</p>
-                  </div>
-                  <div class="hotelhub-hover-box hover-bx"></div>
-                  <div class="hotelhub-hover-box hover-bx2"></div>
-                  <div class="hotelhub-hover-box hover-bx3"></div>
-                  <div class="hotelhub-hover-box hover-bx4"></div>
-
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="single-service-box">
-                  <div class="service-icon">
-                    <img
-                      src="assets/images/main-home/service-icon04.png"
-                      alt=""
-                    />
-                  </div>
-                  <div class="service-content">
-                    <h3>Move-In Ready Furnishings</h3>
-                    <p>Beds, linens, kitchenware, and furniture are already in place before you arrive.</p>
-                  </div>
-                  <div class="hotelhub-hover-box hover-bx"></div>
-                  <div class="hotelhub-hover-box hover-bx2"></div>
-                  <div class="hotelhub-hover-box hover-bx3"></div>
-                  <div class="hotelhub-hover-box hover-bx4"></div>
-                </div>
-              </div>
+          <div class="col-lg-12"data-aos=flip-up>
+            <div class="hotelhub-section-title home_three pb-55 ">
+              <h4><i class="flaticon flaticon-right-arrow"></i>SERVICES &amp; AMENITIES</h4>
+              <h1>The practical details</h1>
+              <h1>are part of the welcome.</h1>
+              <p>Every home is different. We will explain what is included and what will make a particular place work for your stay.</p>
             </div>
           </div>
         </div>
-        <div class="hotelhub_slider-wrapper pt-30" data-aos="fade-up">
-          <div class="swiper service_list">
-            <div class="swiper-wrapper">
-              <!-- Slide 1 -->
-              <div class="swiper-slide">
-                <div class="single-service-boxs">
-                  <div class="service-thumb">
-                    <img
-                      src="assets/images/cottages/marietta-01/gallery-01.avif"
-                      alt="Guest Services"
-                    />
-                    <div class="service_icons">
-                      <img
-                        src="assets/images/main-home/service-icons-01.png"
-                        alt="Service Icon"
-                      />
-                    </div>
-                  </div>
-                  <div class="service-content">
-                    <span class="category">DISCOVER</span>
-                    <h3>Guest Services</h3>
-                    <ul class="service_list">
-                      <li>
-                        <i class="fa-solid fa-check"></i> Optional meal preparation
-                      </li>
-                      <li>
-                        <i class="fa-solid fa-check"></i> A kitchen ready for real life
-                      </li>
-                    </ul>
-                    <div class="hotelhub-btn2">
-                      <a href="resident-portal.html"
-                        >Learn More <i class="flaticon flaticon-right-arrow"></i
-                      >
-                      <div class="hotelhub-hover-btn hover-btn"></div>
-                      <div class="hotelhub-hover-btn hover-btn2"></div>
-                      <div class="hotelhub-hover-btn hover-btn3"></div>
-                      <div class="hotelhub-hover-btn hover-btn4"></div></a>
-                    </div>
-                  </div>
-                </div>
+        <div class="row">
+          <div class="col-lg-12"data-aos=flip-up>
+            <div class="choose-single-bx2 style_five">
+              <div class="choose-single-thumbs ">
+                <img src="assets/images/cottages/ravenswood-02/unique/health-professionals-img-371-d7bce0d15d-600x450.avif" alt="A well-maintained exterior with a wooden floor and a tree." />
               </div>
-
-              <!-- Slide 2 -->
-              <div class="swiper-slide">
-                <div class="single-service-boxs">
-                  <div class="service-thumb">
-                    <img
-                      src="assets/images/cottages/ravenswood-01/photo-165.avif"
-                      alt="Home Amenities"
-                    />
-                    <div class="service_icons">
-                      <img
-                        src="assets/images/main-home/service_icons02.png"
-                        alt="Service Icon"
-                      />
-                    </div>
-                  </div>
-                  <div class="service-content">
-                    <span class="category">RELAXATION</span>
-                    <h3>Home Amenities</h3>
-                    <ul class="service_list">
-                      <li>
-                        <i class="fa-solid fa-check"></i> Comfortable, real furniture
-                      </li>
-                      <li>
-                        <i class="fa-solid fa-check"></i> A quiet place
-                        to unwind
-                      </li>
-                    </ul>
-                    <div class="hotelhub-btn2">
-                      <a href="resident-portal.html"
-                        >Learn More <i class="flaticon flaticon-right-arrow"></i
-                      ><div class="hotelhub-hover-btn hover-btn"></div>
-                      <div class="hotelhub-hover-btn hover-btn2"></div>
-                      <div class="hotelhub-hover-btn hover-btn3"></div>
-                      <div class="hotelhub-hover-btn hover-btn4"></div>
-                    </a>
-                    </div>
-                  </div>
+              <div class="choose_contents">
+                <div class="choose-content-inner">
+                  <h6>move-in ready</h6>
+                <h4>Fully Furnished Homes</h4>
+                <p>Arrive with your essentials and begin living, with a kitchen, furniture, and everyday spaces already in place.</p>
+                <div class="hotelhub-btn">
+                  <a href="fully-furnished-homes.html">discover more <i class="flaticon flaticon-right-arrow"></i></a>
                 </div>
-              </div>
-
-              <!-- Slide 3 -->
-              <div class="swiper-slide">
-                <div class="single-service-boxs">
-                  <div class="service-thumb">
-                    <img
-                      src="assets/images/cottages/parkersburg-02/photo-49.avif"
-                      alt="Kitchen and living spaces"
-                    />
-                    <div class="service_icons">
-                      <img
-                        src="assets/images/main-home/service_icons03.png"
-                        alt="Service Icon"
-                      />
-                    </div>
-                  </div>
-                  <div class="service-content">
-                    <span class="category">HEALTH</span>
-                    <h3>Kitchen and living spaces</h3>
-                    <ul class="service_list">
-                      <li>
-                        <i class="fa-solid fa-check"></i> Clean & Safe
-                        Environment
-                      </li>
-                      <li>
-                        <i class="fa-solid fa-check"></i> Temperature-Controlled
-                        Pools
-                      </li>
-                    </ul>
-                    <div class="hotelhub-btn2">
-                      <a href="resident-portal.html"
-                        >Learn More <i class="flaticon flaticon-right-arrow"></i
-                      ><div class="hotelhub-hover-btn hover-btn"></div>
-                      <div class="hotelhub-hover-btn hover-btn2"></div>
-                      <div class="hotelhub-hover-btn hover-btn3"></div>
-                      <div class="hotelhub-hover-btn hover-btn4"></div></a>
-                    </div>
-                  </div>
                 </div>
-              </div>
-              <!-- Slide 3 -->
-              <div class="swiper-slide">
-                <div class="single-service-boxs">
-                  <div class="service-thumb">
-                    <img
-                      src="assets/images/cottages/parkersburg-02/photo-49.avif"
-                      alt="Kitchen and living spaces"
-                    />
-                    <div class="service_icons">
-                      <img
-                        src="assets/images/main-home/service_icons03.png"
-                        alt="Service Icon"
-                      />
-                    </div>
-                  </div>
-                  <div class="service-content">
-                    <span class="category">HEALTH</span>
-                    <h3>Kitchen and living spaces</h3>
-                    <ul class="service_list">
-                      <li>
-                        <i class="fa-solid fa-check"></i> Clean & Safe
-                        Environment
-                      </li>
-                      <li>
-                        <i class="fa-solid fa-check"></i> Temperature-Controlled
-                        Pools
-                      </li>
-                    </ul>
-                    <div class="hotelhub-btn2">
-                      <a href="resident-portal.html"
-                        >Learn More <i class="flaticon flaticon-right-arrow"></i
-                      ><div class="hotelhub-hover-btn hover-btn"></div>
-                      <div class="hotelhub-hover-btn hover-btn2"></div>
-                      <div class="hotelhub-hover-btn hover-btn3"></div>
-                      <div class="hotelhub-hover-btn hover-btn4"></div></a>
-                    </div>
-                  </div>
+                <div class="chose-sp bounce-animate">
+                  <img src="assets/images/home-four/service-shape.png" alt="">
                 </div>
               </div>
             </div>
-            <div class="hotelhub-slider-dots2"></div>
+          </div>
+          <div class="col-lg-12"data-aos=flip-up>
+            <div class="choose-single-bx2 style_five">
+              <div class="choose_contents">
+                <div class="choose-content-inner">
+                  <h6>everyday comfort</h6>
+                <h4>Home Amenities</h4>
+                <p>Ask about laundry, internet, parking, work space, utilities, and the home-specific details that matter to you.</p>
+                <div class="hotelhub-btn">
+                  <a href="home-amenities.html">discover more <i class="flaticon flaticon-right-arrow"></i></a>
+                </div>
+                </div>
+                <div class="chose-sp bounce-animate">
+                  <img src="assets/images/home-four/service-shape.png" alt="">
+                </div>
+              </div>
+              <div class="choose-single-thumbs ">
+                <img src="assets/images/cottages/ravenswood-02/unique/insurance-housing-img-310-beb7a1cc21-600x450.avif" alt="A kitchen with a black oven and red countertop." />
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12"data-aos=flip-up>
+            <div class="choose-single-bx2 style_five">
+              <div class="choose-single-thumbs ">
+                <img src="assets/images/cottages/ravenswood-02/theme-gallery-card-photo-77.avif" alt="A well-lit kitchen with a stove, sink, and cabinets." />
+              </div>
+              <div class="choose_contents">
+                <div class="choose-content-inner">
+                  <h6>thoughtful support</h6>
+                <h4>Guest Services</h4>
+                <p>A direct point of contact keeps questions, home details, and the next step clear from inquiry through move-in.</p>
+                <div class="hotelhub-btn">
+                  <a href="guest-services.html">discover more <i class="flaticon flaticon-right-arrow"></i></a>
+                </div>
+                </div>
+                <div class="chose-sp bounce-animate">
+                  <img src="assets/images/home-four/service-shape.png" alt="">
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <!--==================================================-->
-    <!-- End Mt Cottages Service Section  -->
+    <!-- End Mt Cottages Why choose us Section Style five -->
     <!--==================================================-->
-
-
-
     <!--==================================================-->
     <!-- Start Mt Cottages Testimonial Section  -->
     <!--==================================================-->
-    <div class="testimonial-section ">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-8" data-aos="fade-up">
-            <div class="hotelhub-section-title pb-55 style_two">
-              <h4><i class="flaticon flaticon-right-arrow"></i>Guest Notes</h4>
-              <h1>What Say Our Customers</h1>
-              <h1>About Services</h1>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="review text-right">
-              <img
-                class="text-right"
-                src="assets/images/main-home/review.png"
-                alt=""
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="testimonial-section style_four">
       <div class="container-fluid">
-        <div class="hotelhub_slider-wrapper" data-aos="fade-up">
-          <div class="swiper testi_list1">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="testi-single-box">
-                      <div class="testi-content">
-                        <ul class="testi-rating">
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li>(4.5)</li>
-                        </ul>
-                        <div class="testi-desc">
-                          <p>Guests come for assignments, relocation, family, recovery, and change. We help them find a furnished place that feels calm, capable, and ready for the life they are actually living.</p>
-                        </div>
-                      </div>
-                      <div class="user-info">
-                        <div class="people-pic">
-                          <img
-                            src="assets/images/main-home/avatar-guest.png"
-                            alt=""
-                          />
-                        </div>
-                        <div class="user-name">
-                          <h4>Verified Guest</h4>
-                          <h6>Marietta, OH</h6>
-                        </div>
-                      </div>
-                      <div class="hotelhub-hover-btn hover-btn"></div>
-                      <div class="hotelhub-hover-btn hover-btn2"></div>
-                      <div class="hotelhub-hover-btn hover-btn3"></div>
-                      <div class="hotelhub-hover-btn hover-btn4"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="testi-single-box">
-                      <div class="testi-content">
-                        <ul class="testi-rating">
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li>(4.5)</li>
-                        </ul>
-                        <div class="testi-desc">
-                          <p>Guests come for assignments, relocation, family, recovery, and change. We help them find a furnished place that feels calm, capable, and ready for the life they are actually living.</p>
-                        </div>
-                      </div>
-                      <div class="user-info">
-                        <div class="people-pic">
-                          <img
-                            src="assets/images/main-home/avatar-guest.png"
-                            alt=""
-                          />
-                        </div>
-                        <div class="user-name">
-                          <h4>Verified Guest</h4>
-                          <h6>Parkersburg, WV</h6>
-                        </div>
-                      </div>
-                      <div class="hotelhub-hover-btn hover-btn"></div>
-                      <div class="hotelhub-hover-btn hover-btn2"></div>
-                      <div class="hotelhub-hover-btn hover-btn3"></div>
-                      <div class="hotelhub-hover-btn hover-btn4"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="testi-single-box">
-                      <div class="testi-content">
-                        <ul class="testi-rating">
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li>(4.5)</li>
-                        </ul>
-                        <div class="testi-desc">
-                          <p>Guests come for assignments, relocation, family, recovery, and change. We help them find a furnished place that feels calm, capable, and ready for the life they are actually living.</p>
-                        </div>
-                      </div>
-                      <div class="user-info">
-                        <div class="people-pic">
-                          <img
-                            src="assets/images/main-home/avatar-guest.png"
-                            alt=""
-                          />
-                        </div>
-                        <div class="user-name">
-                          <h4>Verified Guest</h4>
-                          <h6>Ravenswood, WV</h6>
-                        </div>
-                      </div>
-                      <div class="hotelhub-hover-btn hover-btn"></div>
-                      <div class="hotelhub-hover-btn hover-btn2"></div>
-                      <div class="hotelhub-hover-btn hover-btn3"></div>
-                      <div class="hotelhub-hover-btn hover-btn4"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="testi-single-box">
-                      <div class="testi-content">
-                        <ul class="testi-rating">
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li>(4.5)</li>
-                        </ul>
-                        <div class="testi-desc">
-                          <p>Guests come for assignments, relocation, family, recovery, and change. We help them find a furnished place that feels calm, capable, and ready for the life they are actually living.</p>
-                        </div>
-                      </div>
-                      <div class="user-info">
-                        <div class="people-pic">
-                          <img
-                            src="assets/images/main-home/avatar-guest.png"
-                            alt=""
-                          />
-                        </div>
-                        <div class="user-name">
-                          <h4>Verified Guest</h4>
-                          <h6>Athens, OH</h6>
-                        </div>
-                      </div>
-                      <div class="hotelhub-hover-btn hover-btn"></div>
-                      <div class="hotelhub-hover-btn hover-btn2"></div>
-                      <div class="hotelhub-hover-btn hover-btn3"></div>
-                      <div class="hotelhub-hover-btn hover-btn4"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="testi-single-box">
-                      <div class="testi-content">
-                        <ul class="testi-rating">
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li>(4.5)</li>
-                        </ul>
-                        <div class="testi-desc">
-                          <p>Guests come for assignments, relocation, family, recovery, and change. We help them find a furnished place that feels calm, capable, and ready for the life they are actually living.</p>
-                        </div>
-                      </div>
-                      <div class="user-info">
-                        <div class="people-pic">
-                          <img
-                            src="assets/images/main-home/avatar-guest.png"
-                            alt=""
-                          />
-                        </div>
-                        <div class="user-name">
-                          <h4>Verified Guest</h4>
-                          <h6>Racine, OH</h6>
-                        </div>
-                      </div>
-                      <div class="hotelhub-hover-btn hover-btn"></div>
-                      <div class="hotelhub-hover-btn hover-btn2"></div>
-                      <div class="hotelhub-hover-btn hover-btn3"></div>
-                      <div class="hotelhub-hover-btn hover-btn4"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="testi-single-box">
-                      <div class="testi-content">
-                        <ul class="testi-rating">
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li><i class="bi bi-star-fill"></i></li>
-                          <li>(4.5)</li>
-                        </ul>
-                        <div class="testi-desc">
-                          <p>Guests come for assignments, relocation, family, recovery, and change. We help them find a furnished place that feels calm, capable, and ready for the life they are actually living.</p>
-                        </div>
-                      </div>
-                      <div class="user-info">
-                        <div class="people-pic">
-                          <img
-                            src="assets/images/main-home/avatar-guest.png"
-                            alt=""
-                          />
-                        </div>
-                        <div class="user-name">
-                          <h4>Verified Guest</h4>
-                          <h6>Grantsville, WV</h6>
-                        </div>
-                      </div>
-                      <div class="hotelhub-hover-btn hover-btn"></div>
-                      <div class="hotelhub-hover-btn hover-btn2"></div>
-                      <div class="hotelhub-hover-btn hover-btn3"></div>
-                      <div class="hotelhub-hover-btn hover-btn4"></div>
-                    </div>
-                  </div>
+        <div class="row align-items-center">
+          <div class="col-lg-12 p-0"data-aos=flip-up>
+            <div class="hotelhub-section-title home_three pb-64 style_two">
+              <h4><i class="flaticon flaticon-right-arrow"></i>THE MT COTTAGES APPROACH</h4>
+              <h1>A place should make</h1>
+              <h1>a longer stay feel easier.</h1>
+            </div>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-lg-4 p-0"data-aos=flip-up>
+            <div class="testi-thums">
+              <img src="assets/images/cottages/ravenswood-02/theme-gallery-card-photo-116.avif" alt="A small bathroom with a sink, mirror, and white cabinets.">
+              <div class="video__area">
+                <div class="video__content">
+                  <a
+                    class="video-vemo-icon"
+                    href="cottages.html"
+                    ><span class="play-now">explore</span></a
+                  >
                 </div>
               </div>
             </div>
           </div>
-          <div class="hotelhub-slider-dots3">
-            <span
-              class="swiper-pagination-bullet"
-              tabindex="0"
-              role="button"
-              aria-label="Go to slide 1"
-            ></span>
-            <span
-              class="swiper-pagination-bullet"
-              tabindex="0"
-              role="button"
-              aria-label="Go to slide 2"
-            ></span>
-            <span
-              class="swiper-pagination-bullet swiper-pagination-bullet-active"
-              tabindex="0"
-              role="button"
-              aria-label="Go to slide 3"
-            ></span>
-          </div>
+        <div class="col-lg-8 p-0">
+            <div class="swiper testi_4"data-aos=flip-up>
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="testi-single-box bx-four">
+                    <div class="testi-content">
+                      <ul class="testi-rating">
+                        <li><i class="bi bi-star-fill"></i></li>
+                        <li><i class="bi bi-star-fill"></i></li>
+                        <li><i class="bi bi-star-fill"></i></li>
+                        <li><i class="bi bi-star-fill"></i></li>
+                        <li><i class="bi bi-star-fill"></i></li>
+                      </ul>
+                      <div class="testi-desc">
+                        <p>
+                          A real home gives you space for the rhythms of a longer stay: meals,
+                          quiet mornings, demanding workdays, and an ordinary evening in.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="user-info">
+                      <div class="people-pic">
+                        <img
+                          src="assets/images/main-home/avatar-guest.png"
+                          alt=""
+                        />
+                      </div>
+                      <div class="user-name">
+                        <h4>Room for everyday life</h4>
+                        <h6>Whole-home comfort</h6>
+                      </div>
+                    </div>
+                    <div class="hotelhub-hover-btn hover-btn"></div>
+                    <div class="hotelhub-hover-btn hover-btn2"></div>
+                    <div class="hotelhub-hover-btn hover-btn3"></div>
+                    <div class="hotelhub-hover-btn hover-btn4"></div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="testi-single-box bx-four">
+                    <div class="testi-content">
+                      <ul class="testi-rating">
+                        <li><i class="bi bi-star-fill"></i></li>
+                        <li><i class="bi bi-star-fill"></i></li>
+                        <li><i class="bi bi-star-fill"></i></li>
+                        <li><i class="bi bi-star-fill"></i></li>
+                        <li><i class="bi bi-star-fill"></i></li>
+                      </ul>
+                      <div class="testi-desc">
+                        <p>
+                          Furnished should mean more than a bed. We think about the kitchen,
+                          living space, useful amenities, and what helps a place feel settled.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="user-info">
+                      <div class="people-pic">
+                        <img
+                          src="assets/images/main-home/avatar-guest.png"
+                          alt=""
+                        />
+                      </div>
+                      <div class="user-name">
+                        <h4>Ready when you arrive</h4>
+                        <h6>Move-in-ready living</h6>
+                      </div>
+                    </div>
+                    <div class="hotelhub-hover-btn hover-btn"></div>
+                    <div class="hotelhub-hover-btn hover-btn2"></div>
+                    <div class="hotelhub-hover-btn hover-btn3"></div>
+                    <div class="hotelhub-hover-btn hover-btn4"></div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="testi-single-box bx-four">
+                    <div class="testi-content">
+                      <ul class="testi-rating">
+                        <li><i class="bi bi-star-fill"></i></li>
+                        <li><i class="bi bi-star-fill"></i></li>
+                        <li><i class="bi bi-star-fill"></i></li>
+                        <li><i class="bi bi-star-fill"></i></li>
+                        <li><i class="bi bi-star-fill"></i></li>
+                      </ul>
+                      <div class="testi-desc">
+                        <p>
+                          Questions are easier when there is a real person to answer them.
+                          We keep the conversation direct from the first inquiry onward.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="user-info">
+                      <div class="people-pic">
+                        <img
+                          src="assets/images/main-home/avatar-guest.png"
+                          alt=""
+                        />
+                      </div>
+                      <div class="user-name">
+                        <h4>A human point of contact</h4>
+                        <h6>Clear, direct support</h6>
+                      </div>
+                    </div>
+                    <div class="hotelhub-hover-btn hover-btn"></div>
+                    <div class="hotelhub-hover-btn hover-btn2"></div>
+                    <div class="hotelhub-hover-btn hover-btn3"></div>
+                    <div class="hotelhub-hover-btn hover-btn4"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="testi-slider-arrow-box">
+                <button class="slider-prev" tabindex="0" aria-label="Previous slide"><i class="fa-solid fa-arrow-left"></i></button>
+                <button class="slider-next" tabindex="0" aria-label="Next slide"><i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
         </div>
+        </div>
+
       </div>
+        <div class="testi-bg-shpe">
+          <img src="assets/images/cottages/marietta-01/unique/marietta-frederick-cottage-background-191-2deec09d98-1920x586.avif" alt="A cozy bedroom with a wooden floor, wooden ceiling, and wooden walls, featuring a bed, lamp, table, chair, and window.">
+        </div>
     </div>
     <!--==================================================-->
     <!-- End Mt Cottages Testimonial Section -->
     <!--==================================================-->
 
-    <!--==================================================-->
+     <!--==================================================-->
     <!-- Start Mt Cottages Marquee Section  -->
     <!--==================================================-->
     <div class="marquee-section">
@@ -1524,35 +1178,35 @@
               <div class="marquee-single-box">
                 <div class="marquee-content">
                   <h2>
-                    Furnished cottages in the Mid-Ohio Valley<span
+                    Furnished Living in the Mid-Ohio Valley<span
                       ><img
                         src="assets/images/main-home/star.png"
                         alt=""
                     /></span>
                   </h2>
                   <h2>
-                    Move-in ready homes<span
+                    Whole-Home Privacy<span
                       ><img
                         src="assets/images/main-home/star.png"
                         alt=""
                     /></span>
                   </h2>
                   <h2>
-                    Flexible mid-term stays<span
+                    Flexible 30+ Day Stays<span
                       ><img
                         src="assets/images/main-home/star.png"
                         alt=""
                     /></span>
                   </h2>
                   <h2>
-                    Parkersburg · Marietta · Ravenswood<span
+                    Move-In-Ready Homes<span
                       ><img
                         src="assets/images/main-home/star.png"
                         alt=""
                     /></span>
                   </h2>
                   <h2>
-                    Comfortable, not corporate<span
+                    Marietta · Parkersburg · Ravenswood<span
                       ><img
                         src="assets/images/main-home/star.png"
                         alt=""
@@ -1563,35 +1217,35 @@
               <div class="marquee-single-box">
                 <div class="marquee-content">
                   <h2>
-                    Furnished cottages in the Mid-Ohio Valley<span
+                    Furnished Living in the Mid-Ohio Valley<span
                       ><img
                         src="assets/images/main-home/star.png"
                         alt=""
                     /></span>
                   </h2>
                   <h2>
-                    Move-in ready homes<span
+                    Whole-Home Privacy<span
                       ><img
                         src="assets/images/main-home/star.png"
                         alt=""
                     /></span>
                   </h2>
                   <h2>
-                    Flexible mid-term stays<span
+                    Flexible 30+ Day Stays<span
                       ><img
                         src="assets/images/main-home/star.png"
                         alt=""
                     /></span>
                   </h2>
                   <h2>
-                    Parkersburg · Marietta · Ravenswood<span
+                    Move-In-Ready Homes<span
                       ><img
                         src="assets/images/main-home/star.png"
                         alt=""
                     /></span>
                   </h2>
                   <h2>
-                    Comfortable, not corporate<span
+                    Marietta · Parkersburg · Ravenswood<span
                       ><img
                         src="assets/images/main-home/star.png"
                         alt=""
@@ -1608,35 +1262,36 @@
     <!-- End Mt Cottages Marquee Section  -->
     <!--==================================================-->
 
+
     <!--==================================================-->
     <!-- Start Mt Cottages Blog Section -->
     <!--==================================================-->
-    <div class="blog-section">
+    <div class="blog-section style-two">
       <div class="container">
         <div class="row">
-          <div class="col-lg-12" data-aos="fade-up">
+          <div class="col-lg-12"data-aos=flip-up>
             <div class="hotelhub-section-title text-center pb-55">
               <h4><i class="flaticon flaticon-right-arrow"></i>MORE TO EXPLORE</h4>
-              <h1>Read Our Latest Insights From</h1>
-              <h1>Update Blog Posts</h1>
+              <h1>Start with the part</h1>
+              <h1>that matters to you.</h1>
             </div>
           </div>
         </div>
-        <div class="row" data-aos="fade-up">
-          <div class="col-lg-4 col-md-6">
+        <div class="row">
+          <div class="col-lg-4 col-md-6"data-aos=flip-up>
             <div class="blog-single-box">
               <div class="blog-thumb">
                 <img
-                  src="assets/images/cottages/marietta-01/gallery-01.avif"
-                  alt="Well-lit kitchen with oak cabinets, gas range, dishwasher, and country decor."
+                  src="assets/images/cottages/ravenswood-02/unique/ravenswood-virginia-cottage-img-454-0ceefaa43e-424x330.avif"
+                  alt="A well-lit kitchen with a red countertop and white cabinets."
                 />
 
               </div>
               <div class="blog-content">
-                <span class="category">Furnished Living</span>
+                <span class="category">Living</span>
                 <h3>
                   <a href="living.html"
-                    >What's included when you move into a Mt Cottages home</a
+                    >A furnished home for work, transition, or family</a
                   >
                 </h3>
                 <div class="blog_button">
@@ -1647,7 +1302,7 @@
                           <img
                             src="assets/images/main-home/avatar-blog.png"
                             alt=""
-                          />Mt Cottages Team
+                          />Mt Cottages
                         </li>
                       </ul>
                     </div>
@@ -1661,22 +1316,19 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6">
+          <div class="col-lg-4 col-md-6"data-aos=flip-up>
             <div class="blog-single-box">
               <div class="blog-thumb">
                 <img
-                  src="assets/images/cottages/parkersburg-04/photo-05.avif"
-                  alt="Covered porch with outdoor seating and a treed hillside view."
+                  src="assets/images/cottages/ravenswood-02/unique/ravenswood-virginia-cottage-img-455-73f8ee6ed9-424x330.avif"
+                  alt="A well-lit hallway with a staircase and a yellow floor."
                 />
-                <div class="blog-date-line">
-                  <p>20<br/><span>NOV</span></p>
-                </div>
               </div>
               <div class="blog-content">
-                <span class="category">Applying</span>
+                <span class="category">Services</span>
                 <h3>
-                  <a href="apply.html"
-                    >How the application process works, start to move-in</a
+                  <a href="services.html"
+                    >The practical details behind a move-in-ready place</a
                   >
                 </h3>
                 <div class="blog_button">
@@ -1687,13 +1339,13 @@
                           <img
                             src="assets/images/main-home/avatar-blog.png"
                             alt=""
-                          />Mt Cottages Team
+                          />Mt Cottages
                         </li>
                       </ul>
                     </div>
                   </div>
                   <div class="blg-btn">
-                    <a href="apply.html">
+                    <a href="services.html">
                       <i class="flaticon flaticon-right-arrow"></i
                     ></a>
                   </div>
@@ -1701,22 +1353,19 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6">
+          <div class="col-lg-4 col-md-6"data-aos=flip-up>
             <div class="blog-single-box">
               <div class="blog-thumb">
                 <img
-                  src="assets/images/cottages/parkersburg-02/photo-23.avif"
-                  alt="Exterior — frontal daytime view of the house, tan siding, black shutters, blue sky."
+                  src="assets/images/cottages/ravenswood-02/unique/about-img-911-7a4070bc95-424x330.avif"
+                  alt="A well-lit kitchen with white cabinets and countertops."
                 />
-                <div class="blog-date-line">
-                  <p>25<br/><span>NOV</span></p>
-                </div>
               </div>
               <div class="blog-content">
                 <span class="category">Locations</span>
                 <h3>
                   <a href="locations.html"
-                    >The Mid-Ohio Valley towns we serve, from Marietta to Ravenswood</a
+                    >Find a home base in the Mid-Ohio Valley</a
                   >
                 </h3>
                 <div class="blog_button">
@@ -1727,7 +1376,7 @@
                           <img
                             src="assets/images/main-home/avatar-blog.png"
                             alt=""
-                          />Mt Cottages Team
+                          />Mt Cottages
                         </li>
                       </ul>
                     </div>
@@ -1749,154 +1398,12 @@
     <!--==================================================-->
 
     <!--==================================================-->
-    <!-- Start Mt Cottages Appoinment Section  -->
-    <!--==================================================-->
-    <div class="appoinment-section">
-      <div class="container">
-        <div class="row appoinment">
-          <div class="col-lg-6" data-aos="fade-up">
-            <div class="contact_thumb">
-              <img
-                src="assets/images/cottages/marietta-01/thumb-contact.avif"
-                alt=""
-              />
-            </div>
-          </div>
-          <div class="col-lg-6" data-aos="fade-up">
-            <div class="contact-form-box">
-              <div class="hotelhub-section-title">
-                <h4>
-                  <i class="flaticon flaticon-right-arrow"></i>get in touch
-                </h4>
-                <h1>Contact with Us</h1>
-              </div>
-              <form
-                action="mailto:stay@mtcottages.com"
-                method="POST"
-                id="dreamit-form"
-              >
-                <div class="row">
-                  <div class="col-lg-6 col-md-6">
-                    <div class="form-box">
-                      <input
-                        type="text"
-                        name="name"
-                        placeholder="Your Name"
-                        required=""
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6 col-md-6">
-                    <div class="form-box">
-                      <input
-                        type="text"
-                        name="name"
-                        placeholder="Your Phone Number"
-                        required=""
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6 col-md-6">
-                    <div class="form-box">
-                      <input
-                        type="text"
-                        name="email"
-                        placeholder="Enter Your Email*"
-                        required=""
-                      />
-                    </div>
-                  </div>
-
-                  <div class="col-lg-6 col-md-6">
-                    <div class="form-box">
-                      <select id="cars">
-                        <option value="volvo">Englis</option>
-                        <option>1</option>
-                        <option value="vw">Hindi</option>
-                        <option
-                          value="audi"
-                          selected
-                        >
-                          Select Subject
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-12 col-md-12">
-                    <div class="form-box">
-                      <textarea
-                        name="massage"
-                        id="massage"
-                        placeholder="Write Message"
-                        required=""
-                      ></textarea>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-12 col-md-6">
-                    <div class="check_bx">
-                      <input type="checkbox" />
-                      <p>Save my email adress for next query.</p>
-                    </div>
-                    <div class="submit-button">
-                      <button class="submit-btn">
-                        send message
-                        <i class="flaticon flaticon-right-arrow"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="contant_info-section" data-aos="fade-up">
-      <div class="container">
-        <div class="row info_bg">
-          <div class="col-lg-6"></div>
-          <div class="col-lg-6">
-            <div class="row">
-              <div class="col-lg-6 col-md-6">
-                <div class="contact-info-bx">
-                  <div class="info-icon">
-                    <i class="fas fa-map-marker-alt"></i>
-                  </div>
-                  <div class="info-content">
-                    <p>Serving the Valley</p>
-                    <h3>Marietta · Parkersburg · Ravenswood</h3>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="contact-info-bx">
-                  <div class="info-icon">
-                    <i class="fa-regular fa-envelope"></i>
-                  </div>
-                  <div class="info-content">
-                    <p>Send us an email</p>
-                    <h3><a href="mailto:stay@mtcottages.com">stay@mtcottages.com</a></h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--==================================================-->
-    <!-- End Mt Cottages Appoinment Section  -->
-    <!--==================================================-->
-
-    <!--==================================================-->
     <!-- Start Mt Cottages Footer Section -->
     <!--==================================================-->
     <div class="footer-section">
       <div class="container">
         <div class="row">
-          <div class="col-lg-4 col-md-6" data-aos="fade-up">
+          <div class="col-lg-4 col-md-6"data-aos=flip-up>
             <div class="widget">
               <div class="footer_widget">
                 <div class="company-logo">
@@ -1907,31 +1414,36 @@
                   /></a>
                 </div>
                 <p>
-                  Furnished places for real life, supported by a small hospitality team.
+                  Furnished places for real life, supported by a small hospitality team. before
+                  sticky communities. Assertively matrix multif sources through
+                  team building
                 </p>
                 <div class="hotelhub-social-icon cursor-scale small">
-                  <h3 class="follow-title">Get in Touch</h3>
-                  <a href="mailto:stay@mtcottages.com">stay@mtcottages.com</a>
+                  <h3 class="follow-title">Follow Us On :</h3>
+                  <a href="#"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#"><i class="fa-brands fa-linkedin-in"> </i></a>
+                  <a href="#"><i class="bi bi-twitter"></i></a>
+                  <a href="#"><i class="fab fa-pinterest-p"></i></a>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-lg-2 col-md-6" data-aos="fade-up">
+          <div class="col-lg-2 col-md-6"data-aos=flip-up>
             <div class="widget widget-nav-menu">
               <h4 class="widget-title">About Us</h4>
               <div class="menu-quick-link-content">
                 <ul class="footer-menu cursor-scale small">
-                  <li><a href="about.html"> About </a></li>
+                  <li><a href="about.html"> About Mt Cottages </a></li>
                   <li><a href="cozy-places.html"> Cottages </a></li>
                   <li><a href="apply.html"> Stay with Us </a></li>
                   <li><a href="about.html"> Explore Cottages </a></li>
-                  <li><a href="about.html"> About </a></li>
+                  <li><a href="about.html"> About Mt Cottages </a></li>
                   <li><a href="contact.html"> Contact </a></li>
                 </ul>
               </div>
             </div>
           </div>
-          <div class="col-lg-2 col-md-6" data-aos="fade-up">
+          <div class="col-lg-2 col-md-6"data-aos=flip-up>
             <div class="widget widget-nav-menu">
               <h4 class="widget-title">Explore</h4>
               <div class="menu-quick-link-content">
@@ -1946,41 +1458,21 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6" data-aos="fade-up">
+          <div class="col-lg-4 col-md-6"data-aos=flip-up>
             <div class="widget hotelhub-footer_widget">
               <h4 class="widget-title">Cottages</h4>
               <div class="footer-recent">
                 <a href="#"
                   ><img
-                    src="assets/images/cottages/ravenswood-03/thumb-recent.avif"
-                    alt=""
+                    src="assets/images/cottages/parkersburg-03/unique/index-img-1462-0996b93d2a-97x97.avif"
+                    alt="A set of concrete steps leading up to a yard with grass and a fence."
                 /></a>
                 <a href="#"
                   ><img
-                    src="assets/images/cottages/parkersburg-04/thumb-recent.avif"
-                    alt=""
+                    src="assets/images/cottages/parkersburg-03/unique/index-img-1467-ea733a3776-97x97.avif"
+                    alt="A white house with a telephone pole and power lines in front of it."
                 /></a>
-                <a href="#"
-                  ><img
-                    src="assets/images/cottages/parkersburg-03/thumb-recent.avif"
-                    alt=""
-                /></a>
-                <a href="#"
-                  ><img
-                    src="assets/images/cottages/parkersburg-02/thumb-recent.avif"
-                    alt=""
-                /></a>
-                <a href="#"
-                  ><img
-                    src="assets/images/cottages/parkersburg-01/thumb-recent.avif"
-                    alt=""
-                /></a>
-                <a href="#"
-                  ><img
-                    src="assets/images/cottages/marietta-01/thumb-recent.avif"
-                    alt=""
-                /></a>
-              </div>
+                </div>
             </div>
           </div>
         </div>
@@ -2105,29 +1597,51 @@
     <script src="assets/js/my.js"></script>
 
     <script>
-
-        document.getElementById('checkin').addEventListener('focus', function (event) {
+        document.getElementById('checkin1').addEventListener('focus', function (event) {
           event.target.type = 'date';
         });
 
-        document.getElementById('checkin').addEventListener('blur', function (event) {
+        document.getElementById('checkin1').addEventListener('blur', function (event) {
           if (!event.target.value) {
             event.target.type = 'text';
             event.target.placeholder = 'Check In';
           }
         });
 
-        document.getElementById('checkout').addEventListener('focus', function (event) {
+        document.getElementById('checkout1').addEventListener('focus', function (event) {
           event.target.type = 'date';
         });
 
-        document.getElementById('checkout').addEventListener('blur', function (event) {
+        document.getElementById('checkout1').addEventListener('blur', function (event) {
           if (!event.target.value) {
             event.target.type = 'text';
             event.target.placeholder = 'Check Out';
           }
         });
-
     </script>
+    <script>
+        document.getElementById('checkin2').addEventListener('focus', function (event) {
+          event.target.type = 'date';
+        });
+
+        document.getElementById('checkin2').addEventListener('blur', function (event) {
+          if (!event.target.value) {
+            event.target.type = 'text';
+            event.target.placeholder = 'Check In';
+          }
+        });
+
+        document.getElementById('checkout2').addEventListener('focus', function (event) {
+          event.target.type = 'date';
+        });
+
+        document.getElementById('checkout2').addEventListener('blur', function (event) {
+          if (!event.target.value) {
+            event.target.type = 'text';
+            event.target.placeholder = 'Check Out';
+          }
+        });
+    </script>
+
   </body>
 </html>

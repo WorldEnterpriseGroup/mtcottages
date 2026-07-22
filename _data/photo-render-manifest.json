@@ -1,0 +1,4116 @@
+{
+  "version": 1,
+  "generator": "scripts/allocate-unique-photos.py + scripts/repair-photo-aliases.py",
+  "assets": {
+    "assets/images/cottages/marietta-01/unique/about-background-280-4d5321e8b2-1920x586.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-16.avif",
+      "house_id": "marietta-01",
+      "page": "about.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/about-img-630-5a1a596d37-421x540.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-08.avif",
+      "house_id": "marietta-01",
+      "page": "about.html",
+      "kind": "img",
+      "dimensions": [
+        421,
+        540
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/available-img-309-eaef9c970f-760x588.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-05.avif",
+      "house_id": "marietta-01",
+      "page": "available.html",
+      "kind": "img",
+      "dimensions": [
+        760,
+        588
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/available-img-312-9d8eeb84f8-760x588.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-46.avif",
+      "house_id": "marietta-01",
+      "page": "available.html",
+      "kind": "img",
+      "dimensions": [
+        760,
+        588
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/available-img-330-227876a452-648x470.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-01.avif",
+      "house_id": "marietta-01",
+      "page": "available.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/contact-img-303-0d56f39993-1320x309.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-09.avif",
+      "house_id": "marietta-01",
+      "page": "contact.html",
+      "kind": "img",
+      "dimensions": [
+        1320,
+        309
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/cottages-img-315-ec546cbb8d-648x470.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-02.avif",
+      "house_id": "marietta-01",
+      "page": "cottages.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/locations-img-41-6614d4a526-648x470.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-04.avif",
+      "house_id": "marietta-01",
+      "page": "locations.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/locations-img-42-2f6b682b8b-648x470.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-31.avif",
+      "house_id": "marietta-01",
+      "page": "locations.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/marietta-frederick-cottage-background-191-2deec09d98-1920x586.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-10.avif",
+      "house_id": "marietta-01",
+      "page": "marietta/frederick-cottage.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/marietta-frederick-cottage-img-250-4b22295aa4-648x470.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-12.avif",
+      "house_id": "marietta-01",
+      "page": "marietta/frederick-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/marietta-frederick-cottage-img-259-abcc821299-648x470.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-13.avif",
+      "house_id": "marietta-01",
+      "page": "marietta/frederick-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/marietta-frederick-cottage-img-270-58f67e3490-648x470.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-15.avif",
+      "house_id": "marietta-01",
+      "page": "marietta/frederick-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/marietta-frederick-cottage-img-279-123afef7d8-648x470.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-17.avif",
+      "house_id": "marietta-01",
+      "page": "marietta/frederick-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/marietta-frederick-cottage-img-290-71aaff045a-648x470.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-18.avif",
+      "house_id": "marietta-01",
+      "page": "marietta/frederick-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/marietta-frederick-cottage-img-406-cc9ed83396-97x97.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-19.avif",
+      "house_id": "marietta-01",
+      "page": "marietta/frederick-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/marietta-frederick-cottage-img-407-6a39f2baa0-97x97.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-21.avif",
+      "house_id": "marietta-01",
+      "page": "marietta/frederick-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/marietta-frederick-cottage-img-446-650d6ba335-424x330.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-23.avif",
+      "house_id": "marietta-01",
+      "page": "marietta/frederick-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/marietta-frederick-cottage-img-447-e43ba2c84e-424x330.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-24.avif",
+      "house_id": "marietta-01",
+      "page": "marietta/frederick-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/marietta-index-img-21-191411fd1a-648x470.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-25.avif",
+      "house_id": "marietta-01",
+      "page": "marietta/index.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/marietta-index-img-32-956c0f9813-648x470.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-26.avif",
+      "house_id": "marietta-01",
+      "page": "marietta/index.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/marietta-index-img-34-1512d2f549-648x470.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-27.avif",
+      "house_id": "marietta-01",
+      "page": "marietta/index.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/partnerships-img-642-49cbd133a9-421x540.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-28.avif",
+      "house_id": "marietta-01",
+      "page": "partnerships.html",
+      "kind": "img",
+      "dimensions": [
+        421,
+        540
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/ravenswood-index-background-9-3794c4928d-1920x586.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-32.avif",
+      "house_id": "marietta-01",
+      "page": "ravenswood/index.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/resident-portal-background-283-e7e5574b14-1920x586.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-34.avif",
+      "house_id": "marietta-01",
+      "page": "resident-portal.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/residents-background-282-78e2a07e7b-1920x586.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-35.avif",
+      "house_id": "marietta-01",
+      "page": "residents.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/room-to-settle-background-283-f202cba644-1920x586.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-36.avif",
+      "house_id": "marietta-01",
+      "page": "room-to-settle.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/room-to-settle-img-315-66b0c11a55-648x470.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-29.avif",
+      "house_id": "marietta-01",
+      "page": "room-to-settle.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/services-background-282-710851d9c8-1920x586.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-37.avif",
+      "house_id": "marietta-01",
+      "page": "services.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/services-img-798-024dbd3f05-424x330.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-30.avif",
+      "house_id": "marietta-01",
+      "page": "services.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/work-relocation-background-282-10d849e13d-1920x586.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-38.avif",
+      "house_id": "marietta-01",
+      "page": "work-relocation.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/work-relocation-img-336-dc1482d82e-648x470.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-33.avif",
+      "house_id": "marietta-01",
+      "page": "work-relocation.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/work-relocation-img-360-01f77b68f1-648x470.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-39.avif",
+      "house_id": "marietta-01",
+      "page": "work-relocation.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/work-relocation-img-366-6f3e5e10fc-648x470.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-40.avif",
+      "house_id": "marietta-01",
+      "page": "work-relocation.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/work-relocation-img-414-4f9ff3071b-648x470.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-41.avif",
+      "house_id": "marietta-01",
+      "page": "work-relocation.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/work-relocation-img-594-7125fd0dd1-424x330.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-42.avif",
+      "house_id": "marietta-01",
+      "page": "work-relocation.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/marietta-01/unique/work-relocation-img-599-a9985e2ecf-424x330.avif": {
+      "source": "assets/images/cottages/marietta-01/photo-43.avif",
+      "house_id": "marietta-01",
+      "page": "work-relocation.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/about-background-302-b2527a2a82-250x250.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-17.avif",
+      "house_id": "parkersburg-01",
+      "page": "about.html",
+      "kind": "background",
+      "dimensions": [
+        250,
+        250
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/about-img-650-0063196583-421x540.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-01.avif",
+      "house_id": "parkersburg-01",
+      "page": "about.html",
+      "kind": "img",
+      "dimensions": [
+        421,
+        540
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/available-img-344-d3da51dfd0-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-02.avif",
+      "house_id": "parkersburg-01",
+      "page": "available.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/cottages-img-329-a76fc8e55b-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-03.avif",
+      "house_id": "parkersburg-01",
+      "page": "cottages.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/health-professionals-background-282-4d4460fcbb-1920x586.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-18.avif",
+      "house_id": "parkersburg-01",
+      "page": "health-professionals.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/home-amenities-background-38-3dde872fea-1920x586.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-19.avif",
+      "house_id": "parkersburg-01",
+      "page": "home-amenities.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/housekeeping-background-38-76a0955e64-1920x586.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-22.avif",
+      "house_id": "parkersburg-01",
+      "page": "housekeeping.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/index-img-812-cf64e7f88c-421x540.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-04.avif",
+      "house_id": "parkersburg-01",
+      "page": "index.html",
+      "kind": "img",
+      "dimensions": [
+        421,
+        540
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/insurance-housing-background-282-46beb41340-1920x586.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-23.avif",
+      "house_id": "parkersburg-01",
+      "page": "insurance-housing.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/living-background-282-17a9b70781-1920x586.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-24.avif",
+      "house_id": "parkersburg-01",
+      "page": "living.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/living-img-350-d7f57d59f1-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-20.avif",
+      "house_id": "parkersburg-01",
+      "page": "living.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/living-img-376-070f7c414a-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-21.avif",
+      "house_id": "parkersburg-01",
+      "page": "living.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/living-img-557-527450cf5f-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-25.avif",
+      "house_id": "parkersburg-01",
+      "page": "living.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/living-img-562-9bb65d9711-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-26.avif",
+      "house_id": "parkersburg-01",
+      "page": "living.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/locations-background-36-b126c97ff6-1920x586.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-27.avif",
+      "house_id": "parkersburg-01",
+      "page": "locations.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/locations-img-43-94e4a55382-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-28.avif",
+      "house_id": "parkersburg-01",
+      "page": "locations.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/locations-img-44-6a33635b66-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-29.avif",
+      "house_id": "parkersburg-01",
+      "page": "locations.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/locations-img-45-e39e138a75-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-30.avif",
+      "house_id": "parkersburg-01",
+      "page": "locations.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/maintenance-background-283-6bd34eecb7-1920x586.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-31.avif",
+      "house_id": "parkersburg-01",
+      "page": "maintenance.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/maintenance-img-512-0c8439a3c9-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-32.avif",
+      "house_id": "parkersburg-01",
+      "page": "maintenance.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/maintenance-img-517-036c12ea27-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-33.avif",
+      "house_id": "parkersburg-01",
+      "page": "maintenance.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/marietta-index-background-19-1c3985b40d-2400x1800.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-37.avif",
+      "house_id": "parkersburg-01",
+      "page": "marietta/index.html",
+      "kind": "background",
+      "dimensions": [
+        2400,
+        1800
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/meal-preparation-background-38-0baf7d1595-1920x586.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-38.avif",
+      "house_id": "parkersburg-01",
+      "page": "meal-preparation.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/meal-preparation-img-54-8fad08a676-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-34.avif",
+      "house_id": "parkersburg-01",
+      "page": "meal-preparation.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/meal-preparation-img-61-a077b2fd6b-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-36.avif",
+      "house_id": "parkersburg-01",
+      "page": "meal-preparation.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/meal-preparation-img-61-f9a9602b3d-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-35.avif",
+      "house_id": "parkersburg-01",
+      "page": "meal-preparation.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/parkersburg-broad-cottage-background-191-8bbe03468e-1920x586.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-06.avif",
+      "house_id": "parkersburg-01",
+      "page": "parkersburg/broad-cottage.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/parkersburg-broad-cottage-img-250-0426c9130f-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-05.avif",
+      "house_id": "parkersburg-01",
+      "page": "parkersburg/broad-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/parkersburg-broad-cottage-img-259-586663e31c-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-07.avif",
+      "house_id": "parkersburg-01",
+      "page": "parkersburg/broad-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/parkersburg-broad-cottage-img-270-5eb7c6a664-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-08.avif",
+      "house_id": "parkersburg-01",
+      "page": "parkersburg/broad-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/parkersburg-broad-cottage-img-279-2becab5554-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-09.avif",
+      "house_id": "parkersburg-01",
+      "page": "parkersburg/broad-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/parkersburg-broad-cottage-img-290-709b0ab4e5-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-10.avif",
+      "house_id": "parkersburg-01",
+      "page": "parkersburg/broad-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/parkersburg-broad-cottage-img-406-3c90040c83-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-11.avif",
+      "house_id": "parkersburg-01",
+      "page": "parkersburg/broad-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/parkersburg-broad-cottage-img-407-5466d537d6-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-12.avif",
+      "house_id": "parkersburg-01",
+      "page": "parkersburg/broad-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/parkersburg-broad-cottage-img-446-0157e763e3-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-13.avif",
+      "house_id": "parkersburg-01",
+      "page": "parkersburg/broad-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/parkersburg-broad-cottage-img-447-c126dd388d-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-14.avif",
+      "house_id": "parkersburg-01",
+      "page": "parkersburg/broad-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/parkersburg-index-background-11-1d708a8271-1920x586.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-39.avif",
+      "house_id": "parkersburg-01",
+      "page": "parkersburg/index.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/parkersburg-index-img-28-13867d450d-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-40.avif",
+      "house_id": "parkersburg-01",
+      "page": "parkersburg/index.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/partnerships-background-280-542fa461d2-1920x586.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-41.avif",
+      "house_id": "parkersburg-01",
+      "page": "partnerships.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/partnerships-img-305-4d61019659-760x588.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-42.avif",
+      "house_id": "parkersburg-01",
+      "page": "partnerships.html",
+      "kind": "img",
+      "dimensions": [
+        760,
+        588
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/partnerships-img-308-bcb8d4ea4c-760x588.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-43.avif",
+      "house_id": "parkersburg-01",
+      "page": "partnerships.html",
+      "kind": "img",
+      "dimensions": [
+        760,
+        588
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/partnerships-img-309-cc7a136db4-760x588.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-44.avif",
+      "house_id": "parkersburg-01",
+      "page": "partnerships.html",
+      "kind": "img",
+      "dimensions": [
+        760,
+        588
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/partnerships-img-312-cfc09fc8e6-760x588.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-45.avif",
+      "house_id": "parkersburg-01",
+      "page": "partnerships.html",
+      "kind": "img",
+      "dimensions": [
+        760,
+        588
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/partnerships-img-662-63184083d4-421x540.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-15.avif",
+      "house_id": "parkersburg-01",
+      "page": "partnerships.html",
+      "kind": "img",
+      "dimensions": [
+        421,
+        540
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/partnerships-img-923-6631fe024c-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-46.avif",
+      "house_id": "parkersburg-01",
+      "page": "partnerships.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/partnerships-img-928-2a75874aba-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-47.avif",
+      "house_id": "parkersburg-01",
+      "page": "partnerships.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/pay-rent-background-283-8ec3bb2b71-1920x586.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-48.avif",
+      "house_id": "parkersburg-01",
+      "page": "pay-rent.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/pay-rent-img-321-c381af83e0-760x588.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-49.avif",
+      "house_id": "parkersburg-01",
+      "page": "pay-rent.html",
+      "kind": "img",
+      "dimensions": [
+        760,
+        588
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/pay-rent-img-324-0e202aef1e-760x588.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-50.avif",
+      "house_id": "parkersburg-01",
+      "page": "pay-rent.html",
+      "kind": "img",
+      "dimensions": [
+        760,
+        588
+      ]
+    },
+    "assets/images/cottages/parkersburg-01/unique/room-to-settle-img-329-69b88e736f-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-01/photo-16.avif",
+      "house_id": "parkersburg-01",
+      "page": "room-to-settle.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/about-img-855-556da1c632-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-22.avif",
+      "house_id": "parkersburg-02",
+      "page": "about.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/about-img-856-a63ecd5aec-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-24.avif",
+      "house_id": "parkersburg-02",
+      "page": "about.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/about-img-916-7e14a918cc-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-39.avif",
+      "house_id": "parkersburg-02",
+      "page": "about.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/apply-img-333-b3429e9621-760x588.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-40.avif",
+      "house_id": "parkersburg-02",
+      "page": "apply.html",
+      "kind": "img",
+      "dimensions": [
+        760,
+        588
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/apply-img-336-c96e29a3f0-760x588.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-46.avif",
+      "house_id": "parkersburg-02",
+      "page": "apply.html",
+      "kind": "img",
+      "dimensions": [
+        760,
+        588
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/apply-img-337-fde3b039ad-760x588.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-48.avif",
+      "house_id": "parkersburg-02",
+      "page": "apply.html",
+      "kind": "img",
+      "dimensions": [
+        760,
+        588
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/apply-img-340-6cdd1ac4f6-760x588.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-49.avif",
+      "house_id": "parkersburg-02",
+      "page": "apply.html",
+      "kind": "img",
+      "dimensions": [
+        760,
+        588
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/apply-img-358-9667f9e0d9-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-27.avif",
+      "house_id": "parkersburg-02",
+      "page": "apply.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/apply-img-372-43b3f23540-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-28.avif",
+      "house_id": "parkersburg-02",
+      "page": "apply.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/apply-img-386-c4a758e5a4-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-32.avif",
+      "house_id": "parkersburg-02",
+      "page": "apply.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/apply-img-400-536b50349b-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-41.avif",
+      "house_id": "parkersburg-02",
+      "page": "apply.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/apply-img-480-06dfe154d2-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-43.avif",
+      "house_id": "parkersburg-02",
+      "page": "apply.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/apply-img-481-6e1be13396-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-45.avif",
+      "house_id": "parkersburg-02",
+      "page": "apply.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/apply-img-536-2c469beedc-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-50.avif",
+      "house_id": "parkersburg-02",
+      "page": "apply.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/available-img-358-a729b7a939-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-02.avif",
+      "house_id": "parkersburg-02",
+      "page": "available.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/cottages-img-343-3f1dde53d5-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-03.avif",
+      "house_id": "parkersburg-02",
+      "page": "cottages.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/cozy-places-img-315-f364ca967d-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-01.avif",
+      "house_id": "parkersburg-02",
+      "page": "cozy-places.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/emergency-maintenance-img-309-1013942933-854x500.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-21.avif",
+      "house_id": "parkersburg-02",
+      "page": "emergency-maintenance.html",
+      "kind": "img",
+      "dimensions": [
+        854,
+        500
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/index-img-716-29e6445ba8-421x540.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-16.avif",
+      "house_id": "parkersburg-02",
+      "page": "index.html",
+      "kind": "img",
+      "dimensions": [
+        421,
+        540
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/parkersburg-buck-apartment-1-background-191-27b712fd86-1920x586.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-09.avif",
+      "house_id": "parkersburg-02",
+      "page": "parkersburg/buck-apartment-1.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/parkersburg-buck-apartment-1-img-249-a3f99edf4b-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-17.avif",
+      "house_id": "parkersburg-02",
+      "page": "parkersburg/buck-apartment-1.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/parkersburg-buck-apartment-1-img-258-28cba62fc8-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-18.avif",
+      "house_id": "parkersburg-02",
+      "page": "parkersburg/buck-apartment-1.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/parkersburg-buck-apartment-1-img-269-4d2052f008-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-20.avif",
+      "house_id": "parkersburg-02",
+      "page": "parkersburg/buck-apartment-1.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/parkersburg-buck-apartment-1-img-278-21a16ebd5e-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-26.avif",
+      "house_id": "parkersburg-02",
+      "page": "parkersburg/buck-apartment-1.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/parkersburg-buck-apartment-1-img-289-8a6ad9e021-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-29.avif",
+      "house_id": "parkersburg-02",
+      "page": "parkersburg/buck-apartment-1.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/parkersburg-buck-apartment-1-img-404-d364494500-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-08.avif",
+      "house_id": "parkersburg-02",
+      "page": "parkersburg/buck-apartment-1.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/parkersburg-buck-apartment-1-img-405-eee244fe4e-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-19.avif",
+      "house_id": "parkersburg-02",
+      "page": "parkersburg/buck-apartment-1.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/parkersburg-buck-apartment-1-img-444-c6d1483a1c-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-30.avif",
+      "house_id": "parkersburg-02",
+      "page": "parkersburg/buck-apartment-1.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-02/unique/parkersburg-buck-apartment-1-img-445-df79feeafe-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-02/photo-38.avif",
+      "house_id": "parkersburg-02",
+      "page": "parkersburg/buck-apartment-1.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/apply-img-541-af3089cd26-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-53.avif",
+      "house_id": "parkersburg-03",
+      "page": "apply.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/available-img-372-b3ae887733-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-01.avif",
+      "house_id": "parkersburg-03",
+      "page": "available.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/available-img-506-a816c48556-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-05.avif",
+      "house_id": "parkersburg-03",
+      "page": "available.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/available-img-507-55ddc83e22-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-07.avif",
+      "house_id": "parkersburg-03",
+      "page": "available.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/available-img-562-80a53f1637-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-54.avif",
+      "house_id": "parkersburg-03",
+      "page": "available.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/available-img-567-573954ce49-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-63.avif",
+      "house_id": "parkersburg-03",
+      "page": "available.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/contact-img-314-4a0a71ec81-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-08.avif",
+      "house_id": "parkersburg-03",
+      "page": "contact.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/contact-img-328-30f49182e5-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-09.avif",
+      "house_id": "parkersburg-03",
+      "page": "contact.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/contact-img-342-e9ffdf294f-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-10.avif",
+      "house_id": "parkersburg-03",
+      "page": "contact.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/contact-img-356-880046eaff-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-11.avif",
+      "house_id": "parkersburg-03",
+      "page": "contact.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/contact-img-435-cfd39ba18d-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-113.avif",
+      "house_id": "parkersburg-03",
+      "page": "contact.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/contact-img-436-e10e9b623e-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-12.avif",
+      "house_id": "parkersburg-03",
+      "page": "contact.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/contact-img-491-83895df465-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-64.avif",
+      "house_id": "parkersburg-03",
+      "page": "contact.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/contact-img-496-59bcf4e5a1-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-69.avif",
+      "house_id": "parkersburg-03",
+      "page": "contact.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/cottages-img-357-3673add8eb-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-135.avif",
+      "house_id": "parkersburg-03",
+      "page": "cottages.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/cottages-img-730-4d2813b8e6-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-128.avif",
+      "house_id": "parkersburg-03",
+      "page": "cottages.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/cottages-img-740-8650221585-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-13.avif",
+      "house_id": "parkersburg-03",
+      "page": "cottages.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/cottages-img-750-eed7821b7f-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-184.avif",
+      "house_id": "parkersburg-03",
+      "page": "cottages.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/cottages-img-760-9797eba4c3-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-186.avif",
+      "house_id": "parkersburg-03",
+      "page": "cottages.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/cozy-places-img-646-fb85372950-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-190.avif",
+      "house_id": "parkersburg-03",
+      "page": "cozy-places.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/cozy-places-img-656-4cfca975de-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-199.avif",
+      "house_id": "parkersburg-03",
+      "page": "cozy-places.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/cozy-places-img-666-b552d33e2c-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-20.avif",
+      "house_id": "parkersburg-03",
+      "page": "cozy-places.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/cozy-places-img-676-ddda910aa1-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-203.avif",
+      "house_id": "parkersburg-03",
+      "page": "cozy-places.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/emergency-maintenance-img-331-4e3fe33258-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-210.avif",
+      "house_id": "parkersburg-03",
+      "page": "emergency-maintenance.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/emergency-maintenance-img-345-8b67b67cb4-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-223.avif",
+      "house_id": "parkersburg-03",
+      "page": "emergency-maintenance.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/emergency-maintenance-img-359-a7f8680ddf-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-224.avif",
+      "house_id": "parkersburg-03",
+      "page": "emergency-maintenance.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/emergency-maintenance-img-373-4bb44825fd-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-229.avif",
+      "house_id": "parkersburg-03",
+      "page": "emergency-maintenance.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/family-stays-img-310-5d3e3bea32-421x540.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-23.avif",
+      "house_id": "parkersburg-03",
+      "page": "family-stays.html",
+      "kind": "img",
+      "dimensions": [
+        421,
+        540
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/family-stays-img-360-a84fd9b5d5-960x1105.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-230.avif",
+      "house_id": "parkersburg-03",
+      "page": "family-stays.html",
+      "kind": "img",
+      "dimensions": [
+        960,
+        1105
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/family-stays-img-540-90a5f53617-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-235.avif",
+      "house_id": "parkersburg-03",
+      "page": "family-stays.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/family-stays-img-541-c39ee790b0-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-243.avif",
+      "house_id": "parkersburg-03",
+      "page": "family-stays.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/faq-img-320-5547d09d6a-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-250.avif",
+      "house_id": "parkersburg-03",
+      "page": "faq.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/faq-img-334-1fb6899ff9-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-251.avif",
+      "house_id": "parkersburg-03",
+      "page": "faq.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/faq-img-348-39d0d19686-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-267.avif",
+      "house_id": "parkersburg-03",
+      "page": "faq.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/faq-img-362-18cec1247d-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-272.avif",
+      "house_id": "parkersburg-03",
+      "page": "faq.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/faq-img-441-ee0c635614-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-277.avif",
+      "house_id": "parkersburg-03",
+      "page": "faq.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/faq-img-442-609f0edf46-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-280.avif",
+      "house_id": "parkersburg-03",
+      "page": "faq.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/fully-furnished-homes-img-75-095d819f82-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-285.avif",
+      "house_id": "parkersburg-03",
+      "page": "fully-furnished-homes.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/fully-furnished-homes-img-75-45b28d7c88-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-29.avif",
+      "house_id": "parkersburg-03",
+      "page": "fully-furnished-homes.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/fully-furnished-homes-img-75-4cdd7b571d-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-287.avif",
+      "house_id": "parkersburg-03",
+      "page": "fully-furnished-homes.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/fully-furnished-homes-img-75-637b84713b-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-282.avif",
+      "house_id": "parkersburg-03",
+      "page": "fully-furnished-homes.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/guest-services-img-75-06e9600a78-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-293.avif",
+      "house_id": "parkersburg-03",
+      "page": "guest-services.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/guest-services-img-75-86753f4174-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-301.avif",
+      "house_id": "parkersburg-03",
+      "page": "guest-services.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/guest-services-img-75-8db985e55b-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-311.avif",
+      "house_id": "parkersburg-03",
+      "page": "guest-services.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/guest-services-img-75-b03227ecc2-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-31.avif",
+      "house_id": "parkersburg-03",
+      "page": "guest-services.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/health-professionals-img-541-2622fd867e-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-313.avif",
+      "house_id": "parkersburg-03",
+      "page": "health-professionals.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/health-professionals-img-542-d6d6cd14f7-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-317.avif",
+      "house_id": "parkersburg-03",
+      "page": "health-professionals.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/home-amenities-img-75-311c36d3b1-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-33.avif",
+      "house_id": "parkersburg-03",
+      "page": "home-amenities.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/home-amenities-img-75-a3ebf27cde-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-322.avif",
+      "house_id": "parkersburg-03",
+      "page": "home-amenities.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/home-amenities-img-75-d136e38207-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-32.avif",
+      "house_id": "parkersburg-03",
+      "page": "home-amenities.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/home-amenities-img-75-f0af054040-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-330.avif",
+      "house_id": "parkersburg-03",
+      "page": "home-amenities.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/housekeeping-img-75-0ee060b8bc-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-343.avif",
+      "house_id": "parkersburg-03",
+      "page": "housekeeping.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/housekeeping-img-75-2a9487ef85-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-338.avif",
+      "house_id": "parkersburg-03",
+      "page": "housekeeping.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/housekeeping-img-75-b61c536065-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-332.avif",
+      "house_id": "parkersburg-03",
+      "page": "housekeeping.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/housekeeping-img-75-d4ffc6174e-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-347.avif",
+      "house_id": "parkersburg-03",
+      "page": "housekeeping.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/index-img-1462-0996b93d2a-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-38.avif",
+      "house_id": "parkersburg-03",
+      "page": "index.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/index-img-1467-ea733a3776-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-385.avif",
+      "house_id": "parkersburg-03",
+      "page": "index.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/index-img-506-4caee97890-551x596.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-365.avif",
+      "house_id": "parkersburg-03",
+      "page": "index.html",
+      "kind": "img",
+      "dimensions": [
+        551,
+        596
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/insurance-housing-img-542-205494b424-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-39.avif",
+      "house_id": "parkersburg-03",
+      "page": "insurance-housing.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/insurance-housing-img-543-37194f2610-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-397.avif",
+      "house_id": "parkersburg-03",
+      "page": "insurance-housing.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/living-img-388-b6c68ddc59-421x540.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-403.avif",
+      "house_id": "parkersburg-03",
+      "page": "living.html",
+      "kind": "img",
+      "dimensions": [
+        421,
+        540
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/living-img-501-5fbbfcbe19-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-418.avif",
+      "house_id": "parkersburg-03",
+      "page": "living.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/living-img-502-cd14136a3b-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-423.avif",
+      "house_id": "parkersburg-03",
+      "page": "living.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/maintenance-img-331-fe0ec3bcfc-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-44.avif",
+      "house_id": "parkersburg-03",
+      "page": "maintenance.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/maintenance-img-345-10686b18cc-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-445.avif",
+      "house_id": "parkersburg-03",
+      "page": "maintenance.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/maintenance-img-359-e6003bbfe4-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-468.avif",
+      "house_id": "parkersburg-03",
+      "page": "maintenance.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/maintenance-img-373-8d964235ad-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-491.avif",
+      "house_id": "parkersburg-03",
+      "page": "maintenance.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/meal-preparation-img-75-1e8e2255cf-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-499.avif",
+      "house_id": "parkersburg-03",
+      "page": "meal-preparation.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/meal-preparation-img-75-799ffedc09-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-500.avif",
+      "house_id": "parkersburg-03",
+      "page": "meal-preparation.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/meal-preparation-img-75-9d2eff5c60-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-50.avif",
+      "house_id": "parkersburg-03",
+      "page": "meal-preparation.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/meal-preparation-img-75-af785322fb-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-502.avif",
+      "house_id": "parkersburg-03",
+      "page": "meal-preparation.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/parkersburg-yellow-cottage-background-191-8902c1b586-1920x586.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-226.avif",
+      "house_id": "parkersburg-03",
+      "page": "parkersburg/yellow-cottage.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/parkersburg-yellow-cottage-img-250-da64719c55-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-15.avif",
+      "house_id": "parkersburg-03",
+      "page": "parkersburg/yellow-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/parkersburg-yellow-cottage-img-259-44c60c6f14-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-161.avif",
+      "house_id": "parkersburg-03",
+      "page": "parkersburg/yellow-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/parkersburg-yellow-cottage-img-270-dc116f861d-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-17.avif",
+      "house_id": "parkersburg-03",
+      "page": "parkersburg/yellow-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/parkersburg-yellow-cottage-img-385-1575c1fc53-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-02.avif",
+      "house_id": "parkersburg-03",
+      "page": "parkersburg/yellow-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/parkersburg-yellow-cottage-img-386-74365ad528-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-04.avif",
+      "house_id": "parkersburg-03",
+      "page": "parkersburg/yellow-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/parkersburg-yellow-cottage-img-425-6a5e2eb9b8-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-18.avif",
+      "house_id": "parkersburg-03",
+      "page": "parkersburg/yellow-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/parkersburg-yellow-cottage-img-426-05cd3088ce-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-34.avif",
+      "house_id": "parkersburg-03",
+      "page": "parkersburg/yellow-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/partnerships-img-747-7260c9b965-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-51.avif",
+      "house_id": "parkersburg-03",
+      "page": "partnerships.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/partnerships-img-761-a151a19892-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-67.avif",
+      "house_id": "parkersburg-03",
+      "page": "partnerships.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/partnerships-img-775-cbd40afc98-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-76.avif",
+      "house_id": "parkersburg-03",
+      "page": "partnerships.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/partnerships-img-789-f5bfb70eca-240x240.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-99.avif",
+      "house_id": "parkersburg-03",
+      "page": "partnerships.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/parkersburg-03/unique/room-to-settle-img-343-b8a60becdf-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-03/photo-47.avif",
+      "house_id": "parkersburg-03",
+      "page": "room-to-settle.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/available-img-386-9597944b4a-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-16.avif",
+      "house_id": "parkersburg-04",
+      "page": "available.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/cottages-img-371-300d4e31b2-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-25.avif",
+      "house_id": "parkersburg-04",
+      "page": "cottages.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/parkersburg-index-img-23-83f99682b9-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-04.avif",
+      "house_id": "parkersburg-04",
+      "page": "parkersburg/index.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/parkersburg-index-img-24-1a3d89aa08-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-05.avif",
+      "house_id": "parkersburg-04",
+      "page": "parkersburg/index.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/parkersburg-index-img-25-1af7600f83-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-06.avif",
+      "house_id": "parkersburg-04",
+      "page": "parkersburg/index.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/parkersburg-index-img-26-9b81eb83f3-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-07.avif",
+      "house_id": "parkersburg-04",
+      "page": "parkersburg/index.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/parkersburg-oak-cottage-background-191-0f178d178b-1920x586.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-45.avif",
+      "house_id": "parkersburg-04",
+      "page": "parkersburg/oak-cottage.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/parkersburg-oak-cottage-img-250-7ec2e9d738-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-08.avif",
+      "house_id": "parkersburg-04",
+      "page": "parkersburg/oak-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/parkersburg-oak-cottage-img-259-f2e63a212c-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-09.avif",
+      "house_id": "parkersburg-04",
+      "page": "parkersburg/oak-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/parkersburg-oak-cottage-img-270-968bccdc29-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-10.avif",
+      "house_id": "parkersburg-04",
+      "page": "parkersburg/oak-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/parkersburg-oak-cottage-img-279-c4e3ce7b31-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-11.avif",
+      "house_id": "parkersburg-04",
+      "page": "parkersburg/oak-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/parkersburg-oak-cottage-img-290-fc5858e6b0-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-12.avif",
+      "house_id": "parkersburg-04",
+      "page": "parkersburg/oak-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/parkersburg-oak-cottage-img-299-ce73422848-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-13.avif",
+      "house_id": "parkersburg-04",
+      "page": "parkersburg/oak-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/parkersburg-oak-cottage-img-310-73035b484b-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-14.avif",
+      "house_id": "parkersburg-04",
+      "page": "parkersburg/oak-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/parkersburg-oak-cottage-img-319-b462c8c433-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-15.avif",
+      "house_id": "parkersburg-04",
+      "page": "parkersburg/oak-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/parkersburg-oak-cottage-img-435-43bb9c5923-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-17.avif",
+      "house_id": "parkersburg-04",
+      "page": "parkersburg/oak-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/parkersburg-oak-cottage-img-436-fbba8c653a-97x97.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-18.avif",
+      "house_id": "parkersburg-04",
+      "page": "parkersburg/oak-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/parkersburg-oak-cottage-img-475-3361835b84-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-19.avif",
+      "house_id": "parkersburg-04",
+      "page": "parkersburg/oak-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/parkersburg-oak-cottage-img-476-f2985a9cbc-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-20.avif",
+      "house_id": "parkersburg-04",
+      "page": "parkersburg/oak-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/pay-rent-img-520-0cf7c3d9f3-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-22.avif",
+      "house_id": "parkersburg-04",
+      "page": "pay-rent.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/pay-rent-img-525-f5ad9628c0-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-23.avif",
+      "house_id": "parkersburg-04",
+      "page": "pay-rent.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/property-care-background-38-dbff23503b-1920x586.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-36.avif",
+      "house_id": "parkersburg-04",
+      "page": "property-care.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/property-care-img-54-6ead5a23b4-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-24.avif",
+      "house_id": "parkersburg-04",
+      "page": "property-care.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/property-care-img-61-831e4b2b2f-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-27.avif",
+      "house_id": "parkersburg-04",
+      "page": "property-care.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/property-care-img-61-861d7e8959-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-26.avif",
+      "house_id": "parkersburg-04",
+      "page": "property-care.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/property-care-img-75-1c8506a5a4-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-30.avif",
+      "house_id": "parkersburg-04",
+      "page": "property-care.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/property-care-img-75-649233b4ee-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-28.avif",
+      "house_id": "parkersburg-04",
+      "page": "property-care.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/property-care-img-75-8c92cacfcd-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-29.avif",
+      "house_id": "parkersburg-04",
+      "page": "property-care.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/racine-index-background-9-bca6d621be-1920x586.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-37.avif",
+      "house_id": "parkersburg-04",
+      "page": "racine/index.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/racine-index-img-11-3342246faf-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-31.avif",
+      "house_id": "parkersburg-04",
+      "page": "racine/index.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/racine-index-img-20-a0c9dc6832-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-32.avif",
+      "house_id": "parkersburg-04",
+      "page": "racine/index.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/ravenswood-index-img-25-a33052273b-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-33.avif",
+      "house_id": "parkersburg-04",
+      "page": "ravenswood/index.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/resident-portal-img-512-96cac8962f-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-34.avif",
+      "house_id": "parkersburg-04",
+      "page": "resident-portal.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/resident-portal-img-517-e003726fab-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-38.avif",
+      "house_id": "parkersburg-04",
+      "page": "resident-portal.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/residents-img-305-49dadbafda-760x588.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-39.avif",
+      "house_id": "parkersburg-04",
+      "page": "residents.html",
+      "kind": "img",
+      "dimensions": [
+        760,
+        588
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/residents-img-308-dce92d93d3-760x588.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-40.avif",
+      "house_id": "parkersburg-04",
+      "page": "residents.html",
+      "kind": "img",
+      "dimensions": [
+        760,
+        588
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/residents-img-309-f1503062ea-760x588.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-41.avif",
+      "house_id": "parkersburg-04",
+      "page": "residents.html",
+      "kind": "img",
+      "dimensions": [
+        760,
+        588
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/residents-img-312-7823cdee4f-760x588.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-42.avif",
+      "house_id": "parkersburg-04",
+      "page": "residents.html",
+      "kind": "img",
+      "dimensions": [
+        760,
+        588
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/residents-img-789-361abb617f-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-43.avif",
+      "house_id": "parkersburg-04",
+      "page": "residents.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/residents-img-794-2e1e2d8aa8-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-44.avif",
+      "house_id": "parkersburg-04",
+      "page": "residents.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/room-to-settle-img-357-d046eaa395-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-21.avif",
+      "house_id": "parkersburg-04",
+      "page": "room-to-settle.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/room-to-settle-img-872-eb90befe8f-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-46.avif",
+      "house_id": "parkersburg-04",
+      "page": "room-to-settle.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/room-to-settle-img-877-97c9882d78-424x330.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-47.avif",
+      "house_id": "parkersburg-04",
+      "page": "room-to-settle.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/services-img-305-1342bbdbc8-760x588.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-48.avif",
+      "house_id": "parkersburg-04",
+      "page": "services.html",
+      "kind": "img",
+      "dimensions": [
+        760,
+        588
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/services-img-308-0c0d329edc-760x588.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-49.avif",
+      "house_id": "parkersburg-04",
+      "page": "services.html",
+      "kind": "img",
+      "dimensions": [
+        760,
+        588
+      ]
+    },
+    "assets/images/cottages/parkersburg-04/unique/services-img-309-3263814a43-648x470.avif": {
+      "source": "assets/images/cottages/parkersburg-04/photo-50.avif",
+      "house_id": "parkersburg-04",
+      "page": "services.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/about-img-670-9387c1fcd1-421x540.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-378.avif",
+      "house_id": "ravenswood-01",
+      "page": "about.html",
+      "kind": "img",
+      "dimensions": [
+        421,
+        540
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/available-img-400-ed848a7f99-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-03.avif",
+      "house_id": "ravenswood-01",
+      "page": "available.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/cottages-img-385-4f40ddf8e5-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-08.avif",
+      "house_id": "ravenswood-01",
+      "page": "cottages.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/cottages-img-900-03702b0e5d-424x330.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-263.avif",
+      "house_id": "ravenswood-01",
+      "page": "cottages.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/cottages-img-905-e3618dec0b-424x330.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-271.avif",
+      "house_id": "ravenswood-01",
+      "page": "cottages.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/cozy-places-img-329-1a436aba40-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-110.avif",
+      "house_id": "ravenswood-01",
+      "page": "cozy-places.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/cozy-places-img-816-dfe915b506-424x330.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-297.avif",
+      "house_id": "ravenswood-01",
+      "page": "cozy-places.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/cozy-places-img-821-60436da26c-424x330.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-304.avif",
+      "house_id": "ravenswood-01",
+      "page": "cozy-places.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/emergency-maintenance-img-512-50a80accaf-424x330.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-314.avif",
+      "house_id": "ravenswood-01",
+      "page": "emergency-maintenance.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/emergency-maintenance-img-517-2826d7c3b1-424x330.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-330.avif",
+      "house_id": "ravenswood-01",
+      "page": "emergency-maintenance.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/family-stays-img-336-6cf4765ac3-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-49.avif",
+      "house_id": "ravenswood-01",
+      "page": "family-stays.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/family-stays-img-366-fee7bfbb1c-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-57.avif",
+      "house_id": "ravenswood-01",
+      "page": "family-stays.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/family-stays-img-414-144f91c792-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-67.avif",
+      "house_id": "ravenswood-01",
+      "page": "family-stays.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/family-stays-img-420-67e250da43-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-92.avif",
+      "house_id": "ravenswood-01",
+      "page": "family-stays.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/family-stays-img-426-0b618445f1-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-96.avif",
+      "house_id": "ravenswood-01",
+      "page": "family-stays.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/family-stays-img-596-53da51c58f-424x330.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-98.avif",
+      "house_id": "ravenswood-01",
+      "page": "family-stays.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/maintenance-img-309-e31f1f2bd9-854x500.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-372.avif",
+      "house_id": "ravenswood-01",
+      "page": "maintenance.html",
+      "kind": "img",
+      "dimensions": [
+        854,
+        500
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/partnerships-img-682-5ec3674bab-421x540.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-379.avif",
+      "house_id": "ravenswood-01",
+      "page": "partnerships.html",
+      "kind": "img",
+      "dimensions": [
+        421,
+        540
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/partnerships-img-867-b37e3ff043-97x97.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-107.avif",
+      "house_id": "ravenswood-01",
+      "page": "partnerships.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/partnerships-img-868-44ce40626e-97x97.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-108.avif",
+      "house_id": "ravenswood-01",
+      "page": "partnerships.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/pay-rent-img-309-96151f13b4-854x500.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-383.avif",
+      "house_id": "ravenswood-01",
+      "page": "pay-rent.html",
+      "kind": "img",
+      "dimensions": [
+        854,
+        500
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/pay-rent-img-342-9ed75cf3e7-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-112.avif",
+      "house_id": "ravenswood-01",
+      "page": "pay-rent.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/pay-rent-img-356-10d70f0111-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-113.avif",
+      "house_id": "ravenswood-01",
+      "page": "pay-rent.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/pay-rent-img-370-03bff205cb-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-126.avif",
+      "house_id": "ravenswood-01",
+      "page": "pay-rent.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/pay-rent-img-384-0f57dec833-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-131.avif",
+      "house_id": "ravenswood-01",
+      "page": "pay-rent.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/pay-rent-img-464-692673dbda-97x97.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-133.avif",
+      "house_id": "ravenswood-01",
+      "page": "pay-rent.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/pay-rent-img-465-69fa37dcb3-97x97.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-134.avif",
+      "house_id": "ravenswood-01",
+      "page": "pay-rent.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/property-care-img-75-d40ac1bef0-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-135.avif",
+      "house_id": "ravenswood-01",
+      "page": "property-care.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/ravenswood-index-img-23-f406a6187e-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-124.avif",
+      "house_id": "ravenswood-01",
+      "page": "ravenswood/index.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/ravenswood-white-cottage-background-191-df8c8e83a7-1920x586.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-371.avif",
+      "house_id": "ravenswood-01",
+      "page": "ravenswood/white-cottage.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/ravenswood-white-cottage-img-250-32e7e0765e-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-125.avif",
+      "house_id": "ravenswood-01",
+      "page": "ravenswood/white-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/ravenswood-white-cottage-img-259-a8ff0fd8c0-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-14.avif",
+      "house_id": "ravenswood-01",
+      "page": "ravenswood/white-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/ravenswood-white-cottage-img-270-31ce7c599c-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-147.avif",
+      "house_id": "ravenswood-01",
+      "page": "ravenswood/white-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/ravenswood-white-cottage-img-279-00658dcad2-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-151.avif",
+      "house_id": "ravenswood-01",
+      "page": "ravenswood/white-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/ravenswood-white-cottage-img-290-c4fbd32f4d-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-154.avif",
+      "house_id": "ravenswood-01",
+      "page": "ravenswood/white-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/ravenswood-white-cottage-img-299-ab9988599b-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-174.avif",
+      "house_id": "ravenswood-01",
+      "page": "ravenswood/white-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/ravenswood-white-cottage-img-310-afe667aea1-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-216.avif",
+      "house_id": "ravenswood-01",
+      "page": "ravenswood/white-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/ravenswood-white-cottage-img-319-2aae68ec10-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-246.avif",
+      "house_id": "ravenswood-01",
+      "page": "ravenswood/white-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/ravenswood-white-cottage-img-434-c7ece0a6c5-97x97.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-380.avif",
+      "house_id": "ravenswood-01",
+      "page": "ravenswood/white-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/ravenswood-white-cottage-img-435-f6c3b1c829-97x97.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-102.avif",
+      "house_id": "ravenswood-01",
+      "page": "ravenswood/white-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/ravenswood-white-cottage-img-474-a65c18889b-424x330.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-249.avif",
+      "house_id": "ravenswood-01",
+      "page": "ravenswood/white-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/ravenswood-white-cottage-img-475-e053d2a765-424x330.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-252.avif",
+      "house_id": "ravenswood-01",
+      "page": "ravenswood/white-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/resident-portal-img-309-40edb6a2e8-854x500.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-241.avif",
+      "house_id": "ravenswood-01",
+      "page": "resident-portal.html",
+      "kind": "img",
+      "dimensions": [
+        854,
+        500
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/resident-portal-img-331-aea7016006-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-136.avif",
+      "house_id": "ravenswood-01",
+      "page": "resident-portal.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/resident-portal-img-345-6dc6b76933-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-137.avif",
+      "house_id": "ravenswood-01",
+      "page": "resident-portal.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/resident-portal-img-359-3c38325a5b-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-146.avif",
+      "house_id": "ravenswood-01",
+      "page": "resident-portal.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/resident-portal-img-373-c55874e3c8-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-150.avif",
+      "house_id": "ravenswood-01",
+      "page": "resident-portal.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/residents-img-611-bd47dfa49c-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-156.avif",
+      "house_id": "ravenswood-01",
+      "page": "residents.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/residents-img-625-2c2d5c6647-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-162.avif",
+      "house_id": "ravenswood-01",
+      "page": "residents.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/residents-img-639-d601de4e71-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-165.avif",
+      "house_id": "ravenswood-01",
+      "page": "residents.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/residents-img-653-9ed251b011-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-166.avif",
+      "house_id": "ravenswood-01",
+      "page": "residents.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/residents-img-733-2a0a7ef114-97x97.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-173.avif",
+      "house_id": "ravenswood-01",
+      "page": "residents.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/residents-img-734-4cdf80e056-97x97.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-175.avif",
+      "house_id": "ravenswood-01",
+      "page": "residents.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/room-to-settle-img-702-a7ce2a0c74-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-179.avif",
+      "house_id": "ravenswood-01",
+      "page": "room-to-settle.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/room-to-settle-img-712-829e31f414-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-184.avif",
+      "house_id": "ravenswood-01",
+      "page": "room-to-settle.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/room-to-settle-img-722-06fc0cf4a1-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-192.avif",
+      "house_id": "ravenswood-01",
+      "page": "room-to-settle.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/room-to-settle-img-732-d5f9901307-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-202.avif",
+      "house_id": "ravenswood-01",
+      "page": "room-to-settle.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/services-img-312-bc28257adb-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-387.avif",
+      "house_id": "ravenswood-01",
+      "page": "services.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/services-img-313-8275b911c9-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-248.avif",
+      "house_id": "ravenswood-01",
+      "page": "services.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/services-img-316-f06bedafbf-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-397.avif",
+      "house_id": "ravenswood-01",
+      "page": "services.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/services-img-615-1b30b11f81-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-212.avif",
+      "house_id": "ravenswood-01",
+      "page": "services.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/services-img-629-cd04fc4294-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-222.avif",
+      "house_id": "ravenswood-01",
+      "page": "services.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/services-img-643-067148b9b2-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-225.avif",
+      "house_id": "ravenswood-01",
+      "page": "services.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/services-img-657-357facdac8-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-227.avif",
+      "house_id": "ravenswood-01",
+      "page": "services.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/services-img-737-b6dc4471ad-97x97.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-228.avif",
+      "house_id": "ravenswood-01",
+      "page": "services.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/services-img-738-f9e1ec2c14-97x97.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-229.avif",
+      "house_id": "ravenswood-01",
+      "page": "services.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/services-img-793-37fdd705be-424x330.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-398.avif",
+      "house_id": "ravenswood-01",
+      "page": "services.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/work-relocation-img-310-36f260c965-551x596.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-230.avif",
+      "house_id": "ravenswood-01",
+      "page": "work-relocation.html",
+      "kind": "img",
+      "dimensions": [
+        551,
+        596
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/work-relocation-img-420-8f09045c82-421x540.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-233.avif",
+      "house_id": "ravenswood-01",
+      "page": "work-relocation.html",
+      "kind": "img",
+      "dimensions": [
+        421,
+        540
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/work-relocation-img-426-1fe03402ef-421x540.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-238.avif",
+      "house_id": "ravenswood-01",
+      "page": "work-relocation.html",
+      "kind": "img",
+      "dimensions": [
+        421,
+        540
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/work-relocation-img-538-de9d8d718d-97x97.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-24.avif",
+      "house_id": "ravenswood-01",
+      "page": "work-relocation.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/ravenswood-01/unique/work-relocation-img-539-5d1ca3815a-97x97.avif": {
+      "source": "assets/images/cottages/ravenswood-01/photo-240.avif",
+      "house_id": "ravenswood-01",
+      "page": "work-relocation.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/404-img-237-27f4100579-960x950.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-222.avif",
+      "house_id": "ravenswood-02",
+      "page": "404.html",
+      "kind": "img",
+      "dimensions": [
+        960,
+        950
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/about-img-302-a0b6ad3f5c-551x596.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-175.avif",
+      "house_id": "ravenswood-02",
+      "page": "about.html",
+      "kind": "img",
+      "dimensions": [
+        551,
+        596
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/about-img-735-54ec9675e8-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-179.avif",
+      "house_id": "ravenswood-02",
+      "page": "about.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/about-img-749-216bdd4437-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-183.avif",
+      "house_id": "ravenswood-02",
+      "page": "about.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/about-img-763-6432ae3b00-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-184.avif",
+      "house_id": "ravenswood-02",
+      "page": "about.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/about-img-777-04eff6dffa-240x240.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-182.avif",
+      "house_id": "ravenswood-02",
+      "page": "about.html",
+      "kind": "img",
+      "dimensions": [
+        240,
+        240
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/about-img-911-7a4070bc95-424x330.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-208.avif",
+      "house_id": "ravenswood-02",
+      "page": "about.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/available-img-414-b21595f6c3-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-206.avif",
+      "house_id": "ravenswood-02",
+      "page": "available.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/cottages-img-399-ae4b62138c-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-01.avif",
+      "house_id": "ravenswood-02",
+      "page": "cottages.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/family-stays-img-601-69a28e6a0f-424x330.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-117.avif",
+      "house_id": "ravenswood-02",
+      "page": "family-stays.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/faq-img-497-133c990624-424x330.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-119.avif",
+      "house_id": "ravenswood-02",
+      "page": "faq.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/faq-img-502-707805cc7e-424x330.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-12.avif",
+      "house_id": "ravenswood-02",
+      "page": "faq.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/fully-furnished-homes-img-54-c028b7d200-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-122.avif",
+      "house_id": "ravenswood-02",
+      "page": "fully-furnished-homes.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/fully-furnished-homes-img-61-01a0b97ea2-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-126.avif",
+      "house_id": "ravenswood-02",
+      "page": "fully-furnished-homes.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/fully-furnished-homes-img-61-f680290dcf-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-125.avif",
+      "house_id": "ravenswood-02",
+      "page": "fully-furnished-homes.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/grantsville-index-img-11-8ca2d34c00-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-136.avif",
+      "house_id": "ravenswood-02",
+      "page": "grantsville/index.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/grantsville-index-img-20-bf0edcd6b5-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-146.avif",
+      "house_id": "ravenswood-02",
+      "page": "grantsville/index.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/guest-services-img-54-4d226c2ac4-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-152.avif",
+      "house_id": "ravenswood-02",
+      "page": "guest-services.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/guest-services-img-61-a3da048287-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-158.avif",
+      "house_id": "ravenswood-02",
+      "page": "guest-services.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/guest-services-img-61-f61a8b1903-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-153.avif",
+      "house_id": "ravenswood-02",
+      "page": "guest-services.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/health-professionals-img-310-a46859957c-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-161.avif",
+      "house_id": "ravenswood-02",
+      "page": "health-professionals.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/health-professionals-img-337-973c36186c-760x588.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-163.avif",
+      "house_id": "ravenswood-02",
+      "page": "health-professionals.html",
+      "kind": "img",
+      "dimensions": [
+        760,
+        588
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/health-professionals-img-363-ad543c420a-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-168.avif",
+      "house_id": "ravenswood-02",
+      "page": "health-professionals.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/health-professionals-img-371-d7bce0d15d-600x450.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-170.avif",
+      "house_id": "ravenswood-02",
+      "page": "health-professionals.html",
+      "kind": "img",
+      "dimensions": [
+        600,
+        450
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/health-professionals-img-432-ef394b2249-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-21.avif",
+      "house_id": "ravenswood-02",
+      "page": "health-professionals.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/health-professionals-img-438-fd9f879f42-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-23.avif",
+      "house_id": "ravenswood-02",
+      "page": "health-professionals.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/health-professionals-img-444-784b42c309-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-24.avif",
+      "house_id": "ravenswood-02",
+      "page": "health-professionals.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/health-professionals-img-597-fbf40b35ac-424x330.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-25.avif",
+      "house_id": "ravenswood-02",
+      "page": "health-professionals.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/health-professionals-img-602-8c654f2c45-424x330.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-27.avif",
+      "house_id": "ravenswood-02",
+      "page": "health-professionals.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/home-amenities-img-54-fb3157e888-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-30.avif",
+      "house_id": "ravenswood-02",
+      "page": "home-amenities.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/home-amenities-img-61-54da69c880-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-35.avif",
+      "house_id": "ravenswood-02",
+      "page": "home-amenities.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/home-amenities-img-61-57a27131fb-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-32.avif",
+      "house_id": "ravenswood-02",
+      "page": "home-amenities.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/housekeeping-img-54-ba68744c05-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-37.avif",
+      "house_id": "ravenswood-02",
+      "page": "housekeeping.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/housekeeping-img-61-1c0bb85072-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-44.avif",
+      "house_id": "ravenswood-02",
+      "page": "housekeeping.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/housekeeping-img-61-3e0eea24ba-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-42.avif",
+      "house_id": "ravenswood-02",
+      "page": "housekeeping.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/insurance-housing-img-310-beb7a1cc21-600x450.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-63.avif",
+      "house_id": "ravenswood-02",
+      "page": "insurance-housing.html",
+      "kind": "img",
+      "dimensions": [
+        600,
+        450
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/insurance-housing-img-336-39ea5ba50e-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-67.avif",
+      "house_id": "ravenswood-02",
+      "page": "insurance-housing.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/insurance-housing-img-360-28b2072e36-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-70.avif",
+      "house_id": "ravenswood-02",
+      "page": "insurance-housing.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/insurance-housing-img-366-97ba61db91-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-74.avif",
+      "house_id": "ravenswood-02",
+      "page": "insurance-housing.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/insurance-housing-img-414-e668c111fb-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-78.avif",
+      "house_id": "ravenswood-02",
+      "page": "insurance-housing.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/insurance-housing-img-420-f772caaa43-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-80.avif",
+      "house_id": "ravenswood-02",
+      "page": "insurance-housing.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/insurance-housing-img-426-da13939d0b-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-89.avif",
+      "house_id": "ravenswood-02",
+      "page": "insurance-housing.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/insurance-housing-img-598-00045d4daa-424x330.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-93.avif",
+      "house_id": "ravenswood-02",
+      "page": "insurance-housing.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/insurance-housing-img-603-cc9b239df6-424x330.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-217.avif",
+      "house_id": "ravenswood-02",
+      "page": "insurance-housing.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/living-img-316-810ed7bd31-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-212.avif",
+      "house_id": "ravenswood-02",
+      "page": "living.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/living-img-342-7acf7be3e1-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-216.avif",
+      "house_id": "ravenswood-02",
+      "page": "living.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/ravenswood-virginia-cottage-background-191-d3601123ed-1920x586.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-219.avif",
+      "house_id": "ravenswood-02",
+      "page": "ravenswood/virginia-cottage.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/ravenswood-virginia-cottage-img-250-0502b3ab82-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-02.avif",
+      "house_id": "ravenswood-02",
+      "page": "ravenswood/virginia-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/ravenswood-virginia-cottage-img-259-67c3a7ee0a-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-102.avif",
+      "house_id": "ravenswood-02",
+      "page": "ravenswood/virginia-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/ravenswood-virginia-cottage-img-270-fa0f0a5f88-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-103.avif",
+      "house_id": "ravenswood-02",
+      "page": "ravenswood/virginia-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/ravenswood-virginia-cottage-img-279-dee299bbe2-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-105.avif",
+      "house_id": "ravenswood-02",
+      "page": "ravenswood/virginia-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/ravenswood-virginia-cottage-img-290-e3e5c7bda2-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-107.avif",
+      "house_id": "ravenswood-02",
+      "page": "ravenswood/virginia-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/ravenswood-virginia-cottage-img-299-97888efe5c-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-11.avif",
+      "house_id": "ravenswood-02",
+      "page": "ravenswood/virginia-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/ravenswood-virginia-cottage-img-414-a33db47da2-97x97.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-223.avif",
+      "house_id": "ravenswood-02",
+      "page": "ravenswood/virginia-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/ravenswood-virginia-cottage-img-415-447ce2ebbe-97x97.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-226.avif",
+      "house_id": "ravenswood-02",
+      "page": "ravenswood/virginia-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/ravenswood-virginia-cottage-img-454-0ceefaa43e-424x330.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-203.avif",
+      "house_id": "ravenswood-02",
+      "page": "ravenswood/virginia-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/ravenswood-virginia-cottage-img-455-73f8ee6ed9-424x330.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-201.avif",
+      "house_id": "ravenswood-02",
+      "page": "ravenswood/virginia-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/ravenswood-02/unique/room-to-settle-img-371-3fb08817b9-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-02/photo-116.avif",
+      "house_id": "ravenswood-02",
+      "page": "room-to-settle.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/about-img-690-c0a634521c-421x540.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-26.avif",
+      "house_id": "ravenswood-03",
+      "page": "about.html",
+      "kind": "img",
+      "dimensions": [
+        421,
+        540
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/apply-background-283-fa7c94a4dd-1920x586.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-11.avif",
+      "house_id": "ravenswood-03",
+      "page": "apply.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/apply-background-303-8f0c3cac6a-1920x869.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-12.avif",
+      "house_id": "ravenswood-03",
+      "page": "apply.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        869
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/available-background-283-3989e29e57-1920x586.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-14.avif",
+      "house_id": "ravenswood-03",
+      "page": "available.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/available-img-428-c44a6dc5bc-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-39.avif",
+      "house_id": "ravenswood-03",
+      "page": "available.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/contact-background-283-92fc8a9517-1920x586.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-15.avif",
+      "house_id": "ravenswood-03",
+      "page": "contact.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/contact-background-303-1072b3ddf0-1920x869.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-18.avif",
+      "house_id": "ravenswood-03",
+      "page": "contact.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        869
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/contact-background-303-65ce79604c-1320x309.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-16.avif",
+      "house_id": "ravenswood-03",
+      "page": "contact.html",
+      "kind": "background",
+      "dimensions": [
+        1320,
+        309
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/cottages-background-283-d7df254530-1920x586.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-19.avif",
+      "house_id": "ravenswood-03",
+      "page": "cottages.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/cottages-img-413-d053c83cdf-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-01.avif",
+      "house_id": "ravenswood-03",
+      "page": "cottages.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/cozy-places-background-283-4d89b9cf16-1920x586.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-20.avif",
+      "house_id": "ravenswood-03",
+      "page": "cozy-places.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/emergency-maintenance-background-283-9d09653da4-1920x586.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-22.avif",
+      "house_id": "ravenswood-03",
+      "page": "emergency-maintenance.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/family-stays-background-282-a7ccea1539-1920x586.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-24.avif",
+      "house_id": "ravenswood-03",
+      "page": "family-stays.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/faq-background-283-87af58d814-1920x586.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-25.avif",
+      "house_id": "ravenswood-03",
+      "page": "faq.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/fully-furnished-homes-background-38-a8d090450c-1920x586.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-30.avif",
+      "house_id": "ravenswood-03",
+      "page": "fully-furnished-homes.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/grantsville-index-background-9-7c4d054c84-1920x586.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-32.avif",
+      "house_id": "ravenswood-03",
+      "page": "grantsville/index.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/guest-services-background-38-be25466a53-1920x586.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-50.avif",
+      "house_id": "ravenswood-03",
+      "page": "guest-services.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/index-img-764-5afbddc086-421x540.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-23.avif",
+      "house_id": "ravenswood-03",
+      "page": "index.html",
+      "kind": "img",
+      "dimensions": [
+        421,
+        540
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/partnerships-img-702-8141baeb14-421x540.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-35.avif",
+      "house_id": "ravenswood-03",
+      "page": "partnerships.html",
+      "kind": "img",
+      "dimensions": [
+        421,
+        540
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/ravenswood-henrietta-cottage-background-191-e2efbab677-1920x586.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-06.avif",
+      "house_id": "ravenswood-03",
+      "page": "ravenswood/henrietta-cottage.html",
+      "kind": "background",
+      "dimensions": [
+        1920,
+        586
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/ravenswood-henrietta-cottage-img-250-6435685889-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-37.avif",
+      "house_id": "ravenswood-03",
+      "page": "ravenswood/henrietta-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/ravenswood-henrietta-cottage-img-259-2ef6fa51f1-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-38.avif",
+      "house_id": "ravenswood-03",
+      "page": "ravenswood/henrietta-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/ravenswood-henrietta-cottage-img-270-f0bb43e128-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-44.avif",
+      "house_id": "ravenswood-03",
+      "page": "ravenswood/henrietta-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/ravenswood-henrietta-cottage-img-279-543f9ad02a-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-45.avif",
+      "house_id": "ravenswood-03",
+      "page": "ravenswood/henrietta-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/ravenswood-henrietta-cottage-img-290-88a4997131-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-47.avif",
+      "house_id": "ravenswood-03",
+      "page": "ravenswood/henrietta-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/ravenswood-henrietta-cottage-img-299-09dbabf583-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-48.avif",
+      "house_id": "ravenswood-03",
+      "page": "ravenswood/henrietta-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/ravenswood-henrietta-cottage-img-310-0adbfc2316-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-34.avif",
+      "house_id": "ravenswood-03",
+      "page": "ravenswood/henrietta-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/ravenswood-henrietta-cottage-img-426-ee5b9bcfae-97x97.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-17.avif",
+      "house_id": "ravenswood-03",
+      "page": "ravenswood/henrietta-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/ravenswood-henrietta-cottage-img-427-eba52ff03d-97x97.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-42.avif",
+      "house_id": "ravenswood-03",
+      "page": "ravenswood/henrietta-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        97,
+        97
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/ravenswood-henrietta-cottage-img-466-9717c94e28-424x330.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-02.avif",
+      "house_id": "ravenswood-03",
+      "page": "ravenswood/henrietta-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/ravenswood-henrietta-cottage-img-467-4fba3cdfbc-424x330.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-03.avif",
+      "house_id": "ravenswood-03",
+      "page": "ravenswood/henrietta-cottage.html",
+      "kind": "img",
+      "dimensions": [
+        424,
+        330
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/ravenswood-index-img-11-050fbb2f06-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-04.avif",
+      "house_id": "ravenswood-03",
+      "page": "ravenswood/index.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/ravenswood-index-img-21-19c6f22fd0-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-05.avif",
+      "house_id": "ravenswood-03",
+      "page": "ravenswood/index.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/ravenswood-index-img-22-0e37deb25e-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-07.avif",
+      "house_id": "ravenswood-03",
+      "page": "ravenswood/index.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    },
+    "assets/images/cottages/ravenswood-03/unique/room-to-settle-img-385-10d65dda8b-648x470.avif": {
+      "source": "assets/images/cottages/ravenswood-03/photo-08.avif",
+      "house_id": "ravenswood-03",
+      "page": "room-to-settle.html",
+      "kind": "img",
+      "dimensions": [
+        648,
+        470
+      ]
+    }
+  }
+}
