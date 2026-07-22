@@ -760,5 +760,59 @@
     <script src="assets/js/my.js"></script>
     <script src="assets/js/script.js"></script>
       <script src="assets/js/mtcottages.js?v=2"></script>
+<script>
+(function() {
+  const params = new URLSearchParams(window.location.search);
+
+  // Duration mapping
+  const durationMap = {
+    'month-to-month': '30–90 days',
+    '3-months': '3–12 months',
+    '6-months': '3–12 months',
+    '12-months': '1 year or longer',
+    '2-years': '1 year or longer',
+    '3-years': '1 year or longer'
+  };
+  const durValue = params.get('duration');
+  if (durValue && durationMap[durValue]) {
+    const sel = document.querySelector('select[name="duration"]');
+    if (sel) sel.value = durationMap[durValue];
+  }
+
+  // Location mapping
+  const locationMap = {
+    'marietta': 'Marietta, OH',
+    'parkersburg': 'Parkersburg, WV',
+    'ravenswood': 'Ravenswood, WV'
+  };
+  const locValue = params.get('location');
+  if (locValue && locationMap[locValue]) {
+    const sel = document.querySelector('select[name="preferredLocation"]');
+    if (sel) sel.value = locationMap[locValue];
+  }
+
+  // Bedrooms to homeSize mapping
+  const bedroomMap = {
+    '1': 'Studio or one-bedroom',
+    '2': 'Two-bedroom',
+    '3': 'Three-bedroom',
+    '4': 'Four-bedroom'
+  };
+  const bedValue = params.get('bedroom_count');
+  if (bedValue && bedroomMap[bedValue]) {
+    const sel = document.querySelector('select[name="homeSize"]');
+    if (sel) sel.value = bedroomMap[bedValue];
+  }
+
+  // Occupants = adults + children
+  const adultVal = parseInt(params.get('adult_count')) || 0;
+  const childVal = parseInt(params.get('children_count')) || 0;
+  const total = adultVal + childVal;
+  if (total > 0) {
+    const inp = document.querySelector('input[name="occupants"]');
+    if (inp) inp.value = total;
+  }
+})();
+</script>
   </body>
 </html>
