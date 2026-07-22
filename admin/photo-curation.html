@@ -397,7 +397,8 @@
     <input type="text" id="filterSearch" placeholder="Search descriptions..." style="min-width:160px;">
   </div>
   <div class="header-actions">
-    <button class="btn btn-primary" id="btnExport" onclick="exportSelections()">📥 Export</button>
+    <button class="btn btn-success" id="btnSave" onclick="saveToServer()">💾 Save to Server</button>
+    <button class="btn btn-primary" id="btnExport" onclick="exportSelections()">📥 Download JSON</button>
     <button class="btn btn-outline" id="btnImport" onclick="document.getElementById('importInput').click()">📂 Import</button>
     <input type="file" id="importInput" accept=".json" style="display:none" onchange="importSelections(event)">
     <button class="btn btn-outline" onclick="expandAll()">🔽 Expand All</button>
@@ -412,6 +413,7 @@
   <span>Rejected: <span class="num-rejected" id="countRejected">0</span></span>
   <span>Total: <span class="num-total" id="countTotal">0</span></span>
   <span>Filtering: <span id="countFiltered">0</span> of <span id="countTotalFilterable">0</span></span>
+  <span id="saveIndicator" style="margin-left:auto;font-size:12px;"></span>
 </div>
 
 <!-- Main content -->
@@ -844,75 +846,10 @@ function updateStats() {
 
 // ========== EXPORT / IMPORT ==========
 function exportSelections() {
-  const data = {
-    exported: new Date().toISOString(),
-    source: 'photo-curation.html',
-    houses: {}
-  };
-
-  // Collect approved photos grouped by property
-  for (const [houseId, hdata] of Object.entries(DATA.staging)) {
-    const approved = [];
-    if (!hdata.photos) continue;
-    const selectedSet = getSelectedPhotos(houseId);
-
-    for (const [photoId, pdata] of Object.entries(hdata.photos)) {
-      const stored = loadVerdict(houseId, photoId);
-      if (stored && stored.status === 'approved') {
-        approved.push({
-          file: photoId,
-          room_type: pdata.nim_room_type || null,
-          quality: pdata.nim_quality || null,
-          description: pdata.nim_description || null,
-          features: pdata.nim_features || null,
-          best_for: pdata.nim_best_for || null,
-          currently_selected: selectedSet.has(photoId) || null,
-          tags: pdata.nim_tags || [],
-          timestamp: stored.timestamp
-        });
-      }
-    }
-
-    if (approved.length > 0) {
-      data.houses[houseId] = {
-        name: hdata.name || houseId,
-        town: hdata.town || '',
-        approved_photos: approved
-      };
-    }
-  }
-
-  // Also include rejected for reference
-  data.rejected = [];
-  for (const i in localStorage) {
-    if (i && i.startsWith('curation-')) {
-      try {
-        const v = JSON.parse(localStorage.getItem(i));
-        if (v.status === 'rejected') {
-          const parts = i.replace('curation-', '').split('-');
-          // Reconstruct: houseId and photoId (photo-NN.ext)
-          // Actually, this is unreliable because houseIds have dashes.
-          // We stored them properly via getKey so let's just capture safely.
-          const match = i.match(/^curation-(.+?)-(photo-\d+\..+)$/);
-          if (match) {
-            data.rejected.push({
-              houseId: match[1],
-              file: match[2],
-              status: 'rejected',
-              timestamp: v.timestamp
-            });
-          }
-        }
-      } catch {}
-    }
-  }
-
-  // Also include current selections for reference
-  data.current_selections = DATA.selections;
-
+  const data = buildExportData();
   showExportModal(data);
 
-  // Also download as file
+  // Download as file
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -1046,7 +983,111 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('keydown', (e) => {
   if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
   if (e.key === 'e' || e.key === 'E') document.getElementById('btnExport').click();
+  if (e.key === 's' || e.key === 'S') document.getElementById('btnSave').click();
 });
+
+// ========== SAVE TO SERVER ==========
+async function saveToServer() {
+  const indicator = document.getElementById('saveIndicator');
+  const data = buildExportData();
+
+  indicator.textContent = '⏳ Saving...';
+  indicator.style.color = 'var(--orange)';
+
+  try {
+    const resp = await fetch('/api/save-decisions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+
+    if (!resp.ok) {
+      const text = await resp.text();
+      throw new Error(`Server error (${resp.status}): ${text.slice(0, 200)}`);
+    }
+
+    const result = await resp.json();
+    indicator.textContent = `✅ Saved ${result.approved || 0} houses, ${data.rejected.length} rejected → ${result.path || 'file'}`;
+    indicator.style.color = 'var(--green)';
+
+    // Also show the export modal so user can review
+    showExportModal(data);
+  } catch (err) {
+    indicator.textContent = `❌ Save failed: ${err.message}`;
+    indicator.style.color = 'var(--red)';
+    console.error('Save to server error:', err);
+  }
+
+  // Clear indicator after 30s
+  setTimeout(() => { if (indicator.textContent.startsWith('✅')) {
+    indicator.textContent = '';
+  }}, 30000);
+}
+
+/** Build the export data object (shared by save + download). */
+function buildExportData() {
+  const data = {
+    exported: new Date().toISOString(),
+    source: 'photo-curation.html',
+    houses: {}
+  };
+
+  for (const [houseId, hdata] of Object.entries(DATA.staging)) {
+    const approved = [];
+    if (!hdata.photos) continue;
+    const selectedSet = getSelectedPhotos(houseId);
+
+    for (const [photoId, pdata] of Object.entries(hdata.photos)) {
+      const stored = loadVerdict(houseId, photoId);
+      if (stored && stored.status === 'approved') {
+        approved.push({
+          file: photoId,
+          room_type: pdata.nim_room_type || pdata.gemini_room_type || null,
+          quality: pdata.nim_quality || pdata.gemini_quality || null,
+          description: pdata.nim_description || pdata.gemini_description || null,
+          features: pdata.nim_features || pdata.gemini_features || null,
+          best_for: pdata.nim_best_for || pdata.gemini_best_for || null,
+          currently_selected: selectedSet.has(photoId) || null,
+          tags: pdata.nim_tags || pdata.gemini_tags || [],
+          timestamp: stored.timestamp
+        });
+      }
+    }
+
+    if (approved.length > 0) {
+      data.houses[houseId] = {
+        name: hdata.name || houseId,
+        town: hdata.town || '',
+        approved_photos: approved
+      };
+    }
+  }
+
+  // Rejected
+  data.rejected = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith('curation-')) {
+      try {
+        const v = JSON.parse(localStorage.getItem(k));
+        if (v.status === 'rejected') {
+          const match = k.match(/^curation-(.+?)-(photo-\d+\..+)$/);
+          if (match) {
+            data.rejected.push({
+              houseId: match[1],
+              file: match[2],
+              status: 'rejected',
+              timestamp: v.timestamp
+            });
+          }
+        }
+      } catch {}
+    }
+  }
+
+  data.current_selections = DATA.selections;
+  return data;
+}
 </script>
 
 </body>
