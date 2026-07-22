@@ -1330,8 +1330,12 @@ span.chosse-price {
   padding: 50px 75px 278px;
 }
 
-.choose-single-bx.style_four .choose-single-thumb img {
-    width: inherit;
+@media (min-width: 768px) {
+    .choose-single-bx.style_four .choose-single-thumb img {
+        width: inherit;
+        height: 540px;
+        object-fit: cover;
+    }
 }
 
 .choose-single-bx.style_four .choose-single-thumb:hover .choose_content {
