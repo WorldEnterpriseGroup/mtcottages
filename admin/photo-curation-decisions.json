@@ -1,0 +1,622 @@
+{
+  "exported": "2026-07-22T20:30:48.620Z",
+  "source": "photo-curation.html",
+  "houses": {
+    "marietta-01": {
+      "name": "Frederick Cottage",
+      "town": "Marietta, OH",
+      "approved_photos": [
+        {
+          "file": "photo-10.jpg",
+          "room_type": "exterior",
+          "quality": "excellent",
+          "description": "A serene outdoor space with a pond, trees, and a gazebo.",
+          "features": "pond, trees, grass, gazebo",
+          "best_for": "hero",
+          "currently_selected": null,
+          "tags": [
+            "outdoor",
+            "nature",
+            "relaxation"
+          ],
+          "timestamp": "2026-07-22T20:29:38.851Z"
+        },
+        {
+          "file": "photo-16.jpg",
+          "room_type": "exterior",
+          "quality": "excellent",
+          "description": "A serene outdoor space with a pond and lush greenery.",
+          "features": "pond, trees, grass",
+          "best_for": "hero",
+          "currently_selected": true,
+          "tags": [
+            "outdoor",
+            "nature",
+            "serene"
+          ],
+          "timestamp": "2026-07-22T20:29:40.211Z"
+        },
+        {
+          "file": "photo-31.jpg",
+          "room_type": "dining",
+          "quality": "excellent",
+          "description": "A well-lit dining room with a wooden table and floral placemats, featuring a white ceiling fan and a white door.",
+          "features": "wooden table, floral placemats, white ceiling fan, white door, white window, white walls, brown floor",
+          "best_for": "hero",
+          "currently_selected": null,
+          "tags": [
+            "dining",
+            "interior",
+            "wooden",
+            "placemats",
+            "ceiling fan",
+            "white door",
+            "white window",
+            "white walls",
+            "brown floor"
+          ],
+          "timestamp": "2026-07-22T20:29:37.396Z"
+        },
+        {
+          "file": "photo-46.jpg",
+          "room_type": "exterior",
+          "quality": "excellent",
+          "description": "A spacious living room with a large window and hardwood floors.",
+          "features": "large windows, hardwood floors",
+          "best_for": "hero",
+          "currently_selected": null,
+          "tags": [
+            "living room",
+            "interior"
+          ],
+          "timestamp": "2026-07-22T20:29:35.851Z"
+        }
+      ]
+    },
+    "parkersburg-02": {
+      "name": "Buck Cottage",
+      "town": "Parkersburg, WV",
+      "approved_photos": [
+        {
+          "file": "photo-02.jpeg",
+          "room_type": "living room",
+          "quality": "excellent",
+          "description": "A well-lit living room with a wooden dresser, mirror, and books on the shelves.",
+          "features": "wooden furniture, mirror, books, doll",
+          "best_for": "hero",
+          "currently_selected": null,
+          "tags": [
+            "living room",
+            "interior",
+            "furniture"
+          ],
+          "timestamp": "2026-07-22T20:30:04.534Z"
+        },
+        {
+          "file": "photo-03.jpeg",
+          "room_type": "exterior",
+          "quality": "excellent",
+          "description": "A well-lit living room with a large window and hardwood floors.",
+          "features": "large window, hardwood floors, high ceilings",
+          "best_for": "hero",
+          "currently_selected": null,
+          "tags": [
+            "living room",
+            "interior"
+          ],
+          "timestamp": "2026-07-22T20:30:03.233Z"
+        }
+      ]
+    },
+    "ravenswood-03": {
+      "name": "Henrietta Cottage",
+      "town": "Ravenswood, WV",
+      "approved_photos": [
+        {
+          "file": "photo-06.jpg",
+          "room_type": "living room",
+          "quality": "excellent",
+          "description": "This is a beautiful living room with hardwood floors and large windows.",
+          "features": "hardwood floors, large windows, high ceilings",
+          "best_for": "hero",
+          "currently_selected": true,
+          "tags": [
+            "living room",
+            "interior design"
+          ],
+          "timestamp": "2026-07-22T20:30:20.979Z"
+        },
+        {
+          "file": "photo-17.jpg",
+          "room_type": "dining",
+          "quality": "excellent",
+          "description": "This is a beautiful dining room with a large table and chairs.",
+          "features": "large windows, hardwood floors",
+          "best_for": "hero",
+          "currently_selected": true,
+          "tags": [
+            "dining room",
+            "interior design"
+          ],
+          "timestamp": "2026-07-22T20:30:19.649Z"
+        },
+        {
+          "file": "photo-26.jpg",
+          "room_type": "dining",
+          "quality": "excellent",
+          "description": "This is a beautiful dining room with a large table and chairs.",
+          "features": "hardwood floors, large windows, chandelier",
+          "best_for": "hero",
+          "currently_selected": null,
+          "tags": [
+            "dining room",
+            "interior design"
+          ],
+          "timestamp": "2026-07-22T20:30:16.941Z"
+        },
+        {
+          "file": "photo-39.jpg",
+          "room_type": "bathroom",
+          "quality": "excellent",
+          "description": "A small, rustic-style bathroom with a toilet and a shower curtain.",
+          "features": "toilet, shower curtain, straw hat, white curtain, dark wood floor, white ceiling",
+          "best_for": "hero",
+          "currently_selected": null,
+          "tags": [
+            "rustic",
+            "bathroom",
+            "small",
+            "white",
+            "blue"
+          ],
+          "timestamp": "2026-07-22T20:30:15.727Z"
+        },
+        {
+          "file": "photo-42.jpg",
+          "room_type": "bedroom",
+          "quality": "excellent",
+          "description": "This bedroom is a serene retreat with a comfortable bed and plenty of natural light.",
+          "features": "hardwood floors, large windows, walk-in closet",
+          "best_for": "hero",
+          "currently_selected": true,
+          "tags": [
+            "bedroom",
+            "interior"
+          ],
+          "timestamp": "2026-07-22T20:30:18.193Z"
+        }
+      ]
+    },
+    "parkersburg-04": {
+      "name": "Oak Cottage",
+      "town": "Parkersburg, WV",
+      "approved_photos": [
+        {
+          "file": "photo-25.jpg",
+          "room_type": "living room",
+          "quality": "excellent",
+          "description": "A well-lit living room with a wooden table and white curtains.",
+          "features": "wooden table, white curtains, green plant",
+          "best_for": "hero",
+          "currently_selected": null,
+          "tags": [
+            "living room",
+            "interior",
+            "furniture"
+          ],
+          "timestamp": "2026-07-22T20:30:25.970Z"
+        }
+      ]
+    },
+    "ravenswood-02": {
+      "name": "Virginia Cottage",
+      "town": "Ravenswood, WV",
+      "approved_photos": [
+        {
+          "file": "photo-219.jpg",
+          "room_type": "exterior",
+          "quality": "excellent",
+          "description": "A well-lit exterior wall with a large window.",
+          "features": "brick wall, large window, natural light",
+          "best_for": "hero",
+          "currently_selected": null,
+          "tags": [
+            "exterior",
+            "brick",
+            "natural light"
+          ],
+          "timestamp": "2026-07-22T20:30:34.931Z"
+        }
+      ]
+    }
+  },
+  "rejected": [],
+  "current_selections": {
+    "marietta-01": {
+      "name": "Frederick Cottage",
+      "public_route": "marietta/frederick-cottage.html",
+      "town": "Marietta, OH",
+      "hero": {
+        "file": "photo-16.jpg",
+        "label": "Wide panoramic view of a pond, gazebo, and trees.",
+        "published_file": "hero.avif"
+      },
+      "card": {
+        "file": "photo-16.jpg",
+        "published_file": "hero.avif"
+      },
+      "gallery": [
+        {
+          "file": "photo-13.jpg",
+          "label": "Well-lit kitchen with oak cabinets, gas range, dishwasher, and country decor.",
+          "published_file": "gallery-01.avif"
+        },
+        {
+          "file": "photo-39.jpg",
+          "label": "Bright sitting room with wicker chair, mounted TV, and blue walls.",
+          "published_file": "photo-39.avif"
+        },
+        {
+          "file": "photo-36.jpg",
+          "label": "Primary bedroom with a large bed, red curtains, ceiling fan, and big windows.",
+          "published_file": "photo-36.avif"
+        },
+        {
+          "file": "photo-25.jpg",
+          "label": "Second bedroom with a vintage vanity mirror, green walls, and warm morning light.",
+          "published_file": "photo-25.avif"
+        },
+        {
+          "file": "photo-27.jpg",
+          "label": "Dining and entry area with table, staircase, front door, and ceiling fan.",
+          "published_file": "photo-27.avif"
+        }
+      ]
+    },
+    "parkersburg-01": {
+      "name": "Broad Cottage",
+      "public_route": "parkersburg/broad-cottage.html",
+      "town": "Parkersburg, WV",
+      "hero": {
+        "file": "photo-44.jpg",
+        "label": "Wood-paneled living room with sectional seating and a sliding glass door.",
+        "published_file": "photo-44.avif"
+      },
+      "card": {
+        "file": "photo-44.jpg",
+        "published_file": "photo-44.avif"
+      },
+      "gallery": [
+        {
+          "file": "photo-06.jpg",
+          "label": "Living room, alternate angle with a sunlit window and TV wall.",
+          "published_file": "photo-06.avif"
+        },
+        {
+          "file": "photo-01.jpg",
+          "label": "Attic loft bedroom with red and black bedding, sloped ceiling, and a desk nook.",
+          "published_file": "photo-01.avif"
+        },
+        {
+          "file": "photo-49.jpg",
+          "label": "Bedroom, alternate angle showing the open ensuite bathroom doorway.",
+          "published_file": "photo-49.avif"
+        },
+        {
+          "file": "photo-20.jpg",
+          "label": "Bathroom tub area with pink tile and candles.",
+          "published_file": "photo-20.avif"
+        },
+        {
+          "file": "photo-12.jpg",
+          "label": "Bathroom vanity and mirror in the full ensuite and laundry room.",
+          "published_file": "photo-12.avif"
+        }
+      ]
+    },
+    "parkersburg-02": {
+      "name": "Buck Cottage",
+      "public_route": "parkersburg/buck-apartment-1.html",
+      "town": "Parkersburg, WV",
+      "hero": {
+        "file": "photo-09.jpg",
+        "label": "Wide autumn street panorama with the house centered among neighboring homes.",
+        "published_file": "photo-09.avif"
+      },
+      "card": {
+        "file": "photo-09.jpg",
+        "published_file": "photo-09.avif"
+      },
+      "gallery": [
+        {
+          "file": "photo-23.jpg",
+          "label": "Exterior — frontal daytime view of the house, tan siding, black shutters, blue sky.",
+          "published_file": "photo-23.avif"
+        },
+        {
+          "file": "photo-49.jpg",
+          "label": "Living room with a staged couch, throw pillows, floor lamp, and artwork.",
+          "published_file": "photo-49.avif"
+        },
+        {
+          "file": "photo-50.jpg",
+          "label": "Living room, second angle showing the full couch and windows.",
+          "published_file": "photo-50.avif"
+        },
+        {
+          "file": "photo-38.jpg",
+          "label": "Bedroom — wide shot of the bed, desk, and two windows.",
+          "published_file": "photo-38.avif"
+        },
+        {
+          "file": "photo-41.jpg",
+          "label": "Bathroom with shower, tub, toilet, and sink.",
+          "published_file": "photo-41.avif"
+        }
+      ]
+    },
+    "parkersburg-03": {
+      "name": "Yellow Cottage",
+      "public_route": "parkersburg/yellow-cottage.html",
+      "town": "Parkersburg, WV",
+      "hero": {
+        "file": "photo-145.jpg",
+        "label": "Angled view of the pale-yellow cottage's facade, porch, and windows.",
+        "published_file": "photo-145.avif"
+      },
+      "card": {
+        "file": "photo-145.jpg",
+        "published_file": "photo-145.avif"
+      },
+      "gallery": [
+        {
+          "file": "photo-07.jpg",
+          "label": "Exterior — full two-story view from across the street, covered porch, shade tree.",
+          "published_file": "photo-07.avif"
+        },
+        {
+          "file": "photo-448.jpg",
+          "label": "Kitchen tile backsplash, cabinet, and sink corner.",
+          "published_file": "photo-448.avif"
+        },
+        {
+          "file": "photo-468.jpg",
+          "label": "Bathroom with a light fixture and shower curtain.",
+          "published_file": "photo-468.avif"
+        }
+      ]
+    },
+    "parkersburg-04": {
+      "name": "Oak Cottage",
+      "public_route": "parkersburg/oak-cottage.html",
+      "town": "Parkersburg, WV",
+      "hero": {
+        "file": "photo-23.jpg",
+        "label": "Bright, symmetric dining room with a navy oval table, white chairs, and a sunlit window.",
+        "published_file": "photo-23.avif"
+      },
+      "card": {
+        "file": "photo-23.jpg",
+        "published_file": "photo-23.avif"
+      },
+      "gallery": [
+        {
+          "file": "photo-08.jpg",
+          "label": "L-shaped kitchen with oak cabinets, white refrigerator and range, and a red accent microwave.",
+          "published_file": "photo-08.avif"
+        },
+        {
+          "file": "photo-35.jpg",
+          "label": "Dining room, alternate angle with a plant accent and framed art.",
+          "published_file": "photo-35.avif"
+        },
+        {
+          "file": "photo-01.jpg",
+          "label": "Bedroom/den with a keyboard piano, mounted TV, and double windows.",
+          "published_file": "photo-01.avif"
+        },
+        {
+          "file": "photo-07.jpg",
+          "label": "Guest bedroom with a grey upholstered headboard and black and white bedding.",
+          "published_file": "photo-07.avif"
+        },
+        {
+          "file": "photo-11.jpg",
+          "label": "Third bedroom with a matching bedding set, teal wall clock, and mounted TV.",
+          "published_file": "photo-11.avif"
+        },
+        {
+          "file": "photo-17.jpg",
+          "label": "Fourth bedroom with a cherry dresser, mirror, and forest-scene triptych.",
+          "published_file": "photo-17.avif"
+        },
+        {
+          "file": "photo-40.jpg",
+          "label": "Full bathroom with a striped shower curtain and wood vanity.",
+          "published_file": "photo-40.avif"
+        },
+        {
+          "file": "photo-05.jpg",
+          "label": "Covered porch with outdoor seating and a treed hillside view.",
+          "published_file": "photo-05.avif"
+        }
+      ]
+    },
+    "ravenswood-01": {
+      "name": "White Cottage",
+      "public_route": "ravenswood/white-cottage.html",
+      "town": "Ravenswood, WV",
+      "hero": {
+        "file": "photo-01.jpg",
+        "label": "The White Cottage facade with a wraparound porch, green lawn, sidewalk, and street tree.",
+        "published_file": "photo-01.avif"
+      },
+      "card": {
+        "file": "photo-01.jpg",
+        "published_file": "photo-01.avif"
+      },
+      "gallery": [
+        {
+          "file": "photo-374.jpg",
+          "label": "Living room: ornate antique fireplace mantle with an oval mirror and period tile hearth.",
+          "published_file": "photo-374.avif"
+        },
+        {
+          "file": "photo-165.jpg",
+          "label": "Living room reading corner with a green armchair and curtained window.",
+          "published_file": "photo-165.avif"
+        },
+        {
+          "file": "photo-297.png",
+          "label": "Primary bedroom: four-poster bed, dresser with mirror, warm curtains.",
+          "published_file": "photo-297.avif"
+        },
+        {
+          "file": "photo-125.jpg",
+          "label": "Second bedroom with maroon and white floral linens and patterned wallpaper.",
+          "published_file": "photo-125.avif"
+        },
+        {
+          "file": "photo-108.jpg",
+          "label": "Bathroom vanity and mirror with natural light.",
+          "published_file": "photo-108.avif"
+        },
+        {
+          "file": "photo-263.jpg",
+          "label": "Bathroom shower stall with a frosted glass sliding door.",
+          "published_file": "photo-263.avif"
+        },
+        {
+          "file": "photo-292.jpg",
+          "label": "Kitchen corner with cooktop and sink.",
+          "published_file": "photo-292.avif"
+        },
+        {
+          "file": "photo-03.jpg",
+          "label": "Backyard with a fenced kennel structure, shed, and mature trees.",
+          "published_file": "photo-03.avif"
+        }
+      ]
+    },
+    "ravenswood-02": {
+      "name": "Virginia Cottage",
+      "public_route": "ravenswood/virginia-cottage.html",
+      "town": "Ravenswood, WV",
+      "hero": {
+        "file": "photo-117.jpg",
+        "label": "Fireplace wall with white built-in bookshelves in a maroon-walled living room.",
+        "published_file": "photo-117.avif"
+      },
+      "card": {
+        "file": "photo-117.jpg",
+        "published_file": "photo-117.avif"
+      },
+      "gallery": [
+        {
+          "file": "photo-54.jpg",
+          "label": "Kitchen with red laminate countertops and white cabinetry.",
+          "published_file": "photo-54.avif"
+        },
+        {
+          "file": "photo-53.jpg",
+          "label": "Bathroom vanity with mirror and floral wallpaper.",
+          "published_file": "photo-53.avif"
+        },
+        {
+          "file": "photo-55.jpg",
+          "label": "Dining room with vintage toile wallpaper, farmhouse table, and a large window.",
+          "published_file": "photo-55.avif"
+        },
+        {
+          "file": "photo-77.jpg",
+          "label": "Bright sunlit room with a ceiling fan and checkerboard floor.",
+          "published_file": "photo-77.avif"
+        },
+        {
+          "file": "photo-27.jpg",
+          "label": "Ornate curved staircase with a dark wood newel post.",
+          "published_file": "photo-27.avif"
+        },
+        {
+          "file": "photo-116.jpg",
+          "label": "Bedroom corner with an antique wood dresser.",
+          "published_file": "photo-116.avif"
+        }
+      ]
+    },
+    "ravenswood-03": {
+      "name": "Henrietta Cottage",
+      "public_route": "ravenswood/henrietta-cottage.html",
+      "town": "Ravenswood, WV",
+      "hero": {
+        "file": "photo-17.jpg",
+        "label": "Elegant blue dining room with a white fireplace mantel and oval mahogany table.",
+        "published_file": "photo-17.avif"
+      },
+      "card": {
+        "file": "photo-17.jpg",
+        "published_file": "photo-17.avif"
+      },
+      "gallery": [
+        {
+          "file": "photo-06.jpg",
+          "label": "Striped-wallpaper dining nook with two round tables under a globe chandelier.",
+          "published_file": "photo-06.avif"
+        },
+        {
+          "file": "photo-31.jpg",
+          "label": "Warm wood kitchen with a gas range, hood, and vintage tea kettle.",
+          "published_file": "photo-31.avif"
+        },
+        {
+          "file": "photo-42.jpg",
+          "label": "Bedroom with a queen bed, blue patterned curtains, and dual windows.",
+          "published_file": "photo-42.avif"
+        },
+        {
+          "file": "photo-40.jpg",
+          "label": "Second bedroom in a blue and gray palette with built-in storage shelving.",
+          "published_file": "photo-40.avif"
+        },
+        {
+          "file": "photo-04.jpg",
+          "label": "Styled bathroom with a floral shower curtain and towel shelving.",
+          "published_file": "photo-04.avif"
+        },
+        {
+          "file": "photo-36.jpg",
+          "label": "Porch view of the fenced yard, neighboring homes, and a church steeple.",
+          "published_file": "photo-36.avif"
+        },
+        {
+          "file": "photo-13.jpg",
+          "label": "Antique piano corner with fresh flowers and a mirror.",
+          "published_file": "photo-13.avif"
+        }
+      ]
+    },
+    "ravenswood-04": {
+      "name": "Gallatin Cottage",
+      "town": "Ravenswood, WV",
+      "publication_gap": "Only duplicate electrical-panel documentation photos are available; no public stay page can be built without factual house photography.",
+      "hero": null,
+      "card": null,
+      "gallery": []
+    },
+    "ravenswood-05": {
+      "name": "Sand",
+      "town": "Ravenswood, WV",
+      "publication_gap": "No isolated source folder or usable property photos are available.",
+      "hero": null,
+      "card": null,
+      "gallery": []
+    },
+    "grantsville-01": {
+      "name": "grantsville-01",
+      "town": "Grantsville, WV",
+      "hero": null,
+      "card": null,
+      "gallery": []
+    }
+  }
+}

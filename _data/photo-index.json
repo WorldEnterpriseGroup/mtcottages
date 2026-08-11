@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "generated": "2026-07-21 17:35:31 UTC",
-  "generator": "scripts/analyze_photos_nim.py + manual re-curation (photo-selections.json resync)",
+  "generated": "2026-07-22 17:42:03 UTC",
+  "generator": "scripts/analyze_photos_nim.py + Gemini 3.6 Flash re-analysis",
   "staging": {
     "marietta-01": {
       "name": "Frederick Cottage",
@@ -25,7 +25,20 @@
             "cozy",
             "living room",
             "wooden floor"
-          ]
+          ],
+          "gemini_room_type": "other",
+          "gemini_quality": "poor",
+          "gemini_composition": "snapshot",
+          "gemini_features": "vanity sink, green door, window AC unit, tall wooden cabinet, floor lamp, laminate flooring",
+          "gemini_description": "An unfinished room undergoing renovation with painter's tape outlines on the floor, visible tools, and an uninstalled vanity sink.",
+          "gemini_best_for": "skip",
+          "gemini_has_people": false,
+          "gemini_tags": [
+            "renovation",
+            "unfinished",
+            "construction"
+          ],
+          "gemini_model": "gemini-3.6-flash"
         },
         "photo-02.jpg": {
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-02.jpg",
@@ -45,7 +58,20 @@
             "modern",
             "well-equipped"
           ],
-          "nim_model": "meta/llama-3.2-11b-vision-instruct"
+          "nim_model": "meta/llama-3.2-11b-vision-instruct",
+          "gemini_room_type": "kitchen",
+          "gemini_quality": "poor",
+          "gemini_composition": "snapshot",
+          "gemini_features": "stainless steel sink, granite countertop, pull-down faucet, cutting board, wine bottle, open lower cabinet",
+          "gemini_description": "A kitchen sink area with granite countertops and an open lower cabinet revealing unattached plumbing tubing.",
+          "gemini_best_for": "skip",
+          "gemini_has_people": false,
+          "gemini_tags": [
+            "kitchen",
+            "updated",
+            "modern"
+          ],
+          "gemini_model": "gemini-3.6-flash"
         },
         "photo-03.jpg": {
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-03.jpg",
@@ -64,7 +90,19 @@
             "kitchen",
             "white appliances",
             "wooden cabinets"
-          ]
+          ],
+          "gemini_room_type": "other",
+          "gemini_quality": "poor",
+          "gemini_composition": "snapshot",
+          "gemini_features": "uninstalled toilet, washing machine, wood flooring, painter tape, green door",
+          "gemini_description": "An interior room in the middle of construction featuring an uninstalled toilet placed on painter's tape next to appliances.",
+          "gemini_best_for": "skip",
+          "gemini_has_people": false,
+          "gemini_tags": [
+            "renovation",
+            "unfinished"
+          ],
+          "gemini_model": "gemini-3.6-flash"
         },
         "photo-04.jpg": {
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-04.jpg",
@@ -84,7 +122,20 @@
             "clean",
             "modern"
           ],
-          "nim_model": "meta/llama-3.2-11b-vision-instruct"
+          "nim_model": "meta/llama-3.2-11b-vision-instruct",
+          "gemini_room_type": "other",
+          "gemini_quality": "poor",
+          "gemini_composition": "snapshot",
+          "gemini_features": "white sink, chrome faucet, wood flooring, painter's tape, wood paneling",
+          "gemini_description": "A high-angle snapshot showing a white sink beside tape layout lines on wood flooring near damaged wall paneling.",
+          "gemini_best_for": "skip",
+          "gemini_has_people": false,
+          "gemini_tags": [
+            "unfinished",
+            "renovation",
+            "construction"
+          ],
+          "gemini_model": "gemini-3.6-flash"
         },
         "photo-05.jpg": {
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-05.jpg",
@@ -104,7 +155,20 @@
             "backyard",
             "trees",
             "shed"
-          ]
+          ],
+          "gemini_room_type": "exterior",
+          "gemini_quality": "poor",
+          "gemini_composition": "snapshot",
+          "gemini_features": "grass lawn, trees, shed, house exterior, shutters, enclosed entryway",
+          "gemini_description": "An unappealing exterior shot of a side yard featuring red handwritten text and arrow overlays on the image.",
+          "gemini_best_for": "skip",
+          "gemini_has_people": false,
+          "gemini_tags": [
+            "exterior",
+            "yard",
+            "wooded"
+          ],
+          "gemini_model": "gemini-3.6-flash"
         },
         "photo-06.jpg": {
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-06.jpg",
@@ -157,7 +221,19 @@
             "leaves",
             "grass",
             "pipe"
-          ]
+          ],
+          "gemini_room_type": "exterior",
+          "gemini_quality": "poor",
+          "gemini_composition": "snapshot",
+          "gemini_features": "green shutters, window AC units, utility meters, exterior siding, spray paint markings",
+          "gemini_description": "An unappealing close-up shot of the exterior wall featuring window AC units, exposed utility wiring, and orange spray-painted graffiti.",
+          "gemini_best_for": "skip",
+          "gemini_has_people": false,
+          "gemini_tags": [
+            "exterior",
+            "shutters"
+          ],
+          "gemini_model": "gemini-3.6-flash"
         },
         "photo-08.jpg": {
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-08.jpg",
@@ -178,7 +254,20 @@
             "door",
             "blinds",
             "ceiling"
-          ]
+          ],
+          "gemini_room_type": "detail",
+          "gemini_quality": "poor",
+          "gemini_composition": "snapshot",
+          "gemini_features": "ceiling outlet, blinds, green door",
+          "gemini_description": "A close-up snapshot featuring red markup pointing out an electrical outlet near a ceiling corner and window blinds.",
+          "gemini_best_for": "skip",
+          "gemini_has_people": false,
+          "gemini_tags": [
+            "detail",
+            "unappealing",
+            "interior"
+          ],
+          "gemini_model": "gemini-3.6-flash"
         },
         "photo-09.jpg": {
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-09.jpg",
@@ -607,7 +696,21 @@
             "window",
             "bench",
             "wooden door"
-          ]
+          ],
+          "gemini_room_type": "dining",
+          "gemini_quality": "adequate",
+          "gemini_composition": "smartphone",
+          "gemini_features": "wooden dining table, placemats, front entry door, staircase, bench, ceiling fan, laminate flooring, wall art",
+          "gemini_description": "An open entryway and dining space featuring deep blue walls, a set wooden dining table, and stairs leading to the upper floor.",
+          "gemini_best_for": "gallery",
+          "gemini_has_people": false,
+          "gemini_tags": [
+            "cozy",
+            "rustic",
+            "furnished",
+            "charming"
+          ],
+          "gemini_model": "gemini-3.6-flash"
         },
         "photo-30.jpg": {
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-30.jpg",
@@ -627,7 +730,22 @@
             "modern",
             "well-lit"
           ],
-          "nim_model": "meta/llama-3.2-11b-vision-instruct"
+          "nim_model": "meta/llama-3.2-11b-vision-instruct",
+          "gemini_room_type": "hallway",
+          "gemini_quality": "good",
+          "gemini_composition": "professional",
+          "gemini_features": "ceiling fan, wooden staircase, entry bench, vintage sewing table, laminate flooring, dark blue walls, view of kitchen",
+          "gemini_description": "An open entryway and stairwell with deep blue accent walls, vintage furnishings, and a view into the adjacent kitchen.",
+          "gemini_best_for": "gallery",
+          "gemini_has_people": false,
+          "gemini_tags": [
+            "cozy",
+            "charming",
+            "rustic",
+            "furnished",
+            "bright"
+          ],
+          "gemini_model": "gemini-3.6-flash"
         },
         "photo-31.jpg": {
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-31.jpg",
@@ -671,7 +789,23 @@
             "bedroom",
             "cozy",
             "relaxing"
-          ]
+          ],
+          "gemini_room_type": "bedroom",
+          "gemini_quality": "excellent",
+          "gemini_composition": "professional",
+          "gemini_features": "king bed, ceiling fan, wicker armchair, nightstand with lamp, blue accent walls, carpeted floor, closet, decorative vase",
+          "gemini_description": "A spacious and brightly lit bedroom featuring blue accent walls, a neatly made king-size bed, carpeted flooring, and cozy seating.",
+          "gemini_best_for": "gallery",
+          "gemini_has_people": false,
+          "gemini_tags": [
+            "cozy",
+            "spacious",
+            "bright",
+            "furnished",
+            "charming",
+            "updated"
+          ],
+          "gemini_model": "gemini-3.6-flash"
         },
         "photo-33.jpg": {
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-33.jpg",
@@ -690,7 +824,22 @@
             "bedroom",
             "interior",
             "wooden floor"
-          ]
+          ],
+          "gemini_room_type": "bedroom",
+          "gemini_quality": "good",
+          "gemini_composition": "professional",
+          "gemini_features": "full bed, hardwood floors, nightstand, table lamp, window AC unit, sage green walls, drapes, dresser with mirror",
+          "gemini_description": "A cozy cottage bedroom featuring sage green walls, rich hardwood floors, a made bed, and soft light from draped windows.",
+          "gemini_best_for": "gallery",
+          "gemini_has_people": false,
+          "gemini_tags": [
+            "cozy",
+            "bedroom",
+            "furnished",
+            "rustic",
+            "charming"
+          ],
+          "gemini_model": "gemini-3.6-flash"
         },
         "photo-34.jpg": {
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-34.jpg",
@@ -709,7 +858,20 @@
             "bedroom",
             "cozy",
             "wooden floor"
-          ]
+          ],
+          "gemini_room_type": "hallway",
+          "gemini_quality": "poor",
+          "gemini_composition": "snapshot",
+          "gemini_features": "french glass door, hardwood floors, ceiling fan, bed, wooden trim",
+          "gemini_description": "An awkwardly framed view looking through a glass door into a hallway and bedroom beyond.",
+          "gemini_best_for": "skip",
+          "gemini_has_people": false,
+          "gemini_tags": [
+            "rustic",
+            "cozy",
+            "furnished"
+          ],
+          "gemini_model": "gemini-3.6-flash"
         },
         "photo-35.jpg": {
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-35.jpg",
@@ -728,7 +890,23 @@
             "bedroom",
             "cozy",
             "relaxing"
-          ]
+          ],
+          "gemini_room_type": "bedroom",
+          "gemini_quality": "excellent",
+          "gemini_composition": "professional",
+          "gemini_features": "king bed, flat-screen TV, ceiling fan, nightstand, table lamp, accent chair, carpeted floor, closet doors",
+          "gemini_description": "A bright and spacious bedroom featuring blue accent walls, a neatly dressed king bed, and a large flat-screen TV.",
+          "gemini_best_for": "gallery",
+          "gemini_has_people": false,
+          "gemini_tags": [
+            "spacious",
+            "cozy",
+            "bright",
+            "furnished",
+            "charming",
+            "updated"
+          ],
+          "gemini_model": "gemini-3.6-flash"
         },
         "photo-36.jpg": {
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-36.jpg",
@@ -747,7 +925,23 @@
             "bedroom",
             "cozy",
             "wooden"
-          ]
+          ],
+          "gemini_room_type": "bedroom",
+          "gemini_quality": "good",
+          "gemini_composition": "professional",
+          "gemini_features": "king bed, flat-screen TV, ceiling fan, wooden dresser, artwork, decorative pillows, drapes, mirror",
+          "gemini_description": "A cozy bedroom featuring blue walls, a nicely made bed with grey bedding, a large flat-screen TV, and multiple windows with natural light.",
+          "gemini_best_for": "gallery",
+          "gemini_has_people": false,
+          "gemini_tags": [
+            "cozy",
+            "furnished",
+            "bright",
+            "charming",
+            "updated",
+            "rustic"
+          ],
+          "gemini_model": "gemini-3.6-flash"
         },
         "photo-37.jpg": {
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-37.jpg",
@@ -768,7 +962,22 @@
             "decor",
             "furniture",
             "lighting"
-          ]
+          ],
+          "gemini_room_type": "bedroom",
+          "gemini_quality": "good",
+          "gemini_composition": "professional",
+          "gemini_features": "king bed, folded towels, television, wicker bench, red curtains, wall artwork, ceiling fan",
+          "gemini_description": "A cozy bedroom featuring dark blue walls, a well-made bed with fresh towels, and bright natural light from multiple windows.",
+          "gemini_best_for": "gallery",
+          "gemini_has_people": false,
+          "gemini_tags": [
+            "cozy",
+            "bedroom",
+            "furnished",
+            "bright",
+            "charming"
+          ],
+          "gemini_model": "gemini-3.6-flash"
         },
         "photo-38.jpg": {
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-38.jpg",
@@ -787,7 +996,22 @@
             "bedroom",
             "cozy",
             "relaxing"
-          ]
+          ],
+          "gemini_room_type": "bedroom",
+          "gemini_quality": "good",
+          "gemini_composition": "professional",
+          "gemini_features": "king bed, flat-screen TV, ceiling fan, wooden media console, wicker armchair, carpet, louvered closet doors, window curtains",
+          "gemini_description": "A spacious and well-lit bedroom featuring dark blue walls, a neatly made bed, and a large TV setup with additional seating.",
+          "gemini_best_for": "gallery",
+          "gemini_has_people": false,
+          "gemini_tags": [
+            "cozy",
+            "spacious",
+            "furnished",
+            "charming",
+            "updated"
+          ],
+          "gemini_model": "gemini-3.6-flash"
         },
         "photo-39.jpg": {
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-39.jpg",
@@ -807,7 +1031,22 @@
             "cozy",
             "natural light"
           ],
-          "nim_model": "meta/llama-3.2-11b-vision-instruct"
+          "nim_model": "meta/llama-3.2-11b-vision-instruct",
+          "gemini_room_type": "living room",
+          "gemini_quality": "good",
+          "gemini_composition": "smartphone",
+          "gemini_features": "flat-screen TV, wooden console table, wicker sofa, wall art, full-length mirror, window, storage baskets, red curtains",
+          "gemini_description": "A cozy living room corner featuring slate blue walls, a large TV console with decorative storage, and a wicker sofa near a bright window.",
+          "gemini_best_for": "gallery",
+          "gemini_has_people": false,
+          "gemini_tags": [
+            "cozy",
+            "furnished",
+            "charming",
+            "bright",
+            "updated"
+          ],
+          "gemini_model": "gemini-3.6-flash"
         },
         "photo-40.jpg": {
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-40.jpg",
@@ -845,7 +1084,32 @@
             "bedroom",
             "cozy",
             "relaxing"
-          ]
+          ],
+          "gemini_room_type": "bedroom",
+          "gemini_quality": "excellent",
+          "gemini_composition": "professional",
+          "gemini_features": [
+            "large bed with grey linens",
+            "flat-screen TV",
+            "media console",
+            "wicker loveseat",
+            "ceiling fan",
+            "blue accent walls",
+            "louvered closet doors",
+            "table lamp"
+          ],
+          "gemini_description": "A spacious, comfortably staged bedroom featuring deep blue walls, a neatly made bed, flat-screen TV, and wicker seating.",
+          "gemini_best_for": "gallery",
+          "gemini_has_people": false,
+          "gemini_tags": [
+            "cozy",
+            "bedroom",
+            "furnished",
+            "spacious",
+            "charming",
+            "modern"
+          ],
+          "gemini_model": "gemini-3.6-flash"
         },
         "photo-42.jpg": {
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-42.jpg",
@@ -883,7 +1147,23 @@
             "bedroom",
             "cozy",
             "relaxing"
-          ]
+          ],
+          "gemini_room_type": "bedroom",
+          "gemini_quality": "excellent",
+          "gemini_composition": "professional",
+          "gemini_features": "king bed, flat-screen TV, ceiling fan, dark blue walls, wicker seating, mini fridge, console table, closet",
+          "gemini_description": "A stylish and spacious bedroom featuring deep blue walls, a neatly made bed with plush pillows, a large TV console, and comfortable seating.",
+          "gemini_best_for": "gallery",
+          "gemini_has_people": false,
+          "gemini_tags": [
+            "cozy",
+            "modern",
+            "furnished",
+            "spacious",
+            "inviting",
+            "updated"
+          ],
+          "gemini_model": "gemini-3.6-flash"
         },
         "photo-44.jpg": {
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-44.jpg",
@@ -902,7 +1182,23 @@
             "bedroom",
             "interior",
             "home"
-          ]
+          ],
+          "gemini_room_type": "bedroom",
+          "gemini_quality": "good",
+          "gemini_composition": "professional",
+          "gemini_features": "king bed, flat-screen TV, ceiling fan, wooden media console, dark blue walls, carpeted floor, window curtains, louvered closets",
+          "gemini_description": "A cozy, well-appointed bedroom featuring dark blue walls, a large bed with tidy grey linens, and a flat-screen TV on a rustic media console.",
+          "gemini_best_for": "gallery",
+          "gemini_has_people": false,
+          "gemini_tags": [
+            "cozy",
+            "bedroom",
+            "furnished",
+            "bright",
+            "updated",
+            "spacious"
+          ],
+          "gemini_model": "gemini-3.6-flash"
         },
         "photo-45.jpg": {
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-45.jpg",
@@ -976,7 +1272,21 @@
             "bedroom",
             "cozy",
             "interior"
-          ]
+          ],
+          "gemini_room_type": "bedroom",
+          "gemini_quality": "good",
+          "gemini_composition": "professional",
+          "gemini_features": "king bed, flat-screen TV, mini fridge, ceiling fan, blue accent walls, artwork, red curtains, folded towels",
+          "gemini_description": "A cozy bedroom featuring a king bed with dark grey linens, a large flat-screen TV, mini fridge, and bright natural light.",
+          "gemini_best_for": "gallery",
+          "gemini_has_people": false,
+          "gemini_tags": [
+            "cozy",
+            "furnished",
+            "bright",
+            "charming"
+          ],
+          "gemini_model": "gemini-3.6-flash"
         },
         "photo-49.jpg": {
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-49.jpg",
@@ -19599,7 +19909,20 @@
             "white",
             "clean"
           ],
-          "nim_model": "meta/llama-3.2-11b-vision-instruct"
+          "nim_model": "meta/llama-3.2-11b-vision-instruct",
+          "gemini_room_type": "hallway",
+          "gemini_quality": "poor",
+          "gemini_composition": "snapshot",
+          "gemini_features": "vacuum cleaner, wood wall cabinet, bifold closet door, beadboard ceiling, ceiling fan pull chain",
+          "gemini_description": "An upward-angled shot showing a vacuum cleaner standing near a closet door with visible wall paint damage and uneven framing.",
+          "gemini_best_for": "skip",
+          "gemini_has_people": false,
+          "gemini_tags": [
+            "interior",
+            "hallway",
+            "dated"
+          ],
+          "gemini_model": "gemini-3.6-flash"
         },
         "photo-66.jpg": {
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-03/photo-66.jpg",
@@ -28728,15 +29051,447 @@
           "width": 2400,
           "height": 1350,
           "filesize_bytes": 1163436,
-          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-16.jpg",
+          "source": "",
           "tags": [
             "published"
           ],
-          "scene": "Wide panoramic view of a pond, gazebo, and trees.",
-          "quality": "excellent",
-          "page_label": "exterior",
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "exterior.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/exterior.avif",
+          "format": "avif",
+          "width": 2400,
+          "height": 1800,
+          "filesize_bytes": 420774,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "homepage-hero-frederick.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/homepage-hero-frederick.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 820,
+          "filesize_bytes": 128114,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "photo-25.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/photo-25.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1080,
+          "filesize_bytes": 60892,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-25.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A well-lit bedroom with a wooden floor and furniture, featuring a bed with white sheets and curtains, and an air conditioner on the wall.",
+          "quality": "good",
+          "page_label": "bedroom",
           "best_for": "hero",
-          "features": "pond, gazebo, trees, wide landscape view"
+          "features": "wooden floor, wooden furniture, window, bed, curtains, air conditioner"
+        },
+        "photo-27.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/photo-27.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1080,
+          "filesize_bytes": 76651,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-27.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A well-lit dining room with a wooden table and chairs, a floral table runner, and a window with a plant and a painting on the wall.",
+          "quality": "good",
+          "page_label": "dining",
+          "best_for": "hero",
+          "features": "wooden table, floral table runner, wooden chairs, window, plant, painting"
+        },
+        "photo-36.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/photo-36.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1080,
+          "filesize_bytes": 52971,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-36.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A cozy bedroom with a large window and wooden furniture.",
+          "quality": "good",
+          "page_label": "bedroom",
+          "best_for": "hero",
+          "features": "wooden furniture, large window, blue walls"
+        },
+        "photo-39.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/photo-39.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1080,
+          "filesize_bytes": 50092,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/marietta-01/photo-39.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A cozy living room with a large window and a wicker chair.",
+          "quality": "good",
+          "page_label": "living room",
+          "best_for": "gallery",
+          "features": "large window, wicker chair, painting, TV"
+        },
+        "theme-breadcrumb-hero.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/theme-breadcrumb-hero.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 586,
+          "filesize_bytes": 92138,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-gallery-01.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/theme-gallery-card-gallery-01.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 23864,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-hero.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/theme-gallery-card-hero.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 68399,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-25.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/theme-gallery-card-photo-25.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 24261,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-27.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/theme-gallery-card-photo-27.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 28357,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-36.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/theme-gallery-card-photo-36.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 21282,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-39.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/theme-gallery-card-photo-39.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 19436,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-strip-gallery-01.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/theme-gallery-strip-gallery-01.avif",
+          "format": "avif",
+          "width": 240,
+          "height": 240,
+          "filesize_bytes": 8535,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-strip-photo-39.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/theme-gallery-strip-photo-39.avif",
+          "format": "avif",
+          "width": 240,
+          "height": 240,
+          "filesize_bytes": 7403,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-mountain-blog-bedroom.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/theme-mountain-blog-bedroom.avif",
+          "format": "avif",
+          "width": 424,
+          "height": 330,
+          "filesize_bytes": 12826,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-mountain-card-kitchen.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/theme-mountain-card-kitchen.avif",
+          "format": "avif",
+          "width": 421,
+          "height": 540,
+          "filesize_bytes": 18499,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-mountain-hotel-wide.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/theme-mountain-hotel-wide.avif",
+          "format": "avif",
+          "width": 880,
+          "height": 569,
+          "filesize_bytes": 41630,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-mountain-service-kitchen.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/theme-mountain-service-kitchen.avif",
+          "format": "avif",
+          "width": 600,
+          "height": 450,
+          "filesize_bytes": 22018,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-portrait-card-hero.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/theme-portrait-card-hero.avif",
+          "format": "avif",
+          "width": 421,
+          "height": 540,
+          "filesize_bytes": 45213,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-sidebar-photo-27.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/theme-sidebar-photo-27.avif",
+          "format": "avif",
+          "width": 424,
+          "height": 330,
+          "filesize_bytes": 16723,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "thumb-404.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/thumb-404.avif",
+          "format": "avif",
+          "width": 960,
+          "height": 950,
+          "filesize_bytes": 57726,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "thumb-contact-form.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/thumb-contact-form.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 869,
+          "filesize_bytes": 83422,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "thumb-contact-info.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/thumb-contact-info.avif",
+          "format": "avif",
+          "width": 1320,
+          "height": 309,
+          "filesize_bytes": 16477,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "thumb-contact.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/thumb-contact.avif",
+          "format": "avif",
+          "width": 886,
+          "height": 769,
+          "filesize_bytes": 22431,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "thumb-counter.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/thumb-counter.avif",
+          "format": "avif",
+          "width": 250,
+          "height": 250,
+          "filesize_bytes": 2847,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "thumb-recent.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/marietta-01/thumb-recent.avif",
+          "format": "avif",
+          "width": 97,
+          "height": 97,
+          "filesize_bytes": 984,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
         }
       },
       "selection": {
@@ -28884,6 +29639,262 @@
           "page_label": "living room",
           "best_for": "hero",
           "features": "wood paneling, red carpet, TV, couch, coffee table, flowers"
+        },
+        "photo-12.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-01/photo-12.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1280,
+          "filesize_bytes": 53446,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-01/photo-12.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A well-lit bathroom with a large mirror and a bathtub.",
+          "quality": "good",
+          "page_label": "bathroom",
+          "best_for": "hero",
+          "features": "mirror, sink, bathtub, cabinets, washing machine"
+        },
+        "photo-20.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-01/photo-20.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1280,
+          "filesize_bytes": 54241,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-01/photo-20.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A well-lit bathroom with a tub, sink, toilet, mirror, towels, candles, and plants.",
+          "quality": "good",
+          "page_label": "bathroom",
+          "best_for": "hero",
+          "features": "tub, sink, toilet, mirror, towels, candles, plants"
+        },
+        "photo-44.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-01/photo-44.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1280,
+          "filesize_bytes": 94129,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-01/photo-44.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A cozy living room with a large TV on the wall and a red rug.",
+          "quality": "good",
+          "page_label": "living room",
+          "best_for": "hero",
+          "features": "wood paneling, red rug, patterned couch"
+        },
+        "photo-49.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-01/photo-49.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1280,
+          "filesize_bytes": 75372,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-01/photo-49.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A cozy bedroom with a wooden bed, red carpet, and a wooden door.",
+          "quality": "good",
+          "page_label": "bedroom",
+          "best_for": "hero",
+          "features": "wooden bed, red carpet, wooden door, mirror, TV, shelf, clock, plants, desk, chair"
+        },
+        "theme-breadcrumb-photo-44.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-01/theme-breadcrumb-photo-44.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 586,
+          "filesize_bytes": 63571,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-01.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-01/theme-gallery-card-photo-01.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 20402,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-06.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-01/theme-gallery-card-photo-06.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 30404,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-12.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-01/theme-gallery-card-photo-12.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 18965,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-20.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-01/theme-gallery-card-photo-20.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 18842,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-44.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-01/theme-gallery-card-photo-44.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 28666,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-49.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-01/theme-gallery-card-photo-49.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 21294,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-strip-photo-06.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-01/theme-gallery-strip-photo-06.avif",
+          "format": "avif",
+          "width": 240,
+          "height": 240,
+          "filesize_bytes": 6737,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-mountain-card-living.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-01/theme-mountain-card-living.avif",
+          "format": "avif",
+          "width": 421,
+          "height": 540,
+          "filesize_bytes": 21294,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-portrait-card-photo-44.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-01/theme-portrait-card-photo-44.avif",
+          "format": "avif",
+          "width": 421,
+          "height": 540,
+          "filesize_bytes": 21294,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-sidebar-photo-06.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-01/theme-sidebar-photo-06.avif",
+          "format": "avif",
+          "width": 424,
+          "height": 330,
+          "filesize_bytes": 15179,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "thumb-recent.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-01/thumb-recent.avif",
+          "format": "avif",
+          "width": 97,
+          "height": 97,
+          "filesize_bytes": 4334,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
         }
       },
       "selection": {
@@ -29036,6 +30047,342 @@
           "page_label": "exterior",
           "best_for": "gallery",
           "features": "tree, houses, street, sunset"
+        },
+        "homepage-hero-buck.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-02/homepage-hero-buck.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 820,
+          "filesize_bytes": 168725,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "photo-09.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-02/photo-09.avif",
+          "format": "avif",
+          "width": 1200,
+          "height": 463,
+          "filesize_bytes": 51337,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-02/photo-09.heic",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "photo-23.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-02/photo-23.avif",
+          "format": "avif",
+          "width": 1200,
+          "height": 900,
+          "filesize_bytes": 118965,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-02/photo-23.heic",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "photo-38.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-02/photo-38.avif",
+          "format": "avif",
+          "width": 1200,
+          "height": 900,
+          "filesize_bytes": 48479,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-02/photo-38.heic",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "photo-41.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-02/photo-41.avif",
+          "format": "avif",
+          "width": 900,
+          "height": 1200,
+          "filesize_bytes": 31150,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-02/photo-41.heic",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "photo-49.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-02/photo-49.avif",
+          "format": "avif",
+          "width": 1200,
+          "height": 900,
+          "filesize_bytes": 32842,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-02/photo-49.heic",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "photo-50.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-02/photo-50.avif",
+          "format": "avif",
+          "width": 1200,
+          "height": 900,
+          "filesize_bytes": 31772,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-02/photo-50.heic",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-breadcrumb-photo-09.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-02/theme-breadcrumb-photo-09.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 586,
+          "filesize_bytes": 92529,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-09.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-02/theme-gallery-card-photo-09.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 38971,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-23.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-02/theme-gallery-card-photo-23.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 52046,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-38.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-02/theme-gallery-card-photo-38.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 25841,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-41.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-02/theme-gallery-card-photo-41.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 12767,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-49.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-02/theme-gallery-card-photo-49.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 18101,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-50.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-02/theme-gallery-card-photo-50.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 17484,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-strip-photo-23.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-02/theme-gallery-strip-photo-23.avif",
+          "format": "avif",
+          "width": 240,
+          "height": 240,
+          "filesize_bytes": 10071,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-strip-photo-38.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-02/theme-gallery-strip-photo-38.avif",
+          "format": "avif",
+          "width": 240,
+          "height": 240,
+          "filesize_bytes": 8406,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-mountain-card-living.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-02/theme-mountain-card-living.avif",
+          "format": "avif",
+          "width": 421,
+          "height": 540,
+          "filesize_bytes": 13272,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-mountain-service-living.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-02/theme-mountain-service-living.avif",
+          "format": "avif",
+          "width": 600,
+          "height": 450,
+          "filesize_bytes": 17109,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-service-inner-photo-09.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-02/theme-service-inner-photo-09.avif",
+          "format": "avif",
+          "width": 760,
+          "height": 588,
+          "filesize_bytes": 47121,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "thumb-map.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-02/thumb-map.avif",
+          "format": "avif",
+          "width": 1320,
+          "height": 309,
+          "filesize_bytes": 32930,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "thumb-recent.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-02/thumb-recent.avif",
+          "format": "avif",
+          "width": 97,
+          "height": 97,
+          "filesize_bytes": 1707,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
         }
       },
       "selection": {
@@ -29069,8 +30416,8 @@
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/photo-01.avif",
           "format": "avif",
           "width": 1920,
-          "height": 1440,
-          "filesize_bytes": 287494,
+          "height": 872,
+          "filesize_bytes": 63178,
           "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-01/photo-01.jpg",
           "tags": [
             "published"
@@ -29085,8 +30432,8 @@
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/photo-03.avif",
           "format": "avif",
           "width": 1920,
-          "height": 1440,
-          "filesize_bytes": 265052,
+          "height": 2560,
+          "filesize_bytes": 427120,
           "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-01/photo-03.jpg",
           "tags": [
             "published"
@@ -29208,6 +30555,294 @@
           "page_label": "living room",
           "best_for": "gallery",
           "features": "fireplace, mantle, hardwood floor, white wall"
+        },
+        "photo-125.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/photo-125.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1440,
+          "filesize_bytes": 128641,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-01/photo-125.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A bedroom with a queen bed and a large window.",
+          "quality": "good",
+          "page_label": "bedroom",
+          "best_for": "gallery",
+          "features": "queen bed, nightstand, hardwood floor, large window"
+        },
+        "photo-165.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/photo-165.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 2560,
+          "filesize_bytes": 112846,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-01/photo-165.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A cozy living room with a green armchair and a red and yellow striped pillow.",
+          "quality": "good",
+          "page_label": "living room",
+          "best_for": "gallery",
+          "features": "green armchair, red and yellow striped pillow, wooden door, hardwood floor"
+        },
+        "photo-263.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/photo-263.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1440,
+          "filesize_bytes": 21915,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-01/photo-263.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A bathroom with a shower, vanity, and mirror.",
+          "quality": "good",
+          "page_label": "bathroom",
+          "best_for": "gallery",
+          "features": "shower, vanity, mirror, light fixture"
+        },
+        "theme-breadcrumb-photo-01.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/theme-breadcrumb-photo-01.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 586,
+          "filesize_bytes": 55808,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-01.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/theme-gallery-card-photo-01.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 24074,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-03.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/theme-gallery-card-photo-03.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 92618,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-108.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/theme-gallery-card-photo-108.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 23682,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-125.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/theme-gallery-card-photo-125.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 29304,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-165.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/theme-gallery-card-photo-165.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 14876,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-263.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/theme-gallery-card-photo-263.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 8245,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-292.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/theme-gallery-card-photo-292.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 13672,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-297.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/theme-gallery-card-photo-297.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 17773,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-374.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/theme-gallery-card-photo-374.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 28502,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-strip-photo-01.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/theme-gallery-strip-photo-01.avif",
+          "format": "avif",
+          "width": 240,
+          "height": 240,
+          "filesize_bytes": 5783,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-mountain-hero.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/theme-mountain-hero.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 820,
+          "filesize_bytes": 80672,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-mountain-testimonial-bg.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/theme-mountain-testimonial-bg.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 660,
+          "filesize_bytes": 63632,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-portrait-card-photo-01.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/theme-portrait-card-photo-01.avif",
+          "format": "avif",
+          "width": 421,
+          "height": 540,
+          "filesize_bytes": 15107,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "thumb-about-us.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-01/thumb-about-us.avif",
+          "format": "avif",
+          "width": 551,
+          "height": 596,
+          "filesize_bytes": 18922,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
         }
       },
       "selection": {
@@ -29374,6 +31009,278 @@
           "page_label": "exterior",
           "best_for": "thumbnail",
           "features": "wooden floor, grass, tree, house"
+        },
+        "photo-116.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/photo-116.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 2560,
+          "filesize_bytes": 114239,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-02/photo-116.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A room with a wooden dresser and a large window.",
+          "quality": "good",
+          "page_label": "other",
+          "best_for": "thumbnail",
+          "features": "wooden dresser, large window, wall outlet"
+        },
+        "photo-27.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/photo-27.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1440,
+          "filesize_bytes": 67538,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-02/photo-27.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A curved staircase with a dark wood banister and white trim against a yellow wall.",
+          "quality": "good",
+          "page_label": "detail",
+          "best_for": "gallery",
+          "features": "curved staircase, dark wood banister, white trim, yellow wall"
+        },
+        "photo-53.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/photo-53.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 2560,
+          "filesize_bytes": 121049,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-02/photo-53.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A small bathroom with a sink, mirror, and white cabinets.",
+          "quality": "good",
+          "page_label": "bathroom",
+          "best_for": "thumbnail",
+          "features": "sink, mirror, tile, white cabinets"
+        },
+        "photo-54.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/photo-54.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1440,
+          "filesize_bytes": 56842,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-02/photo-54.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A well-lit kitchen with a red countertop and white cabinets.",
+          "quality": "good",
+          "page_label": "kitchen",
+          "best_for": "gallery",
+          "features": "dishwasher, sink, red countertop, white cabinets"
+        },
+        "photo-55.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/photo-55.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1440,
+          "filesize_bytes": 96672,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-02/photo-55.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A dining room with a wooden table and chairs, and a large window.",
+          "quality": "adequate",
+          "page_label": "dining",
+          "best_for": "gallery",
+          "features": "wooden table, wooden chairs, large window"
+        },
+        "photo-77.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/photo-77.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1440,
+          "filesize_bytes": 68017,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-02/photo-77.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A dining room with a ceiling fan and a large window.",
+          "quality": "adequate",
+          "page_label": "dining",
+          "best_for": "gallery",
+          "features": "ceiling fan, large window, black and white checkered floor"
+        },
+        "theme-breadcrumb-photo-117.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/theme-breadcrumb-photo-117.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 586,
+          "filesize_bytes": 34102,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-116.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/theme-gallery-card-photo-116.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 18836,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-117.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/theme-gallery-card-photo-117.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 15440,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-27.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/theme-gallery-card-photo-27.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 17852,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-53.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/theme-gallery-card-photo-53.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 17405,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-54.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/theme-gallery-card-photo-54.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 15803,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-55.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/theme-gallery-card-photo-55.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 23808,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-77.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/theme-gallery-card-photo-77.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 16558,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-strip-photo-55.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/theme-gallery-strip-photo-55.avif",
+          "format": "avif",
+          "width": 240,
+          "height": 240,
+          "filesize_bytes": 5996,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-sidebar-photo-55.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/theme-sidebar-photo-55.avif",
+          "format": "avif",
+          "width": 424,
+          "height": 330,
+          "filesize_bytes": 12076,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "thumb-service.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-02/thumb-service.avif",
+          "format": "avif",
+          "width": 854,
+          "height": 500,
+          "filesize_bytes": 12258,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-02/photo-117.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A cozy living room with a white brick fireplace and built-in shelving.",
+          "quality": "good",
+          "page_label": "living room",
+          "best_for": "gallery",
+          "features": "white brick fireplace, built-in shelving, hardwood floor"
         }
       },
       "selection": {
@@ -29522,6 +31429,374 @@
           "page_label": "dining",
           "best_for": "gallery",
           "features": "wooden table, wooden chairs, striped wallpaper, bookshelf"
+        },
+        "homepage-hero-henrietta-kitchen.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-03/homepage-hero-henrietta-kitchen.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 820,
+          "filesize_bytes": 82692,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "homepage-hero-henrietta.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-03/homepage-hero-henrietta.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 820,
+          "filesize_bytes": 208851,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "photo-13.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-03/photo-13.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1080,
+          "filesize_bytes": 62089,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-03/photo-13.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A corner of a room with a piano, a vase, and a mirror.",
+          "quality": "good",
+          "page_label": "other",
+          "best_for": "gallery",
+          "features": "piano, vase, mirror, wall"
+        },
+        "photo-17.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-03/photo-17.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1080,
+          "filesize_bytes": 50833,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-03/photo-17.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "This is a beautiful dining room with a large table and chairs.",
+          "quality": "excellent",
+          "page_label": "dining",
+          "best_for": "hero",
+          "features": "large windows, hardwood floors"
+        },
+        "photo-31.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-03/photo-31.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1080,
+          "filesize_bytes": 74423,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-03/photo-31.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A well-lit kitchen with a stove, oven, dishwasher, wooden cabinets, and granite countertops.",
+          "quality": "good",
+          "page_label": "kitchen",
+          "best_for": "hero",
+          "features": "stove, oven, dishwasher, wooden cabinets, granite countertops"
+        },
+        "photo-36.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-03/photo-36.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1080,
+          "filesize_bytes": 141376,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-03/photo-36.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A well-maintained fenced yard with grass and trees.",
+          "quality": "good",
+          "page_label": "exterior",
+          "best_for": "gallery",
+          "features": "fenced yard, grass, trees, shed"
+        },
+        "photo-40.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-03/photo-40.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1080,
+          "filesize_bytes": 53777,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-03/photo-40.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "This bedroom is a cozy retreat with plenty of natural light.",
+          "quality": "good",
+          "page_label": "bedroom",
+          "best_for": "hero",
+          "features": "hardwood floors, large windows, high ceilings"
+        },
+        "photo-42.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-03/photo-42.avif",
+          "format": "avif",
+          "width": 2080,
+          "height": 1645,
+          "filesize_bytes": 267292,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/ravenswood-03/photo-42.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "This bedroom is a serene retreat with a comfortable bed and plenty of natural light.",
+          "quality": "excellent",
+          "page_label": "bedroom",
+          "best_for": "hero",
+          "features": "hardwood floors, large windows, walk-in closet"
+        },
+        "theme-breadcrumb-photo-17.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-03/theme-breadcrumb-photo-17.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 586,
+          "filesize_bytes": 49271,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-04.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-03/theme-gallery-card-photo-04.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 27693,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-06.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-03/theme-gallery-card-photo-06.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 20828,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-13.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-03/theme-gallery-card-photo-13.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 24622,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-17.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-03/theme-gallery-card-photo-17.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 20943,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-31.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-03/theme-gallery-card-photo-31.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 27464,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-36.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-03/theme-gallery-card-photo-36.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 42573,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-40.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-03/theme-gallery-card-photo-40.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 20596,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-42.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-03/theme-gallery-card-photo-42.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 19217,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-strip-photo-31.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-03/theme-gallery-strip-photo-31.avif",
+          "format": "avif",
+          "width": 240,
+          "height": 240,
+          "filesize_bytes": 9854,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-mountain-blog-dining.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-03/theme-mountain-blog-dining.avif",
+          "format": "avif",
+          "width": 424,
+          "height": 330,
+          "filesize_bytes": 12978,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-mountain-card-dining.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-03/theme-mountain-card-dining.avif",
+          "format": "avif",
+          "width": 421,
+          "height": 540,
+          "filesize_bytes": 15121,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-mountain-service-kitchen.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-03/theme-mountain-service-kitchen.avif",
+          "format": "avif",
+          "width": 600,
+          "height": 450,
+          "filesize_bytes": 25512,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-portrait-card-photo-17.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-03/theme-portrait-card-photo-17.avif",
+          "format": "avif",
+          "width": 421,
+          "height": 540,
+          "filesize_bytes": 15121,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "thumb-recent.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/ravenswood-03/thumb-recent.avif",
+          "format": "avif",
+          "width": 97,
+          "height": 97,
+          "filesize_bytes": 4241,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
         }
       },
       "selection": {
@@ -29693,8 +31968,8 @@
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-03/photo-448.avif",
           "format": "avif",
           "width": 1920,
-          "height": 1080,
-          "filesize_bytes": 23835,
+          "height": 3413,
+          "filesize_bytes": 52519,
           "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-03/photo-448.jpg",
           "tags": [
             "published"
@@ -29720,6 +31995,166 @@
           "page_label": "hallway",
           "best_for": "thumbnail",
           "features": "white walls, white blinds, white trim, white door"
+        },
+        "homepage-hero-yellow.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-03/homepage-hero-yellow.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 820,
+          "filesize_bytes": 191968,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "photo-145.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-03/photo-145.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1440,
+          "filesize_bytes": 191374,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-03/photo-145.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A two-story house with a porch and a tree in the front yard.",
+          "quality": "good",
+          "page_label": "exterior",
+          "best_for": "gallery",
+          "features": "porch, yellow siding, white trim, gray roof, downspout, air conditioning unit, tree, grass, flowers"
+        },
+        "photo-468.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-03/photo-468.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 2560,
+          "filesize_bytes": 47107,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-03/photo-468.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A bathroom with a shower curtain and white trim on a gray wall.",
+          "quality": "good",
+          "page_label": "bathroom",
+          "best_for": "gallery",
+          "features": "shower curtain, white trim, gray wall"
+        },
+        "theme-breadcrumb-photo-145.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-03/theme-breadcrumb-photo-145.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 586,
+          "filesize_bytes": 102422,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-07.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-03/theme-gallery-card-photo-07.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 54802,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-145.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-03/theme-gallery-card-photo-145.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 39081,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-448.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-03/theme-gallery-card-photo-448.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 7044,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-468.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-03/theme-gallery-card-photo-468.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 9908,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-service-inner-photo-145.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-03/theme-service-inner-photo-145.avif",
+          "format": "avif",
+          "width": 760,
+          "height": 588,
+          "filesize_bytes": 56258,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "thumb-recent.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-03/thumb-recent.avif",
+          "format": "avif",
+          "width": 97,
+          "height": 97,
+          "filesize_bytes": 1885,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
         }
       },
       "selection": {
@@ -29865,6 +32300,406 @@
           "page_label": "kitchen",
           "best_for": "hero",
           "features": "stove, refrigerator, cabinets, microwave, sink, window"
+        },
+        "homepage-hero-oak-dining.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/homepage-hero-oak-dining.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 820,
+          "filesize_bytes": 45240,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "homepage-hero-oak.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/homepage-hero-oak.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 820,
+          "filesize_bytes": 42448,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "photo-11.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/photo-11.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1280,
+          "filesize_bytes": 56125,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-04/photo-11.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A cozy bedroom with a wooden bed, white bedding, and patterned blanket.",
+          "quality": "good",
+          "page_label": "bedroom",
+          "best_for": "hero",
+          "features": "wooden bed, white bedding, patterned blanket, white pillows, white fur pillow, patterned pillows, wooden nightstand, yellow lamp, white curtains, patterned curtains, window"
+        },
+        "photo-17.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/photo-17.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1280,
+          "filesize_bytes": 76216,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-04/photo-17.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A cozy bedroom with a wooden floor, white dresser, and mirror.",
+          "quality": "good",
+          "page_label": "bedroom",
+          "best_for": "hero",
+          "features": "wooden floor, white dresser, mirror, painting, bed, pillows, blanket, nightstand, lamp, basket"
+        },
+        "photo-23.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/photo-23.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1280,
+          "filesize_bytes": 51965,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-04/photo-23.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A well-lit dining room with a table and chairs, a basket on the table, a vase with flowers, a window with curtains, and wall art.",
+          "quality": "good",
+          "page_label": "dining",
+          "best_for": "hero",
+          "features": "table, chairs, basket, vase, window, curtains, wall art"
+        },
+        "photo-35.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/photo-35.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1280,
+          "filesize_bytes": 50448,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-04/photo-35.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A well-lit dining room with a wooden table and white chairs, featuring a blue cushion on one chair and a painting on the wall.",
+          "quality": "good",
+          "page_label": "dining",
+          "best_for": "hero",
+          "features": "wooden table, white chairs, blue cushion, painting on the wall, window with curtains"
+        },
+        "photo-40.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/photo-40.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1280,
+          "filesize_bytes": 43013,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-04/photo-40.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A small, well-lit bathroom with a white bathtub and shower, a sink, and a toilet.",
+          "quality": "good",
+          "page_label": "bathroom",
+          "best_for": "thumbnail",
+          "features": "shower, bathtub, sink, toilet, mirror, towel rack, rug"
+        },
+        "theme-breadcrumb-photo-23.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/theme-breadcrumb-photo-23.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 586,
+          "filesize_bytes": 36622,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-01.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/theme-gallery-card-photo-01.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 16488,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-05.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/theme-gallery-card-photo-05.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 45353,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-07.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/theme-gallery-card-photo-07.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 29524,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-08.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/theme-gallery-card-photo-08.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 19746,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-11.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/theme-gallery-card-photo-11.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 20104,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-17.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/theme-gallery-card-photo-17.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 30454,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-23.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/theme-gallery-card-photo-23.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 19528,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-35.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/theme-gallery-card-photo-35.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 19646,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-card-photo-40.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/theme-gallery-card-photo-40.avif",
+          "format": "avif",
+          "width": 648,
+          "height": 470,
+          "filesize_bytes": 17910,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-gallery-strip-photo-08.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/theme-gallery-strip-photo-08.avif",
+          "format": "avif",
+          "width": 240,
+          "height": 240,
+          "filesize_bytes": 5402,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-mountain-about.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/theme-mountain-about.avif",
+          "format": "avif",
+          "width": 551,
+          "height": 596,
+          "filesize_bytes": 16662,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-mountain-blog-kitchen.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/theme-mountain-blog-kitchen.avif",
+          "format": "avif",
+          "width": 424,
+          "height": 330,
+          "filesize_bytes": 10581,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-mountain-card-bedroom.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/theme-mountain-card-bedroom.avif",
+          "format": "avif",
+          "width": 421,
+          "height": 540,
+          "filesize_bytes": 15495,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-mountain-hotel-tall.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/theme-mountain-hotel-tall.avif",
+          "format": "avif",
+          "width": 960,
+          "height": 1105,
+          "filesize_bytes": 38296,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-mountain-testimonial.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/theme-mountain-testimonial.avif",
+          "format": "avif",
+          "width": 600,
+          "height": 440,
+          "filesize_bytes": 27003,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "theme-sidebar-photo-05.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/theme-sidebar-photo-05.avif",
+          "format": "avif",
+          "width": 424,
+          "height": 330,
+          "filesize_bytes": 15301,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
+        },
+        "thumb-recent.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-04/thumb-recent.avif",
+          "format": "avif",
+          "width": 97,
+          "height": 97,
+          "filesize_bytes": 4166,
+          "source": "",
+          "tags": [
+            "published"
+          ],
+          "scene": "",
+          "quality": "",
+          "page_label": "",
+          "best_for": "",
+          "features": ""
         }
       },
       "selection": {
@@ -29910,11 +32745,11 @@
     }
   },
   "coverage": {
-    "generated": "2026-07-21 13:09:17 UTC",
+    "generated": "2026-07-22 17:42:03 UTC",
     "total_houses": 11,
-    "houses_with_published_photos": 8,
-    "houses_coming_soon": 3,
-    "total_published_avif_files": 62,
+    "houses_with_published_photos": 9,
+    "houses_coming_soon": 2,
+    "total_published_avif_files": 219,
     "total_staging_originals": 1450,
     "houses_without_staging_photos": [
       "ravenswood-05",
@@ -29930,5 +32765,7 @@
       "errors_or_unanalyzed": 42,
       "placeholder_junk": 0
     }
-  }
+  },
+  "gemini_analyzed_at": "2026-07-22 19:40:22 UTC",
+  "gemini_model": "gemini-3.6-flash"
 }
