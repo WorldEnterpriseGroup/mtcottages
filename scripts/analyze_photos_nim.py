@@ -16,7 +16,7 @@ HOUSES_FILE = REPO_DIR / "_data/houses.json"
 INDEX_FILE = REPO_DIR / "_data/photo-index.json"
 
 NIM_ENDPOINT = "https://integrate.api.nvidia.com/v1/chat/completions"
-NIM_MODEL = "meta/llama-3.2-11b-vision-instruct"
+NIM_MODEL = "meta/llama-3.2-90b-vision-instruct"
 
 # Public-safe labels for houses that are internal-only or not yet listed on
 # the public site. Never a street address -- see CLAUDE.md's "no street
@@ -74,8 +74,9 @@ BEST_FORS = "hero, gallery, thumbnail, skip"
 NIM_PROMPT = f"""Look at this real estate photo and describe what you actually see in it.
 
 Return ONLY valid JSON (no markdown, no explanation, no code fences).
-Every value below must be about THIS photo. Do not copy the sample values shown
-in the example — they are illustrations of the shape only, not filler text to repeat.
+Every value below must be about THIS photo, not about similar photos you have
+seen before. Do not copy example text or placeholder values — write fresh
+description and features for this specific image.
 
 Valid room_type values: {ROOM_TYPES}
 Valid quality values: {QUALITIES}
@@ -84,6 +85,21 @@ Valid best_for values: {BEST_FORS}
 
 Keep "features" and "tags" short and concrete (at most 8 items/words each) — do not
 repeat words or ramble.
+
+Scoring guidance — think like a guest booking a cottage:
+- "quality": Be strict. `excellent` = professionally lit, staged, spotless. `good`
+  = clean and inviting but casual (e.g. smartphone shot of a tidy room).
+  `adequate` = acceptable but not appealing (dim lighting, cluttered, dated decor).
+  `poor` = actively off-putting (construction debris, bare drywall, extension cords,
+  personal clutter, poor focus, very dark).
+- "best_for": `skip` if the photo is of an unfinished room, construction zone,
+  utility area, trash, or anything that would not appeal to a guest browsing
+  a rental listing.
+- "features": List furniture and decor items you see, not generic categories.
+  E.g. "rustic wood bed, white shiplap wall, quilt throw" not "bedroom furniture".
+- "tags": Include a recency indicator like "recent_2025" or "recent_2026" if the
+  photo appears contemporary. Flag as "dated" if decor or photo quality looks older
+  (e.g. 2000s-era tub, floral wallpaper from an older decade, low-res camera).
 
 Example of the JSON shape (write your own values for this photo, not these):
 {{
@@ -94,7 +110,7 @@ Example of the JSON shape (write your own values for this photo, not these):
   "description": "A bright bedroom with a queen bed and a large window.",
   "best_for": "gallery",
   "has_people": false,
-  "tags": ["bedroom", "cozy", "natural light"]
+  "tags": ["bedroom", "cozy", "natural light", "recent_2025"]
 }}"""
 
 def get_nim_key():
