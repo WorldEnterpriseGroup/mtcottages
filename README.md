@@ -19,7 +19,7 @@ Mt Cottages is the guest-facing rental operation for furnished homes, tenants, r
 
 ## Public site
 
-The guest-facing site is a static Astro v7 editorial build. It uses Astro's typed components, static routing, responsive image pipeline, sitemap integration, and TypeScript 7. The old HotelHub HTML remains in the repository as migration/source history, but is not part of the production build.
+The guest-facing site is a static Astro v7 build that preserves the previous HotelHub theme. The tracked HotelHub HTML pages are synchronized into Astro's `src/pages` at build time, so the visual system, approved content, image assignments, and public `.html` URLs remain recognizable while Astro owns the production build and sitemap. The toolchain uses TypeScript 7; the first-pass editorial redesign was deliberately retired after review.
 
 The public navigation is intentionally brand-first: `Cottages`, `Locations`, `Living`, `Services`, `About`, `Contact`, `Residents`, and the `Stay with Us` application CTA. The Cottages menu leads to `Find Your Place`, `Cozy Places`, `Room to Settle In`, and `Available Now`. Every Living and Services topic has a dedicated content page. Canonical town guides live at `marietta/index.html`, `parkersburg/index.html`, `ravenswood/index.html`, `grantsville/index.html`, and `racine/index.html`; individual homes live beneath their town directory using their public cottage name. The site is new, so obsolete flat property/location URLs are removed rather than retained as redirects. Resident support is separated into `residents.html`, `resident-portal.html`, `pay-rent.html`, `maintenance.html`, and `emergency-maintenance.html`; partner programs are described in `partnerships.html`.
 
@@ -36,10 +36,11 @@ assets/images/cottages/<house-id>/photo-02.jpg
 
 Use [`scripts/import_sharepoint_photos.rb`](scripts/import_sharepoint_photos.rb) with the private map and CSV to download exact-source images. The importer records source metadata in the ignored `sharepoint-photo-manifest.json`, prevents a file hash from being reused across houses, and requires visual review before a photo is linked from public HTML. Do not use broad SILK archives, mixed galleries, or filename guesses for a house. A construction/inspection image is not a marketing approval. The Grantsville property is currently excluded from the public site, and the Ravenswood property without an exact public source has no approved public image yet.
 
-Astro imports only curated public AVIF derivatives from `src/assets/media`; raw SharePoint
-downloads and private house maps remain outside the build. The explicit media manifest in
-`src/data/media.ts` records the lead image, room coverage, alt text, and property ownership.
-Astro generates responsive WebP variants and dimensions during `npm run build`.
+The restored HotelHub pages reference the existing curated public AVIF derivatives under
+`assets/images/cottages`; raw SharePoint downloads and private house maps remain outside the
+build. `scripts/copy-hotelhub-assets.mjs` carries the existing public theme assets into `dist`
+after Astro generates the HTML so the repository does not maintain a second copy of the theme
+bundle.
 
 Rendered property photography is allocated once across the published site: banners, cards,
 content photos, and footer galleries must not reuse the same visual source. Run
@@ -70,7 +71,7 @@ Stripe checkout is not activated yet. The currently available vault key resolves
 
 ## Local preview
 
-The marketing site is built with Astro. Browser tests live in [`e2e`](e2e) and use Playwright.
+The marketing site is built with Astro v7 while retaining the HotelHub visual layer. Browser tests live in [`e2e`](e2e) and use Playwright.
 From the repository root, run:
 
 ```bash

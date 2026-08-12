@@ -26,3 +26,5 @@ test-results/
 # Astro build output and generated type declarations.
 .astro/
 dist/
+# Astro page sources are synchronized from the tracked HotelHub HTML at build time.
+src/pages/**/*.html

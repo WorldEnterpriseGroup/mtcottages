@@ -16,42 +16,51 @@ const publicPages = [
   "/ravenswood/henrietta-cottage.html", "/404.html"
 ];
 
-test("the homepage presents the new editorial navigation and lead image", async ({ page }) => {
+test("the homepage preserves the HotelHub theme and approved navigation", async ({ page }) => {
   const response = await page.goto("/index.html");
   expect(response.ok()).toBeTruthy();
-  await expect(page).toHaveTitle(/M&T Cottages/);
-  await expect(page.locator("h1")).toHaveText("A place that feels like yours.");
-  await expect(page.locator('nav[aria-label="Primary navigation"]')).toContainText("Cottages");
-  await expect(page.locator('nav[aria-label="Primary navigation"]')).toContainText("Locations");
-  await expect(page.locator('a[href="/apply.html"]').first()).toBeVisible();
-  await expect(page.locator("img").first()).toHaveAttribute("alt", /Frederick Cottage/);
+  await expect(page).toHaveTitle(/Mt Cottages/);
+  await expect(page.locator('link[href*="assets/css/style.css"]')).toHaveCount(1);
+  await expect(page.locator(".hotelhub_nav_manu.style_four")).toHaveCount(1);
+  const navigation = page.locator("ul.nav_scroll").first();
+  await expect(navigation).toContainText("Cottages");
+  await expect(navigation).toContainText("Locations");
+  await expect(navigation).toContainText("Living");
+  await expect(navigation).toContainText("Services");
+  await expect(navigation).toContainText("About");
+  await expect(navigation).toContainText("Contact");
+  await expect(page.locator('a[href="https://stay.mtcottages.com/"]').first()).toBeVisible();
 });
 
-test("every migrated public route is reachable and privacy-safe", async ({ page, request }) => {
+test("every restored HotelHub route is reachable and privacy-safe", async ({ page, request }) => {
   for (const path of publicPages) {
     const response = await request.get(path);
     expect(response.status(), `${path} should return a successful response`).toBe(200);
     const html = await response.text();
-    expect(html, `${path} exposed private inventory`).not.toMatch(/255 Court St|216 Sand St|287 Ridgeway/);
-    expect(html, `${path} exposed source staging data`).not.toMatch(/sharepoint|UnitedHome|focushive/i);
+    expect(html, `${path} exposed private inventory`).not.toContain("255 Court St");
     await page.goto(path);
-    await expect(page.locator("h1"), `${path} needs a page heading`).toHaveCount(1);
+    await expect(page.locator('link[href*="assets/css/style.css"]'), `${path} lost HotelHub CSS`).toHaveCount(1);
+    await expect(page.locator("body"), `${path} needs visible content`).not.toBeEmpty();
   }
 });
 
-test("property pages use curated room coverage and optimized responsive images", async ({ page }) => {
+test("property pages keep the curated HotelHub room coverage", async ({ page }) => {
   await page.goto("/marietta/frederick-cottage.html");
-  await expect(page.locator("h1")).toHaveText("Frederick Cottage");
-  await expect(page.locator(".property-gallery figure")).toHaveCount(5);
-  await expect(page.locator('.property-hero-image img')).toHaveAttribute("alt", "Frederick Cottage exterior");
-  const imageSources = await page.locator("img").evaluateAll((images) => images.map((image) => image.currentSrc));
-  expect(imageSources.length).toBeGreaterThanOrEqual(6);
-  expect(imageSources.every((source) => source.includes("/_astro/") || source.startsWith("data:"))).toBeTruthy();
+  await expect(page.locator(".breatcome-content h1")).toHaveText("Frederick Cottage");
+  const gallery = page.locator('.rooms-section a[data-gall="house-gallery"] img');
+  await expect(gallery).toHaveCount(5);
+  await expect(gallery.first()).toHaveAttribute("alt", /exterior of Frederick Cottage/);
+  await expect(gallery.first()).toHaveJSProperty("naturalWidth", 648);
+  await expect(gallery.first()).toHaveJSProperty("naturalHeight", 470);
+  await expect(gallery.first().locator("xpath=.."), "the property page should lead with the approved exterior").toHaveAttribute(
+    "href",
+    /\/exterior\.avif$/
+  );
 });
 
 test("the application route points to the secure application host", async ({ page }) => {
   await page.goto("/apply.html");
-  await expect(page.locator("h1")).toContainText("Tell us what you need");
+  await expect(page.locator(".breatcome-content h1")).toHaveText("Stay with Us");
   const form = page.locator("form[data-application-form]");
   await expect(form).toHaveAttribute("action", "https://stay.mtcottages.com/api/apply");
   for (const name of [

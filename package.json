@@ -4,9 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "check": "astro sync && tsc --noEmit",
+    "dev": "npm run prepare:pages && astro dev",
+    "prepare:pages": "node scripts/sync-hotelhub-pages.mjs",
+    "build": "npm run prepare:pages && astro build && node scripts/copy-hotelhub-assets.mjs",
+    "check": "npm run prepare:pages && astro sync && tsc --noEmit",
     "preview": "astro preview",
     "test:e2e": "npm --prefix e2e test"
   },
