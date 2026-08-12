@@ -307,9 +307,9 @@ test("the Mountain Home layout and exact-size photo crops stay intact", async ({
   const galleryPreview = page.locator('.rooms-section a[data-gall="house-gallery"] img').first();
   await expect(galleryPreview).toHaveJSProperty("naturalWidth", 648);
   await expect(galleryPreview).toHaveJSProperty("naturalHeight", 470);
-  await expect(galleryPreview.locator("xpath=.."), "lightbox should retain the full original").toHaveAttribute(
+  await expect(galleryPreview.locator("xpath=.."), "the property page should lead with the approved exterior").toHaveAttribute(
     "href",
-    /\/gallery-01\.avif$/
+    /\/exterior\.avif$/
   );
 
   await page.setViewportSize({ width: 390, height: 844 });
@@ -321,4 +321,25 @@ test("the Mountain Home layout and exact-size photo crops stay intact", async ({
     }));
     expect(widths.content, `${path} overflows the mobile viewport`).toBe(widths.viewport);
   }
+});
+
+test("Frederick Cottage follows Wardah's listing and photo guidance", async ({ page }) => {
+  await page.goto("/cottages.html");
+  const card = page.locator('a[href="marietta/frederick-cottage.html"]').first().locator(
+    "xpath=ancestor::div[contains(concat(' ', normalize-space(@class), ' '), ' rooms-single-single-bx ')]"
+  );
+  await expect(card.locator(".choose-single-thumbs img")).toHaveAttribute("src", /theme-gallery-card-hero\.avif$/);
+  await expect(card.locator(".rooms-content h3")).toHaveText("Frederick Cottage");
+  await expect(card.locator(".property-location")).toContainText("Marietta, OH");
+  await expect(card.locator(".rooms-infos").first()).toContainText("3 Bedrooms");
+  await expect(card.locator(".rooms-price")).toHaveText("$1,395/mo");
+  await expect(card.locator(".hotelhub-btn")).toContainText("view details");
+
+  await page.goto("/marietta/frederick-cottage.html");
+  await expect(page.locator(".property-quick-details h3")).toHaveText("Quick Details");
+  await expect(page.locator(".quick-details-highlights")).toContainText("3 Bedrooms");
+  await expect(page.locator(".quick-details-pricing")).toContainText("$1,395/mo");
+  await expect(page.locator(".quick-details-pricing")).toContainText("$1,995/mo");
+  await expect(page.locator(".property-amenity-list")).toHaveCount(2);
+  await expect(page.locator(".property-amenity-list i")).toHaveCount(10);
 });

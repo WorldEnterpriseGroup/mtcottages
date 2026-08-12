@@ -1735,6 +1735,12 @@ padding: 100px 0 40px;
 .service_inner_page {
   padding: 100px 0 70px;
 }
+.property-quick-details {
+  padding: 28px 24px 24px;
+}
+.property-amenity-list {
+  grid-template-columns: 1fr;
+}
 .service_inner_box {
   margin-left: 0;
 }

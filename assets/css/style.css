@@ -5892,6 +5892,117 @@ h3.category-title:hover:before {
   margin-bottom: 12px;
 }
 
+/* Wardah's property-page direction: make the decision-critical details
+   scannable while keeping the native HotelHub visual language. */
+.property-quick-details {
+  padding: 34px 32px 28px;
+}
+.quick-details-highlights {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.quick-detail-highlight {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  column-gap: 10px;
+  align-items: center;
+  padding: 13px 14px;
+  background: #fff;
+  border: 1px solid rgba(16,16,16,0.1);
+}
+.quick-detail-highlight i {
+  grid-row: span 2;
+  color: var(--secondary-color);
+  font-size: 17px;
+}
+.quick-detail-highlight strong {
+  color: #1e1e1e;
+  font: 600 18px/1.35 "Playfair Display";
+}
+.quick-detail-highlight span {
+  color: #707070;
+  font: 14px/1.5 "Open Sans";
+}
+.quick-details-list {
+  border-top: 1px solid rgba(16,16,16,0.1);
+}
+.quick-details-list > div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(16,16,16,0.1);
+  color: #616161;
+  font: 15px/1.45 "Open Sans";
+}
+.quick-details-list i {
+  width: 20px;
+  color: var(--secondary-color);
+  text-align: center;
+}
+.quick-details-pricing {
+  margin: 18px 0 14px;
+  padding: 14px 15px 8px;
+  background: rgba(82,97,78,0.08);
+}
+.quick-details-pricing p {
+  margin: 0 0 7px;
+  color: #52614e;
+  font: 600 12px/1.3 "Open Sans";
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.quick-details-pricing > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 7px 0;
+  border-top: 1px solid rgba(16,16,16,0.1);
+  color: #616161;
+  font: 14px/1.4 "Open Sans";
+}
+.quick-details-pricing strong {
+  color: #1e1e1e;
+  font: 600 21px/1.2 "Playfair Display";
+  white-space: nowrap;
+}
+.quick-details-pricing strong span {
+  font-size: 13px;
+  font-weight: 400;
+}
+.quick-details-actions {
+  display: grid;
+  gap: 8px;
+}
+.quick-details-actions a {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 0;
+  color: #1e1e1e;
+  font: 500 15px/1.4 "Open Sans";
+}
+.quick-details-actions a > i:first-child {
+  width: 19px;
+  color: var(--secondary-color);
+  text-align: center;
+}
+.quick-details-actions a > i:last-child {
+  margin-left: auto;
+  font-size: 12px;
+}
+.property-location {
+  margin: 10px 0 0;
+  color: #616161;
+  font: 15px/1.45 "Open Sans";
+}
+.property-location i {
+  margin-right: 5px;
+  color: var(--secondary-color);
+}
+
 ul.hotelhub-service li {
   list-style: none;
   border-radius: 0;
@@ -7486,6 +7597,30 @@ span.option-icon i {
   align-items: center;
   margin-bottom: 18px;
   gap: 10px;
+}
+.property-amenity-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.hotelhub-single-box ul.property-amenity-list li {
+  min-height: 62px;
+  margin-bottom: 0;
+  padding: 13px 14px;
+  gap: 11px;
+  border: 1px solid rgba(16,16,16,0.1);
+  background: #fff;
+  font: 600 15px/1.35 "Playfair Display";
+}
+.hotelhub-single-box ul.property-amenity-list li i {
+  width: 22px;
+  flex: 0 0 22px;
+  color: var(--secondary-color);
+  font-size: 16px;
+  text-align: center;
+}
+.hotelhub-single-box ul.property-amenity-list li img {
+  display: none;
 }
 .hotelhub-single-box ul li img {
   border-radius: 50%;
