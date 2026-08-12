@@ -29,7 +29,7 @@ test("the homepage preserves the HotelHub theme and approved navigation", async 
   await expect(navigation).toContainText("Services");
   await expect(navigation).toContainText("About");
   await expect(navigation).toContainText("Contact");
-  await expect(page.locator('a[href="https://stay.mtcottages.com/"]').first()).toBeVisible();
+  await expect(page.locator('a[href="https://stay.mtcottages.com/"]:visible').first()).toBeVisible();
 });
 
 test("every restored HotelHub route is reachable and privacy-safe", async ({ page, request }) => {
@@ -41,6 +41,10 @@ test("every restored HotelHub route is reachable and privacy-safe", async ({ pag
     await page.goto(path);
     await expect(page.locator('link[href*="assets/css/style.css"]'), `${path} lost HotelHub CSS`).toHaveCount(1);
     await expect(page.locator("body"), `${path} needs visible content`).not.toBeEmpty();
+    if (path !== "/404.html") {
+      await expect(page.locator(".mtc-skip-link"), `${path} lost the skip link`).toHaveAttribute("href", "#main-content");
+      await expect(page.locator("#main-content"), `${path} lost the main content target`).toHaveCount(1);
+    }
   }
 });
 
@@ -70,6 +74,46 @@ test("the application route points to the secure application host", async ({ pag
   ]) {
     await expect(form.locator(`[name="${name}"]`), `missing application field: ${name}`).toHaveCount(1);
   }
+});
+
+test("desktop navigation exposes one accessible mega panel at a time", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/index.html");
+  const navigation = page.locator(".mtc-site-header .mtc-primary-nav");
+  await expect(navigation.locator("[data-mtc-mega-details]")).toHaveCount(5);
+
+  const cottages = navigation.locator("[data-mtc-mega-details]").first();
+  await cottages.locator("summary").click();
+  await expect(cottages.locator(".mtc-mega-panel")).toBeVisible();
+  await expect(cottages.locator("h2")).toHaveText("A home that fits the chapter.");
+  await expect(cottages.locator('a[href="available.html"]')).toHaveCount(1);
+
+  const locations = navigation.locator("[data-mtc-mega-details]").nth(1);
+  await locations.locator("summary").click();
+  await expect(cottages).not.toHaveAttribute("open", "");
+  await expect(locations.locator(".mtc-mega-panel")).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(locations).not.toHaveAttribute("open", "");
+});
+
+test("mobile navigation supports disclosure, escape, and scroll locking", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/index.html");
+  const menuButton = page.locator("[data-mtc-mobile-toggle]");
+  const drawer = page.locator("[data-mtc-mobile-drawer]");
+  await expect(menuButton).toHaveAttribute("aria-expanded", "false");
+  await menuButton.click();
+  await expect(menuButton).toHaveAttribute("aria-expanded", "true");
+  await expect(drawer).toBeVisible();
+  await expect(page.locator("body")).toHaveCSS("overflow", "hidden");
+
+  const cottages = drawer.locator("details").first();
+  await cottages.locator("summary").click();
+  await expect(cottages.locator('a[href="cottages.html"]')).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(menuButton).toHaveAttribute("aria-expanded", "false");
+  await expect(menuButton).toBeFocused();
+  await expect(page.locator("body")).not.toHaveCSS("overflow", "hidden");
 });
 
 test("the layout does not overflow a narrow viewport", async ({ page }) => {
