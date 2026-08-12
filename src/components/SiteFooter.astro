@@ -1,0 +1,28 @@
+---
+import { navGroups } from "../data/site";
+---
+<footer class="site-footer">
+  <div class="site-width">
+    <div class="footer-grid">
+      <div class="stack">
+        <p class="eyebrow" style="color:#e4b482">Furnished living</p>
+        <h2>A place to land.</h2>
+        <p class="text-light">Whole furnished homes for work, transition, family, and the chapters that take a little longer.</p>
+        <a class="button button--light" href="https://stay.mtcottages.com/">Start a stay inquiry <span aria-hidden="true">↗</span></a>
+      </div>
+      {navGroups.slice(0, 3).map((group) => (
+        <div>
+          <h3>{group.label}</h3>
+          <ul>
+            {group.items.slice(0, 4).map(([label, href]) => <li><a href={`/${href}`}>{label}</a></li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+    <div class="footer-bottom">
+      <span>© {new Date().getFullYear()} Mt Cottages</span>
+      <span>Marietta · Parkersburg · Ravenswood · Racine</span>
+      <a href="/contact.html">Contact Mt Cottages</a>
+    </div>
+  </div>
+</footer>

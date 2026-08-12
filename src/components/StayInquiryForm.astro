@@ -1,0 +1,52 @@
+<form class="stay-form" action="https://stay.mtcottages.com/api/apply" method="post" data-application-form>
+  <div class="form-grid">
+    <label>First name <input type="text" name="firstName" autocomplete="given-name" required /></label>
+    <label>Last name <input type="text" name="lastName" autocomplete="family-name" required /></label>
+    <label>Email <input type="email" name="email" autocomplete="email" required /></label>
+    <label>Phone <input type="tel" name="phone" autocomplete="tel" required /></label>
+    <label>Preferred move-in date <input type="date" name="moveInDate" required /></label>
+    <label>How long might you stay?
+      <select name="duration" required>
+        <option value="">How long might you stay?</option>
+        <option>30–90 days</option><option>3–12 months</option><option>1 year or longer</option><option>Flexible / not sure</option>
+      </select>
+    </label>
+    <label>Number of occupants <input type="number" name="occupants" min="1" max="20" required /></label>
+    <label>Preferred community
+      <select name="preferredLocation" required>
+        <option value="">Preferred community</option>
+        <option>Marietta, OH</option><option>Parkersburg, WV</option><option>Ravenswood, WV</option><option>Grantsville, WV</option><option>Racine, OH</option><option>Athens, OH</option><option>Open to options</option>
+      </select>
+    </label>
+    <label>What kind of place feels right?
+      <select name="homeSize">
+        <option value="">What kind of place feels right?</option>
+        <option>Studio or one-bedroom</option><option>Two-bedroom</option><option>Three-bedroom</option><option>Four-bedroom</option><option>Open to options</option>
+      </select>
+    </label>
+    <label>What brings you here?
+      <select name="stayType" required>
+        <option value="">What brings you here?</option>
+        <option>Travel or healthcare assignment</option><option>Work or relocation</option><option>Insurance housing</option><option>Family or extended stay</option><option>Research or fellowship</option><option>Personal transition</option><option>Something else</option>
+      </select>
+    </label>
+    <label>Pets
+      <select name="pets"><option value="">Pets</option><option>No pets</option><option>Yes — I’ll share details below</option><option>Prefer to discuss</option></select>
+    </label>
+    <label>Role, employer, or assignment <span>(optional)</span><input type="text" name="employment" /></label>
+    <label>Approximate monthly budget <span>(optional)</span><input type="text" name="monthlyBudget" /></label>
+    <label>Furnishing or accessibility needs <span>(optional)</span><input type="text" name="furnishedNeeds" /></label>
+    <label class="form-grid__full">Tell us about your timing, household, pets, and what would make a place fit.
+      <textarea name="message" rows="6" required></textarea>
+    </label>
+  </div>
+  <fieldset class="form-consent">
+    <legend>Before you send</legend>
+    <label><input type="checkbox" name="screeningConsent" value="yes" /> I understand screening may be part of a later application step.</label>
+    <label><input type="checkbox" name="termsAccepted" value="yes" required /> I confirm this is an inquiry and the information is accurate.</label>
+  </fieldset>
+  <p class="form-notice">Please do not enter Social Security numbers, payment-card details, bank information, or other highly sensitive documents.</p>
+  <div class="form-trap" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+  <input type="hidden" name="sourceUrl" value="https://mtcottages.com/apply.html" />
+  <button class="button" type="submit">Send inquiry <span aria-hidden="true">↗</span></button>
+</form>

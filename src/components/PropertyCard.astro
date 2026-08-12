@@ -1,0 +1,22 @@
+---
+import ResponsivePhoto from "./ResponsivePhoto.astro";
+import type { Cottage } from "../data/site";
+const { cottage } = Astro.props as { cottage: Cottage };
+---
+
+<article class="property-card">
+  <a href={`/${cottage.path}`} aria-label={`View ${cottage.name}`}>
+    <figure>
+      <ResponsivePhoto {...cottage.hero} sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw" />
+    </figure>
+  </a>
+  <div class="property-card-body">
+    <div>
+      <h3><a href={`/${cottage.path}`}>{cottage.name}</a></h3>
+      <p class="location">{cottage.town}</p>
+    </div>
+    <div class="property-meta"><span>{cottage.bedrooms}</span><span>·</span><span>Furnished</span></div>
+    <p class="property-price">{cottage.price}</p>
+    <a class="property-link" href={`/${cottage.path}`}>View property <span aria-hidden="true">↗</span></a>
+  </div>
+</article>

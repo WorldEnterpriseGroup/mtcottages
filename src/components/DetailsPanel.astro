@@ -1,0 +1,22 @@
+---
+import type { Cottage } from "../data/site";
+const { cottage } = Astro.props as { cottage: Cottage };
+---
+<aside class="details-panel" aria-labelledby="quick-details-title">
+  <div class="cluster" style="justify-content:space-between">
+    <h2 id="quick-details-title">Quick details</h2>
+    <span class="eyebrow">At a glance</span>
+  </div>
+  <div class="details-grid">
+    <div class="detail"><span class="detail-icon" aria-hidden="true">⌂</span><span class="detail-label">Location</span><span class="detail-value">{cottage.town}</span></div>
+    <div class="detail"><span class="detail-icon" aria-hidden="true">▦</span><span class="detail-label">Space</span><span class="detail-value">{cottage.bedrooms}</span></div>
+    <div class="detail"><span class="detail-icon" aria-hidden="true">◌</span><span class="detail-label">Home type</span><span class="detail-value">Furnished</span></div>
+    <div class="detail"><span class="detail-icon" aria-hidden="true">↗</span><span class="detail-label">Stay shape</span><span class="detail-value">30 days or longer</span></div>
+  </div>
+  <div class="price-block">
+    <span class="detail-label">Current monthly guide</span>
+    <strong>{cottage.price}</strong>
+    <span class="text-muted">{cottage.shortTerm}</span>
+  </div>
+  <a class="button" href="https://stay.mtcottages.com/">Ask about this home <span aria-hidden="true">↗</span></a>
+</aside>

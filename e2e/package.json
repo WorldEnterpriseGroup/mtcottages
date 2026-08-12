@@ -2,11 +2,11 @@
   "name": "mtcottages-e2e",
   "private": true,
   "version": "1.0.0",
-  "description": "Browser smoke tests for the Mt Cottages HotelHub site and application edge",
+  "description": "Browser smoke tests for the Mt Cottages Astro site and application edge",
   "scripts": {
     "test": "playwright test tests/site.spec.js"
   },
   "devDependencies": {
-    "@playwright/test": "1.61.1"
+    "@playwright/test": "1.62.1"
   }
 }

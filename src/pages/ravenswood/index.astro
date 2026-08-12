@@ -1,0 +1,9 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import LocationPage from "../../components/LocationPage.astro";
+import { locationData } from "../../data/site";
+const guide = locationData.ravenswood;
+---
+<SiteLayout title={`${guide.town} Furnished Living | Mt Cottages`} description={guide.description}>
+  <LocationPage guide={guide} />
+</SiteLayout>

@@ -45,7 +45,7 @@ jobs:
         run: |
           git diff --check
           for json_file in infra/azure/*.json; do jq empty "$json_file"; done
-          python3 -m py_compile scripts/rebuild-hotelhub-pages.py infra/azure/apply-proxy/function_app.py
+          python3 -m py_compile scripts/check-form-parity.py infra/azure/apply-proxy/function_app.py
           python3 - <<'PY'
           from pathlib import Path
 
@@ -55,16 +55,22 @@ jobs:
               errors.append("CNAME must remain mtcottages.com")
           if not Path("dist/.nojekyll").is_file():
               errors.append(".nojekyll is missing")
+          if len(pages) != 42:
+              errors.append(f"expected 42 generated HTML pages, found {len(pages)}")
+          legacy_markers = ("jquery", "bootstrap", "modernizr", "swiper", "owl.carousel", "venobox", "gsap", "hotelhub")
           for page in pages:
-              markup = page.read_text(encoding="utf-8")
-              if "255 Court St" in markup:
+              markup = page.read_text(encoding="utf-8").lower()
+              if "255 court st" in markup:
                   errors.append(f"{page} contains private/non-public inventory")
-          # Verify all referenced cottage images exist on disk
-          for page in pages:
-              for match in __import__("re").finditer(r'assets/images/cottages/([^/"\']+(?:/[^"\')\s]+)?)', page.read_text()):
-                  img_path = Path(match.group(0))
-                  if not img_path.is_file():
-                      errors.append(f"{page} references missing image: {match.group(0)}")
+              if any(marker in markup for marker in legacy_markers):
+                  errors.append(f"{page} contains a legacy runtime marker")
+              if '<link rel="canonical"' not in markup:
+                  errors.append(f"{page} is missing a canonical URL")
+              images = __import__("re").findall(r'<img[^>]+src="([^"]+)"', markup)
+              if any("/_astro/logo-mtcottages" not in source for source in images) and "<picture" not in markup:
+                  errors.append(f"{page} contains an unresponsive content image")
+              if "assets/images/cottages/" in markup:
+                  errors.append(f"{page} leaks a source asset path instead of an optimized Astro asset")
           if errors:
               raise SystemExit("\n".join(errors))
           print(f"Validated {len(pages)} Astro HTML pages")

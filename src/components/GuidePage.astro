@@ -1,0 +1,45 @@
+---
+import ResponsivePhoto from "./ResponsivePhoto.astro";
+import PropertyCard from "./PropertyCard.astro";
+import type { Cottage, Guide } from "../data/site";
+
+interface Props {
+  guide: Guide;
+  cottages?: Cottage[];
+}
+
+const { guide, cottages = [] } = Astro.props;
+---
+
+<section class="guide-hero section--tight">
+  <div class="site-width guide-hero-grid">
+    <div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>{guide.eyebrow}</span></nav>
+      <p class="eyebrow mt-3">{guide.eyebrow}</p>
+      <h1>{guide.title}</h1>
+      <p class="lede">{guide.description}</p>
+      <p class="mt-2 reading">{guide.intro}</p>
+      <a class="button mt-3" href={guide.cta?.toLowerCase().includes("inquiry") ? "https://stay.mtcottages.com/" : "/cottages.html"}>{guide.cta || "Find your place"} <span aria-hidden="true">↗</span></a>
+    </div>
+    {guide.photo && <figure class="hero-image-frame"><ResponsivePhoto {...guide.photo} priority sizes="(max-width: 900px) 100vw, 55vw" /><figcaption class="sr-only">{guide.photo.alt}</figcaption></figure>}
+  </div>
+</section>
+
+<section class="section section--paper">
+  <div class="site-width prose">
+    {guide.sections.map((section) => (
+      <article class="prose-section">
+        <h2>{section.title}</h2>
+        <div class="stack"><p>{section.body}</p>{section.bullets && <ul>{section.bullets.map((bullet) => <li>{bullet}</li>)}</ul>}</div>
+      </article>
+    ))}
+  </div>
+</section>
+
+{cottages.length > 0 && <section class="section"><div class="site-width"><div class="section-heading"><div><p class="eyebrow">Public homes</p><h2>Places to consider.</h2></div><p>Availability changes. These homes are a useful place to start, then we can confirm timing and details.</p></div><div class="card-grid">{cottages.map((cottage) => <PropertyCard cottage={cottage} />)}</div></div></section>}
+
+<section class="section section--dark"><div class="site-width split split--wide"><div><p class="eyebrow" style="color:#e4b482">The next step</p><h2>Tell us what would make the place work.</h2></div><div><p class="lede lede--light">Share your timing, preferred community, household, and the reason for your stay. We will follow up with current options and the right next step.</p><a class="button button--light mt-3" href="https://stay.mtcottages.com/">Start a stay inquiry <span aria-hidden="true">↗</span></a></div></div></section>
+
+<style>
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+</style>

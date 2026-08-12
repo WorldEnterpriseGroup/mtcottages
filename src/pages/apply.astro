@@ -1,0 +1,19 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import StayInquiryForm from "../components/StayInquiryForm.astro";
+---
+<SiteLayout title="Start a Stay Inquiry | Mt Cottages" description="Tell Mt Cottages what you need from a furnished home and we will follow up with current options and the right next step.">
+  <section class="page-hero section--tight">
+    <div class="site-width narrow-copy">
+      <p class="eyebrow">Stay with us</p>
+      <h1>Start with a useful conversation.</h1>
+      <p class="lede">Share your timing, household, community, and the details that would make a furnished place work. This is an inquiry—not a lease, approval, or guarantee of housing.</p>
+    </div>
+  </section>
+  <section class="section section--paper">
+    <div class="site-width form-shell">
+      <div class="section-heading"><div><p class="eyebrow">A better starting point</p><h2>Tell us what the stay needs to do.</h2></div><p>We use this information to compare the current public portfolio and confirm availability, pricing, and next steps.</p></div>
+      <StayInquiryForm />
+    </div>
+  </section>
+</SiteLayout>

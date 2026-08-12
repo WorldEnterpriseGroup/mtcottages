@@ -1,0 +1,115 @@
+---
+import logo from "../../assets/images/logo-mtcottages.svg";
+import { navGroups } from "../data/site";
+
+const current = Astro.url.pathname;
+const isCurrent = (href: string) => current.endsWith(href) || (href === "index.html" && current === "/");
+---
+
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header">
+  <div class="site-width header-inner">
+    <a class="brand" href="/" aria-label="Mt Cottages home">
+      <img src={logo.src} width={logo.width} height={logo.height} alt="Mt Cottages" />
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary navigation">
+      {navGroups.map((group) => (
+        <details class="nav-item" open={group.items.some(([, href]) => isCurrent(href))}>
+          <summary>{group.label}</summary>
+          <div class="mega-panel">
+            <div class="site-width mega-inner">
+              <div class="mega-intro">
+                <p>Explore Mt Cottages</p>
+                <h2>{group.label === "Cottages" ? "A place that fits the chapter." : group.label === "Locations" ? "Start with where life takes you." : group.label === "Living" ? "Room for the season ahead." : group.label === "Services" ? "The helpful parts included." : "Support for the stay you are in."}</h2>
+                <span>Use the guide that matches your timing, household, and reason for staying.</span>
+                <a class="inline-link" href={`/${group.href}`}>See {group.label.toLowerCase()} <span aria-hidden="true">↗</span></a>
+              </div>
+              <div class="mega-groups">
+                <section class="mega-group">
+                  <p class="mega-group-label">Start here</p>
+                  <ul>
+                    {group.items.slice(0, Math.ceil(group.items.length / 2)).map(([label, href]) => <li><a href={`/${href}`}>{label}</a></li>)}
+                  </ul>
+                </section>
+                <section class="mega-group">
+                  <p class="mega-group-label">More to explore</p>
+                  <ul>
+                    {group.items.slice(Math.ceil(group.items.length / 2)).map(([label, href]) => <li><a href={`/${href}`}>{label}</a></li>)}
+                  </ul>
+                </section>
+              </div>
+              <aside class="mega-feature">
+                <p>Ready when you are</p>
+                <h3>Tell us what would make the place work.</h3>
+                <span>Share dates, community, household, and the details that matter to your stay.</span>
+                <a href="https://stay.mtcottages.com/">Start a stay inquiry <span aria-hidden="true">↗</span></a>
+              </aside>
+            </div>
+          </div>
+        </details>
+      ))}
+      <a class="nav-direct" href="/about.html">About</a>
+      <a class="nav-direct" href="/contact.html">Contact</a>
+    </nav>
+
+    <a class="header-cta" href="https://stay.mtcottages.com/">Stay with us <span aria-hidden="true">↗</span></a>
+
+    <details class="mobile-nav">
+      <summary>Menu</summary>
+      <div class="mobile-nav-panel">
+        <ul>
+          {navGroups.map((group) => (
+            <li>
+              <details class="mobile-group" open={group.items.some(([, href]) => isCurrent(href))}>
+                <summary>{group.label}</summary>
+                <ul>
+                  {group.items.map(([label, href]) => <li><a href={`/${href}`}>{label}</a></li>)}
+                </ul>
+              </details>
+            </li>
+          ))}
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+        <a class="button" href="https://stay.mtcottages.com/">Start a stay inquiry <span aria-hidden="true">↗</span></a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<style>
+  .nav-direct { padding: .75rem .65rem; font-size: .9rem; text-decoration: none; }
+  details > summary { user-select: none; }
+</style>
+
+<script>
+  const header = document.querySelector(".site-header");
+  const desktopNavigation = header?.querySelector(".primary-nav");
+  const mobileMenu = header?.querySelector(".mobile-nav");
+
+  desktopNavigation?.querySelectorAll(".nav-item").forEach((item) => {
+    item.addEventListener("toggle", () => {
+      if (!item.open) return;
+      desktopNavigation.querySelectorAll(".nav-item[open]").forEach((other) => {
+        if (other !== item) other.removeAttribute("open");
+      });
+    });
+  });
+
+  mobileMenu?.addEventListener("toggle", () => {
+    document.documentElement.style.overflow = mobileMenu.open ? "hidden" : "";
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    const openMenu = header?.querySelector(".mobile-nav[open]");
+    if (openMenu instanceof HTMLDetailsElement) {
+      openMenu.removeAttribute("open");
+      document.documentElement.style.overflow = "";
+      openMenu.querySelector("summary")?.focus();
+      return;
+    }
+    header?.querySelectorAll(".primary-nav details[open]").forEach((item) => item.removeAttribute("open"));
+  });
+</script>

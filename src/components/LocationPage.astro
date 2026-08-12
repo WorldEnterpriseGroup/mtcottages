@@ -1,0 +1,11 @@
+---
+import GuidePage from "./GuidePage.astro";
+import type { Guide, Cottage } from "../data/site";
+
+interface Props {
+  guide: Guide & { town: string; cottages?: Cottage[] };
+}
+
+const { guide } = Astro.props;
+---
+<GuidePage guide={guide} cottages={guide.cottages} />

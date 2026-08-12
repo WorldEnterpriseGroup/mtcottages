@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Guard against drift between the two copies of the Mt Cottages application form.
 
-``apply.html`` (served on mtcottages.com) and ``infra/azure/apply-proxy/index.html``
+The generated ``dist/apply.html`` (served on mtcottages.com) and ``infra/azure/apply-proxy/index.html``
 (the file the Azure Function serves live at stay.mtcottages.com) both embed the
 same inquiry form and must stay in lock-step: same field names, same input
 types, same required flags, same select option values in the same order.
@@ -19,7 +19,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-APPLY_HTML = ROOT / "apply.html"
+APPLY_HTML = ROOT / "dist" / "apply.html"
 PROXY_HTML = ROOT / "infra" / "azure" / "apply-proxy" / "index.html"
 
 VOID_INPUT_TAGS = {"input"}
@@ -173,7 +173,7 @@ def diff_forms(apply_parser: ApplicationFormExtractor, proxy_parser: Application
 def main() -> int:
     for path in (APPLY_HTML, PROXY_HTML):
         if not path.is_file():
-            print(f"error: {path} does not exist", file=sys.stderr)
+            print(f"error: {path} does not exist; run the Astro build first", file=sys.stderr)
             return 1
 
     apply_parser = extract(APPLY_HTML)
@@ -185,7 +185,7 @@ def main() -> int:
         for err in errors:
             print(f"  - {err}", file=sys.stderr)
         print(
-            "\napply.html and infra/azure/apply-proxy/index.html must keep the same "
+            "\ndist/apply.html and infra/azure/apply-proxy/index.html must keep the same "
             "field names, types, required flags, and select options (in order).",
             file=sys.stderr,
         )
@@ -193,7 +193,7 @@ def main() -> int:
 
     print(
         f"OK: {len(apply_parser.fields)} fields and {len(apply_parser.select_options)} "
-        "selects match between apply.html and infra/azure/apply-proxy/index.html"
+        "selects match between dist/apply.html and infra/azure/apply-proxy/index.html"
     )
     return 0
 

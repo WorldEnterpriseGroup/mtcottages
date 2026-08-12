@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the comprehensive photo metadata index _data/photo-index.json."""
+"""Build the comprehensive curated portfolio photo index."""
 
 import json
 import os
@@ -10,7 +10,6 @@ from PIL import Image
 REPO = Path(__file__).resolve().parent.parent
 PUBLISHED = REPO / "assets" / "images" / "cottages"
 STAGING = REPO / "sharepoint-download-staging"
-GENERATE = REPO / "scripts" / "generate-house-pages.py"
 OUTPUT = REPO / "_data" / "photo-index.json"
 
 # ── Known entity data ──────────────────────────────────────
@@ -461,31 +460,6 @@ def build_index():
             "status": "published" if has_selection else "coming_soon",
         }
 
-    # ── Template stock counts ──
-    template_dirs = [
-        "assets/images/resource",
-        "assets/images/main-home",
-        "assets/images/home-two",
-        "assets/images/home-three",
-        "assets/images/home-four",
-        "assets/images/home-five",
-        "assets/images/slider",
-    ]
-    template_counts = {}
-    template_total = 0
-    for d in template_dirs:
-        dp = REPO / d
-        if dp.is_dir():
-            count = sum(
-                1 for f in os.listdir(dp)
-                if os.path.isfile(dp / f)
-                and os.path.splitext(f)[1].lower() in (".jpg", ".jpeg", ".png", ".gif", ".svg", ".ico", ".webp")
-            )
-            template_counts[d] = count
-            template_total += count
-        else:
-            template_counts[d] = 0
-
     # ── Assemble index ──
     index = {
         "version": 1,
@@ -493,12 +467,6 @@ def build_index():
         "generator": "scripts/build-photo-index.py",
         "houses": houses_data,
         "staging": staging_data,
-        "template_stock": {
-            "hotelhub": {
-                "count": template_total,
-                "directories": {d: {"count": c} for d, c in template_counts.items()},
-            }
-        },
         "coverage": {
             "total_houses": len(all_ids),
             "houses_with_published_photos": houses_with_photos,

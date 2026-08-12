@@ -1,0 +1,27 @@
+---
+import "../styles/site.css";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import favicon from "../../assets/images/fav-icon/icon.png";
+
+interface Props { title: string; description: string; canonical?: string; noindex?: boolean; }
+const { title, description, canonical, noindex = false } = Astro.props;
+const canonicalUrl = canonical || new URL(Astro.url.pathname, "https://mtcottages.com").toString();
+---
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href={favicon.src} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <SiteHeader />
+    <main id="main-content"><slot /></main>
+    <SiteFooter />
+  </body>
+</html>

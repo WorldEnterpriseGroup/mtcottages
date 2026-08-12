@@ -10,7 +10,8 @@ export default defineConfig({
     assets: "_astro"
   },
   image: {
-    responsiveStyles: true
+    responsiveStyles: true,
+    service: { entrypoint: "astro/assets/services/sharp" }
   },
   integrations: [sitemap()]
 });

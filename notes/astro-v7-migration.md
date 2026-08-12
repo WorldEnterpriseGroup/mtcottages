@@ -1,13 +1,9 @@
 # Astro v7 migration
 
-The production site is rebuilt as a static Astro v7 site while preserving the previous HotelHub theme.
+The marketing site is now authored directly in `src/pages` and shared Astro components. Public `.html` URLs are preserved with Astro’s `build.format: "preserve"` setting. The old root HTML templates and HotelHub runtime are no longer part of the source or production artifact.
 
-- Toolchain: Astro `7.2.1`, TypeScript `7.0.2`, Vite 8, Node 22+.
-- `@astrojs/check` is intentionally not installed: its latest release still declares a TypeScript 5/6 peer range. The build gate is `astro sync && tsc --noEmit`, followed by `astro build`.
-- `build.format: "preserve"` retains the existing `.html` and nested `index.html` URLs.
-- The original HotelHub pages under the repository root are synchronized into `src/pages` as Astro page sources by `scripts/sync-hotelhub-pages.mjs`. This keeps the prior markup, CSS hooks, route map, and approved photo assignments intact instead of introducing another visual redesign.
-- `scripts/copy-hotelhub-assets.mjs` copies the existing public `assets`, `venobox`, and `font` bundles into `dist` after Astro builds the page sources.
-- Raw SharePoint downloads, house maps, source manifests, and address-level inventory stay outside the Astro build.
-- The prior HotelHub pages retain their curated public derivatives and exact image assignments. Raw SharePoint downloads and private inventory maps remain outside the Astro build.
-- Wardah is the photo reviewer. The next release should be reviewed only after the previous visual system is re-established; her guidance remains authoritative for hero choices, room coverage, ordering, crops, and newer/final photos.
-- The current release adds a generated, accessible mega navigation over that preserved theme. Desktop panels group the public information architecture into Cottages, Locations, Living, Services, and Residents; mobile uses native disclosure groups with a compact menu button. The behavior is intentionally light: the browser owns disclosure semantics, and [`assets/js/mtcottages-nav.js`](../assets/js/mtcottages-nav.js) supplies exclusive desktop panels, Escape handling, focus return, and mobile scroll locking.
+The build uses Astro 7.2.1 and TypeScript 7.0.2, with Astro `Picture` output for responsive AVIF/WebP/JPG images. The site is static and deploys through the existing GitHub Pages workflow from `gh-pages`.
+
+The stay inquiry remains a separate Azure-backed application edge. `scripts/check-form-parity.py` compares the generated native `dist/apply.html` form against the proxy form.
+
+Wardah’s Teams feedback remains the source of truth for property photography: lead with clear exterior/front-of-house imagery where available, keep the card order useful, show Quick Details and amenity coverage, and ask her to steer replacements for weak or ambiguous property heroes.
