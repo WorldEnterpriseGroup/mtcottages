@@ -3,10 +3,22 @@ import "../styles/site.css";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import favicon from "../../assets/images/fav-icon/icon.png";
+import socialImage from "../../assets/images/cottages/parkersburg-02/homepage-hero-buck.avif";
 
-interface Props { title: string; description: string; canonical?: string; noindex?: boolean; }
-const { title, description, canonical, noindex = false } = Astro.props;
+interface Props { title: string; description: string; canonical?: string; noindex?: boolean; schema?: Record<string, unknown> | Record<string, unknown>[]; }
+const { title, description, canonical, noindex = false, schema } = Astro.props;
 const canonicalUrl = canonical || new URL(Astro.url.pathname, "https://mtcottages.com").toString();
+const socialUrl = new URL(socialImage.src, "https://mtcottages.com").toString();
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  name: "Mt Cottages",
+  url: "https://mtcottages.com/",
+  email: "stay@mtcottages.com",
+  image: socialUrl,
+  areaServed: ["Marietta, Ohio", "Parkersburg, West Virginia", "Ravenswood, West Virginia", "Racine, Ohio"],
+};
+const schemas = [organizationSchema, ...(schema ? (Array.isArray(schema) ? schema : [schema]) : [])];
 ---
 <!doctype html>
 <html lang="en-US">
@@ -14,14 +26,26 @@ const canonicalUrl = canonical || new URL(Astro.url.pathname, "https://mtcottage
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" href={favicon.src} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Mt Cottages" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialUrl} />
+    <meta property="og:image:alt" content="A furnished Mt Cottages home in the Mid-Ohio Valley" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#173a38" />
+    <script type="application/ld+json" set:html={JSON.stringify(schemas)} />
     <title>{title}</title>
   </head>
   <body>
     <SiteHeader />
     <main id="main-content"><slot /></main>
+    <aside class="mobile-action" aria-label="Stay inquiry shortcut"><span><strong>Planning a longer stay?</strong><small>Tell us the timing and household.</small></span><a href="/apply.html">Start inquiry</a></aside>
     <SiteFooter />
   </body>
 </html>

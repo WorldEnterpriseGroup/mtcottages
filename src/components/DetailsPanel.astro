@@ -18,5 +18,6 @@ const { cottage } = Astro.props as { cottage: Cottage };
     <strong>{cottage.price}</strong>
     <span class="text-muted">{cottage.shortTerm}</span>
   </div>
-  <a class="button" href="https://stay.mtcottages.com/">Ask about this home <span aria-hidden="true">↗</span></a>
+  <a class="button" href={`/apply.html?property=${encodeURIComponent(cottage.id)}`}>Ask about this home <span aria-hidden="true">↗</span></a>
+  <p class="details-note">An inquiry starts a conversation. It is not a lease, approval, or guarantee of availability.</p>
 </aside>

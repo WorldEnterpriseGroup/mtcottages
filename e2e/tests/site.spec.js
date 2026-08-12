@@ -1,4 +1,5 @@
 const { test, expect } = require("@playwright/test");
+const AxeBuilder = require("@axe-core/playwright").default;
 
 const publicPages = [
   "/index.html", "/cottages.html", "/available.html", "/locations.html", "/room-to-settle.html",
@@ -6,7 +7,7 @@ const publicPages = [
   "/fully-furnished-homes.html", "/health-professionals.html", "/work-relocation.html",
   "/insurance-housing.html", "/family-stays.html", "/living.html", "/services.html",
   "/home-amenities.html", "/guest-services.html", "/meal-preparation.html", "/property-care.html",
-  "/housekeeping.html", "/partnerships.html", "/pay-rent.html", "/residents.html",
+  "/housekeeping.html", "/partnerships.html", "/pay-rent.html", "/privacy.html", "/residents.html",
   "/resident-portal.html", "/maintenance.html", "/emergency-maintenance.html",
   "/marietta/index.html", "/parkersburg/index.html", "/ravenswood/index.html",
   "/grantsville/index.html", "/racine/index.html", "/marietta/frederick-cottage.html",
@@ -29,8 +30,10 @@ test("the homepage exposes the native Astro navigation and responsive image pipe
   await expect(navigation).toContainText("Services");
   await expect(navigation).toContainText("About");
   await expect(navigation).toContainText("Contact");
-  await expect(page.locator('a[href="https://stay.mtcottages.com/"]:visible').first()).toBeVisible();
-  await expect(page.locator("picture").first()).toHaveCount(1);
+  await expect(page.locator('a[href="/apply.html"]:visible').first()).toBeVisible();
+  await expect(page.locator('.hero-media img[src*="/_astro/"]')).toHaveCount(1);
+  await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1);
+  await expect(page.locator('meta[property="og:image"]')).toHaveCount(1);
 });
 
 test("every public route is reachable and privacy-safe", async ({ page, request }) => {
@@ -56,7 +59,7 @@ test("property pages keep the curated room coverage and responsive assets", asyn
   await expect(gallery).toHaveCount(5);
   await expect(gallery.first()).toHaveAttribute("alt", /Frederick Cottage/);
   expect(await gallery.first().evaluate((image) => image.naturalWidth)).toBeGreaterThan(0);
-  await expect(page.locator(".property-hero picture")).toHaveCount(1);
+  await expect(page.locator('.property-hero img[src*="/_astro/"]')).toHaveCount(1);
 });
 
 test("the application route points to the secure application host", async ({ page }) => {
@@ -67,10 +70,32 @@ test("the application route points to the secure application host", async ({ pag
   for (const name of [
     "firstName", "lastName", "email", "phone", "moveInDate", "duration", "occupants",
     "preferredLocation", "homeSize", "stayType", "pets", "employment", "monthlyBudget",
-    "furnishedNeeds", "message", "screeningConsent", "termsAccepted"
+    "furnishedNeeds", "message", "screeningConsent", "termsAccepted", "propertyId"
   ]) {
     await expect(form.locator(`[name="${name}"]`), `missing application field: ${name}`).toHaveCount(1);
   }
+});
+
+test("a property inquiry carries the selected cottage into the form", async ({ page }) => {
+  await page.goto("/apply.html?property=frederick");
+  await expect(page.locator(".form-context")).toContainText("Frederick Cottage");
+  await expect(page.locator('input[name="propertyId"]')).toHaveValue("frederick");
+});
+
+test("the cottages and locations indexes expose useful decision tools", async ({ page }) => {
+  await page.goto("/cottages.html");
+  await expect(page.locator(".property-card")).toHaveCount(8);
+  await expect(page.locator(".comparison-table tbody tr")).toHaveCount(8);
+  await page.goto("/locations.html");
+  await expect(page.locator(".location-row")).toHaveCount(5);
+  await expect(page.locator(".location-row").nth(3)).toContainText("Planning guide");
+});
+
+test("all primary stay CTAs remain on the native inquiry route", async ({ page }) => {
+  await page.goto("/index.html");
+  await expect(page.locator('a[href^="https://stay.mtcottages.com/"]:not([href*="/api/"])')).toHaveCount(0);
+  await page.goto("/marietta/frederick-cottage.html");
+  await expect(page.locator('a[href^="/apply.html?property=frederick"]')).toHaveCount(3);
 });
 
 test("desktop navigation exposes one accessible mega panel at a time", async ({ page }) => {
@@ -118,7 +143,15 @@ test("the layout does not overflow a narrow viewport", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   for (const path of ["/index.html", "/cottages.html", "/marietta/frederick-cottage.html"]) {
     await page.goto(path);
-    const dimensions = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, content: document.documentElement.scrollWidth }));
+    const dimensions = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, content: document.body.scrollWidth }));
     expect(dimensions.content, `${path} overflows on mobile`).toBe(dimensions.viewport);
+  }
+});
+
+test("key decision routes have no automatically detectable accessibility violations", async ({ page }) => {
+  for (const path of ["/index.html", "/cottages.html", "/marietta/frederick-cottage.html", "/apply.html"]) {
+    await page.goto(path);
+    const results = await new AxeBuilder({ page }).analyze();
+    expect(results.violations, `${path}: ${results.violations.map((item) => item.id).join(", ")}`).toEqual([]);
   }
 });

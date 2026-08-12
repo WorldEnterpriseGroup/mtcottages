@@ -6,11 +6,16 @@ const { cottage } = Astro.props as { cottage: Cottage };
 <section class="section section--paper" aria-labelledby="gallery-title">
   <div class="site-width">
     <div class="section-heading">
-      <div><p class="eyebrow">A deliberate property story</p><h2 id="gallery-title">See how the home lives.</h2></div>
-      <p>We are building each gallery around the same useful sequence: arrival, kitchen, living, bedrooms, bath, and the details that help a longer stay make sense.</p>
+      <div><p class="eyebrow">Tour the home</p><h2 id="gallery-title">See how the home lives.</h2></div>
+      <p>Move through the arrival, kitchen, living space, bedrooms, bath, and the details that help a longer stay make sense.</p>
     </div>
     <div class="gallery-grid">
-      {cottage.gallery.map((item) => <figure class="gallery-item"><ResponsivePhoto {...item} sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw" /><figcaption>{item.caption || item.alt}</figcaption></figure>)}
+      {cottage.gallery.map((item, index) => (
+        <figure class={`gallery-item gallery-item--${index + 1}`}>
+          <ResponsivePhoto {...item} widths={index === 0 ? [480, 768, 1080] : [360, 640, 900]} loading="lazy" sizes={index === 0 ? "(max-width: 900px) 100vw, 66vw" : "(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"} />
+          <figcaption><span>{String(index + 1).padStart(2, "0")}</span>{item.caption || item.alt}</figcaption>
+        </figure>
+      ))}
     </div>
     <div class="coverage mt-3" aria-label="Photo coverage"><span>Photo coverage</span>{cottage.coverage.map((item) => <span>{item}</span>)}</div>
   </div>

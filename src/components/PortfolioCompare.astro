@@ -1,0 +1,22 @@
+---
+import type { Cottage } from "../data/site";
+const { cottages } = Astro.props as { cottages: Cottage[] };
+---
+
+<section class="section section--paper" aria-labelledby="compare-title">
+  <div class="site-width">
+    <div class="section-heading">
+      <div><p class="eyebrow">Compare at a glance</p><h2 id="compare-title">Narrow the choice before you open every gallery.</h2></div>
+      <p>Use location and bedroom count as a first filter. Availability and final terms are confirmed after we understand the timing and household.</p>
+    </div>
+    <div class="comparison-clip"><div class="comparison-scroll" tabindex="0" role="region" aria-label="Scrollable cottage comparison">
+      <table class="comparison-table">
+        <thead><tr><th scope="col">Home</th><th scope="col">Community</th><th scope="col">Space</th><th scope="col">Monthly guide</th><th scope="col"><span class="sr-only">Open</span></th></tr></thead>
+        <tbody>
+          {cottages.map((cottage) => <tr><th scope="row">{cottage.name}</th><td>{cottage.town}</td><td>{cottage.bedrooms}</td><td>{cottage.price}</td><td><a href={`/${cottage.path}`}>View <span aria-hidden="true">↗</span></a></td></tr>)}
+        </tbody>
+      </table>
+    </div></div>
+    <p class="comparison-hint">On a small screen, swipe the table to compare every column.</p>
+  </div>
+</section>

@@ -1,5 +1,5 @@
 ---
-import { Picture } from "astro:assets";
+import { Image } from "astro:assets";
 import type { Photo } from "../data/site";
 
 interface Props extends Photo {
@@ -10,16 +10,15 @@ interface Props extends Photo {
   class?: string;
 }
 
-const { src, alt, caption, focal, widths = [480, 720, 960, 1280], sizes = "(max-width: 900px) 100vw, 70vw", loading = "lazy", priority = false, class: className } = Astro.props;
+const { src, alt, caption, focal, widths = [640, 960, 1280], sizes = "(max-width: 900px) 100vw, 70vw", loading = "lazy", priority = false, class: className } = Astro.props;
 ---
 
-<Picture
+<Image
   src={src}
   alt={alt}
   widths={widths}
   sizes={sizes}
-  formats={["avif", "webp"]}
-  fallbackFormat="jpg"
+  format="avif"
   loading={priority ? "eager" : loading}
   decoding="async"
   fetchpriority={priority ? "high" : "auto"}

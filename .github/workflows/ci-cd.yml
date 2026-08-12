@@ -9,8 +9,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: mtcottages-${{ github.workflow }}-${{ github.ref }}
@@ -22,15 +20,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.x"
 
       - name: Set up Node
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: "22"
           cache: npm
@@ -55,8 +53,8 @@ jobs:
               errors.append("CNAME must remain mtcottages.com")
           if not Path("dist/.nojekyll").is_file():
               errors.append(".nojekyll is missing")
-          if len(pages) != 42:
-              errors.append(f"expected 42 generated HTML pages, found {len(pages)}")
+          if len(pages) != 43:
+              errors.append(f"expected 43 generated HTML pages, found {len(pages)}")
           legacy_markers = ("jquery", "bootstrap", "modernizr", "swiper", "owl.carousel", "venobox", "gsap", "hotelhub")
           for page in pages:
               markup = page.read_text(encoding="utf-8").lower()
@@ -67,7 +65,7 @@ jobs:
               if '<link rel="canonical"' not in markup:
                   errors.append(f"{page} is missing a canonical URL")
               images = __import__("re").findall(r'<img[^>]+src="([^"]+)"', markup)
-              if any("/_astro/logo-mtcottages" not in source for source in images) and "<picture" not in markup:
+              if any("/_astro/logo-mtcottages" not in source for source in images) and "srcset=" not in markup:
                   errors.append(f"{page} contains an unresponsive content image")
               if "assets/images/cottages/" in markup:
                   errors.append(f"{page} leaks a source asset path instead of an optimized Astro asset")
@@ -75,6 +73,8 @@ jobs:
               raise SystemExit("\n".join(errors))
           print(f"Validated {len(pages)} Astro HTML pages")
           PY
+          test "$(du -sm dist | cut -f1)" -le 70
+          test -z "$(find dist -type f -size +2M -print -quit)"
 
       - name: Guard against committed street addresses
         run: |
@@ -103,10 +103,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Node
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: "22"
           cache: npm
@@ -144,7 +144,7 @@ jobs:
 
       - name: Upload local Playwright report
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: mtcottages-local-playwright-report
           path: e2e/playwright-report
@@ -155,15 +155,19 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/gh-pages'
     needs: e2e-local
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Node
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: "22"
           cache: npm
@@ -175,13 +179,13 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Upload Astro artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
   live-smoke:
     name: Live smoke after gh-pages publish
@@ -190,10 +194,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Node
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: "22"
           cache: npm
@@ -207,16 +211,15 @@ jobs:
         working-directory: e2e
         run: npx playwright install --with-deps chromium
 
-      - name: Verify the published application edge
+      - name: Verify the published marketing site
         working-directory: e2e
         env:
-          BASE_URL: https://stay.mtcottages.com
-          LIVE_SMOKE: "1"
-        run: npx playwright test tests/live.spec.js
+          BASE_URL: https://mtcottages.com
+        run: npx playwright test tests/site.spec.js
 
       - name: Upload live Playwright report
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: mtcottages-live-playwright-report
           path: e2e/playwright-report

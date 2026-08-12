@@ -2,6 +2,8 @@
 import SiteLayout from "../layouts/SiteLayout.astro";
 import ResponsivePhoto from "../components/ResponsivePhoto.astro";
 import PropertyCard from "../components/PropertyCard.astro";
+import TrustStrip from "../components/TrustStrip.astro";
+import PortfolioCompare from "../components/PortfolioCompare.astro";
 import { cottages } from "../data/site";
 import homeHero from "../../assets/images/cottages/parkersburg-02/homepage-hero-buck.avif";
 import homeDetail from "../../assets/images/cottages/marietta-01/photo-27.avif";
@@ -12,14 +14,16 @@ import homeDetail from "../../assets/images/cottages/marietta-01/photo-27.avif";
     <div class="site-width hero-grid">
       <div class="hero-copy">
         <p class="eyebrow">Furnished living in the Mid-Ohio Valley</p>
-        <h1>A place to land.</h1>
-        <p class="lede">Whole furnished homes for work, transition, family, and the chapters that take a little longer.</p>
-        <div class="cluster"><a class="button" href="https://stay.mtcottages.com/">Stay with us <span aria-hidden="true">↗</span></a><a class="text-link" href="/cottages.html">Find your place <span aria-hidden="true">↗</span></a></div>
+        <h1>Furnished cottages for stays of 30 days or longer.</h1>
+        <p class="lede">Compare eight one-, two-, and three-bedroom homes in Marietta, Parkersburg, and Ravenswood. Tell us your dates to confirm current availability and pricing.</p>
+        <div class="cluster"><a class="button" href="/cottages.html">Browse 8 cottages <span aria-hidden="true">↗</span></a><a class="text-link" href="/apply.html">Ask about your dates <span aria-hidden="true">↗</span></a></div>
         <p class="kicker mt-4">Marietta · Parkersburg · Ravenswood · Racine</p>
       </div>
       <figure class="hero-media"><ResponsivePhoto src={homeHero} alt="Buck Cottage front exterior with porch, centered entry, and mature trees" priority sizes="(max-width: 900px) 100vw, 60vw" /><figcaption>Homes with room for the season ahead.</figcaption></figure>
     </div>
   </section>
+
+  <TrustStrip />
 
   <section class="section section--paper">
     <div class="site-width">
@@ -29,8 +33,10 @@ import homeDetail from "../../assets/images/cottages/marietta-01/photo-27.avif";
   </section>
 
   <section class="section">
-    <div class="site-width"><div class="section-heading"><div><p class="eyebrow">A considered portfolio</p><h2>Start with the homes.</h2></div><p>Every property card follows the same useful order: image, name, location, bedroom count, price, and a clear way to inspect the home.</p></div><div class="card-grid card-grid--four">{cottages.slice(0, 4).map((cottage) => <PropertyCard cottage={cottage} />)}</div><a class="text-link mt-3" href="/cottages.html">See all public cottages <span aria-hidden="true">↗</span></a></div>
+    <div class="site-width"><div class="section-heading"><div><p class="eyebrow">Homes currently listed</p><h2>Start with the homes.</h2></div><p>Compare the community, bedroom count, monthly guide, and photographs that matter to your everyday stay.</p></div><div class="card-grid card-grid--four">{cottages.slice(0, 4).map((cottage) => <PropertyCard cottage={cottage} />)}</div><a class="text-link mt-3" href="/cottages.html">See all listed cottages <span aria-hidden="true">↗</span></a></div>
   </section>
+
+  <PortfolioCompare cottages={cottages} />
 
   <section class="section section--dark"><div class="site-width split"><div><p class="eyebrow" style="color:#e4b482">What stays with you</p><h2>Care that makes furnished living feel easier.</h2></div><div class="stack"><p class="lede lede--light">We think about the practical parts around the room: timing, routes, household, upkeep, and the details that make a place feel ready.</p><div class="cluster"><a class="button button--light" href="/services.html">Explore services</a><a class="text-link" style="color:#e4b482" href="/contact.html">Talk with Mt Cottages <span aria-hidden="true">↗</span></a></div></div></div></section>
 

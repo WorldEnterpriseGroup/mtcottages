@@ -1,9 +1,22 @@
+---
+import { cottages } from "../data/site";
+---
 <form class="stay-form" action="https://stay.mtcottages.com/api/apply" method="post" data-application-form>
-  <div class="form-grid">
+  <aside class="form-context" data-property-context hidden><span class="eyebrow">Property selected</span><strong data-property-name></strong><a data-property-link href="/cottages.html">Review property</a></aside>
+  <fieldset class="form-stage">
+    <legend><span>01</span> Contact details</legend>
+    <p>How should we reach you about this stay?</p>
+    <div class="form-grid">
     <label>First name <input type="text" name="firstName" autocomplete="given-name" required /></label>
     <label>Last name <input type="text" name="lastName" autocomplete="family-name" required /></label>
     <label>Email <input type="email" name="email" autocomplete="email" required /></label>
     <label>Phone <input type="tel" name="phone" autocomplete="tel" required /></label>
+    </div>
+  </fieldset>
+  <fieldset class="form-stage">
+    <legend><span>02</span> Timing and place</legend>
+    <p>Help us narrow the community, home size, and likely length of stay.</p>
+    <div class="form-grid">
     <label>Preferred move-in date <input type="date" name="moveInDate" required /></label>
     <label>How long might you stay?
       <select name="duration" required>
@@ -30,23 +43,44 @@
         <option>Travel or healthcare assignment</option><option>Work or relocation</option><option>Insurance housing</option><option>Family or extended stay</option><option>Research or fellowship</option><option>Personal transition</option><option>Something else</option>
       </select>
     </label>
+    </div>
+  </fieldset>
+  <fieldset class="form-stage">
+    <legend><span>03</span> Household and fit</legend>
+    <p>Share the details that could change which home works best.</p>
+    <div class="form-grid">
     <label>Pets
       <select name="pets"><option value="">Pets</option><option>No pets</option><option>Yes — I’ll share details below</option><option>Prefer to discuss</option></select>
     </label>
     <label>Role, employer, or assignment <span>(optional)</span><input type="text" name="employment" /></label>
     <label>Approximate monthly budget <span>(optional)</span><input type="text" name="monthlyBudget" /></label>
     <label>Furnishing or accessibility needs <span>(optional)</span><input type="text" name="furnishedNeeds" /></label>
-    <label class="form-grid__full">Tell us about your timing, household, pets, and what would make a place fit.
+    <label class="field--full">Tell us about your timing, household, pets, and what would make a place fit.
       <textarea name="message" rows="6" required></textarea>
     </label>
-  </div>
+    </div>
+  </fieldset>
   <fieldset class="form-consent">
     <legend>Before you send</legend>
     <label><input type="checkbox" name="screeningConsent" value="yes" /> I understand screening may be part of a later application step.</label>
     <label><input type="checkbox" name="termsAccepted" value="yes" required /> I confirm this is an inquiry and the information is accurate.</label>
   </fieldset>
-  <p class="form-notice">Please do not enter Social Security numbers, payment-card details, bank information, or other highly sensitive documents.</p>
+  <p class="form-notice"><strong>What happens next:</strong> Mt Cottages reviews the timing and household details, then follows up about current availability, pricing, and whether a later screening or agreement makes sense. Please do not enter Social Security numbers, payment-card details, bank information, or other highly sensitive documents. <a href="/privacy.html">Read the privacy notice.</a></p>
   <div class="form-trap" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
   <input type="hidden" name="sourceUrl" value="https://mtcottages.com/apply.html" />
+  <input type="hidden" name="propertyId" value="" />
   <button class="button" type="submit">Send inquiry <span aria-hidden="true">↗</span></button>
 </form>
+
+<script define:vars={{ properties: cottages.map(({ id, name, path }) => ({ id, name, path })) }}>
+  const requestedProperty = new URLSearchParams(window.location.search).get("property");
+  const selectedProperty = properties.find((property) => property.id === requestedProperty);
+  if (selectedProperty) {
+    const context = document.querySelector("[data-property-context]");
+    const input = document.querySelector('input[name="propertyId"]');
+    context.hidden = false;
+    context.querySelector("[data-property-name]").textContent = selectedProperty.name;
+    context.querySelector("[data-property-link]").href = `/${selectedProperty.path}`;
+    input.value = selectedProperty.id;
+  }
+</script>

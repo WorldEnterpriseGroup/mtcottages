@@ -7,15 +7,16 @@ const { cottage } = Astro.props as { cottage: Cottage };
 <article class="property-card">
   <a href={`/${cottage.path}`} aria-label={`View ${cottage.name}`}>
     <figure>
-      <ResponsivePhoto {...cottage.hero} sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw" />
+      <ResponsivePhoto {...cottage.hero} widths={[360, 640, 900]} sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw" />
     </figure>
   </a>
   <div class="property-card-body">
+    <p class="property-card-number" aria-hidden="true">{String(cottage.id === "frederick" ? 1 : ["broad", "buck", "yellow", "oak", "white", "virginia", "henrietta"].indexOf(cottage.id) + 1).padStart(2, "0")}</p>
     <div>
-      <h3><a href={`/${cottage.path}`}>{cottage.name}</a></h3>
+      <h2><a href={`/${cottage.path}`}>{cottage.name}</a></h2>
       <p class="location">{cottage.town}</p>
     </div>
-    <div class="property-meta"><span>{cottage.bedrooms}</span><span>·</span><span>Furnished</span></div>
+    <div class="property-meta"><span>{cottage.bedrooms}</span><span>Furnished</span><span>30+ days</span></div>
     <p class="property-price">{cottage.price}</p>
     <a class="property-link" href={`/${cottage.path}`}>View property <span aria-hidden="true">↗</span></a>
   </div>

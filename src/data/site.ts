@@ -51,7 +51,7 @@ import henriettaDining from "../../assets/images/cottages/ravenswood-03/photo-17
 import henriettaLiving from "../../assets/images/cottages/ravenswood-03/photo-06.avif";
 import henriettaKitchen from "../../assets/images/cottages/ravenswood-03/photo-31.avif";
 import henriettaBedroom from "../../assets/images/cottages/ravenswood-03/photo-42.avif";
-import henriettaBath from "../../assets/images/cottages/ravenswood-03/photo-40.avif";
+import henriettaBath from "../../assets/images/cottages/ravenswood-03/photo-04.avif";
 import henriettaYard from "../../assets/images/cottages/ravenswood-03/photo-36.avif";
 
 export type Photo = {
@@ -95,7 +95,7 @@ export const cottages: Cottage[] = [
     price: "$1,395/month",
     shortTerm: "Inquire for short-term pricing",
     summary: "A spacious three-bedroom furnished home with a working kitchen, room to gather, and a calm outdoor setting.",
-    hero: photo(mariettaExterior, "Frederick Cottage exterior with shutters, trees, lawn, and covered entry", "A clear front-of-house view for orientation.", "center 40%"),
+    hero: photo(mariettaExterior, "Frederick Cottage exterior with shutters, trees, lawn, and covered entry", "A clear front-of-house view for orientation.", "32% 45%"),
     gallery: [
       photo(mariettaKitchen, "Frederick Cottage kitchen with oak cabinets and full-size appliances", "The kitchen is set up for everyday meals."),
       photo(mariettaLiving, "Frederick Cottage sitting room with blue walls, seating, and natural light", "A comfortable room for settling in."),
@@ -122,7 +122,7 @@ export const cottages: Cottage[] = [
       photo(broadBedroom, "Broad Cottage bedroom with red and black bedding"),
       photo(broadBedroomAlt, "Broad Cottage bedroom with an ensuite doorway"),
       photo(broadBathroom, "Broad Cottage bathroom with tub and mirror"),
-      photo(broadVanity, "Broad Cottage bathroom vanity and mirror"),
+      photo(broadVanity, "Broad Cottage combined bathroom, laundry area, vanity, and mirror"),
     ],
     amenities: ["Furnished rooms", "Full kitchen", "Living room", "Private bedrooms", "Laundry access", "Guest support"],
     coverage: ["Living room", "Bedrooms", "Bathroom", "Vanity / storage"],
@@ -203,8 +203,8 @@ export const cottages: Cottage[] = [
       photo(whiteExteriorAlt, "White Cottage backyard and side exterior with trees and lawn"),
       photo(whiteFireplace, "White Cottage living room fireplace and built-in shelving"),
       photo(whiteLiving, "White Cottage living room reading corner with green chair"),
-      photo(whiteBedroom, "White Cottage bedroom with four-poster bed and dresser"),
-      photo(whiteBedroomAlt, "White Cottage additional bedroom with bed and window"),
+      photo(whiteBedroom, "White Cottage bedroom storage with dresser and four-poster bed partly visible"),
+      photo(whiteBedroomAlt, "White Cottage dresser and storage area beside a window"),
       photo(whiteBathroom, "White Cottage bathroom vanity and mirror"),
     ],
     amenities: ["Furnished one-bedroom layout", "Full kitchen", "Classic living details", "Storage", "Laundry access", "Guest support"],
@@ -223,12 +223,12 @@ export const cottages: Cottage[] = [
     hero: photo(virginiaLiving, "Virginia Cottage living room with white fireplace and built-in shelving", "The strongest usable public image is a clear living-room view; a clean front exterior is still a photo need."),
     gallery: [
       photo(virginiaKitchen, "Virginia Cottage kitchen with white cabinets and red countertop"),
-      photo(virginiaHall, "Virginia Cottage hallway with wood floor and white trim"),
-      photo(virginiaBedroom, "Virginia Cottage bedroom with bed and window"),
-      photo(virginiaBath, "Virginia Cottage bathroom with tub, toilet, sink, and mirror"),
+      photo(virginiaHall, "Virginia Cottage powder-room vanity and mirror"),
+      photo(virginiaBedroom, "Virginia Cottage dining or work area with table and windows"),
+      photo(virginiaBath, "Virginia Cottage unfurnished dining or sunroom with windows"),
     ],
     amenities: ["Furnished rooms", "Full kitchen", "Fireplace feature", "Private bedrooms", "Laundry access", "Guest support"],
-    coverage: ["Living room", "Kitchen", "Hallway", "Bedroom", "Bathroom"],
+    coverage: ["Living room", "Kitchen", "Powder room", "Dining / work area", "Sunroom"],
   },
   {
     id: "henrietta",
@@ -240,7 +240,7 @@ export const cottages: Cottage[] = [
     price: "Inquire for availability",
     shortTerm: "Flexible furnished-stay options",
     summary: "A two-bedroom furnished home with a welcoming dining room, practical kitchen, and a lived-in sense of place.",
-    hero: photo(henriettaDining, "Henrietta Cottage dining room with blue walls, fireplace, table, and chairs", "A strong interior hero while a cleaner front-of-house photo is sourced."),
+    hero: photo(henriettaDining, "Henrietta Cottage dining room with blue walls, table, and chairs", "A strong interior hero while a cleaner front-of-house photo is sourced."),
     gallery: [
       photo(henriettaLiving, "Henrietta Cottage living room and dining area with wood floors"),
       photo(henriettaKitchen, "Henrietta Cottage kitchen with oak cabinets and full-size appliances"),
@@ -264,6 +264,8 @@ export type Guide = {
   sections: { title: string; body: string; bullets?: string[] }[];
   photo?: Photo;
   cta?: string;
+  actionHref?: string;
+  inquiryCta?: boolean;
 };
 
 const guidePhotos: Record<string, Photo> = {
@@ -289,6 +291,7 @@ export const guides: Record<string, Guide> = {
       { title: "Choose a useful next step", body: "Browse homes, compare communities, or start a conversation about the details that matter to your stay." },
     ],
     cta: "Find your place",
+    actionHref: "/cottages.html",
   },
   family: {
     path: "family-stays.html",
@@ -303,6 +306,7 @@ export const guides: Record<string, Guide> = {
       { title: "Plan for the actual household", body: "Tell us who is coming, how long you may stay, and what the home needs to make the arrangement fit.", bullets: ["Bedrooms and sleeping arrangements", "Kitchen and laundry needs", "Pets and accessibility questions", "A realistic timing window"] },
     ],
     cta: "Plan a family stay",
+    actionHref: "/apply.html?stayType=family",
   },
   health: {
     path: "health-professionals.html",
@@ -317,6 +321,7 @@ export const guides: Record<string, Guide> = {
       { title: "Share the variables early", body: "Dates, facility, household, pets, and budget help us identify the homes worth considering." },
     ],
     cta: "Start a healthcare housing inquiry",
+    actionHref: "/apply.html?stayType=healthcare",
   },
   work: {
     path: "work-relocation.html",
@@ -331,6 +336,7 @@ export const guides: Record<string, Guide> = {
       { title: "For employers and coordinators", body: "We can discuss partner-led housing, timing, furnishing needs, and the information needed to make a placement workable." },
     ],
     cta: "Plan a work stay",
+    actionHref: "/apply.html?stayType=work",
   },
   insurance: {
     path: "insurance-housing.html",
@@ -345,6 +351,7 @@ export const guides: Record<string, Guide> = {
       { title: "Make the bridge feel livable", body: "A kitchen, laundry, bedrooms, and living space help a temporary arrangement support a household while the next home is repaired." },
     ],
     cta: "Discuss temporary housing",
+    actionHref: "/apply.html?stayType=insurance",
   },
 };
 
@@ -364,6 +371,7 @@ export const locationData: Record<string, Guide & { town: string; cottages?: Cot
       { title: "A slower after-work rhythm", body: "Historic streets, river views, and a compact center give a longer stay room for more than the commute." },
     ],
     cta: "See Frederick Cottage",
+    actionHref: "/marietta/frederick-cottage.html",
   },
   parkersburg: {
     path: "parkersburg/index.html",
@@ -380,6 +388,7 @@ export const locationData: Record<string, Guide & { town: string; cottages?: Cot
       { title: "Choose by daily life", body: "The best home is the one that fits your schedule, household, budget, and desired scale—not simply the one with the most rooms." },
     ],
     cta: "Compare Parkersburg cottages",
+    actionHref: "/cottages.html#parkersburg",
   },
   ravenswood: {
     path: "ravenswood/index.html",
@@ -396,6 +405,7 @@ export const locationData: Record<string, Guide & { town: string; cottages?: Cot
       { title: "A quieter landing place", body: "A furnished home gives the stay a more personal center than a room chosen only for proximity." },
     ],
     cta: "Compare Ravenswood cottages",
+    actionHref: "/cottages.html#ravenswood",
   },
   racine: {
     path: "racine/index.html",
@@ -410,6 +420,7 @@ export const locationData: Record<string, Guide & { town: string; cottages?: Cot
       { title: "Ask for current options", body: "Availability and property coverage change. Tell us the timing and community need so we can confirm what is possible." },
     ],
     cta: "Ask about Racine availability",
+    actionHref: "/apply.html?location=Racine",
   },
   grantsville: {
     path: "grantsville/index.html",
@@ -424,6 +435,7 @@ export const locationData: Record<string, Guide & { town: string; cottages?: Cot
       { title: "Availability changes", body: "We keep this guide useful by separating location planning from current home availability. Start a conversation for the latest answer." },
     ],
     cta: "Ask about Grantsville planning",
+    actionHref: "/apply.html?location=Grantsville",
   },
 };
 
@@ -436,6 +448,6 @@ export const navGroups = [
 ];
 
 export const routePaths = [
-  "about.html", "available.html", "contact.html", "cottages.html", "cozy-places.html", "emergency-maintenance.html", "family-stays.html", "faq.html", "fully-furnished-homes.html", "guest-services.html", "health-professionals.html", "home-amenities.html", "housekeeping.html", "insurance-housing.html", "living.html", "locations.html", "maintenance.html", "meal-preparation.html", "partnerships.html", "pay-rent.html", "property-care.html", "resident-portal.html", "residents.html", "room-to-settle.html", "services.html", "work-relocation.html",
+  "about.html", "available.html", "contact.html", "cottages.html", "cozy-places.html", "emergency-maintenance.html", "family-stays.html", "faq.html", "fully-furnished-homes.html", "guest-services.html", "health-professionals.html", "home-amenities.html", "housekeeping.html", "insurance-housing.html", "living.html", "locations.html", "maintenance.html", "meal-preparation.html", "partnerships.html", "pay-rent.html", "privacy.html", "property-care.html", "resident-portal.html", "residents.html", "room-to-settle.html", "services.html", "work-relocation.html",
   "marietta/frederick-cottage.html", "parkersburg/broad-cottage.html", "parkersburg/buck-apartment-1.html", "parkersburg/oak-cottage.html", "parkersburg/yellow-cottage.html", "ravenswood/henrietta-cottage.html", "ravenswood/virginia-cottage.html", "ravenswood/white-cottage.html",
 ];

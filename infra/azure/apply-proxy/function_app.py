@@ -11,6 +11,13 @@ import azure.functions as func
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 _last_submission = {}
+ALLOWED_FIELDS = {
+    "firstName", "lastName", "email", "phone", "moveInDate", "duration", "occupants",
+    "preferredLocation", "homeSize", "stayType", "pets", "employment", "monthlyBudget",
+    "furnishedNeeds", "message", "screeningConsent", "termsAccepted", "website", "sourceUrl",
+    "propertyId",
+}
+FIELD_LIMITS = {"message": 4000, "sourceUrl": 500, "furnishedNeeds": 1000}
 
 
 def _allowed_origins():
@@ -23,13 +30,15 @@ def _allowed_origins():
 
 def _cors_headers(origin):
     allowed = _allowed_origins()
-    return {
-        "Access-Control-Allow-Origin": origin if origin in allowed else next(iter(allowed), "https://mtcottages.com"),
+    headers = {
         "Access-Control-Allow-Methods": "POST, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type, Accept",
         "Vary": "Origin",
         "Content-Type": "application/json",
     }
+    if origin in allowed:
+        headers["Access-Control-Allow-Origin"] = origin
+    return headers
 
 
 def _response(payload, status_code, origin):
@@ -106,12 +115,24 @@ def apply(req: func.HttpRequest) -> func.HttpResponse:
         return _response({"success": False, "message": "Please confirm the application information"}, 400, origin)
     if not re.fullmatch(r"[^\s@]+@[^\s@]+\.[^\s@]+", str(payload.get("email", ""))):
         return _response({"success": False, "message": "Please provide a valid email"}, 400, origin)
+    if not re.fullmatch(r"[0-9+().\-\s]{7,30}", str(payload.get("phone", ""))):
+        return _response({"success": False, "message": "Please provide a valid phone number"}, 400, origin)
+    try:
+        occupants = int(str(payload.get("occupants", "")))
+    except ValueError:
+        return _response({"success": False, "message": "Please provide a valid occupant count"}, 400, origin)
+    if occupants < 1 or occupants > 20:
+        return _response({"success": False, "message": "Please provide a valid occupant count"}, 400, origin)
 
     callback_url = os.environ.get("LOGICAPP_URL_APPLICATION", "")
     if not callback_url:
         return _response({"success": False, "message": "Application intake is not configured"}, 503, origin)
 
-    outbound = {str(key): str(value)[:4000] for key, value in payload.items()}
+    outbound = {
+        str(key): str(value)[:FIELD_LIMITS.get(str(key), 500)]
+        for key, value in payload.items()
+        if str(key) in ALLOWED_FIELDS
+    }
     request = urllib.request.Request(
         callback_url,
         data=json.dumps(outbound).encode("utf-8"),

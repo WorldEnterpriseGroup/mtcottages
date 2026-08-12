@@ -1,0 +1,24 @@
+---
+import { locationData } from "../data/site";
+const entries = Object.values(locationData);
+---
+
+<section class="section location-directory" aria-labelledby="locations-title">
+  <div class="site-width">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Locations</span></nav>
+    <div class="section-heading mt-3">
+      <div><p class="eyebrow">Mid-Ohio Valley</p><h1 id="locations-title">Choose the community around the stay.</h1></div>
+      <p class="lede">Three communities currently have public cottage listings. Racine and Grantsville remain useful planning guides while current inventory is confirmed directly.</p>
+    </div>
+    <div class="location-list">
+      {entries.map((entry, index) => {
+        const count = entry.cottages?.length || 0;
+        return <article class="location-row">
+          <span class="location-row__number">{String(index + 1).padStart(2, "0")}</span>
+          <div><p class="eyebrow">{count ? `${count} ${count === 1 ? "cottage" : "cottages"} listed` : "Planning guide"}</p><h2>{entry.town}</h2><p>{entry.description}</p></div>
+          <div class="location-row__action"><span>{count ? "Compare listed homes" : "Ask about current options"}</span><a class="button button--ghost" href={`/${entry.path}`}>Explore {entry.town.split(",")[0]} <span aria-hidden="true">↗</span></a></div>
+        </article>;
+      })}
+    </div>
+  </div>
+</section>
