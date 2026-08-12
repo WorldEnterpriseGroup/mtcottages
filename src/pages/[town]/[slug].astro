@@ -1,0 +1,12 @@
+---
+import PropertyPage from "../../components/PropertyPage.astro";
+import { properties } from "../../data/properties";
+
+export function getStaticPaths() {
+  return properties.map((property) => ({ params: { town: property.townSlug, slug: property.route.split("/").at(-1)?.replace(".html", "") }, props: { property } }));
+}
+
+const { property } = Astro.props;
+---
+
+<PropertyPage property={property} />

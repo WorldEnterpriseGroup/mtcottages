@@ -1,0 +1,19 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PropertyCard from "./PropertyCard.astro";
+import { properties, getTownName } from "../data/properties";
+
+interface Props {
+  town: string;
+  description?: string;
+}
+
+const { town, description = `Furnished monthly cottages in ${getTownName(town)}.` } = Astro.props;
+const townProperties = properties.filter((property) => property.townSlug === town);
+const townName = getTownName(town);
+---
+
+<BaseLayout title={`${townName} furnished cottages`} description={description}>
+  <section class="town-intro shell"><p class="eyebrow">M&T Cottages · {townName}</p><h1>A comfortable place in {townName}.</h1><p class="lede">Browse furnished homes close to the work, care, and community that brought you here.</p></section>
+  {townProperties.length > 0 ? <section class="section section-tone"><div class="shell"><div class="property-grid">{townProperties.map((property) => <PropertyCard property={property} />)}</div></div></section> : <section class="utility-page shell"><div><p class="lede">Our local inventory changes with the season. Tell us what you need and we’ll help you find the right fit.</p><a class="button" href="/apply.html">Ask about availability <span aria-hidden="true">↗</span></a></div></section>}
+</BaseLayout>

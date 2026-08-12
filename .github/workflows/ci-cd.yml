@@ -9,6 +9,8 @@ on:
 
 permissions:
   contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: mtcottages-${{ github.workflow }}-${{ github.ref }}
@@ -27,6 +29,18 @@ jobs:
         with:
           python-version: "3.x"
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install Astro toolchain
+        run: npm ci
+
+      - name: Type-check and build Astro site
+        run: npm run check && npm run build
+
       - name: Validate source files and public boundaries
         run: |
           git diff --check
@@ -36,15 +50,13 @@ jobs:
           from pathlib import Path
 
           errors = []
-          pages = sorted(Path(".").glob("*.html"))
-          if Path("CNAME").read_text(encoding="utf-8").strip() != "mtcottages.com":
+          pages = sorted(Path("dist").rglob("*.html"))
+          if Path("dist/CNAME").read_text(encoding="utf-8").strip() != "mtcottages.com":
               errors.append("CNAME must remain mtcottages.com")
-          if not Path(".nojekyll").is_file():
+          if not Path("dist/.nojekyll").is_file():
               errors.append(".nojekyll is missing")
           for page in pages:
               markup = page.read_text(encoding="utf-8")
-              if "assets/css/style.css" not in markup:
-                  errors.append(f"{page} is missing the HotelHub stylesheet")
               if "255 Court St" in markup:
                   errors.append(f"{page} contains private/non-public inventory")
           # Verify all referenced cottage images exist on disk
@@ -55,7 +67,7 @@ jobs:
                       errors.append(f"{page} references missing image: {match.group(0)}")
           if errors:
               raise SystemExit("\n".join(errors))
-          print(f"Validated {len(pages)} HotelHub HTML pages")
+          print(f"Validated {len(pages)} Astro HTML pages")
           PY
 
       - name: Guard against committed street addresses
@@ -102,9 +114,13 @@ jobs:
         working-directory: e2e
         run: npx playwright install --with-deps chromium
 
-      - name: Start the local site
+      - name: Build Astro site
+        working-directory: .
+        run: npm ci && npm run check && npm run build
+
+      - name: Start the local Astro site
         run: |
-          nohup python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/mtcottages-http.log 2>&1 &
+          nohup python3 -m http.server 4173 --directory dist --bind 127.0.0.1 >/tmp/mtcottages-http.log 2>&1 &
           for attempt in $(seq 1 20); do
             if curl --fail --silent http://127.0.0.1:4173/index.html >/dev/null; then
               exit 0
@@ -128,10 +144,43 @@ jobs:
           path: e2e/playwright-report
           if-no-files-found: ignore
 
+  publish-pages:
+    name: Publish Astro site to GitHub Pages
+    if: github.event_name == 'push' && github.ref == 'refs/heads/gh-pages'
+    needs: e2e-local
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Build the verified Astro artifact
+        run: npm ci && npm run check && npm run build
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Astro artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
   live-smoke:
     name: Live smoke after gh-pages publish
     if: github.event_name == 'push' && github.ref == 'refs/heads/gh-pages'
-    needs: e2e-local
+    needs: publish-pages
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository

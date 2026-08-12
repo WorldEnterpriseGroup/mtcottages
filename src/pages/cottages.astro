@@ -1,0 +1,10 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PropertyCard from "../components/PropertyCard.astro";
+import { properties } from "../data/properties";
+---
+
+<BaseLayout title="All furnished cottages" description="Browse furnished monthly cottages across Marietta, Parkersburg, and Ravenswood.">
+  <section class="town-intro shell"><p class="eyebrow">The collection</p><h1>Find a home base.</h1><p class="lede">Thoughtfully furnished cottages in communities where people come to work, heal, reconnect, and begin again.</p></section>
+  <section class="section section-tone"><div class="shell"><div class="property-grid">{properties.map((property) => <PropertyCard property={property} />)}</div></div></section>
+</BaseLayout>

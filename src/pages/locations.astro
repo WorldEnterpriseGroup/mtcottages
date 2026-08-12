@@ -1,0 +1,9 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { towns, getTownName, getTownRoute } from "../data/properties";
+---
+
+<BaseLayout title="Our locations" description="Explore M&T Cottages in Marietta, Parkersburg, and Ravenswood.">
+  <section class="town-intro shell"><p class="eyebrow">Ohio & West Virginia</p><h1>Close to where life is happening.</h1><p class="lede">Small cities, real neighborhoods, and a comfortable place to return to at the end of the day.</p></section>
+  <section class="section section-tone"><div class="shell"><div class="list-rows">{towns.map((town) => <a class="list-row" href={getTownRoute(town)}><strong>{getTownName(town)}</strong><span>Explore the cottages ↗</span></a>)}</div></div></section>
+</BaseLayout>

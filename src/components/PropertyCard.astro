@@ -1,0 +1,32 @@
+---
+import { Image } from "astro:assets";
+import type { Property } from "../data/properties";
+import { getMedia } from "../data/media";
+
+interface Props {
+  property: Property;
+  featured?: boolean;
+}
+
+const { property, featured = false } = Astro.props;
+const lead = getMedia(property.id)[0];
+const href = `/${property.route}`;
+---
+
+<article class:list={{ "property-card": true, "property-card-featured": featured }}>
+  <a class="card-image-wrap" href={href} aria-label={`View ${property.name}`}>
+    {lead && <Image src={lead.src} alt={lead.alt} widths={[640, 960]} sizes="(min-width: 900px) 42vw, 92vw" quality={82} />}
+    <span class="card-arrow" aria-hidden="true">↗</span>
+  </a>
+  <div class="card-body">
+    <div class="card-heading">
+      <div>
+        <p class="eyebrow">{property.town}</p>
+        <h3><a href={href}>{property.name}</a></h3>
+      </div>
+      <p class="card-price"><strong>${property.priceMonthly.toLocaleString()}</strong><span>/ month</span></p>
+    </div>
+    <p class="card-summary">{property.summary}</p>
+    <div class="card-meta"><span>{property.bedrooms} {property.bedrooms === 1 ? "bedroom" : "bedrooms"}</span><span>{property.bathrooms} bath</span><span>Furnished</span></div>
+  </div>
+</article>

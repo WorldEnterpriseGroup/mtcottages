@@ -19,7 +19,7 @@ Mt Cottages is the guest-facing rental operation for furnished homes, tenants, r
 
 ## Public site
 
-`index.html` and every guest-facing page are built directly from the exact HotelHub theme package from `~/Downloads/hotelhub-luxury-hotel-booking-html5-template-2026-04-28-16-29-32-utc.zip`. The original HotelHub CSS, JavaScript, image directories, loaders, sliders, breadcrumbs, forms, page sections, and `venobox` assets remain the visual foundation. Mt Cottages changes are content, branding, navigation labels, and destination links inside those native HotelHub structures.
+The guest-facing site is a static Astro v7 editorial build. It uses Astro's typed components, static routing, responsive image pipeline, sitemap integration, and TypeScript 7. The old HotelHub HTML remains in the repository as migration/source history, but is not part of the production build.
 
 The public navigation is intentionally brand-first: `Cottages`, `Locations`, `Living`, `Services`, `About`, `Contact`, `Residents`, and the `Stay with Us` application CTA. The Cottages menu leads to `Find Your Place`, `Cozy Places`, `Room to Settle In`, and `Available Now`. Every Living and Services topic has a dedicated content page. Canonical town guides live at `marietta/index.html`, `parkersburg/index.html`, `ravenswood/index.html`, `grantsville/index.html`, and `racine/index.html`; individual homes live beneath their town directory using their public cottage name. The site is new, so obsolete flat property/location URLs are removed rather than retained as redirects. Resident support is separated into `residents.html`, `resident-portal.html`, `pay-rent.html`, `maintenance.html`, and `emergency-maintenance.html`; partner programs are described in `partnerships.html`.
 
@@ -36,11 +36,10 @@ assets/images/cottages/<house-id>/photo-02.jpg
 
 Use [`scripts/import_sharepoint_photos.rb`](scripts/import_sharepoint_photos.rb) with the private map and CSV to download exact-source images. The importer records source metadata in the ignored `sharepoint-photo-manifest.json`, prevents a file hash from being reused across houses, and requires visual review before a photo is linked from public HTML. Do not use broad SILK archives, mixed galleries, or filename guesses for a house. A construction/inspection image is not a marketing approval. The Grantsville property is currently excluded from the public site, and the Ravenswood property without an exact public source has no approved public image yet.
 
-HotelHub display slots use curated AVIF derivatives rather than full source photos. Run
-`python3 scripts/build-theme-crops.py` after changing a selected property image. The script
-uses reviewed focal points and recreates the theme's native dimensions (including 648×470
-room cards, 421×540 Mountain Home cards, 240×240 gallery strips, and 1920×586 breadcrumbs)
-without stretching. Property-page lightboxes continue to link to the untouched source image.
+Astro imports only curated public AVIF derivatives from `src/assets/media`; raw SharePoint
+downloads and private house maps remain outside the build. The explicit media manifest in
+`src/data/media.ts` records the lead image, room coverage, alt text, and property ownership.
+Astro generates responsive WebP variants and dimensions during `npm run build`.
 
 Rendered property photography is allocated once across the published site: banners, cards,
 content photos, and footer galleries must not reuse the same visual source. Run
@@ -71,13 +70,17 @@ Stripe checkout is not activated yet. The currently available vault key resolves
 
 ## Local preview
 
-The marketing site is static HTML with no production build step. Browser tests live in [`e2e`](e2e) and use Playwright. From the repository root, run:
+The marketing site is built with Astro. Browser tests live in [`e2e`](e2e) and use Playwright.
+From the repository root, run:
 
 ```bash
-python3 -m http.server 8000
+npm ci
+npm run check
+npm run build
+npm run preview
 ```
 
-Then open <http://localhost:8000>.
+Then open <http://localhost:4321>.
 
 To run the local browser checks:
 
@@ -85,16 +88,16 @@ To run the local browser checks:
 cd e2e
 npm ci
 npx playwright install chromium
-BASE_URL=http://127.0.0.1:8000 npm test
+BASE_URL=http://127.0.0.1:4321 npm test
 ```
 
 ## Deployment
 
 - Repository: <https://github.com/WorldEnterpriseGroup/mtcottages>
 - Production site: <https://mtcottages.com>
-- Hosting: GitHub Pages from the `gh-pages` branch and repository root
+- Hosting: GitHub Pages via the Actions `dist/` artifact from the `gh-pages` branch
 - Custom-domain marker: [`CNAME`](CNAME)
 
-Push site changes to `gh-pages` to publish them through GitHub Pages. The [`CI / GitHub Pages CD`](.github/workflows/ci-cd.yml) workflow validates the static site, runs local Chromium E2E, and runs a safe live smoke suite after each `gh-pages` push. The live suite checks the published HotelHub application, HTTPS redirects, the health endpoint, and a bot-honeypot rejection; it never submits a valid application. Keep the site static and preserve relative asset paths when editing the template. Use `main` for source/development changes, then synchronize the published branch.
+Push site changes to `gh-pages` to publish them through GitHub Pages. The [`CI / GitHub Pages CD`](.github/workflows/ci-cd.yml) workflow runs the TypeScript 7 check, builds Astro, validates public boundaries, runs local Chromium E2E against `dist/`, deploys the verified artifact, and then runs the existing safe application-edge smoke suite. The live suite never submits a valid application. Preserve the existing `.html` routes when editing the Astro pages.
 
 Cloudflare handles the `mtcottages.com` zone and redirects HTTP to HTTPS. Both `stay.mtcottages.com` and legacy `apply.mtcottages.com` use the existing `taodoor` Front Door endpoint and the `mtcottages-apply-origins` origin group; the temporary application endpoint has been retired. Keep the application subdomains behind Front Door for the API to function.
