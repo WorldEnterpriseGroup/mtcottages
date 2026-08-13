@@ -1,11 +1,11 @@
 import type { ImageMetadata } from "astro";
 
-import mariettaExterior from "../../assets/images/cottages/marietta-01/frederick-exterior-safe.avif";
-import mariettaKitchen from "../../assets/images/cottages/marietta-01/gallery-01.avif";
-import mariettaLiving from "../../assets/images/cottages/marietta-01/photo-39.avif";
-import mariettaBedroom from "../../assets/images/cottages/marietta-01/photo-36.avif";
-import mariettaSecondBedroom from "../../assets/images/cottages/marietta-01/photo-25.avif";
-import mariettaDining from "../../assets/images/cottages/marietta-01/photo-27.avif";
+import mariettaExterior from "../../assets/images/cottages/marietta-01/frederick-exterior-full-safe.avif";
+import mariettaKitchen from "../../assets/images/cottages/marietta-01/gallery-01.jpg";
+import mariettaLiving from "../../assets/images/cottages/marietta-01/photo-39.jpg";
+import mariettaBedroom from "../../assets/images/cottages/marietta-01/photo-36.jpg";
+import mariettaSecondBedroom from "../../assets/images/cottages/marietta-01/photo-25.jpg";
+import mariettaDining from "../../assets/images/cottages/marietta-01/photo-27.jpg";
 
 import broadLiving from "../../assets/images/cottages/parkersburg-01/photo-44.avif";
 import broadLivingAlt from "../../assets/images/cottages/parkersburg-01/photo-06.avif";
