@@ -59,7 +59,14 @@ test("property pages keep the curated room coverage and responsive assets", asyn
   await expect(gallery).toHaveCount(5);
   await expect(gallery.first()).toHaveAttribute("alt", /Frederick Cottage/);
   expect(await gallery.first().evaluate((image) => image.naturalWidth)).toBeGreaterThan(0);
-  await expect(page.locator('.property-hero img[src*="/_astro/"]')).toHaveCount(1);
+  const hero = page.locator('.property-hero .hero-image-frame--property img[src*="/_astro/"]');
+  await expect(hero).toHaveCount(1);
+  const heroRatios = await hero.evaluate((image) => ({
+    natural: image.naturalWidth / image.naturalHeight,
+    rendered: image.getBoundingClientRect().width / image.getBoundingClientRect().height,
+  }));
+  expect(Math.abs(heroRatios.natural - heroRatios.rendered)).toBeLessThan(0.02);
+  await expect(hero).toHaveCSS("object-fit", "contain");
 });
 
 test("the application route points to the secure application host", async ({ page }) => {

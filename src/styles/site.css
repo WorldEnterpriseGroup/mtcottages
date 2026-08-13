@@ -156,6 +156,7 @@
   .hero-image-frame { overflow: hidden; border-radius: var(--radius); background: var(--forest-soft); }
   .hero-image-frame > img { display: block; }
   .hero-image-frame img { width: 100%; aspect-ratio: 1.35; object-fit: cover; }
+  .hero-image-frame--property img { height: auto; aspect-ratio: auto; object-fit: contain; }
   .crumbs { display: flex; flex-wrap: wrap; gap: .4rem .75rem; color: var(--muted); font-family: var(--mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; }
   .crumbs a { color: var(--accent-deep); }
   .prose { display: grid; gap: var(--space-4); }

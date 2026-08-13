@@ -64,7 +64,7 @@ const noindex = ["resident-portal.html", "pay-rent.html", "maintenance.html", "e
       <section class="property-hero section--tight">
         <div class="site-width property-hero-grid">
           <div><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href={`/${cottage.locationPath}`}>{cottage.town}</a><span aria-hidden="true">/</span><span>{cottage.name}</span></nav><p class="eyebrow mt-3">{cottage.town}</p><h1>{cottage.name}</h1><p class="lede">{cottage.summary}</p><div class="property-fact-rail"><span><small>Space</small><strong>{cottage.bedrooms}</strong></span><span><small>Home</small><strong>Furnished</strong></span><span><small>Monthly guide</small><strong>{cottage.price}</strong></span></div><a class="button mt-3" href={`/apply.html?property=${encodeURIComponent(cottage.id)}`}>Ask about this home <span aria-hidden="true">↗</span></a></div>
-          <figure class="hero-image-frame"><ResponsivePhoto {...cottage.hero} priority sizes="(max-width: 900px) 100vw, 62vw" /><figcaption class="sr-only">{cottage.hero.alt}</figcaption></figure>
+          <figure class="hero-image-frame hero-image-frame--property"><ResponsivePhoto {...cottage.hero} priority sizes="(max-width: 900px) 100vw, 62vw" /><figcaption class="sr-only">{cottage.hero.alt}</figcaption></figure>
         </div>
       </section>
       <TrustStrip />
