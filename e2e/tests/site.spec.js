@@ -61,11 +61,9 @@ test("property pages keep the curated room coverage and responsive assets", asyn
   for (const image of await gallery.all()) {
     await image.scrollIntoViewIfNeeded();
     await expect.poll(() => image.evaluate((element) => element.complete && element.naturalWidth > 0)).toBe(true);
-    const ratios = await image.evaluate((element) => ({
-      natural: element.naturalWidth / element.naturalHeight,
-      rendered: element.getBoundingClientRect().width / element.getBoundingClientRect().height,
-    }));
-    expect(Math.abs(ratios.natural - ratios.rendered)).toBeLessThan(0.02);
+    const renderedRatio = await image.evaluate((element) => element.getBoundingClientRect().width / element.getBoundingClientRect().height);
+    expect(Math.abs((4 / 3) - renderedRatio)).toBeLessThan(0.02);
+    await expect(image).toHaveCSS("object-fit", "contain");
   }
   const hero = page.locator('.property-hero .hero-image-frame--property img[src*="/_astro/"]');
   await expect(hero).toHaveCount(1);
@@ -73,7 +71,7 @@ test("property pages keep the curated room coverage and responsive assets", asyn
     natural: image.naturalWidth / image.naturalHeight,
     rendered: image.getBoundingClientRect().width / image.getBoundingClientRect().height,
   }));
-  expect(Math.abs(heroRatios.natural - heroRatios.rendered)).toBeLessThan(0.02);
+  expect(Math.abs((4 / 3) - heroRatios.rendered)).toBeLessThan(0.02);
   await expect(hero).toHaveCSS("object-fit", "contain");
 });
 
