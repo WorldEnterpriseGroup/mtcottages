@@ -63,10 +63,10 @@ PROFILE_NAMES = (
 )
 
 # User-rejected sources are excluded at the original level, not merely at the
-# rejected crop filename. Frederick's old hero is the pond photograph.
+# rejected crop filename. These remain unsuitable for public property pages
+# after the current Wardah corrections.
 REJECTED_SOURCES = {
     "assets/images/cottages/marietta-01/hero.avif",
-    "assets/images/cottages/parkersburg-02/photo-23.avif",
     "assets/images/cottages/ravenswood-01/photo-01.avif",
 }
 UNSUITABLE_DESCRIPTION_TERMS = {

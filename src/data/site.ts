@@ -8,14 +8,13 @@ import mariettaSecondBedroom from "../../assets/images/cottages/marietta-01/phot
 import mariettaDining from "../../assets/images/cottages/marietta-01/photo-27.jpg";
 
 import broadLiving from "../../assets/images/cottages/parkersburg-01/photo-44.avif";
-import broadLivingAlt from "../../assets/images/cottages/parkersburg-01/photo-06.avif";
 import broadBedroom from "../../assets/images/cottages/parkersburg-01/photo-01.avif";
 import broadBedroomAlt from "../../assets/images/cottages/parkersburg-01/photo-49.avif";
 import broadBathroom from "../../assets/images/cottages/parkersburg-01/photo-20.avif";
 import broadVanity from "../../assets/images/cottages/parkersburg-01/photo-12.avif";
 
-import buckExterior from "../../assets/images/cottages/parkersburg-02/homepage-hero-buck.avif";
-import buckExteriorAlt from "../../assets/images/cottages/parkersburg-02/photo-09.avif";
+import buckExterior from "../../assets/images/cottages/parkersburg-02/photo-23.avif";
+import buckExteriorAlt from "../../assets/images/cottages/parkersburg-02/photo-11.jpg";
 import buckLiving from "../../assets/images/cottages/parkersburg-02/photo-49.avif";
 import buckLivingAlt from "../../assets/images/cottages/parkersburg-02/photo-50.avif";
 import buckBedroom from "../../assets/images/cottages/parkersburg-02/photo-38.avif";
@@ -118,7 +117,7 @@ export const cottages: Cottage[] = [
     summary: "A warm, wood-paneled two-bedroom furnished home with a generous living room and practical spaces for a longer stay.",
     hero: photo(broadLiving, "Broad Cottage wood-paneled living room with sectional seating and television", "The best available public image currently shows the home’s main living space."),
     gallery: [
-      photo(broadLivingAlt, "Broad Cottage living room with television and wood-paneled walls"),
+      photo(broadLiving, "Broad Cottage wood-paneled living room with sectional seating and television"),
       photo(broadBedroom, "Broad Cottage bedroom with red and black bedding"),
       photo(broadBedroomAlt, "Broad Cottage bedroom with an ensuite doorway"),
       photo(broadBathroom, "Broad Cottage bathroom with tub and mirror"),
@@ -137,9 +136,9 @@ export const cottages: Cottage[] = [
     price: "$895/month",
     shortTerm: "Inquire for short-term pricing",
     summary: "A comfortable one-bedroom furnished home in Parkersburg’s north side, with an easy scale for one person or a couple.",
-    hero: photo(buckExterior, "Buck Cottage front exterior with porch, centered entry, and mature trees", "A direct exterior view makes the home easy to recognize.", "center 55%"),
+    hero: photo(buckExterior, "Buck Cottage front exterior with tan siding, black shutters, porch, and blue sky", "A direct frontal exterior view keeps the home visible at a useful scale.", "center 50%"),
     gallery: [
-      photo(buckExteriorAlt, "Buck Cottage exterior and surrounding street trees"),
+      photo(buckExteriorAlt, "Buck Cottage exterior panorama with the cottage centered among mature trees and neighboring homes"),
       photo(buckLiving, "Buck Cottage living room with couch and windows"),
       photo(buckLivingAlt, "Buck Cottage living room alternate view"),
       photo(buckBedroom, "Buck Cottage bedroom with bed, desk, and windows"),

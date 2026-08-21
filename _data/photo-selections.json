@@ -55,9 +55,9 @@
     },
     "gallery": [
       {
-        "file": "photo-06.jpg",
-        "label": "Living room, alternate angle with a sunlit window and TV wall.",
-        "published_file": "photo-06.avif"
+        "file": "photo-44.jpg",
+        "label": "Wood-paneled living room with sectional seating and a sliding glass door; requested replacement for the former alternate-angle image.",
+        "published_file": "photo-44.avif"
       },
       {
         "file": "photo-01.jpg",
@@ -86,19 +86,19 @@
     "public_route": "parkersburg/buck-apartment-1.html",
     "town": "Parkersburg, WV",
     "hero": {
-      "file": "photo-09.jpg",
-      "label": "Wide autumn street panorama with the house centered among neighboring homes.",
-      "published_file": "photo-09.avif"
+      "file": "photo-23.jpg",
+      "label": "Direct frontal daytime view of the house with tan siding, black shutters, porch, and blue sky.",
+      "published_file": "photo-23.avif"
     },
     "card": {
-      "file": "photo-09.jpg",
-      "published_file": "photo-09.avif"
+      "file": "photo-23.jpg",
+      "published_file": "photo-23.avif"
     },
     "gallery": [
       {
-        "file": "photo-23.jpg",
-        "label": "Exterior \u2014 frontal daytime view of the house, tan siding, black shutters, blue sky.",
-        "published_file": "photo-23.avif"
+        "file": "photo-11.jpg",
+        "label": "Exterior panorama with the Buck Cottage centered among mature trees and neighboring homes.",
+        "published_file": "photo-11.avif"
       },
       {
         "file": "photo-49.jpg",
