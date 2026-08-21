@@ -121,16 +121,28 @@ test("a property inquiry carries the selected cottage into the form", async ({ p
   await expect(page.locator('input[name="propertyId"]')).toHaveValue("frederick");
 });
 
-test("the cottages and locations indexes expose useful decision tools", async ({ page }) => {
+test("the cottages and locations indexes expose useful property details", async ({ page }) => {
   await page.goto("/cottages.html");
   await expect(page.locator(".property-card")).toHaveCount(8);
-  await expect(page.locator(".comparison-table tbody tr")).toHaveCount(8);
-  await expect(page.locator(".comparison-table")).toContainText("$2,575/month");
-  await expect(page.locator(".comparison-table")).toContainText("$2,295/month");
-  await expect(page.locator(".comparison-table")).toContainText("$1,895/month");
+  await expect(page.locator(".comparison-table")).toHaveCount(0);
+  await expect(page.getByText("Compare at a glance")).toHaveCount(0);
+  await expect(page.locator(".property-card").filter({ hasText: "$2,575/month" }).first()).toBeVisible();
+  await expect(page.locator(".property-card").filter({ hasText: "$2,295/month" }).first()).toBeVisible();
+  await expect(page.locator(".property-card").filter({ hasText: "$1,895/month" }).first()).toBeVisible();
   await page.goto("/locations.html");
   await expect(page.locator(".location-row")).toHaveCount(5);
   await expect(page.locator(".location-row").nth(3)).toContainText("Planning guide");
+});
+
+test("Walnut and Buck property stories use interior photography", async ({ page }) => {
+  await page.goto("/ravenswood/white-cottage.html");
+  await expect(page.locator("h1")).toHaveText("Walnut Cottage");
+  await expect(page.locator("main img").first()).toHaveAttribute("alt", /Walnut Cottage.*bedroom/i);
+  await expect(page.locator('main img[alt*="exterior"]')).toHaveCount(0);
+
+  await page.goto("/parkersburg/buck-apartment-1.html");
+  await expect(page.locator("main img").first()).toHaveAttribute("alt", /Buck Cottage.*living room/i);
+  await expect(page.locator('main img[alt*="exterior"]')).toHaveCount(0);
 });
 
 test("all primary stay CTAs remain on the native inquiry route", async ({ page }) => {

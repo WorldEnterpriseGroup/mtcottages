@@ -90,7 +90,7 @@
     "floor_plan": "Two-story house with three bedrooms and one bath"
   },
   "ravenswood-01": {
-    "name": "White Cottage",
+    "name": "Walnut Cottage",
     "route": "ravenswood/white-cottage.html",
     "town": "Ravenswood, WV",
     "town_slug": "ravenswood",
@@ -101,7 +101,7 @@
     "security_deposit": 850,
     "application_fee": 75,
     "summary": "A charming one-bedroom cottage in Ravenswood with a full kitchen and a peaceful setting.",
-    "description": "White Cottage is a furnished one-bedroom home in quiet Ravenswood with a full kitchen, comfortable living space, and a peaceful setting for relaxed longer stays. Its furnished rooms and practical home comforts make it ready for relaxed longer stays.",
+    "description": "Walnut Cottage is a furnished one-bedroom home in quiet Ravenswood with a full kitchen, comfortable living space, and a peaceful setting for relaxed longer stays. Its furnished rooms and practical home comforts make it ready for relaxed longer stays.",
     "unique_amenities": ["Full kitchen with cookware", "Washer and dryer in unit", "Off-street parking", "Internet and utilities included"],
     "neighborhood": "Quiet Ravenswood neighborhood close to downtown and the Ohio River.",
     "proximity": ["5 min to downtown Ravenswood", "10 min to Jackson General Hospital", "5 min to I-77"],

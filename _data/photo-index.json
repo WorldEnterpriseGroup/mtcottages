@@ -5650,7 +5650,7 @@
       }
     },
     "ravenswood-01": {
-      "name": "White Cottage",
+      "name": "Walnut Cottage",
       "public_route": "ravenswood/white-cottage.html",
       "town": "Ravenswood, WV",
       "photos": {
@@ -30386,10 +30386,8 @@
         }
       },
       "selection": {
-        "hero": "photo-09.avif",
+        "hero": "photo-49.avif",
         "gallery": [
-          "photo-23.avif",
-          "photo-49.avif",
           "photo-50.avif",
           "photo-38.avif",
           "photo-41.avif"
@@ -30402,13 +30400,14 @@
           "photo-05.avif",
           "photo-06.avif",
           "photo-07.avif",
-          "photo-08.avif"
+          "photo-08.avif",
+          "photo-23.avif"
         ]
       },
       "status": "published"
     },
     "ravenswood-01": {
-      "name": "White Cottage",
+      "name": "Walnut Cottage",
       "public_route": "ravenswood/white-cottage.html",
       "town": "Ravenswood, WV",
       "photos": {
@@ -30846,18 +30845,19 @@
         }
       },
       "selection": {
-        "hero": "photo-01.avif",
+        "hero": "photo-297.avif",
         "gallery": [
           "photo-374.avif",
           "photo-165.avif",
-          "photo-297.avif",
           "photo-125.avif",
           "photo-108.avif",
           "photo-263.avif",
-          "photo-292.avif",
-          "photo-03.avif"
+          "photo-292.avif"
         ],
-        "available_not_selected": []
+        "available_not_selected": [
+          "photo-01.avif",
+          "photo-03.avif"
+        ]
       },
       "status": "published"
     },

@@ -86,25 +86,15 @@
     "public_route": "parkersburg/buck-apartment-1.html",
     "town": "Parkersburg, WV",
     "hero": {
-      "file": "photo-23.jpg",
-      "label": "Direct frontal daytime view of the house with tan siding, black shutters, porch, and blue sky.",
-      "published_file": "photo-23.avif"
+      "file": "photo-49.jpg",
+      "label": "Living room with a staged couch, throw pillows, floor lamp, and artwork.",
+      "published_file": "photo-49.avif"
     },
     "card": {
-      "file": "photo-23.jpg",
-      "published_file": "photo-23.avif"
+      "file": "photo-49.jpg",
+      "published_file": "photo-49.avif"
     },
     "gallery": [
-      {
-        "file": "photo-11.jpg",
-        "label": "Exterior panorama with the Buck Cottage centered among mature trees and neighboring homes.",
-        "published_file": "photo-11.avif"
-      },
-      {
-        "file": "photo-49.jpg",
-        "label": "Living room with a staged couch, throw pillows, floor lamp, and artwork.",
-        "published_file": "photo-49.avif"
-      },
       {
         "file": "photo-50.jpg",
         "label": "Living room, second angle showing the full couch and windows.",
@@ -210,17 +200,17 @@
     ]
   },
   "ravenswood-01": {
-    "name": "White Cottage",
+    "name": "Walnut Cottage",
     "public_route": "ravenswood/white-cottage.html",
     "town": "Ravenswood, WV",
     "hero": {
-      "file": "photo-01.jpg",
-      "label": "The White Cottage facade with a wraparound porch, green lawn, sidewalk, and street tree.",
-      "published_file": "photo-01.avif"
+      "file": "photo-297.png",
+      "label": "Primary bedroom with a four-poster bed, dresser with mirror, and warm curtains.",
+      "published_file": "photo-297.avif"
     },
     "card": {
-      "file": "photo-01.jpg",
-      "published_file": "photo-01.avif"
+      "file": "photo-297.png",
+      "published_file": "photo-297.avif"
     },
     "gallery": [
       {
@@ -232,11 +222,6 @@
         "file": "photo-165.jpg",
         "label": "Living room reading corner with a green armchair and curtained window.",
         "published_file": "photo-165.avif"
-      },
-      {
-        "file": "photo-297.png",
-        "label": "Primary bedroom: four-poster bed, dresser with mirror, warm curtains.",
-        "published_file": "photo-297.avif"
       },
       {
         "file": "photo-125.jpg",
@@ -257,11 +242,6 @@
         "file": "photo-292.jpg",
         "label": "Kitchen corner with cooktop and sink.",
         "published_file": "photo-292.avif"
-      },
-      {
-        "file": "photo-03.jpg",
-        "label": "Backyard with a fenced kennel structure, shed, and mature trees.",
-        "published_file": "photo-03.avif"
       }
     ]
   },

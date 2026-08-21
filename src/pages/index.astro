@@ -3,7 +3,6 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 import ResponsivePhoto from "../components/ResponsivePhoto.astro";
 import PropertyCard from "../components/PropertyCard.astro";
 import TrustStrip from "../components/TrustStrip.astro";
-import PortfolioCompare from "../components/PortfolioCompare.astro";
 import { cottages } from "../data/site";
 import homeHero from "../../assets/images/cottages/marietta-01/frederick-exterior-full-safe.avif";
 import homeDetail from "../../assets/images/cottages/marietta-01/photo-27.avif";
@@ -35,8 +34,6 @@ import homeDetail from "../../assets/images/cottages/marietta-01/photo-27.avif";
   <section class="section">
     <div class="site-width"><div class="section-heading"><div><p class="eyebrow">Homes currently listed</p><h2>Find your place to land.</h2></div><p>Compare the community, bedroom count, monthly guide, and photographs that help you choose a furnished, peaceful home.</p></div><div class="card-grid card-grid--four">{cottages.slice(0, 4).map((cottage) => <PropertyCard cottage={cottage} />)}</div><a class="text-link mt-3" href="/cottages.html">See all listed cottages <span aria-hidden="true">↗</span></a></div>
   </section>
-
-  <PortfolioCompare cottages={cottages} />
 
   <section class="section section--dark"><div class="site-width split"><div><p class="eyebrow" style="color:#e4b482">The quiet is part of the stay</p><h2>Care that makes a furnished home feel easier.</h2></div><div class="stack"><p class="lede lede--light">We think about the practical details around the room: a connected home, a peaceful setting, clear guidance, and the small things that help a new season feel grounded.</p><div class="cluster"><a class="button button--light" href="/services.html">Explore services</a><a class="text-link" style="color:#e4b482" href="/contact.html">Talk with Mt Cottages <span aria-hidden="true">↗</span></a></div></div></div></section>
 

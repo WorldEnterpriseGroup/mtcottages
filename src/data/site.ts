@@ -15,8 +15,6 @@ import broadVanity from "../../assets/images/cottages/parkersburg-01/photo-12.av
 import broadConceptTopDown from "../../assets/images/cottages/parkersburg-01/3d/broad-concept-top-down.png";
 import broadConcept45 from "../../assets/images/cottages/parkersburg-01/3d/broad-concept-45-degree.png";
 
-import buckExterior from "../../assets/images/cottages/parkersburg-02/photo-23.avif";
-import buckExteriorAlt from "../../assets/images/cottages/parkersburg-02/photo-11.jpg";
 import buckLiving from "../../assets/images/cottages/parkersburg-02/photo-49.avif";
 import buckLivingAlt from "../../assets/images/cottages/parkersburg-02/photo-50.avif";
 import buckBedroom from "../../assets/images/cottages/parkersburg-02/photo-38.avif";
@@ -34,8 +32,6 @@ import oakBedroomAlt from "../../assets/images/cottages/parkersburg-04/photo-17.
 import oakBathroom from "../../assets/images/cottages/parkersburg-04/photo-40.avif";
 import oakPorch from "../../assets/images/cottages/parkersburg-04/photo-05.avif";
 
-import whiteExterior from "../../assets/images/cottages/ravenswood-01/photo-01.avif";
-import whiteExteriorAlt from "../../assets/images/cottages/ravenswood-01/photo-03.avif";
 import whiteFireplace from "../../assets/images/cottages/ravenswood-01/photo-374.avif";
 import whiteLiving from "../../assets/images/cottages/ravenswood-01/photo-165.avif";
 import whiteBedroom from "../../assets/images/cottages/ravenswood-01/photo-297.avif";
@@ -206,16 +202,14 @@ export const cottages: Cottage[] = [
     pricingNote: publishedLuxuryFurnishedPricingNote,
     signals: publishedStaySignals,
     summary: "A comfortable one-bedroom furnished home in Parkersburg’s north side, with an easy scale for one person or a couple.",
-    hero: photo(buckExterior, "Buck Cottage front exterior with tan siding, black shutters, porch, and blue sky", "A direct frontal exterior view keeps the home visible at a useful scale.", "center 50%"),
+    hero: photo(buckLiving, "Buck Cottage living room with a sofa, coffee table, warm curtains, and natural light", "A warm living room leads the Buck Cottage photo story."),
     gallery: [
-      photo(buckExteriorAlt, "Buck Cottage exterior panorama with the cottage centered among mature trees and neighboring homes"),
-      photo(buckLiving, "Buck Cottage living room with couch and windows"),
-      photo(buckLivingAlt, "Buck Cottage living room alternate view"),
+      photo(buckLivingAlt, "Buck Cottage living room second angle with a sofa and windows"),
       photo(buckBedroom, "Buck Cottage bedroom with bed, desk, and windows"),
       photo(buckBathroom, "Buck Cottage bathroom with shower, sink, and toilet"),
     ],
     amenities: ["Furnished one-bedroom layout", "Full kitchen", "Living room", "Laundry access", "Parking options", "Guest support"],
-    coverage: ["Exterior / arrival", "Living room", "Bedroom", "Bathroom"],
+    coverage: ["Living room", "Bedroom", "Bathroom"],
   },
   {
     id: "yellow",
@@ -263,7 +257,7 @@ export const cottages: Cottage[] = [
   },
   {
     id: "white",
-    name: "White Cottage",
+    name: "Walnut Cottage",
     town: "Ravenswood, WV",
     locationPath: "ravenswood/index.html",
     path: "ravenswood/white-cottage.html",
@@ -273,17 +267,15 @@ export const cottages: Cottage[] = [
     pricingNote: publishedLuxuryFurnishedPricingNote,
     signals: publishedStaySignals,
     summary: "A one-bedroom furnished home with classic details, a welcoming room layout, and a quieter Ravenswood setting.",
-    hero: photo(whiteExterior, "White Cottage exterior with white siding, windows, and surrounding greenery", "A clean exterior view replaces the former maintenance-adjacent image."),
+    hero: photo(whiteBedroom, "Walnut Cottage primary bedroom with a four-poster bed, dresser, mirror, and warm curtains", "A warm bedroom leads the Walnut Cottage photo story."),
     gallery: [
-      photo(whiteExteriorAlt, "White Cottage backyard and side exterior with trees and lawn"),
-      photo(whiteFireplace, "White Cottage living room fireplace and built-in shelving"),
-      photo(whiteLiving, "White Cottage living room reading corner with green chair"),
-      photo(whiteBedroom, "White Cottage bedroom storage with dresser and four-poster bed partly visible"),
-      photo(whiteBedroomAlt, "White Cottage dresser and storage area beside a window"),
-      photo(whiteBathroom, "White Cottage bathroom vanity and mirror"),
+      photo(whiteBedroomAlt, "Walnut Cottage second bedroom with a dresser, mirror, and patterned wallpaper"),
+      photo(whiteFireplace, "Walnut Cottage living room fireplace and built-in shelving"),
+      photo(whiteLiving, "Walnut Cottage living room reading corner with a green chair and curtained window"),
+      photo(whiteBathroom, "Walnut Cottage bathroom vanity and mirror"),
     ],
     amenities: ["Furnished one-bedroom layout", "Full kitchen", "Classic living details", "Storage", "Laundry access", "Guest support"],
-    coverage: ["Exterior", "Living room", "Bedrooms", "Bathroom"],
+    coverage: ["Bedrooms", "Living room", "Bathroom"],
   },
   {
     id: "virginia",
@@ -351,7 +343,7 @@ const guidePhotos: Record<string, Photo> = {
   living: photo(mariettaLiving, "A furnished living room with natural light and comfortable seating"),
   family: photo(oakDining, "A bright dining room with room for a household to gather"),
   health: photo(broadLiving, "A furnished living room ready for connected, peaceful living"),
-  work: photo(buckExterior, "A furnished cottage exterior surrounded by mature trees"),
+  work: photo(buckLiving, "A furnished cottage living room with natural light and comfortable seating"),
   insurance: photo(henriettaLiving, "A furnished living and dining space for a transitional stay"),
   services: photo(oakKitchen, "A furnished kitchen with full-size appliances and storage"),
 };
@@ -459,7 +451,7 @@ export const locationData: Record<string, Guide & { town: string; cottages?: Cot
     eyebrow: "Parkersburg home base",
     description: "Parkersburg is a practical hub for guests who want broad access to Wood County employers, healthcare, groceries, retail, restaurants, and community life.",
     intro: "Compare a furnished place by bedroom count, neighborhood feel, price, and the kind of daily rhythm you want during the stay.",
-    photo: photo(buckExterior, "Buck Cottage exterior in Parkersburg with mature trees"),
+    photo: photo(oakDining, "A furnished Parkersburg cottage dining room with natural light"),
     cottages: cottages.filter((cottage) => ["broad", "buck", "yellow", "oak"].includes(cottage.id)),
     sections: [
       { title: "Healthcare", body: "Parkersburg offers the region’s broadest concentration of hospitals, clinics, and related services." },
