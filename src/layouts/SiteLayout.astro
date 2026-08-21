@@ -3,7 +3,7 @@ import "../styles/site.css";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import favicon from "../../assets/images/fav-icon/icon.png";
-import socialImage from "../../assets/images/cottages/parkersburg-02/homepage-hero-buck.avif";
+import socialImage from "../../assets/images/cottages/marietta-01/frederick-exterior-full-safe.avif";
 
 interface Props { title: string; description: string; canonical?: string; noindex?: boolean; schema?: Record<string, unknown> | Record<string, unknown>[]; }
 const { title, description, canonical, noindex = false, schema } = Astro.props;
@@ -38,7 +38,7 @@ const schemas = [organizationSchema, ...(schema ? (Array.isArray(schema) ? schem
     <meta property="og:image" content={socialUrl} />
     <meta property="og:image:alt" content="A furnished Mt Cottages home in the Mid-Ohio Valley" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="theme-color" content="#173a38" />
+    <meta name="theme-color" content="#52614e" />
     <script type="application/ld+json" set:html={JSON.stringify(schemas)} />
     <title>{title}</title>
   </head>
