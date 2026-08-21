@@ -107,7 +107,7 @@ PROPERTY_PAGE_HOUSES = {
     "ravenswood/henrietta-cottage.html": "ravenswood-03",
     "ravenswood/sand-cottage.html": "ravenswood-05",
     "ravenswood/virginia-cottage.html": "ravenswood-02",
-    "ravenswood/white-cottage.html": "ravenswood-01",
+    "ravenswood/walnut-cottage.html": "ravenswood-01",
 }
 PROPERTY_CONTEXT_MARKERS = (
     ("broad street house", "parkersburg-04"),
@@ -129,9 +129,8 @@ PROPERTY_CONTEXT_MARKERS = (
     ("frederick cottage", "marietta-01"),
     ("marietta/frederick-cottage", "marietta-01"),
     ("marietta-01.html", "marietta-01"),
-    ("white cottage", "ravenswood-01"),
     ("walnut cottage", "ravenswood-01"),
-    ("ravenswood/white-cottage", "ravenswood-01"),
+    ("ravenswood/walnut-cottage", "ravenswood-01"),
     ("ravenswood-01.html", "ravenswood-01"),
     ("virginia cottage", "ravenswood-02"),
     ("virginia street house", "ravenswood-02"),

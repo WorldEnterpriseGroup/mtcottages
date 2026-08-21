@@ -1,0 +1,56 @@
+---
+import type { Cottage } from "../data/site";
+
+const { cottage } = Astro.props as { cottage: Cottage };
+const details = cottage.propertyDetails;
+const headingId = `property-details-${cottage.id}`;
+---
+
+{details && (
+  <section class="section property-details" aria-labelledby={headingId} data-property-details={cottage.name}>
+    <div class="site-width">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Before you book</p>
+          <h2 id={headingId}>The {cottage.name} details, in one place.</h2>
+        </div>
+        <p>{details.note}</p>
+      </div>
+
+      <div class="property-detail-groups">
+        {details.groups.map((group) => (
+          <section class="property-detail-group" aria-labelledby={`${headingId}-${group.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}>
+            <h3 id={`${headingId}-${group.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}>{group.title}</h3>
+            <dl>
+              {group.items.map((item) => (
+                <div class={`property-detail property-detail--${item.status}`}>
+                  <dt>{item.label}</dt>
+                  <dd>{item.value}<span class="property-detail-status">{item.status === "listed" ? "Listed / shown" : "Confirm before booking"}</span></dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        ))}
+      </div>
+
+      <div class="property-coverage" aria-label={`${cottage.name} photo coverage`}>
+        <section>
+          <p class="eyebrow">Published photo coverage</p>
+          <h3>What the current gallery shows</h3>
+          <ul>
+            {details.coverage.published.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+        <section class="property-coverage--needed">
+          <p class="eyebrow">Source photos still needed</p>
+          <h3>What to add when approved</h3>
+          <ul>
+            {details.coverage.requested.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+      </div>
+
+      <p class="property-details-footnote">The requested operational fields are visible here so the host can confirm them before they become promises on the public listing. The conceptual 3D views below remain clearly marked as illustrative.</p>
+    </div>
+  </section>
+)}

@@ -8,9 +8,11 @@ import mariettaSecondBedroom from "../../assets/images/cottages/marietta-01/phot
 import mariettaDining from "../../assets/images/cottages/marietta-01/photo-27.jpg";
 
 import broadLiving from "../../assets/images/cottages/parkersburg-01/photo-44.avif";
-import broadBedroom from "../../assets/images/cottages/parkersburg-01/photo-01.avif";
+import broadLivingAlt from "../../assets/images/cottages/parkersburg-01/photo-06.avif";
 import broadBedroomAlt from "../../assets/images/cottages/parkersburg-01/photo-49.avif";
 import broadBathroom from "../../assets/images/cottages/parkersburg-01/photo-20.avif";
+import broadExtraShower from "../../assets/images/cottages/parkersburg-01/photo-42.avif";
+import broadQueenBedroom from "../../assets/images/cottages/parkersburg-01/photo-45.avif";
 import broadVanity from "../../assets/images/cottages/parkersburg-01/photo-12.avif";
 import broadConceptTopDown from "../../assets/images/cottages/parkersburg-01/3d/broad-concept-top-down.png";
 import broadConcept45 from "../../assets/images/cottages/parkersburg-01/3d/broad-concept-45-degree.png";
@@ -75,6 +77,26 @@ export type PropertyStudy = {
   views: PropertyStudyView[];
 };
 
+export type PropertyDetailItem = {
+  label: string;
+  value: string;
+  status: "listed" | "confirm";
+};
+
+export type PropertyDetailGroup = {
+  title: string;
+  items: PropertyDetailItem[];
+};
+
+export type PropertyDetails = {
+  note: string;
+  groups: PropertyDetailGroup[];
+  coverage: {
+    published: string[];
+    requested: string[];
+  };
+};
+
 export type CottageBedroomLabel = "1 Bedroom" | "2 Bedrooms" | "3 Bedrooms";
 
 export const publishedLuxuryFurnishedRates: Record<CottageBedroomLabel, string> = {
@@ -107,6 +129,7 @@ export type Cottage = {
   gallery: Photo[];
   amenities: string[];
   coverage: string[];
+  propertyDetails?: PropertyDetails;
   propertyStudy?: PropertyStudy;
 };
 
@@ -147,22 +170,69 @@ export const cottages: Cottage[] = [
     town: "Parkersburg, WV",
     locationPath: "parkersburg/index.html",
     path: "parkersburg/broad-cottage.html",
-    bedrooms: "2 Bedrooms",
-    price: publishedLuxuryFurnishedRates["2 Bedrooms"],
+    bedrooms: "1 Bedroom",
+    price: publishedLuxuryFurnishedRates["1 Bedroom"],
     shortTerm: "Confirm current availability",
     pricingNote: publishedLuxuryFurnishedPricingNote,
     signals: publishedStaySignals,
-    summary: "A warm, wood-paneled two-bedroom furnished home with a generous living room and practical spaces for a peaceful stay.",
+    summary: "A warm, wood-paneled one-bedroom furnished home with a generous living room and practical spaces for a peaceful stay.",
     hero: photo(broadLiving, "Broad Cottage wood-paneled living room with sectional seating and television", "The best available public image currently shows the home’s main living space."),
     gallery: [
-      photo(broadLiving, "Broad Cottage wood-paneled living room with sectional seating and television"),
-      photo(broadBedroom, "Broad Cottage bedroom with red and black bedding"),
-      photo(broadBedroomAlt, "Broad Cottage bedroom with an ensuite doorway"),
+      photo(broadLivingAlt, "Broad Cottage living room alternate angle with a sunlit window and television", "An alternate living-room view adds context without repeating the hero image."),
+      photo(broadQueenBedroom, "Broad Cottage bedroom with a queen bed, nightstand, hardwood floor, large window, and visible desk chair", "The published bedroom view shows the queen bed and a small work surface."),
+      photo(broadBedroomAlt, "Broad Cottage bedroom second angle with the adjoining bathroom doorway", "A second angle of the same bedroom and its adjoining bath access."),
       photo(broadBathroom, "Broad Cottage bathroom with tub and mirror"),
+      photo(broadExtraShower, "Broad Cottage bathroom shower area with sink, mirror, and cabinets", "A dedicated shower-area view added from the source photo set."),
       photo(broadVanity, "Broad Cottage combined bathroom, laundry area, vanity, and mirror"),
     ],
-    amenities: ["Furnished rooms", "Full kitchen", "Living room", "Private bedrooms", "Laundry access", "Guest support"],
-    coverage: ["Living room", "Bedrooms", "Bathroom", "Vanity / storage"],
+    amenities: ["Furnished one-bedroom layout", "Full kitchen", "Living room", "Queen bedroom", "Washer and dryer", "Fiber-optic internet"],
+    coverage: ["Living room", "One bedroom", "Bathroom / tub", "Shower area", "Laundry / vanity"],
+    propertyDetails: {
+      note: "This panel separates what the current listing or approved photo set supports from the operational details to confirm before booking. It keeps every requested Broad Cottage question visible without guessing.",
+      groups: [
+        {
+          title: "Layout & sleeping",
+          items: [
+            { label: "Home layout", value: "One-bedroom, single-level cottage with one full bathroom.", status: "listed" },
+            { label: "Property size", value: "Total square footage is not published; confirm before booking.", status: "confirm" },
+            { label: "Bed size", value: "A queen bed is shown in the newly published bedroom view.", status: "listed" },
+            { label: "Linens & towels", value: "Confirm that bed linens, pillows, and bath towels are supplied for the stay.", status: "confirm" },
+          ],
+        },
+        {
+          title: "Kitchen & laundry",
+          items: [
+            { label: "Major appliances", value: "A full kitchen is listed; confirm the current refrigerator, stove, oven, microwave, countertops, and sink setup.", status: "confirm" },
+            { label: "Small supplies", value: "Confirm the current coffee maker, cookware, and utensil inventory.", status: "confirm" },
+            { label: "Laundry setup", value: "Washer and dryer are listed; confirm the iron, ironing board, and laundry storage.", status: "confirm" },
+            { label: "Extra shower", value: "A separate shower-area view is now published alongside the tub and vanity photos.", status: "listed" },
+          ],
+        },
+        {
+          title: "Connectivity & comfort",
+          items: [
+            { label: "Wi-Fi", value: "Fiber-optic internet is listed; confirm the service speed in Mbps.", status: "confirm" },
+            { label: "TV & workspace", value: "A living-room TV is listed and a desk/chair is visible in the bedroom photo; confirm Smart TV/Roku and dedicated-workspace details.", status: "confirm" },
+            { label: "Climate control", value: "An air-conditioning unit is visible in the bedroom source view; confirm heating type, central/window/portable AC, and ceiling fans.", status: "confirm" },
+          ],
+        },
+        {
+          title: "Arrival, access & policies",
+          items: [
+            { label: "Parking", value: "Off-street parking is listed; confirm private driveway, dedicated space, and any street-parking fallback.", status: "confirm" },
+            { label: "Outdoor space", value: "Confirm the porch, patio, yard, outdoor seating, entrance, and surrounding-lot details; approved exterior photos are still needed.", status: "confirm" },
+            { label: "Accessibility", value: "Confirm entryway stairs, step-free access, and whether the single-level layout is fully step-free.", status: "confirm" },
+            { label: "Pets", value: "Confirm whether dogs or cats are allowed, along with fees and restrictions.", status: "confirm" },
+            { label: "Utilities", value: "Internet and utilities are listed as included; confirm electricity, water, trash, gas, and internet itemization.", status: "confirm" },
+            { label: "Check-in & house rules", value: "Confirm smart-lock/lockbox method, check-in and check-out times, smoking policy, maximum occupancy, and quiet hours.", status: "confirm" },
+          ],
+        },
+      ],
+      coverage: {
+        published: ["Living room", "One bedroom with queen bed", "Bathroom and tub", "Separate shower area", "Laundry / vanity area"],
+        requested: ["Exterior, entrance, porch, yard, and street context", "Kitchen appliances, countertops, and sink", "Parking and surrounding-lot context"],
+      },
+    },
     propertyStudy: {
       status: "conceptual-demo",
       note: "AI-generated illustrative massing study published to demonstrate the requested two-angle presentation. It is not a measured site plan, is not to scale, and is not a verified rendering; replace it with approved source views before treating it as property-specific.",
@@ -256,11 +326,11 @@ export const cottages: Cottage[] = [
     coverage: ["Dining room", "Kitchen", "Bedrooms", "Bathroom", "Porch"],
   },
   {
-    id: "white",
+    id: "walnut",
     name: "Walnut Cottage",
     town: "Ravenswood, WV",
     locationPath: "ravenswood/index.html",
-    path: "ravenswood/white-cottage.html",
+    path: "ravenswood/walnut-cottage.html",
     bedrooms: "1 Bedroom",
     price: publishedLuxuryFurnishedRates["1 Bedroom"],
     shortTerm: "Confirm current availability",
@@ -469,7 +539,7 @@ export const locationData: Record<string, Guide & { town: string; cottages?: Cot
     description: "Ravenswood offers a quieter alternative to the region’s larger commercial centers, with local services, schools, parks, and river access.",
     intro: "Plan the practical side of a furnished stay, then compare the public cottage choices by scale and what each photo story makes visible.",
     photo: photo(henriettaYard, "Henrietta Cottage yard with trees and a fenced outdoor space"),
-    cottages: cottages.filter((cottage) => ["white", "virginia", "henrietta"].includes(cottage.id)),
+    cottages: cottages.filter((cottage) => ["walnut", "virginia", "henrietta"].includes(cottage.id)),
     sections: [
       { title: "Work and routes", body: "Ravenswood can suit guests who prefer a smaller town while keeping regional work and errands within reach." },
       { title: "Everyday services", body: "Plan groceries, healthcare, transportation, and time outside before choosing the home and length of stay." },
@@ -520,5 +590,5 @@ export const navGroups = [
 
 export const routePaths = [
   "about.html", "available.html", "contact.html", "cottages.html", "cozy-places.html", "emergency-maintenance.html", "family-stays.html", "faq.html", "fully-furnished-homes.html", "guest-services.html", "health-professionals.html", "home-amenities.html", "housekeeping.html", "insurance-housing.html", "living.html", "locations.html", "maintenance.html", "meal-preparation.html", "partnerships.html", "pay-rent.html", "privacy.html", "property-care.html", "resident-portal.html", "residents.html", "room-to-settle.html", "services.html", "work-relocation.html",
-  "marietta/frederick-cottage.html", "parkersburg/broad-cottage.html", "parkersburg/buck-apartment-1.html", "parkersburg/oak-cottage.html", "parkersburg/yellow-cottage.html", "ravenswood/henrietta-cottage.html", "ravenswood/virginia-cottage.html", "ravenswood/white-cottage.html",
+  "marietta/frederick-cottage.html", "parkersburg/broad-cottage.html", "parkersburg/buck-apartment-1.html", "parkersburg/oak-cottage.html", "parkersburg/yellow-cottage.html", "ravenswood/henrietta-cottage.html", "ravenswood/virginia-cottage.html", "ravenswood/walnut-cottage.html",
 ];

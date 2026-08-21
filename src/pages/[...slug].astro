@@ -3,6 +3,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 import ResponsivePhoto from "../components/ResponsivePhoto.astro";
 import PropertyCard from "../components/PropertyCard.astro";
 import DetailsPanel from "../components/DetailsPanel.astro";
+import PropertyDetails from "../components/PropertyDetails.astro";
 import PropertyGallery from "../components/PropertyGallery.astro";
 import Property3DViews from "../components/Property3DViews.astro";
 import GuidePage from "../components/GuidePage.astro";
@@ -70,6 +71,7 @@ const noindex = ["resident-portal.html", "pay-rent.html", "maintenance.html", "e
       <TrustStrip />
       <section class="section section--paper"><div class="site-width split split--wide"><div class="stack"><p class="eyebrow">Why this home may fit</p><h2>See the useful details quickly.</h2><p class="lede">This is a furnished, connected home with fiber-optic internet and quiet, peaceful living. Review the layout, pricing guide, and current photo coverage before starting a conversation.</p><p class="text-muted">The photo story below is intentionally ordered around the living spaces, bedrooms, bath, and details that make the home personal.</p></div><DetailsPanel cottage={cottage} /></div></section>
       <section class="section"><div class="site-width"><div class="section-heading"><div><p class="eyebrow">What this home includes</p><h2>Practical details for furnished, connected living.</h2></div><p>Confirm home-specific features, services, and any special needs during the inquiry.</p></div><div class="amenity-grid">{cottage.amenities.map((amenity, index) => <div class="amenity"><span aria-hidden="true">{["⌂", "＋", "◌", "▦", "◇", "↗"][index % 6]}</span><span>{amenity}</span></div>)}</div></div></section>
+      <PropertyDetails cottage={cottage} />
       {cottage.propertyStudy && <Property3DViews propertyName={cottage.name} views={cottage.propertyStudy.views} disclaimer={cottage.propertyStudy.note} />}
       <PropertyGallery cottage={cottage} />
       <section class="section section--dark"><div class="site-width split"><div><p class="eyebrow" style="color:#e4b482">Ready to compare</p><h2>Ask about {cottage.name}.</h2></div><div><p class="lede lede--light">Tell us your timing, household, and what you need from a place. We will confirm availability, pricing, and the right next step.</p><a class="button button--light mt-3" href={`/apply.html?property=${encodeURIComponent(cottage.id)}`}>Start a stay inquiry <span aria-hidden="true">↗</span></a></div></div></section>

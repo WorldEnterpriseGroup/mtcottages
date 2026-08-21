@@ -293,19 +293,24 @@
           "published_file": "photo-06.avif"
         },
         {
-          "file": "photo-01.jpg",
-          "label": "Attic loft bedroom with red and black bedding, sloped ceiling, and a desk nook.",
-          "published_file": "photo-01.avif"
+          "file": "photo-45.jpg",
+          "label": "Bedroom with a queen bed, nightstand, hardwood floor, large window, and desk chair.",
+          "published_file": "photo-45.avif"
         },
         {
           "file": "photo-49.jpg",
-          "label": "Bedroom, alternate angle showing the open ensuite bathroom doorway.",
+          "label": "Bedroom, alternate angle showing the adjoining bathroom doorway.",
           "published_file": "photo-49.avif"
         },
         {
           "file": "photo-20.jpg",
           "label": "Bathroom tub area with pink tile and candles.",
           "published_file": "photo-20.avif"
+        },
+        {
+          "file": "photo-42.jpg",
+          "label": "Bathroom shower area with sink, mirror, and cabinets.",
+          "published_file": "photo-42.avif"
         },
         {
           "file": "photo-12.jpg",
@@ -434,7 +439,7 @@
     },
     "ravenswood-01": {
       "name": "Walnut Cottage",
-      "public_route": "ravenswood/white-cottage.html",
+      "public_route": "ravenswood/walnut-cottage.html",
       "town": "Ravenswood, WV",
       "hero": {
         "file": "photo-297.png",

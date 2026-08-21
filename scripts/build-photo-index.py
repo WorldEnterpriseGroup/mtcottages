@@ -19,7 +19,7 @@ HOUSE_INFO = {
     "parkersburg-02": {"name": "Buck Cottage", "town": "Parkersburg, WV", "public_route": "parkersburg/buck-apartment-1.html"},
     "parkersburg-03": {"name": "Yellow Cottage", "town": "Parkersburg, WV", "public_route": "parkersburg/yellow-cottage.html"},
     "parkersburg-04": {"name": "Oak Cottage", "town": "Parkersburg, WV", "public_route": "parkersburg/oak-cottage.html"},
-    "ravenswood-01": {"name": "Walnut Cottage", "town": "Ravenswood, WV", "public_route": "ravenswood/white-cottage.html"},
+    "ravenswood-01": {"name": "Walnut Cottage", "town": "Ravenswood, WV", "public_route": "ravenswood/walnut-cottage.html"},
     "ravenswood-02": {"name": "Virginia Cottage", "town": "Ravenswood, WV", "public_route": "ravenswood/virginia-cottage.html"},
     "ravenswood-03": {"name": "Henrietta Cottage", "town": "Ravenswood, WV", "public_route": "ravenswood/henrietta-cottage.html"},
     "ravenswood-04": {"name": "Gallatin Cottage", "town": "Ravenswood, WV", "public_route": None},

@@ -11,7 +11,7 @@ const { cottage } = Astro.props as { cottage: Cottage };
     </figure>
   </a>
   <div class="property-card-body">
-    <p class="property-card-number" aria-hidden="true">{String(cottage.id === "frederick" ? 1 : ["broad", "buck", "yellow", "oak", "white", "virginia", "henrietta"].indexOf(cottage.id) + 1).padStart(2, "0")}</p>
+    <p class="property-card-number" aria-hidden="true">{String(cottage.id === "frederick" ? 1 : ["broad", "buck", "yellow", "oak", "walnut", "virginia", "henrietta"].indexOf(cottage.id) + 1).padStart(2, "0")}</p>
     <div>
       <h2><a href={`/${cottage.path}`}>{cottage.name}</a></h2>
       <p class="location">{cottage.town}</p>

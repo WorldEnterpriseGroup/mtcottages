@@ -13,7 +13,7 @@ const publicPages = [
   "/grantsville/index.html", "/racine/index.html", "/marietta/frederick-cottage.html",
   "/parkersburg/broad-cottage.html", "/parkersburg/buck-apartment-1.html",
   "/parkersburg/yellow-cottage.html", "/parkersburg/oak-cottage.html",
-  "/ravenswood/white-cottage.html", "/ravenswood/virginia-cottage.html",
+  "/ravenswood/walnut-cottage.html", "/ravenswood/virginia-cottage.html",
   "/ravenswood/henrietta-cottage.html", "/404.html"
 ];
 
@@ -101,6 +101,18 @@ test("Broad Cottage exposes the conceptual two-angle property study", async ({ p
   }
 });
 
+test("Broad Cottage publishes its corrected bedroom and detail review fields", async ({ page }) => {
+  await page.goto("/parkersburg/broad-cottage.html");
+  await expect(page.locator(".property-fact-rail")).toContainText("1 Bedroom");
+  await expect(page.locator(".property-fact-rail")).toContainText("$1,895/month");
+  const details = page.locator('[data-property-details="Broad Cottage"]');
+  await expect(details).toHaveCount(1);
+  await expect(details).toContainText("refrigerator, stove, oven, microwave");
+  await expect(details).toContainText("queen bed");
+  await expect(details).toContainText("Source photos still needed");
+  await expect(details).toContainText("Exterior, entrance, porch, yard, and street context");
+});
+
 test("the application route points to the secure application host", async ({ page }) => {
   await page.goto("/apply.html");
   await expect(page.locator(".page-hero h1")).toHaveText("Start with a useful conversation.");
@@ -135,7 +147,7 @@ test("the cottages and locations indexes expose useful property details", async 
 });
 
 test("Walnut and Buck property stories use interior photography", async ({ page }) => {
-  await page.goto("/ravenswood/white-cottage.html");
+  await page.goto("/ravenswood/walnut-cottage.html");
   await expect(page.locator("h1")).toHaveText("Walnut Cottage");
   await expect(page.locator("main img").first()).toHaveAttribute("alt", /Walnut Cottage.*bedroom/i);
   await expect(page.locator('main img[alt*="exterior"]')).toHaveCount(0);

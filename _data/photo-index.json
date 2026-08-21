@@ -5651,7 +5651,7 @@
     },
     "ravenswood-01": {
       "name": "Walnut Cottage",
-      "public_route": "ravenswood/white-cottage.html",
+      "public_route": "ravenswood/walnut-cottage.html",
       "town": "Ravenswood, WV",
       "photos": {
         "photo-01.jpg": {
@@ -29672,6 +29672,38 @@
           "best_for": "hero",
           "features": "tub, sink, toilet, mirror, towels, candles, plants"
         },
+        "photo-42.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-01/photo-42.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1280,
+          "filesize_bytes": 85550,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-01/photo-42.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A well-lit bathroom with a shower, sink, and mirror.",
+          "quality": "good",
+          "page_label": "bathroom",
+          "best_for": "thumbnail",
+          "features": "shower, sink, mirror, cabinets"
+        },
+        "photo-45.avif": {
+          "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-01/photo-45.avif",
+          "format": "avif",
+          "width": 1920,
+          "height": 1280,
+          "filesize_bytes": 155432,
+          "source": "/home/mrh/repos/worldenterprisegroup/mtcottages/sharepoint-download-staging/parkersburg-01/photo-45.jpg",
+          "tags": [
+            "published"
+          ],
+          "scene": "A cozy bedroom with a queen bed and a large window.",
+          "quality": "good",
+          "page_label": "bedroom",
+          "best_for": "gallery",
+          "features": "queen bed, nightstand, hardwood floor, large window, desk chair"
+        },
         "photo-44.avif": {
           "path": "/home/mrh/repos/worldenterprisegroup/mtcottages/assets/images/cottages/parkersburg-01/photo-44.avif",
           "format": "avif",
@@ -29901,9 +29933,10 @@
         "hero": "photo-44.avif",
         "gallery": [
           "photo-06.avif",
-          "photo-01.avif",
+          "photo-45.avif",
           "photo-49.avif",
           "photo-20.avif",
+          "photo-42.avif",
           "photo-12.avif"
         ],
         "available_not_selected": [
@@ -30408,7 +30441,7 @@
     },
     "ravenswood-01": {
       "name": "Walnut Cottage",
-      "public_route": "ravenswood/white-cottage.html",
+      "public_route": "ravenswood/walnut-cottage.html",
       "town": "Ravenswood, WV",
       "photos": {
         "photo-01.avif": {
@@ -32749,7 +32782,7 @@
     "total_houses": 11,
     "houses_with_published_photos": 9,
     "houses_coming_soon": 2,
-    "total_published_avif_files": 219,
+    "total_published_avif_files": 221,
     "total_staging_originals": 1450,
     "houses_without_staging_photos": [
       "ravenswood-05",
