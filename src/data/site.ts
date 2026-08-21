@@ -12,6 +12,8 @@ import broadBedroom from "../../assets/images/cottages/parkersburg-01/photo-01.a
 import broadBedroomAlt from "../../assets/images/cottages/parkersburg-01/photo-49.avif";
 import broadBathroom from "../../assets/images/cottages/parkersburg-01/photo-20.avif";
 import broadVanity from "../../assets/images/cottages/parkersburg-01/photo-12.avif";
+import broadConceptTopDown from "../../assets/images/cottages/parkersburg-01/3d/broad-concept-top-down.png";
+import broadConcept45 from "../../assets/images/cottages/parkersburg-01/3d/broad-concept-45-degree.png";
 
 import buckExterior from "../../assets/images/cottages/parkersburg-02/photo-23.avif";
 import buckExteriorAlt from "../../assets/images/cottages/parkersburg-02/photo-11.jpg";
@@ -60,6 +62,23 @@ export type Photo = {
   focal?: string;
 };
 
+export type PropertyStudyView = {
+  id: string;
+  src: ImageMetadata;
+  label: string;
+  alt: string;
+  caption: string;
+  source: string;
+  createdAt: string;
+  reviewStatus: "conceptual-demo" | "verified";
+};
+
+export type PropertyStudy = {
+  status: "conceptual-demo" | "verified";
+  note: string;
+  views: PropertyStudyView[];
+};
+
 export type Cottage = {
   id: string;
   name: string;
@@ -74,6 +93,7 @@ export type Cottage = {
   gallery: Photo[];
   amenities: string[];
   coverage: string[];
+  propertyStudy?: PropertyStudy;
 };
 
 const photo = (src: ImageMetadata, alt: string, caption?: string, focal?: string): Photo => ({
@@ -125,6 +145,32 @@ export const cottages: Cottage[] = [
     ],
     amenities: ["Furnished rooms", "Full kitchen", "Living room", "Private bedrooms", "Laundry access", "Guest support"],
     coverage: ["Living room", "Bedrooms", "Bathroom", "Vanity / storage"],
+    propertyStudy: {
+      status: "conceptual-demo",
+      note: "AI-generated illustrative massing study published to demonstrate the requested two-angle presentation. It is not a measured site plan, is not to scale, and is not a verified rendering; replace it with approved source views before treating it as property-specific.",
+      views: [
+        {
+          id: "broad-concept-top-down",
+          src: broadConceptTopDown,
+          label: "Top-down",
+          alt: "Conceptual top-down massing study showing a generic two-bedroom cottage, porch, roof planes, path, driveway, and trees; not a measured survey.",
+          caption: "Top-down concept · orientation study, not to scale.",
+          source: "AI-generated illustrative asset",
+          createdAt: "2026-08-21",
+          reviewStatus: "conceptual-demo",
+        },
+        {
+          id: "broad-concept-45-degree",
+          src: broadConcept45,
+          label: "45° angle",
+          alt: "Conceptual 45-degree massing study showing a generic cottage porch, roof form, windows, path, driveway, and trees; not a verified rendering.",
+          caption: "45° concept · massing and arrival study, not a verified rendering.",
+          source: "AI-generated illustrative asset",
+          createdAt: "2026-08-21",
+          reviewStatus: "conceptual-demo",
+        },
+      ],
+    },
   },
   {
     id: "buck",

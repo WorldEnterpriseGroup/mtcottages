@@ -78,6 +78,24 @@ test("property pages keep the curated room coverage and responsive assets", asyn
   await expect(hero).toHaveCSS("object-fit", "contain");
 });
 
+test("Broad Cottage exposes the conceptual two-angle property study", async ({ page }) => {
+  await page.goto("/parkersburg/broad-cottage.html");
+  const section = page.locator(".property-study");
+  const study = section.locator('[data-property-study="Broad Cottage"]');
+  await expect(study).toHaveCount(1);
+  await expect(section).toContainText("Illustrative demonstration");
+  await expect(section).toContainText("not a measured site plan");
+  await expect(study.locator("[data-study-view]")).toHaveCount(2);
+  await expect(study.locator("img")).toHaveCount(2);
+  await expect(study.locator("img").first()).toHaveAttribute("alt", /Conceptual top-down/);
+  await expect(study.locator("img").nth(1)).toHaveAttribute("alt", /Conceptual 45-degree/);
+  for (const image of await study.locator("img").all()) {
+    await image.scrollIntoViewIfNeeded();
+    await expect.poll(() => image.evaluate((element) => element.complete && element.naturalWidth > 0)).toBe(true);
+    await expect(image).toHaveAttribute("src", /\/_astro\//);
+  }
+});
+
 test("the application route points to the secure application host", async ({ page }) => {
   await page.goto("/apply.html");
   await expect(page.locator(".page-hero h1")).toHaveText("Start with a useful conversation.");
@@ -157,7 +175,7 @@ test("mobile navigation supports disclosure, escape, and scroll locking", async 
 
 test("the layout does not overflow a narrow viewport", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  for (const path of ["/index.html", "/cottages.html", "/marietta/frederick-cottage.html"]) {
+  for (const path of ["/index.html", "/cottages.html", "/marietta/frederick-cottage.html", "/parkersburg/broad-cottage.html"]) {
     await page.goto(path);
     const dimensions = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, content: document.body.scrollWidth }));
     expect(dimensions.content, `${path} overflows on mobile`).toBe(dimensions.viewport);
@@ -165,7 +183,7 @@ test("the layout does not overflow a narrow viewport", async ({ page }) => {
 });
 
 test("key decision routes have no automatically detectable accessibility violations", async ({ page }) => {
-  for (const path of ["/index.html", "/cottages.html", "/marietta/frederick-cottage.html", "/apply.html"]) {
+  for (const path of ["/index.html", "/cottages.html", "/marietta/frederick-cottage.html", "/parkersburg/broad-cottage.html", "/apply.html"]) {
     await page.goto(path);
     const results = await new AxeBuilder({ page }).analyze();
     expect(results.violations, `${path}: ${results.violations.map((item) => item.id).join(", ")}`).toEqual([]);

@@ -1,0 +1,92 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+type StudyView = {
+  id?: string;
+  src: ImageMetadata;
+  label: string;
+  alt: string;
+  caption: string;
+  source?: string;
+  createdAt?: string;
+  reviewStatus?: string;
+};
+
+interface Props {
+  propertyName: string;
+  views: StudyView[];
+  disclaimer?: string;
+}
+
+const { propertyName, views, disclaimer = "These visuals are an illustrative concept, not a measured survey or verified rendering." } = Astro.props;
+const headingId = `property-study-${propertyName.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+---
+
+<section class="section property-study" aria-labelledby={headingId}>
+  <div class="site-width">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Concept study · two angles</p>
+        <h2 id={headingId}>See {propertyName} from more than one angle.</h2>
+      </div>
+      <p>Wardah’s requested presentation pattern starts with a top-down orientation view and a 45° arrival view. Verified property-specific source assets can replace this demonstration as they become available.</p>
+    </div>
+
+    <aside class="study-note" role="note">
+      <strong>Illustrative demonstration</strong>
+      <p>{disclaimer}</p>
+    </aside>
+
+    <div class="study-grid" data-property-study={propertyName}>
+      {views.map((view, index) => (
+        <figure class="study-card" data-study-view={view.id || view.label}>
+          <div class="study-media">
+            <Image
+              src={view.src}
+              alt={view.alt}
+              widths={[640, 960, 1280]}
+              sizes="(max-width: 900px) 100vw, 50vw"
+              format="avif"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <figcaption>
+            <span class="study-index">{String(index + 1).padStart(2, "0")}</span>
+            <div>
+              <strong>{view.label} view</strong>
+              <p>{view.caption}</p>
+              {(view.source || view.createdAt) && <small>{[view.source, view.createdAt, view.reviewStatus].filter(Boolean).join(" · ")}</small>}
+            </div>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+
+    <p class="study-footer">This {propertyName} example is a presentation proof-of-concept only. It does not establish measurements, site orientation, room dimensions, or other property facts.</p>
+  </div>
+</section>
+
+<style>
+  .property-study { background: var(--canvas); border-block: 1px solid var(--line); }
+  .property-study .section-heading { margin-bottom: var(--space-3); }
+  .property-study .section-heading > p { max-width: 42rem; }
+  .study-note { display: grid; gap: .35rem; margin-bottom: 1rem; padding: 1rem 1.1rem; border-inline-start: .25rem solid var(--accent); background: var(--paper); }
+  .study-note strong { color: var(--forest); font-family: var(--mono); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; }
+  .study-note p { color: var(--muted); font-size: .86rem; line-height: 1.5; }
+  .study-grid { display: grid; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .study-card { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); }
+  .study-media { overflow: hidden; background: var(--forest-soft); }
+  .study-media img { display: block; width: 100%; height: auto; aspect-ratio: 7 / 5; object-fit: contain; }
+  .study-card figcaption { display: grid; grid-template-columns: 2.35rem 1fr; gap: .6rem; padding: .85rem 1rem 1rem; }
+  .study-index { color: var(--accent-deep); font-family: var(--mono); font-size: .68rem; letter-spacing: .1em; }
+  .study-card strong { color: var(--forest); font-family: var(--display); font-size: 1.25rem; font-weight: 500; }
+  .study-card p { margin-top: .25rem; color: var(--muted); font-size: .8rem; line-height: 1.45; }
+  .study-card small { display: block; margin-top: .55rem; color: var(--muted); font-family: var(--mono); font-size: .62rem; letter-spacing: .04em; line-height: 1.45; text-transform: uppercase; }
+  .study-footer { margin-top: 1rem; color: var(--muted); font-size: .78rem; line-height: 1.5; }
+
+  @media (max-width: 700px) {
+    .study-grid { grid-template-columns: 1fr; }
+  }
+</style>
