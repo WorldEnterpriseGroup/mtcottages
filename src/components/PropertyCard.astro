@@ -16,7 +16,7 @@ const { cottage } = Astro.props as { cottage: Cottage };
       <h2><a href={`/${cottage.path}`}>{cottage.name}</a></h2>
       <p class="location">{cottage.town}</p>
     </div>
-    <div class="property-meta"><span>{cottage.bedrooms}</span><span>Furnished</span><span>30+ days</span></div>
+    <div class="property-meta"><span>{cottage.bedrooms}</span><span>{cottage.signals.homeType}</span><span>{cottage.signals.connectivity}</span><span>{cottage.signals.setting}</span></div>
     <p class="property-price">{cottage.price}</p>
     <a class="property-link" href={`/${cottage.path}`}>View property <span aria-hidden="true">↗</span></a>
   </div>

@@ -8,7 +8,7 @@
 
 Continue with the existing custom, native Astro v7 direction. Do not adopt an Envato theme as the site foundation.
 
-The current build is a static Astro 7.2.1 site using TypeScript, semantic HTML, native CSS, Astro’s responsive image pipeline, and preserved public `.html` URLs. That architecture fits Mt Cottages better than a hotel template: the site needs to explain furnished stays of 30 days or longer, help guests compare homes across communities, show real property photography, and route people into an inquiry rather than a nightly booking engine.
+The current build is a static Astro 7.2.1 site using TypeScript 7, semantic HTML, native CSS, Astro’s responsive image pipeline, and preserved public `.html` URLs. That architecture fits Mt Cottages better than a hotel template: the site needs to present furnished, fiber-connected homes with a quiet, peaceful feel, help guests compare homes across communities, show real property photography, and route people into an inquiry rather than a nightly booking engine.
 
 The Envato candidates remain useful visual references, not dependencies. Any useful pattern should be re-created in the existing Astro components and design tokens; do not bring over demo media, template JavaScript, PHP/AJAX booking assumptions, or legacy jQuery/Bootstrap runtime.
 
@@ -30,9 +30,9 @@ These are the seven candidate links attached to the issue:
 
 | Category / candidates | Fit for Mt Cottages | Tradeoff |
 | --- | --- | --- |
-| Nature and cottage atmosphere — **Peaceful**, with **Alpine** as a secondary mood reference | Supports image-led, place-based storytelling and a warmer cottage identity than a generic hotel shell. | Cottage/camping or alpine framing can imply resort or vacation use; it still needs multi-home, multi-community navigation and longer-stay content. |
+| Nature and cottage atmosphere — **Peaceful**, with **Alpine** as a secondary mood reference | Supports image-led, place-based storytelling and a warmer cottage identity than a generic hotel shell. | Cottage/camping or alpine framing can imply resort or vacation use; it still needs multi-home, multi-community navigation and furnished-home content. |
 | Hotel and B&B information architecture — **Albert**, **CountryHolidays**, and **SkyLine** | Offers familiar hospitality patterns for availability prompts, galleries, service explanations, and contact paths. | Booking-first layouts, sliders, maps, and plugin-era forms can make Mt Cottages feel like a nightly hotel and add runtime that the static site does not need. |
-| Multi-property rental structure — **Villoz**, checked against the single-page **Bed&Breakfast** model | Closest match for presenting several homes while preserving a clear property detail path; the single-page option is a useful contrast for a one-home story. | Vacation-rental language and reservation/commerce assumptions need to become an inquiry-led, 30+ day furnished-stay experience; the single-page model does not scale to the current portfolio. |
+| Multi-property rental structure — **Villoz**, checked against the single-page **Bed&Breakfast** model | Closest match for presenting several homes while preserving a clear property detail path; the single-page option is a useful contrast for a one-home story. | Vacation-rental language and reservation/commerce assumptions need to become an inquiry-led furnished-home experience; the single-page model does not scale to the current portfolio. |
 
 The shortlist is therefore a set of visual and information-architecture references, not a recommendation to purchase or copy any candidate.
 
@@ -47,6 +47,9 @@ The shortlist is therefore a set of visual and information-architecture referenc
 ## Customization work already completed
 
 - **Brand and visual system:** `src/styles/site.css` defines the Mt Cottages canvas, paper, forest, clay, and sun tokens; serif display type; system body type; mono labels; fluid spacing; editorial grids; responsive breakpoints; focus treatment; reduced-motion handling; and print basics.
+- **Mountain-retreat refinement:** the current pass carries forward the Hotel Hub mountain route’s moss, clay, charcoal, serif-led hospitality mood, dark contrast bands, offset compositions, and full-width visual pacing while keeping the implementation native Astro and free of the legacy vendor runtime.
+- **Pricing direction:** listed homes now use a luxury-furnished bedroom rate ladder, with the verified three-bedroom guide at `$2,575/month`; the published floor is designed to remain above the HUD-based minimum requested for this portfolio and should be rechecked when HUD geography/year inputs change.
+- **Pricing source of truth:** the public rate ladder in `src/data/site.ts` and the analysis inventory in `_data/houses.json` now agree by bedroom count; neither file should be treated as a property-specific lease quote until availability and bath details are confirmed.
 - **Site chrome:** the logo, sticky header, desktop mega-navigation, mobile disclosure navigation, skip link, keyboard/Escape behavior, inquiry calls to action, and footer are implemented in `SiteHeader.astro`, `SiteFooter.astro`, and `SiteLayout.astro`.
 - **Property discovery:** `PropertyCard.astro`, `PortfolioCompare.astro`, and the cottage directory turn the portfolio into a scannable choice by community, bedroom count, price guide, and photo story.
 - **Property storytelling:** `DetailsPanel.astro`, `PropertyGallery.astro`, `ResponsivePhoto.astro`, and the dynamic property route provide breadcrumb context, fact rails, amenities, responsive images, captions, coverage labels, and a direct inquiry path.

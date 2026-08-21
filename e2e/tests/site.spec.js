@@ -32,6 +32,11 @@ test("the homepage exposes the native Astro navigation and responsive image pipe
   await expect(navigation).toContainText("Contact");
   await expect(page.locator('a[href="/apply.html"]:visible').first()).toBeVisible();
   await expect(page.locator('.hero-media img[src*="/_astro/"]')).toHaveCount(1);
+  await expect(page.locator(".hero-media img")).toHaveAttribute("alt", /Frederick Cottage/);
+  for (const essential of ["Furnished", "Fiber-optic internet", "Quiet", "Peaceful"]) {
+    await expect(page.locator(".hero-essentials")).toContainText(essential);
+  }
+  await expect(page.locator("body")).not.toContainText("30+ days");
   await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1);
   await expect(page.locator('meta[property="og:image"]')).toHaveCount(1);
 });
@@ -120,6 +125,9 @@ test("the cottages and locations indexes expose useful decision tools", async ({
   await page.goto("/cottages.html");
   await expect(page.locator(".property-card")).toHaveCount(8);
   await expect(page.locator(".comparison-table tbody tr")).toHaveCount(8);
+  await expect(page.locator(".comparison-table")).toContainText("$2,575/month");
+  await expect(page.locator(".comparison-table")).toContainText("$2,295/month");
+  await expect(page.locator(".comparison-table")).toContainText("$1,895/month");
   await page.goto("/locations.html");
   await expect(page.locator(".location-row")).toHaveCount(5);
   await expect(page.locator(".location-row").nth(3)).toContainText("Planning guide");

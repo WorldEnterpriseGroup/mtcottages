@@ -79,15 +79,33 @@ export type PropertyStudy = {
   views: PropertyStudyView[];
 };
 
+export type CottageBedroomLabel = "1 Bedroom" | "2 Bedrooms" | "3 Bedrooms";
+
+export const publishedLuxuryFurnishedRates: Record<CottageBedroomLabel, string> = {
+  "1 Bedroom": "$1,895/month",
+  "2 Bedrooms": "$2,295/month",
+  "3 Bedrooms": "$2,575/month",
+};
+
+export const publishedLuxuryFurnishedPricingNote = "Published luxury-furnished guide by bedroom count.";
+
+export const publishedStaySignals = {
+  homeType: "Furnished",
+  connectivity: "Fiber-optic internet",
+  setting: "Quiet, peaceful",
+} as const;
+
 export type Cottage = {
   id: string;
   name: string;
   town: string;
   locationPath: string;
   path: string;
-  bedrooms: string;
+  bedrooms: CottageBedroomLabel;
   price: string;
   shortTerm: string;
+  pricingNote: string;
+  signals: typeof publishedStaySignals;
   summary: string;
   hero: Photo;
   gallery: Photo[];
@@ -111,8 +129,10 @@ export const cottages: Cottage[] = [
     locationPath: "marietta/index.html",
     path: "marietta/frederick-cottage.html",
     bedrooms: "3 Bedrooms",
-    price: "$1,395/month",
-    shortTerm: "Inquire for short-term pricing",
+    price: publishedLuxuryFurnishedRates["3 Bedrooms"],
+    shortTerm: "Confirm current availability",
+    pricingNote: publishedLuxuryFurnishedPricingNote,
+    signals: publishedStaySignals,
     summary: "A spacious three-bedroom furnished home with a working kitchen, room to gather, and a calm outdoor setting.",
     hero: photo(mariettaExterior, "Frederick Cottage exterior with shutters, trees, lawn, and covered entry", "A clear front-of-house view for orientation.", "32% 45%"),
     gallery: [
@@ -132,9 +152,11 @@ export const cottages: Cottage[] = [
     locationPath: "parkersburg/index.html",
     path: "parkersburg/broad-cottage.html",
     bedrooms: "2 Bedrooms",
-    price: "Inquire for availability",
-    shortTerm: "Flexible furnished-stay options",
-    summary: "A warm, wood-paneled two-bedroom furnished home with a generous living room and practical spaces for a longer stay.",
+    price: publishedLuxuryFurnishedRates["2 Bedrooms"],
+    shortTerm: "Confirm current availability",
+    pricingNote: publishedLuxuryFurnishedPricingNote,
+    signals: publishedStaySignals,
+    summary: "A warm, wood-paneled two-bedroom furnished home with a generous living room and practical spaces for a peaceful stay.",
     hero: photo(broadLiving, "Broad Cottage wood-paneled living room with sectional seating and television", "The best available public image currently shows the home’s main living space."),
     gallery: [
       photo(broadLiving, "Broad Cottage wood-paneled living room with sectional seating and television"),
@@ -179,8 +201,10 @@ export const cottages: Cottage[] = [
     locationPath: "parkersburg/index.html",
     path: "parkersburg/buck-apartment-1.html",
     bedrooms: "1 Bedroom",
-    price: "$895/month",
-    shortTerm: "Inquire for short-term pricing",
+    price: publishedLuxuryFurnishedRates["1 Bedroom"],
+    shortTerm: "Confirm current availability",
+    pricingNote: publishedLuxuryFurnishedPricingNote,
+    signals: publishedStaySignals,
     summary: "A comfortable one-bedroom furnished home in Parkersburg’s north side, with an easy scale for one person or a couple.",
     hero: photo(buckExterior, "Buck Cottage front exterior with tan siding, black shutters, porch, and blue sky", "A direct frontal exterior view keeps the home visible at a useful scale.", "center 50%"),
     gallery: [
@@ -200,9 +224,11 @@ export const cottages: Cottage[] = [
     locationPath: "parkersburg/index.html",
     path: "parkersburg/yellow-cottage.html",
     bedrooms: "2 Bedrooms",
-    price: "Inquire for availability",
-    shortTerm: "Flexible furnished-stay options",
-    summary: "A distinctive two-bedroom home with a porch, bright exterior, full kitchen, and room to settle into a longer assignment.",
+    price: publishedLuxuryFurnishedRates["2 Bedrooms"],
+    shortTerm: "Confirm current availability",
+    pricingNote: publishedLuxuryFurnishedPricingNote,
+    signals: publishedStaySignals,
+    summary: "A distinctive two-bedroom home with a porch, bright exterior, full kitchen, and room to settle into a furnished assignment.",
     hero: photo(yellowExterior, "Yellow Cottage exterior with porch, pale siding, windows, and blue sky", "A bright front-of-house view anchors the property story.", "center 45%"),
     gallery: [
       photo(yellowExteriorAlt, "Yellow Cottage exterior with porch and mature tree"),
@@ -219,8 +245,10 @@ export const cottages: Cottage[] = [
     locationPath: "parkersburg/index.html",
     path: "parkersburg/oak-cottage.html",
     bedrooms: "3 Bedrooms",
-    price: "Inquire for availability",
-    shortTerm: "Flexible furnished-stay options",
+    price: publishedLuxuryFurnishedRates["3 Bedrooms"],
+    shortTerm: "Confirm current availability",
+    pricingNote: publishedLuxuryFurnishedPricingNote,
+    signals: publishedStaySignals,
     summary: "A bright three-bedroom home with a dining room, full kitchen, several bedrooms, and a covered outdoor perch.",
     hero: photo(oakDining, "Oak Cottage bright dining room with blue table, white chairs, and window", "The strongest current public image is an inviting interior rather than a clean exterior."),
     gallery: [
@@ -240,8 +268,10 @@ export const cottages: Cottage[] = [
     locationPath: "ravenswood/index.html",
     path: "ravenswood/white-cottage.html",
     bedrooms: "1 Bedroom",
-    price: "Inquire for availability",
-    shortTerm: "Flexible furnished-stay options",
+    price: publishedLuxuryFurnishedRates["1 Bedroom"],
+    shortTerm: "Confirm current availability",
+    pricingNote: publishedLuxuryFurnishedPricingNote,
+    signals: publishedStaySignals,
     summary: "A one-bedroom furnished home with classic details, a welcoming room layout, and a quieter Ravenswood setting.",
     hero: photo(whiteExterior, "White Cottage exterior with white siding, windows, and surrounding greenery", "A clean exterior view replaces the former maintenance-adjacent image."),
     gallery: [
@@ -262,9 +292,11 @@ export const cottages: Cottage[] = [
     locationPath: "ravenswood/index.html",
     path: "ravenswood/virginia-cottage.html",
     bedrooms: "2 Bedrooms",
-    price: "Inquire for availability",
-    shortTerm: "Flexible furnished-stay options",
-    summary: "A two-bedroom furnished home with a distinctive fireplace, bright rooms, and a flexible footprint for an extended stay.",
+    price: publishedLuxuryFurnishedRates["2 Bedrooms"],
+    shortTerm: "Confirm current availability",
+    pricingNote: publishedLuxuryFurnishedPricingNote,
+    signals: publishedStaySignals,
+    summary: "A two-bedroom furnished home with a distinctive fireplace, bright rooms, and a flexible footprint for connected living.",
     hero: photo(virginiaLiving, "Virginia Cottage living room with white fireplace and built-in shelving", "The strongest usable public image is a clear living-room view; a clean front exterior is still a photo need."),
     gallery: [
       photo(virginiaKitchen, "Virginia Cottage kitchen with white cabinets and red countertop"),
@@ -282,8 +314,10 @@ export const cottages: Cottage[] = [
     locationPath: "ravenswood/index.html",
     path: "ravenswood/henrietta-cottage.html",
     bedrooms: "2 Bedrooms",
-    price: "Inquire for availability",
-    shortTerm: "Flexible furnished-stay options",
+    price: publishedLuxuryFurnishedRates["2 Bedrooms"],
+    shortTerm: "Confirm current availability",
+    pricingNote: publishedLuxuryFurnishedPricingNote,
+    signals: publishedStaySignals,
     summary: "A two-bedroom furnished home with a welcoming dining room, practical kitchen, and a lived-in sense of place.",
     hero: photo(henriettaDining, "Henrietta Cottage dining room with blue walls, table, and chairs", "A strong interior hero while a cleaner front-of-house photo is sourced."),
     gallery: [
@@ -316,7 +350,7 @@ export type Guide = {
 const guidePhotos: Record<string, Photo> = {
   living: photo(mariettaLiving, "A furnished living room with natural light and comfortable seating"),
   family: photo(oakDining, "A bright dining room with room for a household to gather"),
-  health: photo(broadLiving, "A furnished living room ready for a longer stay"),
+  health: photo(broadLiving, "A furnished living room ready for connected, peaceful living"),
   work: photo(buckExterior, "A furnished cottage exterior surrounded by mature trees"),
   insurance: photo(henriettaLiving, "A furnished living and dining space for a transitional stay"),
   services: photo(oakKitchen, "A furnished kitchen with full-size appliances and storage"),
@@ -332,7 +366,7 @@ export const guides: Record<string, Guide> = {
     photo: guidePhotos.living,
     sections: [
       { title: "Start with the shape of the stay", body: "A month, a season, and a year-long transition ask different things of a home. We help narrow the choices around timing, household, and daily life." },
-      { title: "A real home changes the rhythm", body: "A kitchen, separate bedrooms, laundry, and a place to sit can make an extended stay feel more workable than a sequence of hotel rooms." },
+      { title: "A real home changes the rhythm", body: "A kitchen, separate bedrooms, laundry, and a place to sit can make furnished living feel more workable than a sequence of hotel rooms." },
       { title: "Choose a useful next step", body: "Browse homes, compare communities, or start a conversation about the details that matter to your stay." },
     ],
     cta: "Find your place",
@@ -376,7 +410,7 @@ export const guides: Record<string, Guide> = {
     intro: "Mt Cottages offers furnished homes across Mid-Ohio Valley communities so you can focus on the work and the transition around it.",
     photo: guidePhotos.work,
     sections: [
-      { title: "A practical base while work is changing", body: "A furnished home gives a new hire, project team, or relocating household a place to land while the longer-term decision takes shape." },
+      { title: "A practical base while work is changing", body: "A furnished home gives a new hire, project team, or relocating household a place to land while the next decision takes shape." },
       { title: "Projects, contracts, and field work", body: "Share the worksite, likely timing, household, and preferred community so we can compare the practical fit." },
       { title: "For employers and coordinators", body: "We can discuss partner-led housing, timing, furnishing needs, and the information needed to make a placement workable." },
     ],
@@ -406,14 +440,14 @@ export const locationData: Record<string, Guide & { town: string; cottages?: Cot
     town: "Marietta, Ohio",
     title: "A river city with practical everyday reach",
     eyebrow: "Marietta home base",
-    description: "Marietta sits where the Muskingum meets the Ohio River, pairing a historic downtown with the daily services needed for an extended stay.",
+    description: "Marietta sits where the Muskingum meets the Ohio River, pairing a historic downtown with the daily services around a furnished home base.",
     intro: "It can suit healthcare, work, family, and transition stays that benefit from a recognizable town center and regional connections.",
     photo: photo(mariettaExterior, "Frederick Cottage exterior in a leafy Marietta setting"),
     cottages: cottages.filter((cottage) => cottage.id === "frederick"),
     sections: [
       { title: "Healthcare", body: "A Marietta stay can work for guests balancing a local assignment with everyday access to services and errands." },
       { title: "Work and commuting", body: "The town’s riverfront setting and regional roads make it a useful base for work across the Mid-Ohio Valley." },
-      { title: "A slower after-work rhythm", body: "Historic streets, river views, and a compact center give a longer stay room for more than the commute." },
+      { title: "A slower after-work rhythm", body: "Historic streets, river views, and a compact center give a furnished stay room for more than the commute." },
     ],
     cta: "See Frederick Cottage",
     actionHref: "/marietta/frederick-cottage.html",
@@ -441,7 +475,7 @@ export const locationData: Record<string, Guide & { town: string; cottages?: Cot
     title: "Small-town pace beside the Ohio River",
     eyebrow: "Ravenswood home base",
     description: "Ravenswood offers a quieter alternative to the region’s larger commercial centers, with local services, schools, parks, and river access.",
-    intro: "Plan the practical side of a longer stay, then compare the public cottage choices by scale and what each photo story makes visible.",
+    intro: "Plan the practical side of a furnished stay, then compare the public cottage choices by scale and what each photo story makes visible.",
     photo: photo(henriettaYard, "Henrietta Cottage yard with trees and a fenced outdoor space"),
     cottages: cottages.filter((cottage) => ["white", "virginia", "henrietta"].includes(cottage.id)),
     sections: [
@@ -458,7 +492,7 @@ export const locationData: Record<string, Guide & { town: string; cottages?: Cot
     title: "Village life with regional road connections",
     eyebrow: "Meigs County base",
     description: "Racine is an Ohio River village in Meigs County with a practical relationship to regional roads, services, and outdoor space.",
-    intro: "A longer stay here requires deliberate planning around transportation, errands, care, and the work or family reason bringing you to the area.",
+    intro: "A furnished stay here benefits from deliberate planning around transportation, errands, care, and the work or family reason bringing you to the area.",
     sections: [
       { title: "Plan transportation first", body: "Village-scale living rewards guests who map their daily routes, vehicle needs, and service access before arrival." },
       { title: "A stay with a clear purpose", body: "Racine can make sense for family, work, and transition stays when the location supports the actual schedule." },
@@ -472,7 +506,7 @@ export const locationData: Record<string, Guide & { town: string; cottages?: Cot
     town: "Grantsville, West Virginia",
     title: "Rural convenience requires deliberate planning",
     eyebrow: "Calhoun County base",
-    description: "Grantsville is a service center for surrounding rural communities, where a comfortable extended stay depends on planning routes, care, errands, and timing.",
+    description: "Grantsville is a service center for surrounding rural communities, where a comfortable furnished stay depends on planning routes, care, errands, and timing.",
     intro: "Tell us what brings you to the area and how flexible your location and dates are. We will confirm current public options rather than promise an unavailable home.",
     sections: [
       { title: "Healthcare and care routes", body: "Plan the distance to care and the transportation pattern before choosing a rural base." },

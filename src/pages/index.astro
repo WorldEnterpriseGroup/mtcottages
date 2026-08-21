@@ -5,21 +5,21 @@ import PropertyCard from "../components/PropertyCard.astro";
 import TrustStrip from "../components/TrustStrip.astro";
 import PortfolioCompare from "../components/PortfolioCompare.astro";
 import { cottages } from "../data/site";
-import homeHero from "../../assets/images/cottages/parkersburg-02/homepage-hero-buck.avif";
+import homeHero from "../../assets/images/cottages/marietta-01/frederick-exterior-full-safe.avif";
 import homeDetail from "../../assets/images/cottages/marietta-01/photo-27.avif";
 ---
 
-<SiteLayout title="Mt Cottages | Furnished Living" description="Whole furnished homes across the Mid-Ohio Valley for work, transition, family, and longer stays.">
-  <section class="hero">
+<SiteLayout title="Mt Cottages | Furnished Retreats" description="Whole furnished homes across the Mid-Ohio Valley with fiber-optic internet and quiet, peaceful settings.">
+  <section class="hero hero--retreat">
     <div class="site-width hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">Furnished living in the Mid-Ohio Valley</p>
-        <h1>Furnished cottages for stays of 30 days or longer.</h1>
-        <p class="lede">Compare eight one-, two-, and three-bedroom homes in Marietta, Parkersburg, and Ravenswood. Tell us your dates to confirm current availability and pricing.</p>
+        <p class="eyebrow">Mt Cottages · Mid-Ohio Valley</p>
+        <h1>A furnished retreat for the season ahead.</h1>
+        <p class="lede">Whole-home living with fiber-optic internet, quiet surroundings, and the room to settle in across Marietta, Parkersburg, and Ravenswood.</p>
         <div class="cluster"><a class="button" href="/cottages.html">Browse 8 cottages <span aria-hidden="true">↗</span></a><a class="text-link" href="/apply.html">Ask about your dates <span aria-hidden="true">↗</span></a></div>
-        <p class="kicker mt-4">Marietta · Parkersburg · Ravenswood · Racine</p>
+        <ul class="hero-essentials mt-4" aria-label="What comes with the stay"><li>Furnished</li><li>Fiber-optic internet</li><li>Quiet</li><li>Peaceful</li></ul>
       </div>
-      <figure class="hero-media"><ResponsivePhoto src={homeHero} alt="Buck Cottage front exterior with porch, centered entry, and mature trees" priority sizes="(max-width: 900px) 100vw, 60vw" /><figcaption>Homes with room for the season ahead.</figcaption></figure>
+      <figure class="hero-media"><ResponsivePhoto src={homeHero} alt="Frederick Cottage exterior framed by mature trees and a covered entry" priority sizes="(max-width: 900px) 100vw, 64vw" /><figcaption>Frederick Cottage · a storied home in Marietta.</figcaption></figure>
     </div>
   </section>
 
@@ -27,18 +27,18 @@ import homeDetail from "../../assets/images/cottages/marietta-01/photo-27.avif";
 
   <section class="section section--paper">
     <div class="site-width">
-      <div class="section-heading"><div><p class="eyebrow">Room to settle in</p><h2>Choose the shape of the stay.</h2></div><p>A real kitchen, separate bedrooms, laundry, and somewhere to exhale can change the rhythm of an extended stay. Start with the reason you are here, then compare the home and community around it.</p></div>
-      <div class="story-grid"><article class="story-card"><p class="eyebrow">01 · Browse</p><h3>Find a home by size, town, and timing.</h3><p>See the public cottages and use each photo story to understand what the home makes visible.</p><a class="text-link" href="/cottages.html">Browse cottages <span aria-hidden="true">↗</span></a></article><article class="story-card story-card--dark"><p class="eyebrow">02 · Plan</p><h3>Start with the life around the stay.</h3><p>Healthcare, work, relocation, insurance, and family stays each ask different questions.</p><a class="text-link" style="color:#e4b482" href="/living.html">Explore living guides <span aria-hidden="true">↗</span></a></article></div>
+      <div class="section-heading"><div><p class="eyebrow">Room to settle in</p><h2>Everyday ease, with a little more room.</h2></div><p>Furnished whole homes, fiber-optic internet, and quiet, peaceful settings give the season ahead a softer landing. Start with the home and community that fit your life.</p></div>
+      <div class="story-grid"><article class="story-card"><p class="eyebrow">01 · The home</p><h3>Furnished from day one.</h3><p>See the kitchens, bedrooms, living spaces, and useful details that make each cottage feel ready.</p><a class="text-link" href="/cottages.html">Browse cottages <span aria-hidden="true">↗</span></a></article><article class="story-card story-card--dark"><p class="eyebrow">02 · The setting</p><h3>Quiet places to return to.</h3><p>Compare the town, the daily rhythm, and the services around a peaceful home base.</p><a class="text-link" style="color:#e4b482" href="/living.html">Explore living guides <span aria-hidden="true">↗</span></a></article></div>
     </div>
   </section>
 
   <section class="section">
-    <div class="site-width"><div class="section-heading"><div><p class="eyebrow">Homes currently listed</p><h2>Start with the homes.</h2></div><p>Compare the community, bedroom count, monthly guide, and photographs that matter to your everyday stay.</p></div><div class="card-grid card-grid--four">{cottages.slice(0, 4).map((cottage) => <PropertyCard cottage={cottage} />)}</div><a class="text-link mt-3" href="/cottages.html">See all listed cottages <span aria-hidden="true">↗</span></a></div>
+    <div class="site-width"><div class="section-heading"><div><p class="eyebrow">Homes currently listed</p><h2>Find your place to land.</h2></div><p>Compare the community, bedroom count, monthly guide, and photographs that help you choose a furnished, peaceful home.</p></div><div class="card-grid card-grid--four">{cottages.slice(0, 4).map((cottage) => <PropertyCard cottage={cottage} />)}</div><a class="text-link mt-3" href="/cottages.html">See all listed cottages <span aria-hidden="true">↗</span></a></div>
   </section>
 
   <PortfolioCompare cottages={cottages} />
 
-  <section class="section section--dark"><div class="site-width split"><div><p class="eyebrow" style="color:#e4b482">What stays with you</p><h2>Care that makes furnished living feel easier.</h2></div><div class="stack"><p class="lede lede--light">We think about the practical parts around the room: timing, routes, household, upkeep, and the details that make a place feel ready.</p><div class="cluster"><a class="button button--light" href="/services.html">Explore services</a><a class="text-link" style="color:#e4b482" href="/contact.html">Talk with Mt Cottages <span aria-hidden="true">↗</span></a></div></div></div></section>
+  <section class="section section--dark"><div class="site-width split"><div><p class="eyebrow" style="color:#e4b482">The quiet is part of the stay</p><h2>Care that makes a furnished home feel easier.</h2></div><div class="stack"><p class="lede lede--light">We think about the practical details around the room: a connected home, a peaceful setting, clear guidance, and the small things that help a new season feel grounded.</p><div class="cluster"><a class="button button--light" href="/services.html">Explore services</a><a class="text-link" style="color:#e4b482" href="/contact.html">Talk with Mt Cottages <span aria-hidden="true">↗</span></a></div></div></div></section>
 
-  <section class="section section--paper"><div class="site-width split split--wide"><figure class="hero-image-frame"><ResponsivePhoto src={homeDetail} alt="Frederick Cottage dining and entry area with table, staircase, and natural light" sizes="(max-width: 900px) 100vw, 55vw" /><figcaption class="sr-only">A furnished home is made of useful details.</figcaption></figure><div class="align-end"><p class="eyebrow">The details matter</p><h2>More than a room. A working home.</h2><p class="lede mt-2">See kitchens, bedrooms, living spaces, outdoor areas, and the practical features that help a longer stay function.</p><a class="button mt-3" href="/home-amenities.html">See what is included <span aria-hidden="true">↗</span></a></div></div></section>
+  <section class="section section--paper"><div class="site-width split split--wide"><figure class="hero-image-frame"><ResponsivePhoto src={homeDetail} alt="Frederick Cottage dining and entry area with table, staircase, and natural light" sizes="(max-width: 900px) 100vw, 55vw" /><figcaption class="sr-only">A furnished home is made of useful details.</figcaption></figure><div class="align-end"><p class="eyebrow">The details matter</p><h2>More than a room. A working home.</h2><p class="lede mt-2">See kitchens, bedrooms, living spaces, outdoor areas, and the practical features that make a furnished, peaceful home feel personal.</p><a class="button mt-3" href="/home-amenities.html">See what is included <span aria-hidden="true">↗</span></a></div></div></section>
 </SiteLayout>
