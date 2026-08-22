@@ -101,6 +101,22 @@ def test_source_url_rejects_untrusted_origins(monkeypatch):
     assert function_app._privacy_safe_source_url("https://evil.example/inquiry") == ""
 
 
+def test_noncanonical_hosts_cannot_render_or_submit(monkeypatch):
+    monkeypatch.setenv("TURNSTILE_SITE_KEY", "site-key")
+    monkeypatch.setenv("TURNSTILE_SECRET_KEY", "secret-key")
+    get_response = function_app.application_form(
+        Request(method="GET", url="https://apply.mtcottages.com/", headers={"Host": "apply.mtcottages.com"})
+    )
+    assert get_response.status_code == 404
+    assert "data-application-form" not in get_response.body
+
+    post_response = function_app.apply(
+        _form_request({}, headers={"Host": "unexpected.example", "Origin": ""})
+    )
+    assert post_response.status_code == 404
+    assert json.loads(post_response.body) == {"success": False, "message": "Not found"}
+
+
 def test_configured_origins_and_hostnames_reject_unsafe_values(monkeypatch):
     monkeypatch.setenv("ALLOWED_ORIGINS", "https://stay.mtcottages.com,*,https://evil.example/path")
     monkeypatch.setenv("TURNSTILE_ALLOWED_HOSTNAMES", "stay.mtcottages.com,*.evil.example,https://bad.example")
@@ -147,6 +163,7 @@ def test_oversized_turnstile_token_is_rejected_before_network(monkeypatch):
 
 def test_form_csp_has_nonce_and_turnstile_sources(monkeypatch):
     monkeypatch.setenv("TURNSTILE_SITE_KEY", "site-key")
+    monkeypatch.setenv("TURNSTILE_SECRET_KEY", "secret-key")
     response = function_app.application_form(Request(method="GET", url="https://stay.mtcottages.com/"))
     csp = response.headers["Content-Security-Policy"]
     assert "frame-ancestors 'none'" in csp
@@ -159,25 +176,29 @@ def test_form_csp_has_nonce_and_turnstile_sources(monkeypatch):
     assert "https://challenges.cloudflare.com/turnstile/v0/api.js" in response.body
 
 
-def test_missing_site_key_keeps_form_disabled(monkeypatch):
+def test_missing_site_key_fails_closed_without_fallback_ui(monkeypatch):
     monkeypatch.delenv("TURNSTILE_SITE_KEY", raising=False)
     response = function_app.application_form(Request(method="GET", url="https://stay.mtcottages.com/"))
-    assert response.status_code == 200
+    assert response.status_code == 503
+    assert "Human verification is being prepared" not in response.body
+    assert "stay@mtcottages.com" not in response.body
+
+
+def test_missing_site_key_rejects_turnstile_verification_before_network(monkeypatch):
+    monkeypatch.delenv("TURNSTILE_SITE_KEY", raising=False)
+    monkeypatch.setenv("TURNSTILE_SECRET_KEY", "secret-key")
+    monkeypatch.setattr(function_app.urllib.request, "urlopen", lambda *_args, **_kwargs: (_ for _ in ()).throw(AssertionError("network call")))
+    result = function_app._verify_turnstile(Request(), {"cf-turnstile-response": "turnstile-token"})
+    assert result == (503, "Human verification is not configured")
+
+
+def test_missing_secret_key_fails_closed_without_rendering_form(monkeypatch):
+    monkeypatch.setenv("TURNSTILE_SITE_KEY", "site-key")
+    monkeypatch.delenv("TURNSTILE_SECRET_KEY", raising=False)
+    response = function_app.application_form(Request(method="GET", url="https://stay.mtcottages.com/"))
+    assert response.status_code == 503
     assert 'class="cf-turnstile"' not in response.body
-    assert 'data-turnstile-state="configuration-required"' in response.body
-    assert "disabled data-turnstile-config-required" in response.body
-
-
-def test_legacy_apply_host_redirect_is_preserved():
-    response = function_app.application_form(
-        Request(
-            method="GET",
-            url="https://apply.mtcottages.com/?property=frederick",
-            headers={"Host": "apply.mtcottages.com"},
-        )
-    )
-    assert response.status_code == 301
-    assert response.headers["Location"] == "https://stay.mtcottages.com/?property=frederick"
+    assert "stay@mtcottages.com" not in response.body
 
 
 def test_health_endpoint_retains_contract_and_security_headers():

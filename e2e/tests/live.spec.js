@@ -25,6 +25,12 @@ test("stay.mtcottages.com serves the cottage application page", async ({ page, r
   await expect(page).toHaveTitle(/Find Your Mt Cottages Stay/);
   await expect(page.locator(".hero h1")).toHaveText("Find a cottage that feels like home.");
   await expect(page.locator("[data-human-verification], .human-check")).toHaveCount(1);
+  await expect(page.locator(".cf-turnstile")).toHaveCount(1);
+  await expect(page.locator('script[src="https://challenges.cloudflare.com/turnstile/v0/api.js"]')).toHaveCount(1);
+  await expect(page.locator(".cf-turnstile")).toHaveAttribute("data-sitekey", /.+/);
+  await expect(page.locator(".cf-turnstile")).not.toHaveAttribute("data-sitekey", "__TURNSTILE_SITE_KEY__");
+  await expect(page.locator('[data-turnstile-unavailable], .human-check__unavailable, [data-turnstile-config-required], [data-turnstile-state="configuration-required"]')).toHaveCount(0);
+  await expect(page.locator("body")).not.toContainText("__TURNSTILE_SITE_KEY__");
   await expect(page.locator('form[data-application-form]')).toHaveCount(1);
   await expect(page.locator('form[data-application-form]')).toHaveAttribute(
     "action",
@@ -57,12 +63,8 @@ test("the application API is healthy and safely rejects a bot probe", async ({ r
   });
 });
 
-test("both application host redirects enforce HTTPS and canonical stay", async ({ request }) => {
+test("the canonical stay host redirects HTTP to HTTPS", async ({ request }) => {
   const stayHttp = await request.get("http://stay.mtcottages.com/", { maxRedirects: 0 });
   expect(stayHttp.status()).toBe(307);
   expect(stayHttp.headers().location).toBe("https://stay.mtcottages.com/");
-
-  const legacyApply = await request.get("https://apply.mtcottages.com/", { maxRedirects: 0 });
-  expect(legacyApply.status()).toBe(301);
-  expect(legacyApply.headers().location).toBe("https://stay.mtcottages.com/");
 });

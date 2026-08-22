@@ -53,14 +53,18 @@ jobs:
               errors.append("CNAME must remain mtcottages.com")
           if not Path("dist/.nojekyll").is_file():
               errors.append(".nojekyll is missing")
+          if Path("dist/apply.html").exists():
+              errors.append("dist/apply.html is a removed legacy application route")
           for sitemap in Path("dist").glob("sitemap-*.xml"):
               if "apply.html" in sitemap.read_text(encoding="utf-8"):
-                  errors.append(f"{sitemap} advertises the redirect-only apply route")
-          if len(pages) != 67:
-              errors.append(f"expected 67 generated HTML pages, found {len(pages)}")
+                  errors.append(f"{sitemap} advertises the removed apply route")
+          if len(pages) != 66:
+              errors.append(f"expected 66 generated HTML pages, found {len(pages)}")
           legacy_markers = ("jquery", "bootstrap", "modernizr", "swiper", "owl.carousel", "venobox", "gsap", "hotelhub")
           for page in pages:
               markup = page.read_text(encoding="utf-8").lower()
+              if "/apply.html" in markup or "apply.mtcottages.com" in markup:
+                  errors.append(f"{page} contains a removed application alias")
               if "255 court st" in markup:
                   errors.append(f"{page} contains private/non-public inventory")
               if any(marker in markup for marker in legacy_markers):

@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Validate the canonical stay form, redirect alias, and Logic App contract.
+"""Validate the canonical stay form and Logic App contract.
 
 The application is intentionally rendered only by the Azure Function at
-``stay.mtcottages.com``.  The Astro ``apply.html`` artifact is a compatibility
-redirect and must never grow a second form.  This check keeps the canonical
-HTML form aligned with the Logic App request schema instead of maintaining two
-public copies of the form.
+``stay.mtcottages.com``.  The marketing build must not emit a legacy
+``apply.html`` artifact.  This check keeps the canonical HTML form aligned with
+the Logic App request schema instead of maintaining two public copies of the
+form.
 """
 
 import json
@@ -101,18 +101,15 @@ def extract(path: Path) -> ApplicationFormExtractor:
 
 
 def main() -> int:
-    for path in (LEGACY_HTML, PROXY_HTML, LOGIC_APP):
+    for path in (PROXY_HTML, LOGIC_APP):
         if not path.is_file():
             print(f"error: {path} does not exist; run the build first", file=sys.stderr)
             return 1
 
     errors = []
-    legacy = LEGACY_HTML.read_text(encoding="utf-8")
+    if LEGACY_HTML.exists():
+        errors.append("dist/apply.html still exists; the legacy application route must be removed")
     proxy = PROXY_HTML.read_text(encoding="utf-8")
-    if "data-application-form" in legacy:
-        errors.append("dist/apply.html still contains an application form; the route must be redirect-only")
-    if "https://stay.mtcottages.com/" not in legacy or "window.location.replace" not in legacy:
-        errors.append("dist/apply.html is missing the canonical stay redirect")
     for marker in ("<link rel=\"canonical\" href=\"https://stay.mtcottages.com/\">", "Find a cottage that feels like home.", "Tell us what would make a cottage feel like yours.", "One small check", "cf-turnstile", "data-property-context", "optionAliases", "data-form-status"):
         if marker not in proxy:
             errors.append(f"stay form is missing canonical experience marker: {marker}")
@@ -145,7 +142,7 @@ def main() -> int:
             print(f"  - {error}", file=sys.stderr)
         return 1
 
-    print(f"OK: {len(form.fields)} canonical stay fields, {len(form.select_options)} selects, and redirect-only apply.html")
+    print(f"OK: {len(form.fields)} canonical stay fields and {len(form.select_options)} selects")
     return 0
 
 

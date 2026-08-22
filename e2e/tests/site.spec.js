@@ -3,7 +3,7 @@ const AxeBuilder = require("@axe-core/playwright").default;
 
 const publicPages = [
   "/index.html", "/cottages.html", "/available.html", "/locations.html", "/room-to-settle.html",
-  "/about.html", "/apply.html", "/contact.html", "/faq.html", "/cozy-places.html",
+  "/about.html", "/contact.html", "/faq.html", "/cozy-places.html",
   "/fully-furnished-homes.html", "/health-professionals.html", "/work-relocation.html",
   "/insurance-housing.html", "/family-stays.html", "/living.html", "/services.html",
   "/home-amenities.html", "/guest-services.html", "/meal-preparation.html", "/property-care.html",
@@ -47,11 +47,6 @@ test("every public route is reachable and privacy-safe", async ({ page, request 
     expect(response.status(), `${path} should return a successful response`).toBe(200);
     const html = await response.text();
     expect(html, `${path} exposed private inventory`).not.toContain("255 Court St");
-    if (path === "/apply.html") {
-      expect(html).not.toContain("data-application-form");
-      expect(html).toContain("https://stay.mtcottages.com/");
-      continue;
-    }
     await page.goto(path);
     await expect(page.locator('link[rel="stylesheet"]'), `${path} lost native stylesheet`).not.toHaveCount(0);
     await expect(page.locator("body"), `${path} needs visible content`).not.toBeEmpty();
@@ -118,15 +113,6 @@ test("Broad Cottage publishes its corrected bedroom and detail review fields", a
   await expect(details).toContainText("Exterior, entrance, porch, yard, and street context");
 });
 
-test("the legacy application route redirects to the canonical stay host", async ({ request }) => {
-  const response = await request.get("/apply.html");
-  expect(response.status()).toBe(200);
-  const html = await response.text();
-  expect(html).not.toContain("data-application-form");
-  expect(html).toContain("https://stay.mtcottages.com/");
-  expect(html).toContain("window.location.replace");
-});
-
 test("property inquiry CTAs go directly to stay with cottage context", async ({ page }) => {
   await page.goto("/marietta/frederick-cottage.html");
   await expect(page.locator('a[href="https://stay.mtcottages.com/?property=frederick"]')).toHaveCount(3);
@@ -159,9 +145,7 @@ test("Walnut and Buck property stories use interior photography", async ({ page 
 test("all primary stay CTAs point directly to the canonical stay host", async ({ page }) => {
   await page.goto("/index.html");
   await expect(page.locator('a[href^="https://stay.mtcottages.com/"]:not([href*="/api/"]):visible').first()).toBeVisible();
-  await expect(page.locator('a[href*="/apply.html"]')).toHaveCount(0);
   await page.goto("/marietta/frederick-cottage.html");
-  await expect(page.locator('a[href*="/apply.html"]')).toHaveCount(0);
   await expect(page.locator('a[href="https://stay.mtcottages.com/?property=frederick"]')).toHaveCount(3);
 });
 

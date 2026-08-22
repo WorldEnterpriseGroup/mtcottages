@@ -26,7 +26,7 @@ export default defineConfig({
     service: { entrypoint: "astro/assets/services/sharp" }
   },
   integrations: [sitemap({
-    filter: (page) => shouldIncludeInSitemap(page) && !["/404", "/apply", "/resident-portal", "/pay-rent", "/maintenance", "/emergency-maintenance", "/parkersburg/broad-cottage.html"].some((route) => page.endsWith(route)),
+    filter: (page) => shouldIncludeInSitemap(page) && !["/404", "/resident-portal", "/pay-rent", "/maintenance", "/emergency-maintenance", "/parkersburg/broad-cottage.html"].some((route) => page.endsWith(route)),
     serialize(item) {
       const url = new URL(item.url);
       const micrositeRoot = broadCottagePath;

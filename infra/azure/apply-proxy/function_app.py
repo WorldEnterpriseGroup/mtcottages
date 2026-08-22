@@ -24,6 +24,7 @@ _last_submission = {}
 _rate_limit_lock = threading.Lock()
 TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify"
 DEFAULT_ALLOWED_ORIGINS = "https://stay.mtcottages.com"
+CANONICAL_HOSTNAME = "stay.mtcottages.com"
 DEFAULT_TURNSTILE_HOSTNAMES = "stay.mtcottages.com"
 DEFAULT_TURNSTILE_ACTION = "stay-inquiry"
 MAX_BODY_BYTES = 200_000
@@ -241,6 +242,27 @@ def _turnstile_hostnames():
     return _configured_values("TURNSTILE_ALLOWED_HOSTNAMES", DEFAULT_TURNSTILE_HOSTNAMES, _normalize_hostname)
 
 
+def _request_hostname(req):
+    """Return the normalized public hostname for the current request."""
+    forwarded_host = req.headers.get("X-Forwarded-Host", "")
+    candidates = [value.strip() for value in forwarded_host.split(",") if value.strip()]
+    candidates.append(req.headers.get("Host", "").strip())
+    candidates.append(urllib.parse.urlsplit(req.url).hostname or "")
+    for candidate in candidates:
+        try:
+            hostname = urllib.parse.urlsplit(f"//{candidate}").hostname
+        except ValueError:
+            hostname = None
+        normalized = _normalize_hostname(hostname or "")
+        if normalized:
+            return normalized
+    return ""
+
+
+def _canonical_host(req):
+    return _request_hostname(req) == CANONICAL_HOSTNAME
+
+
 def _turnstile_site_key():
     value = os.environ.get("TURNSTILE_SITE_KEY", "").strip()
     if not value or len(value) > 256 or any(character.isspace() for character in value):
@@ -256,9 +278,11 @@ def _turnstile_expected_action():
 
 
 def _turnstile_is_configured():
+    site_key = _turnstile_site_key()
     secret = os.environ.get("TURNSTILE_SECRET_KEY", "").strip()
     return bool(
-        secret
+        site_key
+        and secret
         and len(secret) <= 256
         and not any(character.isspace() for character in secret)
         and _turnstile_hostnames()
@@ -480,41 +504,27 @@ def _record_submission(client_key):
 @app.route(route="{*route}", methods=["GET"])
 def application_form(req: func.HttpRequest) -> func.HttpResponse:
     requested_path = urllib.parse.urlparse(req.url).path.rstrip("/")
+    if not _canonical_host(req):
+        return func.HttpResponse("Not found", status_code=404, headers=SECURITY_HEADERS)
     if requested_path.endswith("/api/health") or requested_path.endswith("/health"):
         return _response({"status": "ok", "service": "mtcottages-apply-proxy"}, 200, req.headers.get("Origin", ""))
-    forwarded_host = req.headers.get("X-Forwarded-Host", "")
-    request_host = (forwarded_host.split(",")[0] or req.headers.get("Host", "")).strip().lower()
-    if request_host == "apply.mtcottages.com" and not requested_path.startswith("/api/"):
-        parsed = urllib.parse.urlparse(req.url)
-        destination = "https://stay.mtcottages.com" + (parsed.path or "/")
-        if parsed.query:
-            destination += "?" + parsed.query
-        return func.HttpResponse(
-            status_code=301,
-            headers={**SECURITY_HEADERS, "Location": destination, "Cache-Control": "public, max-age=300"},
-        )
     form_path = Path(__file__).with_name("index.html")
     try:
         markup = form_path.read_text(encoding="utf-8")
     except OSError:
         return func.HttpResponse("Application form unavailable", status_code=503, headers=SECURITY_HEADERS)
 
+    if not _turnstile_is_configured():
+        logger.error("Turnstile validation is not configured")
+        return func.HttpResponse("Application form unavailable", status_code=503, headers=SECURITY_HEADERS)
     turnstile_site_key = _turnstile_site_key()
     script_nonce = secrets.token_urlsafe(18)
-    turnstile_widget = '<div class="cf-turnstile" data-sitekey="__TURNSTILE_SITE_KEY__" data-action="stay-inquiry" data-theme="light" data-language="en"></div>'
-    if turnstile_site_key:
-        turnstile_script = (
-            f'<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" '
-            f'nonce="{script_nonce}" async defer></script>'
-        )
-        markup = markup.replace("<!-- TURNSTILE_SCRIPT -->", turnstile_script)
-        markup = markup.replace("__TURNSTILE_SITE_KEY__", html.escape(turnstile_site_key, quote=True))
-    else:
-        markup = markup.replace("<!-- TURNSTILE_SCRIPT -->", "")
-        markup = markup.replace(turnstile_widget, "")
-        markup = markup.replace('data-turnstile-state="ready"', 'data-turnstile-state="configuration-required"')
-        markup = markup.replace(" data-turnstile-unavailable hidden", " data-turnstile-unavailable")
-        markup = markup.replace(" data-requires-turnstile", " disabled data-turnstile-config-required")
+    turnstile_script = (
+        f'<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" '
+        f'nonce="{script_nonce}" async defer></script>'
+    )
+    markup = markup.replace("<!-- TURNSTILE_SCRIPT -->", turnstile_script)
+    markup = markup.replace("__TURNSTILE_SITE_KEY__", html.escape(turnstile_site_key, quote=True))
     markup = markup.replace('nonce="__INLINE_SCRIPT_NONCE__"', f'nonce="{script_nonce}"')
     return func.HttpResponse(
         markup,
@@ -527,6 +537,8 @@ def application_form(req: func.HttpRequest) -> func.HttpResponse:
 @app.route(route="api/apply", methods=["POST", "OPTIONS"])
 def apply(req: func.HttpRequest) -> func.HttpResponse:
     origin = req.headers.get("Origin", "").strip()
+    if not _canonical_host(req):
+        return _response({"success": False, "message": "Not found"}, 404, origin)
     if req.method == "OPTIONS":
         # Keep a body so the worker does not collapse this response to 204;
         # native Function App CORS also handles preflight at the platform edge.

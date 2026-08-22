@@ -1,9 +1,9 @@
 # Mt Cottages application intake
 
-The application flow has one canonical public surface and one compatibility alias:
+The application flow has one canonical public surface:
 
 - `https://stay.mtcottages.com/` is the only application page. The Azure Function proxy in `apply-proxy/` serves the complete page, validates submissions, and forwards them to the Logic App.
-- `https://mtcottages.com/apply.html` and `https://apply.mtcottages.com/` are legacy aliases that redirect to the canonical stay host. They must not contain a second form.
+- The marketing site does not emit `/apply.html`, and the Front Door route does not attach `apply.mtcottages.com`.
 
 ## Cloudflare Turnstile
 
@@ -24,7 +24,7 @@ ALLOWED_ORIGINS=https://stay.mtcottages.com
 LOGICAPP_URL_APPLICATION=<logic-app-trigger-url>
 ```
 
-If the site key is missing, the stay form is visibly disabled and directs people to email. This prevents an unverified form from being published accidentally.
+If either Turnstile value is missing, the Function returns `503 Application form unavailable` rather than rendering a disabled form or advertising an email fallback.
 
 ## Dynamics 365 / Dataverse ownership
 
@@ -61,16 +61,16 @@ Provision the real Turnstile site and secret values separately in the Function A
 
 ### Front Door sequence
 
-1. Confirm `mtcottages-apply-route` is HTTPS-only and still redirects the legacy apply aliases.
-2. Confirm the `SecurityHeaders` ruleset is attached to the live route, and stage the WAF policy associations for both `stay.mtcottages.com` and `apply.mtcottages.com`.
-3. Deploy the zip, then smoke-test the canonical stay page, form asset loading, the application endpoint, and the legacy redirects through Front Door.
-4. Keep the direct-origin restriction staged until those smoke checks pass. Apply the origin lock last, then repeat the canonical and redirect smoke checks through Front Door.
+1. Confirm `mtcottages-apply-route` is HTTPS-only and attaches only `stay.mtcottages.com`.
+2. Confirm the `SecurityHeaders` ruleset is attached to the live route and the Standard WAF policy association includes the stay custom domain.
+3. Deploy the zip, then smoke-test the canonical stay page, Turnstile asset loading, and the application endpoint through Front Door.
+4. Keep the direct-origin restriction staged until those smoke checks pass. Apply the origin lock last, then repeat the canonical and application-edge smoke checks through Front Door.
 
 ### Release checklist and rollback
 
 - [ ] The zip has the app files at its root and remote build is enabled.
 - [ ] All required setting names are present; Turnstile values were provisioned separately and are not in source control.
 - [ ] Front Door route, `SecurityHeaders` ruleset, and WAF domain associations are verified before enabling the origin lock.
-- [ ] Canonical, form, invalid-submission, and legacy-redirect smoke checks pass after deployment and again after the origin lock.
+- [ ] Canonical, form, Turnstile, and invalid-submission smoke checks pass after deployment and again after the origin lock.
 
 If smoke checks fail, redeploy the previous known-good zip with the same command, leave the direct-origin restriction staged (or revert the latest edge change), and repeat the smoke checks before reopening the path.
