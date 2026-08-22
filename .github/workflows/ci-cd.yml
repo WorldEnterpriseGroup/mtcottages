@@ -79,6 +79,15 @@ jobs:
           test "$(du -sm dist | cut -f1)" -le 70
           test -z "$(find dist -type f -size +2M -print -quit)"
 
+      - name: Run proxy unit tests
+        run: |
+          if [ -d infra/azure/apply-proxy/tests ]; then
+            python3 -m pip install --disable-pip-version-check --no-input --quiet "pytest>=8,<9"
+            python3 -m pytest -q infra/azure/apply-proxy/tests
+          else
+            echo "No proxy tests found; skipping."
+          fi
+
       - name: Guard against committed street addresses
         run: |
           # Broader backstop for the *.html-only check above: scan every

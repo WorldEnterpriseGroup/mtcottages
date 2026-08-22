@@ -63,7 +63,7 @@
     </div></section>
   </main>
   <footer class="site-footer"><div class="wrap">Mt Cottages · Marietta · Parkersburg · Ravenswood · Racine</div></footer>
-  <script>
+  <script nonce="__INLINE_SCRIPT_NONCE__">
     const form = document.querySelector("[data-application-form]");
     const params = new URLSearchParams(window.location.search);
     const properties = {
@@ -121,7 +121,8 @@
       chooseOption("duration", [params.get("duration")]);
       chooseOption("homeSize", [params.get("homeSize")]);
       chooseOption("pets", [params.get("pets")]);
-      form.querySelector('[name="sourceUrl"]').value = window.location.href.slice(0, 500);
+      const sourceUrl = new URL(window.location.href);
+      form.querySelector('[name="sourceUrl"]').value = `${sourceUrl.origin}${sourceUrl.pathname}`.slice(0, 500);
 
       const status = form.querySelector("[data-form-status]");
       const submit = form.querySelector('[type="submit"]');
