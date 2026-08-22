@@ -1,5 +1,5 @@
 ---
-import type { Cottage } from "../data/site";
+import { stayApplicationUrl, type Cottage } from "../data/site";
 const { cottage } = Astro.props as { cottage: Cottage };
 ---
 <aside class="details-panel" aria-labelledby="quick-details-title">
@@ -19,6 +19,6 @@ const { cottage } = Astro.props as { cottage: Cottage };
     <strong>{cottage.price}</strong>
     <span class="text-muted">{cottage.pricingNote} {cottage.shortTerm}</span>
   </div>
-  <a class="button" href={`/apply.html?property=${encodeURIComponent(cottage.id)}`}>Ask about this home <span aria-hidden="true">↗</span></a>
+  <a class="button" href={`${stayApplicationUrl}?property=${encodeURIComponent(cottage.id)}`}>Ask about this home <span aria-hidden="true">↗</span></a>
   <p class="details-note">An inquiry starts a conversation. It is not a lease, approval, or guarantee of availability.</p>
 </aside>

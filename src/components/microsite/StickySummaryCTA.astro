@@ -1,0 +1,67 @@
+---
+import type { MicrositeAction, SummaryFact } from "./types";
+import { micrositeSlug } from "./utils";
+
+interface Props {
+  propertyName: string;
+  summary?: string;
+  facts?: SummaryFact[];
+  availability?: string;
+  action: MicrositeAction;
+  note?: string;
+  placement?: "bottom" | "top";
+}
+
+const {
+  propertyName,
+  summary,
+  facts = [],
+  availability,
+  action,
+  note = "An inquiry starts a conversation; it is not a lease, approval, or guarantee of availability.",
+  placement = "bottom",
+} = Astro.props;
+
+const noteId = `sticky-summary-note-${micrositeSlug(propertyName)}`;
+---
+
+<aside
+  class:list={[
+    "microsite-sticky-summary",
+    `microsite-sticky-summary--${placement}`,
+  ]}
+  aria-label={`${propertyName} inquiry summary`}
+  data-microsite-sticky-summary
+>
+  <div class="microsite-sticky-summary__inner">
+    <div class="microsite-sticky-summary__copy">
+      <p class="microsite-sticky-summary__eyebrow">{availability || "Plan your stay"}</p>
+      <strong>{propertyName}</strong>
+      {summary && <p class="microsite-sticky-summary__summary">{summary}</p>}
+    </div>
+
+    {facts.length > 0 && (
+      <dl class="microsite-sticky-summary__facts">
+        {facts.map((fact) => (
+          <div>
+            <dt>{fact.label}</dt>
+            <dd>{fact.value}</dd>
+          </div>
+        ))}
+      </dl>
+    )}
+
+    <div class="microsite-sticky-summary__action">
+      <a
+        href={action.href}
+        target={action.external ? "_blank" : undefined}
+        rel={action.external ? "noopener noreferrer" : undefined}
+        aria-describedby={noteId}
+      >
+        {action.label}
+        <span aria-hidden="true">↗</span>
+      </a>
+      <p id={noteId}>{note}</p>
+    </div>
+  </div>
+</aside>

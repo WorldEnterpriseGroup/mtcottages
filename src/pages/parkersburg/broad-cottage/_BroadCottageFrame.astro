@@ -1,0 +1,121 @@
+---
+import SiteLayout from "../../../layouts/SiteLayout.astro";
+import { broadCottage, cottagePath, routeHref, stayHref } from "./_broadCottage";
+
+interface Props {
+  title: string;
+  description: string;
+  current: string;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { title, description, current, schema } = Astro.props;
+
+const roomLinks = [
+  ["Kitchen", "kitchen"],
+  ["Living room", "living-room"],
+  ["Bedroom", "bedroom"],
+  ["Bathroom", "bathroom"],
+];
+
+const primaryLinks = [
+  ["Overview", ""],
+  ["Photos", "gallery"],
+  ["Connectivity", "connectivity"],
+  ["Availability", "availability"],
+];
+
+const linkClass = (slug: string) => current === (slug || "overview") ? "cottage-nav__link cottage-nav__link--current" : "cottage-nav__link";
+---
+
+<SiteLayout title={title} description={description} schema={schema}>
+  <div class="cottage-microsite">
+    <div class="cottage-nav-wrap">
+      <div class="site-width">
+        <nav class="cottage-nav" aria-label="Broad Cottage navigation">
+          <a class="cottage-nav__brand" href={cottagePath}>Broad Cottage <span>Parkersburg, WV</span></a>
+          <div class="cottage-nav__links">
+            {primaryLinks.map(([label, slug]) => <a class={linkClass(slug)} href={slug ? routeHref(slug) : cottagePath} aria-current={current === (slug || "overview") ? "page" : undefined}>{label}</a>)}
+            <details class="cottage-nav__rooms" open={current === "kitchen" || current === "living-room" || current === "bedroom" || current === "bathroom"}>
+              <summary>Rooms</summary>
+              <div class="cottage-nav__room-menu">
+                {roomLinks.map(([label, slug]) => <a class={linkClass(slug)} href={routeHref(slug)} aria-current={current === slug ? "page" : undefined}>{label}</a>)}
+              </div>
+            </details>
+          </div>
+          <a class="cottage-nav__cta" href={stayHref}>Ask about this home <span aria-hidden="true">↗</span></a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="site-width cottage-summary" aria-label="Broad Cottage summary">
+      <span><strong>{broadCottage.bedrooms}</strong></span>
+      <span><strong>{broadCottage.bathrooms}</strong></span>
+      <span><strong>{broadCottage.furnished}</strong></span>
+      <span>{broadCottage.internet}</span>
+      <span>{broadCottage.monthlyGuide} guide</span>
+      <a href={stayHref}>Ask about availability <span aria-hidden="true">↗</span></a>
+    </div>
+
+    <slot />
+
+    <section class="cottage-next-step" aria-labelledby="cottage-next-title">
+      <div class="site-width cottage-next-step__grid">
+        <div>
+          <p class="eyebrow">Next step</p>
+          <h2 id="cottage-next-title">Ask about Broad Cottage.</h2>
+        </div>
+        <div>
+          <p>Share your timing, household, and questions. An inquiry starts a conversation; it is not a lease, approval, or guarantee of availability.</p>
+          <a class="button button--light mt-2" href={stayHref}>Start a stay inquiry <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </div>
+</SiteLayout>
+
+<style>
+  :global(.cottage-microsite) { background: var(--canvas); }
+  :global(.cottage-nav-wrap) { position: relative; z-index: 5; border-block: 1px solid var(--line); background: var(--paper); }
+  :global(.cottage-nav) { display: flex; align-items: center; gap: 1rem; min-height: 4.2rem; }
+  :global(.cottage-nav__brand) { display: grid; flex: none; gap: .1rem; color: var(--forest); font-family: var(--display); font-size: 1.2rem; line-height: 1; text-decoration: none; }
+  :global(.cottage-nav__brand span) { color: var(--muted); font-family: var(--mono); font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; }
+  :global(.cottage-nav__links) { display: flex; align-items: center; gap: .2rem; min-width: 0; margin-inline: auto; }
+  :global(.cottage-nav__link), :global(.cottage-nav__rooms summary) { display: inline-flex; align-items: center; min-height: 2.4rem; padding: .45rem .6rem; color: var(--muted); font-size: .78rem; font-weight: 800; text-decoration: none; white-space: nowrap; }
+  :global(.cottage-nav__link:hover), :global(.cottage-nav__link--current), :global(.cottage-nav__rooms summary:hover) { color: var(--forest); }
+  :global(.cottage-nav__link--current) { box-shadow: inset 0 -.16rem var(--accent); }
+  :global(.cottage-nav__rooms) { position: relative; }
+  :global(.cottage-nav__rooms summary) { cursor: pointer; list-style: none; }
+  :global(.cottage-nav__rooms summary::-webkit-details-marker) { display: none; }
+  :global(.cottage-nav__rooms summary::after) { margin-inline-start: .35rem; color: var(--accent); content: "＋"; }
+  :global(.cottage-nav__rooms[open] summary::after) { content: "－"; }
+  :global(.cottage-nav__room-menu) { position: absolute; top: calc(100% + .25rem); right: 0; display: grid; min-width: 12rem; padding: .45rem; border: 1px solid var(--line); background: var(--paper); box-shadow: var(--shadow); }
+  :global(.cottage-nav__room-menu a) { padding: .55rem .65rem; }
+  :global(.cottage-nav__cta) { flex: none; padding: .65rem .9rem; border-radius: 99rem; background: var(--forest); color: white; font-size: .75rem; font-weight: 800; text-decoration: none; }
+  :global(.cottage-nav__cta:hover) { background: var(--accent-deep); }
+  :global(.cottage-summary) { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem .8rem; padding-block: .75rem; border-bottom: 1px solid var(--line); color: var(--muted); font-family: var(--mono); font-size: .66rem; letter-spacing: .04em; text-transform: uppercase; }
+  :global(.cottage-summary span + span) { padding-inline-start: .8rem; border-inline-start: 1px solid var(--line); }
+  :global(.cottage-summary strong) { color: var(--forest); }
+  :global(.cottage-summary a) { margin-inline-start: auto; color: var(--accent-deep); font-weight: 800; text-decoration: none; }
+  :global(.cottage-next-step) { padding-block: var(--space-4); background: var(--forest); color: white; }
+  :global(.cottage-next-step__grid) { display: grid; gap: var(--space-4); grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); align-items: end; }
+  :global(.cottage-next-step h2) { color: white; }
+  :global(.cottage-next-step .eyebrow) { color: #e4b482; }
+  :global(.cottage-next-step p:not(.eyebrow)) { max-width: 48ch; color: rgb(255 255 255 / .78); }
+
+  @media (max-width: 980px) {
+    :global(.cottage-nav) { flex-wrap: wrap; gap: .5rem 1rem; padding-block: .6rem; }
+    :global(.cottage-nav__links) { order: 3; width: 100%; overflow-x: auto; margin-inline: 0; }
+    :global(.cottage-nav__cta) { margin-inline-start: auto; }
+    :global(.cottage-nav__room-menu) { position: fixed; top: 8rem; right: 1rem; }
+  }
+
+  @media (max-width: 640px) {
+    :global(.cottage-nav__brand) { font-size: 1.08rem; }
+    :global(.cottage-nav__cta) { padding: .58rem .72rem; font-size: .68rem; }
+    :global(.cottage-summary) { gap: .35rem .6rem; font-size: .59rem; }
+    :global(.cottage-summary span + span) { padding-inline-start: .6rem; }
+    :global(.cottage-summary a) { width: 100%; margin-inline-start: 0; padding-block-start: .45rem; border-top: 1px solid var(--line); }
+    :global(.cottage-next-step__grid) { grid-template-columns: 1fr; }
+  }
+</style>

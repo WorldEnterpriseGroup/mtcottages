@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "Browser smoke tests for the Mt Cottages Astro site and application edge",
   "scripts": {
-    "test": "playwright test tests/site.spec.js"
+    "test": "playwright test tests/site.spec.js tests/broad-cottage.spec.js"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",

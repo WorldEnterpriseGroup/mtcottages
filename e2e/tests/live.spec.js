@@ -14,21 +14,32 @@ async function waitForPublishedApplication(request) {
       },
       { timeout: 180_000, intervals: [5_000, 10_000] }
     )
-    .toContain("Stay with Us");
+    .toContain("Find a cottage that feels like home.");
 }
 
-test("stay.mtcottages.com serves the themed application page", async ({ page, request }) => {
+test("stay.mtcottages.com serves the cottage application page", async ({ page, request }) => {
   await waitForPublishedApplication(request);
   const response = await page.goto("/");
   expect(response).not.toBeNull();
   expect(response.ok()).toBeTruthy();
-  await expect(page).toHaveTitle(/Stay with Us/);
-  await expect(page.locator('link[href*="assets/css/style.css"]')).toHaveCount(1);
+  await expect(page).toHaveTitle(/Find Your Mt Cottages Stay/);
+  await expect(page.locator(".hero h1")).toHaveText("Find a cottage that feels like home.");
+  await expect(page.locator("[data-human-verification], .human-check")).toHaveCount(1);
   await expect(page.locator('form[data-application-form]')).toHaveCount(1);
   await expect(page.locator('form[data-application-form]')).toHaveAttribute(
     "action",
     "https://stay.mtcottages.com/api/apply"
   );
+});
+
+test("stay query parameters prefill the canonical inquiry context", async ({ page, request }) => {
+  await waitForPublishedApplication(request);
+  await page.goto("/?property=frederick&stayType=family&location=Marietta");
+  await expect(page.locator("[data-property-context]")).toBeVisible();
+  await expect(page.locator("[data-property-name]")).toHaveText("Frederick Cottage");
+  await expect(page.locator('input[name="propertyId"]')).toHaveValue("frederick");
+  await expect(page.locator('select[name="stayType"]')).toHaveValue("Family or furnished stay");
+  await expect(page.locator('select[name="preferredLocation"]')).toHaveValue("Marietta, OH");
 });
 
 test("the application API is healthy and safely rejects a bot probe", async ({ request }) => {

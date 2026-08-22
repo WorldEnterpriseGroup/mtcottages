@@ -1,0 +1,120 @@
+---
+import SiteLayout from "./SiteLayout.astro";
+import "../styles/broad-cottage.css";
+import PropertySubnav from "../components/microsite/PropertySubnav.astro";
+import StickySummaryCTA from "../components/microsite/StickySummaryCTA.astro";
+import {
+  broadCottage,
+  broadCottageInquiryUrl,
+  broadCottageNavItems,
+  broadCottagePropertySchema,
+} from "../data/broadCottage";
+
+interface Props {
+  title: string;
+  description: string;
+  currentSection?: string;
+  noindex?: boolean;
+}
+
+const { title, description, currentSection = "overview", noindex = false } = Astro.props;
+const wayfindingSections = [
+  "overview",
+  "gallery",
+  "virtual-tour",
+  "floor-plan",
+  "rooms",
+  "amenities",
+  "connectivity",
+  "workspace",
+  "neighborhood",
+  "map",
+  "recreation",
+  "policies",
+  "availability",
+] as const;
+type WayfindingSection = (typeof wayfindingSections)[number];
+
+const parentSectionByDetail: Record<string, WayfindingSection> = {
+  kitchen: "rooms",
+  "living-room": "rooms",
+  bedroom: "rooms",
+  bathroom: "rooms",
+  laundry: "rooms",
+  outdoors: "gallery",
+  accessibility: "amenities",
+  parking: "amenities",
+  healthcare: "neighborhood",
+  dining: "neighborhood",
+  shopping: "neighborhood",
+  transportation: "neighborhood",
+};
+const wayfindingSection = parentSectionByDetail[currentSection] ?? (currentSection as WayfindingSection);
+
+const navItems = wayfindingSections.map((section) => {
+  const configuredItem = broadCottageNavItems.find((item) => item.section === section);
+  const dataSection = broadCottage.sections.find((item) => item.slug === section);
+  const label = dataSection?.label ?? configuredItem?.label;
+
+  if (!label) {
+    throw new Error(`Missing Broad Cottage navigation data for ${section}`);
+  }
+
+  return {
+    label,
+    href:
+      section === "overview"
+        ? broadCottage.canonicalPath
+        : section === "rooms"
+          ? `${broadCottage.canonicalPath}#rooms`
+          : configuredItem?.href ?? `${broadCottage.canonicalPath}${section}/`,
+    current: wayfindingSection === section,
+  };
+});
+const currentNavIndex = navItems.findIndex((item) => item.current);
+const currentDataSection = broadCottage.sections.find((item) => item.slug === currentSection);
+const currentSectionLabel = currentDataSection?.label ?? navItems[currentNavIndex]?.label ?? "Current page";
+const routePosition = currentNavIndex >= 0 ? `Section ${currentNavIndex + 1} of ${navItems.length}` : undefined;
+---
+
+<SiteLayout
+  title={title}
+  description={description}
+  noindex={noindex}
+  canonical={new URL(Astro.url.pathname, "https://mtcottages.com").toString()}
+  schema={broadCottagePropertySchema}
+  socialImage={broadCottage.photos[0].src}
+  socialImageAlt={broadCottage.photos[0].alt}
+>
+  <div class="broad-cottage-wayfinding" data-broad-cottage-wayfinding>
+    <PropertySubnav
+      propertyName={broadCottage.name}
+      propertyHref="/parkersburg/index.html"
+      items={navItems}
+      ariaLabel="Broad Cottage property sections"
+      inquiry={{ label: "Ask about this home", href: broadCottageInquiryUrl, external: true }}
+    />
+    <p class="broad-cottage-route-progress" data-broad-cottage-route-progress>
+      <span class="broad-cottage-route-progress__label">Current section</span>
+      <span class="broad-cottage-route-progress__current">{currentSectionLabel}</span>
+      {routePosition && (
+        <>
+          <span aria-hidden="true">·</span>
+          <span class="broad-cottage-route-progress__position">{routePosition}</span>
+        </>
+      )}
+    </p>
+  </div>
+  <slot />
+  <StickySummaryCTA
+    propertyName={broadCottage.name}
+    summary="1 Bed · 1 Bath · Furnished · Fiber listed"
+    facts={[
+      { label: "Guide", value: broadCottage.monthlyGuide },
+      { label: "Parking", value: "Off-street listed" },
+      { label: "Availability", value: "Confirm" },
+    ]}
+    availability="Published guide · availability to confirm"
+    action={{ label: "Start a stay inquiry", href: broadCottageInquiryUrl, external: true }}
+  />
+</SiteLayout>

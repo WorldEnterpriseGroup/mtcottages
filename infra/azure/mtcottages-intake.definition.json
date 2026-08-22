@@ -9,6 +9,10 @@
     "d365Organization": {
       "type": "String",
       "defaultValue": "dream.crm"
+    },
+    "d365BusinessUnitName": {
+      "type": "String",
+      "defaultValue": "MtCottages"
     }
   },
   "triggers": {
@@ -39,7 +43,7 @@
             "termsAccepted": {"type": "string"},
             "website": {"type": "string"},
             "sourceUrl": {"type": "string"},
-            "page": {"type": "string"}
+            "propertyId": {"type": "string"}
           },
           "required": ["firstName", "lastName", "email", "phone", "stayType", "preferredLocation", "moveInDate", "duration", "occupants", "message", "termsAccepted"]
         }
@@ -89,7 +93,7 @@
       },
       "runAfter": {}
     },
-    "Create_D365_Applicant_Lead": {
+    "Find_MtCottages_Business_Unit": {
       "type": "ApiConnection",
       "runAfter": {
         "Reject_Bot_Submission": ["Succeeded"]
@@ -100,64 +104,165 @@
             "name": "@parameters('$connections')['dynamicscrmonline']['connectionId']"
           }
         },
-        "method": "post",
-        "path": "/datasets/@{encodeURIComponent(encodeURIComponent(parameters('d365Organization')))}/tables/@{encodeURIComponent(encodeURIComponent('leads'))}/items",
-        "body": {
-          "_leadqualitycode_label": "Warm",
-          "_leadsourcecode_label": "Web",
-          "_statuscode_label": "New",
-          "address1_city": "@triggerBody()?['preferredLocation']",
-          "companyname": "Mt Cottages",
-          "description": "@{substring(string(triggerBody()), 0, min(length(string(triggerBody())), 99000))}",
-          "donotemail": false,
-          "donotphone": false,
-          "emailaddress1": "@triggerBody()?['email']",
-          "firstname": "@triggerBody()?['firstName']",
-          "jobtitle": "@triggerBody()?['employment']",
-          "lastname": "@triggerBody()?['lastName']",
-          "mobilephone": "@triggerBody()?['phone']",
-          "msdyn_gdproptout": false,
-          "new_goals": "@triggerBody()?['message']",
-          "address1_country": "United States",
-          "address1_stateorprovince": "@{if(contains(triggerBody()?['preferredLocation'], 'WV'), 'WV', 'OH')}",
-          "subject": "@{concat('Mt Cottages — ', triggerBody()?['stayType'], ' — ', triggerBody()?['preferredLocation'], ' — ', triggerBody()?['firstName'], ' ', triggerBody()?['lastName'])}",
-          "telephone1": "@triggerBody()?['phone']"
+        "method": "get",
+        "path": "/datasets/@{encodeURIComponent(encodeURIComponent(parameters('d365Organization')))}/tables/@{encodeURIComponent(encodeURIComponent('businessunits'))}/items",
+        "queries": {
+          "$filter": "@{concat('name eq ''', parameters('d365BusinessUnitName'), '''')}",
+          "$top": "1"
         }
       }
     },
-    "Respond_Success": {
-      "type": "Response",
-      "kind": "Http",
+    "Require_MtCottages_Business_Unit": {
+      "type": "If",
       "runAfter": {
-        "Create_D365_Applicant_Lead": ["Succeeded"]
+        "Find_MtCottages_Business_Unit": ["Succeeded"]
       },
-      "inputs": {
-        "statusCode": 201,
-          "headers": {
-            "Access-Control-Allow-Origin": "https://stay.mtcottages.com",
-            "Content-Type": "application/json"
+      "expression": {
+        "greater": [
+          "@length(body('Find_MtCottages_Business_Unit')?['value'])",
+          0
+        ]
+      },
+      "actions": {
+        "Find_MtCottages_Owner_Team": {
+          "type": "ApiConnection",
+          "runAfter": {},
+          "inputs": {
+            "host": {
+              "connection": {
+                "name": "@parameters('$connections')['dynamicscrmonline']['connectionId']"
+              }
+            },
+            "method": "get",
+            "path": "/datasets/@{encodeURIComponent(encodeURIComponent(parameters('d365Organization')))}/tables/@{encodeURIComponent(encodeURIComponent('teams'))}/items",
+            "queries": {
+              "$filter": "@{concat('_businessunitid_value eq ', first(body('Find_MtCottages_Business_Unit')?['value'])?['businessunitid'], ' and isdefault eq true')}",
+              "$top": "1"
+            }
+          }
         },
-        "body": {
-          "success": true,
-          "message": "Mt Cottages application accepted"
+        "Require_MtCottages_Owner_Team": {
+          "type": "If",
+          "runAfter": {
+            "Find_MtCottages_Owner_Team": ["Succeeded"]
+          },
+          "expression": {
+            "greater": [
+              "@length(body('Find_MtCottages_Owner_Team')?['value'])",
+              0
+            ]
+          },
+          "actions": {
+            "Create_D365_Applicant_Lead": {
+              "type": "ApiConnection",
+              "runAfter": {},
+              "inputs": {
+                "host": {
+                  "connection": {
+                    "name": "@parameters('$connections')['dynamicscrmonline']['connectionId']"
+                  }
+                },
+                "method": "post",
+                "path": "/datasets/@{encodeURIComponent(encodeURIComponent(parameters('d365Organization')))}/tables/@{encodeURIComponent(encodeURIComponent('leads'))}/items",
+                "body": {
+                  "_leadqualitycode_label": "Warm",
+                  "_leadsourcecode_label": "Web",
+                  "_statuscode_label": "New",
+                  "address1_city": "@triggerBody()?['preferredLocation']",
+                  "address1_country": "United States",
+                  "address1_stateorprovince": "@{if(contains(triggerBody()?['preferredLocation'], 'WV'), 'WV', 'OH')}",
+                  "companyname": "Mt Cottages",
+                  "description": "@{substring(string(triggerBody()), 0, min(length(string(triggerBody())), 99000))}",
+                  "donotemail": false,
+                  "donotphone": false,
+                  "emailaddress1": "@triggerBody()?['email']",
+                  "firstname": "@triggerBody()?['firstName']",
+                  "jobtitle": "@triggerBody()?['employment']",
+                  "lastname": "@triggerBody()?['lastName']",
+                  "mobilephone": "@triggerBody()?['phone']",
+                  "msdyn_gdproptout": false,
+                  "new_goals": "@triggerBody()?['message']",
+                  "ownerid@odata.bind": "@{concat('/teams(', first(body('Find_MtCottages_Owner_Team')?['value'])?['teamid'], ')')}",
+                  "subject": "@{concat('Mt Cottages — ', triggerBody()?['stayType'], ' — ', triggerBody()?['preferredLocation'], ' — ', triggerBody()?['firstName'], ' ', triggerBody()?['lastName'])}",
+                  "telephone1": "@triggerBody()?['phone']"
+                }
+              }
+            },
+            "Respond_Success": {
+              "type": "Response",
+              "kind": "Http",
+              "runAfter": {
+                "Create_D365_Applicant_Lead": ["Succeeded"]
+              },
+              "inputs": {
+                "statusCode": 201,
+                "headers": {
+                  "Access-Control-Allow-Origin": "https://stay.mtcottages.com",
+                  "Content-Type": "application/json"
+                },
+                "body": {
+                  "success": true,
+                  "message": "Mt Cottages application accepted"
+                }
+              }
+            },
+            "Respond_Failure": {
+              "type": "Response",
+              "kind": "Http",
+              "runAfter": {
+                "Create_D365_Applicant_Lead": ["Failed", "TimedOut"]
+              },
+              "inputs": {
+                "statusCode": 500,
+                "headers": {
+                  "Access-Control-Allow-Origin": "https://stay.mtcottages.com",
+                  "Content-Type": "application/json"
+                },
+                "body": {
+                  "success": false,
+                  "message": "Application intake failed"
+                }
+              }
+            }
+          },
+          "else": {
+            "actions": {
+              "Respond_Missing_MtCottages_Owner_Team": {
+                "type": "Response",
+                "kind": "Http",
+                "inputs": {
+                  "statusCode": 503,
+                  "headers": {
+                    "Access-Control-Allow-Origin": "https://stay.mtcottages.com",
+                    "Content-Type": "application/json"
+                  },
+                  "body": {
+                    "success": false,
+                    "message": "Mt Cottages intake is not configured"
+                  }
+                }
+              }
+            }
+          }
         }
-      }
-    },
-    "Respond_Failure": {
-      "type": "Response",
-      "kind": "Http",
-      "runAfter": {
-        "Create_D365_Applicant_Lead": ["Failed", "TimedOut"]
       },
-      "inputs": {
-        "statusCode": 500,
-          "headers": {
-            "Access-Control-Allow-Origin": "https://stay.mtcottages.com",
-            "Content-Type": "application/json"
-        },
-        "body": {
-          "success": false,
-          "message": "Application intake failed"
+      "else": {
+        "actions": {
+          "Respond_Missing_MtCottages_Business_Unit": {
+            "type": "Response",
+            "kind": "Http",
+            "inputs": {
+              "statusCode": 503,
+              "headers": {
+                "Access-Control-Allow-Origin": "https://stay.mtcottages.com",
+                "Content-Type": "application/json"
+              },
+              "body": {
+                "success": false,
+                "message": "Mt Cottages intake is not configured"
+              }
+            }
+          }
         }
       }
     }

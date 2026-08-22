@@ -53,6 +53,8 @@ import henriettaBedroom from "../../assets/images/cottages/ravenswood-03/photo-4
 import henriettaBath from "../../assets/images/cottages/ravenswood-03/photo-04.avif";
 import henriettaYard from "../../assets/images/cottages/ravenswood-03/photo-36.avif";
 
+export const stayApplicationUrl = "https://stay.mtcottages.com/";
+
 export type Photo = {
   src: ImageMetadata;
   alt: string;
@@ -169,7 +171,7 @@ export const cottages: Cottage[] = [
     name: "Broad Cottage",
     town: "Parkersburg, WV",
     locationPath: "parkersburg/index.html",
-    path: "parkersburg/broad-cottage.html",
+    path: "parkersburg/broad-cottage/",
     bedrooms: "1 Bedroom",
     price: publishedLuxuryFurnishedRates["1 Bedroom"],
     shortTerm: "Confirm current availability",
@@ -447,7 +449,7 @@ export const guides: Record<string, Guide> = {
       { title: "Plan for the actual household", body: "Tell us who is coming, how long you may stay, and what the home needs to make the arrangement fit.", bullets: ["Bedrooms and sleeping arrangements", "Kitchen and laundry needs", "Pets and accessibility questions", "A realistic timing window"] },
     ],
     cta: "Plan a family stay",
-    actionHref: "/apply.html?stayType=family",
+    actionHref: `${stayApplicationUrl}?stayType=family`,
   },
   health: {
     path: "health-professionals.html",
@@ -462,7 +464,7 @@ export const guides: Record<string, Guide> = {
       { title: "Share the variables early", body: "Dates, facility, household, pets, and budget help us identify the homes worth considering." },
     ],
     cta: "Start a healthcare housing inquiry",
-    actionHref: "/apply.html?stayType=healthcare",
+    actionHref: `${stayApplicationUrl}?stayType=healthcare`,
   },
   work: {
     path: "work-relocation.html",
@@ -477,7 +479,7 @@ export const guides: Record<string, Guide> = {
       { title: "For employers and coordinators", body: "We can discuss partner-led housing, timing, furnishing needs, and the information needed to make a placement workable." },
     ],
     cta: "Plan a work stay",
-    actionHref: "/apply.html?stayType=work",
+    actionHref: `${stayApplicationUrl}?stayType=work`,
   },
   insurance: {
     path: "insurance-housing.html",
@@ -492,7 +494,7 @@ export const guides: Record<string, Guide> = {
       { title: "Make the bridge feel livable", body: "A kitchen, laundry, bedrooms, and living space help a temporary arrangement support a household while the next home is repaired." },
     ],
     cta: "Discuss temporary housing",
-    actionHref: "/apply.html?stayType=insurance",
+    actionHref: `${stayApplicationUrl}?stayType=insurance`,
   },
 };
 
@@ -561,7 +563,7 @@ export const locationData: Record<string, Guide & { town: string; cottages?: Cot
       { title: "Ask for current options", body: "Availability and property coverage change. Tell us the timing and community need so we can confirm what is possible." },
     ],
     cta: "Ask about Racine availability",
-    actionHref: "/apply.html?location=Racine",
+    actionHref: `${stayApplicationUrl}?location=Racine`,
   },
   grantsville: {
     path: "grantsville/index.html",
@@ -576,7 +578,7 @@ export const locationData: Record<string, Guide & { town: string; cottages?: Cot
       { title: "Availability changes", body: "We keep this guide useful by separating location planning from current home availability. Start a conversation for the latest answer." },
     ],
     cta: "Ask about Grantsville planning",
-    actionHref: "/apply.html?location=Grantsville",
+    actionHref: `${stayApplicationUrl}?location=Grantsville`,
   },
 };
 
@@ -590,5 +592,5 @@ export const navGroups = [
 
 export const routePaths = [
   "about.html", "available.html", "contact.html", "cottages.html", "cozy-places.html", "emergency-maintenance.html", "family-stays.html", "faq.html", "fully-furnished-homes.html", "guest-services.html", "health-professionals.html", "home-amenities.html", "housekeeping.html", "insurance-housing.html", "living.html", "locations.html", "maintenance.html", "meal-preparation.html", "partnerships.html", "pay-rent.html", "privacy.html", "property-care.html", "resident-portal.html", "residents.html", "room-to-settle.html", "services.html", "work-relocation.html",
-  "marietta/frederick-cottage.html", "parkersburg/broad-cottage.html", "parkersburg/buck-apartment-1.html", "parkersburg/oak-cottage.html", "parkersburg/yellow-cottage.html", "ravenswood/henrietta-cottage.html", "ravenswood/virginia-cottage.html", "ravenswood/walnut-cottage.html",
+  "marietta/frederick-cottage.html", "parkersburg/buck-apartment-1.html", "parkersburg/oak-cottage.html", "parkersburg/yellow-cottage.html", "ravenswood/henrietta-cottage.html", "ravenswood/virginia-cottage.html", "ravenswood/walnut-cottage.html",
 ];

@@ -1,0 +1,29 @@
+---
+import ResponsivePhoto from "../ResponsivePhoto.astro";
+import type { PropertyPhoto } from "../../data/broadCottage";
+
+interface Props {
+  photos: PropertyPhoto[];
+}
+
+const { photos } = Astro.props;
+---
+
+<section class="microsite-concept-study" aria-labelledby="concept-study-title">
+  <div class="microsite-section-heading">
+    <div>
+      <p class="microsite-eyebrow">Illustration, not evidence</p>
+      <h2 id="concept-study-title">A concept study is not a digital twin.</h2>
+    </div>
+    <p>These views are retained only as clearly labeled orientation studies. They are not measured, property-specific, or suitable for inferring a room count, footprint, exterior, or parking arrangement.</p>
+  </div>
+  <div class="microsite-concept-badge">Illustrative Concept — Not to Scale</div>
+  <div class="microsite-concept-grid">
+    {photos.map((item) => (
+      <figure>
+        <ResponsivePhoto src={item.src} alt={item.alt} caption={item.caption} widths={[480, 768, 1080]} sizes="(max-width: 760px) 100vw, 50vw" />
+        <figcaption>{item.caption}</figcaption>
+      </figure>
+    ))}
+  </div>
+</section>

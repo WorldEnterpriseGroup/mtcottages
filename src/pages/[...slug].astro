@@ -9,7 +9,7 @@ import Property3DViews from "../components/Property3DViews.astro";
 import GuidePage from "../components/GuidePage.astro";
 import TrustStrip from "../components/TrustStrip.astro";
 import LocationsDirectory from "../components/LocationsDirectory.astro";
-import { cottages, cottageByPath, guides, locationData, navGroups, routePaths, type Cottage, type Guide } from "../data/site";
+import { cottages, cottageByPath, guides, locationData, navGroups, routePaths, stayApplicationUrl, type Cottage, type Guide } from "../data/site";
 
 export function getStaticPaths() {
   return routePaths.map((path) => ({ params: { slug: path.replace(/\.html$/, "") } }));
@@ -64,7 +64,7 @@ const noindex = ["resident-portal.html", "pay-rent.html", "maintenance.html", "e
     <>
       <section class="property-hero section--tight">
         <div class="site-width property-hero-grid">
-          <div><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href={`/${cottage.locationPath}`}>{cottage.town}</a><span aria-hidden="true">/</span><span>{cottage.name}</span></nav><p class="eyebrow mt-3">{cottage.town}</p><h1>{cottage.name}</h1><p class="lede">{cottage.summary}</p><div class="property-fact-rail"><span><small>Space</small><strong>{cottage.bedrooms}</strong></span><span><small>Home</small><strong>Furnished</strong></span><span><small>Monthly guide</small><strong>{cottage.price}</strong></span></div><a class="button mt-3" href={`/apply.html?property=${encodeURIComponent(cottage.id)}`}>Ask about this home <span aria-hidden="true">↗</span></a></div>
+      <div><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href={`/${cottage.locationPath}`}>{cottage.town}</a><span aria-hidden="true">/</span><span>{cottage.name}</span></nav><p class="eyebrow mt-3">{cottage.town}</p><h1>{cottage.name}</h1><p class="lede">{cottage.summary}</p><div class="property-fact-rail"><span><small>Space</small><strong>{cottage.bedrooms}</strong></span><span><small>Home</small><strong>Furnished</strong></span><span><small>Monthly guide</small><strong>{cottage.price}</strong></span></div><a class="button mt-3" href={`${stayApplicationUrl}?property=${encodeURIComponent(cottage.id)}`}>Ask about this home <span aria-hidden="true">↗</span></a></div>
           <figure class="hero-image-frame hero-image-frame--property"><ResponsivePhoto {...cottage.hero} priority sizes="(max-width: 900px) 100vw, 62vw" /><figcaption class="sr-only">{cottage.hero.alt}</figcaption></figure>
         </div>
       </section>
@@ -74,7 +74,7 @@ const noindex = ["resident-portal.html", "pay-rent.html", "maintenance.html", "e
       <PropertyDetails cottage={cottage} />
       {cottage.propertyStudy && <Property3DViews propertyName={cottage.name} views={cottage.propertyStudy.views} disclaimer={cottage.propertyStudy.note} />}
       <PropertyGallery cottage={cottage} />
-      <section class="section section--dark"><div class="site-width split"><div><p class="eyebrow" style="color:#e4b482">Ready to compare</p><h2>Ask about {cottage.name}.</h2></div><div><p class="lede lede--light">Tell us your timing, household, and what you need from a place. We will confirm availability, pricing, and the right next step.</p><a class="button button--light mt-3" href={`/apply.html?property=${encodeURIComponent(cottage.id)}`}>Start a stay inquiry <span aria-hidden="true">↗</span></a></div></div></section>
+      <section class="section section--dark"><div class="site-width split"><div><p class="eyebrow" style="color:#e4b482">Ready to compare</p><h2>Ask about {cottage.name}.</h2></div><div><p class="lede lede--light">Tell us your timing, household, and what you need from a place. We will confirm availability, pricing, and the right next step.</p><a class="button button--light mt-3" href={`${stayApplicationUrl}?property=${encodeURIComponent(cottage.id)}`}>Start a stay inquiry <span aria-hidden="true">↗</span></a></div></div></section>
     </>
   ) : pageGuide ? (
     <GuidePage guide={pageGuide} cottages={cottages.filter((item) => pageGuide.path === "living.html" ? ["frederick", "broad", "buck"].includes(item.id) : pageGuide.path === "family-stays.html" ? ["oak", "white", "henrietta"].includes(item.id) : [])} />

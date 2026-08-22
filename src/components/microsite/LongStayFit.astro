@@ -1,0 +1,501 @@
+---
+type EvidenceStatus =
+  | "verified"
+  | "listed"
+  | "reported"
+  | "owner-confirmed"
+  | "photographically-verified"
+  | "provider-api-verified"
+  | "pending"
+  | "pending-confirmation"
+  | "confirm"
+  | "not-published"
+  | "not-available"
+  | "unavailable"
+  | "illustrative";
+
+type AudienceFitStatus = "good-fit" | "possible-fit" | "confirm";
+
+interface SummaryFact {
+  label: string;
+  value: string;
+  status: EvidenceStatus;
+  statusLabel?: string;
+  note?: string;
+}
+
+interface AudienceFitRow {
+  audience: string;
+  fit: string;
+  detail: string;
+  status: AudienceFitStatus;
+  statusLabel?: string;
+}
+
+interface VerificationCaveat {
+  label: string;
+  detail: string;
+  status: Extract<EvidenceStatus, "pending" | "pending-confirmation" | "confirm" | "not-published" | "not-available" | "unavailable">;
+  statusLabel?: string;
+}
+
+interface Props {
+  propertyName: string;
+  summaryFacts: readonly SummaryFact[];
+  audienceFitRows: readonly AudienceFitRow[];
+  caveats: readonly VerificationCaveat[];
+  title?: string;
+  intro?: string;
+  id?: string;
+}
+
+const {
+  propertyName,
+  summaryFacts,
+  audienceFitRows,
+  caveats,
+  title = `Could ${propertyName} work for a longer stay?`,
+  intro = "Use the published record as a starting point, then check the open questions before relying on a home for monthly furnished living.",
+  id,
+} = Astro.props;
+
+const statusLabels: Record<EvidenceStatus, string> = {
+  verified: "Verified",
+  listed: "Listed",
+  reported: "Published",
+  "owner-confirmed": "Owner confirmed",
+  "photographically-verified": "Shown in photo",
+  "provider-api-verified": "Provider verified",
+  pending: "Pending",
+  "pending-confirmation": "Confirm before booking",
+  confirm: "Confirm before booking",
+  "not-published": "Not published",
+  "not-available": "Not published",
+  unavailable: "Not currently listed",
+  illustrative: "Illustrative only",
+};
+
+const fitStatusLabels: Record<AudienceFitStatus, string> = {
+  "good-fit": "Good starting fit",
+  "possible-fit": "Possible fit",
+  confirm: "Needs a conversation",
+};
+
+const slugify = (value: string): string =>
+  value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "") || "property";
+
+const panelId = id?.trim() || `long-stay-fit-${slugify(propertyName)}`;
+const titleId = `${panelId}-title`;
+const caveatsId = `${panelId}-caveats`;
+---
+
+<section class="long-stay-fit" aria-labelledby={titleId} data-long-stay-fit>
+  <header class="long-stay-fit__header">
+    <div>
+      <p class="long-stay-fit__eyebrow">Monthly furnished living · decision brief</p>
+      <h2 id={titleId}>{title}</h2>
+    </div>
+    <p class="long-stay-fit__intro">{intro}</p>
+  </header>
+
+  <div class="long-stay-fit__body">
+    <section class="long-stay-fit__summary" aria-labelledby={`${panelId}-summary-title`}>
+      <div class="long-stay-fit__section-heading">
+        <p class="long-stay-fit__eyebrow">{propertyName}</p>
+        <h3 id={`${panelId}-summary-title`}>The practical baseline</h3>
+      </div>
+      {summaryFacts.length > 0 ? (
+        <dl class="long-stay-fit__facts">
+          {summaryFacts.map((fact) => (
+            <div class:list={["long-stay-fit__fact", `long-stay-fit__fact--${fact.status}`]}>
+              <dt>{fact.label}</dt>
+              <dd>
+                <strong>{fact.value}</strong>
+                <span class="long-stay-fit__status">{fact.statusLabel ?? statusLabels[fact.status]}</span>
+                {fact.note && <small>{fact.note}</small>}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      ) : (
+        <p class="long-stay-fit__empty">No summary facts are published for this panel yet.</p>
+      )}
+    </section>
+
+    <section class="long-stay-fit__audience" aria-labelledby={`${panelId}-audience-title`}>
+      <div class="long-stay-fit__section-heading">
+        <p class="long-stay-fit__eyebrow">Fit by stay shape</p>
+        <h3 id={`${panelId}-audience-title`}>Who should look closer?</h3>
+      </div>
+      {audienceFitRows.length > 0 ? (
+        <ul class="long-stay-fit__audience-list">
+          {audienceFitRows.map((row) => (
+            <li class="long-stay-fit__audience-row">
+              <div class="long-stay-fit__audience-label">
+                <h4>{row.audience}</h4>
+                <span class:list={["long-stay-fit__fit-status", `long-stay-fit__fit-status--${row.status}`]}>
+                  {row.statusLabel ?? fitStatusLabels[row.status]}
+                </span>
+              </div>
+              <p class="long-stay-fit__fit">{row.fit}</p>
+              <p>{row.detail}</p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="long-stay-fit__empty">Audience-fit guidance is not published for this panel yet.</p>
+      )}
+    </section>
+  </div>
+
+  <aside class="long-stay-fit__caveats" aria-labelledby={caveatsId}>
+    <div class="long-stay-fit__caveat-heading">
+      <p class="long-stay-fit__eyebrow">Open questions</p>
+      <h3 id={caveatsId}>Confirm before you count on it</h3>
+    </div>
+    {caveats.length > 0 ? (
+      <ul>
+        {caveats.map((caveat) => (
+          <li>
+            <div>
+              <strong>{caveat.label}</strong>
+              <span class="long-stay-fit__status">{caveat.statusLabel ?? statusLabels[caveat.status]}</span>
+            </div>
+            <p>{caveat.detail}</p>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="long-stay-fit__empty">No additional caveats are published for this panel yet.</p>
+    )}
+  </aside>
+</section>
+
+<style>
+  .long-stay-fit {
+    --long-stay-ink: var(--microsite-ink, var(--ink, #20312d));
+    --long-stay-muted: var(--microsite-muted, var(--muted, #606c66));
+    --long-stay-paper: var(--microsite-paper, var(--paper, #fbfaf4));
+    --long-stay-canvas: var(--microsite-canvas, var(--canvas, #eef1e9));
+    --long-stay-line: var(--microsite-line, var(--line, #d8ddd4));
+    --long-stay-forest: var(--microsite-forest, var(--forest, #183a35));
+    --long-stay-accent: #8a4b2f;
+    display: grid;
+    gap: clamp(1.25rem, 2vw, 2rem);
+    color: var(--long-stay-ink);
+  }
+
+  .long-stay-fit__header {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(1rem, 3vw, 3rem);
+    align-items: end;
+    padding-block-end: 1.15rem;
+    border-block-end: 1px solid var(--long-stay-line);
+  }
+
+  .long-stay-fit__eyebrow {
+    margin: 0;
+    color: var(--long-stay-accent);
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.11em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .long-stay-fit h2,
+  .long-stay-fit h3,
+  .long-stay-fit h4,
+  .long-stay-fit p {
+    margin-block-start: 0;
+  }
+
+  .long-stay-fit h2 {
+    max-width: 16ch;
+    margin-block-end: 0;
+    color: var(--long-stay-forest);
+    font-family: var(--display, Georgia, serif);
+    font-size: clamp(2rem, 1.3rem + 2.4vw, 3.7rem);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 0.96;
+  }
+
+  .long-stay-fit__intro {
+    max-width: 54ch;
+    margin-block-end: 0;
+    color: var(--long-stay-muted);
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+
+  .long-stay-fit__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.85fr);
+    gap: 1px;
+    overflow: hidden;
+    border: 1px solid var(--long-stay-line);
+    background: var(--long-stay-line);
+  }
+
+  .long-stay-fit__summary,
+  .long-stay-fit__audience {
+    min-width: 0;
+    padding: clamp(1rem, 2.5vw, 1.7rem);
+    background: var(--long-stay-paper);
+  }
+
+  .long-stay-fit__section-heading {
+    display: grid;
+    gap: 0.4rem;
+    margin-block-end: 1rem;
+  }
+
+  .long-stay-fit h3 {
+    margin-block-end: 0;
+    color: var(--long-stay-forest);
+    font-family: var(--display, Georgia, serif);
+    font-size: clamp(1.35rem, 1.1rem + 0.75vw, 1.9rem);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1;
+  }
+
+  .long-stay-fit__facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0;
+    border-block-start: 1px solid var(--long-stay-line);
+  }
+
+  .long-stay-fit__fact {
+    min-width: 0;
+    padding: 0.85rem 0.75rem;
+    border-block-end: 1px solid var(--long-stay-line);
+  }
+
+  .long-stay-fit__fact:nth-child(odd) {
+    border-inline-end: 1px solid var(--long-stay-line);
+  }
+
+  .long-stay-fit__fact dt {
+    margin-block-end: 0.35rem;
+    color: var(--long-stay-muted);
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    line-height: 1.3;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+  }
+
+  .long-stay-fit__fact dd {
+    display: grid;
+    gap: 0.35rem;
+    margin: 0;
+  }
+
+  .long-stay-fit__fact strong {
+    color: var(--long-stay-forest);
+    font-size: 0.94rem;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+  }
+
+  .long-stay-fit__status,
+  .long-stay-fit__fit-status {
+    display: inline-flex;
+    width: fit-content;
+    max-width: 100%;
+    padding: 0.18rem 0.4rem;
+    border: 1px solid var(--long-stay-line);
+    color: var(--long-stay-muted);
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.61rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
+
+  .long-stay-fit__fact--verified .long-stay-fit__status,
+  .long-stay-fit__fact--owner-confirmed .long-stay-fit__status,
+  .long-stay-fit__fact--photographically-verified .long-stay-fit__status,
+  .long-stay-fit__fact--provider-api-verified .long-stay-fit__status {
+    border-color: var(--long-stay-forest);
+    color: var(--long-stay-forest);
+  }
+
+  .long-stay-fit__fact--confirm .long-stay-fit__status,
+  .long-stay-fit__fact--pending .long-stay-fit__status,
+  .long-stay-fit__fact--pending-confirmation .long-stay-fit__status,
+  .long-stay-fit__fact--not-published .long-stay-fit__status,
+  .long-stay-fit__fact--not-available .long-stay-fit__status {
+    border-color: var(--long-stay-accent);
+    color: var(--long-stay-accent);
+  }
+
+  .long-stay-fit__fact small {
+    color: var(--long-stay-muted);
+    font-size: 0.72rem;
+    line-height: 1.45;
+  }
+
+  .long-stay-fit__audience-list,
+  .long-stay-fit__caveats ul {
+    display: grid;
+    gap: 0.7rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .long-stay-fit__audience-row {
+    display: grid;
+    gap: 0.45rem;
+    padding-block: 0.8rem;
+    border-block-start: 1px solid var(--long-stay-line);
+  }
+
+  .long-stay-fit__audience-label {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem 0.7rem;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  .long-stay-fit h4 {
+    margin-block-end: 0;
+    color: var(--long-stay-forest);
+    font-size: 0.92rem;
+    line-height: 1.3;
+  }
+
+  .long-stay-fit__audience-row p {
+    margin-block-end: 0;
+    color: var(--long-stay-muted);
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .long-stay-fit__audience-row .long-stay-fit__fit {
+    color: var(--long-stay-ink);
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .long-stay-fit__fit-status--good-fit {
+    border-color: var(--long-stay-forest);
+    color: var(--long-stay-forest);
+  }
+
+  .long-stay-fit__fit-status--confirm,
+  .long-stay-fit__fit-status--possible-fit {
+    border-color: var(--long-stay-accent);
+    color: var(--long-stay-accent);
+  }
+
+  .long-stay-fit__caveats {
+    display: grid;
+    grid-template-columns: minmax(12rem, 0.7fr) minmax(0, 1.3fr);
+    gap: clamp(1rem, 3vw, 2.5rem);
+    padding: clamp(1rem, 2.5vw, 1.7rem);
+    border-inline-start: 0.25rem solid var(--long-stay-accent);
+    background: var(--long-stay-canvas);
+  }
+
+  .long-stay-fit__caveat-heading {
+    display: grid;
+    align-content: start;
+    gap: 0.45rem;
+  }
+
+  .long-stay-fit__caveats li {
+    display: grid;
+    gap: 0.35rem;
+    padding-block: 0.7rem;
+    border-block-start: 1px solid var(--long-stay-line);
+  }
+
+  .long-stay-fit__caveats li > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.75rem;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  .long-stay-fit__caveats strong {
+    color: var(--long-stay-forest);
+    font-size: 0.86rem;
+    line-height: 1.35;
+  }
+
+  .long-stay-fit__caveats p {
+    max-width: 62ch;
+    margin-block-end: 0;
+    color: var(--long-stay-muted);
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .long-stay-fit__empty {
+    margin-block-end: 0;
+    color: var(--long-stay-muted);
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+
+  .long-stay-fit :is(a, summary):focus-visible {
+    outline: 3px solid var(--long-stay-accent);
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 760px) {
+    .long-stay-fit__header,
+    .long-stay-fit__body,
+    .long-stay-fit__caveats {
+      grid-template-columns: 1fr;
+    }
+
+    .long-stay-fit__caveats {
+      border-inline-start: 0;
+      border-block-start: 0.25rem solid var(--long-stay-accent);
+    }
+  }
+
+  @media (max-width: 440px) {
+    .long-stay-fit__facts {
+      grid-template-columns: 1fr;
+    }
+
+    .long-stay-fit__fact:nth-child(odd) {
+      border-inline-end: 0;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .long-stay-fit__body,
+    .long-stay-fit__facts,
+    .long-stay-fit__fact,
+    .long-stay-fit__header,
+    .long-stay-fit__audience-row,
+    .long-stay-fit__caveats li,
+    .long-stay-fit__status,
+    .long-stay-fit__fit-status {
+      border-color: CanvasText;
+    }
+
+    .long-stay-fit__status,
+    .long-stay-fit__fit-status {
+      color: CanvasText;
+    }
+  }
+</style>

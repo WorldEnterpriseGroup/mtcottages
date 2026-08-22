@@ -1,0 +1,1435 @@
+  :root {
+    --microsite-ink: #20312d;
+    --microsite-muted: #606c66;
+    --microsite-paper: #fbfaf4;
+    --microsite-canvas: #eef1e9;
+    --microsite-line: #d8ddd4;
+    --microsite-forest: #183a35;
+    --microsite-accent: #c9774a;
+    --microsite-gold: #e4b482;
+    --microsite-measure: 82rem;
+  }
+
+  .microsite-page {
+    color: var(--microsite-ink);
+    background: var(--microsite-paper);
+  }
+
+  .microsite-width {
+    inline-size: min(calc(100% - 2rem), var(--microsite-measure));
+    max-inline-size: 100%;
+    margin-inline: auto;
+  }
+
+  .microsite-section {
+    padding-block: clamp(3.5rem, 7vw, 7rem);
+  }
+
+  .microsite-section--paper {
+    background: var(--microsite-paper);
+  }
+
+  .microsite-section--canvas {
+    background: var(--microsite-canvas);
+  }
+
+  .microsite-section--dark {
+    background: var(--microsite-forest);
+    color: white;
+  }
+
+  .microsite-eyebrow {
+    margin: 0;
+    color: var(--accent-deep, var(--microsite-accent));
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+
+  .microsite-section-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(1rem, 3vw, 3rem);
+    align-items: end;
+    margin-block-end: clamp(1.7rem, 3vw, 3rem);
+  }
+
+  .microsite-section-heading h2 {
+    max-width: 18ch;
+    margin-block: 0.65rem 0;
+    color: var(--microsite-forest);
+    font-family: var(--display, Georgia, serif);
+    font-size: clamp(1.9rem, 1.25rem + 2.5vw, 3.8rem);
+    font-weight: 500;
+    line-height: 0.98;
+  }
+
+  .microsite-section-heading > p {
+    max-width: 54ch;
+    margin: 0;
+    color: var(--microsite-muted);
+    font-size: 1.02rem;
+    line-height: 1.7;
+  }
+
+  .microsite-hero {
+    padding-block: clamp(3rem, 6vw, 6rem) clamp(3rem, 6vw, 6.5rem);
+    background:
+      radial-gradient(circle at 84% 22%, rgb(228 180 130 / 0.26), transparent 28rem),
+      var(--microsite-canvas);
+  }
+
+  .microsite-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.84fr) minmax(0, 1.16fr);
+    gap: clamp(2rem, 5vw, 6rem);
+    align-items: end;
+  }
+
+  .microsite-hero-copy {
+    padding-block: 1rem;
+  }
+
+  .microsite-hero h1 {
+    max-width: 8ch;
+    margin-block: 0.75rem 1.15rem;
+    color: var(--microsite-forest);
+    font-family: var(--display, Georgia, serif);
+    font-size: clamp(3.4rem, 7vw, 8rem);
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 0.86;
+  }
+
+  .microsite-hero .lede {
+    max-width: 52ch;
+    color: var(--microsite-muted);
+    font-size: clamp(1.05rem, 0.94rem + 0.35vw, 1.25rem);
+    line-height: 1.65;
+  }
+
+  .microsite-hero-media {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.85rem 0 0.85rem 0;
+    background: var(--forest-soft, #dfe7dc);
+    box-shadow: 0 1.6rem 3rem rgb(31 40 34 / 0.14);
+  }
+
+  .microsite-hero-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .microsite-hero-media figcaption {
+    position: absolute;
+    inset-inline-end: 1rem;
+    inset-block-end: 1rem;
+    max-width: 28ch;
+    padding: 0.6rem 0.75rem;
+    background: rgb(24 58 53 / 0.9);
+    color: white;
+    font-size: 0.74rem;
+    line-height: 1.4;
+  }
+
+  .microsite-hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem 0.8rem;
+    margin: 1.7rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .microsite-hero-meta li {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    color: var(--microsite-forest);
+    font-size: 0.78rem;
+    font-weight: 800;
+  }
+
+  .microsite-hero-meta li::before {
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 50%;
+    background: var(--microsite-accent);
+    content: "";
+  }
+
+  .microsite-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-block-start: 1.75rem;
+  }
+
+  .microsite-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-block-size: 3rem;
+    padding: 0.7rem 1rem;
+    border: 1px solid var(--microsite-forest);
+    border-radius: 999px;
+    background: var(--microsite-forest);
+    color: white;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .microsite-button:hover {
+    background: var(--accent-deep, #9d5d39);
+    color: white;
+  }
+
+  .microsite-button--ghost {
+    background: transparent;
+    color: var(--microsite-forest);
+  }
+
+  .microsite-button--light {
+    border-color: var(--microsite-paper);
+    background: var(--microsite-paper);
+    color: var(--microsite-forest);
+  }
+
+  .microsite-button:focus-visible,
+  .microsite-gallery-filters button:focus-visible,
+  .microsite-gallery-item a:focus-visible {
+    outline: 3px solid var(--microsite-gold);
+    outline-offset: 3px;
+  }
+
+  .microsite-stat-rail {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    border-block: 1px solid var(--microsite-line);
+  }
+
+  .microsite-stat-rail > div {
+    display: grid;
+    gap: 0.35rem;
+    min-block-size: 7rem;
+    align-content: center;
+    padding: 1rem;
+    border-inline-start: 1px solid var(--microsite-line);
+  }
+
+  .microsite-stat-rail > div:last-child {
+    border-inline-end: 1px solid var(--microsite-line);
+  }
+
+  .microsite-stat-rail dt {
+    color: var(--microsite-muted);
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .microsite-stat-rail dd {
+    margin: 0;
+    color: var(--microsite-forest);
+    font-family: var(--display, Georgia, serif);
+    font-size: clamp(1.1rem, 0.9rem + 0.4vw, 1.5rem);
+    line-height: 1.1;
+  }
+
+  .microsite-rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .microsite-room-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.8fr);
+    gap: 1.3rem;
+    padding: clamp(1rem, 2.2vw, 1.6rem);
+    border: 1px solid var(--microsite-line);
+    border-radius: 0.8rem;
+    background: var(--microsite-paper);
+  }
+
+  .microsite-room-card h3 {
+    margin-block: 0.45rem 0.7rem;
+    color: var(--microsite-forest);
+    font-family: var(--display, Georgia, serif);
+    font-size: clamp(1.5rem, 1.2rem + 0.7vw, 2.1rem);
+    font-weight: 500;
+  }
+
+  .microsite-room-card p {
+    margin: 0;
+    color: var(--microsite-muted);
+    line-height: 1.6;
+  }
+
+  .microsite-room-card figure {
+    order: 2;
+    align-self: start;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 0.6rem;
+    background: var(--microsite-canvas);
+  }
+
+  .microsite-room-card figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .microsite-room-card--pending {
+    background: var(--microsite-canvas);
+  }
+
+  .microsite-room-card--pending figure {
+    display: grid;
+    min-block-size: 100%;
+    place-items: center;
+    padding: 1rem;
+    color: var(--microsite-muted);
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .microsite-room-card__facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .microsite-room-card__facts li {
+    padding: 0.35rem 0.55rem;
+    border: 1px solid var(--microsite-line);
+    border-radius: 999px;
+    color: var(--microsite-muted);
+    font-size: 0.72rem;
+  }
+
+  .microsite-inline-link {
+    display: inline-flex;
+    gap: 0.45rem;
+    margin-block-start: 1.1rem;
+    color: var(--accent-deep, #9d5d39);
+    font-weight: 800;
+  }
+
+  .microsite-callout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    padding: clamp(1.5rem, 4vw, 3.5rem);
+    border-radius: 0.9rem;
+    background: var(--microsite-forest);
+    color: white;
+  }
+
+  .microsite-callout h2 {
+    max-width: 14ch;
+    margin: 0;
+    color: white;
+    font-family: var(--display, Georgia, serif);
+    font-size: clamp(2rem, 1.4rem + 2.4vw, 4rem);
+    font-weight: 500;
+    line-height: 0.98;
+  }
+
+  .microsite-callout p {
+    max-width: 58ch;
+    margin: 0;
+    color: rgb(255 255 255 / 0.76);
+    line-height: 1.7;
+  }
+
+  .microsite-pending {
+    display: grid;
+    grid-template-columns: 0.18fr 1fr;
+    gap: 1.2rem;
+    padding: clamp(1.3rem, 3vw, 2.2rem);
+    border-inline-start: 0.3rem solid var(--microsite-accent);
+    background: #f3e9de;
+  }
+
+  .microsite-pending strong {
+    color: var(--accent-deep, #9d5d39);
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .microsite-pending p {
+    max-width: 65ch;
+    margin: 0;
+    color: var(--microsite-ink);
+    line-height: 1.6;
+  }
+
+  .microsite-facts h2 {
+    margin-block: 0 1rem;
+    color: var(--microsite-forest);
+    font-family: var(--display, Georgia, serif);
+    font-size: clamp(1.6rem, 1.2rem + 1vw, 2.3rem);
+    font-weight: 500;
+  }
+
+  .microsite-facts dl {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.7rem;
+    margin: 0;
+  }
+
+  .microsite-fact {
+    display: grid;
+    gap: 0.3rem;
+    padding: 1rem;
+    border: 1px solid var(--microsite-line);
+    border-radius: 0.65rem;
+    background: var(--microsite-paper);
+  }
+
+  .microsite-fact dt,
+  .microsite-inventory-item dt {
+    color: var(--microsite-forest);
+    font-size: 0.78rem;
+    font-weight: 800;
+  }
+
+  .microsite-fact dd,
+  .microsite-inventory-item dd {
+    margin: 0;
+    color: var(--microsite-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .microsite-fact dd .microsite-status-label,
+  .microsite-inventory-item dd .microsite-status-label,
+  .microsite-fact dd small,
+  .microsite-inventory-item dd small {
+    display: block;
+    margin-block-start: 0.28rem;
+  }
+
+  .microsite-status-label {
+    color: var(--accent-deep, #9d5d39);
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.59rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .microsite-fact--listed .microsite-status-label,
+  .microsite-fact--photographically-verified .microsite-status-label {
+    color: var(--microsite-forest);
+  }
+
+  .microsite-fact small,
+  .microsite-inventory-item small {
+    color: var(--microsite-muted);
+    font-size: 0.72rem;
+    line-height: 1.4;
+  }
+
+  .microsite-inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .microsite-inventory-group {
+    padding: clamp(1rem, 2vw, 1.5rem);
+    border: 1px solid var(--microsite-line);
+    border-radius: 0.75rem;
+    background: var(--microsite-paper);
+  }
+
+  .microsite-inventory-group h3 {
+    margin: 0;
+    color: var(--microsite-forest);
+    font-family: var(--display, Georgia, serif);
+    font-size: 1.55rem;
+    font-weight: 500;
+  }
+
+  .microsite-inventory-group dl {
+    display: grid;
+    gap: 0.85rem;
+    margin: 1rem 0 0;
+  }
+
+  .microsite-inventory-item {
+    display: grid;
+    gap: 0.25rem;
+    padding-block-start: 0.75rem;
+    border-block-start: 1px solid var(--microsite-line);
+  }
+
+  .microsite-inventory-item--pending-confirmation,
+  .microsite-fact--pending-confirmation {
+    border-inline-start: 0.2rem solid var(--microsite-accent);
+    padding-inline-start: 0.7rem;
+  }
+
+  .microsite-gallery-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-block-end: 1.2rem;
+  }
+
+  .microsite-gallery-filters button {
+    min-block-size: 2.45rem;
+    padding: 0.5rem 0.8rem;
+    border: 1px solid var(--microsite-line);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--microsite-muted);
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.76rem;
+    font-weight: 800;
+  }
+
+  .microsite-gallery-filters button:hover,
+  .microsite-gallery-filters button.is-active {
+    border-color: var(--microsite-forest);
+    background: var(--microsite-forest);
+    color: white;
+  }
+
+  .microsite-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 0.85rem;
+    align-items: start;
+  }
+
+  .microsite-gallery-item {
+    grid-column: span 4;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid var(--microsite-line);
+    border-radius: 0.75rem;
+    background: var(--microsite-paper);
+  }
+
+  .microsite-gallery-item--lead {
+    grid-column: span 8;
+  }
+
+  .microsite-gallery-item[hidden] {
+    display: none;
+  }
+
+  .microsite-gallery-item a {
+    display: block;
+    background: var(--microsite-canvas);
+  }
+
+  .microsite-gallery-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .microsite-gallery-item figcaption {
+    display: grid;
+    grid-template-columns: 2.2rem minmax(0, 1fr);
+    gap: 0.35rem 0.55rem;
+    padding: 0.7rem 0.8rem 0.85rem;
+    color: var(--microsite-muted);
+    font-size: 0.78rem;
+    line-height: 1.4;
+  }
+
+  .microsite-photo-number {
+    grid-row: span 2;
+    color: var(--accent-deep, #9d5d39);
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+  }
+
+  .microsite-photo-category {
+    color: var(--microsite-forest);
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.61rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .microsite-gallery-status {
+    min-block-size: 1rem;
+    margin: 0.7rem 0 0;
+    color: var(--microsite-muted);
+    font-size: 0.72rem;
+  }
+
+  .microsite-lightbox {
+    width: min(94vw, 92rem);
+    max-width: none;
+    height: min(92vh, 68rem);
+    max-height: none;
+    padding: 0;
+    border: 1px solid rgb(255 255 255 / 0.2);
+    border-radius: 0.8rem;
+    background: var(--microsite-forest);
+    color: white;
+    overflow: hidden;
+  }
+
+  .microsite-lightbox::backdrop {
+    background: rgb(9 18 16 / 0.84);
+    backdrop-filter: blur(0.25rem);
+  }
+
+  .microsite-lightbox__shell {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    height: 100%;
+    min-height: 0;
+  }
+
+  .microsite-lightbox__toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-block-end: 1px solid rgb(255 255 255 / 0.16);
+  }
+
+  .microsite-lightbox__counter {
+    flex: 1 1 auto;
+    margin: 0;
+    color: rgb(255 255 255 / 0.76);
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .microsite-lightbox__zoom {
+    display: inline-flex;
+    gap: 0.35rem;
+  }
+
+  .microsite-lightbox button {
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    padding: 0.35rem 0.6rem;
+    border: 1px solid rgb(255 255 255 / 0.38);
+    border-radius: 999px;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 800;
+  }
+
+  .microsite-lightbox button:hover,
+  .microsite-lightbox button:focus-visible {
+    border-color: var(--microsite-gold);
+    background: var(--microsite-gold);
+    color: var(--microsite-forest);
+  }
+
+  .microsite-lightbox__close {
+    font-size: 1.35rem;
+    line-height: 1;
+  }
+
+  .microsite-lightbox__stage {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 0.75rem;
+    align-items: center;
+    min-height: 0;
+    padding: 1rem;
+    touch-action: pan-y;
+    overflow: hidden;
+  }
+
+  .microsite-lightbox__stage figure {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    gap: 0.75rem;
+    align-items: center;
+    justify-items: center;
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    margin: 0;
+  }
+
+  .microsite-lightbox__stage img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transform-origin: center;
+    transition: transform 160ms ease;
+  }
+
+  .microsite-lightbox__stage figcaption {
+    max-width: 68ch;
+    color: rgb(255 255 255 / 0.82);
+    font-size: 0.84rem;
+    line-height: 1.45;
+    text-align: center;
+  }
+
+  .microsite-lightbox__previous,
+  .microsite-lightbox__next {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.35rem;
+  }
+
+  @media (max-width: 560px) {
+    .microsite-lightbox {
+      width: 100vw;
+      height: 100dvh;
+      border: 0;
+      border-radius: 0;
+    }
+
+    .microsite-lightbox__toolbar { padding-inline: 0.7rem; }
+    .microsite-lightbox__stage { grid-template-columns: auto minmax(0, 1fr) auto; gap: 0.25rem; padding: 0.5rem; }
+    .microsite-lightbox__previous,
+    .microsite-lightbox__next { width: 2.65rem; height: 2.65rem; }
+    .microsite-lightbox__zoom button { min-width: 2.25rem; min-height: 2.25rem; padding-inline: 0.4rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .microsite-lightbox__stage img { transition: none; }
+  }
+
+  .microsite-concept-study {
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    border: 1px solid var(--microsite-line);
+    background: var(--microsite-canvas);
+  }
+
+  .microsite-concept-study .microsite-section-heading {
+    margin-block-end: 1.2rem;
+  }
+
+  .microsite-concept-badge {
+    display: inline-flex;
+    margin-block-end: 1.1rem;
+    padding: 0.45rem 0.65rem;
+    border: 1px solid var(--accent-deep, #9d5d39);
+    border-radius: 999px;
+    color: var(--accent-deep, #9d5d39);
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .microsite-concept-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+
+  .microsite-concept-grid figure {
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid var(--microsite-line);
+    background: var(--microsite-paper);
+  }
+
+  .microsite-concept-grid img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .microsite-concept-grid figcaption {
+    padding: 0.7rem;
+    color: var(--microsite-muted);
+    font-size: 0.75rem;
+    line-height: 1.45;
+  }
+
+  .microsite-route-intro {
+    max-width: 60ch;
+    margin-block-end: 2rem;
+    color: var(--microsite-muted);
+    font-size: 1.08rem;
+    line-height: 1.7;
+  }
+
+  .microsite-route-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(17rem, 0.8fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-items: start;
+  }
+
+  .microsite-route-aside {
+    position: sticky;
+    inset-block-start: 8rem;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .microsite-route-aside > * {
+    margin: 0;
+  }
+
+  .microsite-route-aside h2 {
+    color: var(--microsite-forest);
+    font-family: var(--display, Georgia, serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  .microsite-route-aside ul {
+    display: grid;
+    gap: 0.35rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .microsite-route-aside a {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.7rem;
+    padding-block: 0.55rem;
+    border-block-end: 1px solid var(--microsite-line);
+    color: var(--microsite-forest);
+    font-size: 0.86rem;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .microsite-route-aside a[aria-current="page"] {
+    color: var(--accent-deep, #9d5d39);
+  }
+
+  .microsite-route-aside a::after {
+    color: var(--microsite-accent);
+    content: "↗";
+  }
+
+  .microsite-detail-stack {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .microsite-detail-stack h2 {
+    margin-block: 0 0.8rem;
+    color: var(--microsite-forest);
+    font-family: var(--display, Georgia, serif);
+    font-size: clamp(1.7rem, 1.3rem + 1.1vw, 2.7rem);
+    font-weight: 500;
+  }
+
+  .microsite-detail-stack p {
+    color: var(--microsite-muted);
+    line-height: 1.7;
+  }
+
+  .microsite-link-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem 1.2rem;
+    margin: 1.3rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .microsite-link-list a {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding-block: 0.7rem;
+    border-block-end: 1px solid var(--microsite-line);
+    color: var(--microsite-forest);
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .microsite-link-list a::after {
+    color: var(--microsite-accent);
+    content: "↗";
+  }
+
+  @media (max-width: 980px) {
+    .microsite-stat-rail {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .microsite-stat-rail > div:nth-child(4) {
+      border-inline-start: 0;
+    }
+
+    .microsite-route-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .microsite-route-aside {
+      position: static;
+      order: -1;
+    }
+  }
+
+  /* Align the property composition with the site's tablet chrome before portrait tablet widths get cramped. */
+  @media (max-width: 840px) {
+    .microsite-section-heading,
+    .microsite-hero-grid,
+    .microsite-callout {
+      grid-template-columns: 1fr;
+    }
+
+    .microsite-hero h1 {
+      max-width: 10ch;
+      font-size: clamp(3.5rem, 17vw, 6rem);
+    }
+
+    .microsite-rooms-grid,
+    .microsite-inventory-grid,
+    .microsite-concept-grid,
+    .microsite-facts dl {
+      grid-template-columns: 1fr;
+    }
+
+    .microsite-room-card {
+      grid-template-columns: 1fr;
+    }
+
+    .microsite-room-card figure {
+      order: 0;
+    }
+
+    .microsite-gallery-item,
+    .microsite-gallery-item--lead {
+      grid-column: span 12;
+    }
+
+    .microsite-link-list {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .microsite-width {
+      inline-size: min(calc(100% - 1.25rem), var(--microsite-measure));
+    }
+
+    .microsite-stat-rail {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .microsite-stat-rail > div:nth-child(3) {
+      border-inline-start: 0;
+    }
+
+    .microsite-stat-rail > div:nth-child(4) {
+      border-inline-start: 1px solid var(--microsite-line);
+    }
+
+    .microsite-pending {
+      grid-template-columns: 1fr;
+      gap: 0.65rem;
+    }
+
+    .microsite-hero-media figcaption {
+      position: static;
+      max-width: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .microsite-button,
+    .microsite-gallery-filters button,
+    .microsite-room-card,
+    .microsite-inventory-group,
+    .microsite-fact {
+      border: 2px solid CanvasText;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .microsite-gallery-item img,
+    .microsite-button {
+      transition: none;
+    }
+  }
+
+  @media print {
+    .microsite-property-subnav,
+    .microsite-sticky-summary,
+    .microsite-actions,
+    .microsite-gallery-filters {
+      display: none !important;
+    }
+
+    .microsite-section {
+      padding-block: 1.5rem;
+    }
+  }
+
+  .broad-cottage-wayfinding {
+    position: relative;
+    z-index: 15;
+  }
+
+  .broad-cottage-route-progress {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem 0.7rem;
+    width: min(calc(100% - 2rem), var(--measure, 82rem));
+    margin: 0.35rem auto 0;
+    color: var(--muted, #606c66);
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .broad-cottage-route-progress__label {
+    color: var(--accent-deep, #9d5d39);
+    font-weight: 800;
+  }
+
+  .broad-cottage-route-progress__current {
+    color: var(--forest, #183a35);
+    font-weight: 800;
+  }
+
+  .broad-cottage-route-progress__position {
+    color: var(--muted, #606c66);
+  }
+
+  .microsite-property-subnav {
+    position: sticky;
+    inset-block-start: var(--microsite-property-subnav-top, 4.5rem);
+    z-index: 15;
+    border-block: 1px solid var(--line, #d9d8cf);
+    background: color-mix(in srgb, var(--paper, #f7f5eb) 94%, transparent);
+    box-shadow: 0 0.55rem 1.4rem rgb(22 37 34 / 0.06);
+    backdrop-filter: blur(0.8rem);
+  }
+
+  .microsite-property-subnav__inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    inline-size: min(calc(100% - 2rem), var(--measure, 82rem));
+    max-inline-size: 100%;
+    min-height: 3.4rem;
+    margin-inline: auto;
+  }
+
+  .microsite-property-subnav__property {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--forest, #183a35);
+    font-family: var(--display, Georgia, serif);
+    font-size: 1.05rem;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .microsite-property-subnav__back {
+    color: var(--accent-deep, #9d5d39);
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.82rem;
+  }
+
+  .microsite-property-subnav__links {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.75rem, 2vw, 1.6rem);
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .microsite-property-subnav__links a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: 2.75rem;
+    color: var(--muted, #66716d);
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .microsite-property-subnav__links a:hover,
+  .microsite-property-subnav__links a[aria-current="location"] {
+    color: var(--accent-deep, #9d5d39);
+  }
+
+  .microsite-property-subnav__action {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    min-block-size: 2.45rem;
+    padding: 0.5rem 0.85rem;
+    border: 1px solid var(--forest, #183a35);
+    border-radius: 999px;
+    background: var(--forest, #183a35);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .microsite-property-subnav__action:hover {
+    background: var(--accent-deep, #9d5d39);
+    color: white;
+  }
+
+  .microsite-property-subnav a:focus-visible {
+    outline: 3px solid var(--accent, #d49462);
+    outline-offset: 3px;
+  }
+
+  .microsite-sticky-summary {
+    position: sticky;
+    z-index: 14;
+    border-block: 1px solid var(--line, #d9d8cf);
+    background: color-mix(in srgb, var(--forest, #183a35) 96%, transparent);
+    color: white;
+    box-shadow: 0 -0.7rem 2rem rgb(22 37 34 / 0.12);
+  }
+
+  .microsite-sticky-summary--bottom { inset-block-end: 0; }
+  .microsite-sticky-summary--top { inset-block-start: var(--microsite-sticky-summary-top, 4.5rem); }
+
+  .microsite-sticky-summary__inner {
+    display: grid;
+    grid-template-columns: minmax(12rem, 1.1fr) minmax(14rem, 1fr) auto;
+    gap: 1rem 1.5rem;
+    align-items: center;
+    inline-size: min(calc(100% - 2rem), var(--measure, 82rem));
+    max-inline-size: 100%;
+    margin-inline: auto;
+    padding-block: 0.8rem;
+  }
+
+  .microsite-sticky-summary__copy { display: grid; gap: 0.15rem; min-width: 0; }
+  .microsite-sticky-summary__eyebrow {
+    margin: 0;
+    color: #e4b482;
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.63rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .microsite-sticky-summary__copy strong {
+    overflow: hidden;
+    font-family: var(--display, Georgia, serif);
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .microsite-sticky-summary__summary {
+    overflow: hidden;
+    margin: 0;
+    color: rgb(255 255 255 / 0.74);
+    font-size: 0.78rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .microsite-sticky-summary__facts { display: flex; flex-wrap: wrap; gap: 0.8rem 1.2rem; margin: 0; }
+  .microsite-sticky-summary__facts div { display: grid; gap: 0.1rem; }
+  .microsite-sticky-summary__facts dt {
+    color: rgb(255 255 255 / 0.58);
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .microsite-sticky-summary__facts dd { margin: 0; color: white; font-size: 0.8rem; font-weight: 800; }
+  .microsite-sticky-summary__action { display: grid; justify-items: end; gap: 0.25rem; }
+  .microsite-sticky-summary__action a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    min-block-size: 2.7rem;
+    padding: 0.55rem 1rem;
+    border: 1px solid #f7f5eb;
+    border-radius: 999px;
+    background: #f7f5eb;
+    color: var(--forest, #183a35);
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .microsite-sticky-summary__action a:hover { background: #e4b482; border-color: #e4b482; }
+  .microsite-sticky-summary__action p {
+    max-width: 30ch;
+    margin: 0;
+    color: rgb(255 255 255 / 0.58);
+    font-size: 0.62rem;
+    line-height: 1.35;
+    text-align: right;
+  }
+  .microsite-sticky-summary a:focus-visible { outline: 3px solid #e4b482; outline-offset: 3px; }
+
+  .microsite-verification { display: grid; gap: 0.85rem; }
+  .microsite-verification h2 {
+    margin: 0;
+    color: var(--forest, #183a35);
+    font-family: var(--display, Georgia, serif);
+    font-size: clamp(1.35rem, 1.1rem + 0.7vw, 1.8rem);
+    font-weight: 500;
+  }
+  .microsite-verification__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: 0.65rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .microsite-verification__badge {
+    display: grid;
+    grid-template-columns: 1.85rem minmax(0, 1fr);
+    gap: 0.65rem;
+    align-items: center;
+    min-block-size: 4.25rem;
+    padding: 0.7rem 0.8rem;
+    border: 1px solid var(--line, #d9d8cf);
+    border-inline-start: 0.25rem solid var(--forest, #183a35);
+    border-radius: 0.65rem;
+    background: var(--paper, #f7f5eb);
+  }
+  .microsite-verification__badge--verified { border-inline-start-color: var(--forest, #183a35); }
+  .microsite-verification__badge--reported { border-inline-start-color: var(--accent, #d49462); }
+  .microsite-verification__badge--confirm { border-inline-start-color: var(--accent-deep, #9d5d39); }
+  .microsite-verification__badge--unavailable { border-inline-start-color: var(--muted, #606c66); }
+  .microsite-verification__mark {
+    display: grid;
+    width: 1.8rem;
+    height: 1.8rem;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--forest-soft, #dfe7dc);
+    color: var(--forest, #183a35);
+    font-size: 1rem;
+    font-weight: 900;
+  }
+  .microsite-verification__badge--confirm .microsite-verification__mark { background: #f1e0d2; color: var(--accent-deep, #9d5d39); }
+  .microsite-verification__badge--unavailable .microsite-verification__mark { background: color-mix(in srgb, var(--muted, #606c66) 12%, transparent); color: var(--muted, #606c66); }
+  .microsite-verification__copy { display: grid; gap: 0.12rem; min-width: 0; }
+  .microsite-verification__copy strong { color: var(--forest, #183a35); font-size: 0.86rem; line-height: 1.25; }
+  .microsite-verification__copy span { color: var(--muted, #606c66); font-size: 0.75rem; line-height: 1.35; }
+  .microsite-verification__status {
+    grid-column: 2;
+    color: var(--accent-deep, #9d5d39);
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.59rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.25;
+    text-transform: uppercase;
+  }
+  .microsite-verification__badge--verified .microsite-verification__status { color: var(--forest, #183a35); }
+  .microsite-verification__badge--unavailable .microsite-verification__status { color: var(--muted, #606c66); }
+
+  @media (max-width: 880px) {
+    .microsite-sticky-summary__inner { grid-template-columns: minmax(0, 1fr) auto; }
+    .microsite-sticky-summary__facts { grid-column: 1 / -1; grid-row: 2; order: 3; }
+    .microsite-sticky-summary__action { grid-column: 2; grid-row: 1; }
+  }
+
+  @media (max-width: 840px) {
+    .broad-cottage-route-progress {
+      width: min(calc(100% - 1.5rem), var(--measure, 82rem));
+      margin-block-start: 0.25rem;
+      font-size: 0.58rem;
+    }
+
+    .microsite-property-subnav__inner {
+      display: grid;
+      grid-template-columns: minmax(0, auto) minmax(0, 1fr) auto;
+      inline-size: min(calc(100% - 1.5rem), var(--measure, 82rem));
+      gap: 0.75rem;
+      overflow: hidden;
+    }
+    .microsite-property-subnav__property {
+      min-inline-size: 0;
+      max-inline-size: 8.5rem;
+      overflow: hidden;
+      font-size: 0.95rem;
+      text-overflow: ellipsis;
+    }
+    .microsite-property-subnav__links {
+      display: flex;
+      flex: 0 1 auto;
+      justify-content: flex-start;
+      min-inline-size: 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: thin;
+      overscroll-behavior-inline: contain;
+    }
+    .microsite-property-subnav__action {
+      min-inline-size: 0;
+      margin-inline-start: 0;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .broad-cottage-route-progress {
+      gap: 0.3rem 0.5rem;
+      max-block-size: 2.2rem;
+      overflow: hidden;
+      line-height: 1.25;
+    }
+
+    #main-content:has(.microsite-page):has(.microsite-property-subnav) + .mobile-action {
+      display: none;
+    }
+
+    #main-content:has(.microsite-page):has(.microsite-property-subnav) .microsite-page {
+      padding-block-end: calc(5rem + env(safe-area-inset-bottom, 0px));
+    }
+
+    .microsite-sticky-summary {
+      padding-block-end: env(safe-area-inset-bottom, 0px);
+    }
+
+    .microsite-sticky-summary__inner {
+      inline-size: min(calc(100% - 1.25rem), var(--measure, 82rem));
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.45rem 0.75rem;
+      padding-block: 0.65rem;
+    }
+    .microsite-sticky-summary__summary,
+    .microsite-sticky-summary__action p { display: none; }
+    .microsite-sticky-summary__facts { display: none; }
+    .microsite-sticky-summary__copy,
+    .microsite-sticky-summary__action { min-inline-size: 0; }
+    .microsite-sticky-summary__copy strong {
+      overflow-wrap: anywhere;
+      font-size: 1rem;
+      white-space: normal;
+    }
+    .microsite-sticky-summary__action a {
+      min-block-size: 2.5rem;
+      max-inline-size: 100%;
+      padding-inline: 0.75rem;
+      font-size: 0.72rem;
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+      text-align: center;
+      white-space: normal;
+    }
+
+    .microsite-property-subnav__inner {
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.45rem 0.65rem;
+    }
+
+    .microsite-property-subnav__property {
+      max-inline-size: 8rem;
+    }
+
+    .microsite-property-subnav__links {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      inline-size: 100%;
+      border-block-start: 1px solid var(--line, #d9d8cf);
+    }
+
+    .microsite-property-subnav__action {
+      max-inline-size: 9rem;
+      padding-inline: 0.65rem;
+      font-size: 0.69rem;
+      line-height: 1.2;
+      text-align: center;
+      white-space: normal;
+    }
+  }
+
+  @media (min-width: 120rem) {
+    .microsite-hero-grid {
+      position: relative;
+    }
+
+    .microsite-hero-grid::after {
+      position: absolute;
+      inset-inline-start: calc(100% + var(--space-2, 1rem));
+      inset-block-start: 14%;
+      inline-size: 0.3rem;
+      block-size: clamp(8rem, 14vw, 12rem);
+      background: var(--microsite-accent);
+      content: "";
+      pointer-events: none;
+    }
+
+    .microsite-hero-media {
+      inline-size: min(calc(100% + var(--space-3, 2rem)), calc(100vw - 4rem));
+      max-inline-size: calc(100vw - 4rem);
+      margin-inline-end: calc(-1 * var(--space-3, 2rem));
+    }
+
+    .microsite-route-aside {
+      padding-inline-start: var(--space-2, 1rem);
+      border-inline-start: 1px solid var(--microsite-line);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .microsite-property-subnav { backdrop-filter: none; }
+  }
+
+  @media (forced-colors: active) {
+    .microsite-property-subnav { background: Canvas; }
+    .microsite-hero-grid::after { background: CanvasText; }
+    .microsite-property-subnav__action,
+    .microsite-sticky-summary__action a { border: 2px solid ButtonText; background: ButtonFace; color: ButtonText; }
+    .microsite-verification__badge { border-color: CanvasText; }
+    .microsite-verification__mark { border: 1px solid CanvasText; background: Canvas; color: CanvasText; }
+  }

@@ -2,13 +2,24 @@
 import "../styles/site.css";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
+import { stayApplicationUrl } from "../data/site";
+import type { ImageMetadata } from "astro";
 import favicon from "../../assets/images/fav-icon/icon.png";
 import socialImage from "../../assets/images/cottages/marietta-01/frederick-exterior-full-safe.avif";
 
-interface Props { title: string; description: string; canonical?: string; noindex?: boolean; schema?: Record<string, unknown> | Record<string, unknown>[]; }
-const { title, description, canonical, noindex = false, schema } = Astro.props;
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  noindex?: boolean;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+  socialImage?: ImageMetadata;
+  socialImageAlt?: string;
+}
+const { title, description, canonical, noindex = false, schema, socialImage: pageSocialImage, socialImageAlt } = Astro.props;
 const canonicalUrl = canonical || new URL(Astro.url.pathname, "https://mtcottages.com").toString();
-const socialUrl = new URL(socialImage.src, "https://mtcottages.com").toString();
+const socialAsset = pageSocialImage ?? socialImage;
+const socialUrl = new URL(socialAsset.src, "https://mtcottages.com").toString();
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "LodgingBusiness",
@@ -36,7 +47,9 @@ const schemas = [organizationSchema, ...(schema ? (Array.isArray(schema) ? schem
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={socialUrl} />
-    <meta property="og:image:alt" content="A furnished Mt Cottages home in the Mid-Ohio Valley" />
+    <meta property="og:image:alt" content={socialImageAlt || "A furnished Mt Cottages home in the Mid-Ohio Valley"} />
+    {socialAsset.width && <meta property="og:image:width" content={String(socialAsset.width)} />}
+    {socialAsset.height && <meta property="og:image:height" content={String(socialAsset.height)} />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#52614e" />
     <script type="application/ld+json" set:html={JSON.stringify(schemas)} />
@@ -45,7 +58,7 @@ const schemas = [organizationSchema, ...(schema ? (Array.isArray(schema) ? schem
   <body>
     <SiteHeader />
     <main id="main-content"><slot /></main>
-    <aside class="mobile-action" aria-label="Stay inquiry shortcut"><span><strong>Planning a furnished stay?</strong><small>Tell us the timing and household.</small></span><a href="/apply.html">Start inquiry</a></aside>
+    <aside class="mobile-action" aria-label="Stay inquiry shortcut"><span><strong>Planning a furnished stay?</strong><small>Tell us the timing and household.</small></span><a href={stayApplicationUrl}>Start inquiry</a></aside>
     <SiteFooter />
   </body>
 </html>

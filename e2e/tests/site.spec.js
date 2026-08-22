@@ -30,7 +30,7 @@ test("the homepage exposes the native Astro navigation and responsive image pipe
   await expect(navigation).toContainText("Services");
   await expect(navigation).toContainText("About");
   await expect(navigation).toContainText("Contact");
-  await expect(page.locator('a[href="/apply.html"]:visible').first()).toBeVisible();
+  await expect(page.locator('a[href="https://stay.mtcottages.com/"]:visible').first()).toBeVisible();
   await expect(page.locator('.hero-media img[src*="/_astro/"]')).toHaveCount(1);
   await expect(page.locator(".hero-media img")).toHaveAttribute("alt", /Frederick Cottage/);
   for (const essential of ["Furnished", "Fiber-optic internet", "Quiet", "Peaceful"]) {
@@ -47,8 +47,13 @@ test("every public route is reachable and privacy-safe", async ({ page, request 
     expect(response.status(), `${path} should return a successful response`).toBe(200);
     const html = await response.text();
     expect(html, `${path} exposed private inventory`).not.toContain("255 Court St");
+    if (path === "/apply.html") {
+      expect(html).not.toContain("data-application-form");
+      expect(html).toContain("https://stay.mtcottages.com/");
+      continue;
+    }
     await page.goto(path);
-    await expect(page.locator('link[rel="stylesheet"]'), `${path} lost native stylesheet`).toHaveCount(1);
+    await expect(page.locator('link[rel="stylesheet"]'), `${path} lost native stylesheet`).not.toHaveCount(0);
     await expect(page.locator("body"), `${path} needs visible content`).not.toBeEmpty();
     if (path !== "/404.html") {
       await expect(page.locator(".skip-link"), `${path} lost the skip link`).toHaveAttribute("href", "#main-content");
@@ -113,24 +118,18 @@ test("Broad Cottage publishes its corrected bedroom and detail review fields", a
   await expect(details).toContainText("Exterior, entrance, porch, yard, and street context");
 });
 
-test("the application route points to the secure application host", async ({ page }) => {
-  await page.goto("/apply.html");
-  await expect(page.locator(".page-hero h1")).toHaveText("Start with a useful conversation.");
-  const form = page.locator("form[data-application-form]");
-  await expect(form).toHaveAttribute("action", "https://stay.mtcottages.com/api/apply");
-  for (const name of [
-    "firstName", "lastName", "email", "phone", "moveInDate", "duration", "occupants",
-    "preferredLocation", "homeSize", "stayType", "pets", "employment", "monthlyBudget",
-    "furnishedNeeds", "message", "screeningConsent", "termsAccepted", "propertyId"
-  ]) {
-    await expect(form.locator(`[name="${name}"]`), `missing application field: ${name}`).toHaveCount(1);
-  }
+test("the legacy application route redirects to the canonical stay host", async ({ request }) => {
+  const response = await request.get("/apply.html");
+  expect(response.status()).toBe(200);
+  const html = await response.text();
+  expect(html).not.toContain("data-application-form");
+  expect(html).toContain("https://stay.mtcottages.com/");
+  expect(html).toContain("window.location.replace");
 });
 
-test("a property inquiry carries the selected cottage into the form", async ({ page }) => {
-  await page.goto("/apply.html?property=frederick");
-  await expect(page.locator(".form-context")).toContainText("Frederick Cottage");
-  await expect(page.locator('input[name="propertyId"]')).toHaveValue("frederick");
+test("property inquiry CTAs go directly to stay with cottage context", async ({ page }) => {
+  await page.goto("/marietta/frederick-cottage.html");
+  await expect(page.locator('a[href="https://stay.mtcottages.com/?property=frederick"]')).toHaveCount(3);
 });
 
 test("the cottages and locations indexes expose useful property details", async ({ page }) => {
@@ -157,11 +156,13 @@ test("Walnut and Buck property stories use interior photography", async ({ page 
   await expect(page.locator('main img[alt*="exterior"]')).toHaveCount(0);
 });
 
-test("all primary stay CTAs remain on the native inquiry route", async ({ page }) => {
+test("all primary stay CTAs point directly to the canonical stay host", async ({ page }) => {
   await page.goto("/index.html");
-  await expect(page.locator('a[href^="https://stay.mtcottages.com/"]:not([href*="/api/"])')).toHaveCount(0);
+  await expect(page.locator('a[href^="https://stay.mtcottages.com/"]:not([href*="/api/"]):visible').first()).toBeVisible();
+  await expect(page.locator('a[href*="/apply.html"]')).toHaveCount(0);
   await page.goto("/marietta/frederick-cottage.html");
-  await expect(page.locator('a[href^="/apply.html?property=frederick"]')).toHaveCount(3);
+  await expect(page.locator('a[href*="/apply.html"]')).toHaveCount(0);
+  await expect(page.locator('a[href="https://stay.mtcottages.com/?property=frederick"]')).toHaveCount(3);
 });
 
 test("desktop navigation exposes one accessible mega panel at a time", async ({ page }) => {
@@ -215,7 +216,7 @@ test("the layout does not overflow a narrow viewport", async ({ page }) => {
 });
 
 test("key decision routes have no automatically detectable accessibility violations", async ({ page }) => {
-  for (const path of ["/index.html", "/cottages.html", "/marietta/frederick-cottage.html", "/parkersburg/broad-cottage.html", "/apply.html"]) {
+  for (const path of ["/index.html", "/cottages.html", "/marietta/frederick-cottage.html", "/parkersburg/broad-cottage.html"]) {
     await page.goto(path);
     const results = await new AxeBuilder({ page }).analyze();
     expect(results.violations, `${path}: ${results.violations.map((item) => item.id).join(", ")}`).toEqual([]);

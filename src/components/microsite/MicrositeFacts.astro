@@ -1,0 +1,58 @@
+---
+import type { EvidenceFreshnessState, EvidenceSourceKind, VerificationState, VerifiedFact } from "../../data/broadCottage";
+
+interface Props {
+  facts: VerifiedFact[];
+  title?: string;
+  id?: string;
+}
+
+const { facts, title, id = "verified-facts" } = Astro.props;
+const statusLabels: Record<VerificationState, string> = {
+  listed: "Listed",
+  "owner-confirmed": "Owner confirmed",
+  "photographically-verified": "Shown in photo",
+  "provider-api-verified": "Provider verified",
+  estimated: "Estimated",
+  illustrative: "Illustrative only",
+  "pending-confirmation": "Confirm before booking",
+  "not-available": "Not published",
+  "not-applicable": "Not applicable",
+};
+const sourceLabels: Record<EvidenceSourceKind, string> = {
+  "current-listing": "Current listing",
+  "public-photo-set": "Public photo set",
+  "illustrative-concept": "Illustrative concept",
+  "owner-confirmation": "Owner confirmation",
+  "field-measurement": "Field measurement",
+  "provider-data": "Provider data",
+  "direct-inquiry": "Direct inquiry",
+  mixed: "Mixed sources",
+  unknown: "Source not published",
+};
+const freshnessLabels: Record<EvidenceFreshnessState, string> = {
+  "date-known": "Date recorded",
+  "date-unknown": "Date not published",
+  "pending-review": "Review pending",
+  "not-applicable": "Freshness not applicable",
+};
+const evidenceLabel = (fact: VerifiedFact): string =>
+  `${sourceLabels[fact.provenance?.sourceKind ?? "unknown"]} · ${freshnessLabels[fact.freshness?.state ?? "date-unknown"]}`;
+---
+
+<section class="microsite-facts" aria-labelledby={id}>
+  {title && <h2 id={id}>{title}</h2>}
+  <dl>
+    {facts.map((fact) => (
+      <div class={`microsite-fact microsite-fact--${fact.status}`}>
+        <dt>{fact.label}</dt>
+        <dd>
+          {fact.value}
+          <span class="microsite-status-label">{statusLabels[fact.status]}</span>
+          <small class="microsite-evidence-label">{evidenceLabel(fact)}</small>
+          {fact.note && <small>{fact.note}</small>}
+        </dd>
+      </div>
+    ))}
+  </dl>
+</section>

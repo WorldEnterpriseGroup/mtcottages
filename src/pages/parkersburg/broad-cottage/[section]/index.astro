@@ -1,0 +1,154 @@
+---
+import BroadCottageLayout from "../../../../layouts/BroadCottageLayout.astro";
+import ResponsivePhoto from "../../../../components/ResponsivePhoto.astro";
+import MicrositeConceptStudy from "../../../../components/microsite/MicrositeConceptStudy.astro";
+import MicrositeFacts from "../../../../components/microsite/MicrositeFacts.astro";
+import MicrositeGallery from "../../../../components/microsite/MicrositeGallery.astro";
+import MicrositeInventory from "../../../../components/microsite/MicrositeInventory.astro";
+import {
+  broadCottage,
+  broadCottageByRoom,
+  broadCottageBySection,
+  broadCottageInquiryUrl,
+  broadCottagePhotoById,
+  type MicrositeSection,
+} from "../../../../data/broadCottage";
+
+export function getStaticPaths() {
+  return broadCottage.sections.map((section) => ({
+    params: { section: section.slug },
+    props: { section },
+  }));
+}
+
+const { section } = Astro.props as { section: MicrositeSection };
+const room = broadCottageByRoom.get(section.slug);
+const photos = room
+  ? room.photoIds.map((id) => broadCottagePhotoById.get(id)).filter(Boolean)
+  : section.slug === "gallery"
+    ? broadCottage.photos
+    : [];
+const title = `${section.title} | Broad Cottage, Parkersburg`;
+const description = `${section.description} Broad Cottage is a furnished one-bedroom home in Parkersburg, West Virginia.`;
+const pageLinks = broadCottage.sections.filter((item) => item.slug !== section.slug);
+const roomLinks = broadCottage.rooms;
+---
+
+<BroadCottageLayout title={title} description={description} currentSection={section.slug} noindex={section.status === "pending"}>
+  <div class="microsite-page">
+    <section class="microsite-hero">
+      <div class="microsite-width microsite-hero-grid">
+        <div class="microsite-hero-copy">
+          <nav class="crumbs" aria-label="Breadcrumb">
+            <a href="/">Home</a><span aria-hidden="true">/</span>
+            <a href="/parkersburg/index.html">Parkersburg</a><span aria-hidden="true">/</span>
+            <a href={broadCottage.canonicalPath}>Broad Cottage</a><span aria-hidden="true">/</span>
+            <span>{section.label}</span>
+          </nav>
+          <p class="microsite-eyebrow">Broad Cottage · {section.label}</p>
+          <h1>{section.title}</h1>
+          <p class="lede">{section.description}</p>
+          <div class="microsite-actions">
+            <a class="microsite-button" href={broadCottageInquiryUrl}>Ask about Broad Cottage <span aria-hidden="true">↗</span></a>
+            <a class="microsite-button microsite-button--ghost" href={broadCottage.canonicalPath}>Back to overview <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        {photos[0] ? (
+          <figure class="microsite-hero-media">
+            <ResponsivePhoto src={photos[0].src} alt={photos[0].alt} caption={photos[0].caption} priority widths={[640, 960, 1280]} sizes="(max-width: 760px) 100vw, 58vw" />
+            <figcaption>{photos[0].caption}</figcaption>
+          </figure>
+        ) : (
+          <div class="microsite-hero-media microsite-pending" aria-label={`${section.label} content pending`}>
+            <strong>Field record pending</strong>
+            <p>{section.pendingNote || "This page is intentionally explicit about what still needs a verified source."}</p>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <section class="microsite-section microsite-section--paper">
+      <div class="microsite-width microsite-route-grid">
+        <div class="microsite-detail-stack">
+          {room && (
+            <>
+              {photos.length > 0 && <MicrositeGallery photos={photos} title={`${room.name} photo coverage`} intro="Each image is captioned and tied to the room. No second bedroom is implied by this model." />}
+              <MicrositeFacts title={`${room.name} facts`} facts={room.facts} id={`${room.slug}-facts`} />
+              <MicrositeInventory groups={[{ title: `${room.name} inventory`, items: room.amenities }]} intro="Room-level details are separated by verification state." />
+            </>
+          )}
+
+          {!room && section.slug === "gallery" && (
+            <MicrositeGallery photos={broadCottage.photos} title="All published Broad Cottage photos" intro="Filter by room, then share a photo fragment such as #bedroom-queen. The gallery contains current approved photo coverage only." />
+          )}
+
+          {!room && section.slug === "amenities" && (
+            <MicrositeInventory groups={broadCottage.inventory} title="Broad Cottage amenities" intro="A structured inventory is more useful than a generic “everything you need” claim. Items marked for confirmation remain visibly unresolved." />
+          )}
+
+          {!room && section.slug === "virtual-tour" && (
+            <>
+              <MicrositeConceptStudy photos={broadCottage.illustrativeStudy} />
+              <div class="microsite-pending">
+                <strong>Next capture</strong>
+                <p>Publish an interactive digital twin only after a property-specific capture supplies room-to-room navigation, labels, and measurements. These concept views never act as a floor plan.</p>
+              </div>
+            </>
+          )}
+
+          {!room && section.slug === "floor-plan" && (
+            <div class="microsite-facts">
+              <h2 id="floor-plan-record-title">What the current record establishes</h2>
+              <div class="microsite-pending">
+                <strong>Plan pending</strong>
+                <p>Broad Cottage is documented as one bedroom and one bathroom. A measured plan with doors, windows, closets, appliances, fixtures, entrances, and parking relationship is not yet published.</p>
+              </div>
+              <dl>
+                {section.facts.map((fact) => <div class={`microsite-fact microsite-fact--${fact.status}`}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}
+              </dl>
+            </div>
+          )}
+
+          {!room && section.slug !== "gallery" && section.slug !== "amenities" && section.slug !== "virtual-tour" && section.slug !== "floor-plan" && (
+            <>
+              <MicrositeFacts title={`${section.label} record`} facts={section.facts} id={`${section.slug}-record`} />
+              {section.pendingNote && (
+                <div class="microsite-pending">
+                  <strong>Verification note</strong>
+                  <p>{section.pendingNote}</p>
+                </div>
+              )}
+              {section.slug === "availability" && (
+                <section class="microsite-callout" aria-labelledby="inquiry-fields-title">
+                  <div>
+                    <p class="microsite-eyebrow" style="color:#e4b482">Lightweight first step</p>
+                    <h2 id="inquiry-fields-title">Bring the questions that affect the fit.</h2>
+                  </div>
+                  <div>
+                    <p>Share requested move-in and move-out dates, flexibility, occupants, pets, reason for stay, vehicle count, accessibility needs, employer or company if you choose, and your questions.</p>
+                    <div class="microsite-actions"><a class="microsite-button microsite-button--light" href={broadCottageInquiryUrl}>Start a Broad Cottage inquiry <span aria-hidden="true">↗</span></a></div>
+                  </div>
+                </section>
+              )}
+            </>
+          )}
+        </div>
+
+        <aside class="microsite-route-aside" aria-label="Broad Cottage route directory">
+          <div>
+            <p class="microsite-eyebrow">Keep exploring</p>
+            <h2>Broad Cottage</h2>
+          </div>
+          <nav aria-label="Broad Cottage pages">
+            <ul>
+              <li><a href={broadCottage.canonicalPath}>Overview</a></li>
+              {roomLinks.map((item) => <li><a href={`${broadCottage.canonicalPath}${item.slug}/`} aria-current={item.slug === section.slug ? "page" : undefined}>{item.name}</a></li>)}
+              {pageLinks.map((item) => <li><a href={`${broadCottage.canonicalPath}${item.slug}/`} aria-current={item.slug === section.slug ? "page" : undefined}>{item.label}</a></li>)}
+            </ul>
+          </nav>
+          <a class="microsite-button" href={broadCottageInquiryUrl}>Ask about this home <span aria-hidden="true">↗</span></a>
+        </aside>
+      </div>
+    </section>
+  </div>
+</BroadCottageLayout>

@@ -1,40 +1,40 @@
 #!/usr/bin/env python3
-"""Guard against drift between the two copies of the Mt Cottages application form.
+"""Validate the canonical stay form, redirect alias, and Logic App contract.
 
-The generated ``dist/apply.html`` (served on mtcottages.com) and ``infra/azure/apply-proxy/index.html``
-(the file the Azure Function serves live at stay.mtcottages.com) both embed the
-same inquiry form and must stay in lock-step: same field names, same input
-types, same required flags, same select option values in the same order.
-This script parses the ``[data-application-form]`` element out of each file
-and fails with a readable diff if the two have drifted apart.
-
-The only differences allowed to exist between the two files are the ones
-called out in FORM_PARITY_NOTES.md-equivalent documentation (a ``<base href>``
-tag and absolute asset URLs in the proxy copy) -- neither of which touches
-form fields, so this checker does not need to special-case them.
+The application is intentionally rendered only by the Azure Function at
+``stay.mtcottages.com``.  The Astro ``apply.html`` artifact is a compatibility
+redirect and must never grow a second form.  This check keeps the canonical
+HTML form aligned with the Logic App request schema instead of maintaining two
+public copies of the form.
 """
 
+import json
 import sys
 from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-APPLY_HTML = ROOT / "dist" / "apply.html"
+LEGACY_HTML = ROOT / "dist" / "apply.html"
 PROXY_HTML = ROOT / "infra" / "azure" / "apply-proxy" / "index.html"
-
-VOID_INPUT_TAGS = {"input"}
+LOGIC_APP = ROOT / "infra" / "azure" / "mtcottages-intake.definition.json"
 FIELD_TAGS = {"input", "select", "textarea"}
+
+EXPECTED_SELECTS = {
+    "duration": ["", "One to three months", "Three to twelve months", "A year or more", "Flexible / not sure"],
+    "preferredLocation": ["", "Marietta, OH", "Parkersburg, WV", "Ravenswood, WV", "Grantsville, WV", "Racine, OH", "Athens, OH", "Open to options"],
+    "homeSize": ["", "Studio or one-bedroom", "Two-bedroom", "Three-bedroom", "Four-bedroom", "Open to options"],
+    "stayType": ["", "Travel or healthcare assignment", "Work or relocation", "Insurance housing", "Family or furnished stay", "Research or fellowship", "Personal transition", "Something else"],
+    "pets": ["", "No pets", "Yes — I’ll share details below", "Prefer to discuss"],
+}
 
 
 class ApplicationFormExtractor(HTMLParser):
-    """Extracts field metadata from the form marked with data-application-form."""
-
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.form_depth = 0
         self.target_form_depth = None
-        self.fields = []  # ordered list of {tag, name, type, required}
-        self.select_options = {}  # select name -> ordered list of {value, text}
+        self.fields = []
+        self.select_options = {}
         self._current_select_name = None
         self._current_option_value = None
         self._current_option_text = None
@@ -50,19 +50,14 @@ class ApplicationFormExtractor(HTMLParser):
             if self.target_form_depth is None and "data-application-form" in attrs_dict:
                 self.target_form_depth = self.form_depth
             return
-
         if not self.in_target_form:
             return
-
         if tag in FIELD_TAGS:
             name = attrs_dict.get("name")
             if name is None:
                 return
             field_type = attrs_dict.get("type", "text") if tag == "input" else tag
-            required = "required" in attrs_dict
-            self.fields.append(
-                {"tag": tag, "name": name, "type": field_type, "required": required}
-            )
+            self.fields.append({"tag": tag, "name": name, "type": field_type, "required": "required" in attrs_dict})
             if tag == "select":
                 self._current_select_name = name
                 self.select_options[name] = []
@@ -71,7 +66,6 @@ class ApplicationFormExtractor(HTMLParser):
             self._current_option_text = []
 
     def handle_startendtag(self, tag, attrs):
-        # Self-closed void tags like <input ... /> never get handle_endtag.
         self.handle_starttag(tag, attrs)
 
     def handle_endtag(self, tag):
@@ -80,16 +74,14 @@ class ApplicationFormExtractor(HTMLParser):
                 self.target_form_depth = None
             self.form_depth = max(0, self.form_depth - 1)
             return
-
         if not self.in_target_form:
             return
-
         if tag == "select":
             self._current_select_name = None
         elif tag == "option" and self._current_option_text is not None:
             text = "".join(self._current_option_text).strip()
             value = self._current_option_value if self._current_option_value is not None else text
-            self.select_options[self._current_select_name].append({"value": value, "text": text})
+            self.select_options[self._current_select_name].append(value)
             self._current_option_value = None
             self._current_option_text = None
 
@@ -108,93 +100,52 @@ def extract(path: Path) -> ApplicationFormExtractor:
     return parser
 
 
-def diff_forms(apply_parser: ApplicationFormExtractor, proxy_parser: ApplicationFormExtractor):
-    errors = []
-
-    apply_fields = {f["name"]: f for f in apply_parser.fields}
-    proxy_fields = {f["name"]: f for f in proxy_parser.fields}
-
-    apply_names = list(apply_fields)
-    proxy_names = list(proxy_fields)
-
-    only_in_apply = [n for n in apply_names if n not in proxy_fields]
-    only_in_proxy = [n for n in proxy_names if n not in apply_fields]
-    if only_in_apply:
-        errors.append(f"fields only in apply.html: {only_in_apply}")
-    if only_in_proxy:
-        errors.append(f"fields only in apply-proxy/index.html: {only_in_proxy}")
-
-    for name in apply_names:
-        if name not in proxy_fields:
-            continue
-        a, p = apply_fields[name], proxy_fields[name]
-        if a["tag"] != p["tag"]:
-            errors.append(f"field '{name}': tag differs (apply={a['tag']!r} proxy={p['tag']!r})")
-        if a["type"] != p["type"]:
-            errors.append(f"field '{name}': type differs (apply={a['type']!r} proxy={p['type']!r})")
-        if a["required"] != p["required"]:
-            errors.append(
-                f"field '{name}': required differs (apply={a['required']} proxy={p['required']})"
-            )
-
-    common_field_order = [n for n in apply_names if n in proxy_fields]
-    proxy_common_order = [n for n in proxy_names if n in apply_fields]
-    if common_field_order != proxy_common_order:
-        errors.append(
-            "field order differs:\n"
-            f"    apply.html: {common_field_order}\n"
-            f"    apply-proxy/index.html: {proxy_common_order}"
-        )
-
-    apply_selects = apply_parser.select_options
-    proxy_selects = proxy_parser.select_options
-    only_selects_apply = [n for n in apply_selects if n not in proxy_selects]
-    only_selects_proxy = [n for n in proxy_selects if n not in apply_selects]
-    if only_selects_apply:
-        errors.append(f"selects only in apply.html: {only_selects_apply}")
-    if only_selects_proxy:
-        errors.append(f"selects only in apply-proxy/index.html: {only_selects_proxy}")
-
-    for name in apply_selects:
-        if name not in proxy_selects:
-            continue
-        a_opts = apply_selects[name]
-        p_opts = proxy_selects[name]
-        if a_opts != p_opts:
-            errors.append(
-                f"select '{name}': options differ\n"
-                f"    apply.html:              {[o['text'] for o in a_opts]}\n"
-                f"    apply-proxy/index.html:  {[o['text'] for o in p_opts]}"
-            )
-
-    return errors
-
-
 def main() -> int:
-    for path in (APPLY_HTML, PROXY_HTML):
+    for path in (LEGACY_HTML, PROXY_HTML, LOGIC_APP):
         if not path.is_file():
-            print(f"error: {path} does not exist; run the Astro build first", file=sys.stderr)
+            print(f"error: {path} does not exist; run the build first", file=sys.stderr)
             return 1
 
-    apply_parser = extract(APPLY_HTML)
-    proxy_parser = extract(PROXY_HTML)
+    errors = []
+    legacy = LEGACY_HTML.read_text(encoding="utf-8")
+    proxy = PROXY_HTML.read_text(encoding="utf-8")
+    if "data-application-form" in legacy:
+        errors.append("dist/apply.html still contains an application form; the route must be redirect-only")
+    if "https://stay.mtcottages.com/" not in legacy or "window.location.replace" not in legacy:
+        errors.append("dist/apply.html is missing the canonical stay redirect")
+    for marker in ("<link rel=\"canonical\" href=\"https://stay.mtcottages.com/\">", "Find a cottage that feels like home.", "Tell us what would make a cottage feel like yours.", "One small check", "cf-turnstile", "data-property-context", "optionAliases", "data-form-status"):
+        if marker not in proxy:
+            errors.append(f"stay form is missing canonical experience marker: {marker}")
+    if 'action="https://stay.mtcottages.com/api/apply"' not in proxy:
+        errors.append("stay form must post to https://stay.mtcottages.com/api/apply")
 
-    errors = diff_forms(apply_parser, proxy_parser)
+    form = extract(PROXY_HTML)
+    definition = json.loads(LOGIC_APP.read_text(encoding="utf-8"))
+    schema = definition["triggers"]["manual"]["inputs"]["schema"]
+    properties = schema["properties"]
+    form_names = [field["name"] for field in form.fields]
+    schema_names = list(properties)
+    if set(form_names) != set(schema_names):
+        errors.append(f"stay form field names differ from Logic App schema: form={form_names} schema={schema_names}")
+
+    wire_types = {"number": "string", "date": "string", "email": "string", "tel": "string", "text": "string", "checkbox": "string", "hidden": "string", "select": "string", "textarea": "string"}
+    for field in form.fields:
+        expected_type = properties.get(field["name"], {}).get("type")
+        if expected_type and wire_types.get(field["type"], field["type"]) != expected_type:
+            errors.append(f"field '{field['name']}' type differs: HTML={field['type']} Logic App={expected_type}")
+    form_required = {field["name"] for field in form.fields if field["required"]}
+    if form_required != set(schema.get("required", [])):
+        errors.append(f"required fields differ: form={sorted(form_required)} schema={sorted(schema.get('required', []))}")
+    if form.select_options != EXPECTED_SELECTS:
+        errors.append(f"select options differ from the canonical stay contract: {form.select_options}")
+
     if errors:
-        print("Application form parity check FAILED:\n", file=sys.stderr)
-        for err in errors:
-            print(f"  - {err}", file=sys.stderr)
-        print(
-            "\ndist/apply.html and infra/azure/apply-proxy/index.html must keep the same "
-            "field names, types, required flags, and select options (in order).",
-            file=sys.stderr,
-        )
+        print("Canonical stay application contract FAILED:\n", file=sys.stderr)
+        for error in errors:
+            print(f"  - {error}", file=sys.stderr)
         return 1
 
-    print(
-        f"OK: {len(apply_parser.fields)} fields and {len(apply_parser.select_options)} "
-        "selects match between dist/apply.html and infra/azure/apply-proxy/index.html"
-    )
+    print(f"OK: {len(form.fields)} canonical stay fields, {len(form.select_options)} selects, and redirect-only apply.html")
     return 0
 
 

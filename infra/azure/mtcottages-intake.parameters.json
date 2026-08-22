@@ -10,5 +10,8 @@
   },
   "d365Organization": {
     "value": "dream.crm"
+  },
+  "d365BusinessUnitName": {
+    "value": "MtCottages"
   }
 }

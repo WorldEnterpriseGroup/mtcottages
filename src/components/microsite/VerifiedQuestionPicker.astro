@@ -1,0 +1,367 @@
+---
+type QuestionStatus = "verified" | "listed" | "confirm" | "pending" | "not-published" | "unavailable";
+
+interface VerifiedQuestion {
+  id?: string;
+  question: string;
+  answer: string;
+  status: QuestionStatus;
+  statusLabel?: string;
+  nextCheck?: string;
+}
+
+interface Props {
+  propertyName: string;
+  questions?: readonly VerifiedQuestion[];
+  title?: string;
+  intro?: string;
+  id?: string;
+  questionGroup?: string;
+}
+
+const {
+  propertyName,
+  questions,
+  title = "Choose the question that matters to your stay",
+  intro = "A short, source-aware path for the details that matter more after the first month.",
+  id,
+  questionGroup,
+} = Astro.props;
+
+const statusLabels: Record<QuestionStatus, string> = {
+  verified: "Verified",
+  listed: "Listed",
+  confirm: "Confirm before booking",
+  pending: "Pending",
+  "not-published": "Not published",
+  unavailable: "Not currently listed",
+};
+
+const slugify = (value: string): string =>
+  value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "") || "property";
+
+const pickerId = id?.trim() || `verified-question-picker-${slugify(propertyName)}`;
+const questionGroupName = questionGroup?.trim() || `${pickerId}-questions`;
+
+const defaultQuestions: readonly VerifiedQuestion[] = [
+  {
+    question: "Can I work remotely?",
+    answer: `${propertyName} may be a starting point for remote work, but a listed internet service or visible work surface is not the same as a measured work-from-home guarantee.`,
+    status: "confirm",
+    nextCheck: "Confirm measured Wi-Fi speed at the intended workspace, outlets, desk dimensions, and a backup plan before relying on the home for work.",
+  },
+  {
+    question: "What should I confirm for a 60-day stay?",
+    answer: "Confirm the dates, final monthly price, deposit and fees, utilities, minimum-stay terms, occupancy, pets and smoking rules, arrival process, and what the furnished baseline includes.",
+    status: "confirm",
+    nextCheck: "A published price guide is a starting point, not a quote, lease, approval, or guarantee of availability.",
+  },
+  {
+    question: "How private is the location?",
+    answer: "The public record does not establish how secluded, visible, walkable, or close to neighbors the setting is. Avoid inferring privacy from interior photos or a general city label.",
+    status: "not-published",
+    nextCheck: "Ask for an appropriate location description and privacy-relevant context without publishing an exact residential address or coordinates.",
+  },
+  {
+    question: "What access details are still needed?",
+    answer: "Confirm the path from parking to the door, steps and thresholds, door widths, bathroom clearances, lighting, and arrival instructions. Photographs alone cannot establish those details.",
+    status: "pending",
+    nextCheck: "Treat accessibility and arrival characteristics as open until they are measured or directly confirmed.",
+  },
+];
+
+const questionItems = (questions?.length ? questions : defaultQuestions).map((question, index) => ({
+  question,
+  questionId: `${pickerId}-${question.id ? slugify(question.id) : index + 1}`,
+}));
+---
+
+<section class="verified-question-picker" aria-labelledby={`${pickerId}-title`} data-verified-question-picker>
+  <header class="verified-question-picker__header">
+    <p class="verified-question-picker__eyebrow">{propertyName} · question path</p>
+    <h2 id={`${pickerId}-title`}>{title}</h2>
+    <p>{intro}</p>
+  </header>
+
+  <div class="verified-question-picker__path">
+    <p class="verified-question-picker__instruction">Choose one question to open an answer and its verification status.</p>
+    <ol class="verified-question-picker__questions">
+      {questionItems.map(({ question, questionId }, index) => (
+        <li>
+          <details name={questionGroupName} open={index === 0}>
+            <summary id={`${questionId}-summary`}>
+              <span class="verified-question-picker__number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+              <span class="verified-question-picker__question">{question.question}</span>
+              <span class:list={["verified-question-picker__status", `verified-question-picker__status--${question.status}`]}>
+                {question.statusLabel ?? statusLabels[question.status]}
+              </span>
+            </summary>
+            <div class="verified-question-picker__answer" id={`${questionId}-answer`}>
+              <p>{question.answer}</p>
+              {question.nextCheck && (
+                <p class="verified-question-picker__next-check">
+                  <strong>Next check</strong>
+                  {question.nextCheck}
+                </p>
+              )}
+            </div>
+          </details>
+        </li>
+      ))}
+    </ol>
+  </div>
+
+  <footer class="verified-question-picker__footer">
+    <p>This is a static information path. It does not call an AI service, ask for dates or contact details, or collect personal data.</p>
+  </footer>
+</section>
+
+<style>
+  .verified-question-picker {
+    --question-ink: var(--microsite-ink, var(--ink, #20312d));
+    --question-muted: var(--microsite-muted, var(--muted, #606c66));
+    --question-paper: var(--microsite-paper, var(--paper, #fbfaf4));
+    --question-canvas: var(--microsite-canvas, var(--canvas, #eef1e9));
+    --question-line: var(--microsite-line, var(--line, #d8ddd4));
+    --question-forest: var(--microsite-forest, var(--forest, #183a35));
+    --question-accent: #8a4b2f;
+    display: grid;
+    gap: 1px;
+    overflow: hidden;
+    border: 1px solid var(--question-line);
+    background: var(--question-line);
+    color: var(--question-ink);
+  }
+
+  .verified-question-picker__header,
+  .verified-question-picker__path,
+  .verified-question-picker__footer {
+    padding: clamp(1rem, 2.5vw, 1.7rem);
+    background: var(--question-paper);
+  }
+
+  .verified-question-picker__header {
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .verified-question-picker__eyebrow {
+    margin: 0;
+    color: var(--question-accent);
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.11em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .verified-question-picker h2 {
+    max-width: 22ch;
+    margin: 0;
+    color: var(--question-forest);
+    font-family: var(--display, Georgia, serif);
+    font-size: clamp(1.8rem, 1.3rem + 1.8vw, 3rem);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 0.98;
+  }
+
+  .verified-question-picker__header > p:last-child {
+    max-width: 58ch;
+    margin: 0;
+    color: var(--question-muted);
+    font-size: 0.94rem;
+    line-height: 1.6;
+  }
+
+  .verified-question-picker__instruction {
+    margin: 0 0 0.8rem;
+    color: var(--question-muted);
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .verified-question-picker__questions {
+    display: grid;
+    gap: 0.55rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .verified-question-picker details {
+    border: 1px solid var(--question-line);
+    background: var(--question-canvas);
+  }
+
+  .verified-question-picker summary {
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr) auto;
+    gap: 0.7rem;
+    align-items: center;
+    min-block-size: 3.6rem;
+    padding: 0.65rem 0.8rem;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .verified-question-picker summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .verified-question-picker summary::after {
+    display: grid;
+    width: 1.3rem;
+    height: 1.3rem;
+    place-items: center;
+    border: 1px solid var(--question-line);
+    border-radius: 50%;
+    color: var(--question-accent);
+    content: "+";
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .verified-question-picker details[open] summary::after {
+    content: "–";
+  }
+
+  .verified-question-picker__number {
+    color: var(--question-accent);
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+  }
+
+  .verified-question-picker__question {
+    color: var(--question-forest);
+    font-size: 0.94rem;
+    font-weight: 750;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+  }
+
+  .verified-question-picker__status {
+    display: inline-flex;
+    width: fit-content;
+    max-width: 100%;
+    padding: 0.2rem 0.4rem;
+    border: 1px solid var(--question-line);
+    color: var(--question-muted);
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
+
+  .verified-question-picker__status--verified,
+  .verified-question-picker__status--listed {
+    border-color: var(--question-forest);
+    color: var(--question-forest);
+  }
+
+  .verified-question-picker__status--confirm,
+  .verified-question-picker__status--pending,
+  .verified-question-picker__status--not-published {
+    border-color: var(--question-accent);
+    color: var(--question-accent);
+  }
+
+  .verified-question-picker__answer {
+    display: grid;
+    gap: 0.75rem;
+    padding: 0 0.8rem 0.9rem 3.5rem;
+    border-block-start: 1px solid var(--question-line);
+    background: var(--question-paper);
+  }
+
+  .verified-question-picker__answer p {
+    max-width: 64ch;
+    margin: 0;
+    color: var(--question-muted);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .verified-question-picker__answer .verified-question-picker__next-check {
+    display: grid;
+    gap: 0.25rem;
+    padding-block-start: 0.7rem;
+    border-block-start: 1px dashed var(--question-line);
+    font-size: 0.8rem;
+  }
+
+  .verified-question-picker__next-check strong {
+    color: var(--question-forest);
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.63rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .verified-question-picker__footer {
+    border-block-start: 1px solid var(--question-line);
+    background: var(--question-canvas);
+  }
+
+  .verified-question-picker__footer p {
+    max-width: 72ch;
+    margin: 0;
+    color: var(--question-muted);
+    font-size: 0.76rem;
+    line-height: 1.5;
+  }
+
+  .verified-question-picker summary:focus-visible {
+    outline: 3px solid var(--question-accent);
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 620px) {
+    .verified-question-picker summary {
+      grid-template-columns: 1.5rem minmax(0, 1fr) auto;
+      gap: 0.55rem;
+      padding-inline: 0.65rem;
+    }
+
+    .verified-question-picker__status {
+      grid-column: 2 / 3;
+      justify-self: start;
+    }
+
+    .verified-question-picker summary::after {
+      grid-column: 3;
+      grid-row: 1 / span 2;
+    }
+
+    .verified-question-picker__answer {
+      padding-inline-start: 0.65rem;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .verified-question-picker,
+    .verified-question-picker details,
+    .verified-question-picker summary,
+    .verified-question-picker__answer,
+    .verified-question-picker__footer,
+    .verified-question-picker__status {
+      border-color: CanvasText;
+    }
+
+    .verified-question-picker__status {
+      color: CanvasText;
+    }
+  }
+</style>

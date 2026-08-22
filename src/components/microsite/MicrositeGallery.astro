@@ -1,0 +1,591 @@
+---
+import ResponsivePhoto from "../ResponsivePhoto.astro";
+import type { PropertyPhoto } from "../../data/broadCottage";
+
+interface Props {
+  photos: PropertyPhoto[];
+  title?: string;
+  intro?: string;
+  headingId?: string;
+  filters?: boolean;
+}
+
+const {
+  photos,
+  title = "Photo gallery",
+  intro,
+  headingId = "gallery-title",
+  filters = true,
+} = Astro.props;
+const categories = [...new Set(photos.map((item) => item.category))];
+const categoryId = (category: string) => category.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+---
+
+<section class="microsite-gallery" aria-labelledby={headingId} data-microsite-gallery>
+  <div class="microsite-section-heading">
+    <div>
+      <p class="microsite-eyebrow">Visual record</p>
+      <h2 id={headingId}>{title}</h2>
+    </div>
+    {intro && <p>{intro}</p>}
+  </div>
+
+  {filters && categories.length > 1 && (
+    <div class="microsite-gallery-filters" aria-label="Filter photos by room" role="group">
+      <button type="button" class="is-active" aria-pressed="true" data-gallery-filter="all">All</button>
+      {categories.map((category) => (
+        <button type="button" aria-pressed="false" data-gallery-filter={categoryId(category)}>{category}</button>
+      ))}
+    </div>
+  )}
+
+  <div class="microsite-gallery-grid" data-gallery-grid>
+    {photos.map((item, index) => (
+      <figure
+        class:list={["microsite-gallery-item", index === 0 && "microsite-gallery-item--lead"]}
+        id={item.id}
+        data-gallery-item
+        data-photo-category={categoryId(item.category)}
+        data-photo-index={index + 1}
+      >
+        <a
+          href={`#${item.id}`}
+          data-gallery-deep-link
+          data-gallery-open
+          data-gallery-src={item.src.src}
+          data-gallery-alt={item.alt}
+          data-gallery-caption={item.caption}
+          aria-label={`Open photo ${index + 1}: ${item.alt}`}
+        >
+          <ResponsivePhoto
+            src={item.src}
+            alt={item.alt}
+            caption={item.caption}
+            focal={item.focal}
+            widths={index === 0 ? [640, 960, 1280] : [420, 720, 960]}
+            sizes={index === 0 ? "(max-width: 760px) 100vw, 66vw" : "(max-width: 760px) 100vw, 33vw"}
+          />
+        </a>
+        <figcaption>
+          <span class="microsite-photo-number">{String(index + 1).padStart(2, "0")}</span>
+          <span>{item.caption}</span>
+          <span class="microsite-photo-category">{item.category}</span>
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+
+  <p class="microsite-gallery-summary" data-gallery-summary>
+    {photos.length} photos · {categories.length} documented areas · captions and verification states included
+  </p>
+
+  <p class="microsite-gallery-status" data-gallery-status role="status" aria-live="polite"></p>
+
+  <dialog class="microsite-lightbox" data-gallery-dialog aria-label={`${title} photo viewer`}>
+    <div class="microsite-lightbox__shell">
+      <div class="microsite-lightbox__toolbar">
+        <p class="microsite-lightbox__counter" data-gallery-lightbox-counter aria-live="polite"></p>
+        <div class="microsite-lightbox__zoom" aria-label="Photo zoom controls">
+          <button type="button" data-gallery-zoom-out aria-label="Zoom out">−</button>
+          <button type="button" data-gallery-zoom-reset aria-label="Reset zoom">100%</button>
+          <button type="button" data-gallery-zoom-in aria-label="Zoom in">+</button>
+        </div>
+        <button type="button" data-gallery-fullscreen aria-pressed="false">Fullscreen</button>
+        <a data-gallery-original href="#" target="_blank" rel="noopener noreferrer">Open full size</a>
+        <button type="button" class="microsite-lightbox__close" data-gallery-close aria-label="Close photo viewer">×</button>
+      </div>
+      <div class="microsite-lightbox__stage" data-gallery-stage>
+        <button type="button" class="microsite-lightbox__previous" data-gallery-previous aria-label="Previous photo">←</button>
+        <figure>
+          <button type="button" class="microsite-lightbox__image-button" data-gallery-image-zoom aria-label="Toggle photo zoom">
+            <img data-gallery-lightbox-image alt="Gallery photo viewer" draggable="false" />
+          </button>
+          <figcaption data-gallery-lightbox-caption></figcaption>
+        </figure>
+        <button type="button" class="microsite-lightbox__next" data-gallery-next aria-label="Next photo">→</button>
+      </div>
+      <nav class="microsite-lightbox__thumbnails" data-gallery-thumbnails aria-label="Photo thumbnails">
+        {photos.map((item, index) => (
+          <button type="button" data-gallery-thumbnail={index} aria-label={`Show photo ${index + 1}: ${item.alt}`}>
+            <ResponsivePhoto src={item.src} alt={`Thumbnail ${index + 1}: ${item.alt}`} caption={item.caption} widths={[96, 192]} sizes="96px" loading="lazy" class="microsite-lightbox__thumbnail-image" />
+          </button>
+        ))}
+      </nav>
+    </div>
+  </dialog>
+</section>
+
+<script>
+  const galleries = document.querySelectorAll("[data-microsite-gallery]");
+  galleries.forEach((gallery) => {
+    const items = [...gallery.querySelectorAll("[data-gallery-item]")];
+    const buttons = [...gallery.querySelectorAll("[data-gallery-filter]")];
+    const status = gallery.querySelector("[data-gallery-status]");
+    const dialog = gallery.querySelector("[data-gallery-dialog]");
+    const lightboxImage = gallery.querySelector("[data-gallery-lightbox-image]");
+    const lightboxCaption = gallery.querySelector("[data-gallery-lightbox-caption]");
+    const lightboxCounter = gallery.querySelector("[data-gallery-lightbox-counter]");
+    const stage = gallery.querySelector("[data-gallery-stage]");
+    const thumbnailButtons = [...gallery.querySelectorAll("[data-gallery-thumbnail]")];
+    const originalLink = gallery.querySelector("[data-gallery-original]");
+    const imageZoomButton = gallery.querySelector("[data-gallery-image-zoom]");
+    const fullscreenButton = gallery.querySelector("[data-gallery-fullscreen]");
+    const fullscreenTarget = gallery.querySelector(".microsite-lightbox__shell");
+    let returnTrigger = null;
+    let activeIndex = 0;
+    let zoom = 1;
+    let panX = 0;
+    let panY = 0;
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let pinchStartDistance = 0;
+    let pinchStartZoom = 1;
+    let pointerPanId = null;
+    let pointerPanMoved = false;
+    let pointerPanStartX = 0;
+    let pointerPanStartY = 0;
+    let pointerPanOriginX = 0;
+    let pointerPanOriginY = 0;
+    let suppressImageClick = false;
+    let suppressImageClickTimer = 0;
+
+    const visibleItems = () => items.filter((item) => !item.hidden);
+    const photoHash = (item) => `#${item.id}`;
+    const setPhotoHash = (item) => {
+      const url = new URL(window.location.href);
+      url.hash = photoHash(item);
+      window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+    };
+    const clearPhotoHash = () => {
+      const url = new URL(window.location.href);
+      if (!url.hash || !items.some((item) => `#${item.id}` === url.hash)) return;
+      window.history.replaceState({}, "", `${url.pathname}${url.search}`);
+    };
+    const isImageGestureTarget = (target) => target instanceof Element && imageZoomButton?.contains(target);
+    const getPanBounds = () => {
+      if (zoom <= 1 || !lightboxImage || !imageZoomButton) return { x: 0, y: 0 };
+      const imageRect = lightboxImage.getBoundingClientRect();
+      const viewportRect = imageZoomButton.getBoundingClientRect();
+      const baseWidth = imageRect.width / zoom;
+      const baseHeight = imageRect.height / zoom;
+      return {
+        x: Math.max(0, (baseWidth * zoom - viewportRect.width) / 2),
+        y: Math.max(0, (baseHeight * zoom - viewportRect.height) / 2),
+      };
+    };
+    const applyPan = () => {
+      if (!lightboxImage) return;
+      lightboxImage.style.transform = `translate3d(${panX}px, ${panY}px, 0) scale(${zoom})`;
+    };
+    const setPan = (nextX, nextY) => {
+      const bounds = getPanBounds();
+      panX = Math.min(bounds.x, Math.max(-bounds.x, nextX));
+      panY = Math.min(bounds.y, Math.max(-bounds.y, nextY));
+      applyPan();
+    };
+    const setZoom = (nextZoom, { resetPan = true } = {}) => {
+      zoom = Math.min(3, Math.max(1, nextZoom));
+      if (resetPan || zoom <= 1) {
+        panX = 0;
+        panY = 0;
+      }
+      if (stage) stage.style.touchAction = zoom > 1 ? "none" : "pan-y";
+      applyPan();
+      if (!resetPan && zoom > 1) setPan(panX, panY);
+      if (lightboxImage) lightboxImage.style.cursor = zoom > 1 ? "grab" : "zoom-in";
+      if (imageZoomButton) imageZoomButton.setAttribute("aria-label", zoom > 1 ? "Reset photo zoom" : "Zoom photo");
+      const reset = gallery.querySelector("[data-gallery-zoom-reset]");
+      if (reset) reset.textContent = `${Math.round(zoom * 100)}%`;
+    };
+    const suppressNextImageClick = () => {
+      suppressImageClick = true;
+      window.clearTimeout(suppressImageClickTimer);
+      suppressImageClickTimer = window.setTimeout(() => { suppressImageClick = false; }, 500);
+    };
+
+    const updateThumbnailState = (item) => {
+      thumbnailButtons.forEach((button) => {
+        const active = Number(button.dataset.galleryThumbnail) === Number(item.dataset.photoIndex) - 1;
+        button.classList.toggle("is-active", active);
+        if (active) button.setAttribute("aria-current", "true");
+        else button.removeAttribute("aria-current");
+      });
+    };
+
+    const showPhoto = (item, { updateUrl = true } = {}) => {
+      const trigger = item.querySelector("[data-gallery-open]");
+      if (!trigger || !lightboxImage) return;
+      lightboxImage.src = trigger.dataset.gallerySrc || "";
+      lightboxImage.alt = trigger.dataset.galleryAlt || "";
+      if (lightboxCaption) lightboxCaption.textContent = trigger.dataset.galleryCaption || trigger.dataset.galleryAlt || "";
+      if (originalLink) {
+        originalLink.href = trigger.dataset.gallerySrc || "#";
+        originalLink.setAttribute("aria-label", `Open full-size image: ${trigger.dataset.galleryAlt || "photo"}`);
+      }
+      const shown = visibleItems();
+      activeIndex = Math.max(0, shown.indexOf(item));
+      if (lightboxCounter) lightboxCounter.textContent = `${activeIndex + 1} / ${shown.length}`;
+      updateThumbnailState(item);
+      if (updateUrl) setPhotoHash(item);
+      setZoom(1);
+    };
+
+    const openPhoto = (item, { updateUrl = true } = {}) => {
+      if (!dialog || typeof dialog.showModal !== "function") return;
+      returnTrigger = item.querySelector("[data-gallery-open]");
+      showPhoto(item, { updateUrl });
+      dialog.showModal();
+      dialog.classList.add("is-open");
+      const close = gallery.querySelector("[data-gallery-close]");
+      if (close) close.focus();
+    };
+
+    const showItemByIndex = (index) => {
+      const item = items[index];
+      if (!item) return;
+      if (item.hidden) applyFilter("all");
+      showPhoto(item);
+    };
+
+    const movePhoto = (offset) => {
+      const shown = visibleItems();
+      if (!shown.length) return;
+      activeIndex = (activeIndex + offset + shown.length) % shown.length;
+      showPhoto(shown[activeIndex]);
+    };
+
+    const restoreFocus = () => {
+      dialog?.classList.remove("is-open");
+      if (returnTrigger) returnTrigger.focus();
+    };
+
+    const closePhoto = () => {
+      if (!dialog) return;
+      if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(() => {});
+      clearPhotoHash();
+      if (dialog.open) dialog.close();
+      else restoreFocus();
+    };
+
+    const applyFilter = (filter) => {
+      let visible = 0;
+      items.forEach((item) => {
+        const show = filter === "all" || item.dataset.photoCategory === filter;
+        item.hidden = !show;
+        if (show) visible += 1;
+      });
+      buttons.forEach((button) => {
+        const active = button.dataset.galleryFilter === filter;
+        button.classList.toggle("is-active", active);
+        button.setAttribute("aria-pressed", String(active));
+      });
+      if (status) status.textContent = `${visible} photo${visible === 1 ? "" : "s"} shown`;
+    };
+
+    buttons.forEach((button) => button.addEventListener("click", () => applyFilter(button.dataset.galleryFilter || "all")));
+    gallery.querySelectorAll("[data-gallery-open]").forEach((trigger) => {
+      trigger.addEventListener("click", (event) => {
+        if (!dialog || typeof dialog.showModal !== "function") return;
+        event.preventDefault();
+        const item = trigger.closest("[data-gallery-item]");
+        if (item) openPhoto(item);
+      });
+    });
+    gallery.querySelector("[data-gallery-close]")?.addEventListener("click", closePhoto);
+    gallery.querySelector("[data-gallery-previous]")?.addEventListener("click", () => movePhoto(-1));
+    gallery.querySelector("[data-gallery-next]")?.addEventListener("click", () => movePhoto(1));
+    gallery.querySelector("[data-gallery-zoom-out]")?.addEventListener("click", () => setZoom(zoom - 0.25));
+    gallery.querySelector("[data-gallery-zoom-in]")?.addEventListener("click", () => setZoom(zoom + 0.25));
+    gallery.querySelector("[data-gallery-zoom-reset]")?.addEventListener("click", () => setZoom(1));
+    imageZoomButton?.addEventListener("click", (event) => {
+      if (suppressImageClick) {
+        event.preventDefault();
+        suppressImageClick = false;
+        window.clearTimeout(suppressImageClickTimer);
+        return;
+      }
+      setZoom(zoom > 1 ? 1 : 2);
+    });
+    imageZoomButton?.addEventListener("pointerdown", (event) => {
+      if (zoom <= 1 || !isImageGestureTarget(event.target)) return;
+      pointerPanId = event.pointerId;
+      pointerPanMoved = false;
+      pointerPanStartX = event.clientX;
+      pointerPanStartY = event.clientY;
+      pointerPanOriginX = panX;
+      pointerPanOriginY = panY;
+      imageZoomButton.setPointerCapture?.(event.pointerId);
+      if (lightboxImage) lightboxImage.style.cursor = "grabbing";
+      event.preventDefault();
+    });
+    imageZoomButton?.addEventListener("pointermove", (event) => {
+      if (pointerPanId !== event.pointerId || zoom <= 1) return;
+      const deltaX = event.clientX - pointerPanStartX;
+      const deltaY = event.clientY - pointerPanStartY;
+      if (Math.abs(deltaX) > 2 || Math.abs(deltaY) > 2) pointerPanMoved = true;
+      setPan(pointerPanOriginX + deltaX, pointerPanOriginY + deltaY);
+      event.preventDefault();
+    });
+    const endPointerPan = (event) => {
+      if (pointerPanId !== event.pointerId) return;
+      if (pointerPanMoved) suppressNextImageClick();
+      imageZoomButton.releasePointerCapture?.(event.pointerId);
+      pointerPanId = null;
+      if (lightboxImage) lightboxImage.style.cursor = zoom > 1 ? "grab" : "zoom-in";
+    };
+    imageZoomButton?.addEventListener("pointerup", endPointerPan);
+    imageZoomButton?.addEventListener("pointercancel", endPointerPan);
+    imageZoomButton?.addEventListener("keydown", (event) => {
+      if (zoom <= 1) return;
+      const step = event.shiftKey ? 120 : 48;
+      if (event.key === "ArrowLeft") { event.preventDefault(); event.stopPropagation(); setPan(panX - step, panY); }
+      if (event.key === "ArrowRight") { event.preventDefault(); event.stopPropagation(); setPan(panX + step, panY); }
+      if (event.key === "ArrowUp") { event.preventDefault(); event.stopPropagation(); setPan(panX, panY - step); }
+      if (event.key === "ArrowDown") { event.preventDefault(); event.stopPropagation(); setPan(panX, panY + step); }
+      if (event.key === "Home") { event.preventDefault(); event.stopPropagation(); setPan(0, 0); }
+    });
+    thumbnailButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const index = Number(button.dataset.galleryThumbnail);
+        const item = items[index];
+        if (!item) return;
+        if (!dialog?.open) openPhoto(item);
+        else showItemByIndex(index);
+      });
+    });
+    const syncFullscreenState = () => {
+      if (!fullscreenButton) return;
+      const active = document.fullscreenElement === fullscreenTarget;
+      fullscreenButton.setAttribute("aria-pressed", String(active));
+      fullscreenButton.textContent = active ? "Exit full screen" : "Full screen";
+    };
+    fullscreenButton?.addEventListener("click", async () => {
+      try {
+        if (document.fullscreenElement && document.exitFullscreen) await document.exitFullscreen();
+        else if (fullscreenTarget?.requestFullscreen) await fullscreenTarget.requestFullscreen();
+      } catch {
+        // Fullscreen is an enhancement; the dialog remains fully usable when unavailable.
+      }
+      syncFullscreenState();
+    });
+    document.addEventListener("fullscreenchange", syncFullscreenState);
+    dialog?.addEventListener("cancel", (event) => {
+      event.preventDefault();
+      closePhoto();
+    });
+    dialog?.addEventListener("close", restoreFocus);
+    dialog?.addEventListener("click", (event) => {
+      if (event.target === dialog) closePhoto();
+    });
+    const touchDistance = (touches) => {
+      if (touches.length < 2) return 0;
+      const first = touches[0];
+      const second = touches[1];
+      return Math.hypot(second.screenX - first.screenX, second.screenY - first.screenY);
+    };
+    stage?.addEventListener("touchstart", (event) => {
+      if (event.touches.length >= 2) {
+        pinchStartDistance = touchDistance(event.touches);
+        pinchStartZoom = zoom;
+        return;
+      }
+      touchStartX = event.changedTouches[0]?.screenX || 0;
+      touchStartY = event.changedTouches[0]?.screenY || 0;
+    }, { passive: true });
+    stage?.addEventListener("touchmove", (event) => {
+      if (event.touches.length < 2 || !pinchStartDistance) return;
+      const distance = touchDistance(event.touches);
+      if (!distance) return;
+      event.preventDefault();
+      setZoom(pinchStartZoom * (distance / pinchStartDistance), { resetPan: false });
+    }, { passive: false });
+    stage?.addEventListener("touchend", (event) => {
+      if (pinchStartDistance) {
+        if (event.touches.length < 2) {
+          pinchStartDistance = 0;
+          pinchStartZoom = zoom;
+        }
+        return;
+      }
+      const endX = event.changedTouches[0]?.screenX || 0;
+      const endY = event.changedTouches[0]?.screenY || 0;
+      const deltaX = endX - touchStartX;
+      const deltaY = endY - touchStartY;
+      if (zoom <= 1.05 && Math.abs(deltaX) > 48 && Math.abs(deltaX) > Math.abs(deltaY)) movePhoto(deltaX > 0 ? -1 : 1);
+    }, { passive: true });
+    dialog?.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") { event.preventDefault(); closePhoto(); }
+      if (event.key === "ArrowLeft") { event.preventDefault(); movePhoto(-1); }
+      if (event.key === "ArrowRight") { event.preventDefault(); movePhoto(1); }
+      if (event.key === "+" || event.key === "=") { event.preventDefault(); setZoom(zoom + 0.25); }
+      if (event.key === "-") { event.preventDefault(); setZoom(zoom - 0.25); }
+      if (event.key === "0") { event.preventDefault(); setZoom(1); }
+      if (event.key.toLowerCase() === "f") { event.preventDefault(); fullscreenButton?.click(); }
+    });
+    const room = new URLSearchParams(window.location.search).get("room");
+    const initial = room && buttons.some((button) => button.dataset.galleryFilter === room.toLowerCase().replace(/[^a-z0-9]+/g, "-"))
+      ? room.toLowerCase().replace(/[^a-z0-9]+/g, "-")
+      : "all";
+    const hashItem = items.find((item) => `#${item.id}` === window.location.hash);
+    applyFilter(hashItem ? "all" : initial);
+    if (hashItem && dialog && typeof dialog.showModal === "function") {
+      window.requestAnimationFrame(() => openPhoto(hashItem, { updateUrl: false }));
+    }
+    window.addEventListener("hashchange", () => {
+      const nextItem = items.find((item) => `#${item.id}` === window.location.hash);
+      if (nextItem) {
+        if (nextItem.hidden) applyFilter("all");
+        if (dialog?.open) showPhoto(nextItem, { updateUrl: false });
+        else openPhoto(nextItem, { updateUrl: false });
+      } else if (dialog?.open) {
+        if (dialog.open) dialog.close();
+        else restoreFocus();
+      }
+    });
+  });
+</script>
+
+<style>
+  .microsite-gallery-summary {
+    margin: 0.85rem 0 0;
+    color: var(--microsite-muted);
+    font-family: var(--mono, ui-monospace, monospace);
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    line-height: 1.45;
+    text-transform: uppercase;
+  }
+
+  .microsite-lightbox__toolbar > [data-gallery-fullscreen],
+  .microsite-lightbox__toolbar > [data-gallery-original] {
+    min-block-size: 2.5rem;
+    padding: 0.35rem 0.65rem;
+    border: 1px solid rgb(255 255 255 / 0.38);
+    border-radius: 999px;
+    color: white;
+    font: inherit;
+    font-size: 0.75rem;
+    font-weight: 800;
+    line-height: 1.2;
+    text-decoration: none;
+  }
+
+  .microsite-lightbox__toolbar > [data-gallery-original]:hover,
+  .microsite-lightbox__toolbar > [data-gallery-original]:focus-visible,
+  .microsite-lightbox__toolbar > [data-gallery-fullscreen]:hover,
+  .microsite-lightbox__toolbar > [data-gallery-fullscreen]:focus-visible {
+    border-color: var(--microsite-gold);
+    background: var(--microsite-gold);
+    color: var(--microsite-forest);
+  }
+
+  .microsite-lightbox__image-button {
+    display: grid;
+    place-items: center;
+    min-width: 0;
+    min-height: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    padding: 0;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    color: inherit !important;
+    overflow: hidden;
+  }
+
+  .microsite-lightbox__image-button:hover,
+  .microsite-lightbox__image-button:focus-visible {
+    outline: 2px solid var(--microsite-gold);
+    outline-offset: 0.2rem;
+  }
+
+  .microsite-lightbox__thumbnails {
+    display: flex;
+    grid-column: 1 / -1;
+    gap: 0.45rem;
+    align-items: center;
+    block-size: 4.6rem;
+    max-width: 100%;
+    min-block-size: 4.6rem;
+    padding: 0.55rem 1rem 0.8rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: thin;
+  }
+
+  .microsite-lightbox__thumbnails button {
+    flex: 0 0 4.5rem;
+    block-size: 3.4rem;
+    min-width: 4.5rem;
+    min-height: 3.4rem;
+    max-block-size: 3.4rem;
+    padding: 0.15rem;
+    border-radius: 0.35rem;
+    opacity: 0.72;
+  }
+
+  .microsite-lightbox__thumbnails button.is-active,
+  .microsite-lightbox__thumbnails button:hover,
+  .microsite-lightbox__thumbnails button:focus-visible {
+    opacity: 1;
+  }
+
+  .microsite-lightbox__thumbnails button[aria-current="true"] {
+    border-color: var(--microsite-gold);
+    box-shadow: 0 0 0 2px var(--microsite-gold);
+    opacity: 1;
+  }
+
+  :global(.microsite-lightbox__thumbnail-image) {
+    display: block;
+    width: 4.1rem;
+    height: 3rem;
+    max-width: 100%;
+    max-height: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .microsite-lightbox__shell:fullscreen {
+    width: 100vw;
+    height: 100vh;
+    background: var(--microsite-forest);
+  }
+
+  .microsite-lightbox__shell:fullscreen::backdrop {
+    background: var(--microsite-forest);
+  }
+
+  @media (max-width: 760px) {
+    .microsite-lightbox__toolbar {
+      gap: 0.4rem;
+      padding-inline: 0.65rem;
+    }
+
+    .microsite-lightbox__toolbar > [data-gallery-fullscreen],
+    .microsite-lightbox__toolbar > [data-gallery-original] {
+      min-block-size: 2.35rem;
+      max-inline-size: 5.5rem;
+      padding-inline: 0.45rem;
+      overflow: hidden;
+      font-size: 0.67rem;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .microsite-lightbox__thumbnails {
+      padding-inline: 0.65rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .microsite-lightbox__stage img { transition: none; }
+  }
+
+  @media (forced-colors: active) {
+    .microsite-lightbox__toolbar > [data-gallery-fullscreen],
+    .microsite-lightbox__toolbar > [data-gallery-original],
+    .microsite-lightbox__thumbnails button { border-color: ButtonText; }
+  }
+</style>

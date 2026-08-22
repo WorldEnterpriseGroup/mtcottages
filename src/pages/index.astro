@@ -3,7 +3,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 import ResponsivePhoto from "../components/ResponsivePhoto.astro";
 import PropertyCard from "../components/PropertyCard.astro";
 import TrustStrip from "../components/TrustStrip.astro";
-import { cottages } from "../data/site";
+import { cottages, stayApplicationUrl } from "../data/site";
 import homeHero from "../../assets/images/cottages/marietta-01/frederick-exterior-full-safe.avif";
 import homeDetail from "../../assets/images/cottages/marietta-01/photo-27.avif";
 ---
@@ -15,7 +15,7 @@ import homeDetail from "../../assets/images/cottages/marietta-01/photo-27.avif";
         <p class="eyebrow">Mt Cottages · Mid-Ohio Valley</p>
         <h1>A furnished retreat for the season ahead.</h1>
         <p class="lede">Whole-home living with fiber-optic internet, quiet surroundings, and the room to settle in across Marietta, Parkersburg, and Ravenswood.</p>
-        <div class="cluster"><a class="button" href="/cottages.html">Browse 8 cottages <span aria-hidden="true">↗</span></a><a class="text-link" href="/apply.html">Ask about your dates <span aria-hidden="true">↗</span></a></div>
+        <div class="cluster"><a class="button" href="/cottages.html">Browse 8 cottages <span aria-hidden="true">↗</span></a><a class="text-link" href={stayApplicationUrl}>Ask about your dates <span aria-hidden="true">↗</span></a></div>
         <ul class="hero-essentials mt-4" aria-label="What comes with the stay"><li>Furnished</li><li>Fiber-optic internet</li><li>Quiet</li><li>Peaceful</li></ul>
       </div>
       <figure class="hero-media"><ResponsivePhoto src={homeHero} alt="Frederick Cottage exterior framed by mature trees and a covered entry" priority sizes="(max-width: 900px) 100vw, 64vw" /><figcaption>Frederick Cottage · a storied home in Marietta.</figcaption></figure>

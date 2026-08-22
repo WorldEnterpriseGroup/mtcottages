@@ -1,0 +1,49 @@
+---
+import type { VerificationBadge, VerificationStatus } from "./types";
+
+interface Props {
+  badges: VerificationBadge[];
+  title?: string;
+  ariaLabel?: string;
+}
+
+const {
+  badges,
+  title,
+  ariaLabel = "Property information status",
+} = Astro.props;
+
+const statusLabels: Record<VerificationStatus, string> = {
+  verified: "Verified",
+  reported: "Published",
+  confirm: "Confirm before booking",
+  unavailable: "Not currently listed",
+};
+
+const statusMarks: Record<VerificationStatus, string> = {
+  verified: "✓",
+  reported: "•",
+  confirm: "!",
+  unavailable: "–",
+};
+---
+
+<section class="microsite-verification" aria-label={ariaLabel} data-microsite-verification>
+  {title && <h2>{title}</h2>}
+  <ul class="microsite-verification__list">
+    {badges.map((badge) => {
+      const status = badge.status ?? "reported";
+      const statusLabel = badge.statusLabel ?? statusLabels[status];
+      return (
+        <li class={`microsite-verification__badge microsite-verification__badge--${status}`} data-verification-status={status}>
+          <span class="microsite-verification__mark" aria-hidden="true">{statusMarks[status]}</span>
+          <span class="microsite-verification__copy">
+            <strong>{badge.label}</strong>
+            {badge.detail && <span>{badge.detail}</span>}
+          </span>
+          <span class="microsite-verification__status">{statusLabel}</span>
+        </li>
+      );
+    })}
+  </ul>
+</section>

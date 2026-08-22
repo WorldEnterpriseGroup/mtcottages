@@ -1,0 +1,71 @@
+---
+import type { EvidenceFreshnessState, EvidenceSourceKind, InventoryGroup, InventoryItem, VerificationState } from "../../data/broadCottage";
+
+interface Props {
+  groups: InventoryGroup[];
+  title?: string;
+  intro?: string;
+}
+
+const { groups, title = "Amenities and inventory", intro } = Astro.props;
+const statusLabels: Record<VerificationState, string> = {
+  listed: "Listed",
+  "owner-confirmed": "Owner confirmed",
+  "photographically-verified": "Shown in photo",
+  "provider-api-verified": "Provider verified",
+  estimated: "Estimated",
+  illustrative: "Illustrative only",
+  "pending-confirmation": "Confirm before booking",
+  "not-available": "Not published",
+  "not-applicable": "Not applicable",
+};
+const sourceLabels: Record<EvidenceSourceKind, string> = {
+  "current-listing": "Current listing",
+  "public-photo-set": "Public photo set",
+  "illustrative-concept": "Illustrative concept",
+  "owner-confirmation": "Owner confirmation",
+  "field-measurement": "Field measurement",
+  "provider-data": "Provider data",
+  "direct-inquiry": "Direct inquiry",
+  mixed: "Mixed sources",
+  unknown: "Source not published",
+};
+const freshnessLabels: Record<EvidenceFreshnessState, string> = {
+  "date-known": "Date recorded",
+  "date-unknown": "Date not published",
+  "pending-review": "Review pending",
+  "not-applicable": "Freshness not applicable",
+};
+const evidenceLabel = (item: InventoryItem): string =>
+  `${sourceLabels[item.provenance?.sourceKind ?? "unknown"]} · ${freshnessLabels[item.freshness?.state ?? "date-unknown"]}`;
+---
+
+<section class="microsite-inventory" aria-labelledby="inventory-title">
+  <div class="microsite-section-heading">
+    <div>
+      <p class="microsite-eyebrow">The practical record</p>
+      <h2 id="inventory-title">{title}</h2>
+    </div>
+    {intro && <p>{intro}</p>}
+  </div>
+  <div class="microsite-inventory-grid">
+    {groups.map((group) => (
+      <section class="microsite-inventory-group" aria-labelledby={`inventory-${group.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}>
+        <h3 id={`inventory-${group.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}>{group.title}</h3>
+        <dl>
+          {group.items.map((item) => (
+            <div class={`microsite-inventory-item microsite-inventory-item--${item.status}`} data-inventory-status={item.status}>
+              <dt>{item.label}</dt>
+              <dd>
+                {item.value}
+                <span class="microsite-status-label">{statusLabels[item.status]}</span>
+                <small class="microsite-evidence-label">{evidenceLabel(item)}</small>
+                {item.note && <small>{item.note}</small>}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+    ))}
+  </div>
+</section>

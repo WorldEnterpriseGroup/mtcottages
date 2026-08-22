@@ -1,0 +1,329 @@
+---
+import BroadCottageLayout from "../../../layouts/BroadCottageLayout.astro";
+import ResponsivePhoto from "../../../components/ResponsivePhoto.astro";
+import VerificationBadges from "../../../components/microsite/VerificationBadges.astro";
+import MicrositeFacts from "../../../components/microsite/MicrositeFacts.astro";
+import MicrositeGallery from "../../../components/microsite/MicrositeGallery.astro";
+import MicrositeInventory from "../../../components/microsite/MicrositeInventory.astro";
+import LongStayFit from "../../../components/microsite/LongStayFit.astro";
+import VerifiedQuestionPicker from "../../../components/microsite/VerifiedQuestionPicker.astro";
+import Property3DViews from "../../../components/Property3DViews.astro";
+import {
+  broadCottage,
+  broadCottageInquiryUrl,
+  broadCottagePhotoById,
+} from "../../../data/broadCottage";
+import { cottages } from "../../../data/site";
+
+const title = "Broad Cottage | Furnished one-bedroom home in Parkersburg";
+const description = "Tour the current public record for Broad Cottage in Parkersburg: one bedroom, one bathroom, furnished living, published photo coverage, amenities, and details to confirm.";
+const legacyBroad = cottages.find((item) => item.id === "broad");
+const photoForRoom = (roomSlug: string) => {
+  const room = broadCottage.rooms.find((item) => item.slug === roomSlug);
+  return room?.photoIds.map((id) => broadCottagePhotoById.get(id)).filter(Boolean)[0];
+};
+const badgeStatus = (status: string) => {
+  if (status === "listed") return "reported" as const;
+  if (status === "photographically-verified") return "verified" as const;
+  if (status === "not-available" || status === "not-applicable") return "unavailable" as const;
+  return "confirm" as const;
+};
+const badgeStatusLabel = (status: string) => {
+  if (status === "listed") return "Published";
+  if (status === "owner-confirmed") return "Owner confirmed";
+  if (status === "photographically-verified") return "Shown in photo";
+  if (status === "provider-api-verified") return "Provider verified";
+  if (status === "estimated") return "Estimated";
+  if (status === "illustrative") return "Illustrative only";
+  if (status === "not-available" || status === "not-applicable") return "Not published";
+  return "Confirm before booking";
+};
+const longStaySummaryFacts = [
+  { label: "Monthly guide", value: broadCottage.monthlyGuide, status: "listed" as const },
+  { label: "Layout", value: "1 bedroom · 1 bathroom", status: "listed" as const },
+  { label: "Furnished baseline", value: "Furnished home", status: "listed" as const },
+  { label: "Meal preparation", value: "Full kitchen listed", status: "listed" as const },
+  { label: "Laundry", value: "Washer and dryer listed", status: "listed" as const },
+  { label: "Internet", value: "Fiber listed · speed unknown", status: "confirm" as const },
+  { label: "Workspace", value: "Visible surface · details unknown", status: "confirm" as const },
+  { label: "Parking", value: "Off-street listed", status: "listed" as const },
+];
+const longStayAudienceRows = [
+  {
+    audience: "Traveling clinicians",
+    fit: "A useful furnished baseline",
+    detail: "One bedroom, laundry, a living room, and a monthly guide are published. Hospital routes, arrival details, and final terms still need confirmation.",
+    status: "possible-fit" as const,
+  },
+  {
+    audience: "Corporate or relocation stay",
+    fit: "Worth a structured inquiry",
+    detail: "The home is presented as furnished, but utilities, deposit, billing party, extension process, and confirmed dates are not public facts yet.",
+    status: "possible-fit" as const,
+  },
+  {
+    audience: "Remote work",
+    fit: "Evidence still needed",
+    detail: "A work surface is visible and fiber is listed; measured Wi-Fi, desk dimensions, outlets, lighting, and noise context are not published.",
+    status: "confirm" as const,
+  },
+  {
+    audience: "Insurance housing",
+    fit: "Bring the operational questions",
+    detail: "Ask about occupancy, pets, access needs, furnishings, direct coordination, extensions, and documentation without sending sensitive claim or medical records.",
+    status: "confirm" as const,
+  },
+];
+const longStayCaveats = broadCottage.captureBacklog.slice(0, 5).map((item) => ({
+  label: item.title,
+  detail: item.request,
+  status: item.status === "complete" ? "confirm" as const : "pending" as const,
+  statusLabel: item.priority === "high" ? "High-priority field work" : "Needs verification",
+}));
+const publishedPhotoCount = broadCottage.photos.filter((photo) => photo.status !== "illustrative").length;
+const openBacklogCount = broadCottage.captureBacklog.filter((item) => item.status !== "complete").length;
+---
+
+<BroadCottageLayout title={title} description={description} currentSection="overview">
+  <div class="microsite-page">
+    <section class="microsite-hero property-hero" id="overview">
+      <div class="microsite-width microsite-hero-grid">
+        <div class="microsite-hero-copy">
+          <nav class="crumbs" aria-label="Breadcrumb">
+            <a href="/">Home</a><span aria-hidden="true">/</span>
+            <a href="/parkersburg/index.html">Parkersburg</a><span aria-hidden="true">/</span>
+            <span>Broad Cottage</span>
+          </nav>
+          <p class="microsite-eyebrow">Furnished living · {broadCottage.location}</p>
+          <h1>Broad Cottage</h1>
+          <p class="lede">{broadCottage.summary}</p>
+          <ul class="microsite-hero-meta" aria-label="Broad Cottage headline facts">
+            <li>1 Bedroom</li>
+            <li>1 Bathroom</li>
+            <li>Furnished</li>
+            <li>Fiber listed</li>
+            <li>Off-street parking listed</li>
+          </ul>
+          <div class="microsite-actions">
+            <a class="microsite-button" href={broadCottageInquiryUrl}>Ask about Broad Cottage <span aria-hidden="true">↗</span></a>
+            <a class="microsite-button microsite-button--ghost" href="/parkersburg/broad-cottage/gallery/">View all photos <span aria-hidden="true">↗</span></a>
+          </div>
+          <aside class="microsite-pending" aria-label="Monthly-stay decision path">
+            <strong>Monthly-stay decision</strong>
+            <div>
+              <p>Start with the fit brief and question path before relying on the room-by-room record.</p>
+              <nav aria-label="Monthly-stay decision links">
+                <a class="microsite-inline-link" href="#long-stay-fit">Read the decision brief <span aria-hidden="true">↓</span></a>
+                <a class="microsite-inline-link" href="#question-path">Choose a verified question <span aria-hidden="true">↓</span></a>
+              </nav>
+              <p><small><strong>Evidence cue:</strong> {publishedPhotoCount} public photos are published; {openBacklogCount} backlog items remain open. <a href="#evidence">See the evidence labels</a>.</small></p>
+            </div>
+          </aside>
+        </div>
+        <figure class="microsite-hero-media hero-image-frame--property">
+          <ResponsivePhoto
+            src={broadCottage.photos[0].src}
+            alt={broadCottage.photos[0].alt}
+            caption={broadCottage.photos[0].caption}
+            priority
+            widths={[720, 1080, 1440]}
+            sizes="(max-width: 760px) 100vw, 58vw"
+          />
+          <figcaption>{broadCottage.photos[0].caption}</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="microsite-section microsite-section--paper" aria-label="Broad Cottage quick facts">
+      <div class="microsite-width">
+        <dl class="microsite-stat-rail property-fact-rail">
+          <div><dt>Location</dt><dd>Parkersburg, WV</dd></div>
+          <div><dt>Monthly guide</dt><dd>{broadCottage.monthlyGuide}</dd></div>
+          <div><dt>Layout</dt><dd>1 Bedroom · 1 Bathroom</dd></div>
+          <div><dt>Internet</dt><dd>Fiber listed</dd></div>
+          <div><dt>Availability</dt><dd>Confirm dates</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="microsite-section microsite-section--canvas" id="evidence" aria-labelledby="evidence-title">
+      <div class="microsite-width">
+        <div class="microsite-section-heading">
+          <div>
+            <p class="microsite-eyebrow">Read the evidence</p>
+            <h2 id="evidence-title">A useful tour starts with what is actually known.</h2>
+          </div>
+          <p>{broadCottage.description} Every item below carries its verification state; where dates or direct provenance are not published, the record says so.</p>
+        </div>
+        <VerificationBadges
+          title="Broad Cottage at a glance"
+          badges={broadCottage.verification.slice(0, 6).map((fact) => ({ label: fact.label, detail: fact.value, status: badgeStatus(fact.status), statusLabel: badgeStatusLabel(fact.status) }))}
+        />
+      </div>
+    </section>
+
+    <section class="microsite-section microsite-section--paper" id="long-stay-fit">
+      <div class="microsite-width">
+        <LongStayFit
+          propertyName={broadCottage.name}
+          title="Could Broad Cottage work for a longer stay?"
+          intro="This decision brief brings the monthly resident’s questions forward: what is published, what is visible, and what still needs a direct answer before a stay is planned around it."
+          summaryFacts={longStaySummaryFacts}
+          audienceFitRows={longStayAudienceRows}
+          caveats={longStayCaveats}
+          id="long-stay-fit"
+        />
+      </div>
+    </section>
+
+    <section class="microsite-section microsite-section--canvas" id="question-path">
+      <div class="microsite-width">
+        <VerifiedQuestionPicker
+          propertyName={broadCottage.name}
+          title="Start with the question that affects your stay"
+          intro="A small, source-aware question path is more useful than an open chatbot while the property record is still being completed."
+          id="broad-cottage-question-path"
+        />
+      </div>
+    </section>
+
+    <section class="microsite-section microsite-section--paper" id="rooms" aria-labelledby="rooms-title">
+      <div class="microsite-width">
+        <div class="microsite-section-heading">
+          <div>
+            <p class="microsite-eyebrow">Room by room</p>
+            <h2 id="rooms-title">See the spaces without inventing the gaps.</h2>
+          </div>
+          <p>Broad Cottage is currently documented as a one-bedroom home. There is no Bedroom 2 route because the public record does not establish a second bedroom.</p>
+        </div>
+        <div class="microsite-rooms-grid">
+          {broadCottage.rooms.map((room) => {
+            const roomPhoto = photoForRoom(room.slug);
+            return (
+              <article class:list={["microsite-room-card", room.status === "pending-confirmation" && "microsite-room-card--pending"]}>
+                {roomPhoto ? (
+                  <figure>
+                    <ResponsivePhoto src={roomPhoto.src} alt={roomPhoto.alt} widths={[420, 720, 960]} sizes="(max-width: 760px) 100vw, 38vw" />
+                  </figure>
+                ) : (
+                  <figure aria-label={`${room.name} photography pending`}>Photography pending</figure>
+                )}
+                <div>
+                  <p class="microsite-eyebrow">{room.status === "pending-confirmation" ? "Details to confirm" : "Published room"}</p>
+                  <h3>{room.name}</h3>
+                  <p>{room.description}</p>
+                  <ul class="microsite-room-card__facts">
+                    {room.facts.slice(0, 3).map((fact) => <li>{fact.label}: {fact.value}</li>)}
+                  </ul>
+                  <a class="microsite-inline-link" href={`/parkersburg/broad-cottage/${room.slug}/`}>Open {room.name.toLowerCase()} page <span aria-hidden="true">↗</span></a>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <section class="microsite-section microsite-section--canvas" aria-labelledby="amenity-headlines-title">
+      <div class="microsite-width">
+        <div class="microsite-section-heading">
+          <div>
+            <p class="microsite-eyebrow">At a glance</p>
+            <h2 id="amenity-headlines-title">The essentials in the current record.</h2>
+          </div>
+          <p>These are headline inclusions, with the verification state carried into the detailed inventory below.</p>
+        </div>
+        <div class="amenity-grid" aria-label="Broad Cottage headline amenities">
+          {[
+            "Furnished one-bedroom layout",
+            "Full kitchen",
+            "Queen bedroom",
+            "Washer and dryer",
+            "Fiber-optic internet",
+            "Off-street parking listed",
+          ].map((amenity) => (
+            <div class="amenity">
+              <span aria-hidden="true">✓</span>
+              <span>{amenity}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="microsite-section microsite-section--canvas" id="gallery">
+      <div class="microsite-width">
+        <MicrositeGallery
+          photos={broadCottage.photos}
+          title="The current photo record"
+          intro="Room labels and captions make the coverage inspectable. Use a category filter or share a photo fragment such as #bedroom-queen."
+        />
+        <div class="coverage" aria-label="Photo coverage">
+          <span>Living room</span>
+          <span>One bedroom</span>
+          <span>Bathroom / tub</span>
+          <span>Shower area</span>
+          <span>Laundry / vanity</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="microsite-section microsite-section--paper" id="amenities">
+      <div class="microsite-width">
+        <MicrositeInventory
+          groups={broadCottage.inventory}
+          title="What is included—and what still needs a confirmation"
+          intro="A full kitchen, fiber-optic internet, furnished rooms, and washer/dryer are part of the current public record. Counts, models, measurements, and policies are not filled in by assumption."
+        />
+      </div>
+    </section>
+
+    <section class="microsite-section microsite-section--canvas" aria-labelledby="planning-title">
+      <div class="microsite-width">
+        <div class="microsite-callout">
+          <div>
+            <p class="microsite-eyebrow" style="color:#e4b482">Before booking</p>
+            <h2 id="planning-title">The next useful facts are still field work.</h2>
+          </div>
+          <div>
+            <p>Square footage, exterior and porch views, parking configuration, measured internet speed, kitchen inventory, accessibility characteristics, nearby routes, and policies need confirmation. The public site keeps those questions visible instead of turning a guess into a property fact.</p>
+            <div class="microsite-actions">
+              <a class="microsite-button microsite-button--light" href="/parkersburg/broad-cottage/availability/">Review availability <span aria-hidden="true">↗</span></a>
+              <a class="microsite-button" href="/parkersburg/broad-cottage/connectivity/">Inspect internet details <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {legacyBroad?.propertyStudy && (
+      <Property3DViews
+        propertyName={legacyBroad.name}
+        views={legacyBroad.propertyStudy.views}
+        disclaimer={legacyBroad.propertyStudy.note}
+      />
+    )}
+
+    <section class="microsite-section microsite-section--paper" aria-labelledby="details-title">
+      <div class="microsite-width">
+        <div class="microsite-section-heading">
+          <div>
+            <p class="microsite-eyebrow">Open questions</p>
+            <h2 id="details-title">A booking conversation should be specific.</h2>
+          </div>
+          <p>Use the availability page to share timing, household, pets, vehicle count, accessibility needs, and the questions that matter to your stay.</p>
+        </div>
+        <div data-property-details="Broad Cottage">
+          <p class="microsite-pending"><strong>Source photos still needed</strong><span>Exterior, entrance, porch, yard, and street context are not yet part of the approved Broad Cottage record.</span></p>
+          <p class="microsite-pending"><strong>Kitchen inventory</strong><span>Full kitchen is listed; refrigerator, stove, oven, microwave, cookware, and utensils need confirmation.</span></p>
+          <p class="microsite-pending"><strong>Bedroom record</strong><span>The published bedroom photograph shows a queen bed; bedding, storage, dimensions, and charging details still need confirmation.</span></p>
+          <MicrositeFacts
+            title="Verification ledger"
+            facts={broadCottage.verification}
+            id="verification-ledger"
+          />
+        </div>
+      </div>
+    </section>
+  </div>
+</BroadCottageLayout>
