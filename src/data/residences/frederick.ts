@@ -169,13 +169,13 @@ export const frederick: Residence = {
     { label: "Amenities", href: "/marietta/frederick/amenities.html", description: "Everything provided, in one checklist." },
     { label: "Utilities", href: "/marietta/frederick/utilities.html", description: "Utilities, trash, systems, and maintenance." },
     { label: "Arrival & map", href: "/marietta/frederick/arrival.html", description: "How to arrive without guesswork." },
-    { label: "Nearby", href: "/marietta/frederick/area.html", description: "Parks, recreation, and everyday essentials." },
+    { label: "Nearby", href: "/marietta/frederick/area.html", description: "Trails, food, shopping, hospitals, parks, events, transit, amenities." },
     { label: "Handbook", href: "/marietta/frederick/handbook.html", description: "Resident handbook and policies." },
     { label: "Gallery", href: "/marietta/frederick/gallery.html", description: "Photography organized by space." },
   ],
   missing: [
     "Bathroom layout: one full bath serves the home.",
     "Utility and trash specifics: provider names, pickup days, thermostat, laundry, and parking details live inside Utilities.",
-    "Map distances and park details: nearby parks, groceries, and healthcare routes are described as planning prompts with confirmation steps, not as verified distances.",
+    "Cottage-to-POI mileage: exact cottage address stays private pre-arrival, so Nearby gives verified names, areas, and map links — confirm drive time in your maps app.",
   ],
 };
