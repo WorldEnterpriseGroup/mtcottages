@@ -1,0 +1,47 @@
+---
+import ResidenceLayout from "../../../layouts/ResidenceLayout.astro";
+import { frederick } from "../../../data/residences/frederick";
+---
+
+<ResidenceLayout
+  residence={frederick}
+  title="Amenities · Frederick Cottage | Mt Cottages"
+  description="The complete Frederick Cottage amenity checklist: furnished rooms, kitchen, laundry, living space, and guest support."
+  eyebrow="Frederick Cottage · Amenities"
+  heading="Everything provided, in one checklist."
+  lede="The baseline that makes a 30+ day stay work — plus the questions that confirm the details for your dates."
+>
+  <section class="section section--paper">
+    <div class="site-width split">
+      <div class="stack reveal">
+        <h2>Amenity coverage.</h2>
+        <p>Drawn from the public listing and photography only. Anything arrangement-specific is flagged, not assumed.</p>
+        <ul class="checklist">
+          <li>Furnished rooms throughout — beds, seating, tables, storage.</li>
+          <li>Full kitchen — full-size refrigerator, range, sink, oak cabinets.</li>
+          <li>Washer and dryer in the home's laundry setup.</li>
+          <li>Living and dining space — sitting room plus dining/entry table.</li>
+          <li>Private bedrooms — king, double, and queen across three distinct rooms.</li>
+          <li>Fast internet — 1 Gbps ethernet hookups plus wifi for remote work.</li>
+          <li>Large TV in the king bedroom, mini fridge in the room.</li>
+          <li>Guest support — a direct contact before and during the stay.</li>
+        </ul>
+      </div>
+      <div class="stack reveal">
+        <h2>Confirm for your stay.</h2>
+        <p>Dishwasher, microwave, coffee setup, cookware depth, linens and extras, ironing, cleaning cadence, and outdoor furniture vary by arrangement.</p>
+        <p class="gap-note"><strong>How to confirm:</strong> list furnished needs in the inquiry form's message field. The team answers with what is in the home for your dates.</p>
+        <div class="cluster"><a class="button" href="/apply.html?property=frederick">Confirm amenities</a><a class="text-link" href="/marietta/frederick/utilities.html">Utilities & systems</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="site-width faq reveal">
+      <h2>Amenity questions.</h2>
+      <details open><summary>Is housekeeping included?</summary><p>Housekeeping follows the Handbook rhythm for longer stays, with options by home and dates.</p></details>
+      <details><summary>What about pets and accessibility?</summary><p>Pets and accessibility are matched by home and arrangement — the Handbook has the baseline.</p></details>
+      <details><summary>Can I see everything in photos?</summary><p>The categorized Gallery organizes every photo by space, with coverage labels and the honest gaps.</p></details>
+    </div>
+  </section>
+</ResidenceLayout>

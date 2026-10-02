@@ -1,0 +1,89 @@
+---
+import ResidenceLayout from "../../../layouts/ResidenceLayout.astro";
+import ResponsivePhoto from "../../../components/ResponsivePhoto.astro";
+import { frederick, frederickPhotos } from "../../../data/residences/frederick";
+---
+
+<ResidenceLayout
+  residence={frederick}
+  title="Bedrooms · Frederick Cottage | Mt Cottages"
+  description="Tour each Frederick Cottage bedroom: primary king bedroom with blue walls and TV, second green bedroom with wall-mounted TV, and third queen bedroom with desk corner and TV."
+  eyebrow="Frederick Cottage · Bedrooms"
+  heading="Three bedrooms, each with its own job."
+  lede="Rest, overflow work, family rhythm: the bedrooms separate the stay so one room never has to do everything."
+  hero={frederickPhotos.primaryBedroom}
+>
+  <section class="section section--paper">
+    <div class="site-width">
+      <div class="section-heading reveal"><div><p class="eyebrow">The sleep story</p><h2>Where everyone sleeps — and works, when needed.</h2></div></div>
+
+      <div class="editorial" id="primary">
+        <div class="stack reveal">
+          <h3 class="bedroom-title">Bedroom 1</h3>
+          <ul class="checklist"><li>King bed with space around it for luggage and daily items.</li><li>Large TV on the dresser plus storage baskets and drawers.</li><li>Three windows for daylight and airflow; confirm coverings on inquiry.</li></ul>
+        </div>
+        <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.primaryBedroom} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+      </div>
+
+      <div class="editorial editorial--flip mt-4">
+        <div class="stack reveal">
+          <h3 class="bedroom-title">Bedroom 1</h3>
+          <p>A second angle on the primary bedroom, showing the room's size and windows.</p>
+        </div>
+        <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.primaryBedroomAlt} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+      </div>
+
+      <div class="editorial mt-4">
+        <div class="stack reveal">
+          <h3 class="bedroom-title">Bedroom 2</h3>
+          <ul class="checklist"><li>Wall-mounted TV plus mirror and desk surface for laptop hours.</li><li>Good daylight for daytime work without taking over the living room.</li><li>Double bed suits one or two sleepers; share the household so rooms match people.</li></ul>
+        </div>
+        <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.secondBedroom} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+      </div>
+
+      <div class="editorial editorial--flip mt-4">
+        <div class="stack reveal">
+          <h3 class="bedroom-title">Bedroom 2</h3>
+          <p>A second angle on the second bedroom, showing the bed, vanity corner, and windows.</p>
+        </div>
+        <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.secondBedroomAlt} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+      </div>
+
+      <div class="editorial mt-4">
+        <div class="stack reveal">
+          <h3 class="bedroom-title">Bedroom 3</h3>
+          <ul class="checklist"><li>Queen bed with layered bedding and bedside lamps.</li><li>Shelving wall plus a desk corner for work or study.</li><li>TV in the room; windows and garden door for light.</li></ul>
+        </div>
+        <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.thirdBedroom} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+      </div>
+
+      <div class="editorial editorial--flip mt-4">
+        <div class="stack reveal">
+          <h3 class="bedroom-title">Bedroom 3</h3>
+          <p>Storage wall, desk corner, and windows seen from the foot of the bed.</p>
+        </div>
+        <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.thirdBedroomWide} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+      </div>
+
+      <div class="editorial mt-4">
+        <div class="stack reveal">
+          <h3 class="bedroom-title">Bedroom 3</h3>
+          <p>Television corner and the glass-paneled garden door for daylight.</p>
+        </div>
+        <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.thirdBedroomTv} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="site-width faq reveal">
+      <h2>Frequently Asked Questions</h2>
+      <details open><summary>What bed is in each bedroom?</summary><p>Bedroom 1 has a king bed, Bedroom 2 has a double bed, and Bedroom 3 has a queen bed.</p></details>
+      <details><summary>Does each bedroom have a TV?</summary><p>Yes — large TV on the dresser in Bedroom 1, wall-mounted TV in Bedroom 2, and a TV corner in Bedroom 3.</p></details>
+      <details><summary>Which bedroom is best for desk work?</summary><p>Bedroom 3 has a dedicated desk and chair plus a shelving wall, and Bedroom 2 has a vanity/desk surface that works as an overflow spot.</p></details>
+      <details><summary>Can three adults each have a private room?</summary><p>Yes — the home has three separate bedrooms that sleep six total.</p></details>
+      <details><summary>Is there storage for clothes and luggage?</summary><p>Dresser with storage baskets in Bedroom 1 and a shelving wall in Bedroom 3, with space around the beds for luggage.</p></details>
+      <details><summary>What about windows and airflow?</summary><p>Bedroom 1 has three windows plus a ceiling fan, Bedroom 2 has a window with an air-conditioning unit, and Bedroom 3 has windows plus a glass-paneled door for daylight.</p></details>
+    </div>
+  </section>
+</ResidenceLayout>

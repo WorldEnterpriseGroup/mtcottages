@@ -1,0 +1,62 @@
+---
+import ResidenceLayout from "../../../layouts/ResidenceLayout.astro";
+import ResponsivePhoto from "../../../components/ResponsivePhoto.astro";
+import { frederick, frederickPhotos } from "../../../data/residences/frederick";
+---
+
+<ResidenceLayout
+  residence={frederick}
+  title="Outdoors · Frederick Cottage | Mt Cottages"
+  description="Frederick Cottage outdoors: backyard lawn, picket fence, patio seating, and autumn trees."
+  eyebrow="Frederick Cottage · Garden & outdoors"
+  heading="A backyard made for evenings."
+  lede="Lawn, a white picket fence, patio chairs, and a big autumn tree — outdoor room that makes a longer stay feel like home."
+  hero={frederickPhotos.exteriorFrontLawn}
+>
+  <section class="section section--paper">
+    <div class="site-width editorial editorial--flip">
+      <div class="stack reveal">
+        <h3 class="room-title">Backyard with lawn, fence, and patio seating</h3>
+        <ul class="checklist">
+          <li>Fenced backyard with lawn — space to stretch, sit out, and unwind.</li>
+          <li>Patio chairs and chiminea for evenings outside (by arrangement).</li>
+          <li>Mature trees — shade, air, and a calmer setting.</li>
+        </ul>
+        <p class="gap-note">Front arrival views are published below — driveway, porch, and a winter angle for recognition in any season.</p>
+      </div>
+      <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.exterior} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+    </div>
+    <div class="site-width editorial mt-4">
+      <div class="stack reveal">
+        <h3 class="room-title">Front exterior · Arrival</h3>
+        <p class="lede">Driveway arrival, front porch with picket fence, and a winter view — the house reads clearly from the road in every season.</p>
+      </div>
+      <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.exteriorFrontDrive} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+    </div>
+    <div class="site-width editorial mt-4">
+      <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.exteriorFrontLawn} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+      <div class="stack reveal">
+        <h3 class="room-title">Front exterior · Summer</h3>
+        <p>Front porch and picket fence in summer.</p>
+      </div>
+    </div>
+    <div class="site-width editorial editorial--flip mt-4">
+      <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.exteriorFrontSnow} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+      <div class="stack reveal">
+        <h3 class="room-title">Front exterior · Winter</h3>
+        <p>Winter exterior view.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="site-width">
+      <div class="section-heading reveal"><div><p class="eyebrow">Outdoor rhythm</p><h2>How the outside gets used.</h2></div></div>
+      <ol class="step-grid">
+        <li class="reveal"><strong>Arrive</strong><p>Covered entry keeps arrival dry and legible. Parking and key details are confirmed pre-arrival.</p></li>
+        <li class="reveal"><strong>Breathe</strong><p>Lawn and trees for stretching, calls outside, and kids' energy between indoors hours.</p></li>
+        <li class="reveal"><strong>Wander</strong><p>Streets, river paths, and parks nearby for time outside.</p></li>
+      </ol>
+    </div>
+  </section>
+</ResidenceLayout>

@@ -1,0 +1,40 @@
+---
+import ResidenceLayout from "../../../layouts/ResidenceLayout.astro";
+import ResponsivePhoto from "../../../components/ResponsivePhoto.astro";
+import { frederick, frederickPhotos } from "../../../data/residences/frederick";
+
+const groups = [
+  { title: "Exterior / arrival", photos: [frederickPhotos.exterior, frederickPhotos.exteriorFrontDrive, frederickPhotos.exteriorFrontLawn, frederickPhotos.exteriorFrontSnow] },
+  { title: "Kitchen", photos: [frederickPhotos.kitchen, frederickPhotos.kitchenFull, frederickPhotos.kitchenSink, frederickPhotos.kitchenRange] },
+  { title: "Living room", photos: [frederickPhotos.dining, frederickPhotos.diningSet, frederickPhotos.diningEntry, frederickPhotos.diningClassic] },
+  { title: "Bedroom 1", photos: [frederickPhotos.primaryBedroom, frederickPhotos.primaryBedroomAlt] },
+  { title: "Bedroom 2", photos: [frederickPhotos.secondBedroom, frederickPhotos.secondBedroomAlt] },
+  { title: "Bedroom 3", photos: [frederickPhotos.thirdBedroom, frederickPhotos.thirdBedroomWide, frederickPhotos.thirdBedroomTv] },
+  { title: "Bathroom", photos: [frederickPhotos.bathroom, frederickPhotos.bathroomVanity] },
+];
+---
+
+<ResidenceLayout
+  residence={frederick}
+  title="Gallery · Frederick Cottage | Mt Cottages"
+  description="Frederick Cottage photography organized by space: exterior, kitchen, living, bedrooms, bathrooms, and dining."
+  eyebrow="Frederick Cottage · Gallery"
+  heading="Photography, organized by space."
+  lede="Every photo, grouped the way a guest evaluates the home — with coverage labels and honest gaps."
+>
+  <section class="section section--paper">
+    <div class="site-width">
+      <div class="coverage reveal" aria-label="Photo coverage"><span>Photo coverage</span><span>Exterior / arrival</span><span>Kitchen</span><span>Living room</span><span>Bedroom 1</span><span>Bedroom 2</span><span>Bedroom 3</span><span>Bathroom</span></div>
+      {groups.map((group) => (
+        <div class="mt-4">
+          <div class="section-heading reveal"><div><h2>{group.title}</h2></div></div>
+          <div class="gallery-grid gallery-grid--even">
+            {group.photos.map((item, index) => (
+              <figure class="gallery-item reveal"><ResponsivePhoto {...item} widths={[480, 768, 1080]} sizes="(max-width: 900px) 100vw, 50vw" /><figcaption><span>{String(index + 1).padStart(2, "0")}</span>{item.caption || item.alt}</figcaption></figure>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</ResidenceLayout>
