@@ -1,47 +1,122 @@
 ---
 import ResidenceLayout from "../../../layouts/ResidenceLayout.astro";
+import AmenityIcon from "../../../components/AmenityIcon.astro";
 import { frederick } from "../../../data/residences/frederick";
+
+const groups = [
+  { title: "Views", paper: true, items: [
+    { icon: "scenic", label: "Scenic views" },
+    { icon: "garden", label: "Garden view" },
+  ] },
+  { title: "Bathroom", paper: false, items: [
+    { icon: "bathtub", label: "Bathtub" },
+    { icon: "hairdryer", label: "Hair dryer" },
+    { icon: "spray", label: "Cleaning products" },
+    { icon: "shampoo", label: "Shampoo" },
+    { icon: "conditioner", label: "Conditioner" },
+    { icon: "droplet", label: "Hot water" },
+  ] },
+  { title: "Bedroom and laundry", paper: true, items: [
+    { icon: "washer", label: "Washer" },
+    { icon: "dryer", label: "Dryer" },
+    { icon: "stack", label: "Essentials — towels, bed sheets, soap, and toilet paper" },
+    { icon: "hanger", label: "Hangers" },
+    { icon: "bed", label: "Bed linens" },
+    { icon: "pillow", label: "Extra pillows and blankets" },
+    { icon: "shades", label: "Room-darkening shades" },
+    { icon: "iron", label: "Iron" },
+    { icon: "rack", label: "Drying rack for clothing" },
+    { icon: "dresser", label: "Clothing storage" },
+  ] },
+  { title: "Entertainment", paper: false, items: [
+    { icon: "network", label: "Ethernet connection" },
+    { icon: "tv", label: "TV" },
+    { icon: "speaker", label: "Sound system" },
+    { icon: "book", label: "Books and reading material" },
+  ] },
+  { title: "Heating and cooling", paper: true, items: [
+    { icon: "ac", label: "Air conditioning" },
+    { icon: "fan", label: "Ceiling fan" },
+    { icon: "radiator", label: "Heating" },
+  ] },
+  { title: "Home safety", paper: false, items: [
+    { icon: "cctv", label: "Exterior security cameras on property" },
+    { icon: "lock", label: "Google Home devices in each suite, Smart Lock, and security cameras outdoors and in common areas" },
+    { icon: "smoke", label: "Smoke alarm" },
+    { icon: "cloud", label: "Carbon monoxide alarm" },
+    { icon: "extinguisher", label: "Fire extinguisher" },
+    { icon: "aidkit", label: "First aid kit" },
+  ] },
+  { title: "Internet and office", paper: true, items: [
+    { icon: "wifi", label: "Wifi" },
+    { icon: "desk", label: "Dedicated workspace" },
+  ] },
+  { title: "Kitchen and dining", paper: false, items: [
+    { icon: "pot", label: "Kitchen — space where guests can cook their own meals" },
+    { icon: "fridge", label: "Refrigerator" },
+    { icon: "pan", label: "Cooking basics — pots and pans, oil, salt and pepper" },
+    { icon: "dishes", label: "Dishes and silverware — plates, bowls, cups, cutlery, and other utensils" },
+    { icon: "minifridge", label: "Mini fridge" },
+    { icon: "snowflake", label: "Freezer" },
+    { icon: "dishwasher", label: "Dishwasher" },
+    { icon: "stove", label: "Stove" },
+    { icon: "oven", label: "Oven" },
+    { icon: "mug", label: "Coffee maker" },
+    { icon: "tray", label: "Baking sheet" },
+    { icon: "table", label: "Dining table" },
+  ] },
+  { title: "Location features", paper: true, items: [
+    { icon: "door", label: "Private entrance — separate street or building entrance" },
+    { icon: "storefront", label: "Laundromat nearby" },
+  ] },
+  { title: "Outdoor", paper: false, items: [
+    { icon: "tree", label: "Backyard — an open space on the property usually covered in grass" },
+  ] },
+  { title: "Parking and facilities", paper: true, items: [
+    { icon: "psign", label: "Free parking on premises" },
+    { icon: "car", label: "Free street parking" },
+  ] },
+  { title: "Services", paper: false, items: [
+    { icon: "suitcase", label: "Luggage dropoff allowed — for early arrival or late departure" },
+    { icon: "calendar", label: "Long term stays allowed — stay for 28 days or more" },
+    { icon: "keypad", label: "Self check-in — keypad, check yourself in with a door code" },
+    { icon: "sparkle", label: "Cleaning available during stay" },
+  ] },
+];
 ---
+
+<style>
+  .amenity span:first-child svg {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+</style>
 
 <ResidenceLayout
   residence={frederick}
   title="Amenities · Frederick Cottage | Mt Cottages"
   description="The complete Frederick Cottage amenity checklist: furnished rooms, kitchen, laundry, living space, and guest support."
   eyebrow="Frederick Cottage · Amenities"
-  heading="Everything provided, in one checklist."
-  lede="The baseline that makes a 30+ day stay work — plus the questions that confirm the details for your dates."
+  heading="What this place offers."
+  lede="The full amenity list for Frederick Cottage — grouped by space, so a 30+ day stay is easy to plan."
 >
-  <section class="section section--paper">
-    <div class="site-width split">
-      <div class="stack reveal">
-        <h2>Amenity coverage.</h2>
-        <p>Drawn from the public listing and photography only. Anything arrangement-specific is flagged, not assumed.</p>
-        <ul class="checklist">
-          <li>Furnished rooms throughout — beds, seating, tables, storage.</li>
-          <li>Full kitchen — full-size refrigerator, range, sink, oak cabinets.</li>
-          <li>Washer and dryer in the home's laundry setup.</li>
-          <li>Living and dining space — sitting room plus dining/entry table.</li>
-          <li>Private bedrooms — king, double, and queen across three distinct rooms.</li>
-          <li>Fast internet — 1 Gbps ethernet hookups plus wifi for remote work.</li>
-          <li>Large TV in the king bedroom, mini fridge in the room.</li>
-          <li>Guest support — a direct contact before and during the stay.</li>
-        </ul>
+  {groups.map((group) => (
+    <section class={group.paper ? "section section--paper" : "section"}>
+      <div class="site-width">
+        <div class="section-heading reveal"><div><h2>{group.title}</h2></div></div>
+        <div class="amenity-grid">
+          {group.items.map((item) => (
+            <div class="amenity"><span aria-hidden="true"><AmenityIcon name={item.icon} /></span><span>{item.label}</span></div>
+          ))}
+        </div>
       </div>
-      <div class="stack reveal">
-        <h2>Confirm for your stay.</h2>
-        <p>Dishwasher, microwave, coffee setup, cookware depth, linens and extras, ironing, cleaning cadence, and outdoor furniture vary by arrangement.</p>
-        <p class="gap-note"><strong>How to confirm:</strong> list furnished needs in the inquiry form's message field. The team answers with what is in the home for your dates.</p>
-        <div class="cluster"><a class="button" href="/apply.html?property=frederick">Confirm amenities</a><a class="text-link" href="/marietta/frederick/utilities.html">Utilities & systems</a></div>
-      </div>
+    </section>
+  ))}
+
+  <section class="section">
+    <div class="site-width">
+      <div class="cluster"><a class="button" href="/apply.html?property=frederick">Confirm amenities</a></div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="site-width faq reveal">
-      <h2>Amenity questions.</h2>
-      <details open><summary>Is housekeeping included?</summary><p>Housekeeping follows the Handbook rhythm for longer stays, with options by home and dates.</p></details>
-      <details><summary>What about pets and accessibility?</summary><p>Pets and accessibility are matched by home and arrangement — the Handbook has the baseline.</p></details>
-      <details><summary>Can I see everything in photos?</summary><p>The categorized Gallery organizes every photo by space, with coverage labels and the honest gaps.</p></details>
-    </div>
-  </section>
 </ResidenceLayout>

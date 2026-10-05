@@ -21,6 +21,20 @@ import mariettaBathVanity from "../../../assets/images/cottages/marietta-01/fred
 import mariettaBedThree from "../../../assets/images/cottages/marietta-01/frederick-bed3-1.jpeg";
 import mariettaBedThreeWide from "../../../assets/images/cottages/marietta-01/frederick-bed3-2.jpeg";
 import mariettaBedThreeTv from "../../../assets/images/cottages/marietta-01/frederick-bed3-3.avif";
+import mariettaWildlifeWoods from "../../../assets/images/cottages/marietta-01/frederick-wildlife-1.avif";
+import mariettaWildlifeLeaves from "../../../assets/images/cottages/marietta-01/frederick-wildlife-2.avif";
+import mariettaBuckeyeFields from "../../../assets/images/cottages/marietta-01/frederick-buckeye-park-1.png";
+import mariettaBuckeyeShelter from "../../../assets/images/cottages/marietta-01/frederick-buckeye-park-2.png";
+import mariettaBuckeyePlayground from "../../../assets/images/cottages/marietta-01/frederick-buckeye-park-3.png";
+import mariettaNearbyShopping from "../../../assets/images/cottages/marietta-01/frederick-nearby-shopping.png";
+import mariettaNearbySelby from "../../../assets/images/cottages/marietta-01/frederick-nearby-selby.png";
+import mariettaNearbyKroger from "../../../assets/images/cottages/marietta-01/frederick-nearby-kroger.png";
+import mariettaNearbyTrail from "../../../assets/images/cottages/marietta-01/frederick-nearby-trail.jpeg";
+import mariettaNearbyTrail2 from "../../../assets/images/cottages/marietta-01/frederick-nearby-trail-2.jpeg";
+import mariettaNearbyFood from "../../../assets/images/cottages/marietta-01/frederick-nearby-food.webp";
+import mariettaNearbyFood2 from "../../../assets/images/cottages/marietta-01/frederick-nearby-food-2.jpeg";
+import mariettaNearbyFood3 from "../../../assets/images/cottages/marietta-01/frederick-nearby-food-3.jpg";
+import mariettaNearbyFood4 from "../../../assets/images/cottages/marietta-01/frederick-nearby-food-4.jpg";
 
 export const frederickPhotos = {
   exterior: {
@@ -134,6 +148,76 @@ export const frederickPhotos = {
     alt: "Frederick Cottage third bedroom with queen bed, television, and glass-paneled door",
     caption: "The third bedroom's TV corner and garden-door outlook.",
   },
+  wildlifeWoods: {
+    src: mariettaWildlifeWoods,
+    alt: "Dense trees with early fall color seen from Frederick Cottage",
+    caption: "Tree canopy with early fall color.",
+  },
+  wildlifeLeaves: {
+    src: mariettaWildlifeLeaves,
+    alt: "Fall leaves covering the ground under large maples near Frederick Cottage",
+    caption: "Fall leaves under nearby maples.",
+  },
+  buckeyeFields: {
+    src: mariettaBuckeyeFields,
+    alt: "Buckeye Park sports fields at dusk with floodlights and lawn",
+    caption: "Buckeye Park sports fields at dusk.",
+  },
+  buckeyeShelter: {
+    src: mariettaBuckeyeShelter,
+    alt: "Buckeye Park picnic shelter with tables overlooking the pond",
+    caption: "Buckeye Park picnic shelter by the pond.",
+  },
+  buckeyePlayground: {
+    src: mariettaBuckeyePlayground,
+    alt: "Buckeye Park playground with climbing structure, benches, and lawn",
+    caption: "Buckeye Park playground and lawn.",
+  },
+  nearbyShopping: {
+    src: mariettaNearbyShopping,
+    alt: "Walmart grocery pickup entrance with blue facade and parked cars",
+    caption: "Walmart grocery pickup entrance for daily shopping.",
+  },
+  nearbyHospital: {
+    src: mariettaNearbySelby,
+    alt: "Selby General Hospital reception lobby with front desk and seating",
+    caption: "Selby General Hospital reception and front desk.",
+  },
+  nearbyEssentials: {
+    src: mariettaNearbyKroger,
+    alt: "Kroger storefront with pharmacy entrance under a clear sky",
+    caption: "Kroger storefront with pharmacy entrance.",
+  },
+  nearbyTrail: {
+    src: mariettaNearbyTrail,
+    alt: "Wooded trail with tall trees and a natural path near Marietta",
+    caption: "Wooded trail near the cottage.",
+  },
+  nearbyTrail2: {
+    src: mariettaNearbyTrail2,
+    alt: "Second wooded trail view near Marietta",
+    caption: "Another trail view near the cottage.",
+  },
+  nearbyFood: {
+    src: mariettaNearbyFood,
+    alt: "Local restaurant spread with shared plates near Frederick Cottage",
+    caption: "Local restaurant spread near the cottage.",
+  },
+  nearbyFood2: {
+    src: mariettaNearbyFood2,
+    alt: "Levee House Bistro plate near Frederick Cottage",
+    caption: "Levee House Bistro plate near the cottage.",
+  },
+  nearbyFood3: {
+    src: mariettaNearbyFood3,
+    alt: "Third local restaurant dish near Frederick Cottage",
+    caption: "A third local plate near the cottage.",
+  },
+  nearbyFood4: {
+    src: mariettaNearbyFood4,
+    alt: "Fourth local restaurant dish near Frederick Cottage",
+    caption: "Another local plate near the cottage.",
+  },
 };
 
 export const frederick: Residence = {
@@ -166,16 +250,16 @@ export const frederick: Residence = {
     { label: "Bathroom", href: "/marietta/frederick/bathrooms.html", description: "Baths, routines, and what to confirm." },
     { label: "Living & work", href: "/marietta/frederick/living.html", description: "Sitting room, dining, entry, and work corners." },
     { label: "Outdoors", href: "/marietta/frederick/outdoors.html", description: "Backyard lawn, picket fence, patio seating, and trees." },
+    { label: "Gallery", href: "/marietta/frederick/gallery.html", description: "Photography organized by space." },
     { label: "Amenities", href: "/marietta/frederick/amenities.html", description: "Everything provided, in one checklist." },
+    { label: "Nearby", href: "/marietta/frederick/area.html", description: "Trails, food, shopping, hospitals, parks, wildlife and seasons, events, transit, essentials — searchable." },
     { label: "Utilities", href: "/marietta/frederick/utilities.html", description: "Utilities, trash, systems, and maintenance." },
     { label: "Arrival & map", href: "/marietta/frederick/arrival.html", description: "How to arrive without guesswork." },
-    { label: "Nearby", href: "/marietta/frederick/area.html", description: "Trails, food, shopping, hospitals, parks, events, transit, amenities." },
     { label: "Handbook", href: "/marietta/frederick/handbook.html", description: "Resident handbook and policies." },
-    { label: "Gallery", href: "/marietta/frederick/gallery.html", description: "Photography organized by space." },
   ],
   missing: [
     "Bathroom layout: one full bath serves the home.",
     "Utility and trash specifics: provider names, pickup days, thermostat, laundry, and parking details live inside Utilities.",
-    "Cottage-to-POI mileage: exact cottage address stays private pre-arrival, so Nearby gives verified names, areas, and map links — confirm drive time in your maps app.",
+    "Cottage-to-POI mileage: the cottage address is listed on Arrival & map — Nearby gives verified names, areas, and map links; confirm drive time in your maps app.",
   ],
 };

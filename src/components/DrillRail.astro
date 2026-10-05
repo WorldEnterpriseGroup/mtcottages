@@ -1,0 +1,29 @@
+---
+interface RailLink {
+  eyebrow: string;
+  label: string;
+  href: string;
+  description: string;
+}
+
+interface Props {
+  up: RailLink;
+  prev: RailLink;
+  next: RailLink;
+}
+
+const { up, prev, next } = Astro.props as Props;
+const links = [prev, up, next];
+---
+
+<nav class="drill-rail-wrap" aria-label="Drill deeper">
+  <div class="drill-rail stagger">
+    {links.map((link) => (
+      <a href={link.href}>
+        <small>{link.eyebrow}</small>
+        <strong>{link.label}</strong>
+        <span>{link.description}</span>
+      </a>
+    ))}
+  </div>
+</nav>

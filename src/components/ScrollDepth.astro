@@ -1,0 +1,93 @@
+---
+interface Props {
+  topTarget?: string;
+}
+
+const { topTarget = "#main-content" } = Astro.props as Props;
+---
+
+<div class="scroll-progress" aria-hidden="true"></div>
+<button class="back-to-top" type="button" data-visible="false" data-target={topTarget}>Back to top ↑</button>
+
+<dialog class="gallery-lightbox" aria-label="Photo viewer">
+  <button class="lightbox-close" type="button">Close ✕</button>
+  <figure>
+    <img alt="" />
+    <figcaption></figcaption>
+  </figure>
+</dialog>
+
+<script>
+  const ready = document.documentElement.dataset.depthReady === "true";
+  if (!ready) {
+    document.documentElement.dataset.depthReady = "true";
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const progress = document.querySelector(".scroll-progress");
+    const topButton = document.querySelector(".back-to-top");
+
+    const onScroll = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      progress?.setAttribute("style", `--progress:${ratio.toFixed(4)}`);
+      topButton?.setAttribute("data-visible", window.scrollY > 900 ? "true" : "false");
+    };
+    window.addEventListener("scroll", () => window.requestAnimationFrame(onScroll), { passive: true });
+    onScroll();
+
+    topButton?.addEventListener("click", () => {
+      const target = topButton instanceof HTMLElement ? topButton.dataset.target ?? "#main-content" : "#main-content";
+      document.querySelector(target)?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    });
+
+    document.querySelectorAll(".bento-card, .drill-rail a").forEach((card) => {
+      card.addEventListener("pointermove", (event) => {
+        if (!(event instanceof PointerEvent) || !(card instanceof HTMLElement)) return;
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+        card.style.setProperty("--my", `${event.clientY - rect.top}px`);
+      });
+    });
+
+    const tabs = Array.from(document.querySelectorAll(".sticky-tabs a[href^='#']"));
+    const sections = tabs
+      .map((tab) => document.querySelector(tab.getAttribute("href") ?? ""))
+      .filter((el): el is Element => el !== null);
+    if ("IntersectionObserver" in window && sections.length > 0) {
+      const spy = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            const id = `#${entry.target.id}`;
+            tabs.forEach((tab) => tab.setAttribute("aria-current", tab.getAttribute("href") === id ? "true" : "false"));
+          }
+        },
+        { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+      );
+      sections.forEach((section) => spy.observe(section));
+    }
+
+    const dialog = document.querySelector("dialog.gallery-lightbox");
+    const dialogImage = dialog?.querySelector("img");
+    const dialogCaption = dialog?.querySelector("figcaption");
+    const closeButton = dialog?.querySelector(".lightbox-close");
+    document.querySelectorAll(".gallery-item").forEach((item) => {
+      const image = item.querySelector("img");
+      const caption = item.querySelector("figcaption")?.textContent?.trim() ?? image?.alt ?? "Photo";
+      image?.addEventListener("click", () => {
+        if (!(dialog instanceof HTMLDialogElement) || !(image instanceof HTMLImageElement)) return;
+        if (dialogImage instanceof HTMLImageElement) {
+          dialogImage.src = image.currentSrc || image.src;
+          dialogImage.alt = image.alt;
+        }
+        if (dialogCaption) dialogCaption.textContent = caption;
+        dialog.showModal();
+      });
+    });
+    closeButton?.addEventListener("click", () => {
+      if (dialog instanceof HTMLDialogElement) dialog.close();
+    });
+    dialog?.addEventListener("click", (event) => {
+      if (event.target === dialog && dialog instanceof HTMLDialogElement) dialog.close();
+    });
+  }
+</script>
