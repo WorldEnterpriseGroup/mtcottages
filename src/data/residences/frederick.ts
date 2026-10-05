@@ -27,7 +27,9 @@ import mariettaBuckeyeFields from "../../../assets/images/cottages/marietta-01/f
 import mariettaBuckeyeShelter from "../../../assets/images/cottages/marietta-01/frederick-buckeye-park-2.png";
 import mariettaBuckeyePlayground from "../../../assets/images/cottages/marietta-01/frederick-buckeye-park-3.png";
 import mariettaNearbyShopping from "../../../assets/images/cottages/marietta-01/frederick-nearby-shopping.png";
+import mariettaNearbyMall from "../../../assets/images/cottages/marietta-01/frederick-nearby-mall.png";
 import mariettaNearbySelby from "../../../assets/images/cottages/marietta-01/frederick-nearby-selby.png";
+import mariettaNearbyHospital2 from "../../../assets/images/cottages/marietta-01/frederick-nearby-hospital-2.png";
 import mariettaNearbyKroger from "../../../assets/images/cottages/marietta-01/frederick-nearby-kroger.png";
 import mariettaNearbyTrail from "../../../assets/images/cottages/marietta-01/frederick-nearby-trail.jpeg";
 import mariettaNearbyTrail2 from "../../../assets/images/cottages/marietta-01/frederick-nearby-trail-2.jpeg";
@@ -178,10 +180,20 @@ export const frederickPhotos = {
     alt: "Walmart grocery pickup entrance with blue facade and parked cars",
     caption: "Walmart grocery pickup entrance for daily shopping.",
   },
+  nearbyMall: {
+    src: mariettaNearbyMall,
+    alt: "Grand Central Mall exterior near Frederick Cottage",
+    caption: "Grand Central Mall near the cottage.",
+  },
   nearbyHospital: {
     src: mariettaNearbySelby,
     alt: "Selby General Hospital reception lobby with front desk and seating",
     caption: "Selby General Hospital reception and front desk.",
+  },
+  nearbyHospital2: {
+    src: mariettaNearbyHospital2,
+    alt: "Second hospital building near Frederick Cottage",
+    caption: "Another hospital near the cottage.",
   },
   nearbyEssentials: {
     src: mariettaNearbyKroger,
