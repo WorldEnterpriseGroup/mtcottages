@@ -239,7 +239,7 @@ export const frederick: Residence = {
   tagline: "A three-bedroom Research Residence with room to sleep, cook, gather, and work.",
   summary:
     "Frederick Cottage is Mt Cottages' Marietta home base: three bedrooms (king, double, and queen sleeping six), a working kitchen, living and dining space, 1 Gbps internet, and a fenced backyard. This microsite walks each space room by room so a new resident can picture daily life before asking follow-up questions.",
-  price: "$1,395/month",
+  price: "$2,575/month",
   bedrooms: "3 Bedrooms",
   basePath: "marietta/frederick",
   listingPath: "marietta/index.html",
@@ -250,7 +250,7 @@ export const frederick: Residence = {
     { label: "Sleeps", value: "6 guests" },
     { label: "Baths", value: "1 full bath" },
     { label: "Home", value: "Furnished" },
-    { label: "Monthly guide", value: "$1,395/month" },
+    { label: "Monthly guide", value: "$2,575/month" },
     { label: "Stay shape", value: "30 days or longer" },
     { label: "Town", value: "Marietta, OH" },
     { label: "Neighborhood", value: "Residential street, lawn and trees" },

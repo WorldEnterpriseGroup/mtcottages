@@ -239,3 +239,9 @@ test("links and buttons never fall back to the browser's default blue", async ({
     expect(blue, path).toEqual([]);
   }
 });
+
+test("the Frederick microsite quotes the $2,575 monthly guide and never the stale $1,395", async ({ page }) => {
+  await page.goto("/marietta/frederick/index.html");
+  await expect(page.locator("main")).toContainText("$2,575/month");
+  await expect(page.locator("body")).not.toContainText("$1,395");
+});
