@@ -63,7 +63,7 @@ test("property pages keep the curated room coverage and responsive assets", asyn
   await page.goto("/marietta/frederick-cottage.html");
   await expect(page.locator(".property-hero h1")).toHaveText("Frederick Cottage");
   const gallery = page.locator(".gallery-item img");
-  await expect(gallery).toHaveCount(5);
+  await expect(gallery).toHaveCount(7);
   await expect(gallery.first()).toHaveAttribute("alt", /Frederick Cottage/);
   for (const image of await gallery.all()) {
     await image.scrollIntoViewIfNeeded();
