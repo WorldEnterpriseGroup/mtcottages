@@ -10,9 +10,9 @@ The public site is a static Astro v7 + TypeScript 7 publication on GitHub Pages.
 - Shared UI: `src/components`, `src/layouts`
 - Curated photo imports: `assets/images/cottages/<house-id>`
 - Optimized output: Astro `Picture` components emitting AVIF/WebP/JPG sources with dimensions, `srcset`, and loading metadata
-- Intake edge: `https://stay.mtcottages.com/api/apply`, backed by the existing Azure proxy and Logic App
+- Canonical application: `https://stay.mtcottages.com/`, served by `infra/azure/apply-proxy` and backed by the existing Logic App; the marketing site emits no `/apply.html` route
 
-Do not restore jQuery, Bootstrap, Modernizr, legacy sliders, old theme CSS, Venobox, or copied runtime assets. Native HTML/CSS and small progressive-enhancement scripts are preferred. The separate Azure application surface may retain its own operational implementation; keep its form fields in parity with `dist/apply.html`.
+Do not restore jQuery, Bootstrap, Modernizr, legacy sliders, old theme CSS, Venobox, or copied runtime assets. Native HTML/CSS and small progressive-enhancement scripts are preferred. Keep the complete application experience in `infra/azure/apply-proxy/index.html`; the marketing site must not grow a duplicate form.
 
 ## Photo and privacy rules
 

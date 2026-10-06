@@ -5,10 +5,10 @@ Mt Cottages is a guest-facing furnished-stay site for the Mid-Ohio Valley. The p
 ## Architecture
 
 - Public pages live in `src/pages`; preserve the existing `.html` URLs through `build.format: "preserve"`.
-- Shared layout, navigation, photo, property-card, guide, gallery, detail, and inquiry-form components live in `src/components` and `src/layouts`.
+- Shared layout, navigation, photo, property-card, guide, gallery, and detail components live in `src/components` and `src/layouts`. The canonical inquiry form lives in `infra/azure/apply-proxy/index.html`.
 - Curated public photos are imported from `assets/images/cottages/<house-id>` and are emitted through `astro:assets` as AVIF/WebP with JPG fallbacks, dimensions, `srcset`, and loading metadata.
 - Keep production free of jQuery, Bootstrap, Modernizr, legacy sliders, old theme CSS, and unused copied runtime assets. Native HTML and CSS are the default.
-- The `infra/azure/apply-proxy` application host is a separate operational surface. Keep its form field names, types, required flags, and select options in parity with `dist/apply.html`.
+- The `infra/azure/apply-proxy` application host is the only application surface. The marketing site emits no `/apply.html` route; keep the stay form’s fields aligned with the Logic App trigger.
 
 ## Privacy and photo curation
 

@@ -5,10 +5,10 @@ Maintain the public Mt Cottages furnished-stay site. The site serves guests and 
 ## Working rules
 
 - The site is native Astro v7 + TypeScript 7. Use `src/pages`, shared Astro components, and `src/styles/site.css`; do not restore the previous theme runtime.
-- Preserve the existing public `.html` URLs and the CNAME. Use root-relative links in the generated site.
+- Preserve the existing public `.html` URLs and the CNAME. Use root-relative links in the generated site, except application CTAs, which must point directly to `https://stay.mtcottages.com/`.
 - Use curated images from one exact house directory at a time. Prefer the best recent/final frames; visually review heroes and galleries before release.
 - Keep construction, inspection, maintenance, plumbing, tool, duplicate, uncertain, and address-revealing photos out of guest-facing pages.
-- The stay inquiry posts to `https://stay.mtcottages.com/api/apply`. Keep its public form fields aligned with `infra/azure/apply-proxy/index.html` and never add SSN, full DOB, card, or bank fields.
+- `https://stay.mtcottages.com/` is the only application CTA and posts to its own `/api/apply` edge. Keep the complete form in `infra/azure/apply-proxy/index.html` and never add SSN, full DOB, card, or bank fields. The marketing site emits no `/apply.html` route.
 - Do not create payments or expose credentials.
 
 ## Release checks

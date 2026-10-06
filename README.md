@@ -6,10 +6,10 @@ The guest-facing Mt Cottages site is a static Astro v7 publication for furnished
 
 - Native Astro pages with the existing public `.html` URLs preserved.
 - Responsive desktop mega-menu and mobile disclosure navigation with keyboard/Escape support.
-- Shared property cards, Quick Details, amenity cards, room-by-room galleries, location guides, and a native stay inquiry form.
+- Shared property cards, Quick Details, amenity cards, room-by-room galleries, and location guides. Stay inquiries live exclusively at `https://stay.mtcottages.com/`.
 - Curated portfolio photography imported by opaque house ID and emitted as AVIF/WebP with JPG fallbacks, `srcset`, dimensions, and loading metadata.
 - No jQuery, Bootstrap, Modernizr, legacy sliders, Venobox, or copied theme runtime in the marketing artifact.
-- Existing Azure intake remains at `https://stay.mtcottages.com/api/apply`; the public form intentionally excludes SSN, full DOB, payment-card, and bank fields.
+- Stay inquiries are served only at `https://stay.mtcottages.com/`. The canonical Azure-backed form intentionally excludes SSN, full DOB, payment-card, and bank fields.
 
 ## Photo workflow
 
