@@ -2,7 +2,7 @@
 import ResponsivePhoto from "./ResponsivePhoto.astro";
 import type { Cottage } from "../data/site";
 const { cottage } = Astro.props as { cottage: Cottage };
-const mainHref = cottage.id === "frederick" ? "/marietta/frederick/index.html" : `/${cottage.path}`;
+const mainHref = `/${cottage.path}`;
 ---
 
 <article class="property-card">

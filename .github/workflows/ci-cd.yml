@@ -58,8 +58,8 @@ jobs:
           for sitemap in Path("dist").glob("sitemap-*.xml"):
               if "apply.html" in sitemap.read_text(encoding="utf-8"):
                   errors.append(f"{sitemap} advertises the removed apply route")
-          if len(pages) != 78:
-              errors.append(f"expected 78 generated HTML pages, found {len(pages)}")
+          if len(pages) != 77:
+              errors.append(f"expected 77 generated HTML pages, found {len(pages)}")
           legacy_markers = ("jquery", "bootstrap", "modernizr", "swiper", "owl.carousel", "venobox", "gsap", "hotelhub")
           for page in pages:
               markup = page.read_text(encoding="utf-8").lower()

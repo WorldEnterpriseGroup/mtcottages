@@ -14,7 +14,7 @@ OUTPUT = REPO / "_data" / "photo-index.json"
 
 # ── Known entity data ──────────────────────────────────────
 HOUSE_INFO = {
-    "marietta-01": {"name": "Frederick Cottage", "town": "Marietta, OH", "public_route": "marietta/frederick-cottage.html"},
+    "marietta-01": {"name": "Frederick Cottage", "town": "Marietta, OH", "public_route": "marietta/frederick/index.html"},
     "parkersburg-01": {"name": "Broad Cottage", "town": "Parkersburg, WV", "public_route": "parkersburg/broad-cottage.html"},
     "parkersburg-02": {"name": "Buck Cottage", "town": "Parkersburg, WV", "public_route": "parkersburg/buck-apartment-1.html"},
     "parkersburg-03": {"name": "Yellow Cottage", "town": "Parkersburg, WV", "public_route": "parkersburg/yellow-cottage.html"},

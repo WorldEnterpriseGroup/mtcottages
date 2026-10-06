@@ -152,7 +152,7 @@ export const cottages: Cottage[] = [
     name: "Frederick Cottage",
     town: "Marietta, OH",
     locationPath: "marietta/index.html",
-    path: "marietta/frederick-cottage.html",
+    path: "marietta/frederick/index.html",
     bedrooms: "3 Bedrooms",
     price: publishedLuxuryFurnishedRates["3 Bedrooms"],
     shortTerm: "Confirm current availability",
@@ -600,5 +600,5 @@ export const navGroups = [
 
 export const routePaths = [
   "about.html", "available.html", "contact.html", "cottages.html", "cozy-places.html", "emergency-maintenance.html", "family-stays.html", "faq.html", "fully-furnished-homes.html", "guest-services.html", "health-professionals.html", "home-amenities.html", "housekeeping.html", "insurance-housing.html", "living.html", "locations.html", "maintenance.html", "meal-preparation.html", "partnerships.html", "pay-rent.html", "privacy.html", "property-care.html", "resident-portal.html", "residents.html", "room-to-settle.html", "services.html", "work-relocation.html",
-  "marietta/frederick-cottage.html", "parkersburg/buck-apartment-1.html", "parkersburg/oak-cottage.html", "parkersburg/yellow-cottage.html", "ravenswood/henrietta-cottage.html", "ravenswood/virginia-cottage.html", "ravenswood/walnut-cottage.html",
+  "parkersburg/buck-apartment-1.html", "parkersburg/oak-cottage.html", "parkersburg/yellow-cottage.html", "ravenswood/henrietta-cottage.html", "ravenswood/virginia-cottage.html", "ravenswood/walnut-cottage.html",
 ];

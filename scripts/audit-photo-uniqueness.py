@@ -98,7 +98,7 @@ HOMEPAGE_RESERVATIONS = {
 RESERVED_SOURCES = set(HOMEPAGE_RESERVATIONS.values())
 
 PROPERTY_PAGE_HOUSES = {
-    "marietta/frederick-cottage.html": "marietta-01",
+    "marietta/frederick/index.html": "marietta-01",
     "parkersburg/broad-cottage.html": "parkersburg-01",
     "parkersburg/buck-apartment-1.html": "parkersburg-02",
     "parkersburg/oak-cottage.html": "parkersburg-04",
@@ -127,7 +127,7 @@ PROPERTY_CONTEXT_MARKERS = (
     ("parkersburg-03.html", "parkersburg-03"),
     ("frederick house", "marietta-01"),
     ("frederick cottage", "marietta-01"),
-    ("marietta/frederick-cottage", "marietta-01"),
+    ("marietta/frederick/index", "marietta-01"),
     ("marietta-01.html", "marietta-01"),
     ("walnut cottage", "ravenswood-01"),
     ("ravenswood/walnut-cottage", "ravenswood-01"),
