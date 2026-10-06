@@ -69,9 +69,9 @@
   }
   a { color: inherit; text-decoration-thickness: .08em; text-underline-offset: .18em; }
   a:hover { color: var(--accent-ink); }
-  #main-content a:where(:not([class])) { color: var(--accent-deep); text-decoration-color: var(--accent); text-decoration-thickness: .08em; }
-  #main-content a:where(:not([class])):hover { color: var(--accent-ink); }
-  #main-content :where(.section--dark, .story-card--dark, .bento-card--dark) a:where(:not([class])) { color: var(--gold); }
+  :where(#main-content) a:where(:not([class])) { color: var(--accent-deep); text-decoration-color: var(--accent); text-decoration-thickness: .08em; }
+  :where(#main-content) a:where(:not([class])):hover { color: var(--accent-ink); }
+  :where(#main-content) :where(.section--dark, .story-card--dark, .bento-card--dark) a:where(:not([class])) { color: var(--gold); }
   :focus-visible { outline: .2rem solid var(--accent-ink); outline-offset: .22rem; }
   :where(.section--dark, .story-card--dark, .bento-card--dark, .mega-feature, .site-footer) :focus-visible { outline-color: var(--gold); }
   h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: .98; letter-spacing: -.045em; }

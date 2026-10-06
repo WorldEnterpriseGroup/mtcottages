@@ -3,7 +3,6 @@ import { stayApplicationUrl } from "../../../data/site";
 import ResidenceLayout from "../../../layouts/ResidenceLayout.astro";
 import ResponsivePhoto from "../../../components/ResponsivePhoto.astro";
 import TrustStrip from "../../../components/TrustStrip.astro";
-import Breadcrumbs from "../../../components/Breadcrumbs.astro";
 import DrillRail from "../../../components/DrillRail.astro";
 import ScrollDepth from "../../../components/ScrollDepth.astro";
 import { frederick, frederickPhotos } from "../../../data/residences/frederick";
@@ -18,10 +17,6 @@ import { frederick, frederickPhotos } from "../../../data/residences/frederick";
   lede="Three bedrooms, a working kitchen, places to gather and focus, and a calm street to come home to."
 >
   <TrustStrip />
-
-  <div class="site-width mt-2 reveal">
-    <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Marietta", href: "/marietta/index.html" }, { label: "Frederick Cottage", href: "/marietta/frederick/index.html" }]} />
-  </div>
 
   <section class="section section--paper">
     <div class="site-width">

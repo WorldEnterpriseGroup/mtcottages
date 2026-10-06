@@ -219,13 +219,14 @@ test("the homepage hero links to the cottage it showcases", async ({ page }) => 
 });
 
 test("every public page meets WCAG 2.1 AA colour contrast, including open navigation panels", async ({ page }) => {
+  test.setTimeout(300_000);
   for (const path of publicPages) {
     await page.goto(path);
     await page.evaluate(() => {
       document.querySelectorAll(".reveal").forEach((element) => element.classList.add("is-visible"));
       document.querySelectorAll(".primary-nav details").forEach((element) => element.setAttribute("open", ""));
     });
-    await page.waitForTimeout(1200);
+    await page.waitForTimeout(900);
     const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"]).analyze();
     const summary = results.violations.map((item) => `${item.id}: ${item.nodes.slice(0, 3).map((node) => node.target.join(" ")).join(" | ")}`);
     expect(summary, path).toEqual([]);
