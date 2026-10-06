@@ -202,8 +202,11 @@ test("the layout does not overflow a narrow viewport", async ({ page }) => {
 });
 
 test("key decision routes have no automatically detectable accessibility violations", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
   for (const path of ["/index.html", "/cottages.html", "/marietta/frederick/index.html", "/parkersburg/broad-cottage.html"]) {
     await page.goto(path);
+    await page.evaluate(() => document.querySelectorAll(".reveal").forEach((element) => element.classList.add("is-visible")));
+    await page.waitForTimeout(150);
     const results = await new AxeBuilder({ page }).analyze();
     expect(results.violations, `${path}: ${results.violations.map((item) => item.id).join(", ")}`).toEqual([]);
   }
@@ -220,17 +223,21 @@ test("the homepage hero links to the cottage it showcases", async ({ page }) => 
 
 test("every public page meets WCAG 2.1 AA colour contrast, including open navigation panels", async ({ page }) => {
   test.setTimeout(300_000);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  const failures = [];
   for (const path of publicPages) {
     await page.goto(path);
     await page.evaluate(() => {
       document.querySelectorAll(".reveal").forEach((element) => element.classList.add("is-visible"));
       document.querySelectorAll(".primary-nav details").forEach((element) => element.setAttribute("open", ""));
     });
-    await page.waitForTimeout(900);
+    await page.waitForTimeout(150);
     const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"]).analyze();
-    const summary = results.violations.map((item) => `${item.id}: ${item.nodes.slice(0, 3).map((node) => node.target.join(" ")).join(" | ")}`);
-    expect(summary, path).toEqual([]);
+    for (const item of results.violations) {
+      failures.push(`${path} ${item.id}: ${item.nodes.slice(0, 3).map((node) => node.target.join(" ")).join(" | ")}`);
+    }
   }
+  expect(failures).toEqual([]);
 });
 
 test("links and buttons never fall back to the browser's default blue", async ({ page }) => {
