@@ -14,7 +14,9 @@ const publicPages = [
   "/parkersburg/broad-cottage.html", "/parkersburg/buck-apartment-1.html",
   "/parkersburg/yellow-cottage.html", "/parkersburg/oak-cottage.html",
   "/ravenswood/walnut-cottage.html", "/ravenswood/virginia-cottage.html",
-  "/ravenswood/henrietta-cottage.html", "/404.html"
+  "/ravenswood/henrietta-cottage.html",
+  "/marietta/frederick/index.html", "/marietta/frederick/gallery.html", "/marietta/frederick/rooms.html", "/marietta/frederick/kitchen.html", "/marietta/frederick/bathrooms.html", "/marietta/frederick/living.html", "/marietta/frederick/outdoors.html", "/marietta/frederick/amenities.html", "/marietta/frederick/utilities.html", "/marietta/frederick/arrival.html", "/marietta/frederick/area.html", "/marietta/frederick/handbook.html",
+  "/404.html"
 ];
 
 test("the homepage exposes the native Astro navigation and responsive image pipeline", async ({ page }) => {
