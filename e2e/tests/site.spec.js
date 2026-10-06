@@ -208,3 +208,33 @@ test("key decision routes have no automatically detectable accessibility violati
     expect(results.violations, `${path}: ${results.violations.map((item) => item.id).join(", ")}`).toEqual([]);
   }
 });
+
+test("the homepage hero links to the cottage it showcases", async ({ page }) => {
+  await page.goto("/index.html");
+  const link = page.locator(".hero-media a.hero-media__link");
+  await expect(link).toHaveAttribute("href", "/marietta/frederick/index.html");
+  await expect(link).toHaveAttribute("aria-label", /Frederick Cottage/);
+  await link.click();
+  await expect(page).toHaveURL(/\/marietta\/frederick\/index\.html$/);
+});
+
+test("every public page meets WCAG 2.1 AA colour contrast, including open navigation panels", async ({ page }) => {
+  for (const path of publicPages) {
+    await page.goto(path);
+    await page.evaluate(() => {
+      document.querySelectorAll(".reveal").forEach((element) => element.classList.add("is-visible"));
+      document.querySelectorAll(".primary-nav details").forEach((element) => element.setAttribute("open", ""));
+    });
+    const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"]).analyze();
+    const summary = results.violations.map((item) => `${item.id}: ${item.nodes.slice(0, 3).map((node) => node.target.join(" ")).join(" | ")}`);
+    expect(summary, path).toEqual([]);
+  }
+});
+
+test("links and buttons never fall back to the browser's default blue", async ({ page }) => {
+  for (const path of publicPages) {
+    await page.goto(path);
+    const blue = await page.evaluate(() => [...document.querySelectorAll("a")].filter((anchor) => /^rgb\(0, 0, (238|255)\)$|^rgb\(85, 26, 139\)$/.test(getComputedStyle(anchor).color)).map((anchor) => anchor.textContent.trim().slice(0, 40)));
+    expect(blue, path).toEqual([]);
+  }
+});

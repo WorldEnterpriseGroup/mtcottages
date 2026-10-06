@@ -340,7 +340,7 @@
     color: white;
   }
 
-  .microsite-callout h2 {
+  .microsite-detail-stack .microsite-callout h2 {
     max-width: 14ch;
     margin: 0;
     color: white;
@@ -350,7 +350,7 @@
     line-height: 0.98;
   }
 
-  .microsite-callout p {
+  .microsite-detail-stack .microsite-callout p {
     max-width: 58ch;
     margin: 0;
     color: rgb(255 255 255 / 0.76);
@@ -819,7 +819,7 @@
     list-style: none;
   }
 
-  .microsite-route-aside a {
+  .microsite-route-aside a:not(.microsite-button) {
     display: flex;
     justify-content: space-between;
     gap: 0.7rem;
@@ -835,7 +835,7 @@
     color: var(--accent-deep, #9d5d39);
   }
 
-  .microsite-route-aside a::after {
+  .microsite-route-aside a:not(.microsite-button)::after {
     color: var(--microsite-accent);
     content: "↗";
   }
