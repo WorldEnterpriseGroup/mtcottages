@@ -7,6 +7,7 @@ import mariettaLiving from "../../assets/images/cottages/marietta-01/photo-39.jp
 import mariettaBedroom from "../../assets/images/cottages/marietta-01/photo-36.jpg";
 import mariettaSecondBedroom from "../../assets/images/cottages/marietta-01/photo-25.jpg";
 import mariettaDining from "../../assets/images/cottages/marietta-01/photo-27.jpg";
+import mariettaBath from "../../assets/images/cottages/marietta-01/frederick-bath-1.jpg";
 
 import broadLiving from "../../assets/images/cottages/parkersburg-01/photo-44.avif";
 import broadLivingAlt from "../../assets/images/cottages/parkersburg-01/photo-06.avif";
@@ -165,10 +166,11 @@ export const cottages: Cottage[] = [
       photo(mariettaBedroom, "Frederick Cottage primary bedroom with a large bed and windows", "The primary bedroom has room to unpack and rest."),
       photo(mariettaSecondBedroom, "Frederick Cottage second bedroom with a bed and vintage vanity", "A second bedroom with its own character."),
       photo(mariettaBackyard, "Frederick Cottage backyard with lawn, white picket fence, patio seating, and autumn trees", "The backyard offers lawn, fencing, and sitting space.", "50% 40%"),
+      photo(mariettaBath, "Frederick Cottage bathroom with shower, toilet, wall cabinet, and tile floor", "A bright bath with shower, storage, and a window."),
       photo(mariettaDining, "Frederick Cottage dining and entry area with table and staircase", "The dining area connects the home’s daily spaces."),
     ],
     amenities: ["Furnished rooms", "Full kitchen", "Washer and dryer", "Living and dining space", "Private bedrooms", "Guest support"],
-    coverage: ["Exterior / arrival", "Kitchen", "Living room", "Primary bedroom", "Additional bedroom", "Dining / entry"],
+    coverage: ["Exterior / arrival", "Kitchen", "Living room", "Primary bedroom", "Additional bedroom", "Bathrooms", "Dining / entry"],
   },
   {
     id: "broad",
