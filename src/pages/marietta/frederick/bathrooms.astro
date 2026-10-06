@@ -1,0 +1,57 @@
+---
+import ResidenceLayout from "../../../layouts/ResidenceLayout.astro";
+import ResponsivePhoto from "../../../components/ResponsivePhoto.astro";
+import { frederick, frederickPhotos } from "../../../data/residences/frederick";
+---
+
+<ResidenceLayout
+  residence={frederick}
+  title="Bathroom · Frederick Cottage | Mt Cottages"
+  description="Frederick Cottage bathrooms: photos of the bath and vanity. No invented fixtures."
+  eyebrow="Frederick Cottage · Bathroom"
+  heading="One full bath with shower, toilet, and vanity."
+  lede="Photos of the bath area — shower with curtain, toilet, tile floor, wall cabinet, and window."
+  hero={frederickPhotos.bathroom}
+>
+  <section class="section section--paper">
+    <div class="site-width editorial">
+      <div class="stack reveal">
+        <h3 class="room-title">Vanity detail</h3>
+        <ul class="checklist">
+          <li>Mirrored medicine cabinet for daily essentials.</li>
+          <li>Drawered vanity base for larger items and spares.</li>
+          <li>Hand towel and soap setup visible as staged.</li>
+        </ul>
+      </div>
+      <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.bathroomVanity} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+    </div>
+    <div class="site-width editorial mt-4">
+      <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.bathroom} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+      <div class="stack reveal">
+        <h3 class="room-title">What the photos show</h3>
+        <ul class="checklist">
+          <li>Shower with curtain, toilet, and tile floor that reads easy to keep clean.</li>
+          <li>Wall cabinet plus open shelf for toiletries and towels.</li>
+          <li>Vanity sink with mirrored cabinet and an overhead light bar.</li>
+          <li>Window in the bath for daylight and ventilation.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="site-width">
+      <div class="section-heading reveal"><div><p class="eyebrow">Bathroom questions</p><h2>Frequently asked questions.</h2></div></div>
+      <div class="faq reveal">
+        <details open><summary>Are these the actual bathrooms?</summary><p>Yes — the bath area and the vanity at Frederick Cottage.</p></details>
+        <details><summary>How many bathrooms serve the house?</summary><p>One full bath for all three bedrooms. Staggered mornings keep it smooth when six are staying.</p></details>
+        <details><summary>Is it a shower or a tub?</summary><p>A shower with curtain and tile floor — set up for everyday showers.</p></details>
+        <details><summary>Where do toiletries and towels go?</summary><p>Wall cabinet plus open shelf, mirrored medicine cabinet, and a drawered vanity base. Shower caddies keep it simple when the house is full.</p></details>
+        <details><summary>What starts in the bath?</summary><p>Hand towel and soap setup at the vanity, with storage space for spares and daily essentials.</p></details>
+        <details><summary>How do busy mornings work for six?</summary><p>A simple order works best — shower times, then sink time. One bath runs well with a little spacing.</p></details>
+        <details><summary>How is light and air?</summary><p>Window for daylight and fresh air, plus an overhead light bar at the vanity mirror.</p></details>
+        <details><summary>What if something drips or clogs?</summary><p>Send home, location, problem, timing, and a helpful photo through the maintenance path. For fire, major flooding, or immediate danger, call 911 first, then resident support.</p></details>
+      </div>
+    </div>
+  </section>
+</ResidenceLayout>

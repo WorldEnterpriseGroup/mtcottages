@@ -1,0 +1,37 @@
+---
+import { stayApplicationUrl } from "../../data/site";
+import type { Residence } from "../../data/residences";
+
+interface Props {
+  residence: Residence;
+  current: string;
+}
+
+const { residence, current } = Astro.props as Props;
+const isCurrent = (href: string) => current.endsWith(href);
+---
+
+<nav class="residence-nav" aria-label={`${residence.name} sections`}>
+  <div class="site-width residence-nav-inner">
+    <a class="residence-brand" href={`/${residence.basePath}/index.html`}>
+      <span class="residence-brand-mark" aria-hidden="true">F</span>
+      <span><strong>{residence.name}</strong><small>{residence.town} · Research Residence</small></span>
+    </a>
+    <details class="residence-menu">
+      <summary>Explore this home</summary>
+      <div class="residence-menu-panel">
+        <ul>
+          {residence.nav.map((item) => (
+            <li><a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}><strong>{item.label}</strong><span>{item.description}</span></a></li>
+          ))}
+        </ul>
+      </div>
+    </details>
+    <ul class="residence-links">
+      {residence.nav.map((item) => (
+        <li><a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>{item.label}</a></li>
+      ))}
+    </ul>
+    <a class="button residence-cta" href={`${stayApplicationUrl}?property=${encodeURIComponent(residence.id)}`}>Ask about this home</a>
+  </div>
+</nav>

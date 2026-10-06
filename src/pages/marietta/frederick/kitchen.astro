@@ -1,0 +1,67 @@
+---
+import ResidenceLayout from "../../../layouts/ResidenceLayout.astro";
+import ResponsivePhoto from "../../../components/ResponsivePhoto.astro";
+import { frederick, frederickPhotos } from "../../../data/residences/frederick";
+---
+
+<ResidenceLayout
+  residence={frederick}
+  title="Kitchen · Frederick Cottage | Mt Cottages"
+  description="Inside the Frederick Cottage kitchen: oak cabinets, full-size appliances, everyday cooking, storage, and meal rhythms."
+  eyebrow="Frederick Cottage · Kitchen"
+  heading="Full kitchen with oak cabinets and full-size appliances."
+  lede="Oak cabinets, full-size appliances, and counter space for real meals — the difference between enduring an assignment and living it."
+  hero={frederickPhotos.kitchen}
+>
+  <section class="section section--paper">
+    <div class="site-width editorial editorial--flip">
+      <div class="stack reveal">
+        <h3 class="room-title">What the photo shows</h3>
+        <ul class="checklist">
+          <li>Full-size refrigerator and electric range for weekly shops, not daily takeout.</li>
+          <li>Double sink under a window — natural light where dishes happen.</li>
+          <li>Upper and lower oak cabinets for pantry, pots, and small appliances.</li>
+          <li>Counter landing beside the range for prep and serving.</li>
+        </ul>
+      </div>
+      <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.kitchen} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+    </div>
+    <div class="site-width editorial editorial--flip mt-4">
+      <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.kitchenSink} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+      <div class="stack reveal">
+        <h3 class="room-title">Kitchen · Another view</h3>
+        <p>Sink wall with oak cabinets, glass-paneled pantry door, and gas range.</p>
+      </div>
+    </div>
+    <div class="site-width editorial editorial--flip mt-4">
+      <div class="stack reveal">
+        <h3 class="room-title">Kitchen · Full view</h3>
+        <p>Range, dishwasher, sink, and oak cabinets with windows over the counters.</p>
+      </div>
+      <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.kitchenFull} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+    </div>
+    <div class="site-width editorial editorial--flip mt-4">
+      <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.kitchenRange} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+      <div class="stack reveal">
+        <h3 class="room-title">Kitchen · Range wall</h3>
+        <p>Gas range, counter workspace, and the full-size refrigerator.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="site-width">
+      <div class="section-heading reveal"><div><p class="eyebrow">Kitchen questions</p><h2>Frequently asked questions.</h2></div><p>The questions guests ask most before cooking here.</p></div>
+      <div class="faq reveal">
+        <details open><summary>Is this a full kitchen or a kitchenette?</summary><p>A full kitchen: full-size refrigerator and range, sink, cabinets, and counters. It is set up for everyday meals across a 30+ day stay.</p></details>
+        <details><summary>What is in the kitchen for daily cooking?</summary><p>Full-size refrigerator and range, double sink under the window, oak cabinets, counters, and dishwasher — set for real meals.</p></details>
+        <details><summary>Is the fridge big enough for a weekly shop?</summary><p>Yes — a full-size refrigerator with counter workspace alongside for unpacking and prep.</p></details>
+        <details><summary>Where do dishes happen?</summary><p>Double sink under the window — natural light where dishes happen.</p></details>
+        <details><summary>Where do pantry goods and pots go?</summary><p>Upper and lower oak cabinets plus a glass-paneled pantry door.</p></details>
+        <details><summary>Is there room to prep and serve?</summary><p>Counter landing beside the range and a counter run for prep and serving.</p></details>
+        <details><summary>Can six eat together?</summary><p>The dining table beside the kitchen seats the house for shared meals.</p></details>
+        <details><summary>How is the light?</summary><p>Windows over the counters and sink bring daylight to cooking hours.</p></details>
+      </div>
+    </div>
+  </section>
+</ResidenceLayout>

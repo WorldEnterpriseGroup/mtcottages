@@ -1,11 +1,13 @@
 import type { ImageMetadata } from "astro";
 
 import mariettaExterior from "../../assets/images/cottages/marietta-01/frederick-exterior-full-safe.avif";
+import mariettaBackyard from "../../assets/images/cottages/marietta-01/frederick-backyard-cover.jpg";
 import mariettaKitchen from "../../assets/images/cottages/marietta-01/gallery-01.jpg";
 import mariettaLiving from "../../assets/images/cottages/marietta-01/photo-39.jpg";
 import mariettaBedroom from "../../assets/images/cottages/marietta-01/photo-36.jpg";
 import mariettaSecondBedroom from "../../assets/images/cottages/marietta-01/photo-25.jpg";
 import mariettaDining from "../../assets/images/cottages/marietta-01/photo-27.jpg";
+import mariettaBath from "../../assets/images/cottages/marietta-01/frederick-bath-1.jpg";
 
 import broadLiving from "../../assets/images/cottages/parkersburg-01/photo-44.avif";
 import broadLivingAlt from "../../assets/images/cottages/parkersburg-01/photo-06.avif";
@@ -154,17 +156,19 @@ export const cottages: Cottage[] = [
     shortTerm: "Confirm current availability",
     pricingNote: publishedLuxuryFurnishedPricingNote,
     signals: publishedStaySignals,
-    summary: "A spacious three-bedroom furnished home with a working kitchen, room to gather, and a calm outdoor setting.",
+    summary: "A spacious three-bedroom furnished home (king, double, queen — sleeps six) with a working kitchen, fast internet, and a fenced backyard.",
     hero: photo(mariettaExterior, "Frederick Cottage exterior with shutters, trees, lawn, and covered entry", "A clear front-of-house view for orientation.", "32% 45%"),
     gallery: [
       photo(mariettaKitchen, "Frederick Cottage kitchen with oak cabinets and full-size appliances", "The kitchen is set up for everyday meals."),
       photo(mariettaLiving, "Frederick Cottage sitting room with blue walls, seating, and natural light", "A comfortable room for settling in."),
       photo(mariettaBedroom, "Frederick Cottage primary bedroom with a large bed and windows", "The primary bedroom has room to unpack and rest."),
       photo(mariettaSecondBedroom, "Frederick Cottage second bedroom with a bed and vintage vanity", "A second bedroom with its own character."),
+      photo(mariettaBackyard, "Frederick Cottage backyard with lawn, white picket fence, patio seating, and autumn trees", "The backyard offers lawn, fencing, and sitting space.", "50% 40%"),
+      photo(mariettaBath, "Frederick Cottage bathroom with shower, toilet, wall cabinet, and tile floor", "A bright bath with shower, storage, and a window."),
       photo(mariettaDining, "Frederick Cottage dining and entry area with table and staircase", "The dining area connects the home’s daily spaces."),
     ],
     amenities: ["Furnished rooms", "Full kitchen", "Washer and dryer", "Living and dining space", "Private bedrooms", "Guest support"],
-    coverage: ["Exterior / arrival", "Kitchen", "Living room", "Primary bedroom", "Additional bedroom", "Dining / entry"],
+    coverage: ["Exterior / arrival", "Kitchen", "Living room", "Primary bedroom", "Additional bedroom", "Bathrooms", "Dining / entry"],
   },
   {
     id: "broad",
@@ -506,15 +510,15 @@ export const locationData: Record<string, Guide & { town: string; cottages?: Cot
     eyebrow: "Marietta home base",
     description: "Marietta sits where the Muskingum meets the Ohio River, pairing a historic downtown with the daily services around a furnished home base.",
     intro: "It can suit healthcare, work, family, and transition stays that benefit from a recognizable town center and regional connections.",
-    photo: photo(mariettaExterior, "Frederick Cottage exterior in a leafy Marietta setting"),
+    photo: photo(mariettaBackyard, "Frederick Cottage backyard in a leafy Marietta setting"),
     cottages: cottages.filter((cottage) => cottage.id === "frederick"),
     sections: [
       { title: "Healthcare", body: "A Marietta stay can work for guests balancing a local assignment with everyday access to services and errands." },
       { title: "Work and commuting", body: "The town’s riverfront setting and regional roads make it a useful base for work across the Mid-Ohio Valley." },
       { title: "A slower after-work rhythm", body: "Historic streets, river views, and a compact center give a furnished stay room for more than the commute." },
     ],
-    cta: "See Frederick Cottage",
-    actionHref: "/marietta/frederick-cottage.html",
+    cta: "Explore the Frederick home site",
+    actionHref: "/marietta/frederick/index.html",
   },
   parkersburg: {
     path: "parkersburg/index.html",

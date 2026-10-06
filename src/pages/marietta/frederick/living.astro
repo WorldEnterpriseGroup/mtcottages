@@ -1,0 +1,61 @@
+---
+import ResidenceLayout from "../../../layouts/ResidenceLayout.astro";
+import ResponsivePhoto from "../../../components/ResponsivePhoto.astro";
+import { frederick, frederickPhotos } from "../../../data/residences/frederick";
+---
+
+<ResidenceLayout
+  residence={frederick}
+  title="Living & work · Frederick Cottage | Mt Cottages"
+  description="Sitting Room, dining and entry, stair connection, and work corners inside Frederick Cottage."
+  eyebrow="Frederick Cottage · Living & work"
+  heading="Rooms to gather — and corners to focus."
+  lede="A blue-walled sitting Room for evenings, a dining/entry table for meals and laptops, and a staircase that ties the home's levels together."
+  hero={frederickPhotos.dining}
+>
+  <section class="section section--paper">
+    <div class="site-width">
+      <div class="editorial">
+        <div class="stack reveal">
+          <h3 class="room-title">Sitting Room</h3>
+          <p class="lede">Settle in after the day</p>
+          <ul class="checklist"><li>Upholstered seating with daylight from large windows.</li><li>Floor and table surfaces for books, chargers, and tea.</li><li>Evening rhythm separate from bedrooms and kitchen.</li></ul>
+        </div>
+        <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.living} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+      </div>
+      <div class="editorial mt-4">
+        <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.diningEntry} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+        <div class="stack reveal">
+          <h3 class="room-title">Sitting Room · Connected spaces</h3>
+          <p>Dining table, staircase, entry, and a glimpse of the kitchen — all within steps of the sitting Room.</p>
+        </div>
+      </div>
+      <div class="editorial mt-4">
+        <div class="stack reveal">
+          <h3 class="room-title">Dining & entry</h3>
+          <p class="lede">The table that does double duty</p>
+          <ul class="checklist"><li>Table seating for shared meals and remote-work overflow.</li><li>Entry adjacency for bags, coats, and coming-and-going.</li><li>Staircase link between daily spaces and rest.</li></ul>
+        </div>
+        <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.dining} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+      </div>
+      <div class="editorial editorial--flip mt-4">
+        <div class="stack reveal">
+          <h3 class="room-title">Dining · Set table</h3>
+          <p>The table dressed for a shared meal — placemats, bench seating.</p>
+        </div>
+        <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.diningSet} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="site-width">
+      <div class="section-heading reveal"><div><p class="eyebrow">Work corners</p><h2>Where focused hours happen.</h2></div></div>
+      <ol class="step-grid">
+        <li class="reveal"><strong>Dining table</strong><p>Best light and spread for plans, paperwork, and shared calendars.</p></li>
+        <li class="reveal"><strong>Sitting-Room corner</strong><p>Low-table laptop hours and reading between shifts.</p></li>
+        <li class="reveal"><strong>Living Room window side</strong><p>Upholstered seating with daylight from large windows for reading and laptop time.</p></li>
+      </ol>
+    </div>
+  </section>
+</ResidenceLayout>
