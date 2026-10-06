@@ -1,0 +1,44 @@
+---
+interface Props {
+  id: string;
+  eyebrow: string;
+  title: string;
+}
+
+const { id, eyebrow, title } = Astro.props as Props;
+---
+
+<dialog class="slideout" id={id} aria-label={title}>
+  <div class="slideout-inner">
+    <div class="slideout-head">
+      <div><p class="eyebrow">{eyebrow}</p><h2>{title}</h2></div>
+      <button type="button" data-close aria-label="Close panel">✕</button>
+    </div>
+    <div class="slideout-body">
+      <slot />
+    </div>
+  </div>
+</dialog>
+
+<script>
+  document.querySelectorAll("dialog.slideout").forEach((dialog) => {
+    if (!(dialog instanceof HTMLDialogElement) || dialog.dataset.ready === "true") return;
+    dialog.dataset.ready = "true";
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+      if (event.target instanceof Element && event.target.closest("[data-close]")) dialog.close();
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    const trigger = event.target instanceof Element ? event.target.closest("[data-slideout-target]") : null;
+    if (!trigger) return;
+    const selector = (trigger as HTMLElement).dataset.slideoutTarget;
+    if (!selector) return;
+    const dialog = document.querySelector(selector);
+    if (dialog instanceof HTMLDialogElement) {
+      event.preventDefault();
+      dialog.showModal();
+    }
+  });
+</script>

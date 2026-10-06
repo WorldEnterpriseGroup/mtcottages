@@ -1,0 +1,118 @@
+---
+---
+// Global fancy lightbox: standalone thumbnails (.gallery-item, [data-lightbox-item]
+// NOT inside a link) open a themed dialog with prev/next, counter, caption,
+// keyboard + backdrop close. Thumbnails wrapped in links keep normal navigation
+// so pic + header always go together.
+<dialog class="site-lightbox" aria-label="Photo viewer">
+  <button class="site-lightbox-close" type="button" data-close>Close ✕</button>
+  <button class="site-lightbox-nav site-lightbox-prev" type="button" data-prev aria-label="Previous photo">‹</button>
+  <figure>
+    <img alt="" />
+    <figcaption>
+      <strong data-caption></strong>
+      <span data-counter></span>
+    </figcaption>
+  </figure>
+  <button class="site-lightbox-nav site-lightbox-next" type="button" data-next aria-label="Next photo">›</button>
+</dialog>
+
+<script>
+  const READY_KEY = "siteLightboxReady";
+  if (!document.documentElement.dataset[READY_KEY]) {
+    document.documentElement.dataset[READY_KEY] = "true";
+    const dialog = document.querySelector("dialog.site-lightbox");
+    const img = dialog?.querySelector("img");
+    const captionEl = dialog?.querySelector("[data-caption]");
+    const counterEl = dialog?.querySelector("[data-counter]");
+    let items: HTMLImageElement[] = [];
+    let index = 0;
+
+    const collect = () => {
+      items = Array.from(
+        document.querySelectorAll(".gallery-item img, [data-lightbox-item] img")
+      )
+        .filter((el): el is HTMLImageElement => el instanceof HTMLImageElement)
+        .filter((el) => !el.closest("a"));
+    };
+
+    const show = (i: number) => {
+      if (!items.length || !(dialog instanceof HTMLDialogElement) || !(img instanceof HTMLImageElement)) return;
+      index = (i + items.length) % items.length;
+      const current = items[index];
+      img.src = current.currentSrc || current.src;
+      img.alt = current.alt;
+      const fig = current.closest("figure");
+      const caption =
+        fig?.querySelector("figcaption")?.textContent?.trim() ||
+        current.getAttribute("data-caption") ||
+        current.alt ||
+        "Photo";
+      if (captionEl) captionEl.textContent = caption;
+      if (counterEl) counterEl.textContent = `${index + 1} / ${items.length}`;
+    };
+
+    const openAt = (target: HTMLImageElement) => {
+      collect();
+      const i = items.indexOf(target);
+      show(i >= 0 ? i : 0);
+      if (dialog instanceof HTMLDialogElement && !dialog.open) dialog.showModal();
+    };
+
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      if (target.closest("[data-prev]")) {
+        show(index - 1);
+        return;
+      }
+      if (target.closest("[data-next]")) {
+        show(index + 1);
+        return;
+      }
+      if (target.closest("[data-close]")) {
+        if (dialog instanceof HTMLDialogElement) dialog.close();
+        return;
+      }
+      const thumb = target.closest(".gallery-item, [data-lightbox-item]");
+      // Linked thumbnails (property cards, room previews) navigate normally.
+      if (target.closest("a")) return;
+      const thumbImg = thumb?.querySelector("img");
+      if (thumbImg instanceof HTMLImageElement) {
+        event.preventDefault();
+        openAt(thumbImg);
+      }
+    });
+
+    // Keyboard: Enter/Space on a focused standalone thumbnail opens it.
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      const thumb = target.closest(".gallery-item, [data-lightbox-item]");
+      if (!thumb || target.closest("a")) return;
+      const thumbImg = thumb.querySelector("img");
+      if (thumbImg instanceof HTMLImageElement) {
+        event.preventDefault();
+        openAt(thumbImg);
+      }
+    });
+
+    dialog?.addEventListener("click", (event) => {
+      if (event.target === dialog && dialog instanceof HTMLDialogElement) dialog.close();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (!(dialog instanceof HTMLDialogElement) || !dialog.open) return;
+      if (event.key === "ArrowRight") show(index + 1);
+      if (event.key === "ArrowLeft") show(index - 1);
+    });
+
+    // Re-collect after Astro client navigations / lazy images.
+    collect();
+    if ("MutationObserver" in window) {
+      const observer = new MutationObserver(() => collect());
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
+  }
+</script>

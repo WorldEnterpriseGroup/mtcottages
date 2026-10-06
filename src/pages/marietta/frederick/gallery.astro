@@ -30,7 +30,7 @@ const groups = [
           <div class="section-heading reveal"><div><h2>{group.title}</h2></div></div>
           <div class="gallery-grid gallery-grid--even">
             {group.photos.map((item, index) => (
-              <figure class="gallery-item reveal"><ResponsivePhoto {...item} widths={[480, 768, 1080]} sizes="(max-width: 900px) 100vw, 50vw" /><figcaption><span>{String(index + 1).padStart(2, "0")}</span>{item.caption || item.alt}</figcaption></figure>
+              <figure class="gallery-item gallery-thumb reveal" data-lightbox-item tabindex="0" role="button" aria-label={`Open ${group.title} photo ${index + 1}: ${item.alt}`}><span class="gallery-thumb-frame"><ResponsivePhoto {...item} widths={[480, 768, 1080]} sizes="(max-width: 900px) 100vw, 50vw" /><span class="gallery-thumb-hover" aria-hidden="true"><strong>{group.title}</strong><em>Expand ＋</em></span></span><figcaption><span>{String(index + 1).padStart(2, "0")}</span>{item.caption || item.alt}</figcaption></figure>
             ))}
           </div>
         </div>

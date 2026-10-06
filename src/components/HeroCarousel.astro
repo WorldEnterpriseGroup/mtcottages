@@ -1,0 +1,136 @@
+---
+import ResponsivePhoto from "./ResponsivePhoto.astro";
+import type { Photo } from "../data/site";
+
+export type HeroSlide = {
+  photo: Photo;
+  eyebrow: string;
+  title: string;
+  lede: string;
+  ctaHref: string;
+  ctaLabel: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+};
+
+interface Props {
+  slides: HeroSlide[];
+  id?: string;
+}
+
+const { slides, id = "hero-carousel" } = Astro.props as Props;
+---
+
+<section class="hero-banner" aria-roledescription="carousel" aria-label="Featured homes" id={id}>
+  <div class="hero-banner-track" data-track tabindex="0">
+    {slides.map((slide, i) => (
+      <article class="hero-banner-slide" aria-roledescription="slide" aria-label={`${i + 1} of ${slides.length}`} data-slide>
+        <div class="hero-banner-bg" aria-hidden="true">
+          <ResponsivePhoto {...slide.photo} widths={[768, 1080, 1600]} sizes="100vw" loading={i === 0 ? "eager" : "lazy"} priority={i === 0} />
+        </div>
+        <div class="site-width hero-banner-inner">
+          <div class="hero-banner-copy">
+            <p class="eyebrow hero-banner-eyebrow">{slide.eyebrow}</p>
+            <h2 class="hero-banner-title">{slide.title}</h2>
+            <p class="hero-banner-lede">{slide.lede}</p>
+            <div class="cluster">
+              <a class="button button--light" href={slide.ctaHref}>{slide.ctaLabel} <span aria-hidden="true">↗</span></a>
+              {slide.secondaryHref && <a class="hero-banner-link" href={slide.secondaryHref}>{slide.secondaryLabel} <span aria-hidden="true">↗</span></a>}
+            </div>
+          </div>
+          <figure class="hero-banner-thumb" data-lightbox-item>
+            <ResponsivePhoto {...slide.photo} widths={[360, 640, 900]} sizes="(max-width: 900px) 60vw, 28vw" />
+            <figcaption><strong>{slide.title}</strong><span>{slide.photo.caption || slide.photo.alt}</span></figcaption>
+          </figure>
+        </div>
+      </article>
+    ))}
+  </div>
+  <div class="hero-banner-controls">
+    <button type="button" data-prev aria-label="Previous banner">‹ Prev</button>
+    <div class="hero-banner-dots" role="tablist" aria-label="Choose banner">
+      {slides.map((slide, i) => (
+        <button type="button" data-dot={i} role="tab" aria-selected={i === 0 ? "true" : "false"} aria-label={`Show: ${slide.title}`}><span aria-hidden="true"></span></button>
+      ))}
+    </div>
+    <button type="button" data-next aria-label="Next banner">Next ›</button>
+  </div>
+</section>
+
+<script>
+  const carousels = document.querySelectorAll(".hero-banner");
+  carousels.forEach((root) => {
+    if (!(root instanceof HTMLElement) || root.dataset.ready === "true") return;
+    root.dataset.ready = "true";
+    const track = root.querySelector("[data-track]");
+    const slides = Array.from(root.querySelectorAll("[data-slide]"));
+    const dots = Array.from(root.querySelectorAll("[data-dot]"));
+    const prev = root.querySelector("[data-prev]");
+    const next = root.querySelector("[data-next]");
+    if (!(track instanceof HTMLElement) || slides.length < 2) return;
+    let index = 0;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const go = (i: number, behavior: ScrollBehavior = reduce ? "auto" : "smooth") => {
+      index = (i + slides.length) % slides.length;
+      const target = slides[index];
+      if (target instanceof HTMLElement) {
+        track.scrollTo({ left: target.offsetLeft, behavior });
+      }
+      dots.forEach((dot, d) => dot.setAttribute("aria-selected", d === index ? "true" : "false"));
+    };
+
+    prev?.addEventListener("click", () => go(index - 1));
+    next?.addEventListener("click", () => go(index + 1));
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        const i = Number((dot as HTMLElement).dataset.dot || "0");
+        go(i);
+      });
+    });
+
+    track.addEventListener("scroll", () => {
+      window.requestAnimationFrame(() => {
+        let best = 0;
+        let bestDist = Number.POSITIVE_INFINITY;
+        slides.forEach((slide, i) => {
+          if (!(slide instanceof HTMLElement)) return;
+          const dist = Math.abs(slide.offsetLeft - track.scrollLeft);
+          if (dist < bestDist) {
+            bestDist = dist;
+            best = i;
+          }
+        });
+        if (best !== index) {
+          index = best;
+          dots.forEach((dot, d) => dot.setAttribute("aria-selected", d === index ? "true" : "false"));
+        }
+      });
+    }, { passive: true });
+
+    track.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight") go(index + 1);
+      if (event.key === "ArrowLeft") go(index - 1);
+    });
+
+    if (!reduce) {
+      let timer: number | undefined;
+      const start = () => {
+        timer = window.setInterval(() => {
+          if (document.hidden || !root.isConnected) return;
+          if (root.matches(":hover")) return;
+          go(index + 1);
+        }, 7000);
+      };
+      const stop = () => {
+        if (timer) window.clearInterval(timer);
+      };
+      root.addEventListener("pointerenter", stop);
+      root.addEventListener("pointerleave", () => {
+        stop();
+        start();
+      });
+      start();
+    }
+  });
+</script>
