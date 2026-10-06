@@ -1,7 +1,14 @@
 ---
 import ResidenceLayout from "../../../layouts/ResidenceLayout.astro";
 import ResponsivePhoto from "../../../components/ResponsivePhoto.astro";
+import Accordion from "../../../components/Accordion.astro";
 import { frederick, frederickPhotos } from "../../../data/residences/frederick";
+
+const closeUps = [
+  { photo: frederickPhotos.kitchenSink, eyebrow: "Kitchen sink", title: "Sink wall with daylight", body: "Double sink under the window with oak cabinets below, glass-paneled pantry door, and range beside the counter." },
+  { photo: frederickPhotos.kitchenFull, eyebrow: "Drawers + storage", title: "Drawers, cabinets, pantry", body: "Upper and lower oak drawers and cabinets plus pantry door for weekly shops, pots, and small appliances." },
+  { photo: frederickPhotos.kitchenRange, eyebrow: "Range + slideout", title: "Range wall and counter run", body: "Gas range, counter slideout workspace, dishwasher, and full-size refrigerator in one working run." },
+];
 ---
 
 <ResidenceLayout
@@ -14,7 +21,16 @@ import { frederick, frederickPhotos } from "../../../data/residences/frederick";
   hero={frederickPhotos.kitchen}
 >
   <section class="section section--paper">
-    <div class="site-width editorial editorial--flip">
+    <div class="site-width section-heading reveal"><div><p class="eyebrow">Close-ups · Sink / drawers / storage</p><h2>Kitchen details up close.</h2></div></div>
+    <div class="site-width room-grid stagger">
+      {closeUps.map((item) => (
+        <article class="room-card reveal">
+          <figure data-lightbox-item><ResponsivePhoto {...item.photo} sizes="(max-width: 900px) 100vw, 30vw" /><span class="room-card-hover" aria-hidden="true"><strong>{item.title}</strong><em>Expand ＋</em></span></figure>
+          <div><p class="eyebrow">{item.eyebrow}</p><h3>{item.title}</h3><p>{item.body}</p></div>
+        </article>
+      ))}
+    </div>
+    <div class="site-width editorial editorial--flip mt-4">
       <div class="stack reveal">
         <h3 class="room-title">What the photo shows</h3>
         <ul class="checklist">
@@ -24,10 +40,10 @@ import { frederick, frederickPhotos } from "../../../data/residences/frederick";
           <li>Counter landing beside the range for prep and serving.</li>
         </ul>
       </div>
-      <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.kitchen} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+      <figure class="reveal reveal--image" data-lightbox-item><ResponsivePhoto {...frederickPhotos.kitchen} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
     </div>
     <div class="site-width editorial editorial--flip mt-4">
-      <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.kitchenSink} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+      <figure class="reveal reveal--image" data-lightbox-item><ResponsivePhoto {...frederickPhotos.kitchenSink} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
       <div class="stack reveal">
         <h3 class="room-title">Kitchen · Another view</h3>
         <p>Sink wall with oak cabinets, glass-paneled pantry door, and gas range.</p>
@@ -38,10 +54,10 @@ import { frederick, frederickPhotos } from "../../../data/residences/frederick";
         <h3 class="room-title">Kitchen · Full view</h3>
         <p>Range, dishwasher, sink, and oak cabinets with windows over the counters.</p>
       </div>
-      <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.kitchenFull} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+      <figure class="reveal reveal--image" data-lightbox-item><ResponsivePhoto {...frederickPhotos.kitchenFull} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
     </div>
     <div class="site-width editorial editorial--flip mt-4">
-      <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.kitchenRange} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+      <figure class="reveal reveal--image" data-lightbox-item><ResponsivePhoto {...frederickPhotos.kitchenRange} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
       <div class="stack reveal">
         <h3 class="room-title">Kitchen · Range wall</h3>
         <p>Gas range, counter workspace, and the full-size refrigerator.</p>
@@ -51,16 +67,17 @@ import { frederick, frederickPhotos } from "../../../data/residences/frederick";
 
   <section class="section">
     <div class="site-width">
-      <div class="section-heading reveal"><div><p class="eyebrow">Kitchen questions</p><h2>Frequently asked questions.</h2></div><p>The questions guests ask most before cooking here.</p></div>
-      <div class="faq reveal">
-        <details open><summary>Is this a full kitchen or a kitchenette?</summary><p>A full kitchen: full-size refrigerator and range, sink, cabinets, and counters. It is set up for everyday meals across a 30+ day stay.</p></details>
-        <details><summary>What is in the kitchen for daily cooking?</summary><p>Full-size refrigerator and range, double sink under the window, oak cabinets, counters, and dishwasher — set for real meals.</p></details>
-        <details><summary>Is the fridge big enough for a weekly shop?</summary><p>Yes — a full-size refrigerator with counter workspace alongside for unpacking and prep.</p></details>
-        <details><summary>Where do dishes happen?</summary><p>Double sink under the window — natural light where dishes happen.</p></details>
-        <details><summary>Where do pantry goods and pots go?</summary><p>Upper and lower oak cabinets plus a glass-paneled pantry door.</p></details>
-        <details><summary>Is there room to prep and serve?</summary><p>Counter landing beside the range and a counter run for prep and serving.</p></details>
-        <details><summary>Can six eat together?</summary><p>The dining table beside the kitchen seats the house for shared meals.</p></details>
-        <details><summary>How is the light?</summary><p>Windows over the counters and sink bring daylight to cooking hours.</p></details>
+      <div class="section-heading reveal"><div><p class="eyebrow">Kitchen questions</p><h2>Frequently asked questions.</h2></div></div>
+      <div class="reveal">
+      <Accordion items={[
+        { title: "Is this a full kitchen or a kitchenette?", body: "A full kitchen: full-size refrigerator and range, sink, cabinets, and counters. It is set up for everyday meals across a 30+ day stay." },
+        { title: "Where is the sink and what is around it?", body: "Double sink under the window with oak cabinets below, pantry door beside, and counter landing for drying and prep." },
+        { title: "Where do drawers and pantry goods go?", body: "Upper and lower oak drawers and cabinets plus a glass-paneled pantry door for weekly shops, pots, and small appliances." },
+        { title: "What is the range and slideout run?", body: "Gas range with counter slideout workspace, dishwasher, and full-size refrigerator in one working run." },
+        { title: "Is the fridge big enough for a weekly shop?", body: "Yes — a full-size refrigerator with counter workspace alongside for unpacking and prep." },
+        { title: "Can six eat together?", body: "The dining table beside the kitchen seats the house for shared meals." },
+        { title: "How is the light?", body: "Windows over the counters and sink bring daylight to cooking hours." },
+      ]} />
       </div>
     </div>
   </section>

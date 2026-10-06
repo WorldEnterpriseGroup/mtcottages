@@ -1,0 +1,22 @@
+---
+interface Item {
+  title: string;
+  body: string;
+}
+
+interface Props {
+  items: Item[];
+  openFirst?: boolean;
+}
+
+const { items, openFirst = true } = Astro.props as Props;
+---
+
+<div class="accordion" data-accordion>
+  {items.map((item, i) => (
+    <details open={openFirst && i === 0}>
+      <summary><span>{item.title}</span><span class="accordion-icon" aria-hidden="true">＋</span></summary>
+      <p>{item.body}</p>
+    </details>
+  ))}
+</div>
