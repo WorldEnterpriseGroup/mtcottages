@@ -1,6 +1,6 @@
 ---
 import ResidenceLayout from "../../../layouts/ResidenceLayout.astro";
-import { frederick } from "../../../data/residences/frederick";
+import { frederick, frederickPhotos } from "../../../data/residences/frederick";
 ---
 
 <ResidenceLayout
@@ -10,6 +10,7 @@ import { frederick } from "../../../data/residences/frederick";
   eyebrow="Frederick Cottage · Handbook"
   heading="The handbook for living here."
   lede="Expectations, policies, and support paths — written for the resident, kept general where arrangements vary."
+  hero={frederickPhotos.living}
 >
   <section class="section section--paper">
     <div class="site-width prose">

@@ -37,6 +37,8 @@ import mariettaNearbyFood from "../../../assets/images/cottages/marietta-01/fred
 import mariettaNearbyFood2 from "../../../assets/images/cottages/marietta-01/frederick-nearby-food-2.jpeg";
 import mariettaNearbyFood3 from "../../../assets/images/cottages/marietta-01/frederick-nearby-food-3.jpg";
 import mariettaNearbyFood4 from "../../../assets/images/cottages/marietta-01/frederick-nearby-food-4.jpg";
+import mariettaSchoolElementary1 from "../../../assets/images/cottages/marietta-01/frederick-school-elementary-1.png";
+import mariettaSchoolElementary2 from "../../../assets/images/cottages/marietta-01/frederick-school-elementary-2.png";
 
 export const frederickPhotos = {
   exterior: {
@@ -230,6 +232,16 @@ export const frederickPhotos = {
     alt: "Fourth local restaurant dish near Frederick Cottage",
     caption: "Another local plate near the cottage.",
   },
+  schoolElementary1: {
+    src: mariettaSchoolElementary1,
+    alt: "Marietta Elementary School brick building with lawn and benches",
+    caption: "Marietta Elementary — street-side view.",
+  },
+  schoolElementary2: {
+    src: mariettaSchoolElementary2,
+    alt: "Marietta Elementary School columned entrance with steps and parking lot",
+    caption: "Marietta Elementary — main entrance.",
+  },
 };
 
 export const frederick: Residence = {
@@ -272,6 +284,6 @@ export const frederick: Residence = {
   missing: [
     "Bathroom layout: one full bath serves the home.",
     "Utility and trash specifics: provider names, pickup days, thermostat, laundry, and parking details live inside Utilities.",
-    "Cottage-to-POI mileage: the cottage address is listed on Arrival & map — Nearby gives verified names, areas, and map links; confirm drive time in your maps app.",
+    "Cottage-to-POI mileage: Arrival & map shows a city-level Marietta map — Nearby gives verified names, areas, and map links; confirm drive time in your maps app.",
   ],
 };
