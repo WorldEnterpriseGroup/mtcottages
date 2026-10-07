@@ -9,6 +9,9 @@ interface Props {
 
 const { residence, current } = Astro.props as Props;
 const isCurrent = (href: string) => current.endsWith(href);
+const primary = residence.nav.slice(0, 6);
+const more = residence.nav.slice(6);
+const moreActive = more.some((item) => isCurrent(item.href));
 ---
 
 <nav class="residence-nav" aria-label={`${residence.name} sections`}>
@@ -28,9 +31,21 @@ const isCurrent = (href: string) => current.endsWith(href);
       </div>
     </details>
     <ul class="residence-links">
-      {residence.nav.map((item) => (
+      {primary.map((item) => (
         <li><a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>{item.label}</a></li>
       ))}
+      {more.length > 0 && (
+        <li>
+          <details class="residence-more">
+            <summary aria-current={moreActive ? "page" : undefined}>More</summary>
+            <div class="residence-more-panel">
+              {more.map((item) => (
+                <a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}><strong>{item.label}</strong><span>{item.description}</span></a>
+              ))}
+            </div>
+          </details>
+        </li>
+      )}
     </ul>
     <a class="button residence-cta" href={`${stayApplicationUrl}?property=${encodeURIComponent(residence.id)}`}>Ask about this home</a>
   </div>

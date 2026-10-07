@@ -1,6 +1,5 @@
 ---
 import ResidenceLayout from "../../../layouts/ResidenceLayout.astro";
-import ResponsivePhoto from "../../../components/ResponsivePhoto.astro";
 import { frederick, frederickPhotos } from "../../../data/residences/frederick";
 ---
 
@@ -11,34 +10,29 @@ import { frederick, frederickPhotos } from "../../../data/residences/frederick";
   eyebrow="Frederick Cottage · Arrival & map"
   heading="Arrive without guesswork."
   lede="Know the setting before day one, plus a short confirmation checklist — so arrival feels planned, not improvised."
+  hero={frederickPhotos.exteriorFrontDrive}
 >
   <section class="section section--paper">
-    <div class="site-width editorial">
-      <div class="stack reveal">
-        <h2>Recognize the setting.</h2>
-        <p>The backyard photo shows the home's outdoor side: lawn, picket fence, patio seating, and mature trees in a residential Marietta setting. Street-level recognition happens through pre-arrival details. Exact addresses stay private — arrival details travel through the inquiry and pre-arrival messages, never the public site.</p>
-        <ol class="step-grid" style="grid-template-columns:1fr">
-          <li><strong>Share</strong><p>Dates, household, vehicles, pets, and access needs in the inquiry.</p></li>
-          <li><strong>Confirm</strong><p>Parking, keys/entry, and arrival window before day one.</p></li>
-          <li><strong>Settle</strong><p>Walk kitchen, laundry, thermostat, and trash placement on arrival evening.</p></li>
-        </ol>
-      </div>
-      <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.exterior} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
+    <div class="site-width stack reveal">
+      <h2>Where You'll Be.</h2>
+      <p>Marietta, Ohio, United States.</p>
+      <figure class="map-frame">
+        <iframe
+          title="Map of Frederick Cottage, Marietta, Ohio"
+          src="https://www.google.com/maps?q=125+Frederick+St,+Marietta,+OH+45750&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
+      </figure>
+      <p><strong>Frederick Cottage</strong><br />125 Frederick St, Marietta, OH 45750</p>
     </div>
   </section>
 
   <section class="section">
-    <div class="site-width split">
-      <div class="stack reveal">
-        <h2>Map context, privacy-safe.</h2>
-        <p>Frederick Cottage sits in Marietta, Ohio — where the Muskingum meets the Ohio River — with a historic downtown and the daily services a longer stay needs.</p>
-        <div class="cluster"><a class="button button--ghost" href="/marietta/frederick/area.html">Open the Nearby guide</a><a class="text-link" href="/marietta/frederick/area.html#hospitals">Hospitals</a><a class="text-link" href="/marietta/frederick/area.html#transit">Transit</a><a class="text-link" href="/marietta/frederick/area.html#restaurants">Restaurants</a></div>
-      </div>
-      <div class="faq reveal">
-        <details open><summary>Where do I park?</summary><p>Parking varies by home and arrangement. Confirm spaces, street rules, and winter notes in the pre-arrival message.</p></details>
-        <details><summary>What time can I arrive?</summary><p>Arrival windows are arranged per stay. Share travel timing early so the team can plan keys and walkthrough.</p></details>
-        <details><summary>Who do I call if I am delayed?</summary><p>Use the resident support channel provided for the stay — details arrive with the arrangement, not on the public site.</p></details>
-      </div>
+    <div class="site-width faq reveal">
+      <details open><summary>Where do I park?</summary><p>Parking varies by home and arrangement. Confirm spaces, street rules, and winter notes in the pre-arrival message.</p></details>
+      <details><summary>What time can I arrive?</summary><p>Arrival windows are arranged per stay. Share travel timing early so the team can plan keys and walkthrough.</p></details>
+      <details><summary>Can I arrive early or leave late?</summary><p>Early arrivals and late departures depend on the turnover between stays. Share your timing in the inquiry and confirm the window before day one.</p></details>
     </div>
   </section>
 </ResidenceLayout>

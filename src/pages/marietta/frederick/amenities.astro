@@ -2,7 +2,7 @@
 import { stayApplicationUrl } from "../../../data/site";
 import ResidenceLayout from "../../../layouts/ResidenceLayout.astro";
 import AmenityIcon from "../../../components/AmenityIcon.astro";
-import { frederick } from "../../../data/residences/frederick";
+import { frederick, frederickPhotos } from "../../../data/residences/frederick";
 
 const groups = [
   { title: "Views", paper: true, items: [
@@ -100,6 +100,7 @@ const groups = [
   eyebrow="Frederick Cottage · Amenities"
   heading="What this place offers."
   lede="The full amenity list for Frederick Cottage — grouped by space, so a 30+ day stay is easy to plan."
+  hero={frederickPhotos.diningSet}
 >
   {groups.map((group) => (
     <section class={group.paper ? "section section--paper" : "section"}>
