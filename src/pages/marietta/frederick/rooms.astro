@@ -1,6 +1,7 @@
 ---
 import ResidenceLayout from "../../../layouts/ResidenceLayout.astro";
 import ResponsivePhoto from "../../../components/ResponsivePhoto.astro";
+import BedroomSchematicViewer from "../../../components/BedroomSchematicViewer.astro";
 import { frederick, frederickPhotos } from "../../../data/residences/frederick";
 ---
 
@@ -20,7 +21,7 @@ import { frederick, frederickPhotos } from "../../../data/residences/frederick";
       <div class="editorial" id="primary">
         <div class="stack reveal">
           <h3 class="bedroom-title">Bedroom 1</h3>
-          <ul class="checklist"><li>King bed with space around it for luggage and daily items.</li><li>Large TV on the dresser plus storage baskets and drawers.</li><li>Three windows for daylight and airflow; confirm coverings on inquiry.</li></ul>
+          <ul class="checklist"><li>King bed with space around it for luggage and daily items.</li><li>Large TV on the dresser plus storage baskets and drawers.</li><li>Five windows for daylight and airflow; confirm coverings on inquiry.</li></ul>
         </div>
         <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.primaryBedroom} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
       </div>
@@ -32,6 +33,14 @@ import { frederick, frederickPhotos } from "../../../data/residences/frederick";
         </div>
         <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.primaryBedroomAlt} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
       </div>
+
+      <BedroomSchematicViewer
+        roomId="bedroom-1"
+        roomLabel="Bedroom 1 — king"
+        bedLabel="King bed"
+        bedSize="king"
+        features={["King bed with luggage space", "Dresser with large TV + storage baskets", "Five windows + ceiling fan — coverings by inquiry"]}
+      />
 
       <div class="editorial mt-4">
         <div class="stack reveal">
@@ -48,6 +57,14 @@ import { frederick, frederickPhotos } from "../../../data/residences/frederick";
         </div>
         <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.secondBedroomAlt} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
       </div>
+
+      <BedroomSchematicViewer
+        roomId="bedroom-2"
+        roomLabel="Bedroom 2 — double"
+        bedLabel="Double bed"
+        bedSize="double"
+        features={["Double bed for one or two sleepers", "Wall-mounted TV + mirror + desk surface", "Windows with AC — daylight work spot"]}
+      />
 
       <div class="editorial mt-4">
         <div class="stack reveal">
@@ -72,6 +89,14 @@ import { frederick, frederickPhotos } from "../../../data/residences/frederick";
         </div>
         <figure class="reveal reveal--image"><ResponsivePhoto {...frederickPhotos.thirdBedroomTv} sizes="(max-width: 900px) 100vw, 45vw" /></figure>
       </div>
+
+      <BedroomSchematicViewer
+        roomId="bedroom-3"
+        roomLabel="Bedroom 3 — queen"
+        bedLabel="Queen bed"
+        bedSize="queen"
+        features={["Queen bed + bedside lamps", "Shelving wall + desk corner + chair", "TV corner + windows + garden door"]}
+      />
     </div>
   </section>
 
