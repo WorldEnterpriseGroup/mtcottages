@@ -251,7 +251,7 @@ export const frederick: Residence = {
     { label: "Baths", value: "1 full bath" },
     { label: "Home", value: "Furnished" },
     { label: "Monthly guide", value: "$2,575/month" },
-    { label: "Stay shape", value: "30 days or longer" },
+    { label: "Stay shape", value: "30-day minimum stay" },
     { label: "Town", value: "Marietta, OH" },
     { label: "Neighborhood", value: "Residential street, lawn and trees" },
   ],
