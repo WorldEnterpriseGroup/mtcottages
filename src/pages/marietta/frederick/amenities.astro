@@ -79,7 +79,7 @@ const groups = [
   ] },
   { title: "Services", paper: false, items: [
     { icon: "suitcase", label: "Luggage dropoff allowed — for early arrival or late departure" },
-    { icon: "calendar", label: "Long term stays allowed — stay for 28 days or more" },
+    { icon: "calendar", label: "30-day minimum stay — stays of 30 days or longer" },
     { icon: "keypad", label: "Self check-in — keypad, check yourself in with a door code" },
     { icon: "sparkle", label: "Cleaning available during stay" },
   ] },
@@ -99,7 +99,7 @@ const groups = [
   description="The complete Frederick Cottage amenity checklist: furnished rooms, kitchen, laundry, living space, and guest support."
   eyebrow="Frederick Cottage · Amenities"
   heading="What this place offers."
-  lede="The full amenity list for Frederick Cottage — grouped by space, so a 30+ day stay is easy to plan."
+  lede="The full amenity list for Frederick Cottage — grouped by space, so a 30-day minimum stay is easy to plan."
 >
   {groups.map((group) => (
     <section class={group.paper ? "section section--paper" : "section"}>
