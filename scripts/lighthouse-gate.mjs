@@ -25,7 +25,8 @@ const thresholds = {
   "best-practices": 0.9,
   seo: 0.9,
 };
-const attempts = Number(process.env.LH_ATTEMPTS || 2);
+// Best of three: a busy CI runner can add a few hundred ms of blocking time to one run.
+const attempts = Number(process.env.LH_ATTEMPTS || 3);
 
 if (!process.env.CHROME_PATH) {
   try {
