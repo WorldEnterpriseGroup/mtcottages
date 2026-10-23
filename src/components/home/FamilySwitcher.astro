@@ -1,0 +1,29 @@
+---
+import ResponsivePhoto from "../ResponsivePhoto.astro";
+import { family } from "../../data/homes";
+
+interface Props { currentId: string }
+const { currentId } = Astro.props as Props;
+---
+<section class="section section--paper hm-family" aria-labelledby="hm-family-title">
+  <div class="site-width">
+    <div class="section-heading">
+      <div><p class="eyebrow">The Mt Cottages family</p><h2 id="hm-family-title">Compare the other homes.</h2></div>
+      <p>Four furnished homes across Marietta, Parkersburg and Ravenswood, each with its own photo tour, plan and map.</p>
+    </div>
+    <ul class="hm-family-grid">
+      {family.map((member) => (
+        <li>
+          <a class="hm-family-card" href={member.href} aria-current={member.id === currentId ? "page" : undefined}>
+            <span class="hm-family-photo"><ResponsivePhoto src={member.hero.src} alt="" focal={member.hero.focal} widths={[320, 480, 640]} sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 24vw" /></span>
+            <span class="hm-family-text">
+              <strong>{member.name}</strong>
+              <small>{member.town} · {member.bedrooms} {member.bedrooms === 1 ? "bedroom" : "bedrooms"}</small>
+              {member.id === currentId && <em>You are here</em>}
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

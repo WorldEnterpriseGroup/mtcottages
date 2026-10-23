@@ -1,8 +1,7 @@
 ---
 import { stayApplicationUrl } from "../data/site";
-import SiteLayout from "./SiteLayout.astro";
-import ResponsivePhoto from "../components/ResponsivePhoto.astro";
-import ResidenceNav from "../components/residence/ResidenceNav.astro";
+import HomeLayout from "./HomeLayout.astro";
+import { residenceShell } from "../components/home/shell";
 import type { Residence, ResidencePhoto } from "../data/residences";
 
 interface Props {
@@ -23,6 +22,7 @@ const [locality, region] = residence.town.split(",").map((part) => part.trim());
 const monthly = Number(residence.price.replace(/[^0-9.]/g, ""));
 const bedrooms = Number.parseInt(residence.bedrooms, 10);
 const sleeps = Number.parseInt(residence.facts.find((fact) => fact.label === "Sleeps")?.value ?? "", 10);
+const chip = residence.address ? `${residence.address.streetAddress}, ${locality}, ${region} ${residence.address.postalCode}` : undefined;
 const homeUrl = new URL(`/${residence.basePath}/index.html`, "https://mtcottages.com").toString();
 const home = {
   "@context": "https://schema.org",
@@ -55,66 +55,18 @@ const schema = monthly > 0
   : home;
 ---
 
-<SiteLayout title={title} description={description} schema={schema}>
-  <ResidenceNav residence={residence} current={Astro.url.pathname} />
-
-  <section class="residence-hero section--tight">
-    <div class="site-width residence-hero-grid">
-      <div class="reveal">
-        <nav class="crumbs" aria-label="Breadcrumb">
-          <a href="/">Home</a><span aria-hidden="true">/</span>
-          <a href="/marietta/index.html">Marietta</a><span aria-hidden="true">/</span>
-          <a href={`/${residence.basePath}/index.html`}>{residence.name}</a>
-        </nav>
-        <p class="eyebrow mt-3">{eyebrow}</p>
-        <h1>{heading}</h1>
-        <p class="lede">{lede}</p>
-        <div class="cluster mt-3">
-          <a class="button" href={`${stayApplicationUrl}?property=${encodeURIComponent(residence.id)}`}>Ask about this home <span aria-hidden="true">↗</span></a>
-        </div>
-      </div>
-      <figure class="hero-image-frame residence-hero-media reveal reveal--image">
-        <ResponsivePhoto {...heroPhoto} priority sizes="(max-width: 900px) 100vw, 58vw" />
-        <figcaption>{heroCaption || heroPhoto.caption || heroPhoto.alt}</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <div class="residence-body">
-    <slot />
-  </div>
-
-  <section class="section section--dark">
-    <div class="site-width split">
-      <div class="reveal">
-        <p class="eyebrow" style="color:#e4b482">{residence.name}</p>
-        <h2>Ask about {residence.name}.</h2>
-      </div>
-      <div class="reveal">
-        <p class="lede lede--light">Share timing, household, and what you need from a place. We confirm availability, pricing, and the right next step.</p>
-        <div class="cluster mt-3">
-          <a class="button button--light" href={`${stayApplicationUrl}?property=${encodeURIComponent(residence.id)}`}>Start a stay inquiry <span aria-hidden="true">↗</span></a>
-          <a class="text-link" style="color:#fff" href={`/${residence.basePath}/handbook.html`}>Read the handbook</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!reduce && "IntersectionObserver" in window) {
-      const items = document.querySelectorAll(".reveal");
-      const observer = new IntersectionObserver((entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        }
-      }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-      items.forEach((item) => observer.observe(item));
-    } else {
-      document.querySelectorAll(".reveal").forEach((item) => item.classList.add("is-visible"));
-    }
-  </script>
-</SiteLayout>
+<HomeLayout
+  shell={residenceShell(residence)}
+  title={title}
+  description={description}
+  eyebrow={eyebrow}
+  heading={heading}
+  lede={lede}
+  hero={heroPhoto}
+  heroCaption={heroCaption}
+  chip={chip}
+  schema={schema}
+  inquiryExtra={{ label: "Read the handbook", href: `/${residence.basePath}/handbook.html` }}
+>
+  <slot />
+</HomeLayout>

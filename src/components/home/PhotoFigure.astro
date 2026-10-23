@@ -1,0 +1,18 @@
+---
+import ResponsivePhoto from "../ResponsivePhoto.astro";
+import type { HomePhoto } from "../../data/homes/types";
+
+interface Props {
+  photo: HomePhoto;
+  sizes?: string;
+  priority?: boolean;
+  /** AI concept images get a visible label inside the caption. */
+  ai?: boolean;
+}
+const { photo, sizes = "(max-width: 900px) 100vw, 45vw", priority = false, ai = false } = Astro.props as Props;
+const alt = ai && !/^AI-generated concept/i.test(photo.alt) ? `AI-generated concept: ${photo.alt}` : photo.alt;
+---
+<figure class={`hm-shot${ai ? " hm-shot--ai" : ""}`} data-lightbox-item>
+  <ResponsivePhoto src={photo.src} alt={alt} caption={photo.caption} focal={photo.focal} sizes={sizes} priority={priority} />
+  <figcaption>{ai && <span class="hm-ai-label">AI-generated concept</span>}{ai ? " " : ""}{photo.caption}</figcaption>
+</figure>

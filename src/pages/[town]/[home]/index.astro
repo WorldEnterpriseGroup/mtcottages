@@ -1,0 +1,88 @@
+---
+import HomeLayout from "../../../layouts/HomeLayout.astro";
+import ResponsivePhoto from "../../../components/ResponsivePhoto.astro";
+import FactGrid from "../../../components/home/FactGrid.astro";
+import { homeShell } from "../../../components/home/shell";
+import { homes } from "../../../data/homes";
+import { fullAddress, homeHref, inquiryUrl } from "../../../data/homes/links";
+import { homeSchema } from "../../../data/homes/schema";
+import type { HomeMicrosite } from "../../../data/homes/types";
+
+export function getStaticPaths() {
+  return homes.map((home) => ({ params: { town: home.town.slug, home: home.slug }, props: { home } }));
+}
+
+const { home } = Astro.props as { home: HomeMicrosite };
+const shell = homeShell(home);
+const address = fullAddress(home);
+const bedLabel = `${home.bedrooms} ${home.bedrooms === 1 ? "bedroom" : "bedrooms"}`;
+---
+
+<HomeLayout
+  shell={shell}
+  title={`${home.name} | Furnished home in ${home.town.name}, ${home.town.state} | Mt Cottages`}
+  description={`${home.tagline} ${address}.`}
+  eyebrow={`${home.town.name}, ${home.town.state} · ${bedLabel}`}
+  heading={home.name}
+  lede={home.tagline}
+  hero={home.hero}
+  chip={address}
+  schema={homeSchema(home)}
+  shareHero
+>
+  <section class="section section--paper" aria-labelledby="facts-title">
+    <div class="site-width">
+      <div class="section-heading reveal">
+        <div><p class="eyebrow">At a glance</p><h2 id="facts-title">Key facts.</h2></div>
+        <p>Each fact says where it comes from. Anything marked “Confirm on inquiry” is not confirmed yet, so ask us before you rely on it.</p>
+      </div>
+      <div class="details-panel reveal">
+        <FactGrid facts={home.facts} label={`${home.name} key facts`} />
+        <div class="cluster"><a class="button" href={inquiryUrl(home.id)}>Ask about this home ↗</a><a class="button button--ghost" href={homeHref(home, "location")}>Directions and nearby</a></div>
+      </div>
+    </div>
+  </section>
+
+  {home.highlights.length > 0 && (
+    <section class="section" aria-labelledby="highlights-title">
+      <div class="site-width">
+        <div class="section-heading reveal"><div><p class="eyebrow">Why this home</p><h2 id="highlights-title">Three reasons it works.</h2></div></div>
+        <ul class="hm-highlights stagger">
+          {home.highlights.slice(0, 3).map((item) => (
+            <li class="hm-highlight reveal">
+              {item.photo && <figure><ResponsivePhoto src={item.photo.src} alt={item.photo.alt} focal={item.photo.focal} sizes="(max-width: 900px) 100vw, 30vw" /></figure>}
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  {home.rooms.length > 0 && (
+    <section class="section section--paper" aria-labelledby="rooms-title">
+      <div class="site-width">
+        <div class="section-heading reveal">
+          <div><p class="eyebrow">Rooms</p><h2 id="rooms-title">Each space, in photos.</h2></div>
+          <p>Jump to a room on the tour, or see the whole home in the concept plan.</p>
+        </div>
+        <div class="room-grid stagger">
+          {home.rooms.map((room) => (
+            <article class="room-card reveal">
+              <a href={`${homeHref(home, "tour")}#${room.slug}`} aria-label={`See ${room.name} photos`}>
+                <figure>
+                  {room.photos[0]
+                    ? <ResponsivePhoto src={room.photos[0].src} alt={room.photos[0].alt} focal={room.photos[0].focal} sizes="(max-width: 900px) 100vw, 30vw" />
+                    : <span class="hm-no-photo">Photos not published yet</span>}
+                </figure>
+                <div><h3>{room.name}</h3><p>{room.summary}</p><span class="text-link">See {room.name} ↗</span></div>
+              </a>
+            </article>
+          ))}
+        </div>
+        <div class="cluster mt-3"><a class="button" href={homeHref(home, "tour")}>Take the full tour</a><a class="button button--ghost" href={homeHref(home, "plan")}>Plan and 3D model</a></div>
+      </div>
+    </section>
+  )}
+</HomeLayout>

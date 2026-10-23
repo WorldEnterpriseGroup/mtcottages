@@ -12,7 +12,7 @@ Mt Cottages is a guest-facing furnished-stay site for the Mid-Ohio Valley. The p
 
 ## Privacy and photo curation
 
-- Never publish private inventory details, credentials, or sensitive application data, or the address of a home that is not listed on the site. Owner decision (Oct 2026): a cottage's own street address may be published on its microsite (e.g. Frederick Cottage, 125 Frederick St, on Arrival & map and as the walking-directions origin).
+- Never publish private inventory details, credentials, or sensitive application data, or the address of a home that is not listed on the site. Owner decision (Oct 2026): a cottage's own street address may be published on its microsite. Exactly four home addresses are approved: Frederick Cottage, 125 Frederick St, Marietta OH 45750 (Arrival & map and the walking-directions origin); Henrietta Cottage, 200 Henrietta St, Ravenswood WV 26164; Oak Cottage, 2712 Broad St, Parkersburg WV 26101; and Broad Cottage, 3113 Broad St, Parkersburg WV 26104 (address card, directions, structured data). Every other house number stays banned, and CI enforces this.
 - Use opaque house IDs in public paths. Exact property maps and SharePoint staging remain ignored/private.
 - Prefer recent, final, visually reviewed portfolio photos. A property hero should be a clear front-of-house image when one is available; otherwise use the strongest honest room or outdoor image and leave the gap visible for Wardah’s review.
 - Exclude maintenance, construction, plumbing, tools, uncertain, duplicate, and address-revealing frames.

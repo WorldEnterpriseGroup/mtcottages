@@ -16,8 +16,6 @@ import broadBathroom from "../../assets/images/cottages/parkersburg-01/photo-20.
 import broadExtraShower from "../../assets/images/cottages/parkersburg-01/photo-42.avif";
 import broadQueenBedroom from "../../assets/images/cottages/parkersburg-01/photo-45.avif";
 import broadVanity from "../../assets/images/cottages/parkersburg-01/photo-12.avif";
-import broadConceptTopDown from "../../assets/images/cottages/parkersburg-01/3d/broad-concept-top-down.png";
-import broadConcept45 from "../../assets/images/cottages/parkersburg-01/3d/broad-concept-45-degree.png";
 
 import buckLiving from "../../assets/images/cottages/parkersburg-02/photo-49.avif";
 import buckLivingAlt from "../../assets/images/cottages/parkersburg-02/photo-50.avif";
@@ -66,43 +64,6 @@ export type Photo = {
   focal?: string;
 };
 
-export type PropertyStudyView = {
-  id: string;
-  src: ImageMetadata;
-  label: string;
-  alt: string;
-  caption: string;
-  source: string;
-  createdAt: string;
-  reviewStatus: "conceptual-demo" | "verified";
-};
-
-export type PropertyStudy = {
-  status: "conceptual-demo" | "verified";
-  note: string;
-  views: PropertyStudyView[];
-};
-
-export type PropertyDetailItem = {
-  label: string;
-  value: string;
-  status: "listed" | "confirm";
-};
-
-export type PropertyDetailGroup = {
-  title: string;
-  items: PropertyDetailItem[];
-};
-
-export type PropertyDetails = {
-  note: string;
-  groups: PropertyDetailGroup[];
-  coverage: {
-    published: string[];
-    requested: string[];
-  };
-};
-
 export type CottageBedroomLabel = "1 Bedroom" | "2 Bedrooms" | "3 Bedrooms";
 
 export const publishedLuxuryFurnishedRates: Record<CottageBedroomLabel, string> = {
@@ -135,8 +96,6 @@ export type Cottage = {
   gallery: Photo[];
   amenities: string[];
   coverage: string[];
-  propertyDetails?: PropertyDetails;
-  propertyStudy?: PropertyStudy;
 };
 
 const photo = (src: ImageMetadata, alt: string, caption?: string, focal?: string): Photo => ({
@@ -195,78 +154,6 @@ export const cottages: Cottage[] = [
     ],
     amenities: ["Furnished one-bedroom layout", "Full kitchen", "Living room", "Queen bedroom", "Washer and dryer", "Fiber-optic internet"],
     coverage: ["Living room", "One bedroom", "Bathroom / tub", "Shower area", "Laundry / vanity"],
-    propertyDetails: {
-      note: "This panel separates what the current listing or approved photo set supports from the operational details to confirm before booking. It keeps every requested Broad Cottage question visible without guessing.",
-      groups: [
-        {
-          title: "Layout & sleeping",
-          items: [
-            { label: "Home layout", value: "One-bedroom, single-level cottage with one full bathroom.", status: "listed" },
-            { label: "Property size", value: "Total square footage is not published; confirm before booking.", status: "confirm" },
-            { label: "Bed size", value: "A queen bed is shown in the newly published bedroom view.", status: "listed" },
-            { label: "Linens & towels", value: "Confirm that bed linens, pillows, and bath towels are supplied for the stay.", status: "confirm" },
-          ],
-        },
-        {
-          title: "Kitchen & laundry",
-          items: [
-            { label: "Major appliances", value: "A full kitchen is listed; confirm the current refrigerator, stove, oven, microwave, countertops, and sink setup.", status: "confirm" },
-            { label: "Small supplies", value: "Confirm the current coffee maker, cookware, and utensil inventory.", status: "confirm" },
-            { label: "Laundry setup", value: "Washer and dryer are listed; confirm the iron, ironing board, and laundry storage.", status: "confirm" },
-            { label: "Extra shower", value: "A separate shower-area view is now published alongside the tub and vanity photos.", status: "listed" },
-          ],
-        },
-        {
-          title: "Connectivity & comfort",
-          items: [
-            { label: "Wi-Fi", value: "Fiber-optic internet is listed; confirm the service speed in Mbps.", status: "confirm" },
-            { label: "TV & workspace", value: "A living-room TV is listed and a desk/chair is visible in the bedroom photo; confirm Smart TV/Roku and dedicated-workspace details.", status: "confirm" },
-            { label: "Climate control", value: "An air-conditioning unit is visible in the bedroom source view; confirm heating type, central/window/portable AC, and ceiling fans.", status: "confirm" },
-          ],
-        },
-        {
-          title: "Arrival, access & policies",
-          items: [
-            { label: "Parking", value: "Off-street parking is listed; confirm private driveway, dedicated space, and any street-parking fallback.", status: "confirm" },
-            { label: "Outdoor space", value: "Confirm the porch, patio, yard, outdoor seating, entrance, and surrounding-lot details; approved exterior photos are still needed.", status: "confirm" },
-            { label: "Accessibility", value: "Confirm entryway stairs, step-free access, and whether the single-level layout is fully step-free.", status: "confirm" },
-            { label: "Pets", value: "Confirm whether dogs or cats are allowed, along with fees and restrictions.", status: "confirm" },
-            { label: "Utilities", value: "Internet and utilities are listed as included; confirm electricity, water, trash, gas, and internet itemization.", status: "confirm" },
-            { label: "Check-in & house rules", value: "Confirm smart-lock/lockbox method, check-in and check-out times, smoking policy, maximum occupancy, and quiet hours.", status: "confirm" },
-          ],
-        },
-      ],
-      coverage: {
-        published: ["Living room", "One bedroom with queen bed", "Bathroom and tub", "Separate shower area", "Laundry / vanity area"],
-        requested: ["Exterior, entrance, porch, yard, and street context", "Kitchen appliances, countertops, and sink", "Parking and surrounding-lot context"],
-      },
-    },
-    propertyStudy: {
-      status: "conceptual-demo",
-      note: "AI-generated illustrative massing study published to demonstrate the requested two-angle presentation. It is not a measured site plan, is not to scale, and is not a verified rendering; replace it with approved source views before treating it as property-specific.",
-      views: [
-        {
-          id: "broad-concept-top-down",
-          src: broadConceptTopDown,
-          label: "Top-down",
-          alt: "Conceptual top-down massing study showing a generic two-bedroom cottage, porch, roof planes, path, driveway, and trees; not a measured survey.",
-          caption: "Top-down concept · orientation study, not to scale.",
-          source: "AI-generated illustrative asset",
-          createdAt: "2026-08-21",
-          reviewStatus: "conceptual-demo",
-        },
-        {
-          id: "broad-concept-45-degree",
-          src: broadConcept45,
-          label: "45° angle",
-          alt: "Conceptual 45-degree massing study showing a generic cottage porch, roof form, windows, path, driveway, and trees; not a verified rendering.",
-          caption: "45° concept · massing and arrival study, not a verified rendering.",
-          source: "AI-generated illustrative asset",
-          createdAt: "2026-08-21",
-          reviewStatus: "conceptual-demo",
-        },
-      ],
-    },
   },
   {
     id: "buck",
@@ -317,7 +204,7 @@ export const cottages: Cottage[] = [
     name: "Oak Cottage",
     town: "Parkersburg, WV",
     locationPath: "parkersburg/index.html",
-    path: "parkersburg/oak-cottage.html",
+    path: "parkersburg/oak-cottage/",
     bedrooms: "3 Bedrooms",
     price: publishedLuxuryFurnishedRates["3 Bedrooms"],
     shortTerm: "Confirm current availability",
@@ -384,7 +271,7 @@ export const cottages: Cottage[] = [
     name: "Henrietta Cottage",
     town: "Ravenswood, WV",
     locationPath: "ravenswood/index.html",
-    path: "ravenswood/henrietta-cottage.html",
+    path: "ravenswood/henrietta-cottage/",
     bedrooms: "2 Bedrooms",
     price: publishedLuxuryFurnishedRates["2 Bedrooms"],
     shortTerm: "Confirm current availability",
@@ -600,5 +487,5 @@ export const navGroups = [
 
 export const routePaths = [
   "about.html", "available.html", "contact.html", "cottages.html", "cozy-places.html", "emergency-maintenance.html", "family-stays.html", "faq.html", "fully-furnished-homes.html", "guest-services.html", "health-professionals.html", "home-amenities.html", "housekeeping.html", "insurance-housing.html", "living.html", "locations.html", "maintenance.html", "meal-preparation.html", "partnerships.html", "pay-rent.html", "privacy.html", "property-care.html", "resident-portal.html", "residents.html", "room-to-settle.html", "services.html", "work-relocation.html",
-  "parkersburg/buck-apartment-1.html", "parkersburg/oak-cottage.html", "parkersburg/yellow-cottage.html", "ravenswood/henrietta-cottage.html", "ravenswood/virginia-cottage.html", "ravenswood/walnut-cottage.html",
+  "parkersburg/buck-apartment-1.html", "parkersburg/yellow-cottage.html", "ravenswood/virginia-cottage.html", "ravenswood/walnut-cottage.html",
 ];

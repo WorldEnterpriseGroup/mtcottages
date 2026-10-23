@@ -1,0 +1,53 @@
+---
+import type { HomeMicrosite } from "../../data/homes/types";
+import { fullAddress, osmEmbedUrl, osmLargeUrl } from "../../data/homes/links";
+
+interface Props { home: HomeMicrosite }
+const { home } = Astro.props as Props;
+const { lat, lng } = home.address;
+const address = fullAddress(home);
+---
+<div class="hm-map" data-map-root data-embed={osmEmbedUrl(lat, lng)} data-title={`Map of ${address}`}>
+  <div class="hm-map-poster" data-map-poster>
+    <svg viewBox="0 0 640 360" role="img" aria-label={`Simple map marker for ${address}. Coordinates ${lat.toFixed(5)}, ${lng.toFixed(5)}.`} xmlns="http://www.w3.org/2000/svg">
+      <rect width="640" height="360" fill="#e5ebe2" />
+      <g stroke="#fffefa" stroke-width="14" fill="none" stroke-linecap="round">
+        <path d="M-20 250 L660 120" />
+        <path d="M120 -20 L220 380" />
+        <path d="M430 -20 L360 380" />
+      </g>
+      <g stroke="#cfd6c9" stroke-width="2" fill="none"><path d="M-20 250 L660 120" /><path d="M120 -20 L220 380" /><path d="M430 -20 L360 380" /></g>
+      <g transform="translate(300 150)">
+        <path d="M0 52 C-30 14 -30 -4 -30 -14 A30 30 0 0 1 30 -14 C30 -4 30 14 0 52 Z" fill="#9a4f2e" stroke="#fffefa" stroke-width="4" />
+        <circle cy="-14" r="11" fill="#fffefa" />
+      </g>
+      <text x="320" y="258" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" font-weight="700" fill="#252525">{home.address.streetAddress}</text>
+      <text x="320" y="288" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" fill="#3f4d3c">{home.address.locality}, {home.address.region} {home.address.postalCode}</text>
+      <text x="320" y="338" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#3f4d3c">Schematic marker only · {lat.toFixed(5)}, {lng.toFixed(5)}</text>
+    </svg>
+  </div>
+  <div class="cluster mt-2">
+    <button type="button" class="button button--ghost" data-map-load>Load interactive map</button>
+    <a class="text-link" href={osmLargeUrl(lat, lng)} rel="noopener" target="_blank">Open in OpenStreetMap<span class="sr-only"> (new tab)</span> ↗</a>
+  </div>
+  <p class="text-muted hm-map-note">The map loads from OpenStreetMap only when you press the button, so nothing is sent to a map service until then.</p>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-map-root]").forEach((root) => {
+    if (root.dataset.bound) return;
+    root.dataset.bound = "true";
+    const button = root.querySelector<HTMLButtonElement>("[data-map-load]")!;
+    const poster = root.querySelector<HTMLElement>("[data-map-poster]")!;
+    button.addEventListener("click", () => {
+      const frame = document.createElement("iframe");
+      frame.src = root.dataset.embed || "";
+      frame.title = root.dataset.title || "Map";
+      frame.loading = "lazy";
+      frame.referrerPolicy = "no-referrer";
+      frame.className = "hm-map-frame";
+      poster.replaceWith(frame);
+      button.hidden = true;
+    });
+  });
+</script>

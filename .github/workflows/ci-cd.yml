@@ -58,8 +58,8 @@ jobs:
           for sitemap in Path("dist").glob("sitemap-*.xml"):
               if "apply.html" in sitemap.read_text(encoding="utf-8"):
                   errors.append(f"{sitemap} advertises the removed apply route")
-          if len(pages) != 77:
-              errors.append(f"expected 77 generated HTML pages, found {len(pages)}")
+          if len(pages) != 91:
+              errors.append(f"expected 91 generated HTML pages, found {len(pages)}")
           legacy_markers = ("jquery", "bootstrap", "modernizr", "swiper", "owl.carousel", "venobox", "gsap", "hotelhub")
           for page in pages:
               markup = page.read_text(encoding="utf-8").lower()
@@ -103,10 +103,12 @@ jobs:
           # scripts/, or any other file fails the build too. Docs/tests
           # that describe or assert the rule (and legitimately name the
           # banned strings) are excluded. Frederick is not in the list: the
-          # owner approved publishing 125 Frederick St (Oct 2026).
+          # owner approved publishing 125 Frederick St (Oct 2026). The owner
+          # also approved exactly three more home addresses (200 Henrietta,
+          # 2712 Broad, 3113 Broad); every other house number stays banned.
           if git ls-files \
               | grep -vE '^(\.github/|\.claude/|e2e/|CLAUDE\.md$|agents\.md$|claude\.md$)' \
-              | xargs -r grep -InE '255 Court|216 Sand|287 Ridgeway|[0-9]+ (Court|Sand|Broad|45th|32nd|Walnut|Virginia|Henrietta|Gallatin|Ridgeway)'; then
+              | xargs -r grep -InP '255 Court|216 Sand|287 Ridgeway|\b(?!(?:200 Henrietta|2712 Broad|3113 Broad)\b)[0-9]+ (Court|Sand|Broad|45th|32nd|Walnut|Virginia|Henrietta|Gallatin|Ridgeway)'; then
             echo "ERROR: banned street address pattern found in a tracked file (see matches above)"
             exit 1
           fi
@@ -236,6 +238,12 @@ jobs:
         env:
           BASE_URL: https://mtcottages.com
         run: npm test
+
+      - name: Lighthouse gate on the four home microsites
+        working-directory: e2e
+        env:
+          BASE_URL: https://mtcottages.com
+        run: npm run perf
 
       - name: Verify the published stay application edge
         working-directory: e2e
