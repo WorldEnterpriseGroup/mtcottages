@@ -182,8 +182,8 @@ export const frederickPhotos = {
   },
   nearbyMall: {
     src: mariettaNearbyMall,
-    alt: "Grand Central Mall exterior near Frederick Cottage",
-    caption: "Grand Central Mall near the cottage.",
+    alt: "Inside Grand Central Mall: a bright concourse with kiddie rides and storefronts",
+    caption: "Inside Grand Central Mall in Vienna, WV.",
   },
   nearbyHospital: {
     src: mariettaNearbySelby,
@@ -192,8 +192,8 @@ export const frederickPhotos = {
   },
   nearbyHospital2: {
     src: mariettaNearbyHospital2,
-    alt: "Second hospital building near Frederick Cottage",
-    caption: "Another hospital near the cottage.",
+    alt: "Aerial view of a Marietta hospital campus with parking and lawns",
+    caption: "A Marietta hospital campus from above.",
   },
   nearbyEssentials: {
     src: mariettaNearbyKroger,
@@ -202,33 +202,33 @@ export const frederickPhotos = {
   },
   nearbyTrail: {
     src: mariettaNearbyTrail,
-    alt: "Wooded trail with tall trees and a natural path near Marietta",
-    caption: "Wooded trail near the cottage.",
+    alt: "Kroger Wetland wooden entrance sign from the City of Marietta",
+    caption: "Kroger Wetland entrance sign.",
   },
   nearbyTrail2: {
     src: mariettaNearbyTrail2,
-    alt: "Second wooded trail view near Marietta",
-    caption: "Another trail view near the cottage.",
+    alt: "Wayne National Forest headquarters and Athens Ranger Station sign",
+    caption: "Wayne National Forest headquarters, a day trip away.",
   },
   nearbyFood: {
     src: mariettaNearbyFood,
-    alt: "Local restaurant spread with shared plates near Frederick Cottage",
-    caption: "Local restaurant spread near the cottage.",
+    alt: "Boat House BBQ sign on a red wall above an outdoor bench",
+    caption: "Boathouse BBQ, downtown by the river.",
   },
   nearbyFood2: {
     src: mariettaNearbyFood2,
-    alt: "Levee House Bistro plate near Frederick Cottage",
-    caption: "Levee House Bistro plate near the cottage.",
+    alt: "Levee House Bistro's historic brick building with a shaded patio",
+    caption: "Levee House Bistro on Ohio St.",
   },
   nearbyFood3: {
     src: mariettaNearbyFood3,
-    alt: "Third local restaurant dish near Frederick Cottage",
-    caption: "A third local plate near the cottage.",
+    alt: "Over the Moon Pub & Pizza sign on a downtown brick building",
+    caption: "Over the Moon Pub & Pizza, downtown.",
   },
   nearbyFood4: {
     src: mariettaNearbyFood4,
-    alt: "Fourth local restaurant dish near Frederick Cottage",
-    caption: "Another local plate near the cottage.",
+    alt: "Austyn's Restaurant storefront with sidewalk tables",
+    caption: "Austyn's on Front St.",
   },
 };
 

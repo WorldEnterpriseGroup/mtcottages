@@ -287,3 +287,43 @@ test("Frederick arrival publishes the cottage address and walking directions sta
     await expect(link).toHaveAttribute("href", /origin=125%20Frederick%20St/);
   }
 });
+
+test("the shared photo viewer opens once, steps through photos, and returns focus", async ({ page }) => {
+  await page.goto("/marietta/frederick/area.html");
+  await expect(page.locator("body")).not.toContainText("Global fancy lightbox");
+  await expect(page.locator("dialog")).toHaveCount(1);
+  const thumb = page.locator("#restaurants .gallery-item img").first();
+  await thumb.scrollIntoViewIfNeeded();
+  await thumb.focus();
+  await page.keyboard.press("Enter");
+  const viewer = page.locator("dialog.site-lightbox");
+  await expect(viewer).toBeVisible();
+  await expect(page.locator("dialog[open]")).toHaveCount(1);
+  const counter = viewer.locator("[data-lightbox-counter]");
+  const first = await counter.textContent();
+  await page.keyboard.press("ArrowRight");
+  await expect(counter).not.toHaveText(first);
+  await page.keyboard.press("Escape");
+  await expect(viewer).toBeHidden();
+  await expect(thumb).toBeFocused();
+});
+
+test("the Nearby highlights carousel can be paused and keeps off-screen slides out of the tab order", async ({ page }) => {
+  await page.goto("/marietta/frederick/area.html");
+  const carousel = page.locator("#nearby-hero");
+  await expect(carousel.locator("[data-slide]:not([inert])")).toHaveCount(1);
+  const toggle = carousel.locator("[data-toggle]");
+  await expect(toggle).toHaveText("Pause");
+  await toggle.click();
+  await expect(toggle).toHaveAttribute("aria-pressed", "true");
+  await carousel.locator("[data-next]").click();
+  await expect(carousel.locator('[data-dot="1"]')).toHaveAttribute("aria-current", "true");
+});
+
+test("the Nearby guide search also finds answers inside the FAQs", async ({ page }) => {
+  await page.goto("/marietta/frederick/area.html");
+  await page.fill("#nearby-search", "Grand Central");
+  await expect(page.locator("#nearby-count")).toContainText("match");
+  await expect(page.locator("#transit")).toBeHidden();
+  await expect(page.locator("#shopping")).toBeVisible();
+});

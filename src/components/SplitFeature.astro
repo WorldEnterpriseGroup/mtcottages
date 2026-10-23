@@ -1,0 +1,42 @@
+---
+import ResponsivePhoto from "./ResponsivePhoto.astro";
+import type { Photo } from "../data/site";
+
+interface Props {
+  photo: Photo;
+  eyebrow: string;
+  title: string;
+  body: string;
+  ctaHref?: string;
+  ctaLabel?: string;
+  flip?: boolean;
+  background?: boolean;
+}
+
+const { photo, eyebrow, title, body, ctaHref, ctaLabel, flip = false, background = false } = Astro.props as Props;
+---
+
+{background ? (
+  <section class="split-bg" aria-label={title}>
+    <div class="split-bg-image" aria-hidden="true"><ResponsivePhoto {...photo} widths={[768, 1080, 1600]} sizes="100vw" /></div>
+    <div class="site-width split-bg-inner">
+      <a class="split-bg-card" href={ctaHref || "/cottages.html"}>
+        <figure data-lightbox-item><ResponsivePhoto {...photo} widths={[360, 640, 900]} sizes="(max-width: 900px) 100vw, 32vw" /></figure>
+        <div><p class="eyebrow">{eyebrow}</p><h2>{title}</h2><p>{body}</p>{ctaLabel && <span class="text-link">{ctaLabel} <span aria-hidden="true">↗</span></span>}</div>
+      </a>
+    </div>
+  </section>
+) : (
+  <div class={`site-width editorial${flip ? " editorial--flip" : ""} split-feature`}>
+    <figure class="split-feature-media reveal reveal--image" data-lightbox-item>
+      <ResponsivePhoto {...photo} widths={[480, 768, 1080]} sizes="(max-width: 900px) 100vw, 45vw" />
+      <figcaption class="split-feature-caption"><strong>{title}</strong><span>{photo.caption || photo.alt}</span></figcaption>
+    </figure>
+    <div class="stack reveal">
+      <p class="eyebrow">{eyebrow}</p>
+      <h3 class="room-title">{title}</h3>
+      <p>{body}</p>
+      {ctaHref && <a class="text-link" href={ctaHref}>{ctaLabel || "Learn more"} <span aria-hidden="true">↗</span></a>}
+    </div>
+  </div>
+)}

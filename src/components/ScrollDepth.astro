@@ -9,14 +9,6 @@ const { topTarget = "#main-content" } = Astro.props as Props;
 <div class="scroll-progress" aria-hidden="true"></div>
 <button class="back-to-top" type="button" data-visible="false" data-target={topTarget}>Back to top ↑</button>
 
-<dialog class="gallery-lightbox" aria-label="Photo viewer">
-  <button class="lightbox-close" type="button">Close ✕</button>
-  <figure>
-    <img alt="" />
-    <figcaption></figcaption>
-  </figure>
-</dialog>
-
 <script>
   const ready = document.documentElement.dataset.depthReady === "true";
   if (!ready) {
@@ -65,29 +57,5 @@ const { topTarget = "#main-content" } = Astro.props as Props;
       );
       sections.forEach((section) => spy.observe(section));
     }
-
-    const dialog = document.querySelector("dialog.gallery-lightbox");
-    const dialogImage = dialog?.querySelector("img");
-    const dialogCaption = dialog?.querySelector("figcaption");
-    const closeButton = dialog?.querySelector(".lightbox-close");
-    document.querySelectorAll(".gallery-item").forEach((item) => {
-      const image = item.querySelector("img");
-      const caption = item.querySelector("figcaption")?.textContent?.trim() ?? image?.alt ?? "Photo";
-      image?.addEventListener("click", () => {
-        if (!(dialog instanceof HTMLDialogElement) || !(image instanceof HTMLImageElement)) return;
-        if (dialogImage instanceof HTMLImageElement) {
-          dialogImage.src = image.currentSrc || image.src;
-          dialogImage.alt = image.alt;
-        }
-        if (dialogCaption) dialogCaption.textContent = caption;
-        dialog.showModal();
-      });
-    });
-    closeButton?.addEventListener("click", () => {
-      if (dialog instanceof HTMLDialogElement) dialog.close();
-    });
-    dialog?.addEventListener("click", (event) => {
-      if (event.target === dialog && dialog instanceof HTMLDialogElement) dialog.close();
-    });
   }
 </script>

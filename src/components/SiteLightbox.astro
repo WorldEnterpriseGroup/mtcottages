@@ -1,0 +1,120 @@
+---
+// The site's one photo viewer. Standalone thumbnails (.gallery-item or
+// [data-lightbox-item], not inside a link) open a dialog with prev/next,
+// a counter, the caption, keyboard and swipe control. Thumbnails wrapped in
+// links keep normal navigation so a picture and its heading go together;
+// anything inside [data-no-lightbox] opts out.
+---
+
+<dialog class="site-lightbox" aria-label="Photo viewer" closedby="any">
+  <button class="site-lightbox-close" type="button" data-lightbox-close>Close ✕</button>
+  <button class="site-lightbox-nav site-lightbox-prev" type="button" data-lightbox-prev aria-label="Previous photo">‹</button>
+  <figure>
+    <img alt="" decoding="async" />
+    <figcaption>
+      <strong data-lightbox-caption></strong>
+      <span data-lightbox-counter aria-live="polite"></span>
+    </figcaption>
+  </figure>
+  <button class="site-lightbox-nav site-lightbox-next" type="button" data-lightbox-next aria-label="Next photo">›</button>
+</dialog>
+
+<script>
+  const THUMBS = ".gallery-item img, [data-lightbox-item] img";
+  const dialog = document.querySelector("dialog.site-lightbox");
+  if (dialog instanceof HTMLDialogElement && !dialog.dataset.ready) {
+    dialog.dataset.ready = "true";
+    const view = dialog.querySelector("img") as HTMLImageElement;
+    const captionEl = dialog.querySelector("[data-lightbox-caption]") as HTMLElement;
+    const counterEl = dialog.querySelector("[data-lightbox-counter]") as HTMLElement;
+    let items: HTMLImageElement[] = [];
+    let index = 0;
+    let opener: HTMLImageElement | null = null;
+
+    const standalone = () =>
+      Array.from(document.querySelectorAll<HTMLImageElement>(THUMBS)).filter(
+        (img) => !img.closest("a, dialog, [data-no-lightbox]")
+      );
+
+    // The thumbnail's own currentSrc is a small rendition; show the widest one in its srcset.
+    const largest = (img: HTMLImageElement) => {
+      const candidates = (img.srcset || "")
+        .split(",")
+        .map((part) => part.trim().split(/\s+/))
+        .filter(([url, width]) => url && width?.endsWith("w"))
+        .sort((a, b) => parseInt(b[1]) - parseInt(a[1]));
+      return candidates[0]?.[0] || img.currentSrc || img.src;
+    };
+
+    const show = (i: number) => {
+      if (!items.length) return;
+      index = (i + items.length) % items.length;
+      const current = items[index];
+      view.src = largest(current);
+      view.alt = current.alt;
+      captionEl.textContent =
+        current.closest("figure")?.querySelector("figcaption")?.textContent?.trim() || current.alt || "Photo";
+      counterEl.textContent = `${index + 1} / ${items.length}`;
+      dialog.toggleAttribute("data-single", items.length < 2);
+    };
+
+    const openAt = (img: HTMLImageElement) => {
+      items = standalone();
+      opener = img;
+      show(Math.max(0, items.indexOf(img)));
+      if (!dialog.open) dialog.showModal();
+    };
+
+    // Make every standalone thumbnail reachable and operable from the keyboard.
+    for (const img of standalone()) {
+      if (img.hasAttribute("tabindex")) continue;
+      img.tabIndex = 0;
+      img.setAttribute("role", "button");
+      img.setAttribute("aria-label", `View larger photo: ${img.alt || "photo"}`);
+      img.closest(".gallery-item, [data-lightbox-item]")?.classList.add("is-zoomable");
+    }
+
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof Element) || target.closest("a, dialog")) return;
+      const img = target.closest(".gallery-item, [data-lightbox-item]")?.querySelector("img");
+      if (img instanceof HTMLImageElement && standalone().includes(img)) {
+        event.preventDefault();
+        openAt(img);
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (dialog.open) {
+        if (event.key === "ArrowRight") show(index + 1);
+        if (event.key === "ArrowLeft") show(index - 1);
+        return;
+      }
+      if (event.key !== "Enter" && event.key !== " ") return;
+      const target = event.target;
+      if (target instanceof HTMLImageElement && target.matches(THUMBS) && standalone().includes(target)) {
+        event.preventDefault();
+        openAt(target);
+      }
+    });
+
+    dialog.querySelector("[data-lightbox-prev]")?.addEventListener("click", () => show(index - 1));
+    dialog.querySelector("[data-lightbox-next]")?.addEventListener("click", () => show(index + 1));
+    dialog.querySelector("[data-lightbox-close]")?.addEventListener("click", () => dialog.close());
+    // Backdrop click for browsers without closedby support.
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.addEventListener("close", () => {
+      opener?.focus({ preventScroll: true });
+      opener = null;
+    });
+
+    let startX = 0;
+    dialog.addEventListener("touchstart", (event) => (startX = event.touches[0].clientX), { passive: true });
+    dialog.addEventListener("touchend", (event) => {
+      const dx = event.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 48) show(index + (dx < 0 ? 1 : -1));
+    });
+  }
+</script>
