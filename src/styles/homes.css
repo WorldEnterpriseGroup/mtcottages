@@ -53,13 +53,14 @@
   .hm-plan-set { display: grid; gap: var(--space-2); grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); align-items: start; }
   .hm-plan { display: grid; gap: .5rem; padding: .85rem; background: var(--paper); border: 1px solid var(--line); border-radius: .8rem; }
   .hm-plan figcaption { color: var(--forest); }
-  .hm-plan-svg { display: block; width: 100%; height: auto; }
+  .hm-plan-svg { display: block; width: 100%; height: auto; max-height: 70vh; }
+  .hm-plan-set { max-width: 60rem; }
   .hm-legend { display: flex; flex-wrap: wrap; gap: .5rem 1.1rem; margin-top: var(--space-2); font-size: .85rem; }
   .hm-legend li { display: inline-flex; align-items: center; gap: .4rem; }
   .hm-swatch { display: inline-block; width: 1rem; height: 1rem; border: 1.5px solid var(--forest); border-radius: .2rem; }
   .hm-model { display: grid; gap: .5rem; margin-top: var(--space-2); }
   .hm-model-poster { padding: .85rem; background: var(--paper); border: 1px solid var(--line); border-radius: .8rem; }
-  .hm-model-poster .hm-plan { padding: 0; border: 0; }
+  .hm-model-preview { display: block; width: 100%; max-width: 40rem; max-height: 22rem; margin-inline: auto; }
   .hm-model-stage { overflow: hidden; border: 1px solid var(--line); border-radius: .8rem; background: var(--canvas); }
   .hm-model-stage canvas { display: block; width: 100%; touch-action: none; }
   .hm-model-buttons { display: flex; flex-wrap: wrap; gap: .5rem; }
@@ -83,7 +84,13 @@
   .hm-links { display: grid; gap: .5rem; margin-top: .75rem; }
   .hm-links a { display: block; padding: .7rem .9rem; border: 1px solid var(--line); border-radius: .7rem; background: var(--paper); color: var(--forest); font-weight: 700; text-decoration: none; }
   .hm-links a:hover { border-color: var(--forest); background: var(--forest-soft); }
-  .hm-map-poster svg { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: .9rem; }
+  .hm-map-static { position: relative; margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: .9rem; aspect-ratio: 16 / 9; background: #e5ebe2; }
+  .hm-map-static img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .hm-map-pin { position: absolute; left: 50%; top: 50%; width: 34px; height: 34px; margin: -34px 0 0 -17px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); transform-origin: 50% 100%; background: #9a4f2e; border: 3px solid #fffefa; box-shadow: 0 3px 8px rgb(0 0 0 / .35); }
+  .hm-map-pin::after { content: ""; position: absolute; inset: 9px; border-radius: 50%; background: #fffefa; }
+  .hm-map-credit { position: absolute; right: 0; bottom: 0; padding: .2rem .5rem; font-size: .75rem; color: #252525; background: rgb(255 254 250 / .92); border-top-left-radius: .5rem; }
+  .hm-map-credit a { color: inherit; }
+  .hm-map-fallback { padding: 1rem; border: 1px solid var(--line); border-radius: .9rem; }
   .hm-map-frame { display: block; width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--line); border-radius: .9rem; }
   .hm-map-note { margin-top: .5rem; font-size: .85rem; }
   .hm-nearby { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }

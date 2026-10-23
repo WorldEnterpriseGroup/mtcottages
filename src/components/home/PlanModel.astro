@@ -1,7 +1,6 @@
 ---
 import type { HomeMicrosite } from "../../data/homes/types";
 import { planKindColor } from "../../data/homes/links";
-import FloorPlanSvg from "./FloorPlanSvg.astro";
 
 interface Props { home: HomeMicrosite }
 const { home } = Astro.props as Props;
@@ -11,18 +10,53 @@ const extent = {
   h: Math.max(0, ...floors.flatMap((f) => f.rooms.map((r) => r.y + r.h))),
 };
 const data = JSON.stringify({ floors, colors: planKindColor });
+
+// Build-time isometric preview of the same rectangles, shown until the model loads.
+const wall = 3;
+const level = 9;
+const iso = (x: number, y: number, z: number) => [(x - y) * 0.866, (x + y) * 0.5 - z] as const;
+const shade = (hex: string, k: number) =>
+  "#" + [1, 3, 5].map((i) => Math.round(parseInt(hex.slice(i, i + 2), 16) * k).toString(16).padStart(2, "0")).join("");
+const pts = (list: (readonly [number, number])[]) => list.map(([a, b]) => `${a.toFixed(1)},${b.toFixed(1)}`).join(" ");
+const shapes = floors.flatMap((floor, index) =>
+  [...floor.rooms]
+    .sort((a, b) => a.x + a.y - (b.x + b.y))
+    .map((room) => {
+      const z = index * level;
+      const { x, y, w, h } = room;
+      const color = planKindColor[room.kind];
+      return {
+        top: pts([iso(x, y, z), iso(x + w, y, z), iso(x + w, y + h, z), iso(x, y + h, z)]),
+        south: pts([iso(x, y + h, z), iso(x + w, y + h, z), iso(x + w, y + h, z + wall), iso(x, y + h, z + wall)]),
+        east: pts([iso(x + w, y, z), iso(x + w, y + h, z), iso(x + w, y + h, z + wall), iso(x + w, y, z + wall)]),
+        fill: color,
+        south_fill: shade(color, 0.62),
+        east_fill: shade(color, 0.76),
+      };
+    })
+);
+const corners = floors.flatMap((floor, index) =>
+  floor.rooms.flatMap((r) => [iso(r.x, r.y, index * level + wall), iso(r.x + r.w, r.y + r.h, index * level), iso(r.x + r.w, r.y, index * level), iso(r.x, r.y + r.h, index * level)])
+);
+const pad = 4;
+const minX = Math.min(...corners.map((c) => c[0])) - pad;
+const maxX = Math.max(...corners.map((c) => c[0])) + pad;
+const minY = Math.min(...corners.map((c) => c[1])) - pad;
+const maxY = Math.max(...corners.map((c) => c[1])) + pad;
+const viewBox = `${minX.toFixed(1)} ${minY.toFixed(1)} ${(maxX - minX).toFixed(1)} ${(maxY - minY).toFixed(1)}`;
 const id = `model-${home.id}`;
 ---
 <div class="hm-model" data-model-root data-plan={data} data-home={home.name}>
   <div class="hm-model-poster" data-model-poster>
-    <div class="hm-plan-set">
-      {floors.map((floor) => (
-        <figure class="hm-plan">
-          <figcaption><strong>{floor.name}</strong></figcaption>
-          <FloorPlanSvg floor={floor} homeName={home.name} extent={extent} />
-        </figure>
+    <svg class="hm-model-preview" viewBox={viewBox} role="img" aria-label={`Concept 3D preview of ${home.name}, built from the room list. Not to scale.`} xmlns="http://www.w3.org/2000/svg">
+      {shapes.map((shape) => (
+        <g stroke="#3f4d3c" stroke-width=".25" stroke-linejoin="round">
+          <polygon points={shape.top} fill={shape.fill} />
+          <polygon points={shape.south} fill={shape.south_fill} />
+          <polygon points={shape.east} fill={shape.east_fill} />
+        </g>
       ))}
-    </div>
+    </svg>
   </div>
   <div class="hm-model-stage" data-model-stage hidden>
     <canvas id={id} tabindex="0" role="img" aria-label={`Interactive concept 3D model of ${home.name}. Use the buttons below, or the arrow keys to rotate, plus and minus to zoom, R to reset.`}></canvas>
