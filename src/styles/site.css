@@ -615,3 +615,11 @@
   .room-card-hover em { font-style: normal; font-size: .68rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--sun); }
   .room-card:hover .room-card-hover { opacity: 1; translate: 0 0; }
 }
+
+/* Cross-document view transitions: same-site navigations cross-fade instead
+   of flashing white, and the header stays put. Skipped under reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .22s; }
+}
+.site-header { view-transition-name: site-header; }

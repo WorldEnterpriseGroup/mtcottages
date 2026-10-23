@@ -327,3 +327,22 @@ test("the Nearby guide search also finds answers inside the FAQs", async ({ page
   await expect(page.locator("#transit")).toBeHidden();
   await expect(page.locator("#shopping")).toBeVisible();
 });
+
+test("shared links preview as JPEG, same-site links prerender, and Frederick publishes listing data", async ({ page, request }) => {
+  await page.goto("/marietta/frederick/index.html");
+  const og = await page.locator('meta[property="og:image"]').getAttribute("content");
+  expect(og).toMatch(/\.jpe?g$/);
+  const preview = await request.get(new URL(og).pathname);
+  expect(preview.ok()).toBeTruthy();
+  expect(preview.headers()["content-type"]).toMatch(/image\/jpeg/);
+  const rules = JSON.parse(await page.locator('script[type="speculationrules"]').textContent());
+  expect(rules.prerender[0].eagerness).toBe("moderate");
+  const schemas = JSON.parse(await page.locator('script[type="application/ld+json"]').textContent());
+  const home = schemas.find((item) => item["@type"] === "Accommodation");
+  expect(home.address).toMatchObject({ streetAddress: "125 Frederick St", postalCode: "45750", addressLocality: "Marietta", addressRegion: "OH" });
+  expect(home.numberOfBedrooms).toBe(3);
+  expect(home.occupancy.maxValue).toBe(6);
+  const offer = schemas.find((item) => item["@type"] === "Offer");
+  expect(offer.itemOffered["@id"]).toBe(home["@id"]);
+  expect(offer.priceSpecification).toMatchObject({ price: 2575, priceCurrency: "USD", unitCode: "MON" });
+});

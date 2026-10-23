@@ -19,16 +19,40 @@ interface Props {
 
 const { residence, title, description, eyebrow, heading, lede, hero, heroCaption } = Astro.props as Props;
 const heroPhoto = hero ?? residence.hero;
-const schema = {
+const [locality, region] = residence.town.split(",").map((part) => part.trim());
+const monthly = Number(residence.price.replace(/[^0-9.]/g, ""));
+const bedrooms = Number.parseInt(residence.bedrooms, 10);
+const sleeps = Number.parseInt(residence.facts.find((fact) => fact.label === "Sleeps")?.value ?? "", 10);
+const homeUrl = new URL(`/${residence.basePath}/index.html`, "https://mtcottages.com").toString();
+const home = {
   "@context": "https://schema.org",
   "@type": "Accommodation",
+  "@id": `${homeUrl}#home`,
   name: residence.name,
   description: residence.summary,
-  url: new URL(`/${residence.basePath}/index.html`, "https://mtcottages.com").toString(),
-  numberOfBedrooms: 3,
-  address: { "@type": "PostalAddress", addressLocality: "Marietta", addressRegion: "OH" },
+  url: homeUrl,
+  ...(Number.isFinite(bedrooms) && { numberOfBedrooms: bedrooms }),
+  ...(Number.isFinite(sleeps) && { occupancy: { "@type": "QuantitativeValue", maxValue: sleeps } }),
+  address: {
+    "@type": "PostalAddress",
+    ...(residence.address && { streetAddress: residence.address.streetAddress, postalCode: residence.address.postalCode }),
+    addressLocality: locality,
+    addressRegion: region,
+    addressCountry: "US",
+  },
   containedInPlace: { "@type": "Place", name: "Mid-Ohio Valley" },
 };
+// schema.org has no price on Accommodation itself, so the monthly rate is a
+// separate Offer for the home.
+const schema = monthly > 0
+  ? [home, {
+      "@context": "https://schema.org",
+      "@type": "Offer",
+      itemOffered: { "@id": home["@id"] },
+      url: `${stayApplicationUrl}?property=${encodeURIComponent(residence.id)}`,
+      priceSpecification: { "@type": "UnitPriceSpecification", price: monthly, priceCurrency: "USD", unitCode: "MON" },
+    }]
+  : home;
 ---
 
 <SiteLayout title={title} description={description} schema={schema}>
