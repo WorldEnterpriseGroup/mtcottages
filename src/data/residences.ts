@@ -27,6 +27,8 @@ export type Residence = {
   summary: string;
   price: string;
   bedrooms: string;
+  /** Published street address; only set when the owner has approved publishing it. */
+  address?: { streetAddress: string; postalCode: string };
   basePath: string;
   listingPath: string;
   hero: ResidencePhoto;

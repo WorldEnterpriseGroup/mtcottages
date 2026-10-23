@@ -241,6 +241,7 @@ export const frederick: Residence = {
     "Frederick Cottage is Mt Cottages' Marietta home base: three bedrooms (king, double, and queen sleeping six), a working kitchen, living and dining space, 1 Gbps internet, and a fenced backyard. This microsite walks each space room by room so a new resident can picture daily life before asking follow-up questions.",
   price: "$2,575/month",
   bedrooms: "3 Bedrooms",
+  address: { streetAddress: "125 Frederick St", postalCode: "45750" },
   basePath: "marietta/frederick",
   listingPath: "marietta/index.html",
   hero: frederickPhotos.exterior,

@@ -5,6 +5,7 @@ import SiteFooter from "../components/SiteFooter.astro";
 import SiteLightbox from "../components/SiteLightbox.astro";
 import { stayApplicationUrl } from "../data/site";
 import type { ImageMetadata } from "astro";
+import { getImage } from "astro:assets";
 import favicon from "../../assets/images/fav-icon/icon.png";
 import socialImage from "../../assets/images/cottages/marietta-01/frederick-exterior-full-safe.avif";
 
@@ -20,7 +21,18 @@ interface Props {
 const { title, description, canonical, noindex = false, schema, socialImage: pageSocialImage, socialImageAlt } = Astro.props;
 const canonicalUrl = canonical || new URL(Astro.url.pathname, "https://mtcottages.com").toString();
 const socialAsset = pageSocialImage ?? socialImage;
-const socialUrl = new URL(socialAsset.src, "https://mtcottages.com").toString();
+// Link-preview crawlers (Facebook, LinkedIn, iMessage, Slack) do not read AVIF,
+// so shared links get a JPEG rendition of the page image.
+const socialJpeg = await getImage({ src: socialAsset, format: "jpg", width: Math.min(1200, socialAsset.width), quality: 82 });
+const socialUrl = new URL(socialJpeg.src, "https://mtcottages.com").toString();
+// Chromium prerenders a same-site page as soon as a visitor signals intent
+// (hover or touch start), so the click lands on an already-rendered page.
+const speculationRules = {
+  prerender: [{
+    where: { and: [{ href_matches: "/*" }, { not: { selector_matches: "[target=_blank], [download], [rel~=nofollow]" } }] },
+    eagerness: "moderate",
+  }],
+};
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "LodgingBusiness",
@@ -49,12 +61,14 @@ const schemas = [organizationSchema, ...(schema ? (Array.isArray(schema) ? schem
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={socialUrl} />
     <meta property="og:image:alt" content={socialImageAlt || "A furnished Mt Cottages home in the Mid-Ohio Valley"} />
-    {socialAsset.width && <meta property="og:image:width" content={String(socialAsset.width)} />}
-    {socialAsset.height && <meta property="og:image:height" content={String(socialAsset.height)} />}
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content={String(socialJpeg.attributes.width)} />
+    <meta property="og:image:height" content={String(socialJpeg.attributes.height)} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="color-scheme" content="light" />
     <meta name="theme-color" content="#3f4d3c" />
     <script type="application/ld+json" set:html={JSON.stringify(schemas)} />
+    <script type="speculationrules" set:html={JSON.stringify(speculationRules)} />
     <title>{title}</title>
   </head>
   <body>
