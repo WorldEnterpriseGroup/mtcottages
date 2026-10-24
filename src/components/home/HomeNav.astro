@@ -1,30 +1,31 @@
 ---
-import { stayApplicationUrl } from "../../data/site";
-import type { Residence } from "../../data/residences";
+import type { HomeShell } from "./shell";
 
 interface Props {
-  residence: Residence;
+  shell: HomeShell;
   current: string;
 }
 
-const { residence, current } = Astro.props as Props;
-const isCurrent = (href: string) => current.endsWith(href);
-const primary = residence.nav.slice(0, 6);
-const more = residence.nav.slice(6);
+const { shell, current } = Astro.props as Props;
+// Compare normalised paths so "/x/y/", "/x/y/index.html" and "/x/y" all match the index entry.
+const norm = (path: string) => path.replace(/index\.html$/, "").replace(/\/+$/, "");
+const isCurrent = (href: string) => norm(current) === norm(href);
+const primary = shell.nav.slice(0, 6);
+const more = shell.nav.slice(6);
 const moreActive = more.some((item) => isCurrent(item.href));
 ---
 
-<nav class="residence-nav" aria-label={`${residence.name} sections`}>
+<nav class="residence-nav" aria-label={`${shell.name} sections`}>
   <div class="site-width residence-nav-inner">
-    <a class="residence-brand" href={`/${residence.basePath}/index.html`}>
-      <span class="residence-brand-mark" aria-hidden="true">F</span>
-      <span><strong>{residence.name}</strong><small>{residence.town} · Research Residence</small></span>
+    <a class="residence-brand" href={shell.baseHref}>
+      <span class="residence-brand-mark" aria-hidden="true">{shell.name.charAt(0)}</span>
+      <span><strong>{shell.name}</strong><small>{shell.brandSub}</small></span>
     </a>
     <details class="residence-menu">
       <summary>Explore this home</summary>
       <div class="residence-menu-panel">
         <ul>
-          {residence.nav.map((item) => (
+          {shell.nav.map((item) => (
             <li><a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}><strong>{item.label}</strong><span>{item.description}</span></a></li>
           ))}
         </ul>
@@ -47,6 +48,6 @@ const moreActive = more.some((item) => isCurrent(item.href));
         </li>
       )}
     </ul>
-    <a class="button residence-cta" href={`${stayApplicationUrl}?property=${encodeURIComponent(residence.id)}`}>Ask about this home</a>
+    <a class="button residence-cta" href={shell.inquiryUrl}>Ask about this home</a>
   </div>
 </nav>

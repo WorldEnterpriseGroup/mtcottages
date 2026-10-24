@@ -1,0 +1,8 @@
+---
+import type { FactStatus } from "../../data/homes/types";
+import { statusLabel } from "../../data/homes/links";
+
+interface Props { status: FactStatus }
+const { status } = Astro.props as Props;
+---
+<span class={`hm-badge hm-badge--${status}`}>{statusLabel[status]}</span>

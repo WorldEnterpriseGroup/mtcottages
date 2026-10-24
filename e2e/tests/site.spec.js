@@ -1,6 +1,9 @@
 const { test, expect } = require("@playwright/test");
 const AxeBuilder = require("@axe-core/playwright").default;
 
+// The three data-driven home microsites (Frederick keeps its own hand-authored pages below).
+const homeMicrosites = ["/ravenswood/henrietta-cottage/", "/parkersburg/oak-cottage/", "/parkersburg/broad-cottage/"];
+
 const publicPages = [
   "/index.html", "/cottages.html", "/available.html", "/locations.html", "/room-to-settle.html",
   "/about.html", "/contact.html", "/faq.html", "/cozy-places.html",
@@ -11,10 +14,10 @@ const publicPages = [
   "/resident-portal.html", "/maintenance.html", "/emergency-maintenance.html",
   "/marietta/index.html", "/parkersburg/index.html", "/ravenswood/index.html",
   "/grantsville/index.html", "/racine/index.html",
-  "/parkersburg/broad-cottage.html", "/parkersburg/buck-apartment-1.html",
-  "/parkersburg/yellow-cottage.html", "/parkersburg/oak-cottage.html",
+  "/parkersburg/buck-apartment-1.html",
+  "/parkersburg/yellow-cottage.html",
   "/ravenswood/walnut-cottage.html", "/ravenswood/virginia-cottage.html",
-  "/ravenswood/henrietta-cottage.html",
+  ...homeMicrosites.flatMap((base) => [base, ...["tour", "plan", "amenities", "location"].map((page) => `${base}${page}.html`)]),
   "/marietta/frederick/index.html", "/marietta/frederick/gallery.html", "/marietta/frederick/rooms.html", "/marietta/frederick/kitchen.html", "/marietta/frederick/bathrooms.html", "/marietta/frederick/living.html", "/marietta/frederick/outdoors.html", "/marietta/frederick/amenities.html", "/marietta/frederick/utilities.html", "/marietta/frederick/arrival.html", "/marietta/frederick/area.html", "/marietta/frederick/handbook.html",
   "/404.html"
 ];
@@ -44,6 +47,7 @@ test("the homepage exposes the native Astro navigation and responsive image pipe
 });
 
 test("every public route is reachable and privacy-safe", async ({ page, request }) => {
+  test.setTimeout(240_000);
   for (const path of publicPages) {
     const response = await request.get(path);
     expect(response.status(), `${path} should return a successful response`).toBe(200);
@@ -83,36 +87,6 @@ test("property pages keep the curated room coverage and responsive assets", asyn
   }));
   expect(Math.abs(heroRatios.natural - heroRatios.rendered)).toBeLessThan(0.02);
   await expect(hero).toHaveCSS("object-fit", "contain");
-});
-
-test("Broad Cottage exposes the conceptual two-angle property study", async ({ page }) => {
-  await page.goto("/parkersburg/broad-cottage.html");
-  const section = page.locator(".property-study");
-  const study = section.locator('[data-property-study="Broad Cottage"]');
-  await expect(study).toHaveCount(1);
-  await expect(section).toContainText("Illustrative demonstration");
-  await expect(section).toContainText("not a measured site plan");
-  await expect(study.locator("[data-study-view]")).toHaveCount(2);
-  await expect(study.locator("img")).toHaveCount(2);
-  await expect(study.locator("img").first()).toHaveAttribute("alt", /Conceptual top-down/);
-  await expect(study.locator("img").nth(1)).toHaveAttribute("alt", /Conceptual 45-degree/);
-  for (const image of await study.locator("img").all()) {
-    await image.scrollIntoViewIfNeeded();
-    await expect.poll(() => image.evaluate((element) => element.complete && element.naturalWidth > 0)).toBe(true);
-    await expect(image).toHaveAttribute("src", /\/_astro\//);
-  }
-});
-
-test("Broad Cottage publishes its corrected bedroom and detail review fields", async ({ page }) => {
-  await page.goto("/parkersburg/broad-cottage.html");
-  await expect(page.locator(".property-fact-rail")).toContainText("1 Bedroom");
-  await expect(page.locator(".property-fact-rail")).toContainText("$1,895/month");
-  const details = page.locator('[data-property-details="Broad Cottage"]');
-  await expect(details).toHaveCount(1);
-  await expect(details).toContainText("refrigerator, stove, oven, microwave");
-  await expect(details).toContainText("queen bed");
-  await expect(details).toContainText("Source photos still needed");
-  await expect(details).toContainText("Exterior, entrance, porch, yard, and street context");
 });
 
 test("property inquiry CTAs go directly to stay with cottage context", async ({ page }) => {
@@ -194,7 +168,7 @@ test("mobile navigation supports disclosure, escape, and scroll locking", async 
 
 test("the layout does not overflow a narrow viewport", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  for (const path of ["/index.html", "/cottages.html", "/marietta/frederick/index.html", "/parkersburg/broad-cottage.html"]) {
+  for (const path of ["/index.html", "/cottages.html", "/marietta/frederick/index.html", "/parkersburg/broad-cottage/", "/ravenswood/henrietta-cottage/plan.html"]) {
     await page.goto(path);
     const dimensions = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, content: document.body.scrollWidth }));
     expect(dimensions.content, `${path} overflows on mobile`).toBe(dimensions.viewport);
@@ -202,8 +176,9 @@ test("the layout does not overflow a narrow viewport", async ({ page }) => {
 });
 
 test("key decision routes have no automatically detectable accessibility violations", async ({ page }) => {
+  test.setTimeout(240_000);
   await page.emulateMedia({ reducedMotion: "reduce" });
-  for (const path of ["/index.html", "/cottages.html", "/marietta/frederick/index.html", "/parkersburg/broad-cottage.html"]) {
+  for (const path of ["/index.html", "/cottages.html", "/marietta/frederick/index.html", "/parkersburg/broad-cottage/", "/ravenswood/henrietta-cottage/plan.html"]) {
     await page.goto(path);
     await page.evaluate(() => document.querySelectorAll(".reveal").forEach((element) => element.classList.add("is-visible")));
     await page.waitForTimeout(150);

@@ -1,0 +1,18 @@
+---
+import type { HomeFact } from "../../data/homes/types";
+import StatusBadge from "./StatusBadge.astro";
+
+interface Props { facts: HomeFact[]; label: string }
+const { facts, label } = Astro.props as Props;
+---
+<dl class="hm-facts" aria-label={label}>
+  {facts.map((fact) => (
+    <div class={`hm-fact${fact.status === "confirm" ? " hm-fact--confirm" : ""}`}>
+      <dt>{fact.label}</dt>
+      <dd>
+        {fact.status === "confirm" ? (/^confirm on inquiry\.?$/i.test(fact.value.trim()) ? null : <span class="hm-fact-note">{fact.value}</span>) : <span class="hm-fact-value">{fact.value}</span>}
+        <StatusBadge status={fact.status} />
+      </dd>
+    </div>
+  ))}
+</dl>

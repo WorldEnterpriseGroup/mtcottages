@@ -1,0 +1,59 @@
+---
+import type { PlanFloor } from "../../data/homes/types";
+import { planKindColor, planKindLabel } from "../../data/homes/links";
+
+interface Props {
+  floor: PlanFloor;
+  homeName: string;
+  /** Shared grid-unit extent so every floor of a home draws at the same scale. */
+  extent?: { w: number; h: number };
+}
+
+const { floor, homeName, extent } = Astro.props as Props;
+const S = 16; // px per grid unit
+const PAD = 12;
+const maxX = Math.max(1, extent?.w ?? 0, ...floor.rooms.map((r) => r.x + r.w));
+const maxY = Math.max(1, extent?.h ?? 0, ...floor.rooms.map((r) => r.y + r.h));
+const width = maxX * S + PAD * 2;
+const height = maxY * S + PAD * 2;
+
+// Fit a label inside its rectangle: shrink the font, then wrap onto two lines.
+const layout = (label: string, w: number, h: number) => {
+  const char = 0.58;
+  const max = 15;
+  const min = 11;
+  const fit = (text: string) => Math.min(max, (w - 8) / (text.length * char));
+  const single = fit(label);
+  if (single >= min || !label.includes(" ")) return { lines: [label], size: Math.max(9, Math.min(single, h / 2.4)) };
+  const words = label.split(" ");
+  let best = { lines: [label], size: 9 };
+  for (let i = 1; i < words.length; i++) {
+    const lines = [words.slice(0, i).join(" "), words.slice(i).join(" ")];
+    const size = Math.min(...lines.map(fit), h / 3.2);
+    if (size > best.size) best = { lines, size };
+  }
+  return best;
+};
+
+const rooms = floor.rooms.map((r) => {
+  const w = r.w * S;
+  const h = r.h * S;
+  return { ...r, px: PAD + r.x * S, py: PAD + r.y * S, w, h, ...layout(r.label, w, h) };
+});
+const summary = `${homeName} ${floor.name} concept plan with ${floor.rooms.map((r) => r.label).join(", ")}. Not to scale.`;
+---
+<svg class="hm-plan-svg" viewBox={`0 0 ${width} ${height}`} role="img" aria-label={summary} xmlns="http://www.w3.org/2000/svg" data-plan-floor={floor.name}>
+  <rect x="0" y="0" width={width} height={height} fill="#fffefa" />
+  {rooms.map((r) => (
+    <g>
+      <rect x={r.px} y={r.py} width={r.w} height={r.h} fill={planKindColor[r.kind]} stroke="#3f4d3c" stroke-width="2" stroke-dasharray={r.kind === "porch" ? "6 4" : undefined} />
+      <text x={r.px + r.w / 2} y={r.py + r.h / 2 - ((r.lines.length - 1) * r.size * 0.6)} text-anchor="middle" dominant-baseline="middle" font-family="system-ui, sans-serif" font-weight="700" font-size={r.size} fill="#252525">
+        {r.lines.map((line, i) => <tspan x={r.px + r.w / 2} dy={i === 0 ? 0 : r.size * 1.2}>{line}</tspan>)}
+      </text>
+      <title>{`${r.label} (${planKindLabel[r.kind]})`}</title>
+    </g>
+  ))}
+  <g aria-hidden="true" font-family="system-ui, sans-serif" font-size="11" fill="#5e685f">
+    <text x={width - PAD} y={height - 3} text-anchor="end">N ↑ · concept, not to scale</text>
+  </g>
+</svg>

@@ -1,0 +1,266 @@
+---
+import HomeLayout from "../../../layouts/HomeLayout.astro";
+import PhotoFigure from "../../../components/home/PhotoFigure.astro";
+import StatusBadge from "../../../components/home/StatusBadge.astro";
+import FloorPlanSvg from "../../../components/home/FloorPlanSvg.astro";
+import PlanModel from "../../../components/home/PlanModel.astro";
+import LocationMap from "../../../components/home/LocationMap.astro";
+import { homeShell } from "../../../components/home/shell";
+import { homes } from "../../../data/homes";
+import {
+  appleMapsTo, fullAddress, googleDirectionsFrom, googleDirectionsTo, googleSearch,
+  nearbyKindLabel, nearbyKindOrder, planKindColor, planKindLabel, statusHelp, statusLabel,
+} from "../../../data/homes/links";
+import { homeSchema } from "../../../data/homes/schema";
+import type { FactStatus, HomeMicrosite } from "../../../data/homes/types";
+
+type Page = "tour" | "plan" | "amenities" | "location";
+
+export function getStaticPaths() {
+  const pages: Page[] = ["tour", "plan", "amenities", "location"];
+  return homes.flatMap((home) => pages.map((page) => ({ params: { town: home.town.slug, home: home.slug, page }, props: { home, page } })));
+}
+
+const { home, page } = Astro.props as { home: HomeMicrosite; page: Page };
+const shell = homeShell(home);
+const address = fullAddress(home);
+const where = `${home.town.name}, ${home.town.state}`;
+
+const copy: Record<Page, { eyebrow: string; heading: string; lede: string; title: string; description: string }> = {
+  tour: {
+    eyebrow: `${home.name} · Tour`,
+    heading: "Room by room.",
+    lede: `Every published photo of ${home.name}, grouped by room, with notes on what is listed, visible or still to confirm.`,
+    title: `Photo tour of ${home.name}, ${where}`,
+    description: `Room-by-room photos of ${home.name} at ${address}, with notes on what is confirmed.`,
+  },
+  plan: {
+    eyebrow: `${home.name} · Plan & 3D`,
+    heading: "See how it fits together.",
+    lede: "A concept floor plan and an interactive 3D model, both generated from the room list. They show how the rooms relate, not exact sizes.",
+    title: `Concept floor plan and 3D model of ${home.name}, ${where}`,
+    description: `Concept floor plan and 3D model of ${home.name}. Concept illustrations generated from the room list, not to scale and not a measured survey.`,
+  },
+  amenities: {
+    eyebrow: `${home.name} · Amenities`,
+    heading: "What comes with the home.",
+    lede: "Grouped amenities, each marked as listed, seen in photos, confirmed, or still to confirm on inquiry.",
+    title: `Amenities at ${home.name}, ${where}`,
+    description: `Amenities at ${home.name}, ${address}, and which details are listed, visible in photos or still to confirm.`,
+  },
+  location: {
+    eyebrow: `${home.name} · Location`,
+    heading: "Where it is and what is close.",
+    lede: `${address}. Directions, a map and nearby places to get started.`,
+    title: `Location, directions and nearby places for ${home.name}`,
+    description: `Directions to ${home.name} at ${address}, plus nearby health care, groceries, food and parks.`,
+  },
+};
+const c = copy[page];
+const statuses: FactStatus[] = ["confirmed", "listed", "photographed", "confirm"];
+const nearbyGroups = nearbyKindOrder
+  .map((kind) => ({ kind, places: home.nearby.filter((place) => place.kind === kind) }))
+  .filter((group) => group.places.length > 0);
+const kindsInPlan = [...new Set(home.plan.floors.flatMap((floor) => floor.rooms.map((room) => room.kind)))];
+const planExtent = {
+  w: Math.max(0, ...home.plan.floors.flatMap((f) => f.rooms.map((r) => r.x + r.w))),
+  h: Math.max(0, ...home.plan.floors.flatMap((f) => f.rooms.map((r) => r.y + r.h))),
+};
+const hasRooms = home.rooms.length > 0;
+---
+
+<HomeLayout
+  shell={shell}
+  title={`${c.title} | Mt Cottages`}
+  description={c.description}
+  eyebrow={c.eyebrow}
+  heading={c.heading}
+  lede={c.lede}
+  hero={home.hero}
+  chip={address}
+  schema={homeSchema(home)}
+>
+  {page === "tour" && (
+    <>
+      {hasRooms && (
+        <nav class="site-width hm-jump" aria-label="Rooms on this page">
+          <ul class="cluster">
+            {home.rooms.map((room) => <li><a class="hm-pill" href={`#${room.slug}`}>{room.name}</a></li>)}
+          </ul>
+        </nav>
+      )}
+      {home.rooms.map((room, index) => (
+        <section class={`section${index % 2 === 0 ? "" : " section--paper"}`} id={room.slug} aria-labelledby={`${room.slug}-title`}>
+          <div class="site-width">
+            <div class="section-heading reveal">
+              <div><p class="eyebrow">Room {String(index + 1).padStart(2, "0")}</p><h2 id={`${room.slug}-title`}>{room.name}</h2></div>
+              <p>{room.summary}</p>
+            </div>
+            {room.photos.length > 0
+              ? <div class="hm-shots">{room.photos.map((photo) => <PhotoFigure photo={photo} sizes="(max-width: 900px) 100vw, 45vw" />)}</div>
+              : <p class="gap-note">Photos of this room are not published yet. Ask us and we will share what we have.</p>}
+            {room.notes.length > 0 && (
+              <ul class="hm-notes" aria-label={`Notes on ${room.name}`}>
+                {room.notes.map((note) => <li><StatusBadge status={note.status} /><span>{note.text}</span></li>)}
+              </ul>
+            )}
+          </div>
+        </section>
+      ))}
+      {!hasRooms && <section class="section"><div class="site-width"><p class="gap-note">The room-by-room tour is not published yet.</p></div></section>}
+    </>
+  )}
+
+  {page === "plan" && (
+    <>
+      <section class="section" aria-labelledby="plan-title">
+        <div class="site-width">
+          <div class="section-heading reveal">
+            <div><p class="eyebrow">Concept floor plan</p><h2 id="plan-title">{home.plan.floors.length > 1 ? "One plan per floor." : "The floor plan."}</h2></div>
+            <p>{home.plan.note}</p>
+          </div>
+          <p class="hm-notice" role="note"><strong>Concept illustration.</strong> This plan and the 3D model below are concept illustrations generated from the room list. They are not to scale and not a measured survey. Do not use them to plan furniture or to judge sizes.</p>
+          {home.plan.floors.length > 0 && (
+            <div class="hm-plan-set mt-3">
+              {home.plan.floors.map((floor) => (
+                <figure class="hm-plan">
+                  <figcaption><strong>{floor.name}</strong></figcaption>
+                  <FloorPlanSvg floor={floor} homeName={home.name} extent={planExtent} />
+                </figure>
+              ))}
+            </div>
+          )}
+          {kindsInPlan.length > 0 && (
+            <ul class="hm-legend" aria-label="Room colours">
+              {kindsInPlan.map((kind) => <li><span class="hm-swatch" style={`background:${planKindColor[kind]}`} aria-hidden="true"></span>{planKindLabel[kind]}</li>)}
+            </ul>
+          )}
+        </div>
+      </section>
+
+      {home.plan.floors.length > 0 && (
+        <section class="section section--paper" aria-labelledby="model-title">
+          <div class="site-width">
+            <div class="section-heading reveal">
+              <div><p class="eyebrow">Concept 3D model</p><h2 id="model-title">Turn it around.</h2></div>
+              <p>A cutaway built from the same rectangles as the plan. It loads only when you press the button. Drag to rotate, scroll to zoom, or use the buttons and arrow keys.</p>
+            </div>
+            <p class="hm-notice" role="note"><strong>Concept illustration generated from the room list.</strong> Not to scale and not a measured survey.</p>
+            <PlanModel home={home} />
+          </div>
+        </section>
+      )}
+
+      {home.concepts.length > 0 && (
+        <section class="section" aria-labelledby="concepts-title">
+          <div class="site-width">
+            <div class="section-heading reveal">
+              <div><p class="eyebrow">Inspirational images</p><h2 id="concepts-title">AI-generated concepts.</h2></div>
+              <p>These pictures were generated by AI to suggest the feel of the home. They are not photographs of the home and not to scale.</p>
+            </div>
+            <div class="hm-shots">
+              {home.concepts.map((concept) => <PhotoFigure ai photo={{ src: concept.src, alt: concept.alt, caption: concept.caption }} sizes="(max-width: 900px) 100vw, 45vw" />)}
+            </div>
+          </div>
+        </section>
+      )}
+    </>
+  )}
+
+  {page === "amenities" && (
+    <section class="section" aria-labelledby="amenities-title">
+      <div class="site-width">
+        <div class="section-heading reveal">
+          <div><p class="eyebrow">Amenities</p><h2 id="amenities-title">Grouped, with the source of each one.</h2></div>
+          <p>Where a detail is not confirmed we say so. Ask about those before you decide.</p>
+        </div>
+        <dl class="hm-key" aria-label="What the badges mean">
+          {statuses.map((status) => (
+            <div><dt><span class={`hm-badge hm-badge--${status}`}>{statusLabel[status]}</span></dt><dd>{statusHelp[status]}</dd></div>
+          ))}
+        </dl>
+        <div class="hm-amenity-groups mt-3">
+          {home.amenities.map((group) => (
+            <section class="hm-amenity-group reveal" aria-labelledby={`amen-${group.group.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}>
+              <h3 id={`amen-${group.group.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}>{group.group}</h3>
+              <ul>
+                {group.items.map((item) => <li><span>{item.name}</span><StatusBadge status={item.status} /></li>)}
+              </ul>
+            </section>
+          ))}
+        </div>
+        {home.amenities.length === 0 && <p class="gap-note">The amenity list is not published yet.</p>}
+      </div>
+    </section>
+  )}
+
+  {page === "location" && (
+    <>
+      <section class="section" aria-labelledby="address-title">
+        <div class="site-width split split--wide">
+          <div class="hm-address-card reveal" data-address-card>
+            <p class="eyebrow">Address</p>
+            <h2 id="address-title">{home.name}</h2>
+            <address class="hm-address" data-address-text>{home.address.streetAddress}<br />{home.address.locality}, {home.address.region} {home.address.postalCode}</address>
+            <div class="cluster mt-2">
+              <a class="button" href={googleDirectionsTo(address)} rel="noopener" target="_blank" data-directions>Get directions<span class="sr-only"> in Google Maps (new tab)</span> ↗</a>
+              <a class="button button--ghost" href={appleMapsTo(address)} rel="noopener" target="_blank">Apple Maps<span class="sr-only"> (new tab)</span> ↗</a>
+              <button type="button" class="button button--ghost" data-copy-address={address}>Copy address</button>
+            </div>
+            <p class="text-muted hm-copy-status" role="status" data-copy-status></p>
+          </div>
+          <div class="reveal">
+            <h3>Directions from</h3>
+            {home.directionsFrom.length > 0
+              ? <ul class="hm-links">{home.directionsFrom.map((from) => <li><a href={googleDirectionsFrom(from.origin, address)} rel="noopener" target="_blank">From {from.label}<span class="sr-only"> (Google Maps, new tab)</span> ↗</a></li>)}</ul>
+              : <p class="text-muted">Use “Get directions” to start from where you are.</p>}
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--paper" aria-labelledby="map-title">
+        <div class="site-width">
+          <div class="section-heading reveal"><div><p class="eyebrow">Map</p><h2 id="map-title">On the map.</h2></div></div>
+          <LocationMap home={home} />
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="nearby-title">
+        <div class="site-width">
+          <div class="section-heading reveal">
+            <div><p class="eyebrow">Nearby</p><h2 id="nearby-title">Places people ask about.</h2></div>
+            <p>Each place opens a Google Maps search. Check hours and distances there before you travel.</p>
+          </div>
+          <div class="hm-nearby">
+            {nearbyGroups.map((group) => (
+              <section class="hm-nearby-group reveal" aria-labelledby={`near-${group.kind}`}>
+                <h3 id={`near-${group.kind}`}>{nearbyKindLabel[group.kind]}</h3>
+                <ul>
+                  {group.places.map((place) => (
+                    <li><a href={googleSearch(place.mapsQuery)} rel="noopener" target="_blank"><strong>{place.name}</strong><span>{place.note}</span><span class="sr-only"> (Google Maps, new tab)</span></a></li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+          </div>
+          {nearbyGroups.length === 0 && <p class="gap-note">Nearby places are not published yet.</p>}
+        </div>
+      </section>
+
+      <script>
+        document.querySelectorAll<HTMLButtonElement>("[data-copy-address]").forEach((button) => {
+          button.addEventListener("click", async () => {
+            const text = button.dataset.copyAddress || "";
+            const status = document.querySelector<HTMLElement>("[data-copy-status]");
+            try {
+              await navigator.clipboard.writeText(text);
+              if (status) status.textContent = "Address copied.";
+            } catch {
+              if (status) status.textContent = `Copy this address: ${text}`;
+            }
+          });
+        });
+      </script>
+    </>
+  )}
+</HomeLayout>

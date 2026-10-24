@@ -68,3 +68,25 @@ test("the canonical stay host redirects HTTP to HTTPS", async ({ request }) => {
   expect(stayHttp.status()).toBe(307);
   expect(stayHttp.headers().location).toBe("https://stay.mtcottages.com/");
 });
+
+// The marketing site's four home microsites must load after a publish.
+// They live on the marketing host, whatever BASE_URL the rest of this file targets.
+const marketingUrl = (process.env.MARKETING_URL || "https://mtcottages.com").replace(/\/+$/, "");
+const microsites = [
+  ["/marietta/frederick/index.html", "Frederick Cottage"],
+  ["/ravenswood/henrietta-cottage/", "Henrietta Cottage"],
+  ["/parkersburg/oak-cottage/", "Oak Cottage"],
+  ["/parkersburg/broad-cottage/", "Broad Cottage"],
+];
+
+for (const [route, name] of microsites) {
+  test(`the ${name} microsite index loads with its address, family switcher and inquiry link`, async ({ page }) => {
+    const response = await page.goto(`${marketingUrl}${route}`);
+    expect(response.ok()).toBeTruthy();
+    await expect(page.locator("h1")).toContainText(/Cottage|home/i);
+    await expect(page.locator(".hm-chip")).not.toHaveCount(0);
+    await expect(page.locator(".hm-family-card")).toHaveCount(4);
+    await expect(page.locator('a[href^="https://stay.mtcottages.com/?property="]').first()).toBeVisible();
+    await expect(page.locator("main img").first()).toBeVisible();
+  });
+}
