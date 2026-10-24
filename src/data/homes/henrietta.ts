@@ -13,6 +13,8 @@ import blueBath from "../../../assets/images/cottages/ravenswood-03/unique/raven
 import stripedRoomDoor from "../../../assets/images/cottages/ravenswood-03/unique/ravenswood-henrietta-cottage-img-290-88a4997131-648x470.avif";
 import diningMantel from "../../../assets/images/cottages/ravenswood-03/unique/ravenswood-henrietta-cottage-img-299-09dbabf583-648x470.avif";
 import kitchenWide from "../../../assets/images/cottages/ravenswood-03/unique/apply-background-303-8f0c3cac6a-1920x869.avif";
+import conceptDining from "../../../assets/images/cottages/ravenswood-03/3d/henrietta-dining-45.jpg";
+import conceptKitchen from "../../../assets/images/cottages/ravenswood-03/3d/henrietta-kitchen-top-down.jpg";
 
 const photos = {
   dining: {
@@ -300,7 +302,18 @@ export const henriettaHome: HomeMicrosite = {
       },
     ],
   },
-  concepts: [],
+  concepts: [
+    {
+      src: conceptDining,
+      alt: "AI-generated concept: a 45-degree view from above of a light blue dining room with a white fireplace mantel, an oval dark-wood table with burgundy chairs, wooden bookcases, a tall standing mirror and a sash window",
+      caption: "Concept only. An imagined take on the blue dining room, based on the photos. The décor, window and extra furniture are invented.",
+    },
+    {
+      src: conceptKitchen,
+      alt: "AI-generated concept: a cutaway view from above of a cottage kitchen with honey-oak cabinets, a white gas range with a kettle, a white refrigerator, a gray-green hutch with plates, a pine table with white spindle chairs and a staircase with white railings",
+      caption: "Concept only. An imagined layout of the kitchen, based on the photos. The real room's shape, and where the stairs go, are not confirmed.",
+    },
+  ],
   nearby: [
     { name: "Jackson General Hospital", kind: "health", note: "The county's hospital, a WVU Medicine facility on Pinnell Street in Ripley.", mapsQuery: "Jackson General Hospital 122 Pinnell St Ripley WV" },
     { name: "Ravenswood Foodfair", kind: "grocery", note: "A grocery store on Washington Street in Ravenswood.", mapsQuery: "Foodfair 423 Washington St Ravenswood WV" },
