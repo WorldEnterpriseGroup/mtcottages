@@ -117,6 +117,8 @@ for (const home of homes) {
       await expect(body).toContainText(/concept illustrations? generated from the room list/i);
       await expect(body).toContainText(/not to scale/i);
       await expect(body).toContainText(/not a measured survey/i);
+      // Every home shows at least two labelled AI concept pictures (a top-down and a 45-degree view).
+      expect(await page.locator(".hm-shot--ai img").count()).toBeGreaterThanOrEqual(2);
       for (const label of await page.locator(".hm-ai-label").all()) {
         await expect(label).toHaveText("AI-generated concept");
       }

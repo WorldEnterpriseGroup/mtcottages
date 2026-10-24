@@ -17,6 +17,8 @@ import dining2 from "../../../assets/images/cottages/parkersburg-04/unique/raven
 import bath2 from "../../../assets/images/cottages/parkersburg-04/unique/available-img-386-9597944b4a-648x470.avif";
 import bedB2 from "../../../assets/images/cottages/parkersburg-04/unique/parkersburg-oak-cottage-img-310-73035b484b-648x470.avif";
 import bedC2 from "../../../assets/images/cottages/parkersburg-04/unique/property-care-img-75-1c8506a5a4-648x470.avif";
+import conceptDining from "../../../assets/images/cottages/parkersburg-04/3d/oak-dining-kitchen-45.jpg";
+import conceptBedroom from "../../../assets/images/cottages/parkersburg-04/3d/oak-bedroom-top-down.jpg";
 const ph = (src: HomeMicrosite["hero"]["src"], alt: string, caption: string, focal?: string) => ({ src, alt, caption, ...(focal ? { focal } : {}) });
 
 const photos = {
@@ -230,7 +232,18 @@ export const oakHome: HomeMicrosite = {
     ],
     note: "Illustrative concept only, not a measured plan. It uses the rooms shown in the photos, and the arrangement, sizes, and number of floors are guesses until confirmed. Only the kitchen opening onto the dining room is taken from a photo. A living room, laundry, and any upstairs space are not shown.",
   },
-  concepts: [],
+  concepts: [
+    {
+      src: conceptDining,
+      alt: "AI-generated concept: a 45-degree view of a bright dining room with an oval navy table and white chairs by a curtained window, open to a kitchen with honey-oak cabinets and white appliances",
+      caption: "Concept only. An imagined take on the dining room opening onto the kitchen, based on the photos. The beamed ceiling, windows and décor are invented.",
+    },
+    {
+      src: conceptBedroom,
+      alt: "AI-generated concept: a cutaway view from above of a bedroom with a gray upholstered headboard, white bedding, a wooden dresser, two nightstands with lamps, a patterned rug and a curtained window",
+      caption: "Concept only. An imagined layout of bedroom one, based on the photos. Room size and furniture placement are not confirmed.",
+    },
+  ],
   nearby: [
     { name: "WVU Medicine Camden Clark Medical Center", kind: "health", note: "The area's main hospital campus, on Garfield Avenue in Parkersburg.", mapsQuery: "WVU Medicine Camden Clark Medical Center 800 Garfield Ave Parkersburg WV" },
     { name: "Kroger on 7th Street", kind: "grocery", note: "A full-service grocery store on the east side of Parkersburg near City Park.", mapsQuery: "Kroger 2007 7th St Parkersburg WV" },
