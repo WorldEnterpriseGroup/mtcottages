@@ -10,12 +10,15 @@
 # pipeline.
 
 include:
-  - project: 'FocusApiary/ci-templates'
-    ref: main
+  - project: 'DroidOpsInc/launch-sequence'
+    ref: 327c2283a8f056624e979c135de1408d465e680c
     file: '/jobs/github-mirror.yml'
 
 variables:
   GITHUB_REPO: "WorldEnterpriseGroup/mtcottages"
+  # launch-sequence's mirror job fails closed without a GITHUB_TOKEN. This project defines
+  # none (the previous template skipped silently), so keep "push nothing" explicit.
+  GITHUB_MIRROR_EXTERNAL: "true"
 
 stages:
   - mirror
