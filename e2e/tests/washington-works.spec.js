@@ -48,7 +48,7 @@ test.describe("Washington Works landing /corporate-housing/washington-works/", (
     const order = await page.locator("#drives .tn-hospital").evaluateAll((cards) => cards.map((card) => card.getAttribute("data-home")));
     expect(order).toEqual([...HOMES].sort((a, b) => a.row.minutes - b.row.minutes || a.id.localeCompare(b.id)).map((home) => home.id));
     for (const home of HOMES) {
-      const card = page.locator(`#drives [data-home="${home.id}"]`);
+      const card = page.locator(`#drives li.tn-hospital[data-home="${home.id}"]`);
       await expect(card.locator('[data-testid="drive-minutes"]')).toHaveText(`${home.row.minutes} min`);
       await expect(card).toContainText(home.from);
       await expect(card).toContainText(`${home.row.miles.toFixed(1)} mi`);
