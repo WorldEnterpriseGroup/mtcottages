@@ -1,0 +1,191 @@
+---
+/**
+ * Washington Works crew landing (#44), built like the hospital landings: a hero
+ * with one CTA, the measured drive from each home to the plant, the hub's crew
+ * capacity rows for these homes, other measured places, native FAQ disclosures
+ * that match the FAQPage schema, the homes and the no-affiliation disclaimer.
+ * Data and honesty rules: src/data/washingtonWorks.ts.
+ */
+import "../styles/town-landing.css";
+import "../styles/travel-nurses.css";
+import "../styles/corporate-housing.css";
+import ResponsivePhoto from "./ResponsivePhoto.astro";
+import PropertyCard from "./PropertyCard.astro";
+import { cottages } from "../data/site";
+import { stayLink } from "../data/stay-link";
+import type { Crumb } from "../data/schema";
+import type { Photo } from "../data/site";
+import {
+  areaRows, capacityRows, disclaimer, driveSource, faqs, fromLabel, homeLinks, hubAudience, hubHref, page, plantDrives, plantLabel,
+} from "../data/washingtonWorks";
+
+interface Props {
+  crumbs: Crumb[];
+  hero: Photo;
+}
+
+const { crumbs, hero } = Astro.props;
+// Every inquiry link carries the crew audience and this page as its source (#20).
+const pathname = Astro.url.pathname;
+const inquiryHref = stayLink({ audience: hubAudience, page: pathname });
+const homeCards = homeLinks.map((entry) => {
+  const cottage = cottages.find((item) => item.id === entry.id);
+  if (!cottage) throw new Error(`The Washington Works page lists "${entry.id}", which is not in src/data/site.ts`);
+  return { entry, cottage, href: stayLink({ home: entry.id, audience: hubAudience, page: pathname }) };
+});
+const hrefOf = (id: string) => homeLinks.find((entry) => entry.id === id)?.href ?? hubHref;
+---
+
+<section class="guide-hero section--tight tl-hero">
+  <div class="site-width guide-hero-grid">
+    <div>
+      <nav class="crumbs" aria-label="Breadcrumb">
+        {crumbs.map((crumb, index) => index < crumbs.length - 1
+          ? <><a href={crumb.href}>{crumb.name}</a><span aria-hidden="true">/</span></>
+          : <span aria-current="page">{crumb.name}</span>)}
+      </nav>
+      <p class="eyebrow mt-3">{page.eyebrow}</p>
+      <h1>{page.h1}</h1>
+      <p class="lede" data-testid="ww-lede">{page.lede}</p>
+      <p class="mt-2 reading">{page.intro}</p>
+      <div class="cluster mt-3" data-cta="hero">
+        <a class="button" href={inquiryHref}>{page.inquiryLabel} <span aria-hidden="true">↗</span></a>
+        <a class="button button--ghost" href="#drives">See the drive times</a>
+      </div>
+    </div>
+    <figure class="hero-image-frame">
+      <ResponsivePhoto {...hero} priority sizes="(max-width: 900px) 100vw, 55vw" />
+    </figure>
+  </div>
+</section>
+
+<section class="section section--paper" id="drives" aria-labelledby="ww-drives-title">
+  <div class="site-width">
+    <div class="section-heading">
+      <div><p class="eyebrow">Minutes to the plant</p><h2 id="ww-drives-title">The drive to {plantLabel}</h2></div>
+      <p>Measured, not guessed. Nearest home first.</p>
+    </div>
+    <ul class="card-grid tn-drive-cards" role="list">
+      {plantDrives.map((line) => (
+        <li class="tn-hospital" data-home={line.homeId}>
+          <p class="location">{fromLabel(line)}</p>
+          <p class="tn-drive-big"><strong data-testid="drive-minutes">{line.minutes} min</strong> <span>by car, {line.miles.toFixed(1)} mi</span></p>
+          <a class="inline-link" href={hrefOf(line.homeId)}>See {line.homeName}: photos, plan and map <span aria-hidden="true">→</span></a>
+        </li>
+      ))}
+    </ul>
+    <p class="details-note mt-2" data-testid="drive-source">{driveSource}</p>
+    {areaRows.length > 0 && (
+      <div class="tl-table-scroll mt-3" role="region" aria-labelledby="ww-area-caption" tabindex="0">
+        <table class="tl-table tn-table" data-testid="area-table">
+          <caption id="ww-area-caption">Other measured drives: the interstate and downtown Parkersburg</caption>
+          <thead>
+            <tr><th scope="col">Place</th>{homeLinks.map((entry) => <th scope="col" data-home={entry.id}>{entry.name}</th>)}</tr>
+          </thead>
+          <tbody>
+            {areaRows.map((row) => (
+              <tr data-place={row.destination}>
+                <th scope="row">{row.label}</th>
+                {homeLinks.map((entry) => {
+                  const line = row.drives.find((item) => item.homeId === entry.id);
+                  return <td data-home={entry.id}>{line ? <><strong>{line.minutes} min</strong> <span class="tl-miles">{line.miles.toFixed(1)} mi</span></> : "Ask us"}</td>;
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    )}
+  </div>
+</section>
+
+<section class="section" id="capacity" aria-labelledby="ww-capacity-title">
+  <div class="site-width">
+    <div class="section-heading">
+      <div><p class="eyebrow">Crew capacity</p><h2 id="ww-capacity-title">What each home holds</h2></div>
+      <p>Read from each home's own listing. A detail we have not confirmed says so instead of guessing.</p>
+    </div>
+    <div class="tl-table-scroll" role="region" aria-labelledby="ww-capacity-caption" tabindex="0">
+      <table class="tl-table tn-table ch-table" data-testid="capacity-table">
+        <caption id="ww-capacity-caption" class="sr-only">Crew capacity for each home near Washington Works: bedrooms, beds and how many it sleeps, parking, laundry and internet</caption>
+        <thead>
+          <tr><th scope="col">Home</th><th scope="col">Bedrooms</th><th scope="col">Beds and sleeps</th><th scope="col">Parking</th><th scope="col">Laundry</th><th scope="col">Wi-Fi and internet</th></tr>
+        </thead>
+        <tbody>
+          {capacityRows.map((row) => (
+            <tr data-home={row.id}>
+              <th scope="row"><a href={row.href}>{row.name}</a><span class="ch-town">{row.town}</span></th>
+              <td data-cell="bedrooms"><strong>{row.bedrooms}</strong></td>
+              <td data-cell="sleeps" data-confirmed={row.sleeps.confirmed ? "yes" : "no"}>
+                <span class:list={["ch-value", { "ch-value--confirm": !row.sleeps.confirmed }]}>{row.sleeps.text}</span>
+                {row.beds && <span class="ch-detail">{row.beds}</span>}
+                {row.sleeps.status && <span class="tn-status"> ({row.sleeps.status})</span>}
+              </td>
+              {[{ cell: "parking", value: row.parking }, { cell: "laundry", value: row.laundry }, { cell: "internet", value: row.internet }].map(({ cell, value }) => (
+                <td data-cell={cell} data-confirmed={value.confirmed ? "yes" : "no"}>
+                  <span class:list={["ch-value", { "ch-value--confirm": !value.confirmed }]}>{value.text}</span>
+                  {value.status && <span class="tn-status"> ({value.status})</span>}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-3">Company paying? <a class="inline-link tn-inline" href={`${hubHref}#company-paid`}>How company-paid stays work</a> · <a class="inline-link tn-inline" href={hubHref}>Corporate and crew housing across the Mid-Ohio Valley</a></p>
+  </div>
+</section>
+
+<section class="section section--paper" id="faq" aria-labelledby="ww-faq-title">
+  <div class="site-width split split--wide">
+    <div>
+      <p class="eyebrow">Questions</p>
+      <h2 id="ww-faq-title">Crew housing near Washington Works, answered</h2>
+    </div>
+    <div class="faq">
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section" id="homes" aria-labelledby="ww-homes-title">
+  <div class="site-width">
+    <div class="section-heading">
+      <div><p class="eyebrow">The homes</p><h2 id="ww-homes-title">Furnished homes within a short drive of the plant</h2></div>
+      <p>Photos are of the real homes. Guide prices are for planning; we confirm the current price for your dates.</p>
+    </div>
+    <div class="card-grid">
+      {homeCards.map(({ entry, cottage, href }) => (
+        <div class="tn-card" data-home={entry.id}>
+          <PropertyCard cottage={cottage} headingLevel={3} />
+          <a class="inline-link tn-inline mt-2" href={href} data-cta={`home-${entry.id}`}>Ask about {entry.name} for your crew <span aria-hidden="true">↗</span></a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section section--paper" aria-labelledby="ww-disclaimer-title">
+  <div class="site-width">
+    <h2 id="ww-disclaimer-title" class="tn-small-heading">No affiliation</h2>
+    <p class="details-note mt-2" data-testid="disclaimer">{disclaimer}</p>
+  </div>
+</section>
+
+<section class="section section--dark" aria-labelledby="ww-next-title">
+  <div class="site-width split split--wide">
+    <div>
+      <p class="eyebrow tl-eyebrow-light">The next step</p>
+      <h2 id="ww-next-title">Tell us your crew size and dates.</h2>
+    </div>
+    <div>
+      <p class="lede lede--light">Share the headcount, the vehicles and the start and end dates. We reply with the home that fits, its current price and what is included. An inquiry is a conversation, not a lease.</p>
+      <a class="button button--light mt-3" href={inquiryHref} data-cta="next-step">{page.inquiryLabel} <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>
