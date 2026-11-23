@@ -1,11 +1,24 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
-import LocationPage from "../../components/LocationPage.astro";
+import TownLanding from "../../components/TownLanding.astro";
 import { locationData } from "../../data/site";
-import { locationCrumbs } from "../../data/schema";
+import { townLandings } from "../../data/townLanding";
+import { faqSchema, locationCrumbs } from "../../data/schema";
+
+// The Ravenswood money page (#41). /ravenswood/furnished-rentals/ redirects here
+// (astro.config.mjs), so the search phrase and the town guide are one page.
 const guide = locationData.ravenswood;
+const landing = townLandings.ravenswood;
 const crumbs = locationCrumbs(guide);
 ---
-<SiteLayout title={`${guide.town} Furnished Living | Mt Cottages`} description={guide.description} town={guide.stayTown} breadcrumbs={crumbs}>
-  <LocationPage guide={guide} crumbs={crumbs} />
+<SiteLayout
+  title={landing.title}
+  description={landing.description}
+  town={guide.stayTown}
+  breadcrumbs={crumbs}
+  socialImage={landing.hero.src}
+  socialImageAlt={landing.hero.alt}
+  schema={faqSchema(`/${landing.path}`, landing.faqs)}
+>
+  <TownLanding landing={landing} crumbs={crumbs} />
 </SiteLayout>

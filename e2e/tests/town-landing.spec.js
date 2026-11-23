@@ -44,6 +44,24 @@ const towns = [
     // Plain "marietta" searches belong to Marietta, Georgia; this page targets Ohio only.
     notGeorgia: true,
   },
+  {
+    path: "/ravenswood/index.html",
+    alias: "/ravenswood/furnished-rentals/",
+    src: "ravenswood",
+    cta: "location=ravenswood",
+    townPattern: /Ravenswood, WV/,
+    ledePhrases: [/furnished apartment/i, /monthly rental/i, /short-term rental/i, /Ravenswood, WV/, /Constellium/, /Jackson General Hospital in Ripley/, /I-77/],
+    homes: [
+      { id: "henrietta", name: "Henrietta Cottage", href: "/ravenswood/henrietta-cottage/" },
+      { id: "virginia", name: "Virginia Cottage", href: "/ravenswood/virginia-cottage/" },
+    ],
+    // Walnut is parked (CEO decision 2026-11-14) and is never named on the page (#41).
+    parked: ["yellow-cottage", "walnut-cottage"],
+    neverNamed: /Walnut Cottage/i,
+    hubs: ["/travel-nurses/", "/corporate-housing/", "/family-stays.html", "/insurance-housing.html"],
+    pricedHomes: [],
+    linkedFrom: ["/locations.html", "/travel-nurses/jackson-general/"],
+  },
 ];
 
 const jsonLd = async (page) => {
@@ -93,6 +111,7 @@ for (const town of towns) {
       }
       const hrefs = await page.locator("main a[href]").evaluateAll((links) => links.map((link) => link.getAttribute("href") ?? ""));
       for (const parked of town.parked) expect(hrefs.some((href) => href.includes(parked)), `${parked} must not be listed`).toBe(false);
+      if (town.neverNamed) expect((await page.locator("main").textContent()) ?? "").not.toMatch(town.neverNamed);
       const townCtas = page.locator("main").getByRole("link", { name: /^Check dates (in|at) / });
       expect(await townCtas.count()).toBeGreaterThanOrEqual(2);
       for (const href of await townCtas.evaluateAll((links) => links.map((link) => link.getAttribute("href")))) {

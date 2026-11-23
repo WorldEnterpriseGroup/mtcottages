@@ -9,8 +9,8 @@ import { join, relative, sep } from "node:path";
 // Every page counts: 6 home microsites x 5 template pages, a resident guide
 // for each of the six homes (#89),
 // the microsite redirects (old .html summaries, Frederick's 10 old pages,
-// Broad's 23 old sections, /parkersburg/furnished-rentals/ and
-// /marietta/furnished-rentals/), the travel-nurse hub and its Camden Clark (#32), Memorial Health (#33) and Jackson General (#45) pages,
+// Broad's 23 old sections, /parkersburg/furnished-rentals/,
+// /marietta/furnished-rentals/ and /ravenswood/furnished-rentals/, #41), the travel-nurse hub and its Camden Clark (#32), Memorial Health (#33) and Jackson General (#45) pages,
 // the corporate and crew hub (#34) and its Washington Works (#44) and Constellium Ravenswood (#43) pages, the /health-professionals.html, /work-relocation.html and /insurance-housing.html redirect stubs,
 // the insurance housing hub and its adjuster summary (#42),
 // /guides/ and its articles (#47; the Sternwheel Festival guide, #52, the Blennerhassett Island guide, #50, moving to Parkersburg, #48, things to do in Marietta, #51, where to eat, #57, the cost of living, #58, the Vienna and Williamstown town guides, #55, the county schools guides, #53, and the Parkersburg neighborhoods guide, #54), the accessibility statement (#75), the long-term stays hub (/stays/long-term/, #46), the monthly stays hub (#64), the about page (/about/, #38), the stay policies page (#36),

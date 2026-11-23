@@ -35,7 +35,7 @@ const attempts = Number(process.env.LH_ATTEMPTS || 3);
  * The town landing (money) pages from Growth M1 (#24, #28) and the travel-nurse
  * hub with its hospital landings (#29, #33, #45), the corporate and crew hub (#34), the accessibility statement (#75) and the book-safely page (#62) are gated alongside the microsites.
  */
-const townLandingPages = ["/parkersburg/index.html", "/marietta/index.html", "/travel-nurses/", "/travel-nurses/memorial-health-marietta/", "/travel-nurses/jackson-general/", "/corporate-housing/", "/corporate-housing/washington-works/", "/corporate-housing/constellium-ravenswood/", "/insurance-housing/", "/accessibility/", "/book-safely/"];
+const townLandingPages = ["/parkersburg/index.html", "/marietta/index.html", "/ravenswood/index.html", "/travel-nurses/", "/travel-nurses/memorial-health-marietta/", "/travel-nurses/jackson-general/", "/corporate-housing/", "/corporate-housing/washington-works/", "/corporate-housing/constellium-ravenswood/", "/insurance-housing/", "/accessibility/", "/book-safely/"];
 
 /** Microsite roots are the sitemap's two-level directory URLs with a tour page, e.g. /marietta/frederick/. */
 async function micrositePages() {
