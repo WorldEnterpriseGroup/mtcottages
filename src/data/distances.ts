@@ -59,7 +59,7 @@ if (problems.length > 0) {
 }
 
 const origins: Record<string, { label: string; kind: string }> = raw.origins;
-const destinations: Record<string, { name: string; label: string; category: string; note?: string }> = raw.destinations;
+const destinations: Record<string, { name: string; label: string; category: string; note?: string; lat?: number; lng?: number }> = raw.destinations;
 const sources: Record<string, string> = raw.sources;
 const microsites: Record<string, string> = raw.microsites;
 
@@ -171,6 +171,17 @@ export function driveMatrix(destinationIds: string[], homeList: Pick<HomeMicrosi
       drives: drives.sort((a, b) => a.minutes - b.minutes || a.homeName.localeCompare(b.homeName)),
     };
   });
+}
+
+/**
+ * Where a destination is, as measured (lat/lng in _data/distances.json), for a
+ * guide that orders places by position. Undefined for a destination measured
+ * per home without one point (the nearest I-77 on-ramp). Throws for an unknown id.
+ */
+export function destinationPoint(destinationId: string): { lat: number; lng: number } | undefined {
+  const destination = destinations[destinationId];
+  if (!destination) throw new Error(`_data/distances.json has no destination ${destinationId}`);
+  return destination.lat !== undefined && destination.lng !== undefined ? { lat: destination.lat, lng: destination.lng } : undefined;
 }
 
 /** One measured route, as prose and the town landing tables quote it. */
