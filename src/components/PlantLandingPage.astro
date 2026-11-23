@@ -1,10 +1,11 @@
 ---
 /**
- * Washington Works crew landing (#44), built like the hospital landings: a hero
- * with one CTA, the measured drive from each home to the plant, the hub's crew
- * capacity rows for these homes, other measured places, native FAQ disclosures
- * that match the FAQPage schema, the homes and the no-affiliation disclaimer.
- * Data and honesty rules: src/data/washingtonWorks.ts.
+ * A plant crew landing (#44 Washington Works, #43 Constellium Ravenswood),
+ * built like the hospital landings: a hero with one CTA, the measured drive
+ * from each home to the plant, the hub's crew capacity rows for these homes,
+ * other measured places, native FAQ disclosures that match the FAQPage schema,
+ * the homes and the no-affiliation disclaimer. Data and honesty rules:
+ * src/data/plantLandings.ts.
  */
 import "../styles/town-landing.css";
 import "../styles/travel-nurses.css";
@@ -15,22 +16,22 @@ import { cottages } from "../data/site";
 import { stayLink } from "../data/stay-link";
 import type { Crumb } from "../data/schema";
 import type { Photo } from "../data/site";
-import {
-  areaRows, capacityRows, disclaimer, driveSource, faqs, fromLabel, homeLinks, hubAudience, hubHref, page, plantDrives, plantLabel,
-} from "../data/washingtonWorks";
+import { hubAudience, hubHref, type PlantLanding } from "../data/plantLandings";
 
 interface Props {
+  landing: PlantLanding;
   crumbs: Crumb[];
   hero: Photo;
 }
 
-const { crumbs, hero } = Astro.props;
+const { landing, crumbs, hero } = Astro.props;
+const { areaRows, areaCaption, capacityRows, disclaimer, driveSource, faqs, fromLabel, homeLinks, page, plantDrives, plantLabel } = landing;
 // Every inquiry link carries the crew audience and this page as its source (#20).
 const pathname = Astro.url.pathname;
 const inquiryHref = stayLink({ audience: hubAudience, page: pathname });
 const homeCards = homeLinks.map((entry) => {
   const cottage = cottages.find((item) => item.id === entry.id);
-  if (!cottage) throw new Error(`The Washington Works page lists "${entry.id}", which is not in src/data/site.ts`);
+  if (!cottage) throw new Error(`The ${landing.name} page lists "${entry.id}", which is not in src/data/site.ts`);
   return { entry, cottage, href: stayLink({ home: entry.id, audience: hubAudience, page: pathname }) };
 });
 const hrefOf = (id: string) => homeLinks.find((entry) => entry.id === id)?.href ?? hubHref;
@@ -46,7 +47,7 @@ const hrefOf = (id: string) => homeLinks.find((entry) => entry.id === id)?.href 
       </nav>
       <p class="eyebrow mt-3">{page.eyebrow}</p>
       <h1>{page.h1}</h1>
-      <p class="lede" data-testid="ww-lede">{page.lede}</p>
+      <p class="lede" data-testid="plant-lede">{page.lede}</p>
       <p class="mt-2 reading">{page.intro}</p>
       <div class="cluster mt-3" data-cta="hero">
         <a class="button" href={inquiryHref}>{page.inquiryLabel} <span aria-hidden="true">↗</span></a>
@@ -59,10 +60,10 @@ const hrefOf = (id: string) => homeLinks.find((entry) => entry.id === id)?.href 
   </div>
 </section>
 
-<section class="section section--paper" id="drives" aria-labelledby="ww-drives-title">
+<section class="section section--paper" id="drives" aria-labelledby="pl-drives-title">
   <div class="site-width">
     <div class="section-heading">
-      <div><p class="eyebrow">Minutes to the plant</p><h2 id="ww-drives-title">The drive to {plantLabel}</h2></div>
+      <div><p class="eyebrow">Minutes to the plant</p><h2 id="pl-drives-title">The drive to {plantLabel}</h2></div>
       <p>Measured, not guessed. Nearest home first.</p>
     </div>
     <ul class="card-grid tn-drive-cards" role="list">
@@ -76,9 +77,9 @@ const hrefOf = (id: string) => homeLinks.find((entry) => entry.id === id)?.href 
     </ul>
     <p class="details-note mt-2" data-testid="drive-source">{driveSource}</p>
     {areaRows.length > 0 && (
-      <div class="tl-table-scroll mt-3" role="region" aria-labelledby="ww-area-caption" tabindex="0">
+      <div class="tl-table-scroll mt-3" role="region" aria-labelledby="pl-area-caption" tabindex="0">
         <table class="tl-table tn-table" data-testid="area-table">
-          <caption id="ww-area-caption">Other measured drives: the interstate and downtown Parkersburg</caption>
+          <caption id="pl-area-caption">{areaCaption}</caption>
           <thead>
             <tr><th scope="col">Place</th>{homeLinks.map((entry) => <th scope="col" data-home={entry.id}>{entry.name}</th>)}</tr>
           </thead>
@@ -99,15 +100,15 @@ const hrefOf = (id: string) => homeLinks.find((entry) => entry.id === id)?.href 
   </div>
 </section>
 
-<section class="section" id="capacity" aria-labelledby="ww-capacity-title">
+<section class="section" id="capacity" aria-labelledby="pl-capacity-title">
   <div class="site-width">
     <div class="section-heading">
-      <div><p class="eyebrow">Crew capacity</p><h2 id="ww-capacity-title">What each home holds</h2></div>
+      <div><p class="eyebrow">Crew capacity</p><h2 id="pl-capacity-title">What each home holds</h2></div>
       <p>Read from each home's own listing. A detail we have not confirmed says so instead of guessing.</p>
     </div>
-    <div class="tl-table-scroll" role="region" aria-labelledby="ww-capacity-caption" tabindex="0">
+    <div class="tl-table-scroll" role="region" aria-labelledby="pl-capacity-caption" tabindex="0">
       <table class="tl-table tn-table ch-table" data-testid="capacity-table">
-        <caption id="ww-capacity-caption" class="sr-only">Crew capacity for each home near Washington Works: bedrooms, beds and how many it sleeps, parking, laundry and internet</caption>
+        <caption id="pl-capacity-caption" class="sr-only">Crew capacity for each home near {landing.name}: bedrooms, beds and how many it sleeps, parking, laundry and internet</caption>
         <thead>
           <tr><th scope="col">Home</th><th scope="col">Bedrooms</th><th scope="col">Beds and sleeps</th><th scope="col">Parking</th><th scope="col">Laundry</th><th scope="col">Wi-Fi and internet</th></tr>
         </thead>
@@ -136,11 +137,11 @@ const hrefOf = (id: string) => homeLinks.find((entry) => entry.id === id)?.href 
   </div>
 </section>
 
-<section class="section section--paper" id="faq" aria-labelledby="ww-faq-title">
+<section class="section section--paper" id="faq" aria-labelledby="pl-faq-title">
   <div class="site-width split split--wide">
     <div>
       <p class="eyebrow">Questions</p>
-      <h2 id="ww-faq-title">Crew housing near Washington Works, answered</h2>
+      <h2 id="pl-faq-title">Crew housing near {landing.name}, answered</h2>
     </div>
     <div class="faq">
       {faqs.map((faq) => (
@@ -153,10 +154,10 @@ const hrefOf = (id: string) => homeLinks.find((entry) => entry.id === id)?.href 
   </div>
 </section>
 
-<section class="section" id="homes" aria-labelledby="ww-homes-title">
+<section class="section" id="homes" aria-labelledby="pl-homes-title">
   <div class="site-width">
     <div class="section-heading">
-      <div><p class="eyebrow">The homes</p><h2 id="ww-homes-title">Furnished homes within a short drive of the plant</h2></div>
+      <div><p class="eyebrow">The homes</p><h2 id="pl-homes-title">{page.homesHeading}</h2></div>
       <p>Photos are of the real homes. Guide prices are for planning; we confirm the current price for your dates.</p>
     </div>
     <div class="card-grid">
@@ -170,18 +171,18 @@ const hrefOf = (id: string) => homeLinks.find((entry) => entry.id === id)?.href 
   </div>
 </section>
 
-<section class="section section--paper" aria-labelledby="ww-disclaimer-title">
+<section class="section section--paper" aria-labelledby="pl-disclaimer-title">
   <div class="site-width">
-    <h2 id="ww-disclaimer-title" class="tn-small-heading">No affiliation</h2>
+    <h2 id="pl-disclaimer-title" class="tn-small-heading">No affiliation</h2>
     <p class="details-note mt-2" data-testid="disclaimer">{disclaimer}</p>
   </div>
 </section>
 
-<section class="section section--dark" aria-labelledby="ww-next-title">
+<section class="section section--dark" aria-labelledby="pl-next-title">
   <div class="site-width split split--wide">
     <div>
       <p class="eyebrow tl-eyebrow-light">The next step</p>
-      <h2 id="ww-next-title">Tell us your crew size and dates.</h2>
+      <h2 id="pl-next-title">Tell us your crew size and dates.</h2>
     </div>
     <div>
       <p class="lede lede--light">Share the headcount, the vehicles and the start and end dates. We reply with the home that fits, its current price and what is included. An inquiry is a conversation, not a lease.</p>
