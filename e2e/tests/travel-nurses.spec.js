@@ -114,13 +114,14 @@ test.describe("travel-nurse hub /travel-nurses/", () => {
     for (const href of await cards.locator("a").evaluateAll((links) => links.map((link) => link.getAttribute("href")))) {
       expect((await request.get(href)).status(), `${href} status`).toBe(200);
     }
-    // Only hospitals with their own landing page link one, from their own card: Camden Clark (#32) and Memorial (#33). No placeholder promises others.
+    // Only hospitals with their own landing page link one, from their own card: Camden Clark (#32), Memorial (#33) and Jackson General (#45). No placeholder promises others.
     const main = (await page.locator("main").textContent()) ?? "";
     expect(main).not.toMatch(/hospital guides?|coming soon|\bTBD\b|lorem/i);
     const guides = page.locator('main a[href^="/travel-nurses/"][href$="/"]:not([href="/travel-nurses/"])');
-    await expect(guides).toHaveCount(2);
+    await expect(guides).toHaveCount(3);
     await expect(page.locator('#hospitals [data-hospital="memorial-health"] a[data-hospital-guide]')).toHaveAttribute("href", "/travel-nurses/memorial-health-marietta/");
     await expect(page.locator('#hospitals [data-hospital="camden-clark"] a[data-hospital-guide]')).toHaveAttribute("href", "/travel-nurses/camden-clark/");
+    await expect(page.locator('#hospitals [data-hospital="jackson-general"] a[data-hospital-guide]')).toHaveAttribute("href", "/travel-nurses/jackson-general/");
     await expect(cards.nth(0).locator('a[href="/travel-nurses/camden-clark/"]')).toHaveCount(1);
   });
 
