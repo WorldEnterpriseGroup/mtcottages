@@ -1,0 +1,28 @@
+---
+import SiteLayout from "../../../layouts/SiteLayout.astro";
+import JacksonGeneralPage from "../../../components/JacksonGeneralPage.astro";
+import { faqSchema, type Crumb } from "../../../data/schema";
+import { faqs, hubHref, jacksonGeneralHref, nearest, page, ravenswoodHomes } from "../../../data/jacksonGeneral";
+
+// Jackson General Hospital landing (#45), under the travel-nurse hub (#29).
+const crumbs: Crumb[] = [
+  { name: "Home", href: "/" },
+  { name: "Travel nurses", href: hubHref },
+  { name: "Jackson General, Ripley", href: jacksonGeneralHref },
+];
+// The real hero photo of the home with the shortest measured drive, never a hospital image.
+const home = ravenswoodHomes.find((entry) => entry.id === nearest.homeId);
+if (!home) throw new Error(`Jackson General page: nearest home "${nearest.homeId}" has no live microsite`);
+const hero = { src: home.hero.src, alt: home.hero.alt, focal: home.hero.focal ?? "center" };
+---
+<SiteLayout
+  title={page.title}
+  description={page.description}
+  audience="healthcare"
+  breadcrumbs={crumbs}
+  socialImage={hero.src}
+  socialImageAlt={hero.alt}
+  schema={faqSchema(jacksonGeneralHref, faqs)}
+>
+  <JacksonGeneralPage crumbs={crumbs} hero={hero} />
+</SiteLayout>
