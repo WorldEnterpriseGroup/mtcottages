@@ -38,7 +38,8 @@ test("the neighborhoods guide shows its areas north to south with measured drive
   const expected = Object.keys(anchors).sort((a, b) => distances.destinations[anchors[b]].lat - distances.destinations[anchors[a]].lat);
   await expect(page.locator('[data-guide-diagram="parkersburg-areas"] .gd-step strong')).toHaveText(expected);
   await expect(page.locator(".garticle-figure")).toHaveCount(0);
-  await expect(page.locator('.garticle img, .garticle iframe, .garticle [class*="leaflet"]')).toHaveCount(0);
+  // The homes offered below the article show their own portfolio photos; the guide's sections have none.
+  await expect(page.locator('.garticle-section img, .garticle-section iframe, .garticle-section [class*="leaflet"]')).toHaveCount(0);
 
   const areaDrives = page.locator('[data-guide-chart="parkersburg-area-drives"]');
   const park = areaDrives.locator("svg g[data-chart-group]").filter({ hasText: "Parkersburg City Park" });
