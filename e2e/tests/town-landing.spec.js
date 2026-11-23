@@ -23,7 +23,7 @@ const towns = [
       { id: "oak", name: "Oak Cottage", href: "/parkersburg/oak-cottage/" },
     ],
     parked: ["yellow-cottage", "walnut-cottage"],
-    hubs: ["/travel-nurses/", "/corporate-housing/", "/family-stays.html", "/insurance-housing.html"],
+    hubs: ["/travel-nurses/", "/corporate-housing/", "/family-stays.html", "/insurance-housing/"],
     pricedHomes: [],
     linkedFrom: ["/locations.html", "/parkersburg/broad-cottage/", "/parkersburg/oak-cottage/"],
   },
@@ -37,7 +37,7 @@ const towns = [
     ledePhrases: [/furnished apartment/i, /monthly rental/i, /short-term rental/i, /Marietta, Ohio/],
     homes: [{ id: "frederick", name: "Frederick Cottage", href: "/marietta/frederick/" }],
     parked: ["yellow-cottage", "walnut-cottage"],
-    hubs: ["/travel-nurses/", "/corporate-housing/", "/family-stays.html", "/insurance-housing.html"],
+    hubs: ["/travel-nurses/", "/corporate-housing/", "/family-stays.html", "/insurance-housing/"],
     // Frederick's monthly guide is owner-confirmed (notes/owner-decisions.md).
     pricedHomes: ["frederick"],
     linkedFrom: ["/locations.html", "/marietta/frederick/"],

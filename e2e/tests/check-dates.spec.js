@@ -135,7 +135,7 @@ test("audience hubs and town pages carry their audience or town on every inquiry
   const cases = [
     ["/travel-nurses/", { audience: "healthcare" }],
     ["/corporate-housing/", { audience: "crew" }, ["frederick", "broad", "buck", "oak", "virginia", "henrietta"].map((id) => ({ id, params: { audience: "crew" } }))],
-    ["/insurance-housing.html", { audience: "insurance" }],
+    ["/insurance-housing/", { audience: "insurance" }],
     ["/family-stays.html", { audience: "visiting-family" }],
     ["/marietta/index.html", { location: "marietta" }, ["frederick"]],
     ["/parkersburg/index.html", { location: "parkersburg" }, ["broad", "buck", "oak"]],

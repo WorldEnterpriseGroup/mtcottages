@@ -1,0 +1,33 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import GuideArticle from "../../components/guides/GuideArticle.astro";
+import RelatedLinks from "../../components/RelatedLinks.astro";
+import { articleSchema, type Crumb } from "../../data/schema";
+import { guideHref, TITLE_SUFFIX } from "../../data/guides";
+import { jacksonCountySchools, washingtonCountySchools, woodCountySchools } from "../../data/guides/county-schools";
+import { hubHref as longTermHref, longTermHub } from "../../data/longTermHub";
+import { adjusterSummary, adjusterSummaryHref, hubAudience, hubHref, insuranceHub } from "../../data/insuranceHub";
+import type { RelatedLink } from "../../data/site";
+
+// The insurance displacement and ALE housing hub (#42). The content is typed
+// data in src/data/insuranceHub.ts, rendered with the guide layout.
+const crumbs: Crumb[] = [
+  { name: "Home", href: "/" },
+  { name: "Insurance housing", href: hubHref },
+];
+const related: RelatedLink[] = [
+  { href: adjusterSummaryHref, label: adjusterSummary.h1, note: "For adjusters and housing coordinators: the homes, the terms and how to request one, on one printable page." },
+  ...[woodCountySchools, washingtonCountySchools, jacksonCountySchools].map((article) => ({ href: guideHref(article), label: article.h1, note: article.description })),
+  { href: longTermHref, label: longTermHub.h1, note: longTermHub.description },
+];
+---
+<SiteLayout
+  title={`${insuranceHub.seoTitle}${TITLE_SUFFIX}`}
+  description={insuranceHub.description}
+  audience={hubAudience}
+  breadcrumbs={crumbs}
+  schema={articleSchema({ url: hubHref, headline: insuranceHub.h1, description: insuranceHub.description, published: insuranceHub.published, updated: insuranceHub.updated })}
+>
+  <GuideArticle article={insuranceHub} crumbs={crumbs} />
+  <RelatedLinks links={related} eyebrow="For adjusters and families" heading="The summary, schools and longer stays." />
+</SiteLayout>

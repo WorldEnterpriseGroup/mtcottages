@@ -1,0 +1,42 @@
+---
+import SiteLayout from "../../../layouts/SiteLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import { TITLE_SUFFIX } from "../../../data/guides";
+import { capacityRows, statedTerms } from "../../../data/corporateHousing";
+import { stayLink } from "../../../data/stay-link";
+import { adjusterSummary, adjusterSummaryHref, householdLine, hubAudience, hubHref, moveInNote, steps } from "../../../data/insuranceHub";
+import type { Crumb } from "../../../data/schema";
+
+// The printable adjuster summary (#42): one page for a claim file. The site
+// header, footer and buttons are hidden in print by src/styles/site.css.
+const crumbs: Crumb[] = [
+  { name: "Home", href: "/" },
+  { name: "Insurance housing", href: hubHref },
+  { name: "Adjuster summary", href: adjusterSummaryHref },
+];
+const inquiryHref = stayLink({ audience: hubAudience, page: Astro.url.pathname });
+---
+<SiteLayout title={`${adjusterSummary.seoTitle}${TITLE_SUFFIX}`} description={adjusterSummary.description} audience={hubAudience} breadcrumbs={crumbs}>
+  <section class="section section--tight" aria-labelledby="as-title">
+    <div class="site-width reading stack">
+      <Breadcrumbs items={crumbs} />
+      <h1 id="as-title">{adjusterSummary.h1}</h1>
+      <p class="lede">{adjusterSummary.intro}</p>
+
+      <h2>The homes</h2>
+      <ul data-testid="summary-homes">{capacityRows.map((row) => <li data-home={row.id}>{householdLine(row)}</li>)}</ul>
+
+      <h2>Terms</h2>
+      <ul data-testid="summary-terms">{statedTerms.map((item) => <li>{item}</li>)}</ul>
+
+      <h2>How to request a home</h2>
+      <ol data-testid="summary-steps">{steps.map((item) => <li>{item}</li>)}</ol>
+      <p>{moveInNote}</p>
+
+      <h2>Contact</h2>
+      <p>Send a request through the stay form at <a href={inquiryHref} data-cta="summary-inquiry">mtcottages.com</a>, or email <a href="mailto:stay@mtcottages.com">stay@mtcottages.com</a>. Mt Cottages is an independent furnished-housing company; prices and availability are confirmed on inquiry.</p>
+      <p class="details-note">To keep this page, use your browser's Print command and choose Save as PDF.</p>
+      <p><a class="inline-link" href={hubHref}>Back to insurance housing</a></p>
+    </div>
+  </section>
+</SiteLayout>
