@@ -57,7 +57,8 @@ test("the Parkersburg guide quotes the official figures from its data file", asy
   await expect(cta).toContainText("Stay in a furnished home while you find yours.");
   await expect(cta.getByRole("link", { name: /Check dates/ })).toHaveAttribute("href", /audience=relocation/);
   await expect(cta.getByRole("link", { name: "Broad Cottage, Parkersburg, WV" })).toHaveAttribute("href", "/parkersburg/broad-cottage/");
-  await expect(page.locator(".garticle img")).toHaveCount(0);
+  // Charts only: no area photo. (The homes the guide offers show their own portfolio photos.)
+  await expect(page.locator(".garticle-figure")).toHaveCount(0);
 });
 
 test("the Parkersburg guide is linked from the guides index, the Parkersburg homes and the sitemap", async ({ page, request }) => {
