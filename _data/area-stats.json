@@ -1,6 +1,6 @@
 {
-  "$comment": "Official figures for the area guides (#48). scripts/area-stats.mjs rewrites population and fairMarketRent from the Census Bureau and HUD files named in each source; employers has no machine-readable source and is transcribed by hand from the cited publication.",
-  "retrieved": "2026-11-22",
+  "$comment": "Official figures for the area guides (#48). scripts/area-stats.mjs rewrites population, fairMarketRent and priceParities (#58) from the Census Bureau, HUD and BEA files named in each source; employers has no machine-readable source and is transcribed by hand from the cited publication.",
+  "retrieved": "2026-11-23",
   "employers": {
     "area": "Wood County, WV",
     "source": {
@@ -111,6 +111,63 @@
           1359,
           1521
         ]
+      },
+      {
+        "id": "jackson-county-wv",
+        "label": "Jackson County, WV (Ravenswood)",
+        "hudArea": "Jackson County, WV",
+        "rents": [
+          708,
+          796,
+          944,
+          1188,
+          1347
+        ]
+      }
+    ]
+  },
+  "priceParities": {
+    "year": 2024,
+    "released": "2026-02-19",
+    "source": {
+      "label": "U.S. Bureau of Economic Analysis, Regional Price Parities for 2024, released 2026-02-19",
+      "url": "https://www.bea.gov/data/prices-inflation/regional-price-parities-state-and-metro-area",
+      "file": "https://apps.bea.gov/regional/zip/MARPP.zip"
+    },
+    "portionFile": "https://apps.bea.gov/regional/zip/PARPP.zip",
+    "areas": [
+      {
+        "id": "parkersburg-vienna",
+        "label": "Parkersburg-Vienna metro, WV (Parkersburg)",
+        "index": {
+          "all": 87.1,
+          "goods": 96.3,
+          "housing": 45.9,
+          "utilities": 92.9,
+          "other": 99.8
+        }
+      },
+      {
+        "id": "ohio-nonmetro",
+        "label": "Nonmetro Ohio (Marietta, Washington County)",
+        "index": {
+          "all": 88.3,
+          "goods": 93.7,
+          "housing": 54.3,
+          "utilities": 96.6,
+          "other": 98.9
+        }
+      },
+      {
+        "id": "west-virginia-nonmetro",
+        "label": "Nonmetro West Virginia (Ravenswood, Jackson County)",
+        "index": {
+          "all": 87,
+          "goods": 96.3,
+          "housing": 48,
+          "utilities": 92.2,
+          "other": 99.8
+        }
       }
     ]
   }

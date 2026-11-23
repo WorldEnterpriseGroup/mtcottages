@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 // Refresh the official figures in _data/area-stats.json (#48).
 //
-// Reads two public files and rewrites the "population" and "fairMarketRent"
-// sections of _data/area-stats.json; everything else in the file (the employer
-// list, which has no machine-readable source) is kept as it is. Safe to re-run:
+// Reads public files from the Census Bureau, HUD and the Bureau of Economic
+// Analysis and rewrites the "population", "fairMarketRent" and
+// "priceParities" (#58) sections of _data/area-stats.json; everything else in
+// the file (the employer list, which has no machine-readable source) is kept
+// as it is. Safe to re-run:
 // the same source files give the same output.
 //
 //   node scripts/area-stats.mjs [--check]
@@ -39,7 +41,25 @@ const FISCAL_YEAR = 2027;
 const FMR_AREAS = [
   ["parkersburg-vienna", "Parkersburg-Vienna metro (Wood and Wirt counties, WV)", "WV", "Wood County", "Parkersburg-Vienna, WV MSA"],
   ["washington-county-oh", "Washington County, OH (Marietta)", "OH", "Washington County", "Washington County, OH"],
+  ["jackson-county-wv", "Jackson County, WV (Ravenswood)", "WV", "Jackson County", "Jackson County, WV"],
 ];
+
+// Regional Price Parities (#58): price levels against the US average (100).
+// Parkersburg is in the Parkersburg-Vienna metro area. Washington County, OH
+// (Marietta) and Jackson County, WV (Ravenswood) are in no metro area (OMB
+// bulletin 23-01), so BEA's nearest figure is the nonmetropolitan portion of
+// their state, which includes micropolitan counties.
+const RPP_PAGE = "https://www.bea.gov/data/prices-inflation/regional-price-parities-state-and-metro-area";
+const RPP_METRO_URL = "https://apps.bea.gov/regional/zip/MARPP.zip";
+const RPP_PORTION_URL = "https://apps.bea.gov/regional/zip/PARPP.zip";
+// [id, label, file URL, GeoFIPS, expected GeoName]
+const RPP_AREAS = [
+  ["parkersburg-vienna", "Parkersburg-Vienna metro, WV (Parkersburg)", RPP_METRO_URL, "37620", "Parkersburg-Vienna, WV (Metropolitan Statistical Area)"],
+  ["ohio-nonmetro", "Nonmetro Ohio (Marietta, Washington County)", RPP_PORTION_URL, "39999", "Ohio (Nonmetropolitan Portion)"],
+  ["west-virginia-nonmetro", "Nonmetro West Virginia (Ravenswood, Jackson County)", RPP_PORTION_URL, "54999", "West Virginia (Nonmetropolitan Portion)"],
+];
+// LineCode in the BEA tables -> our category id.
+const RPP_LINES = { 1: "all", 2: "goods", 3: "housing", 4: "utilities", 5: "other" };
 
 function fail(message) {
   console.error(message);
@@ -95,14 +115,14 @@ async function population() {
 }
 
 /** The files of a zip archive, by name, read from its central directory. */
-function unzip(data) {
+function unzip(data, url) {
   const end = data.lastIndexOf(Buffer.from([0x50, 0x4b, 0x05, 0x06]));
-  if (end < 0) fail(`${FMR_URL}: the spreadsheet has no zip directory`);
+  if (end < 0) fail(`${url}: the file has no zip directory`);
   const count = data.readUInt16LE(end + 10);
   let offset = data.readUInt32LE(end + 16);
   const files = new Map();
   for (let i = 0; i < count; i += 1) {
-    if (data.readUInt32LE(offset) !== 0x02014b50) fail(`${FMR_URL}: a damaged zip directory entry`);
+    if (data.readUInt32LE(offset) !== 0x02014b50) fail(`${url}: a damaged zip directory entry`);
     const method = data.readUInt16LE(offset + 10);
     const size = data.readUInt32LE(offset + 20);
     const nameLength = data.readUInt16LE(offset + 28);
@@ -112,7 +132,7 @@ function unzip(data) {
     const name = data.toString("utf8", offset + 46, offset + 46 + nameLength);
     const start = local + 30 + data.readUInt16LE(local + 26) + data.readUInt16LE(local + 28);
     const raw = data.subarray(start, start + size);
-    if (method !== 0 && method !== 8) fail(`${FMR_URL}: ${name} uses zip method ${method}`);
+    if (method !== 0 && method !== 8) fail(`${url}: ${name} uses zip method ${method}`);
     files.set(name, () => (method === 8 ? inflateRawSync(raw) : raw).toString("utf8"));
     offset += 46 + nameLength + extraLength + commentLength;
   }
@@ -130,7 +150,7 @@ const columnOf = (ref) => [...ref.replace(/\d+$/, "")].reduce((sum, letter) => s
 
 function xlsxRows(data) {
   if (data.subarray(0, 2).toString() !== "PK") fail(`${FMR_URL}: the server did not return a spreadsheet (got ${JSON.stringify(data.subarray(0, 60).toString())}); open the link in a browser and retry`);
-  const files = unzip(data);
+  const files = unzip(data, FMR_URL);
   const sharedXml = files.get("xl/sharedStrings.xml")?.() ?? "";
   const shared = [...sharedXml.matchAll(/<si>([\s\S]*?)<\/si>/g)].map((match) => textOf(match[1]));
   const sheets = [...files.keys()].filter((name) => /^xl\/worksheets\/sheet\d+\.xml$/.test(name)).sort();
@@ -175,6 +195,51 @@ async function fairMarketRent() {
   };
 }
 
+/** One BEA regional table (a zip holding `<TABLE>_*.csv`): its rows, data years and last-updated date. */
+async function beaTable(url) {
+  const data = await download(url);
+  if (data.subarray(0, 2).toString() !== "PK") fail(`${url}: the server did not return a zip file`);
+  const files = unzip(data, url);
+  const csvName = [...files.keys()].find((name) => /^[A-Z]+RPP_[A-Z]+_\d{4}_\d{4}\.csv$/.test(name));
+  const notesName = [...files.keys()].find((name) => /RPP__Footnotes\.html$/.test(name));
+  if (!csvName || !notesName) fail(`${url}: expected an RPP csv and its footnotes, found ${[...files.keys()].join(", ")}`);
+  const lines = files.get(csvName)().split(/\r?\n/).filter((line) => line.trim() && !line.startsWith('"Note') && !line.startsWith("Note"));
+  const header = csvFields(lines[0]).map((field) => field.trim());
+  const years = header.filter((field) => /^\d{4}$/.test(field));
+  const rows = lines.slice(1).map((line) => Object.fromEntries(csvFields(line).map((value, i) => [header[i], value.trim()])));
+  const updated = files.get(notesName)().match(/Last updated:\s*([A-Z][a-z]+ \d{1,2}, \d{4})/)?.[1];
+  if (!updated) fail(`${url}: no "Last updated" date in ${notesName}`);
+  const iso = new Date(`${updated} 12:00 UTC`).toISOString().slice(0, 10);
+  return { rows, years, updated: iso };
+}
+
+async function priceParities() {
+  const tables = new Map();
+  for (const url of new Set(RPP_AREAS.map((area) => area[2]))) tables.set(url, await beaTable(url));
+  const year = [...tables.values()].map((table) => table.years.at(-1)).reduce((a, b) => (a === b ? a : fail(`BEA tables end in different years: ${a} and ${b}`)));
+  const released = [...tables.values()].map((table) => table.updated).sort().at(-1);
+  const areas = RPP_AREAS.map(([id, label, url, fips, geoName]) => {
+    const rows = tables.get(url).rows.filter((row) => row.GeoFIPS === fips);
+    if (rows.length === 0) fail(`${url}: no rows for GeoFIPS ${fips}`);
+    if (rows[0].GeoName !== geoName) fail(`${url}: GeoFIPS ${fips} is ${JSON.stringify(rows[0].GeoName)}, expected ${JSON.stringify(geoName)}`);
+    const index = {};
+    for (const [line, category] of Object.entries(RPP_LINES)) {
+      const match = rows.filter((row) => row.LineCode === line);
+      const value = Number.parseFloat(match[0]?.[year]);
+      if (match.length !== 1 || !Number.isFinite(value)) fail(`${url}: no ${year} value for ${geoName}, line ${line}`);
+      index[category] = Math.round(value * 10) / 10;
+    }
+    return { id, label, index };
+  });
+  return {
+    year: Number(year),
+    released,
+    source: { label: `U.S. Bureau of Economic Analysis, Regional Price Parities for ${year}, released ${released}`, url: RPP_PAGE, file: RPP_METRO_URL },
+    portionFile: RPP_PORTION_URL,
+    areas,
+  };
+}
+
 const check = process.argv.includes("--check");
 let current = {};
 if (existsSync(TARGET)) {
@@ -184,8 +249,8 @@ if (existsSync(TARGET)) {
     fail(`cannot read ${TARGET}: ${error instanceof Error ? error.message : String(error)}`);
   }
 }
-const fresh = { ...current, population: await population(), fairMarketRent: await fairMarketRent() };
-const same = isDeepStrictEqual(current.population, fresh.population) && isDeepStrictEqual(current.fairMarketRent, fresh.fairMarketRent);
+const fresh = { ...current, population: await population(), fairMarketRent: await fairMarketRent(), priceParities: await priceParities() };
+const same = ["population", "fairMarketRent", "priceParities"].every((key) => isDeepStrictEqual(current[key], fresh[key]));
 const shown = relative(ROOT, TARGET);
 if (check) {
   console.log(same ? "area-stats.json matches its sources" : "area-stats.json differs from its sources; run node scripts/area-stats.mjs");
