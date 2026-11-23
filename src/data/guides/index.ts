@@ -13,6 +13,8 @@ import { mariettaThingsToDo } from "./marietta-things-to-do";
 import { sternwheelFestival } from "./sternwheel-festival";
 import { movingToParkersburg } from "./moving-to-parkersburg";
 import { whereToEat } from "./where-to-eat";
+import { viennaWv } from "./vienna-wv";
+import { williamstownWv } from "./williamstown-wv";
 import { guideTopicLabel, guideTownLabel, type GuideArticle, type GuideTopic, type GuideTown } from "./types";
 
 export * from "./types";
@@ -22,7 +24,7 @@ const MAX_TITLE = 60;
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
-export const articles: GuideArticle[] = [blennerhassettIsland, costOfLiving, employerCommutes, mariettaThingsToDo, movingToParkersburg, sternwheelFestival, whereToEat].sort((a, b) => b.updated.localeCompare(a.updated) || a.slug.localeCompare(b.slug));
+export const articles: GuideArticle[] = [blennerhassettIsland, costOfLiving, employerCommutes, mariettaThingsToDo, movingToParkersburg, sternwheelFestival, viennaWv, whereToEat, williamstownWv].sort((a, b) => b.updated.localeCompare(a.updated) || a.slug.localeCompare(b.slug));
 
 /** The checks every guide-model page passes; the long-term hub (src/data/longTermHub.ts) runs them too. */
 export function validateArticles(list: GuideArticle[]): string[] {

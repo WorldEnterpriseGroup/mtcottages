@@ -31,6 +31,7 @@ const VINTAGE = 2025;
 const PLACES = [
   ["parkersburg", "Parkersburg (city)", "162", "000", "62140"],
   ["vienna", "Vienna (city)", "162", "000", "83500"],
+  ["williamstown", "Williamstown (city)", "162", "000", "87556"],
   ["wood-county", "Wood County", "050", "107", "00000"],
 ];
 
