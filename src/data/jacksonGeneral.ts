@@ -53,8 +53,12 @@ export const hospitalLabel = hospitalRow.name;
 const minutes = hospitalDrives.map((line) => line.minutes);
 const driveRange = Math.min(...minutes) === Math.max(...minutes) ? `${minutes[0]}` : `${Math.min(...minutes)} to ${Math.max(...minutes)}`;
 
-/** Places around Ravenswood with a measured drive from both homes; a place without one is not listed. */
-const areaIds = ["foodfair-ravenswood", "downtown-ravenswood", "riverfront-park-ravenswood", "ravenswood-high-school", "i77-ravenswood"];
+/**
+ * Places around Ravenswood with a measured drive from both homes; a place without one is not listed.
+ * Downtown Ravenswood is left out: it is the town-centre point Virginia Cottage is measured from, so
+ * it has no drive of its own from that home.
+ */
+const areaIds = ["foodfair-ravenswood", "riverfront-park-ravenswood", "ravenswood-high-school", "i77-ravenswood"];
 export const areaRows: DriveMatrixRow[] = driveMatrix(areaIds, ravenswoodHomes);
 for (const row of areaRows) {
   if (row.drives.length !== ravenswoodHomes.length) throw new Error(`_data/distances.json is missing a ${row.destination} drive for a Ravenswood home`);
