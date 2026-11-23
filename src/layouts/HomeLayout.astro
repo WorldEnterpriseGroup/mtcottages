@@ -11,6 +11,7 @@ import RelatedLinks from "../components/RelatedLinks.astro";
 import { homeCrumbs, type HomeShell } from "../components/home/shell";
 import { guidesForHome, type RelatedLink } from "../data/site";
 import { hospitalLandingsForHome, hub, hubHref } from "../data/travelNurses";
+import { pageHomeIds as washingtonWorksHomes, page as washingtonWorksPage, washingtonWorksHref } from "../data/washingtonWorks";
 import { articlesForHome, guideHref } from "../data/guides";
 import type { ImageMetadata } from "astro";
 import type { SchemaNode } from "../data/schema";
@@ -42,6 +43,8 @@ const related: RelatedLink[] = [
   { href: hubHref, label: hub.h1, note: hub.description },
   // The hospital landings (#32, #33, #45) that recommend this home.
   ...hospitalLandingsForHome(shell.id),
+  // The Washington Works crew landing (#44) for the homes it recommends.
+  ...(washingtonWorksHomes.includes(shell.id) ? [{ href: washingtonWorksHref, label: washingtonWorksPage.h1, note: washingtonWorksPage.description }] : []),
   ...guidesForHome(shell.id).map((guide) => ({ href: `/${guide.path}`, label: guide.title, note: guide.description })),
   // Area guides (#47) about this home.
   ...articlesForHome(shell.id).map((article) => ({ href: guideHref(article), label: article.h1, note: article.description })),
