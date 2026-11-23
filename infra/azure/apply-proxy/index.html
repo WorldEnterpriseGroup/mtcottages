@@ -23,6 +23,7 @@
     @font-face{font-family:"Source Sans 3 Fallback";font-style:normal;font-weight:700;src:local("Arial Bold"),local("Arial-BoldMT"),local("Liberation Sans Bold"),local("Arimo Bold");size-adjust:92.60%;ascent-override:110.58%;descent-override:43.20%;line-gap-override:0%}
     :root{color-scheme:light;--canvas:#f4efe6;--paper:#fffdf8;--ink:#1f2a33;--muted:#4f5b66;--line:#ddd5c8;--accent:#b5573a;--accent-ink:#9e3b26;--forest:#1d4b68;--forest-soft:#e1eaf0;--sun:#eae3d6;--radius:.25rem;--button-radius:.25rem;--heading-weight:600;--heading-tracking:-.02em;--heading-leading:1.04;--display:"Source Serif 4","Source Serif 4 Fallback",Georgia,"Times New Roman",serif;--body:"Source Sans 3","Source Sans 3 Fallback",ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--canvas);color:var(--ink);font:16px/1.65 var(--body)}a{color:inherit;text-decoration-thickness:.08em;text-underline-offset:.18em}a:hover{color:var(--forest)}p,h1,h2,h3{margin:0}p{max-width:68ch}.wrap{width:min(calc(100% - 3rem),92rem);margin-inline:auto}.site-header{background:color-mix(in srgb,var(--canvas) 94%,transparent);border-bottom:1px solid color-mix(in srgb,var(--line) 75%,transparent)}.header-inner{display:flex;min-height:5.25rem;align-items:center;justify-content:space-between;gap:1rem}.brand{color:var(--forest);font:700 1.45rem var(--display);text-decoration:none}.brand span{color:var(--accent-ink)}.eyebrow{color:var(--forest);font:700 .73rem/1.2 ui-monospace,SFMono-Regular,monospace;letter-spacing:.12em;text-transform:uppercase}.lede{max-width:58ch;color:var(--muted);font-size:clamp(1.08rem,1rem + .3vw,1.34rem);line-height:1.55}.hero{padding:clamp(2.75rem,4vw,4.5rem) 0;background:var(--forest-soft)}.hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(16rem,.9fr);gap:clamp(2.25rem,4vw,4.5rem);align-items:end}.hero h1{max-width:12ch;margin:.75rem 0 1.2rem;font:var(--heading-weight) clamp(2.3rem,1.45rem + 3.6vw,4.75rem)/var(--heading-leading) var(--display);letter-spacing:var(--heading-tracking)}.hero-note{max-width:34rem;margin-inline-start:auto;padding:clamp(1.4rem,1rem + 1.15vw,2.3rem);background:var(--sun);border-inline-start:.25rem solid var(--accent)}.hero-note p:last-child{margin-top:.75rem;color:var(--muted)}.panel{padding:clamp(4rem,2.5rem + 4vw,7rem) 0;background:var(--paper)}.panel-shell{padding:clamp(2.25rem,1.5rem + 2.5vw,4.5rem);background:var(--paper);border:1px solid var(--line);border-radius:var(--radius)}.heading{display:grid;grid-template-columns:minmax(0,.65fr) minmax(0,1.35fr);gap:1rem;margin-bottom:clamp(2.25rem,1.5rem + 2.5vw,4.5rem)}h2{max-width:18ch;font:var(--heading-weight) clamp(1.6rem,1.2rem + 1.7vw,2.75rem)/var(--heading-leading) var(--display);letter-spacing:var(--heading-tracking)}.heading>p{color:var(--muted)}.guide{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:-1.25rem;margin-bottom:clamp(2.25rem,1.5rem + 2.5vw,4.5rem);padding:clamp(1.4rem,1rem + 1.15vw,2.3rem) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.guide>div{display:grid;gap:.45rem;align-content:start;padding:0 1rem;border-left:1px solid var(--line)}.guide>div:first-child{padding-left:0;border-left:0}.guide-mark{color:var(--forest);font:700 .7rem/1.2 ui-monospace,SFMono-Regular,monospace;letter-spacing:.12em}.guide h3{font:var(--heading-weight) 1.35rem/var(--heading-leading) var(--display);letter-spacing:var(--heading-tracking)}.guide p{color:var(--muted);font-size:.86rem;line-height:1.45}.next{display:grid;grid-template-columns:minmax(10rem,.35fr) minmax(0,1fr);gap:1rem;margin-bottom:clamp(2.25rem,1.5rem + 2.5vw,4.5rem);padding:1rem 1.15rem;background:var(--canvas);border-radius:var(--radius)}.next p:last-child{color:var(--muted)}.next a,.human-check a{color:var(--forest);font-weight:800}.form-context{display:flex;flex-wrap:wrap;align-items:center;gap:.65rem 1rem;padding:1rem;background:var(--forest-soft);border-radius:var(--radius)}.form-context[hidden]{display:none!important}.form-context strong{color:var(--forest);font:500 1.25rem var(--display)}.form-context a{margin-inline-start:auto;color:var(--forest);font-size:.8rem;font-weight:800}.form{display:grid;gap:1.25rem}.form-stage{display:grid;gap:1rem;margin:0;padding:0 0 2.3rem;border:0;border-bottom:1px solid var(--line)}.form-stage legend{display:flex;align-items:center;gap:.65rem;width:100%;margin-bottom:.5rem;color:var(--forest);font:var(--heading-weight) clamp(1.2rem,1.05rem + .75vw,1.72rem)/var(--heading-leading) var(--display)}.form-stage legend span{display:grid;width:2rem;height:2rem;place-items:center;border-radius:50%;background:var(--forest);color:#fff;font:700 .65rem/1 ui-monospace,monospace}.form-stage>p{color:var(--muted);font-size:.88rem}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem 1.25rem}.form-grid label{display:grid;gap:.35rem;color:var(--forest);font-size:.9rem;font-weight:700}.form-grid label span{color:var(--muted);font-size:.78rem;font-weight:500;line-height:1.45}.form-grid input,.form-grid select,.form-grid textarea{width:100%;min-height:3rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--canvas);color:var(--ink);padding:.7rem .8rem;font:inherit}.form-grid textarea{min-height:8rem;resize:vertical}.form-grid input:focus,.form-grid input:focus-within,.form-grid select:focus,.form-grid textarea:focus{outline:.2rem solid var(--accent-ink);outline-offset:.22rem;border-color:var(--forest)}.full{grid-column:1/-1}.consent{display:grid;gap:.65rem;margin:0;padding:1rem 1.2rem;border:1px solid var(--line)}.consent legend{padding:0 .35rem;color:var(--muted);font-size:.75rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.consent label{display:flex;align-items:flex-start;gap:.55rem}.consent input{width:auto;min-height:auto;margin-top:.35rem;accent-color:var(--accent)}.human-check{display:grid;grid-template-columns:minmax(0,1fr) minmax(16rem,auto);gap:1rem;align-items:center;padding:1rem 1.15rem;background:var(--forest-soft);border-radius:var(--radius)}.human-check>div:first-child{display:grid;gap:.35rem}.human-check>div:first-child p:last-child{color:var(--muted);font-size:.84rem;line-height:1.45}.cf-turnstile{min-height:4.1rem}a:focus-visible,button:focus-visible,.consent input:focus-visible,.cf-turnstile:focus-within{outline:.2rem solid var(--accent-ink);outline-offset:.22rem}.form-notice{max-width:58rem;color:var(--muted);font-size:.88rem}.form-status{min-height:1.6rem;margin-top:1rem;color:var(--forest);font-weight:700}.form-status[data-state="error"]{color:var(--accent-ink)}.trap{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}.button{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:3rem;margin-top:1.25rem;border:1px solid var(--forest);border-radius:var(--button-radius);background:var(--forest);color:#fff;padding:.72rem 1.15rem;font:inherit;font-weight:700;cursor:pointer;text-decoration:none}.button:hover{background:var(--accent-ink);border-color:var(--accent-ink);color:#fff}.button--quiet{margin-top:0;background:transparent;color:var(--forest)}.button--quiet:hover{background:var(--sun);color:var(--forest)}.button:disabled{cursor:not-allowed;opacity:.55}.site-footer{padding:2rem 0;color:var(--muted);font-size:.85rem}.skip-link{position:absolute;left:-10000px}.skip-link:focus{left:1rem;top:1rem;z-index:5;padding:.6rem 1rem;background:var(--forest);color:#fff}[hidden]{display:none!important}@media(max-width:900px){.hero-grid,.heading{grid-template-columns:1fr}.hero-note{margin-inline-start:0}.guide{grid-template-columns:1fr}.guide>div,.guide>div:first-child{padding:0;border-left:0}.next,.human-check{grid-template-columns:1fr}}@media(max-width:650px){.wrap{width:min(calc(100% - 2rem),92rem)}.panel-shell{padding:2rem 1rem}.form-grid{grid-template-columns:1fr}.full{grid-column:auto}.header-inner{min-height:4.5rem}.button--quiet{padding:.5rem .7rem;font-size:.8rem}.human-check{grid-template-columns:1fr}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
+    .panel-shell>[hidden]{display:none}.confirmation{display:grid;gap:1.1rem}.confirmation h2{max-width:22ch}.confirmation h2:focus{outline:none}.confirmation h2:focus-visible{outline:3px solid var(--accent-ink,var(--accent-strong));outline-offset:.3rem}.confirmation-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1.5rem,1rem + 2vw,3rem);margin-top:.5rem;padding:clamp(1.4rem,1rem + 1.15vw,2.3rem) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.confirmation h3{margin-bottom:.75rem;font:700 1.05rem/1.3 var(--body)}.confirmation-summary{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:.45rem 1.25rem;margin:0}.confirmation-summary dt{color:var(--muted)}.confirmation-summary dd{margin:0;overflow-wrap:anywhere}.confirmation-steps{display:grid;gap:.8rem;margin:0;padding-inline-start:1.25rem}.confirmation-actions{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem}.confirmation-actions .button{margin-top:0}@media(max-width:650px){.confirmation-grid{grid-template-columns:1fr}.confirmation-summary{grid-template-columns:1fr;gap:.1rem}.confirmation-summary dd{margin-bottom:.55rem}}
   </style>
 </head>
 <body>
@@ -67,6 +68,17 @@
         <p class="form-status" data-form-status role="status" aria-live="polite"></p>
         <button class="button" type="submit" data-requires-turnstile>Send inquiry <span aria-hidden="true">↗</span></button>
       </form>
+      <section class="confirmation" data-confirmation hidden aria-labelledby="confirmation-title">
+        <p class="eyebrow">Inquiry received</p>
+        <h2 id="confirmation-title" tabindex="-1">Thank you. Your inquiry is with Mt Cottages.</h2>
+        <p class="lede">We have your note and will follow up about current availability, pricing, and the cottages that may fit.</p>
+        <div class="confirmation-grid">
+          <div><h3>What we received</h3><dl class="confirmation-summary" data-confirmation-summary></dl></div>
+          <div><h3>What happens next</h3><ol class="confirmation-steps"><li><strong>We read your note.</strong> Mt Cottages reviews your timing, household, and the details you shared.</li><li><strong>We follow up.</strong> You hear from us by email or phone about current availability, pricing, and the homes that may fit.</li><li><strong>We plan the next step together.</strong> If a cottage fits, we talk through what comes next, including whether a later screening or agreement makes sense.</li></ol></div>
+        </div>
+        <p>Want to add something or correct a detail? Email <a href="mailto:stay@mtcottages.com">stay@mtcottages.com</a>.</p>
+        <p class="confirmation-actions"><a class="button" href="https://mtcottages.com/cottages.html" data-confirmation-home>Browse the cottages</a><button class="button button--quiet" type="button" data-confirmation-again>Send another inquiry</button></p>
+      </section>
     </div></section>
   </main>
   <footer class="site-footer"><div class="wrap">Mt Cottages · Marietta · Parkersburg · Ravenswood</div></footer>
@@ -245,6 +257,57 @@
 
       const status = form.querySelector("[data-form-status]");
       const submit = form.querySelector('[type="submit"]');
+      // The on-page confirmation (#76): what the guest sent, in their own words
+      // and only in this tab, and what happens next. No response time is
+      // promised until the owner approves one.
+      const confirmation = document.querySelector("[data-confirmation]");
+      const panelShell = form.closest(".panel-shell");
+      const submitLabel = submit.innerHTML;
+      const SUMMARY_FIELDS = [
+        ["Reply to", (data) => [data.get("email"), data.get("phone")].map((value) => String(value || "").trim()).filter(Boolean).join(" · ")],
+        ["Home", () => property?.name || ""],
+        ["Community", (data) => data.get("preferredLocation")],
+        ["Move-in", (data) => {
+          const value = String(data.get("moveInDate") || "");
+          const parsed = /^\d{4}-\d{2}-\d{2}$/.test(value) ? new Date(`${value}T00:00:00Z`) : null;
+          return parsed && !Number.isNaN(parsed.getTime()) ? parsed.toLocaleDateString("en-US", { timeZone: "UTC", month: "long", day: "numeric", year: "numeric" }) : value;
+        }],
+        ["Length of stay", (data) => data.get("duration")],
+        ["Occupants", (data) => data.get("occupants")],
+        ["What brings you", (data) => data.get("stayType")],
+      ];
+      const showConfirmation = (data) => {
+        if (!confirmation || !panelShell) return;
+        const summary = confirmation.querySelector("[data-confirmation-summary]");
+        summary.replaceChildren();
+        for (const [label, read] of SUMMARY_FIELDS) {
+          const value = String(read(data) || "").trim();
+          if (!value) continue;
+          const term = document.createElement("dt");
+          term.textContent = label;
+          const detail = document.createElement("dd");
+          detail.textContent = value;
+          summary.append(term, detail);
+        }
+        const firstName = String(data.get("firstName") || "").trim();
+        confirmation.querySelector("h2").textContent = firstName ? `Thank you, ${firstName}. Your inquiry is with Mt Cottages.` : "Thank you. Your inquiry is with Mt Cottages.";
+        const home = confirmation.querySelector("[data-confirmation-home]");
+        if (property) {
+          home.href = `https://mtcottages.com/${property.path}`;
+          home.textContent = `Back to ${property.name}`;
+        }
+        for (const child of panelShell.children) child.hidden = child !== confirmation;
+        confirmation.querySelector("h2").focus();
+        confirmation.scrollIntoView({ block: "start", behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+      };
+      confirmation?.querySelector("[data-confirmation-again]")?.addEventListener("click", () => {
+        for (const child of panelShell.children) child.hidden = child === confirmation;
+        status.textContent = "";
+        delete status.dataset.state;
+        submit.innerHTML = submitLabel;
+        submit.disabled = false;
+        form.querySelector('[name="message"]').focus();
+      });
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
         submit.disabled = true;
@@ -308,6 +371,7 @@
           status.dataset.state = "success";
           status.textContent = "Thanks — your inquiry is on its way. Mt Cottages will follow up about availability and next steps.";
           submit.textContent = "Inquiry sent";
+          showConfirmation(new FormData(form));
           submissionField.value = newSubmissionId();
           count("form_submit");
         } catch (error) {
