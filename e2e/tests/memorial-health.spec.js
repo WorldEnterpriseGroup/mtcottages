@@ -97,9 +97,9 @@ test.describe("Memorial Health landing /travel-nurses/memorial-health-marietta/"
     await expect(page.locator('[data-testid="frederick-facts"]')).toContainText(`${memorial.minutes} minutes by car to Marietta Memorial Hospital (${memorial.miles.toFixed(1)} mi)`);
     await expect(page.locator('[data-testid="drive-source"]')).toContainText(/OpenStreetMap/);
     await expect(page.locator('[data-testid="drive-source"]')).toContainText(/measured \d{1,2} \w{3} 20\d\d/);
-    // No unmeasured drive: there is no Belpre row in the data, so no Belpre time on the page.
+    // No Belpre time on this page: its table measures the hospitals only. Belpre's
+    // measured drives (belpre-centre, #56) belong to the Belpre guide.
     const main = (await page.locator("main").textContent()) ?? "";
-    expect(distances.rows.some((row) => /belpre/i.test(row.destination))).toBe(false);
     expect(main).not.toMatch(/\d+\s*min(ute)?s?[^.]{0,40}Belpre|Belpre[^.]{0,40}\d+\s*min/i);
   });
 
