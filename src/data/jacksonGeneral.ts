@@ -72,10 +72,10 @@ export const homePages = ravenswoodHomes.map((entry) => ({ id: entry.id, name: e
 
 export const page = {
   title: "Housing Near Jackson General, Ripley, WV | Mt Cottages",
-  description: `Travel nurse housing near Jackson General Hospital in Ripley, WV: two furnished homes in Ravenswood, ${driveRange} minutes away by measured drive.`,
+  description: `Travel nurse housing near Jackson General Hospital in Ripley, WV. Two furnished homes in Ravenswood, ${driveRange} minutes away by measured drive.`,
   eyebrow: "WVU Medicine Jackson General Hospital, Ripley, WV",
   h1: "Housing near Jackson General Hospital in Ripley, WV",
-  lede: `On a contract at Jackson General Hospital? Our nearest homes are in Ravenswood, on the Ohio River: Henrietta and Virginia Cottages, each about ${driveRange} minutes by car from the hospital in Ripley.`,
+  lede: `On a contract at Jackson General Hospital? Henrietta and Virginia Cottages are our nearest homes. They sit on the Ohio River in Ravenswood, each about ${driveRange} minutes by car from the hospital in Ripley.`,
   intro: "The hospital is in Ripley, south of Ravenswood. Ravenswood is a small river town with a grocery store, a riverfront park and the interstate a few minutes from either home. This page gives the measured drive from each home, the everyday places around them, and what we confirm before you commit.",
   inquiryLabel: `Check dates for ${nearest.homeName}`,
 } as const;
@@ -93,7 +93,7 @@ const hubFaq = (pattern: RegExp): Faq => {
 
 export const faqs: Faq[] = [
   {
-    q: "Is Jackson General Hospital in Ravenswood?",
+    q: "How far is Jackson General Hospital from the Ravenswood homes?",
     a: `No. Jackson General Hospital is in Ripley, West Virginia. Our nearest homes are in Ravenswood: ${hospitalDrives.map((line) => `${line.homeName} is about ${line.minutes} minutes (${line.miles.toFixed(1)} miles) away by car`).join(", and ")}.`,
   },
   {
