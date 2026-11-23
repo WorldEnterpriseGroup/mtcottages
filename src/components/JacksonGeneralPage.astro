@@ -1,0 +1,178 @@
+---
+/**
+ * Jackson General Hospital landing (#45), built like the Memorial landing
+ * (MemorialHealthPage.astro): a hero with one CTA, the measured drive from each
+ * Ravenswood home to the hospital in Ripley, the everyday places around the
+ * homes (a table), terms stated only as far as they are confirmed, native FAQ
+ * disclosures that match the FAQPage schema, the homes, and the no-affiliation
+ * disclaimer. Data and honesty rules: src/data/jacksonGeneral.ts.
+ */
+import "../styles/town-landing.css";
+import "../styles/travel-nurses.css";
+import ResponsivePhoto from "./ResponsivePhoto.astro";
+import PropertyCard from "./PropertyCard.astro";
+import { cottages } from "../data/site";
+import { stayLink } from "../data/stay-link";
+import type { Crumb } from "../data/schema";
+import type { Photo } from "../data/site";
+import {
+  areaRows, disclaimer, driveSource, faqs, fromLabel, homePages, hospitalDrives, hospitalLabel, hubHref, nearest, page, ravenswoodHomes, terms,
+} from "../data/jacksonGeneral";
+
+interface Props {
+  crumbs: Crumb[];
+  hero: Photo;
+}
+
+const { crumbs, hero } = Astro.props;
+// Every inquiry link carries the home, the audience and this page as its source (#20).
+const pathname = Astro.url.pathname;
+const inquiryHref = stayLink({ home: nearest.homeId, audience: "healthcare", page: pathname });
+const homeCards = ravenswoodHomes.map((home) => {
+  const cottage = cottages.find((entry) => entry.id === home.id);
+  if (!cottage) throw new Error(`The Jackson General page lists "${home.id}", which is not in src/data/site.ts`);
+  return { home, cottage, href: stayLink({ home: home.id, audience: "healthcare", page: pathname }) };
+});
+const hrefOf = (homeId: string) => homePages.find((entry) => entry.id === homeId)?.href ?? "/ravenswood/index.html";
+---
+
+<section class="guide-hero section--tight tl-hero">
+  <div class="site-width guide-hero-grid">
+    <div>
+      <nav class="crumbs" aria-label="Breadcrumb">
+        {crumbs.map((crumb, index) => index < crumbs.length - 1
+          ? <><a href={crumb.href}>{crumb.name}</a><span aria-hidden="true">/</span></>
+          : <span aria-current="page">{crumb.name}</span>)}
+      </nav>
+      <p class="eyebrow mt-3">{page.eyebrow}</p>
+      <h1>{page.h1}</h1>
+      <p class="lede" data-testid="jg-lede">{page.lede}</p>
+      <p class="mt-2 reading">{page.intro}</p>
+      <div class="cluster mt-3" data-cta="hero">
+        <a class="button" href={inquiryHref}>{page.inquiryLabel} <span aria-hidden="true">↗</span></a>
+        <a class="button button--ghost" href="#drives">See the drive times</a>
+      </div>
+    </div>
+    <figure class="hero-image-frame">
+      <ResponsivePhoto {...hero} priority sizes="(max-width: 900px) 100vw, 55vw" />
+    </figure>
+  </div>
+</section>
+
+<section class="section section--paper" id="drives" aria-labelledby="jg-drives-title">
+  <div class="site-width">
+    <div class="section-heading">
+      <div><p class="eyebrow">Measured, not guessed</p><h2 id="jg-drives-title">The drive from Ravenswood to Jackson General in Ripley</h2></div>
+      <p>The hospital is in Ripley, not Ravenswood. Here is the drive from each of our Ravenswood homes, nearest first.</p>
+    </div>
+    <ul class="card-grid tn-drive-cards" role="list">
+      {hospitalDrives.map((line) => (
+        <li class="tn-hospital" data-home={line.homeId}>
+          <p class="location">{fromLabel(line)}</p>
+          <p class="tn-drive-big"><strong data-testid="drive-minutes">{line.minutes} min</strong> <span>by car to {hospitalLabel}, {line.miles.toFixed(1)} mi</span></p>
+          <a class="inline-link" href={hrefOf(line.homeId)}>See {line.homeName}: photos, plan and map <span aria-hidden="true">→</span></a>
+        </li>
+      ))}
+    </ul>
+    <p class="details-note mt-2" data-testid="drive-source">{driveSource}</p>
+  </div>
+</section>
+
+<section class="section" id="area" aria-labelledby="jg-area-title">
+  <div class="site-width">
+    <div class="section-heading">
+      <div><p class="eyebrow">Ravenswood</p><h2 id="jg-area-title">Groceries, the river and the interstate around you</h2></div>
+      <p>Only places with a measured drive from both homes are listed.</p>
+    </div>
+    <div class="tl-table-scroll" role="region" aria-labelledby="jg-area-caption" tabindex="0">
+      <table class="tl-table tn-table" data-testid="area-table">
+        <caption id="jg-area-caption" class="sr-only">Drive minutes and miles from Henrietta Cottage and Virginia Cottage to everyday places in Ravenswood</caption>
+        <thead>
+          <tr><th scope="col">Place</th>{ravenswoodHomes.map((home) => <th scope="col" data-home={home.id}>{home.name}</th>)}</tr>
+        </thead>
+        <tbody>
+          {areaRows.map((row) => (
+            <tr data-place={row.destination}>
+              <th scope="row">{row.label}</th>
+              {ravenswoodHomes.map((home) => {
+                const line = row.drives.find((entry) => entry.homeId === home.id);
+                return <td data-home={home.id}>{line ? <><strong>{line.minutes} min</strong> <span class="tl-miles">{line.miles.toFixed(1)} mi</span></> : "Ask us"}</td>;
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="details-note mt-2">Same routes and method as the drive to the hospital above.</p>
+  </div>
+</section>
+
+<section class="section section--paper" id="terms" aria-labelledby="jg-terms-title">
+  <div class="site-width split">
+    <div class="stack">
+      <p class="eyebrow">13-week contracts and longer</p>
+      <h2 id="jg-terms-title">What we state, and what we confirm first</h2>
+      <ul class="checklist" role="list" data-testid="terms-stated">{terms.stated.map((item) => <li><span>{item}</span></li>)}</ul>
+    </div>
+    <div class="stack">
+      <p class="eyebrow">Confirm on inquiry</p>
+      <h2>Not confirmed for every home yet</h2>
+      <ul class="tl-confirm" role="list" data-testid="terms-confirm">{terms.confirm.map((item) => <li>{item}</li>)}</ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq" aria-labelledby="jg-faq-title">
+  <div class="site-width split split--wide">
+    <div>
+      <p class="eyebrow">Questions</p>
+      <h2 id="jg-faq-title">Housing near Jackson General, answered</h2>
+    </div>
+    <div class="faq">
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section section--paper" id="homes" aria-labelledby="jg-homes-title">
+  <div class="site-width">
+    <div class="section-heading">
+      <div><p class="eyebrow">The two homes</p><h2 id="jg-homes-title">Henrietta Cottage and Virginia Cottage, in Ravenswood</h2></div>
+      <p>Photos are of the real homes. Guide prices are for planning; we confirm the current price and what it covers before you commit.</p>
+    </div>
+    <div class="card-grid">
+      {homeCards.map(({ home, cottage, href }) => (
+        <div class="tn-card" data-home={home.id}>
+          <PropertyCard cottage={cottage} headingLevel={3} />
+          <a class="inline-link tn-inline mt-2" href={href} data-cta={`home-${home.id}`}>Ask about {home.name} <span aria-hidden="true">↗</span></a>
+        </div>
+      ))}
+    </div>
+    <p class="mt-3">Not working at Jackson General? <a class="inline-link tn-inline" href={hubHref}>Travel nurse housing across the Mid-Ohio Valley</a> · <a class="inline-link tn-inline" href="/ravenswood/index.html">Furnished homes in Ravenswood, WV</a></p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="jg-disclaimer-title">
+  <div class="site-width">
+    <h2 id="jg-disclaimer-title" class="tn-small-heading">No affiliation</h2>
+    <p class="details-note mt-2" data-testid="disclaimer">{disclaimer}</p>
+  </div>
+</section>
+
+<section class="section section--dark" aria-labelledby="jg-next-title">
+  <div class="site-width split split--wide">
+    <div>
+      <p class="eyebrow tl-eyebrow-light">The next step</p>
+      <h2 id="jg-next-title">Tell us your contract dates. We will tell you what fits.</h2>
+    </div>
+    <div>
+      <p class="lede lede--light">Share your start and end dates, your unit's shift pattern and who is coming. We reply with the home that fits, its current price and what is included. An inquiry is a conversation, not a lease.</p>
+      <a class="button button--light mt-3" href={inquiryHref} data-cta="next-step">{page.inquiryLabel} <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>

@@ -193,8 +193,25 @@ export const hospitals: HospitalCard[] = [
     summary: "The hospital is in Ripley, not Ravenswood. Henrietta Cottage is in Ravenswood, the nearest of our homes to it.",
     campuses: [{ label: "Jackson General Hospital", drives: [drive("henrietta", "jackson-general")] }],
     town: { name: "Ravenswood, West Virginia", href: "/ravenswood/index.html" },
+    guide: { name: "Housing near Jackson General, from Ravenswood", href: "/travel-nurses/jackson-general/" },
   },
 ];
+
+/**
+ * The hospital landing pages and the homes each one features, for those homes'
+ * Related blocks (src/layouts/HomeLayout.astro), so every landing is linked
+ * from the homes it recommends.
+ */
+export const hospitalLandings: (RelatedLinkShape & { homeIds: string[] })[] = [
+  { href: camdenClarkHref, label: "Furnished homes near Camden Clark", note: "Measured drives from Broad and Oak Cottages to Camden Clark Medical Center in Parkersburg.", homeIds: ["broad", "oak"] },
+  { href: "/travel-nurses/memorial-health-marietta/", label: "Housing near Marietta Memorial, for staff and residents", note: "Measured drives to Marietta Memorial and Selby General hospitals in Marietta, Ohio.", homeIds: ["frederick", "broad", "oak"] },
+  { href: "/travel-nurses/jackson-general/", label: "Housing near Jackson General Hospital in Ripley, WV", note: "Measured drives from Henrietta and Virginia Cottages in Ravenswood to the hospital in Ripley.", homeIds: ["henrietta", "virginia"] },
+];
+type RelatedLinkShape = { href: string; label: string; note: string };
+
+/** The hospital landings that feature a home. */
+export const hospitalLandingsForHome = (homeId: string): RelatedLinkShape[] =>
+  hospitalLandings.filter((landing) => landing.homeIds.includes(homeId)).map(({ href, label, note }) => ({ href, label, note }));
 
 /** The latest measurement date behind the hospital drives, e.g. "15 Nov 2026". */
 export const drivesMeasured = formatMeasured(
