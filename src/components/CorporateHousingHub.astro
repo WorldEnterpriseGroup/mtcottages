@@ -16,6 +16,7 @@ import ResponsivePhoto from "./ResponsivePhoto.astro";
 import PropertyCard from "./PropertyCard.astro";
 import { cottages } from "../data/site";
 import { stayLink } from "../data/stay-link";
+import { plantLandings } from "../data/plantLandings";
 import type { Crumb } from "../data/schema";
 import type { Photo } from "../data/site";
 import {
@@ -151,7 +152,9 @@ const homeCards = capacityRows.map((row) => {
       <p class="details-note mt-2" data-testid="drive-source">{driveSource}</p>
     </figure>
     {driveGap && <p class="mt-3 reading" data-testid="drive-gap">{driveGap}</p>}
-    <p class="mt-3"><a class="inline-link" href="/corporate-housing/washington-works/" data-plant-landing>Crew housing near Chemours Washington Works <span aria-hidden="true">→</span></a></p>
+    <ul class="cluster mt-3" role="list" aria-label="Crew housing by plant">
+      {plantLandings.map((landing) => <li><a class="inline-link" href={landing.href} data-plant-landing>{landing.linkLabel} <span aria-hidden="true">→</span></a></li>)}
+    </ul>
   </div>
 </section>
 

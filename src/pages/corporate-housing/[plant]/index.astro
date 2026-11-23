@@ -1,0 +1,38 @@
+---
+import SiteLayout from "../../../layouts/SiteLayout.astro";
+import PlantLandingPage from "../../../components/PlantLandingPage.astro";
+import { faqSchema, type Crumb } from "../../../data/schema";
+import { homes } from "../../../data/homes";
+import { hubAudience, hubHref, plantLandings, type PlantLanding } from "../../../data/plantLandings";
+
+// Plant crew landings (#44, #43), under the corporate and crew hub (#34): one page per entry in plantLandings.
+export function getStaticPaths() {
+  return plantLandings.map((landing) => ({ params: { plant: landing.slug }, props: { landing } }));
+}
+
+interface Props {
+  landing: PlantLanding;
+}
+
+const { landing } = Astro.props;
+const crumbs: Crumb[] = [
+  { name: "Home", href: "/" },
+  { name: "Corporate and crew housing", href: hubHref },
+  { name: landing.name, href: landing.href },
+];
+// The real hero photo of the home nearest the plant, never a plant image.
+const home = homes.find((entry) => entry.id === landing.nearest.homeId);
+if (!home) throw new Error(`${landing.name} page: nearest home "${landing.nearest.homeId}" has no live microsite`);
+const hero = { src: home.hero.src, alt: home.hero.alt, focal: home.hero.focal ?? "center" };
+---
+<SiteLayout
+  title={landing.page.title}
+  description={landing.page.description}
+  audience={hubAudience}
+  breadcrumbs={crumbs}
+  socialImage={hero.src}
+  socialImageAlt={hero.alt}
+  schema={faqSchema(landing.href, landing.faqs)}
+>
+  <PlantLandingPage landing={landing} crumbs={crumbs} hero={hero} />
+</SiteLayout>
