@@ -59,7 +59,8 @@ for (const guide of GUIDES) {
 
     const drive = row(guide.bar.origin, guide.bar.destination);
     const chart = page.locator(`[data-guide-chart="${guide.href.split("/")[2]}-drives"]`);
-    await expect(chart.locator(`[data-chart-bar="${guide.bar.name}"] .gc-value`).first()).toHaveText(`${drive.minutes} min`);
+    const group = chart.locator(`g[data-chart-group="${distances.destinations[guide.bar.destination].label}"]`);
+    await expect(group.locator(`[data-chart-bar="${guide.bar.name}"] .gc-value`)).toHaveText(`${drive.minutes} min`);
 
     const cta = page.locator("[data-guide-cta]");
     await expect(cta.getByRole("link", { name: /Check dates/ })).toHaveAttribute("href", /audience=relocation/);
