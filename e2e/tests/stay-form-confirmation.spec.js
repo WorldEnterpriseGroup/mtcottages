@@ -2,6 +2,10 @@ const { test, expect } = require("@playwright/test");
 const AxeBuilder = require("@axe-core/playwright").default;
 const { openForm, fillInquiry } = require("./support/stay-form");
 
+// Same as stay-form-token.spec.js: the form scrolls smoothly unless the visitor
+// prefers reduced motion, and a click mid-scroll can miss its target.
+test.use({ contextOptions: { reducedMotion: "reduce" } });
+
 // #76: after a sent inquiry the guest sees what was received and what happens
 // next. Hermetic (support/stay-form.js): /api/apply is answered by the test, so
 // no application is ever submitted.
