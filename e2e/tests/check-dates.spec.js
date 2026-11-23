@@ -139,7 +139,7 @@ test("audience hubs and town pages carry their audience or town on every inquiry
     ["/family-stays.html", { audience: "visiting-family" }],
     ["/marietta/index.html", { location: "marietta" }, ["frederick"]],
     ["/parkersburg/index.html", { location: "parkersburg" }, ["broad", "buck", "oak"]],
-    ["/ravenswood/index.html", { location: "ravenswood" }],
+    ["/ravenswood/index.html", { location: "ravenswood" }, ["henrietta", "virginia"]],
     ["/racine/index.html", { location: "racine" }],
     ["/grantsville/index.html", { location: "grantsville" }],
     ["/about/", {}],
