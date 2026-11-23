@@ -73,6 +73,12 @@
         "estimate": 10321
       },
       {
+        "id": "williamstown",
+        "label": "Williamstown (city)",
+        "base2020": 2990,
+        "estimate": 2922
+      },
+      {
         "id": "wood-county",
         "label": "Wood County",
         "base2020": 84300,

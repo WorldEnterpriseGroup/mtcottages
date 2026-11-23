@@ -59,7 +59,9 @@
     "riverfront-park-ravenswood": { "name": "Washington Riverfront Park, Ravenswood", "label": "Riverfront Park", "category": "attraction", "lat": 38.9434849, "lng": -81.7591832 },
     "i77-marietta": { "name": "I-77 at Exit 1 (Pike Street, Marietta)", "label": "I-77, Exit 1", "category": "highway", "note": "Measured to the I-77 South on-ramp from Pike Street (OSRM step 7)." },
     "i77-parkersburg": { "name": "I-77 on-ramp nearest the home", "label": "I-77 on-ramp", "category": "highway", "note": "Measured to the first I-77 on-ramp on the OSRM route south (Broad and Oak: via Staunton Turnpike, WV 47; town centre: via WV 95)." },
-    "i77-ravenswood": { "name": "I-77 at Exit 146 (Ravenswood)", "label": "I-77, Exit 146", "category": "highway", "note": "Measured to where the route joins I-77 via US 33 and WV 2." }
+    "i77-ravenswood": { "name": "I-77 at Exit 146 (Ravenswood)", "label": "I-77, Exit 146", "category": "highway", "note": "Measured to where the route joins I-77 via US 33 and WV 2." },
+    "vienna-centre": { "name": "Vienna, WV (the point OpenStreetMap places the city at)", "label": "Vienna, WV", "category": "attraction", "lat": 39.3208866, "lng": -81.5512639, "note": "The town as a whole, for the Vienna and Williamstown guides (#55); measured to the point OpenStreetMap places the town at." },
+    "williamstown-centre": { "name": "Williamstown, WV (the point OpenStreetMap places the city at)", "label": "Williamstown, WV", "category": "attraction", "lat": 39.4000046, "lng": -81.4488545, "note": "The town as a whole, for the Vienna and Williamstown guides (#55); measured to the point OpenStreetMap places the town at." }
   },
   "sources": {
     "table": "https://router.project-osrm.org/table/v1/driving/-81.4233393,39.4158196;-81.5287416,39.2819327;-81.5301764,39.2793150;-81.7578990,38.9490150;-81.761,38.9481;-81.5615,39.2667;-81.4645367,39.4317032;-81.4546369,39.4158798;-81.4484225,39.4160950;-81.5602114,39.2709358;-81.5606099,39.2664760;-81.7298948,38.8228835;-81.7617659,38.9524972;-81.5213670,39.2698011?sources=0;1;2;3;4;5&destinations=4;5;6;7;8;9;10;11;12;13&annotations=duration,distance",
@@ -71,7 +73,8 @@
     "route-henrietta-i77": "https://router.project-osrm.org/route/v1/driving/-81.7578990,38.9490150;-81.7298948,38.8228835?overview=false&steps=true",
     "route-ravenswood-centre-i77": "https://router.project-osrm.org/route/v1/driving/-81.761,38.9481;-81.7298948,38.8228835?overview=false&steps=true",
     "route-parkersburg-centre-i77": "https://router.project-osrm.org/route/v1/driving/-81.5615,39.2667;-81.7578990,38.9490150?overview=false&steps=true",
-    "walk-frederick": "https://routing.openstreetmap.de/routed-foot/table/v1/driving/-81.4233393,39.4158196;-81.4645367,39.4317032;-81.4484225,39.416095;-81.4546369,39.4158798;-81.4285942,39.4122728?sources=0&destinations=1;2;3;4&annotations=duration,distance"
+    "walk-frederick": "https://routing.openstreetmap.de/routed-foot/table/v1/driving/-81.4233393,39.4158196;-81.4645367,39.4317032;-81.4484225,39.416095;-81.4546369,39.4158798;-81.4285942,39.4122728?sources=0&destinations=1;2;3;4&annotations=duration,distance",
+    "table-vienna-williamstown": "https://router.project-osrm.org/table/v1/driving/-81.4233393,39.4158196;-81.5287416,39.2819327;-81.5301764,39.2793150;-81.5615000,39.2667000;-81.5512639,39.3208866;-81.4488545,39.4000046?sources=0;1;2;3&destinations=4;5&annotations=duration,distance"
   },
   "rows": [
     { "id": "frederick:downtown-marietta", "origin": "frederick", "destination": "downtown-marietta", "seconds": 457.8, "meters": 3780.4, "minutes": 8, "miles": 2.3, "method": "osrm", "source": "table", "measured": "2026-11-15" },
@@ -145,7 +148,15 @@
     { "id": "parkersburg-centre:fiscal-service-parkersburg", "origin": "parkersburg-centre", "destination": "fiscal-service-parkersburg", "seconds": 106.3, "meters": 703, "minutes": 2, "miles": 0.4, "method": "osrm", "source": "table-work-school", "measured": "2026-11-15" },
     { "id": "parkersburg-centre:wvu-parkersburg", "origin": "parkersburg-centre", "destination": "wvu-parkersburg", "seconds": 684.6, "meters": 8726.6, "minutes": 12, "miles": 5.4, "method": "osrm", "source": "table-work-school", "measured": "2026-11-15" },
     { "id": "parkersburg-centre:parkersburg-high-school", "origin": "parkersburg-centre", "destination": "parkersburg-high-school", "seconds": 306.6, "meters": 2827.2, "minutes": 6, "miles": 1.8, "method": "osrm", "source": "table-work-school", "measured": "2026-11-15" },
-    { "id": "parkersburg-centre:parkersburg-city-park", "origin": "parkersburg-centre", "destination": "parkersburg-city-park", "seconds": 399.3, "meters": 3651, "minutes": 7, "miles": 2.3, "method": "osrm", "source": "table-work-school", "measured": "2026-11-15" }
+    { "id": "parkersburg-centre:parkersburg-city-park", "origin": "parkersburg-centre", "destination": "parkersburg-city-park", "seconds": 399.3, "meters": 3651, "minutes": 7, "miles": 2.3, "method": "osrm", "source": "table-work-school", "measured": "2026-11-15" },
+    { "id": "frederick:vienna-centre", "origin": "frederick", "destination": "vienna-centre", "seconds": 1234, "meters": 18062.2, "minutes": 21, "miles": 11.2, "method": "osrm", "source": "table-vienna-williamstown", "measured": "2026-11-23" },
+    { "id": "frederick:williamstown-centre", "origin": "frederick", "destination": "williamstown-centre", "seconds": 486.2, "meters": 4297.4, "minutes": 9, "miles": 2.7, "method": "osrm", "source": "table-vienna-williamstown", "measured": "2026-11-23" },
+    { "id": "broad:vienna-centre", "origin": "broad", "destination": "vienna-centre", "seconds": 521.8, "meters": 5565.6, "minutes": 9, "miles": 3.5, "method": "osrm", "source": "table-vienna-williamstown", "measured": "2026-11-23" },
+    { "id": "broad:williamstown-centre", "origin": "broad", "destination": "williamstown-centre", "seconds": 1116.8, "meters": 17721.7, "minutes": 19, "miles": 11, "method": "osrm", "source": "table-vienna-williamstown", "measured": "2026-11-23" },
+    { "id": "oak:vienna-centre", "origin": "oak", "destination": "vienna-centre", "seconds": 557.3, "meters": 5881.5, "minutes": 10, "miles": 3.7, "method": "osrm", "source": "table-vienna-williamstown", "measured": "2026-11-23" },
+    { "id": "oak:williamstown-centre", "origin": "oak", "destination": "williamstown-centre", "seconds": 1152.3, "meters": 18037.7, "minutes": 20, "miles": 11.2, "method": "osrm", "source": "table-vienna-williamstown", "measured": "2026-11-23" },
+    { "id": "parkersburg-centre:vienna-centre", "origin": "parkersburg-centre", "destination": "vienna-centre", "seconds": 550.2, "meters": 6759.6, "minutes": 10, "miles": 4.2, "method": "osrm", "source": "table-vienna-williamstown", "measured": "2026-11-23" },
+    { "id": "parkersburg-centre:williamstown-centre", "origin": "parkersburg-centre", "destination": "williamstown-centre", "seconds": 1226.8, "meters": 24250.1, "minutes": 21, "miles": 15.1, "method": "osrm", "source": "table-vienna-williamstown", "measured": "2026-11-23" }
   ],
   "walks": [
     { "id": "frederick:marietta-memorial", "origin": "frederick", "destination": "marietta-memorial", "seconds": 3991.6, "meters": 4990.2, "minutes": 67, "miles": 3.1, "method": "osrm-foot", "source": "walk-frederick", "measured": "2026-11-19" },
