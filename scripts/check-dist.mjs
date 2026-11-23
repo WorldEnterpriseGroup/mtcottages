@@ -12,10 +12,10 @@ import { join, relative, sep } from "node:path";
 // Broad's 23 old sections, /parkersburg/furnished-rentals/ and
 // /marietta/furnished-rentals/), the travel-nurse hub and its Camden Clark (#32), Memorial Health (#33) and Jackson General (#45) pages,
 // the corporate and crew hub (#34) and its Washington Works (#44) and Constellium Ravenswood (#43) pages, the /health-professionals.html and /work-relocation.html redirect stubs,
-// /guides/ and its articles (#47; the Sternwheel Festival guide, #52, the Blennerhassett Island guide, #50, moving to Parkersburg, #48, things to do in Marietta, #51, where to eat, #57, the cost of living, #58, the Vienna and Williamstown town guides, #55, and the county schools guides, #53), the accessibility statement (#75), the long-term stays hub (/stays/long-term/, #46), the monthly stays hub (#64), the about page (/about/, #38), the stay policies page (#36),
+// /guides/ and its articles (#47; the Sternwheel Festival guide, #52, the Blennerhassett Island guide, #50, moving to Parkersburg, #48, things to do in Marietta, #51, where to eat, #57, the cost of living, #58, the Vienna and Williamstown town guides, #55, the county schools guides, #53, and the Parkersburg neighborhoods guide, #54), the accessibility statement (#75), the long-term stays hub (/stays/long-term/, #46), the monthly stays hub (#64), the about page (/about/, #38), the stay policies page (#36),
 // the book-safely page (#62), five resident guides (#89) and the rest of the site. Update it whenever a home, page or
 // redirect is added or removed.
-const EXPECTED_PAGES = 140;
+const EXPECTED_PAGES = 141;
 const MAX_DIST_MB = 70;
 const MAX_FILE_BYTES = 2 * 1024 * 1024;
 const LEGACY_MARKERS = ["jquery", "bootstrap", "modernizr", "swiper", "owl.carousel", "venobox", "gsap", "hotelhub"];
