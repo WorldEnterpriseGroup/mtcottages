@@ -58,7 +58,7 @@ const towns = [
     // Walnut is parked (CEO decision 2026-11-14) and is never named on the page (#41).
     parked: ["yellow-cottage", "walnut-cottage"],
     neverNamed: /Walnut Cottage/i,
-    hubs: ["/travel-nurses/", "/corporate-housing/", "/family-stays.html", "/insurance-housing.html"],
+    hubs: ["/travel-nurses/", "/corporate-housing/", "/family-stays.html", "/insurance-housing/"],
     pricedHomes: [],
     linkedFrom: ["/locations.html", "/travel-nurses/jackson-general/"],
   },
