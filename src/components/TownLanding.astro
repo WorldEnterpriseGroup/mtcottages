@@ -102,7 +102,7 @@ const shifted = Boolean(landing.story);
             const walk = landing.distance.walkRows?.find((entry) => entry.homeId === row.homeId);
             return (
               <tr>
-                <th scope="row">{rowName(row.homeId)}</th>
+                <th scope="row">{rowName(row.homeId)}{row.note && row.times.some((time) => time !== null) && <span class="tl-walk">{row.note}</span>}</th>
                 {row.times.every((time) => time === null)
                   ? <td colspan={landing.distance.destinations.length}>{row.note}</td>
                   : row.times.map((time, index) => (

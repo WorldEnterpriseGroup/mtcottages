@@ -1,5 +1,5 @@
 /**
- * Town landing pages (Growth M1: #24 Parkersburg, #28 Marietta). Each town
+ * Town landing pages (Growth M1: #24 Parkersburg, #28 Marietta, #41 Ravenswood). Each town
  * guide that targets "furnished rentals in <town>" searches is rendered by
  * src/components/TownLanding.astro from one entry here.
  *
@@ -19,6 +19,7 @@ import type { HomeMicrosite } from "./homes/types";
 import { formatMeasured, measuredDrive as drive, measuredWalk as walk, type MeasuredRoute } from "./distances";
 import broadLiving from "../../assets/images/cottages/parkersburg-01/photo-44.avif";
 import frederickBackyard from "../../assets/images/cottages/marietta-01/frederick-backyard-cover.jpg";
+import henriettaYard from "../../assets/images/cottages/ravenswood-03/photo-36.avif";
 
 /** Homes whose monthly price guide the owner confirmed. Only these show a price on a town landing page. */
 export const confirmedPriceHomes: readonly string[] = ["frederick"];
@@ -37,6 +38,7 @@ export type DistanceRow = {
   homeId: string;
   /** One value per destination column, in order; null when the home has no published address. */
   times: (RouteTime | null)[];
+  /** Shown in place of the times when all are null, or under the home's name when they are measured from somewhere else (a town centre). */
   note?: string;
 };
 
@@ -133,6 +135,22 @@ const frederickCollege = drive("frederick", "marietta-college");
 const frederickDowntown = drive("frederick", "downtown-marietta");
 const frederickSelby = drive("frederick", "selby-general");
 const frederickKrogerWalk = walk("frederick", "kroger-acme-marietta");
+
+// Ravenswood: Henrietta from its approved address; Virginia's street address is not
+// published, so its times are the Ravenswood town centre's (the microsites map in
+// distances.json), and the page says so.
+const ravenswoodDestinations = ["constellium-ravenswood", "jackson-general", "i77-ravenswood", "ravenswood-high-school"];
+const henriettaDrives = ravenswoodDestinations.map((id) => drive("henrietta", id));
+const virginiaDrives = ravenswoodDestinations.map((id) => drive("virginia", id));
+const henriettaConstellium = drive("henrietta", "constellium-ravenswood");
+const virginiaConstellium = drive("virginia", "constellium-ravenswood");
+const henriettaJackson = drive("henrietta", "jackson-general");
+const virginiaJackson = drive("virginia", "jackson-general");
+const henriettaI77 = drive("henrietta", "i77-ravenswood");
+const henriettaSchool = drive("henrietta", "ravenswood-high-school");
+const henriettaRiverfront = drive("henrietta", "riverfront-park-ravenswood");
+const henriettaFoodfair = drive("henrietta", "foodfair-ravenswood");
+const span = (a: MeasuredRoute, b: MeasuredRoute) => (a.minutes === b.minutes ? `${a.minutes}` : `${Math.min(a.minutes, b.minutes)} to ${Math.max(a.minutes, b.minutes)}`);
 
 export const townLandings = {
   parkersburg: {
@@ -272,6 +290,79 @@ export const townLandings = {
     nearbyTowns: [
       { name: "Parkersburg, West Virginia", href: "/parkersburg/index.html" },
       { name: "Ravenswood, West Virginia", href: "/ravenswood/index.html" },
+    ],
+  },
+  ravenswood: {
+    key: "ravenswood",
+    path: "ravenswood/index.html",
+    town: "Ravenswood, West Virginia",
+    shortTown: "Ravenswood",
+    title: "Furnished Rentals in Ravenswood, WV | Mt Cottages",
+    description: `Two furnished homes for monthly stays in Ravenswood, WV, on the Ohio River: ${span(henriettaConstellium, virginiaConstellium)} minutes from the Constellium plant and about ${span(henriettaJackson, virginiaJackson)} from Ripley.`,
+    eyebrow: "Ravenswood, West Virginia",
+    h1: "Furnished rentals in Ravenswood, WV",
+    lede: `Looking for a furnished apartment, a monthly rental or a short-term rental in Ravenswood, WV? Henrietta and Virginia Cottages are whole furnished homes in this Ohio River town: about ${span(henriettaConstellium, virginiaConstellium)} minutes from the Constellium plant, ${span(henriettaJackson, virginiaJackson)} from Jackson General Hospital in Ripley and ${henriettaI77.minutes} from I-77.`,
+    intro: "Both are two-bedroom houses with a full kitchen and room for a couple, a small family or two colleagues. We confirm the price, your dates and every detail marked below before you commit to anything.",
+    hero: { src: henriettaYard, alt: "Henrietta Cottage's fenced lawn in Ravenswood, with mature trees seen from the porch", focal: "center 50%" },
+    stayTown: "ravenswood",
+    inquiryLabel: "Check dates in Ravenswood",
+    homesHeading: "Two furnished homes in Ravenswood",
+    homesIntro: "Each home has its own site with every photo, an illustrative floor plan, amenities and a map. Pick the one that fits your household, then ask about your dates.",
+    homes: [
+      { id: "henrietta", fit: "Best for a couple or a small family who wants two dining spaces, a working kitchen and a fenced lawn.", facts: ["2 bedrooms", "Kitchen with a gas range and dishwasher", "Fenced lawn with mature trees"] },
+      { id: "virginia", fit: "Best for someone who likes an older house with character: a brick fireplace, a curved staircase and a sunny dining room.", facts: ["2 bedrooms", "Fiber-optic internet", "Utilities included"] },
+    ],
+    distance: {
+      heading: "Close to the plant, the hospital road and I-77",
+      intro: "Henrietta Cottage is a few blocks from downtown Ravenswood, measured from its street address. Virginia Cottage's street address is shared when you inquire, so its times are measured from the Ravenswood town centre.",
+      mode: "drive",
+      destinations: ["Constellium Ravenswood", "Jackson General, Ripley", "I-77, Exit 146", "Ravenswood High School"],
+      rows: [
+        { homeId: "henrietta", times: henriettaDrives },
+        { homeId: "virginia", times: virginiaDrives, note: "From the Ravenswood town centre" },
+      ],
+      source: routeSource([...henriettaDrives, ...virginiaDrives]),
+    },
+    story: {
+      eyebrow: "Why Ravenswood",
+      heading: "A small river town with a short commute",
+      paragraphs: [
+        `Ravenswood sits on the Ohio River in Jackson County, West Virginia. Life here is small-town and close together: from Henrietta Cottage, Washington Riverfront Park and the Foodfair grocery are each about ${henriettaRiverfront.minutes === henriettaFoodfair.minutes ? `${henriettaRiverfront.minutes} minutes` : `${henriettaRiverfront.minutes} and ${henriettaFoodfair.minutes} minutes`} by car.`,
+        `Ravenswood High School is about ${henriettaSchool.minutes} minutes from Henrietta Cottage, close enough that a Friday-night football game is an easy evening out, and a family moving here can keep the school run short.`,
+        `For work, the Constellium plant is about ${henriettaConstellium.minutes} minutes south of town and I-77 about ${henriettaI77.minutes}, which puts Ripley, Parkersburg and Charleston within a regular drive.`,
+      ],
+    },
+    included: [
+      "A whole home to yourself, with your own entrance and kitchen",
+      "A full kitchen in each home",
+      "Two bedrooms in each home",
+      "A local team for questions and care during the stay",
+    ],
+    confirm: [
+      "Monthly price and what utilities it covers",
+      "Minimum stay and your exact dates",
+      "Bed sizes and how many guests each home sleeps",
+      "Bathrooms, laundry and parking",
+      "How Virginia Cottage is furnished for your dates",
+      "Pet policy",
+    ],
+    audiences: [
+      { title: "Travel nurses at Jackson General", body: `Jackson General Hospital is in Ripley, about ${span(henriettaJackson, virginiaJackson)} minutes south by car. A furnished house in Ravenswood gives a thirteen-week contract a quiet bedroom and a full kitchen.`, href: "/travel-nurses/", linkLabel: "Travel nurse housing and the stipend guide", more: { href: "/travel-nurses/jackson-general/", label: "Furnished homes near Jackson General" } },
+      { title: "Plant crews and new hires", body: `The Constellium plant is about ${span(henriettaConstellium, virginiaConstellium)} minutes away, and two bedrooms let two colleagues share a house on a shutdown or a new posting.`, href: "/corporate-housing/", linkLabel: "Corporate and crew housing" },
+      { title: "Relocating families", body: "Land in a furnished home while you learn the town, settle the children at school and look for something permanent.", href: "/family-stays.html", linkLabel: "Family stays" },
+      { title: "Displaced by a fire or flood", body: "A furnished house nearby while repairs happen. Tell us your timeline and what your insurer needs, and we will check which home fits.", href: "/insurance-housing/", linkLabel: "Insurance housing" },
+    ],
+    faqs: [
+      { q: "Do you rent furnished homes by the month in Ravenswood, WV?", a: "Yes. Henrietta and Virginia Cottages are set up for stays of a month or longer. Tell us your dates and we will confirm the price and what it includes before you decide." },
+      { q: "Are these furnished apartments?", a: "They are whole furnished homes rather than apartments. Each has its own entrance, a full kitchen and two bedrooms." },
+      { q: "Can I book a short-term rental for a few nights or weeks?", a: "Our homes are set up for longer stays, so the minimum stay is confirmed with you on inquiry. If you need a few weeks, ask anyway: we will tell you straight away whether a home can work." },
+      { q: "How far are the homes from the Constellium plant?", a: `Henrietta Cottage is about ${henriettaConstellium.minutes} minutes (${henriettaConstellium.miles} miles) by car, on a measured route in normal traffic. Virginia Cottage's street address is shared on inquiry; from the Ravenswood town centre the drive is about ${virginiaConstellium.minutes} minutes.` },
+      { q: "How far is Jackson General Hospital from Ravenswood?", a: `Jackson General Hospital is in Ripley, about ${henriettaJackson.minutes} minutes (${henriettaJackson.miles} miles) by car from Henrietta Cottage on a measured route. Allow longer at shift change and in bad weather.` },
+      { q: "Is sending an inquiry a commitment?", a: "No. An inquiry starts a conversation about current options. Any screening, agreement or payment is a separate step that comes later, with its own documents." },
+    ],
+    nearbyTowns: [
+      { name: "Parkersburg, West Virginia", href: "/parkersburg/index.html" },
+      { name: "Marietta, Ohio", href: "/marietta/index.html" },
     ],
   },
 } satisfies Record<string, TownLanding>;
