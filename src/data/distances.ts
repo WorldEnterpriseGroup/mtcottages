@@ -184,8 +184,8 @@ export function destinationPoint(destinationId: string): { lat: number; lng: num
   return destination.lat !== undefined && destination.lng !== undefined ? { lat: destination.lat, lng: destination.lng } : undefined;
 }
 
-/** One measured route, as prose and the town landing tables quote it. */
-export type MeasuredRoute = { minutes: number; miles: number; measured: string };
+/** One measured route, as prose and the town landing tables quote it, with the router call it came from. */
+export type MeasuredRoute = { minutes: number; miles: number; measured: string; sourceUrl: string };
 
 type RawRoute = (typeof raw.rows)[number];
 
@@ -195,7 +195,9 @@ function measuredRoute(list: readonly RawRoute[], mode: "drive" | "walk", homeId
   if (!destinations[destinationId]) throw new Error(`_data/distances.json has no destination ${destinationId}`);
   const row = list.find((candidate) => candidate.origin === originId && candidate.destination === destinationId);
   if (!row) throw new Error(`_data/distances.json has no measured ${mode} from ${originId} to ${destinationId}; measure it before quoting it`);
-  return { minutes: row.minutes, miles: row.miles, measured: row.measured };
+  const sourceUrl = sources[row.source];
+  if (!sourceUrl) throw new Error(`_data/distances.json row ${row.id} references a missing source ${row.source}`);
+  return { minutes: row.minutes, miles: row.miles, measured: row.measured, sourceUrl };
 }
 
 /**

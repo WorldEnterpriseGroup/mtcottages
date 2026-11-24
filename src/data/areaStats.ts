@@ -8,7 +8,8 @@ import raw from "../../_data/area-stats.json";
  * scripts/area-stats.mjs refreshes the official parts from their source files.
  */
 
-export type Source = { label: string; url: string; file?: string };
+/** file: the one data file a figure was read from; files: several (one per state). */
+export type Source = { label: string; url: string; file?: string; files?: string[] };
 export type PopulationPlace = { id: string; label: string; base2020: number; estimate: number };
 export type RentArea = { id: string; label: string; hudArea: string; rents: [number, number, number, number, number] };
 export type Employer = { name: string; employees: number };
