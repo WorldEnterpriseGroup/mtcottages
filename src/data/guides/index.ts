@@ -6,6 +6,7 @@
  */
 import { homes } from "../homes";
 import type { Audience } from "../stay-link";
+import { belpreOhio } from "./belpre-ohio";
 import { blennerhassettIsland } from "./blennerhassett-island";
 import { costOfLiving } from "./cost-of-living";
 import { employerCommutes } from "./employer-commutes";
@@ -15,6 +16,7 @@ import { movingToParkersburg } from "./moving-to-parkersburg";
 import { parkersburgNeighborhoods } from "./parkersburg-neighborhoods";
 import { whereToEat } from "./where-to-eat";
 import { jacksonCountySchools, washingtonCountySchools, woodCountySchools } from "./county-schools";
+import { ripleyWv } from "./ripley-wv";
 import { viennaWv } from "./vienna-wv";
 import { williamstownWv } from "./williamstown-wv";
 import { guideTopicLabel, guideTownLabel, type GuideArticle, type GuideTopic, type GuideTown } from "./types";
@@ -26,7 +28,7 @@ const MAX_TITLE = 60;
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
-export const articles: GuideArticle[] = [blennerhassettIsland, costOfLiving, employerCommutes, mariettaThingsToDo, movingToParkersburg, parkersburgNeighborhoods, sternwheelFestival, viennaWv, whereToEat, williamstownWv, woodCountySchools, washingtonCountySchools, jacksonCountySchools].sort((a, b) => b.updated.localeCompare(a.updated) || a.slug.localeCompare(b.slug));
+export const articles: GuideArticle[] = [belpreOhio, blennerhassettIsland, costOfLiving, employerCommutes, mariettaThingsToDo, movingToParkersburg, parkersburgNeighborhoods, ripleyWv, sternwheelFestival, viennaWv, whereToEat, williamstownWv, woodCountySchools, washingtonCountySchools, jacksonCountySchools].sort((a, b) => b.updated.localeCompare(a.updated) || a.slug.localeCompare(b.slug));
 
 /** The checks every guide-model page passes; the long-term hub (src/data/longTermHub.ts) runs them too. */
 export function validateArticles(list: GuideArticle[]): string[] {
