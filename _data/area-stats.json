@@ -57,7 +57,10 @@
     "source": {
       "label": "U.S. Census Bureau, Vintage 2025 population estimates for cities and towns",
       "url": "https://www.census.gov/data/tables/time-series/demo/popest/2020s-total-cities-and-towns.html",
-      "file": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_54.csv"
+      "files": [
+        "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_54.csv",
+        "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv"
+      ]
     },
     "places": [
       {
@@ -83,6 +86,18 @@
         "label": "Wood County",
         "base2020": 84300,
         "estimate": 82385
+      },
+      {
+        "id": "marietta",
+        "label": "Marietta (city)",
+        "base2020": 13382,
+        "estimate": 13053
+      },
+      {
+        "id": "washington-county-oh",
+        "label": "Washington County, Ohio",
+        "base2020": 59773,
+        "estimate": 58389
       }
     ]
   },

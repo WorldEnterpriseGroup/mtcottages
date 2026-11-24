@@ -24,15 +24,19 @@ const TARGET = join(ROOT, "_data", "area-stats.json");
 // HUD answers a bare tool name with a bot-check page, so name the script in a standard browser-compatible form.
 const USER_AGENT = "Mozilla/5.0 (compatible; mtcottages-area-stats/1.0; +https://mtcottages.com/)";
 
-const POPULATION_URL = "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_54.csv";
 const POPULATION_PAGE = "https://www.census.gov/data/tables/time-series/demo/popest/2020s-total-cities-and-towns.html";
 const VINTAGE = 2025;
-// [id, label, SUMLEV, COUNTY, PLACE] in the Census subcounty file.
+// The Census subcounty file for one state (FIPS code), e.g. 54 for West Virginia.
+const populationFile = (state) => `https://www2.census.gov/programs-surveys/popest/datasets/2020-${VINTAGE}/cities/totals/sub-est${VINTAGE}_${state}.csv`;
+// [id, label, STATE, SUMLEV, COUNTY, PLACE] in the Census subcounty files.
 const PLACES = [
-  ["parkersburg", "Parkersburg (city)", "162", "000", "62140"],
-  ["vienna", "Vienna (city)", "162", "000", "83500"],
-  ["williamstown", "Williamstown (city)", "162", "000", "87556"],
-  ["wood-county", "Wood County", "050", "107", "00000"],
+  ["parkersburg", "Parkersburg (city)", "54", "162", "000", "62140"],
+  ["vienna", "Vienna (city)", "54", "162", "000", "83500"],
+  ["williamstown", "Williamstown (city)", "54", "162", "000", "87556"],
+  ["wood-county", "Wood County", "54", "050", "107", "00000"],
+  // #49: Marietta, Ohio and its county.
+  ["marietta", "Marietta (city)", "39", "162", "000", "47628"],
+  ["washington-county-oh", "Washington County, Ohio", "39", "050", "167", "00000"],
 ];
 
 const FMR_URL = "https://www.huduser.gov/portal/datasets/fmr/fmr2027/FY27_FMRs.xlsx";
@@ -98,19 +102,23 @@ function csvFields(line) {
 }
 
 async function population() {
-  const lines = (await download(POPULATION_URL)).toString("latin1").split(/\r?\n/).filter(Boolean);
-  const header = csvFields(lines[0]);
-  const rows = lines.slice(1).map((line) => Object.fromEntries(csvFields(line).map((value, i) => [header[i], value])));
-  const places = PLACES.map(([id, label, sumlev, county, place]) => {
-    const match = rows.filter((row) => row.SUMLEV === sumlev && row.COUNTY === county && row.PLACE === place);
-    if (match.length !== 1) fail(`${POPULATION_URL}: expected one row for ${label}, found ${match.length}`);
+  const files = [...new Set(PLACES.map(([, , state]) => state))].map((state) => [state, populationFile(state)]);
+  const rowsByState = new Map();
+  for (const [state, url] of files) {
+    const lines = (await download(url)).toString("latin1").split(/\r?\n/).filter(Boolean);
+    const header = csvFields(lines[0]);
+    rowsByState.set(state, lines.slice(1).map((line) => Object.fromEntries(csvFields(line).map((value, i) => [header[i], value]))));
+  }
+  const places = PLACES.map(([id, label, state, sumlev, county, place]) => {
+    const match = rowsByState.get(state).filter((row) => row.STATE === state && row.SUMLEV === sumlev && row.COUNTY === county && row.PLACE === place);
+    if (match.length !== 1) fail(`${populationFile(state)}: expected one row for ${label}, found ${match.length}`);
     return { id, label, base2020: Number.parseInt(match[0].ESTIMATESBASE2020, 10), estimate: Number.parseInt(match[0][`POPESTIMATE${VINTAGE}`], 10) };
   });
   return {
     vintage: VINTAGE,
     estimateDate: `${VINTAGE}-07-01`,
     baseDate: "2020-04-01",
-    source: { label: `U.S. Census Bureau, Vintage ${VINTAGE} population estimates for cities and towns`, url: POPULATION_PAGE, file: POPULATION_URL },
+    source: { label: `U.S. Census Bureau, Vintage ${VINTAGE} population estimates for cities and towns`, url: POPULATION_PAGE, files: files.map(([, url]) => url) },
     places,
   };
 }
