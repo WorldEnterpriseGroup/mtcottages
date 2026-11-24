@@ -301,7 +301,7 @@ test.describe("corporate and crew hub /corporate-housing/", () => {
       await expect(card.locator("img")).toHaveAttribute("alt", /^(?=.*\w{3}).{10,}$/);
       expect((await request.get(home.href)).status(), `${home.href} status`).toBe(200);
     }
-    for (const related of ["/travel-nurses/", "/insurance-housing.html", "/family-stays.html", "/parkersburg/index.html", "/marietta/index.html", "/ravenswood/index.html"]) {
+    for (const related of ["/travel-nurses/", "/insurance-housing/", "/family-stays.html", "/parkersburg/index.html", "/marietta/index.html", "/ravenswood/index.html"]) {
       expect(await page.locator(`main a[href="${related}"]`).count(), `${related} is linked`).toBeGreaterThanOrEqual(1);
       expect((await request.get(related)).status(), `${related} status`).toBe(200);
     }

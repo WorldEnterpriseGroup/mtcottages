@@ -267,7 +267,6 @@ export type Guide = {
 const guidePhotos: Record<string, Photo> = {
   living: photo(mariettaLiving, "A furnished living room with natural light and comfortable seating"),
   family: photo(oakDining, "A bright dining room with room for a household to gather"),
-  insurance: photo(henriettaLiving, "A furnished living and dining space for a transitional stay"),
   services: photo(oakKitchen, "A furnished kitchen with full-size appliances and storage"),
 };
 
@@ -301,22 +300,6 @@ export const guides: Record<string, Guide> = {
     ],
     cta: "Plan a family stay",
     audience: "visiting-family",
-  },
-  insurance: {
-    path: "insurance-housing.html",
-    title: "Temporary furnished housing after a covered loss",
-    metaTitle: "Temporary housing after a covered loss",
-    eyebrow: "A home during repairs",
-    description: "When fire, water, storm, or another damaging event makes home temporarily unlivable, the next question is often simple: where can daily life continue?",
-    intro: "Mt Cottages helps households and authorized claim contacts think through a furnished bridge with room for meals, sleep, belongings, and the details of ordinary life.",
-    photo: guidePhotos.insurance,
-    sections: [
-      { title: "Start with the household, not just the claim", body: "The right home depends on occupants, pets, accessibility, school or work routes, and the expected repair window." },
-      { title: "Coordinate with the authorized claim contact", body: "We can provide availability and home information for the people authorized to arrange temporary housing. A site inquiry is not a coverage decision." },
-      { title: "Make the bridge feel livable", body: "A kitchen, laundry, bedrooms, and living space help a temporary arrangement support a household while the next home is repaired." },
-    ],
-    cta: "Discuss temporary housing",
-    audience: "insurance",
   },
 };
 
@@ -410,13 +393,13 @@ export const locationData: Record<string, Guide & { town: string; cottages?: Cot
 export const navGroups = [
   { label: "Cottages", href: "cottages.html", items: [["Find your place", "cottages.html"], ["Available now", "available.html"], ["Cozy places", "cozy-places.html"], ["Room to settle in", "room-to-settle.html"]] },
   { label: "Locations", href: "locations.html", items: [["Marietta", "marietta/index.html"], ["Parkersburg", "parkersburg/index.html"], ["Ravenswood", "ravenswood/index.html"], ["Racine", "racine/index.html"], ["Grantsville", "grantsville/index.html"]] },
-  { label: "Living", href: "living.html", items: [["Travel nurses", "travel-nurses/"], ["Corporate & crew housing", "corporate-housing/"], ["Insurance housing", "insurance-housing.html"], ["Family stays", "family-stays.html"], ["Long-term stays", "stays/long-term/"], ["Area guides", "guides/"]] },
+  { label: "Living", href: "living.html", items: [["Travel nurses", "travel-nurses/"], ["Corporate & crew housing", "corporate-housing/"], ["Insurance housing", "insurance-housing/"], ["Family stays", "family-stays.html"], ["Long-term stays", "stays/long-term/"], ["Area guides", "guides/"]] },
   { label: "Services", href: "services.html", items: [["Fully furnished homes", "fully-furnished-homes.html"], ["Home amenities", "home-amenities.html"], ["Guest services", "guest-services.html"], ["Property care", "property-care.html"]] },
   { label: "Residents", href: "residents.html", items: [["Resident portal", "resident-portal.html"], ["Pay rent", "pay-rent.html"], ["Maintenance", "maintenance.html"], ["Emergency maintenance", "emergency-maintenance.html"]] },
 ];
 
 export const routePaths = [
-  "available.html", "contact.html", "cottages.html", "cozy-places.html", "emergency-maintenance.html", "family-stays.html", "faq.html", "fully-furnished-homes.html", "guest-services.html", "home-amenities.html", "housekeeping.html", "insurance-housing.html", "living.html", "locations.html", "maintenance.html", "meal-preparation.html", "partnerships.html", "pay-rent.html", "privacy.html", "property-care.html", "resident-portal.html", "residents.html", "room-to-settle.html", "services.html",
+  "available.html", "contact.html", "cottages.html", "cozy-places.html", "emergency-maintenance.html", "family-stays.html", "faq.html", "fully-furnished-homes.html", "guest-services.html", "home-amenities.html", "housekeeping.html", "living.html", "locations.html", "maintenance.html", "meal-preparation.html", "partnerships.html", "pay-rent.html", "privacy.html", "property-care.html", "resident-portal.html", "residents.html", "room-to-settle.html", "services.html",
 ];
 
 // Homes that are not listed (CEO decision 2026-11-14: Yellow is not ready and
@@ -446,7 +429,6 @@ export const guideHomes: Record<string, string[]> = {
   "living.html": ["frederick", "broad", "buck"],
   "family-stays.html": ["frederick", "oak", "henrietta"],
   "work-relocation.html": listedHomeIds,
-  "insurance-housing.html": listedHomeIds,
 };
 
 /**

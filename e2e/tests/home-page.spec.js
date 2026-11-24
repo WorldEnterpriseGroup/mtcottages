@@ -35,7 +35,7 @@ test("each audience card links to a live hub", async ({ page, request }) => {
   const expected = [
     [/nurses and residents/i, "/travel-nurses/"],
     [/crews/i, "/corporate-housing/"],
-    [/insurance and relocating families/i, "/insurance-housing.html"],
+    [/insurance and relocating families/i, "/insurance-housing/"],
     [/long-term/i, "/living.html"],
   ];
   for (const [index, [label, href]] of expected.entries()) {
