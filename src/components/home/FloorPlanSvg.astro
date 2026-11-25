@@ -1,5 +1,5 @@
 ---
-import type { PlanFloor } from "../../data/homes/types";
+import type { PlanFloor, PlanRoom } from "../../data/homes/types";
 import { planKindColor, planKindLabel } from "../../data/homes/links";
 
 interface Props {
@@ -35,22 +35,44 @@ const layout = (label: string, w: number, h: number) => {
   return best;
 };
 
+// A stair run reads as steps, not a blank box: dashed tread lines across it,
+// one grid unit apart, perpendicular to the longer side of the rectangle.
+const treads = (room: PlanRoom, px: number, py: number) => {
+  if (room.kind !== "stairs") return [];
+  const along = Math.max(room.w, room.h);
+  const count = Math.max(2, Math.round(along) - 1);
+  const vertical = room.h >= room.w;
+  return Array.from({ length: count }, (_, i) => {
+    const d = ((i + 1) * along) / (count + 1) * S;
+    return vertical
+      ? { x1: px, y1: py + d, x2: px + room.w * S, y2: py + d }
+      : { x1: px + d, y1: py, x2: px + d, y2: py + room.h * S };
+  });
+};
+
 const rooms = floor.rooms.map((r) => {
   const w = r.w * S;
   const h = r.h * S;
-  return { ...r, px: PAD + r.x * S, py: PAD + r.y * S, w, h, ...layout(r.label, w, h) };
+  const px = PAD + r.x * S;
+  const py = PAD + r.y * S;
+  return { ...r, px, py, w, h, treads: treads(r, px, py), ...layout(r.label, w, h) };
 });
-const summary = `${homeName} ${floor.name} concept plan with ${floor.rooms.map((r) => r.label).join(", ")}. Not to scale.`;
+const summary = `${homeName} ${floor.name} concept plan with ${floor.rooms.map((r) => r.label).filter(Boolean).join(", ")}. Not to scale.`;
 ---
 <svg class="hm-plan-svg" viewBox={`0 0 ${width} ${height}`} role="img" aria-label={summary} xmlns="http://www.w3.org/2000/svg" data-plan-floor={floor.name}>
   <rect x="0" y="0" width={width} height={height} style="fill:var(--paper)" />
   {rooms.map((r) => (
     <g>
       <rect x={r.px} y={r.py} width={r.w} height={r.h} fill={planKindColor[r.kind]} style="stroke:var(--forest)" stroke-width="2" stroke-dasharray={r.kind === "porch" ? "6 4" : undefined} />
-      <text x={r.px + r.w / 2} y={r.py + r.h / 2 - ((r.lines.length - 1) * r.size * 0.6)} text-anchor="middle" dominant-baseline="middle" font-family="system-ui, sans-serif" font-weight="700" font-size={r.size} style="fill:var(--ink)">
-        {r.lines.map((line, i) => <tspan x={r.px + r.w / 2} dy={i === 0 ? 0 : r.size * 1.2}>{line}</tspan>)}
-      </text>
-      <title>{`${r.label} (${planKindLabel[r.kind]})`}</title>
+      {r.treads.map((t) => (
+        <line x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2} style="stroke:var(--forest)" stroke-width="1" stroke-dasharray="4 3" opacity="0.45" />
+      ))}
+      {r.label && (
+        <text x={r.px + r.w / 2} y={r.py + r.h / 2 - ((r.lines.length - 1) * r.size * 0.6)} text-anchor="middle" dominant-baseline="middle" font-family="system-ui, sans-serif" font-weight="700" font-size={r.size} style="fill:var(--ink)">
+          {r.lines.map((line, i) => <tspan x={r.px + r.w / 2} dy={i === 0 ? 0 : r.size * 1.2}>{line}</tspan>)}
+        </text>
+      )}
+      <title>{r.label ? `${r.label} (${planKindLabel[r.kind]})` : planKindLabel[r.kind]}</title>
     </g>
   ))}
   <g aria-hidden="true" font-family="system-ui, sans-serif" font-size="11" style="fill:var(--muted)">

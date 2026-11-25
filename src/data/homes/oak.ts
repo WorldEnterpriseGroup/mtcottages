@@ -15,8 +15,11 @@ import steps from "../../../assets/images/cottages/parkersburg-04/unique/parkers
 import kitSink from "../../../assets/images/cottages/parkersburg-04/unique/parkersburg-oak-cottage-img-259-f2e63a212c-648x470.avif";
 import kitDoor from "../../../assets/images/cottages/parkersburg-04/unique/parkersburg-oak-cottage-img-290-fc5858e6b0-648x470.avif";
 import kitLong from "../../../assets/images/cottages/parkersburg-04/unique/room-to-settle-img-357-d046eaa395-648x470.avif";
+import kitSinkWide from "../../../assets/images/cottages/parkersburg-04/oak-kitchen-sink.avif";
+import kitCabinets from "../../../assets/images/cottages/parkersburg-04/oak-kitchen-cabinets.avif";
+import kitAppliances from "../../../assets/images/cottages/parkersburg-04/oak-kitchen-appliances.avif";
+
 import dining2 from "../../../assets/images/cottages/parkersburg-04/unique/ravenswood-index-img-25-a33052273b-648x470.avif";
-import bath2 from "../../../assets/images/cottages/parkersburg-04/unique/available-img-386-9597944b4a-648x470.avif";
 import bedB2 from "../../../assets/images/cottages/parkersburg-04/unique/parkersburg-oak-cottage-img-310-73035b484b-648x470.avif";
 import bedC2 from "../../../assets/images/cottages/parkersburg-04/unique/property-care-img-75-1c8506a5a4-648x470.avif";
 import bedCMedia from "../../../assets/images/cottages/parkersburg-04/bedroom-three-tv-cabinet.avif";
@@ -32,6 +35,10 @@ const photos = {
   kitchenLong: ph(kitLong, "Kitchen with an L-shaped run of oak cabinets, laminate counters, a toaster oven, a red microwave, and a refrigerator beside a small window", "The counter run, with microwave and toaster oven."),
   kitchenSink: ph(kitSink, "Kitchen double sink under a window, with tile counters, a coffee maker, a dish rack, and oak cabinets", "Sink under the window, with a coffee maker on the counter."),
   kitchenDoor: ph(kitDoor, "Kitchen looking toward a doorway that opens onto the dining room, with the range, refrigerator, microwave, and oak cabinets", "The kitchen opens straight onto the dining room."),
+  kitchenSinkWide: ph(kitSinkWide, "Kitchen double sink in stainless steel beneath a window with a wood sill, set in a beige tile counter and backsplash, with a paper-towel holder on the wall, a crock of cooking utensils, a bottle of dish soap and a black wire dish rack, and oak cabinets at the right", "The double sink, under the window."),
+  kitchenCabinets: ph(kitCabinets, "Three open oak upper cabinets showing black pots and pans, skillets, white mugs, drinking glasses, stacked white bowls and plates and folded striped towels, with a red microwave below and a framed print above", "Cabinets stocked with pots, pans, dishes and glasses."),
+  kitchenAppliances: ph(kitAppliances, "Kitchen counter in beige tile with oak cabinets above and below, holding a blender, a case of bottled water, a Black+Decker toaster oven, a red coffee maker and a red microwave, beside a striped curtain and a door", "Toaster oven, coffee maker and microwave along the counter."),
+
   bedA: ph(p07, "Bedroom with a gray upholstered headboard, black-and-white patterned bedding, a lamp on a wooden nightstand, three framed abstract prints, and a large plant", "Gray upholstered headboard and layered bedding."),
   bedAWindow: ph(bedAWindow, "Bedroom with a gray upholstered headboard, white bedding and a black patterned pillow, folded towels at the foot of the bed, a wood dresser with a checkered-shade lamp and a tall plant, three framed abstract prints above the bed, and a window with patterned curtains", "The wide view of bedroom one: dresser, plant, and three framed prints."),
   bedB: ph(p17, "Bedroom with a bed in gray-and-white striped bedding, a cream dresser with mirror, a wooden nightstand, a birch-tree painting, and an open door to the next room", "Striped bedding, cream dresser, and a birch-tree painting."),
@@ -40,7 +47,7 @@ const photos = {
   bedCAc: ph(bedC2, "Bedroom with a bed in white bedding with a medallion pattern, a wooden chest nightstand, table lamps, a round wall clock, a wall air-conditioning unit, and a mirror", "Medallion bedding, table lamps, and a wall air-conditioning unit."),
   bedCMedia: ph(bedCMedia, "Bedroom three with a flat-screen TV mounted on the wall above a dark wooden cabinet, a digital piano keyboard resting on the cabinet, a black leather office chair, and a window with white curtains behind a white roller shade", "The wall-mounted TV, piano keyboard and office chair.", "50% 38%"),
   bath: ph(p40, "Bathroom with a tub and shower behind a navy-and-white striped curtain, a wood-cabinet vanity with a small sink, a toilet, a framed mirror, and wall shelves with plants", "Tub-and-shower, wood vanity, and plant shelves."),
-  bathWindow: ph(bath2, "Bathroom shower area with a navy-and-white striped curtain, a small frosted window, and wall shelves holding plants", "The shower, with a window for daylight."),
+
   porch: ph(p05, "Covered porch with a patterned gray outdoor rug, two blue-cushioned patio chairs, a white railing, and bare trees beyond", "A covered porch with room to sit outside.", "50% 50%"),
   porchSide: ph(porch2, "Covered porch with a patterned rug, two chairs and a small round side table, gray siding, and tree branches beyond the railing", "Two chairs and a side table on the porch."),
   steps: ph(steps, "Wooden steps and a stepping-stone path leading down a sloped yard to the street, with small houses across the road and a large tree trunk beside the rail", "Steps lead down the slope from the house to the street."),
@@ -69,7 +76,7 @@ export const oakHome: HomeMicrosite = {
     { label: "Furnishing", value: "Furnished rooms", status: "listed" },
     { label: "Internet", value: "Fiber-optic internet", status: "listed" },
     { label: "Setting", value: "Quiet setting", status: "listed" },
-    { label: "Floors", value: "Number of floors to be confirmed; no staircase is shown inside", status: "confirm" },
+    { label: "Floors", value: "One level shown on the floor plan, with stairs at the back; total floors to be confirmed", status: "confirm" },
     { label: "Entrance", value: "Wooden steps lead down the slope from the house to the street", status: "photographed" },
     { label: "Laundry", value: "Washer and dryer", status: "confirm" },
     { label: "Parking", value: "Off-street parking", status: "confirm" },
@@ -111,12 +118,13 @@ export const oakHome: HomeMicrosite = {
       slug: "kitchen",
       name: "Kitchen",
       summary: "Honey-oak cabinets, a full run of counters, and everyday appliances, open to the dining room.",
-      photos: [photos.kitchen, photos.kitchenDoor, photos.kitchenLong, photos.kitchenSink],
+      photos: [photos.kitchen, photos.kitchenDoor, photos.kitchenLong, photos.kitchenSink, photos.kitchenAppliances, photos.kitchenSinkWide, photos.kitchenCabinets],
       notes: [
         { text: "Full kitchen.", status: "listed" },
         { text: "Electric range with coil burners, full-size refrigerator, microwave, and toaster oven.", status: "photographed" },
         { text: "Double sink under a window, and a coffee maker on the counter.", status: "photographed" },
-        { text: "Dishwasher, cookware, dishes, and small appliances supplied.", status: "confirm" },
+        { text: "Cookware, dishes, glasses and mugs are stocked in the cabinets.", status: "photographed" },
+        { text: "Dishwasher, and whether more small appliances are supplied.", status: "confirm" },
       ],
       faqs: [
         { q: "Is this a full kitchen?", a: "Yes. The listing names a full kitchen, and the photos show an electric range with an oven, a full-size refrigerator, a microwave and a toaster oven.", status: "photographed" },
@@ -171,7 +179,7 @@ export const oakHome: HomeMicrosite = {
       slug: "bathroom",
       name: "Bathroom",
       summary: "A bright white bathroom with a tub and shower, a wood vanity, and a window.",
-      photos: [photos.bath, photos.bathWindow],
+      photos: [photos.bath],
       notes: [
         { text: "Tub with shower and striped curtain, wood vanity with small sink, toilet, and mirror.", status: "photographed" },
         { text: "Frosted window over the shower.", status: "photographed" },
@@ -193,7 +201,7 @@ export const oakHome: HomeMicrosite = {
         { name: "Microwave and toaster oven", status: "photographed" },
         { name: "Coffee maker", status: "photographed" },
         { name: "Dishwasher", status: "confirm" },
-        { name: "Cookware and dishes", status: "confirm" },
+        { name: "Cookware, dishes and glassware", status: "photographed" },
       ],
     },
     {
@@ -247,18 +255,41 @@ export const oakHome: HomeMicrosite = {
       {
         name: "Illustrative layout",
         rooms: [
-          { id: "porch", label: "Covered porch", kind: "porch", x: 0, y: 0, w: 24, h: 8 },
-          { id: "bed3", label: "Bedroom three", kind: "bedroom", x: 0, y: 8, w: 12, h: 12 },
-          { id: "hall", label: "Hall", kind: "hall", x: 12, y: 8, w: 4, h: 12 },
-          { id: "bed1", label: "Bedroom one", kind: "bedroom", x: 16, y: 8, w: 12, h: 12 },
-          { id: "bed2", label: "Bedroom two", kind: "bedroom", x: 0, y: 20, w: 12, h: 12 },
-          { id: "bath", label: "Bathroom", kind: "bath", x: 12, y: 20, w: 8, h: 10 },
-          { id: "kitchen", label: "Kitchen", kind: "kitchen", x: 20, y: 20, w: 10, h: 12 },
-          { id: "dining", label: "Dining room", kind: "dining", x: 30, y: 20, w: 10, h: 12 },
+          // Studio at the top, centred on the footprint: 3 units clear on each side
+          // (x 3–15).
+          { id: "studio",  label: "Studio",      kind: "bedroom", x: 3,  y: 0,  w: 12, h: 11 },
+
+          // Left column, top: the home's single Bath (x 0–8, y 11–20).
+          { id: "bath",    label: "Bath",         kind: "bath",    x: 0,  y: 11, w: 8,  h: 9  },
+
+          // Right column, top: first Bedroom, deeper than the Bath beside it (x 8–18, y 11–23).
+          { id: "bedroom-one", label: "Bedroom",  kind: "bedroom", x: 8,  y: 11, w: 10, h: 12 },
+
+          // Left column, middle: Kitchen under the Bath (x 0–8, y 20–32).
+          { id: "kitchen", label: "Kitchen",      kind: "kitchen", x: 0,  y: 20, w: 8,  h: 12 },
+
+          // Right column, middle: second Bedroom, sharing the Kitchen's bottom wall (x 8–18, y 23–32).
+          { id: "bedroom-two", label: "Bedroom",  kind: "bedroom", x: 8,  y: 23, w: 10, h: 9  },
+
+          // Left column, bottom: Living Room under the Kitchen (x 0–8, y 32–44).
+          { id: "living",  label: "Living Room",  kind: "living",  x: 0,  y: 32, w: 8,  h: 12 },
+
+          // Right column, bottom: third Bedroom, level with the Living Room (x 8–18, y 32–44).
+          { id: "bedroom-three", label: "Bedroom", kind: "bedroom", x: 8, y: 32, w: 10, h: 12 },
+
+          // Porch below the Living Room, bottom-left (x 0–8, y 44–50).
+          { id: "porch",   label: "Porch",        kind: "porch",   x: 0,  y: 44, w: 8,  h: 6  },
+
+          // Stairs: an L-shaped run hanging off the third Bedroom's bottom wall and
+          // flush against the Porch's right wall. The short flight starts at the
+          // Porch wall, runs east along the bedroom wall, turns at its right end and
+          // drops south away from the house (together x 8–12, y 44–52).
+          { id: "stairs-top", label: "",          kind: "stairs",  x: 8,  y: 44, w: 4,  h: 2  },
+          { id: "stairs-run", label: "Stairs",    kind: "stairs",  x: 10, y: 46, w: 2,  h: 6  },
         ],
       },
     ],
-    note: "Illustrative concept only, not a measured plan. It uses the rooms shown in the photos, and the arrangement, sizes, and number of floors are guesses until confirmed. Only the kitchen opening onto the dining room is taken from a photo. A living room, laundry, and any upstairs space are not shown.",
+    note: "Illustrative concept only, not a measured plan. Room labels follow the colour-coded floor-plan drawing, which is marked not to scale. Exact dimensions, door positions and closets are not confirmed.",
   },
   concepts: [
     {

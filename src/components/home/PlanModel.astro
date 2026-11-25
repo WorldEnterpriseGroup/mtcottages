@@ -135,19 +135,26 @@ const id = `model-${home.id}`;
         scene.add(mesh);
       };
 
-      const label = (text: string, x: number, y: number, z: number) => {
+      const natural = span * 0.07; // label height for a room big enough to hold one
+      const label = (text: string, x: number, y: number, z: number, maxHeight = Infinity) => {
+        // The sprite is scaled in world units, so its on-screen size changes with zoom
+        // and with the room. Draw the texture several times larger than it is laid out
+        // (and let mipmaps shrink it), otherwise the text is magnified and looks blurry.
+        const SS = 4; // supersampling factor
+        const LH = 72; // logical texture height, in CSS-independent label units
+        const font = "600 44px system-ui, sans-serif";
         const c = document.createElement("canvas");
         const ctx = c.getContext("2d")!;
-        const font = "600 44px system-ui, sans-serif";
         ctx.font = font;
         const w = Math.ceil(ctx.measureText(text).width) + 36;
-        c.width = w;
-        c.height = 72;
+        c.width = Math.round(w * SS);
+        c.height = Math.round(LH * SS);
+        ctx.setTransform(SS, 0, 0, SS, 0, 0);
         ctx.font = font;
         ctx.fillStyle = token("--paper");
         ctx.globalAlpha = 0.92;
         ctx.beginPath();
-        ctx.roundRect(0, 0, w, 72, 16);
+        ctx.roundRect(0, 0, w, LH, 16);
         ctx.fill();
         ctx.globalAlpha = 1;
         ctx.fillStyle = token("--ink");
@@ -155,11 +162,12 @@ const id = `model-${home.id}`;
         ctx.fillText(text, 18, 38);
         const tex = new THREE.CanvasTexture(c);
         tex.colorSpace = THREE.SRGBColorSpace;
+        tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
         const mat = new THREE.SpriteMaterial({ map: tex, depthTest: false, transparent: true });
         disposables.push(tex, mat);
         const sprite = new THREE.Sprite(mat);
-        const h = span * 0.07;
-        sprite.scale.set((h * w) / 72, h, 1);
+        const h = Math.max(1.4, Math.min(natural, maxHeight));
+        sprite.scale.set((h * w) / LH, h, 1);
         sprite.position.set(x - cx, y, z - cz);
         sprite.renderOrder = 10;
         scene.add(sprite);
@@ -172,12 +180,37 @@ const id = `model-${home.id}`;
           const slab = new THREE.MeshLambertMaterial({ color });
           disposables.push(slab);
           addBox(r.x + r.w / 2, y0 - 0.2, r.y + r.h / 2, r.w, 0.4, r.h, slab);
+          if (r.kind === "stairs") {
+            // A stair run is drawn as steps: thin bars across it, so it reads as stairs
+            // and not as another room.
+            const treadMat = new THREE.MeshLambertMaterial({ color: new THREE.Color("#b9b5a8") });
+            disposables.push(treadMat);
+            const steps = Math.max(3, Math.round(Math.max(r.w, r.h)) - 1);
+            for (let i = 1; i <= steps; i++) {
+              const t = i / (steps + 1);
+              if (r.h >= r.w) addBox(r.x + r.w / 2, y0 + 0.15, r.y + t * r.h, r.w - T, 0.3, 0.3, treadMat);
+              else addBox(r.x + t * r.w, y0 + 0.15, r.y + r.h / 2, 0.3, 0.3, r.h - T, treadMat);
+            }
+          }
           const my = y0 + WALL / 2;
-          addBox(r.x + r.w / 2, my, r.y, r.w, WALL, T, wallMat);
-          addBox(r.x + r.w / 2, my, r.y + r.h, r.w, WALL, T, wallMat);
-          addBox(r.x, my, r.y + r.h / 2, T, WALL, r.h, wallMat);
-          addBox(r.x + r.w, my, r.y + r.h / 2, T, WALL, r.h, wallMat);
-          label(r.label, r.x + r.w / 2, y0 + WALL + 0.8, r.y + r.h / 2);
+          if (r.kind !== "stairs") {
+            // Stairs get no walls of their own: they are steps, and a wall across the
+            // inside of an L would read as a partition through the run.
+            addBox(r.x + r.w / 2, my, r.y, r.w, WALL, T, wallMat);
+            addBox(r.x + r.w / 2, my, r.y + r.h, r.w, WALL, T, wallMat);
+            addBox(r.x, my, r.y + r.h / 2, T, WALL, r.h, wallMat);
+            addBox(r.x + r.w, my, r.y + r.h / 2, T, WALL, r.h, wallMat);
+          }
+          // A stair run is often narrower than a label, so stairs keep the same label size
+          // as every other room and, when the run is too narrow to hold it, the label moves
+          // to the open end of the run so it does not sit across the rooms beside it.
+          if (r.label) {
+            const narrow = Math.min(r.w, r.h) * 0.6 < natural;
+            const stairs = r.kind === "stairs";
+            const lx = stairs && narrow && r.w > r.h ? r.x + r.w : r.x + r.w / 2;
+            const lz = stairs && narrow && r.h >= r.w ? r.y + r.h : r.y + r.h / 2;
+            label(r.label, lx, y0 + WALL + 0.8, lz, stairs ? Infinity : Math.min(r.w, r.h) * 0.6);
+          }
         });
         if (plan.floors.length > 1) label(floor.name, -2, y0 + WALL + 0.8, -2);
       });
