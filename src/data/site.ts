@@ -39,7 +39,7 @@ import virginiaPowder from "../../assets/images/cottages/ravenswood-02/photo-53.
 import virginiaDining from "../../assets/images/cottages/ravenswood-02/photo-55.avif";
 import virginiaWindowRoom from "../../assets/images/cottages/ravenswood-02/photo-116.avif";
 
-import henriettaDining from "../../assets/images/cottages/ravenswood-03/photo-17.avif";
+import henriettaExterior from "../../assets/images/cottages/ravenswood-03/henrietta-exterior-front.avif";
 import henriettaLiving from "../../assets/images/cottages/ravenswood-03/photo-06.avif";
 import henriettaKitchen from "../../assets/images/cottages/ravenswood-03/photo-31.avif";
 import henriettaBedroom from "../../assets/images/cottages/ravenswood-03/photo-42.avif";
@@ -229,7 +229,7 @@ export const cottages: Cottage[] = [
     pricingNote: publishedLuxuryFurnishedPricingNote,
     signals: publishedStaySignals,
     summary: "A two-bedroom furnished home with a welcoming dining room, practical kitchen, and a lived-in sense of place.",
-    hero: photo(henriettaDining, "Henrietta Cottage dining room with blue walls, table, and chairs", "A blue dining room with space for the whole household."),
+    hero: photo(henriettaExterior, "Front of Henrietta Cottage: a green clapboard house with white trim, dark shutters, a white columned entry porch and a garden walk", "The front of the house, with its columned entry porch."),
     gallery: [
       photo(henriettaLiving, "Henrietta Cottage living room and dining area with wood floors"),
       photo(henriettaKitchen, "Henrietta Cottage kitchen with oak cabinets and full-size appliances"),

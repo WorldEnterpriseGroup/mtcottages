@@ -30,6 +30,8 @@ export type HomePhoto = {
   caption: string;
   /** CSS object-position, e.g. "center 40%". */
   focal?: string;
+  /** Preserve the full frame when a fixed-ratio gallery crop would hide content. */
+  fit?: "contain";
 };
 
 export type HomeFact = { label: string; value: string; status: FactStatus };

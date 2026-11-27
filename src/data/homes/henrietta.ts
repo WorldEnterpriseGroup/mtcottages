@@ -9,6 +9,19 @@ import p31 from "../../../assets/images/cottages/ravenswood-03/photo-31.avif";
 import p36 from "../../../assets/images/cottages/ravenswood-03/photo-36.avif";
 import p40 from "../../../assets/images/cottages/ravenswood-03/photo-40.avif";
 import p42 from "../../../assets/images/cottages/ravenswood-03/photo-42.avif";
+import bedroom1Photo01 from "../../../assets/images/cottages/ravenswood-03/henrietta-bedroom-1-01.jpg";
+import bedroom1Photo02 from "../../../assets/images/cottages/ravenswood-03/henrietta-bedroom-1-02.jpg";
+import bedroom1Photo03 from "../../../assets/images/cottages/ravenswood-03/henrietta-bedroom-1-03.jpg";
+import bedroom1Photo04 from "../../../assets/images/cottages/ravenswood-03/henrietta-bedroom-1-04.jpg";
+import kitchenSink from "../../../assets/images/cottages/ravenswood-03/henrietta-kitchen-sink.jpg";
+import kitchenCabinets from "../../../assets/images/cottages/ravenswood-03/henrietta-kitchen-cabinets.jpg";
+import kitchenRange from "../../../assets/images/cottages/ravenswood-03/henrietta-kitchen-range.jpg";
+import exteriorFront from "../../../assets/images/cottages/ravenswood-03/henrietta-exterior-front.avif";
+import exterior02 from "../../../assets/images/cottages/ravenswood-03/henrietta-exterior-02.avif";
+import exterior03 from "../../../assets/images/cottages/ravenswood-03/henrietta-exterior-03.avif";
+import exterior04 from "../../../assets/images/cottages/ravenswood-03/henrietta-exterior-04.avif";
+import exterior05 from "../../../assets/images/cottages/ravenswood-03/henrietta-exterior-05.avif";
+import exteriorStreetView from "../../../assets/images/cottages/ravenswood-03/henrietta-exterior-street-view.jpg";
 import laundryWasher from "../../../assets/images/cottages/ravenswood-03/unique/available-img-428-c44a6dc5bc-648x470.avif";
 import blueBath from "../../../assets/images/cottages/ravenswood-03/unique/ravenswood-henrietta-cottage-img-250-6435685889-648x470.avif";
 import stripedRoomDoor from "../../../assets/images/cottages/ravenswood-03/unique/ravenswood-henrietta-cottage-img-290-88a4997131-648x470.avif";
@@ -18,6 +31,37 @@ import conceptDining from "../../../assets/images/cottages/ravenswood-03/3d/henr
 import conceptKitchen from "../../../assets/images/cottages/ravenswood-03/3d/henrietta-kitchen-top-down.jpg";
 
 const photos = {
+  front: {
+    src: exteriorFront,
+    alt: "Front of the house from the sidewalk: green clapboard siding with white trim and dark shutters, a white columned entry porch with steps, a black metal arbor over the garden walk, a bay window at right, a covered porch at left and shrubs along the foundation",
+    caption: "The front of the house, with its columned entry porch and garden walk.",
+    focal: "50% 45%",
+  },
+  exterior02: {
+    src: exterior02,
+    alt: "Exterior view of the green clapboard house showing the side and front from a different angle, with mature trees and lawn",
+    caption: "Another angle of the house exterior.",
+  },
+  exterior03: {
+    src: exterior03,
+    alt: "Exterior view of the house showing the porch and yard from the side, with trees and fencing visible",
+    caption: "The house and yard from the side.",
+  },
+  exterior04: {
+    src: exterior04,
+    alt: "Exterior view of the house from across the yard, showing the green siding, white trim and surrounding trees",
+    caption: "The house from across the yard.",
+  },
+  exterior05: {
+    src: exterior05,
+    alt: "Exterior view of the house and garden walk, showing the front porch, landscaping and street",
+    caption: "The house and garden walk.",
+  },
+  exteriorStreetView: {
+    src: exteriorStreetView,
+    alt: "Wide exterior view of the green clapboard cottage, its covered porches and garden beds, with the front entrance and neighboring homes along the street",
+    caption: "The cottage and its covered porches from the street.",
+  },
   dining: {
     src: p17,
     alt: "Dining room with light blue walls, an oval dark-wood table with burgundy upholstered chairs, a bookcase, a tall mirror and hardwood floor",
@@ -48,6 +92,22 @@ const photos = {
     alt: "Wide view of the kitchen with oak cabinets, a white refrigerator and dishwasher, a gray-green hutch with a plate rack, a pine table with white chairs and stairs at right",
     caption: "Refrigerator, dishwasher and a hutch with dish storage.",
   },
+  kitchenSink: {
+    src: kitchenSink,
+    alt: "Kitchen sink and counter beneath wide windows, with a high-arc faucet, dish rack, blender and cooking utensils",
+    caption: "The sink and counter beneath the kitchen windows.",
+  },
+  kitchenCabinets: {
+    src: kitchenCabinets,
+    alt: "Kitchen with oak cabinets, a white refrigerator and a glimpse of the dining table beneath pendant lights",
+    caption: "Oak cabinets and the refrigerator beside the dining area.",
+  },
+  kitchenRange: {
+    src: kitchenRange,
+    alt: "White gas range beneath a white hood, with oak cabinets, a coffee maker, a floral kettle and cooking utensils on the counter",
+    caption: "The gas range and hood, with everyday appliances on the counter.",
+    fit: "contain",
+  },
   piano: {
     src: p13,
     alt: "Corner next to the kitchen with an upright piano, vertical wood paneling, a patterned wallpaper border, flowers in vases and a white door with a window",
@@ -62,6 +122,26 @@ const photos = {
     src: p40,
     alt: "Bedroom from the foot of the bed, showing the bed with gray bedding, a lamp on a nightstand, a large mirror, a shelving unit and a window",
     caption: "The same bedroom from the opposite corner.",
+  },
+  bedroom1Angle: {
+    src: bedroom1Photo01,
+    alt: "Bedroom 1 with a bed, gray patterned bedding, striped walls, a curtained window and a wall clock",
+    caption: "Bedroom 1, with a bed and striped walls.",
+  },
+  bedroom1Bed: {
+    src: bedroom1Photo02,
+    alt: "Bedroom 1 viewed from the foot of the bed, showing gray patterned bedding, striped walls, a curtained window and bedside tables",
+    caption: "The bed and window in Bedroom 1.",
+  },
+  bedroom1Desk: {
+    src: bedroom1Photo03,
+    alt: "Bedroom 1 with a wall-mounted television, desk, rolling chair and striped walls",
+    caption: "Desk and television in Bedroom 1.",
+  },
+  bedroom1Fireplace: {
+    src: bedroom1Photo04,
+    alt: "Bedroom 1 fireplace with a white mantel, green inset wall and striped wallpaper",
+    caption: "The fireplace and mantel in Bedroom 1.",
   },
   bath: {
     src: p04,
@@ -90,9 +170,9 @@ export const henriettaHome: HomeMicrosite = {
   slug: "henrietta-cottage",
   name: "Henrietta Cottage",
   town: { name: "Ravenswood", state: "WV", slug: "ravenswood" },
-  tagline: "A two-bedroom furnished home with a blue dining room and a lawn in a quiet river town.",
+  tagline: "A two-bedroom furnished home with a blue dining room, a columned front porch and a lawn in a quiet river town.",
   summary:
-    "Henrietta Cottage is a furnished two-bedroom home in Ravenswood. Inside, the photos show a blue dining room with an oval table, a striped-wallpaper room with a round table, an oak-cabinet kitchen with a gas range and an eat-in table, a furnished bedroom, and two bathrooms. Outside there is a lawn with a fence and trees. Details that are not yet confirmed are marked on this page.",
+    "Henrietta Cottage is a furnished two-bedroom home in Ravenswood. Inside, the photos show a blue dining room with an oval table, a striped-wallpaper room with a round table, an oak-cabinet kitchen with a gas range and an eat-in table, two furnished bedrooms, and two bathrooms. Outside, the green clapboard front has a white columned entry porch and a garden walk, and there is a lawn with a fence and trees. Details that are not yet confirmed are marked on this page.",
   address: {
     kind: "street",
     streetAddress: "200 Henrietta St",
@@ -103,7 +183,7 @@ export const henriettaHome: HomeMicrosite = {
     lng: -81.757844,
   },
   bedrooms: 2,
-  hero: photos.dining,
+  hero: photos.front,
   highlights: [
     {
       title: "A dining room made for sharing meals",
@@ -125,7 +205,7 @@ export const henriettaHome: HomeMicrosite = {
     { label: "Address", value: "200 Henrietta St, Ravenswood, WV 26164", status: "confirmed" },
     { label: "Bedrooms", value: "2", status: "listed" },
     { label: "Furnishing", value: "Furnished", status: "listed" },
-    { label: "Bedrooms photographed", value: "One of the two bedrooms (two angles)", status: "photographed" },
+    { label: "Bedrooms photographed", value: "Both bedrooms", status: "photographed" },
     { label: "Bathrooms", value: "Two bathrooms appear in the photos; the official count is to be confirmed", status: "confirm" },
     { label: "Levels", value: "A staircase is visible beside the kitchen, so the home has more than one level; layout to be confirmed", status: "photographed" },
     { label: "Internet", value: "Fiber-optic internet is the Mt Cottages standard; confirm for this home", status: "confirm" },
@@ -135,6 +215,19 @@ export const henriettaHome: HomeMicrosite = {
     { label: "Square footage", value: "Size of the home", status: "confirm" },
   ],
   rooms: [
+    {
+      slug: "exterior",
+      name: "Exterior",
+      summary: "A two-storey green clapboard house with a white columned entry porch, a garden walk and a lawn.",
+      photos: [photos.front, photos.exteriorStreetView, photos.exterior02, photos.exterior03, photos.exterior04, photos.exterior05],
+      notes: [
+        { text: "Green clapboard siding with white trim and dark shutters.", status: "photographed" },
+        { text: "White columned entry porch with steps and a black metal arbor over the front walk.", status: "photographed" },
+        { text: "A bay window to the right of the entry and a covered porch at the left.", status: "photographed" },
+        { text: "Front garden beds and lawn, with a sidewalk along the street.", status: "photographed" },
+        { text: "Whether off-street parking is available.", status: "confirm" },
+      ],
+    },
     {
       slug: "dining",
       name: "Dining room",
@@ -169,7 +262,7 @@ export const henriettaHome: HomeMicrosite = {
       slug: "kitchen",
       name: "Kitchen",
       summary: "An oak-cabinet kitchen with a gas range and an eat-in table.",
-      photos: [photos.kitchen, photos.kitchenWide, photos.piano],
+      photos: [photos.kitchen, photos.kitchenWide, photos.kitchenSink, photos.kitchenCabinets, photos.kitchenRange, photos.piano],
       notes: [
         { text: "Gas range, white refrigerator with ice dispenser and a dishwasher.", status: "photographed" },
         { text: "Pine table with white spindle chairs.", status: "photographed" },
@@ -185,18 +278,29 @@ export const henriettaHome: HomeMicrosite = {
       ],
     },
     {
-      slug: "bedroom",
-      name: "Bedroom",
-      summary: "A furnished bedroom with built-in shelving and plenty of light.",
+      slug: "bedroom-1",
+      name: "Bedroom 1",
+      summary: "A furnished bedroom with striped walls, a bed, a desk and a fireplace.",
+      photos: [photos.bedroom1Angle, photos.bedroom1Bed, photos.bedroom1Desk, photos.bedroom1Fireplace],
+      notes: [
+        { text: "Bed with gray patterned bedding.", status: "photographed" },
+        { text: "Desk, rolling chair and wall-mounted television.", status: "photographed" },
+        { text: "Fireplace with a white mantel.", status: "photographed" },
+        { text: "Bed size.", status: "confirm" },
+      ],
+    },
+    {
+      slug: "bedroom-2",
+      name: "Bedroom 2",
+      summary: "A furnished bedroom with built-in shelving and two windows.",
       photos: [photos.bedroom, photos.bedroomMirror],
       notes: [
         { text: "Bed with gray bedding and a nightstand with a lamp.", status: "photographed" },
         { text: "Built-in shelving unit, large mirror and two windows.", status: "photographed" },
         { text: "Bed size.", status: "confirm" },
-        { text: "The second bedroom has not been photographed yet.", status: "confirm" },
       ],
       faqs: [
-        { q: "How many bedrooms are there?", a: "Two, per the listing. One is photographed here; ask us about the second and the bed sizes.", status: "listed" },
+        { q: "How many bedrooms are there?", a: "Two, per the listing. Photos show both bedrooms; ask us to confirm the bed sizes.", status: "listed" },
         { q: "Is there storage in the bedroom?", a: "Yes. A built-in shelving unit, a nightstand and a large mirror are photographed.", status: "photographed" },
       ],
     },
@@ -237,7 +341,7 @@ export const henriettaHome: HomeMicrosite = {
         { text: "Lawn, fence and trees.", status: "photographed" },
         { text: "A white porch railing frames the view.", status: "photographed" },
         { text: "Whether the whole yard is private and fenced.", status: "confirm" },
-        { text: "No photo of the front of the house is available yet.", status: "confirm" },
+        { text: "The front of the house is photographed under Exterior.", status: "photographed" },
       ],
       faqs: [
         { q: "Is there a yard?", a: "Yes. A lawn with mature trees and a fence is seen from the porch. Ask us whether the whole yard is private and fenced. Pets are not allowed.", status: "photographed" },
@@ -260,7 +364,8 @@ export const henriettaHome: HomeMicrosite = {
       group: "Sleeping",
       items: [
         { name: "Two private bedrooms", status: "listed" },
-        { name: "Furnished bedroom with shelving", status: "photographed" },
+        { name: "Bedroom 1 with a desk and fireplace", status: "photographed" },
+        { name: "Bedroom 2 with shelving", status: "photographed" },
         { name: "Bed sizes", status: "confirm" },
       ],
     },
@@ -319,7 +424,7 @@ export const henriettaHome: HomeMicrosite = {
       {
         name: "Upper level (concept)",
         rooms: [
-          { id: "bed1", label: "Bedroom", kind: "bedroom", x: 0, y: 0, w: 16, h: 14 },
+          { id: "bed1", label: "Bedroom 1", kind: "bedroom", x: 0, y: 0, w: 16, h: 14 },
           { id: "stairs-up", label: "Stairs", kind: "stairs", x: 16, y: 0, w: 4, h: 14 },
           { id: "bed2", label: "Bedroom 2", kind: "bedroom", x: 20, y: 0, w: 12, h: 14 },
           { id: "bath-tub", label: "Bath", kind: "bath", x: 0, y: 14, w: 10, h: 8 },
